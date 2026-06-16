@@ -6,7 +6,7 @@
   <meta name="description" content="Hyperlocal Bethesda and DC Metro real estate insights — market updates, buyer tips, seller strategy, and neighborhood news." />
   <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="/css/style.css" />
   <style>
     .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-bottom:28px;}
     .blog-card{background:var(--white);border-radius:var(--radius);overflow:hidden;text-decoration:none;color:var(--black);display:flex;flex-direction:column;transition:box-shadow .25s,transform .25s;}
@@ -31,6 +31,7 @@
     .category-filter{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px;}
     .cat-btn{padding:7px 16px;border:1px solid var(--gray-mid);border-radius:20px;font-size:.72rem;font-weight:600;cursor:pointer;background:var(--white);color:#555;transition:all .2s;text-transform:uppercase;letter-spacing:.05em;}
     .cat-btn.active,.cat-btn:hover{background:var(--red);color:var(--white);border-color:var(--red);}
+    .hidden{display:none!important;}
     @media(max-width:900px){.blog-grid{grid-template-columns:1fr;}.blog-list-img{display:none;}}
   </style>
 </head>
@@ -40,60 +41,519 @@
   <ul class="nav-links"><li><a href="/">Home</a></li><li><a href="/properties/">Buy</a></li><li><a href="/whats-my-home-worth/">Sell</a></li><li><a href="/our-areas/">Featured Areas</a></li><li><a href="/about/">About</a></li><li><a href="/vlog/" class="active">Blog</a></li><li><a href="/contact/" class="nav-cta">Let's Connect</a></li></ul>
 </nav>
 
-<div class="page-hero"><div class="page-hero-bg" style="background:#0a0a0a;"></div><div class="page-hero-overlay" style="background:rgba(0,0,0,.5);"></div><div class="page-hero-content"><span class="section-label" style="color:rgba(255,255,255,.6);">Knowledge Base</span><h1>Real Estate <span>Insights</span></h1><p>Hyperlocal market updates, buyer tips, seller strategy, and neighborhood news — from someone who actually lives here.</p></div></div>
+<div class="page-hero"><div class="page-hero-bg" style="background:#0a0a0a;"></div><div class="page-hero-overlay" style="background:rgba(0,0,0,.5);"></div><div class="page-hero-content"><span class="section-label" style="color:rgba(255,255,255,.6);">Knowledge Base</span><h1>Real Estate <span>Insights</span></h1><p>Hyperlocal market updates, buyer tips, seller strategy, and neighborhood news.</p></div></div>
 
 <section style="background:var(--gray-light);">
   <div class="inner">
     <div class="category-filter">
-      <button class="cat-btn active">All Posts</button>
-      <button class="cat-btn">Market Updates</button>
-      <button class="cat-btn">Buyers Corner</button>
-      <button class="cat-btn">Sellers</button>
-      <button class="cat-btn">Finance</button>
-      <button class="cat-btn">Neighborhood</button>
+      <button class="cat-btn active" data-filter="all">All Posts</button>
+      <button class="cat-btn" data-filter="Market Updates">Market Updates</button>
+      <button class="cat-btn" data-filter="Buyers Corner">Buyers Corner</button>
+      <button class="cat-btn" data-filter="Sellers">Sellers</button>
+      <button class="cat-btn" data-filter="Finance">Finance</button>
     </div>
 
-    <!-- Featured Posts -->
-    <div class="blog-grid">
-      <a class="blog-card" href="/vlog/property-tax-assessment-appeal-montgomery-county-maryland/">
-        <div class="blog-card-img"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80" alt="" /></div>
-        <div class="blog-card-body"><span class="blog-tag">Market Updates</span><h2>How to Appeal Your Property Tax Assessment in Montgomery County, MD</h2><p class="blog-excerpt">Montgomery County residential properties saw an average 12.6% value increase. Here's how to appeal in the 45-day window.</p><div class="blog-meta">June 15, 2026</div></div>
+    <!-- Featured Posts (top 3) -->
+    <div class="blog-grid" id="featured-grid">
+      <a class="blog-card" href="/property-tax-assessment-appeal-montgomery-county-maryland/" data-cat="Buyers Corner">
+        <div class="blog-card-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/06/How-to-Appeal-Your-Property-Taxes.png" alt="" loading="lazy"/></div>
+        <div class="blog-card-body"><span class="blog-tag">Buyers Corner</span><h2>How to Appeal Your Property Tax Assessment in Montgomery County, MD</h2><p class="blog-excerpt">TL;DR Montgomery County residential properties in the 2026 SDAT reassessment group (Bethesda, Potomac, Chevy Chase, Whea</p><div class="blog-meta">June 15, 2026</div></div>
       </a>
-      <a class="blog-card" href="/vlog/seller-rent-back-closing-maryland/">
-        <div class="blog-card-img"><img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600&q=80" alt="" /></div>
-        <div class="blog-card-body"><span class="blog-tag">Sellers</span><h2>Seller Rent-Back After Closing in Maryland: How It Works</h2><p class="blog-excerpt">In Maryland, sellers can remain in the home after closing for up to 60 days through a Post-Settlement Occupancy Agreement.</p><div class="blog-meta">June 14, 2026</div></div>
+      <a class="blog-card" href="/seller-rent-back-closing-maryland/" data-cat="Sellers">
+        <div class="blog-card-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/05/Seller-Rent-Back-After-Closing-in-Maryland-How-It-Works.png" alt="" loading="lazy"/></div>
+        <div class="blog-card-body"><span class="blog-tag">Sellers</span><h2>Seller Rent-Back After Closing in Maryland: How It Works</h2><p class="blog-excerpt">TL;DR In Maryland, sellers can remain in the home after closing for up to 60 days through a Post-Settlement Occupancy Ag</p><div class="blog-meta">June 12, 2026</div></div>
       </a>
-      <a class="blog-card" href="/vlog/arm-vs-fixed-rate-mortgage-bethesda-maryland/">
-        <div class="blog-card-img"><img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&q=80" alt="" /></div>
-        <div class="blog-card-body"><span class="blog-tag">Finance</span><h2>ARM vs. Fixed-Rate Mortgage in Bethesda, MD: Which Makes Sense in 2026?</h2><p class="blog-excerpt">In Maryland right now, a 5/1 ARM is priced around 6.24% while the 30-year fixed sits near 6.49%. Here's how to decide.</p><div class="blog-meta">June 13, 2026</div></div>
+      <a class="blog-card" href="/arm-vs-fixed-rate-mortgage-bethesda-maryland/" data-cat="Buyers Corner">
+        <div class="blog-card-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/05/ARM-vs-Fixed-Rate-Mortgage-in-Bethesda-MD-Which-Makes-Sense-in-2026.png" alt="" loading="lazy"/></div>
+        <div class="blog-card-body"><span class="blog-tag">Buyers Corner</span><h2>ARM vs. Fixed-Rate Mortgage in Bethesda, MD: Which Makes Sense in 2026?</h2><p class="blog-excerpt">TL;DR In Maryland right now (May 2026), a 5/1 ARM is priced around 6.24% while the 30-year fixed sits near 6.49% — a spr</p><div class="blog-meta">June 11, 2026</div></div>
       </a>
     </div>
 
-    <!-- More Posts List -->
-    <div class="blog-list">
-      <a class="blog-list-item" href="/vlog/maryland-homestead-tax-credit-bethesda/">
-        <div class="blog-list-img"><img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=200&q=80" alt="" /></div>
-        <div class="blog-list-body"><span class="blog-tag">Buyers</span><div class="blog-list-title">Maryland Homestead Tax Credit: What Bethesda Buyers Need to Know After Closing</div><div class="blog-list-meta">June 12, 2026</div></div>
+    <!-- All remaining posts -->
+    <div class="blog-list" id="posts-list">
+      <a class="blog-list-item" href="/maryland-homestead-tax-credit-bethesda/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/05/Maryland-Homestead-Tax-Credit-What-Bethesda-Buyers-Need-to-Know-After-Closing.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">Maryland Homestead Tax Credit: What Bethesda Buyers Need to Know After Closing</div><div class="blog-list-meta">June 10, 2026</div></div>
       </a>
-      <a class="blog-list-item" href="/vlog/assumable-mortgage-bethesda-maryland-buyers/">
-        <div class="blog-list-img"><img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=200&q=80" alt="" /></div>
-        <div class="blog-list-body"><span class="blog-tag">Finance</span><div class="blog-list-title">How Assumable Mortgages Work for Bethesda Buyers (2026)</div><div class="blog-list-meta">June 11, 2026</div></div>
+      <a class="blog-list-item" href="/assumable-mortgage-bethesda-maryland-buyers/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/06/How-Assumable-Mortgages-work-In-Bethesda-MD.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">How Assumable Mortgages Work for Bethesda Buyers (2026)</div><div class="blog-list-meta">June 9, 2026</div></div>
       </a>
-      <a class="blog-list-item" href="/vlog/avoid-pmi-buying-home-bethesda-maryland/">
-        <div class="blog-list-img"><img src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=200&q=80" alt="" /></div>
-        <div class="blog-list-body"><span class="blog-tag">Finance</span><div class="blog-list-title">How to Avoid PMI When Buying a Home in Bethesda, MD</div><div class="blog-list-meta">June 10, 2026</div></div>
+      <a class="blog-list-item" href="/avoid-pmi-buying-home-bethesda-maryland/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/05/How-to-Avoid-PMI-When-Buying-a-Home-in-Bethesda-MD.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">How to Avoid PMI When Buying a Home in Bethesda, MD</div><div class="blog-list-meta">June 8, 2026</div></div>
       </a>
-      <a class="blog-list-item" href="/vlog/cash-offer-vs-financed-offer-bethesda-maryland/">
-        <div class="blog-list-img"><img src="https://images.unsplash.com/photo-1589758438368-0ad531db3366?w=200&q=80" alt="" /></div>
-        <div class="blog-list-body"><span class="blog-tag">Strategy</span><div class="blog-list-title">Cash Offer vs. Financed Offer in Bethesda, MD</div><div class="blog-list-meta">June 9, 2026</div></div>
+      <a class="blog-list-item" href="/cash-offer-vs-financed-offer-bethesda-maryland/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/05/Cash-Offer-vs-Financed-Offer-in-Bethesda-MD.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">Cash Offer vs. Financed Offer in Bethesda, MD</div><div class="blog-list-meta">June 5, 2026</div></div>
       </a>
-      <a class="blog-list-item" href="/vlog/radon-testing-when-buying-a-home-in-montgomery-county-md/">
-        <div class="blog-list-img"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=200&q=80" alt="" /></div>
-        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">Radon Testing When Buying a Home in Montgomery County, MD</div><div class="blog-list-meta">June 8, 2026</div></div>
+      <a class="blog-list-item" href="/radon-testing-when-buying-a-home-in-montgomery-county-md/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/05/Radon-Testing-When-Buying-a-Home-in-Montgomery-County-MD.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Radon Testing When Buying a Home in Montgomery County, MD</div><div class="blog-list-meta">June 4, 2026</div></div>
       </a>
-      <a class="blog-list-item" href="/vlog/credit-score-buy-home-maryland-bethesda/">
-        <div class="blog-list-img"><img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=200&q=80" alt="" /></div>
-        <div class="blog-list-body"><span class="blog-tag">Finance</span><div class="blog-list-title">What Credit Score Do You Need to Buy a Home in Maryland?</div><div class="blog-list-meta">June 7, 2026</div></div>
+      <a class="blog-list-item" href="/credit-score-buy-home-maryland-bethesda/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/05/What-Credit-Score-Do-You-Need-to-Buy-a-Home-in-Maryland.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">What Credit Score Do You Need to Buy a Home in Maryland?</div><div class="blog-list-meta">June 3, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/buying-home-student-loan-debt-maryland/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/05/Can-You-Buy-a-Home-in-Maryland-with-Student-Loan-Debt.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">Can You Buy a Home in Maryland with Student Loan Debt?</div><div class="blog-list-meta">June 2, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/15-year-vs-30-year-mortgage-bethesda-maryland/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/06/9b14476d-0492-4852-a21b-16e98270337e.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">15-Year vs. 30-Year Mortgage in Bethesda: Which Is Right for You?</div><div class="blog-list-meta">June 1, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/jumbo-loan-bethesda-maryland-2026/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/05/Do-You-Need-a-Jumbo-Loan-to-Buy-in-Bethesda-MD-2026-Loan-Limits-Explained.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">Do You Need a Jumbo Loan to Buy in Bethesda, MD? (2026 Loan Limits Explained)</div><div class="blog-list-meta">May 29, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/title-insurance-maryland-bethesda/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/05/Title-Insurance.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">Title Insurance in Maryland: What Buyers and Sellers Pay</div><div class="blog-list-meta">May 28, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/maryland-transfer-recordation-tax-montgomery-county/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/05/Title-Insurance-in-Maryland-Who-Pays-What.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">Maryland Transfer Tax &#038; Recordation Tax: Who Pays What?</div><div class="blog-list-meta">May 27, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/down-payment-buy-home-bethesda-md/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/05/How-Much-Down-Payment-Do-You-Need-to-Buy-a-Home-in-Bethesda-MD.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">How Much Down Payment Do You Need to Buy a Home in Bethesda, MD?</div><div class="blog-list-meta">May 26, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/hoa-disclosure-buying-bethesda-maryland/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/05/What-Bethesda-Buyers-Need-to-Know-About-HOA-Disclosures.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">What Bethesda Buyers Need to Know About HOA Disclosures</div><div class="blog-list-meta">May 25, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/seller-concession-home-purchase-bethesda-maryland/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/05/Should-You-Ask-for-a-Seller-Concession-When-Buying-in-Bethesda-MD.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">Should You Ask for a Seller Concession When Buying in Bethesda, MD?</div><div class="blog-list-meta">May 22, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/how-to-buy-before-you-sell-in-bethesda-md-bridge-loans-vs-sale-contingencies/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/05/How-to-Buy-Before-You-Sell-in-Bethesda-MD-Bridge-Loans-vs-Sale-Contingencies.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">How to Buy Before You Sell in Bethesda, MD: Bridge Loans vs. Sale Contingencies</div><div class="blog-list-meta">May 21, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/first-time-homebuyer-programs-montgomery-county-md/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/05/ok-next-one-First-Time-Homebuyer-Programs-in-Montgomery-County-MD-Whats-Actually-Available-in-2026.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">First-Time Homebuyer Programs in Montgomery County, MD: What's Actually Available in 2026</div><div class="blog-list-meta">May 20, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/sell-inherited-home-bethesda-maryland/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/05/How-to-sell-an-inherited-home-in-Bethesda.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">How to Sell an Inherited Home in Bethesda, MD</div><div class="blog-list-meta">May 19, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/what-to-expect-at-closing-buyer-maryland/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/05/WHAT-TO-EXPECT-AT-CLOSING-BETHESDA.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">What to Expect at Closing: A Buyer's Guide for Maryland</div><div class="blog-list-meta">May 18, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/maryland-seller-disclosure-bethesda/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/05/What-Sellers-Must-Disclose-in-Maryland.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">What Sellers Must Disclose in Maryland: Bethesda &#038; Montgomery County Guide</div><div class="blog-list-meta">May 15, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/buyer-broker-agreement-maryland-bethesda/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/05/What-Is-a-Buyer-Broker-Agreement.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">What Is a Buyer Broker Agreement — And Do You Have to Sign One in Maryland?</div><div class="blog-list-meta">May 14, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/should-you-waive-the-home-inspection-to-win-a-bid-in-bethesda-md/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/05/Waiving-the-Home-Inspection-to-Win-a-Bid.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Should You Waive the Home Inspection to Win a Bid in Bethesda, MD?</div><div class="blog-list-meta">May 13, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/mcps-boundary-changes-bethesda-home-values-2026/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/05/MCPS-School-Boundaries-Changed-2026.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">MCPS School Boundaries Changed (2026): Bethesda Home Value Impact</div><div class="blog-list-meta">May 12, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/capital-gains-tax-selling-home-bethesda-md/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/05/Capital-gains-tax-in-Bethesda-real-estate.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Capital Gains Tax When Selling Your Bethesda Home: What You Actually Owe</div><div class="blog-list-meta">May 11, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/buying-new-construction-bethesda-md/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/05/What-to-know-before-buying-new-construction.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">What to Know Before Buying New Construction in Bethesda, MD</div><div class="blog-list-meta">May 8, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/buyer-closing-costs-bethesda-maryland/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/05/How-Much-Are-Closing-Costs-for-Buyers-in-Bethesda.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">How Much Are Closing Costs for Buyers in Bethesda, MD in 2026?</div><div class="blog-list-meta">May 6, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/net-proceeds-selling-home-bethesda-md/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/05/How-much-money-will-you-net.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">How Much Will You Net Selling Your Home in Bethesda, MD?</div><div class="blog-list-meta">May 6, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/escalation-clause-bethesda-competitive-offer/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/05/Escalation-Clauses-Win-Hom-es-in-Bethesda.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">How to Use an Escalation Clause to Win a Home in Bethesda</div><div class="blog-list-meta">May 5, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/bethesda-buyer-montgomery-county-property-taxes/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/04/Bethesda-property-taxes-what-buyers-miss.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">What Bethesda Homebuyers Don’t Know About Montgomery County Property Taxes</div><div class="blog-list-meta">May 4, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/how-buyers-really-decide-what-your-home-is-worth-in-bethesda-md/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/04/How-buyers-determine-home-value-in-Bethesda.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">How Buyers Really Decide What Your Home Is Worth in Bethesda, MD</div><div class="blog-list-meta">May 1, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/what-happens-when-you-price-your-home-too-high-in-the-first-week/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/04/Pricing-your-home-too-high-consequences.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">What Happens When You Price Your Home Too High in the First Week</div><div class="blog-list-meta">April 30, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/underpricing-your-home-in-bethesda-md-smart-strategy-or-risky-move/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/04/Underpricing-your-home-in-Bethesda.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Underpricing Your Home in Bethesda, MD: Smart Strategy or Risky Move?</div><div class="blog-list-meta">April 29, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/why-overpricing-your-home-in-bethesda-costs-you-more-than-you-think/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/04/Overpricing-a-home-in-Bethesda.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Why Overpricing Your Home in Bethesda Costs You More Than You Think</div><div class="blog-list-meta">April 28, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/how-to-price-your-home-to-create-multiple-offers-in-bethesda-md/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/04/ChatGPT-Image-Apr-19-2026-12-36-34-PM.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">How to Price Your Home to Create Multiple Offers in Bethesda, MD</div><div class="blog-list-meta">April 27, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/how-long-does-it-take-to-sell-a-home-in-bethesda-md-and-why-most-sellers-get-it-wrong/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/04/How-fast-can-you-sell-in-Bethesda.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">How Long Does It Take to Sell a Home in Bethesda, MD? (And Why Most Sellers Get It Wrong)</div><div class="blog-list-meta">April 24, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/why-some-bethesda-homes-sell-in-7-days-and-others-sit-for-weeks/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/04/Selling-homes-fast-in-Bethesda.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Why Some Bethesda Homes Sell in 7 Days and Others Sit for Weeks</div><div class="blog-list-meta">April 23, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/staging-doesnt-sell-homes-in-bethesda-md-this-does/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/04/Staging-Doesnt-Sell-Homes-in-Bethesda-MD-This-Does.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Staging Doesn’t Sell Homes in Bethesda, MD. This Does!</div><div class="blog-list-meta">April 23, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/5-things-that-actually-add-value-before-selling-a-home-in-bethesda-and-5-that-dont/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/04/Redo-the-title-5-Things-That-Actually-Add-Value-Before-Selling-a-Home-in-Bethesda-And-5-That-Dont.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">5 Things That Actually Add Value Before Selling a Home in Bethesda (And 5 That Don’t)</div><div class="blog-list-meta">April 21, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/dont-renovate-everything-before-selling-in-bethesda-md/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/04/Dont-Renovate-Everything-Before-Selling-in-Bethesda-MD.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Don’t Renovate Everything Before Selling in Bethesda, MD</div><div class="blog-list-meta">April 20, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/renovate-before-selling-in-bethesda-md-heres-what-actually-pays-off/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/04/Renovate-Before-Selling-in-Bethesda-MD-Heres-What-Actually-Pays-Off.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Renovate Before Selling in Bethesda, MD? Here’s What Actually Pays Off</div><div class="blog-list-meta">April 17, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/why-the-best-time-to-sell-in-bethesda-md-is-misunderstood/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/04/Why-the-Best-Time-to-Sell-in-Bethesda-MD-Is-Misunderstood.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Why the “Best Time to Sell” in Bethesda, MD Is Misunderstood</div><div class="blog-list-meta">April 16, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/the-truth-about-the-best-month-to-sell-a-home-in-bethesda-md/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/04/The-Truth-About-the-Best-Month-to-Sell-a-Home-in-Bethesda-MD.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">The Truth About the “Best Month” to Sell a Home in Bethesda, MD</div><div class="blog-list-meta">April 15, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/why-timing-matters-less-than-you-think-when-selling-in-bethesda-md/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/04/why-timing-matters-less-than-you-think-in-bethesda-md.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">Why Timing Matters Less Than You Think When Selling in Bethesda, MD</div><div class="blog-list-meta">April 14, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/why-waiting-for-a-better-market-to-sell-in-bethesda-is-usually-a-mistake/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/04/Why-Waiting-for-a-Better-Market-to-Sell-in-Bethesda-Is-Usually-a-Mistake.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Why Waiting for a “Better” Market to Sell in Bethesda Is Usually a Mistake</div><div class="blog-list-meta">April 13, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/what-happens-if-a-buyer-backs-out-of-a-home-sale-in-bethesda-md/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/What-Happens-If-a-Buyer-Backs-Out-of-a-Home-Sale-in-Bethesda-MD.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">What Happens If a Buyer Backs Out of a Home Sale in Bethesda, MD?</div><div class="blog-list-meta">April 10, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/what-happens-after-you-accept-an-offer-on-your-home-in-bethesda-md/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/What-Happens-After-You-Accept-an-Offer-on-Your-Home-in-Bethesda-MD.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">What Happens After You Accept an Offer on Your Home in Bethesda, MD?</div><div class="blog-list-meta">April 9, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/what-is-a-home-appraisal-and-why-does-it-matter-in-bethesda-md/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/What-Is-a-Home-Appraisal-and-Why-Does-It-Matter-in-Bethesda-MD.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">What Is a Home Appraisal and Why Does It Matter in Bethesda, MD?</div><div class="blog-list-meta">April 8, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/what-is-a-contingency-in-a-real-estate-contract-in-bethesda-md/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/What-Is-a-Contingency-in-a-Real-Estate-Contract-in-Bethesda-MD.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">What Is a Contingency in a Real Estate Contract in Bethesda, MD?</div><div class="blog-list-meta">April 7, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/what-is-earnest-money-and-how-does-it-work-in-bethesda-md/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/What-Is-Earnest-Money-and-How-Does-It-Work-in-Bethesda-MD.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">What Is Earnest Money and How Does It Work in Bethesda, MD?</div><div class="blog-list-meta">April 6, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/what-is-a-home-inspection-and-what-should-bethesda-sellers-expect/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/What-Is-a-Home-Inspection-and-What-Should-Bethesda-Sellers-Expect.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">What Is a Home Inspection and What Should Bethesda Sellers Expect?</div><div class="blog-list-meta">April 4, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/what-are-closing-costs-when-selling-a-home-in-bethesda-md/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/What-Are-Closing-Costs-When-Selling-a-Home-in-Bethesda-MD.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">What Are Closing Costs When Selling a Home in Bethesda, MD?</div><div class="blog-list-meta">April 3, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/what-is-an-appraisal-gap-and-how-does-it-affect-bethesda-home-sales/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/How-Long-Does-it-Take-to-Sell-in-Bethesda-Maryland.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">What Is an Appraisal Gap and How Does It Affect Bethesda Home Sales?</div><div class="blog-list-meta">April 2, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/how-long-does-it-take-to-sell-a-home-in-bethesda-md-2/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/How-Long-Does-It-Take-to-Sell-a-Home-in-Bethesda-MD.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">How Long Does It Take to Sell a Home in Bethesda, MD?</div><div class="blog-list-meta">April 1, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/what-buyers-are-really-looking-for-in-bethesda-homes-in-2026/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/What-Buyers-Want-in-Bethesda-2026.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">What Buyers Are Really Looking for in Bethesda Homes in 2026</div><div class="blog-list-meta">March 31, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/how-pricing-your-home-correctly-impacts-your-sale-in-bethesda-md/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/How-Pricing-Your-Home-Correctly-Impacts-Your-Sale-in-Bethesda-MD.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">How Pricing Your Home Correctly Impacts Your Sale in Bethesda, MD</div><div class="blog-list-meta">March 27, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/when-is-the-best-time-to-sell-a-home-in-bethesda-md/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/Best-time-to-sell-in-Bethesda.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">When Is the Best Time to Sell a Home in Bethesda, MD?</div><div class="blog-list-meta">March 26, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/what-adds-the-most-value-to-a-home-in-bethesda-md/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/Maximizing-home-value-in-Bethesda-MD.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">What Adds the Most Value to a Home in Bethesda, MD?</div><div class="blog-list-meta">March 24, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/the-most-common-mistakes-bethesda-home-sellers-make/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/Common-Bethesda-home-selling-mistakes-explained.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">The Most Common Mistakes Bethesda Home Sellers Make</div><div class="blog-list-meta">March 23, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/is-bethesda-md-still-a-good-place-to-buy-real-estate-in-2026/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/Is-Bethesda-MD-Still-Good-for-Real-Estate-in-2026.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Is Bethesda, MD Still a Good Place to Buy Real Estate in 2026?</div><div class="blog-list-meta">March 19, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/what-actually-adds-value-before-selling-a-home-in-bethesda-md/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/What-Actually-Adds-Value-before-Selling-a-Home-in-Bethesda.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">What Actually Adds Value Before Selling a Home in Bethesda, MD?</div><div class="blog-list-meta">March 18, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/should-you-stage-your-home-before-selling-in-bethesda-md/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/Staging-your-home-in-Bethesda-MD.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Should You Stage Your Home Before Selling in Bethesda, MD?</div><div class="blog-list-meta">March 18, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/should-you-renovate-before-selling-your-bethesda-home/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/Should-you-renovate-before-selling-in-Bethesda.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Should You Renovate Before Selling Your Bethesda Home?</div><div class="blog-list-meta">March 17, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/should-you-sell-your-bethesda-home-before-buying-another-one/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/Buy-before-Sell-Bethesda.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Should You Sell Your Bethesda Home Before Buying Another One?</div><div class="blog-list-meta">March 16, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/why-some-homes-in-bethesda-sell-in-days-while-others-sit-on-the-market/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/Why-Do-Some-Homes-in-Bethesda-Sell-Fast-While-Others-Sit-on-the-Market.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Why Some Homes in Bethesda Sell in Days While Others Sit on the Market</div><div class="blog-list-meta">March 13, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/what-is-the-best-month-to-sell-a-home-in-bethesda-md/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/best-month-to-sell-in-bethesda.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">What Is the Best Month to Sell a Home in Bethesda, MD?</div><div class="blog-list-meta">March 13, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/should-you-list-your-home-in-the-winter-in-bethesda-md/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/Winter-vs-Spring-season-real-estate.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Should You List Your Home in the Winter in Bethesda, MD?</div><div class="blog-list-meta">March 12, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/how-much-does-staging-really-matter-in-bethesda-md/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/How-Much-Does-Staging-Really-Matter-in-Bethesda-MD.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">How Much Does Staging Really Matter in Bethesda, MD?</div><div class="blog-list-meta">March 11, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/what-repairs-should-you-make-before-selling-in-bethesda-md/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/What-Repairs-Should-You-Make-Before-Selling-in-Bethesda-MD.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">What Repairs Should You Make Before Selling in Bethesda, MD?</div><div class="blog-list-meta">March 10, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/should-you-price-your-home-slightly-below-market-in-bethesda-md/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/Should-You-Price-Your-Home-Slightly-Below-Market-in-Bethesda-MD.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Should You Price Your Home Slightly Below Market in Bethesda, MD?</div><div class="blog-list-meta">March 10, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/how-important-is-timing-when-selling-your-home-in-bethesda-md/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/How-Important-Is-Timing-When-Selling-Your-Home-in-Bethesda-MD.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">How Important Is Timing When Selling Your Home in Bethesda, MD?</div><div class="blog-list-meta">March 6, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/should-you-list-your-home-off-market-in-bethesda-md/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/Should-You-List-Your-Home-Off-Market-in-Bethesda-MD.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Should You List Your Home Off-Market in Bethesda, MD?</div><div class="blog-list-meta">March 5, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/should-you-renovate-before-selling-your-home-in-bethesda-md/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/Should-You-Renovate-Before-Selling-Your-Home-in-Bethesda-MD.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Should You Renovate Before Selling Your Home in Bethesda, MD?</div><div class="blog-list-meta">March 4, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/how-to-price-your-home-to-attract-multiple-offers-in-bethesda-md/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/price-your-home-for-multiple-offers.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">How to Price Your Home to Attract Multiple Offers in Bethesda, MD</div><div class="blog-list-meta">March 3, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/what-happens-if-your-home-appraisal-comes-in-low-in-bethesda-md/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/02/ChatGPT-Image-Feb-22-2026-01-27-15-PM.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">What Happens If Your Home Appraisal Comes in Low in Bethesda, MD?</div><div class="blog-list-meta">March 2, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/should-you-wait-for-a-better-market-to-sell-in-bethesda-md-pey-behin-explains/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/02/Should-you-wait-to-sell-your-home-in-bethesda-md-pey-behin.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Should You Wait for a Better Market to Sell in Bethesda, MD? Pey Behin Explains</div><div class="blog-list-meta">February 27, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/should-you-do-a-pre-listing-inspection-in-bethesda-md/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/02/should-you-do-a-pre-listing-inspection-pey-behin.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Should You Do a Pre-Listing Inspection in Bethesda, MD?</div><div class="blog-list-meta">February 26, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/should-you-wait-for-a-better-market-to-sell-in-bethesda-md/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/02/should-you-wait-for-a-better-market-bethesda-maryland-pey-behin.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Should You Wait for a “Better” Market to Sell in Bethesda, MD?</div><div class="blog-list-meta">February 26, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/should-you-price-high-to-leave-room-to-negotiate-in-bethesda-md-pey-behin-explains/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/02/ChatGPT-Image-Feb-14-2026-01-58-55-PM.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Should You Price High to Leave Room to Negotiate in Bethesda, MD? Pey Behin Explains</div><div class="blog-list-meta">February 25, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/what-happens-if-your-home-doesnt-sell-in-bethesda-md-pey-behin-explains/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/02/what-if-your-home-doesnt-sell-pey-behin.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">What Happens If Your Home Doesn’t Sell in Bethesda, MD? Pey Behin Explains</div><div class="blog-list-meta">February 24, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/how-long-does-it-take-to-sell-a-home-in-bethesda-md/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/02/how-long-does-it-take-to-sell-in-bethesda-pey-behin.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">How Long Does It Take to Sell a Home in Bethesda, MD?</div><div class="blog-list-meta">February 23, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/should-you-accept-the-first-offer-on-your-bethesda-home/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/02/Should-you-accept-the-first-offer-Pey-Behin.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Should You Accept the First Offer on Your Bethesda Home?</div><div class="blog-list-meta">February 21, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/should-i-stage-my-home-before-selling-in-bethesda-md-pey-behin-explains-what-actually-works/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/02/Home-Staging-Tips-in-Bethesda-MD-Pey-Behin.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Should I Stage My Home Before Selling in Bethesda, MD? Pey Behin Explains What Actually Works</div><div class="blog-list-meta">February 20, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/how-do-i-price-my-home-to-attract-multiple-offers-in-bethesda-md-pey-behin-explains-the-strategy/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/02/ChatGPT-Image-Feb-14-2026-12-42-19-PM.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">How Do I Price My Home to Attract Multiple Offers in Bethesda, MD? Pey Behin Explains the Strategy</div><div class="blog-list-meta">February 19, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/should-i-sell-my-home-before-buying-in-bethesda-md-pey-behin-breaks-down-the-pros-and-cons/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/02/Sell-first-Pey-Behin.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Should I Sell My Home Before Buying in Bethesda, MD? Pey Behin Breaks Down the Pros and Cons</div><div class="blog-list-meta">February 18, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/what-if-my-home-doesnt-appraise-in-bethesda-md-pey-behin-explains-your-options/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/02/ChatGPT-Image-Feb-14-2026-12-22-02-PM.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">What if My Home Doesn’t Appraise in Bethesda, MD? Pey Behin Explains Your Options</div><div class="blog-list-meta">February 17, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/what-happens-after-i-accept-an-offer-on-my-home-in-bethesda-md-pey-behin-explains-the-next-steps/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/02/ChatGPT-Image-Feb-1-2026-07-02-04-PM.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">What happens after I accept an offer on my home in Bethesda, MD? Pey Behin explains the next steps</div><div class="blog-list-meta">February 13, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/should-i-make-repairs-before-selling-my-home-in-bethesda-md-pey-behins-cost-versus-return-guide/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/02/Repais-when-selling-a-home-pey-behin-thumbnail.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Should I make repairs before selling my home in Bethesda, MD? Pey Behin’s cost-versus-return guide</div><div class="blog-list-meta">February 12, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/why-would-i-sell-my-home-as-is-in-bethesda-md-pey-behins-scenarios-where-it-makes-sense/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/02/why-sell-as-is-thumbnail.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Why would I sell my home “as-is” in Bethesda, MD? Pey Behin’s scenarios where it makes sense</div><div class="blog-list-meta">February 11, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/can-i-sell-my-home-as-is-in-bethesda-md-pey-behin-explains-the-real-tradeoffs/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/02/Selling-As-Is-Thumbnail.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Can I sell my home “as-is” in Bethesda, MD? Pey Behin explains the real tradeoffs</div><div class="blog-list-meta">February 9, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/downtown-bethesda-residential-development-a-powerful-transformation-reshaping-urban-living-in-2026/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">Downtown Bethesda Residential Development: A Powerful Transformation Reshaping Urban Living in 2026</div><div class="blog-list-meta">February 7, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/how-can-i-sell-my-home-fast-in-bethesda-md-without-regretting-the-price-pey-behins-speed-without-regret-playbook/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/02/Sell-your-bethesda-md-home-fast-without-regret-pey-behin-thumbnail.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">How can I sell my home fast in Bethesda, MD without regretting the price? Pey Behin’s speed-without-regret playbook</div><div class="blog-list-meta">February 6, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/will-my-home-sell-in-bethesda-md-or-will-it-sit-pey-behins-honest-pre-listing-risk-check/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/02/Will-my-home-sell-in-bethesda-pey-behin-thumbnail.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Will my home sell in Bethesda, MD, or will it sit? Pey Behin’s honest pre-listing risk check</div><div class="blog-list-meta">February 5, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/what-should-i-sell-my-home-for-in-bethesda-md/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/02/ChatGPT-Image-Feb-1-2026-02-17-40-PM.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">What should I sell my home for in Bethesda, MD?</div><div class="blog-list-meta">February 4, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/when-is-the-best-time-to-sell-my-home-in-bethesda-md-pey-behins-trusted-timing-playbook/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/01/Untitled-design-3.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">When is the best time to sell my home in Bethesda, MD? Pey Behin’s trusted timing playbook</div><div class="blog-list-meta">February 3, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/how-do-i-sell-my-home-in-bethesda-md/" data-cat="Market Updates">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/01/How-Do-I-sell-in-bethesda.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Market Updates</span><div class="blog-list-title">How do I sell my home in Bethesda, MD?</div><div class="blog-list-meta">February 2, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/selling-a-home-in-bethesda-what-sellers-regret-after-listing/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/01/Untitled-design-4.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Selling a Home in Bethesda? What Sellers Regret After Listing</div><div class="blog-list-meta">January 31, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/flavor-hive-is-opening-in-rockville-heres-why-moco-foodies-should-care/" data-cat="Market Updates">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/01/Untitled-55-x-425-in.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Market Updates</span><div class="blog-list-title">Flavor Hive Is Opening in Rockville. Here’s Why MoCo Foodies Should Care</div><div class="blog-list-meta">January 30, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/steeze-burger-named-best-burger-in-the-dmv-is-opening-its-first-brick-and-mortar-in-gaithersburg/" data-cat="Market Updates">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/01/Steeze-Burger-coming-soon-to-Gaithersburg.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Market Updates</span><div class="blog-list-title">Steeze Burger, Named “Best Burger in the DMV,” Is Opening Its First Brick-and-Mortar in Gaithersburg</div><div class="blog-list-meta">January 30, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/fairfax-county-redraws-school-boundaries-affecting-1700-students-and-home-values-2/" data-cat="Market Updates">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/01/ChatGPT-Image-Jan-28-2026-04-55-13-PM.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Market Updates</span><div class="blog-list-title">Fairfax County Redraws School Boundaries Affecting 1700 Students and Home Values</div><div class="blog-list-meta">January 28, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/this-condo-has-the-best-rooftop-in-washington-dc-under-1000000/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">This Condo has the Best ROOFTOP in Washington DC under $1,000,000!</div><div class="blog-list-meta">May 9, 2022</div></div>
+      </a>
+      <a class="blog-list-item" href="/how-has-the-coronavirus-affected-the-real-estate-market/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2020/05/photo-output.jpg" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">How has the Coronavirus affected the Real Estate Market?</div><div class="blog-list-meta">May 6, 2020</div></div>
+      </a>
+      <a class="blog-list-item" href="/toilet-paper-shortage-solved/" data-cat="Market Updates">
+        <div class="blog-list-img"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Market Updates</span><div class="blog-list-title">Toilet Paper Shortage SOLVED!!</div><div class="blog-list-meta">March 18, 2020</div></div>
+      </a>
+      <a class="blog-list-item" href="/washington-dc-neighborhood-highest-appreciation/" data-cat="Market Updates">
+        <div class="blog-list-img"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Market Updates</span><div class="blog-list-title">Pey on the Streets &#8211; Neighborhood with the Highest Appreciation in Washington DC</div><div class="blog-list-meta">February 26, 2020</div></div>
+      </a>
+      <a class="blog-list-item" href="/expensive-washington-dc-neighborhoods/" data-cat="Market Updates">
+        <div class="blog-list-img"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Market Updates</span><div class="blog-list-title">Pey on the Streets &#8211; Most Expensive Washington DC Neighborhoods 2018</div><div class="blog-list-meta">February 12, 2020</div></div>
+      </a>
+      <a class="blog-list-item" href="/fastest-selling-neighborhood-dc/" data-cat="Market Updates">
+        <div class="blog-list-img"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Market Updates</span><div class="blog-list-title">Pey on the Streets &#8211; How Much do Washington DC Residents Know About Their Local Real Estate Market?</div><div class="blog-list-meta">February 3, 2020</div></div>
+      </a>
+      <a class="blog-list-item" href="/how-do-you-say-rlah-real-estate/" data-cat="Market Updates">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2020/02/Screen-Shot-2020-02-03-at-51742-PM.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Market Updates</span><div class="blog-list-title">How Do You Say &#8220;RLAH&#8221; Real Estate with Pey Behin</div><div class="blog-list-meta">February 3, 2020</div></div>
+      </a>
+      <a class="blog-list-item" href="/top-5-hidden-fees-when-buying-a-house-copy/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2019/06/IMG_5006.jpg" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">TOP 5 HIDDEN FEES WHEN BUYING A HOUSE</div><div class="blog-list-meta">June 25, 2019</div></div>
+      </a>
+      <a class="blog-list-item" href="/when-is-the-best-time-to-buy-a-house/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2018/10/HEY.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">WHEN IS THE BEST TIME TO BUY A HOUSE?</div><div class="blog-list-meta">April 5, 2018</div></div>
+      </a>
+      <a class="blog-list-item" href="/open-houses/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2018/03/IMG_9745.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">OPEN HOUSES &#8211; DO THEY WORK?</div><div class="blog-list-meta">March 28, 2018</div></div>
+      </a>
+      <a class="blog-list-item" href="/video-when-is-the-best-time-to-sell-a-house/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2018/02/IMG_9426.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">WHEN IS THE BEST TIME TO SELL A HOUSE?</div><div class="blog-list-meta">February 15, 2018</div></div>
+      </a>
+      <a class="blog-list-item" href="/price-a-home-to-sell/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2018/10/HOW-TO-A-HOME-TO-SELL-1.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">Price a Home to Sell</div><div class="blog-list-meta">February 2, 2018</div></div>
+      </a>
+      <a class="blog-list-item" href="/what-is-staging/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2018/01/IMG_9666.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">What is Staging? Is Staging Necessary to Sell my Home?</div><div class="blog-list-meta">January 24, 2018</div></div>
+      </a>
+      <a class="blog-list-item" href="/what-is-the-appraisal-contingency/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2018/10/IMG_9669.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">What is the Appraisal Contingency?</div><div class="blog-list-meta">October 21, 2016</div></div>
+      </a>
+      <a class="blog-list-item" href="/home-inspections/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2018/10/IMG_9671.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">Home Inspections 101</div><div class="blog-list-meta">October 13, 2016</div></div>
+      </a>
+      <a class="blog-list-item" href="/first-time-homebuyers/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2018/10/IMG_9680.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">First-Time Homebuyers</div><div class="blog-list-meta">October 11, 2016</div></div>
+      </a>
+      <a class="blog-list-item" href="/getting-preapproved/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2018/10/IMG_9682.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">Getting Preapproved for a Mortgage</div><div class="blog-list-meta">October 6, 2016</div></div>
+      </a>
+      <a class="blog-list-item" href="/earnest-money-deposit-emd/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2016/10/IMG_9684.png" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">Earnest Money Deposit (EMD), WHAT IS IT?</div><div class="blog-list-meta">October 4, 2016</div></div>
+      </a>
+      <a class="blog-list-item" href="/things-shouldnt-buying-home/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2018/09/buying-home.jpg" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">Things You Shouldn't Do When Buying a Home</div><div class="blog-list-meta">September 21, 2015</div></div>
+      </a>
+      <a class="blog-list-item" href="/rent-buy-home/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2018/09/buy-rent.jpg" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">Should I Rent or Buy a Home?</div><div class="blog-list-meta">September 21, 2015</div></div>
+      </a>
+      <a class="blog-list-item" href="/7-home-renos-will-increase-resale-value-big-time/" data-cat="Sellers">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2018/09/7-renos.jpg" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Sellers</span><div class="blog-list-title">7 Home Reno's That Will Increase Your Resale Value Big Time</div><div class="blog-list-meta">September 21, 2015</div></div>
+      </a>
+      <a class="blog-list-item" href="/future-real-estate-commissions/" data-cat="Buyers Corner">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2018/09/pexels-photo-259618-X123.jpg" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">The Future Of Real Estate Commissions</div><div class="blog-list-meta">September 21, 2015</div></div>
+      </a>
+      <a class="blog-list-item" href="/get-holiday-rental/" data-cat="Finance">
+        <div class="blog-list-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2018/09/pexels-photo-340051.jpeg" alt="" loading="lazy"/></div>
+        <div class="blog-list-body"><span class="blog-tag">Finance</span><div class="blog-list-title">Get the most from your holiday rental</div><div class="blog-list-meta">September 21, 2015</div></div>
       </a>
     </div>
   </div>
@@ -119,67 +579,41 @@
         </div>
         <p>Your hyperlocal Bethesda and DC Metro real estate expert. The only site where you can search homes by school district.</p>
         <div class="footer-socials">
-          <a href="https://www.facebook.com/peybehinestates" class="footer-social" aria-label="Facebook">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          </a>
-          <a href="https://www.instagram.com/peybehin/" class="footer-social" aria-label="Instagram">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          </a>
-          <a href="https://youtube.com/peybehin" class="footer-social" aria-label="YouTube">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon fill="#0a0a0a" points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
-          </a>
-          <a href="https://www.linkedin.com/in/peybehin/" class="footer-social" aria-label="LinkedIn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          </a>
-          <a href="https://tiktok.com/@peybehin" class="footer-social" aria-label="TikTok">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/></svg>
-          </a>
+          <a href="https://www.facebook.com/peybehinestates" class="footer-social" aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="https://www.instagram.com/peybehin/" class="footer-social" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="https://youtube.com/peybehin" class="footer-social" aria-label="YouTube"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon fill="#0a0a0a" points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
+          <a href="https://www.linkedin.com/in/peybehin/" class="footer-social" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="https://tiktok.com/@peybehin" class="footer-social" aria-label="TikTok"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/></svg></a>
         </div>
       </div>
-      <div class="footer-col">
-        <h4>Buy</h4>
-        <ul>
-          <li><a href="/properties/">Properties</a></li>
-          <li><a href="/#school-map">Search by School</a></li>
-          <li><a href="/perfect-home-finder/">Perfect Home Finder</a></li>
-          <li><a href="/buyers-guide/">Buyer's Guide</a></li>
-          <li><a href="/mortgage-calculator/">Mortgage Calculator</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Sell</h4>
-        <ul>
-          <li><a href="/whats-my-home-worth/">Home Valuation</a></li>
-          <li><a href="/sellers-guide/">Seller's Guide</a></li>
-        </ul>
-        <h4 style="margin-top:24px;">Areas</h4>
-        <ul>
-          <li><a href="/our-areas/chevy-chase/">Chevy Chase</a></li>
-          <li><a href="/our-areas/potomac/">Potomac</a></li>
-          <li><a href="/our-areas/bethesda/">Bethesda</a></li>
-          <li><a href="/our-areas/north-bethesda/">North Bethesda</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>More</h4>
-        <ul>
-          <li><a href="/about/">About Pey</a></li>
-          <li><a href="/testimonials/">Testimonials</a></li>
-          <li><a href="/vlog/">Blog</a></li>
-          <li><a href="/#contact">Contact</a></li>
-        </ul>
-      </div>
+      <div class="footer-col"><h4>Buy</h4><ul><li><a href="/properties/">Properties</a></li><li><a href="/#school-map">Search by School</a></li><li><a href="/perfect-home-finder/">Perfect Home Finder</a></li><li><a href="/buyers-guide/">Buyer's Guide</a></li><li><a href="/mortgage-calculator/">Mortgage Calculator</a></li></ul></div>
+      <div class="footer-col"><h4>Sell</h4><ul><li><a href="/whats-my-home-worth/">Home Valuation</a></li><li><a href="/sellers-guide/">Seller's Guide</a></li></ul><h4 style="margin-top:24px;">Areas</h4><ul><li><a href="/our-areas/chevy-chase/">Chevy Chase</a></li><li><a href="/our-areas/potomac/">Potomac</a></li><li><a href="/our-areas/bethesda/">Bethesda</a></li><li><a href="/our-areas/north-bethesda/">North Bethesda</a></li></ul></div>
+      <div class="footer-col"><h4>More</h4><ul><li><a href="/about/">About Pey</a></li><li><a href="/testimonials/">Testimonials</a></li><li><a href="/vlog/">Blog</a></li><li><a href="/#contact">Contact</a></li></ul></div>
     </div>
     <div class="footer-bottom">
-      <p>RLAH Properties | 4600 North Park Ave Suite 100, Chevy Chase, MD 20815 | (301) 652-0643<br/>
-      All information deemed reliable but not guaranteed. &copy; 2026 @Bethesda Real Estate. All rights reserved.</p>
-      <div class="footer-bottom-links">
-        <a href="/about/">Privacy Policy</a>
-        <a href="/about/">Terms of Use</a>
-      </div>
+      <p>RLAH Properties | 4600 North Park Ave Suite 100, Chevy Chase, MD 20815 | (301) 652-0643<br/>All information deemed reliable but not guaranteed. &copy; 2026 @Bethesda Real Estate. All rights reserved.</p>
+      <div class="footer-bottom-links"><a href="/about/">Privacy Policy</a><a href="/about/">Terms of Use</a></div>
     </div>
   </div>
 </footer>
-<div class="mobile-bar"><a href="tel:+12026817454">📞 Call</a><a href="sms:+12026817454">💬 Text</a><a href="/contact/" class="primary">Connect</a><a href="/properties/">Search</a></div>
-<script src="../js/main.js"></script>
+<div class="mobile-bar"><a href="tel:+12026817454">📞 Call</a><a href="sms:+12026817454">💬 Text</a><a href="/#contact" class="primary">Connect</a><a href="/properties/">Search</a></div>
+<script>
+window.addEventListener('scroll',()=>{document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>60);});
+// Category filter
+document.querySelectorAll('.cat-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter=btn.dataset.filter;
+    document.querySelectorAll('.blog-card,.blog-list-item').forEach(el=>{
+      if(filter==='all'||el.dataset.cat===filter){el.classList.remove('hidden');}
+      else{el.classList.add('hidden');}
+    });
+    // Show/hide featured grid if all cards hidden
+    const grid=document.getElementById('featured-grid');
+    const visibleCards=grid.querySelectorAll('.blog-card:not(.hidden)');
+    grid.style.display=visibleCards.length?'':'none';
+  });
+});
+</script>
 </body></html>
