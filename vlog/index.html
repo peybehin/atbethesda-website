@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog | Bethesda Real Estate Insights | @Bethesda</title>
+  <meta name="description" content="Hyperlocal Bethesda and DC Metro real estate insights — market updates, buyer tips, seller strategy, and neighborhood news." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-bottom:28px;}
+    .blog-card{background:var(--white);border-radius:var(--radius);overflow:hidden;text-decoration:none;color:var(--black);display:flex;flex-direction:column;transition:box-shadow .25s,transform .25s;}
+    .blog-card:hover{box-shadow:0 8px 32px rgba(0,0,0,.1);transform:translateY(-3px);}
+    .blog-card-img{aspect-ratio:16/9;overflow:hidden;background:var(--gray-mid);}
+    .blog-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+    .blog-card:hover .blog-card-img img{transform:scale(1.04);}
+    .blog-card-body{padding:22px;flex:1;}
+    .blog-tag{display:inline-block;background:rgba(183,37,69,.1);color:var(--red);font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:10px;}
+    .blog-card h2{font-size:.92rem;font-weight:700;line-height:1.45;margin-bottom:8px;}
+    .blog-excerpt{font-size:.82rem;color:var(--gray-text);line-height:1.65;margin-bottom:14px;}
+    .blog-meta{font-size:.7rem;color:var(--gray-text);}
+    .blog-list{display:flex;flex-direction:column;gap:0;}
+    .blog-list-item{display:flex;gap:20px;padding:20px 0;border-bottom:1px solid var(--gray-mid);text-decoration:none;color:var(--black);align-items:center;}
+    .blog-list-item:last-child{border-bottom:none;}
+    .blog-list-img{width:90px;height:70px;border-radius:var(--radius);overflow:hidden;flex-shrink:0;}
+    .blog-list-img img{width:100%;height:100%;object-fit:cover;}
+    .blog-list-body{flex:1;}
+    .blog-list-title{font-size:.85rem;font-weight:700;line-height:1.4;margin-bottom:4px;transition:color .2s;}
+    .blog-list-item:hover .blog-list-title{color:var(--red);}
+    .blog-list-meta{font-size:.7rem;color:var(--gray-text);}
+    .category-filter{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px;}
+    .cat-btn{padding:7px 16px;border:1px solid var(--gray-mid);border-radius:20px;font-size:.72rem;font-weight:600;cursor:pointer;background:var(--white);color:#555;transition:all .2s;text-transform:uppercase;letter-spacing:.05em;}
+    .cat-btn.active,.cat-btn:hover{background:var(--red);color:var(--white);border-color:var(--red);}
+    @media(max-width:900px){.blog-grid{grid-template-columns:1fr;}.blog-list-img{display:none;}}
+  </style>
+</head>
+<body>
+<nav id="main-nav">
+  <a href="/" class="nav-logo"><img src="https://assets.thesparksite.com/uploads/sites/103/2024/07/BETHESDA-w-RED.png" alt="@Bethesda Real Estate" /></a>
+  <ul class="nav-links"><li><a href="/">Home</a></li><li><a href="/properties/">Buy</a></li><li><a href="/whats-my-home-worth/">Sell</a></li><li><a href="/our-areas/">Featured Areas</a></li><li><a href="/about/">About</a></li><li><a href="/vlog/" class="active">Blog</a></li><li><a href="/contact/" class="nav-cta">Let's Connect</a></li></ul>
+</nav>
+
+<div class="page-hero"><div class="page-hero-bg" style="background:#0a0a0a;"></div><div class="page-hero-overlay" style="background:rgba(0,0,0,.5);"></div><div class="page-hero-content"><span class="section-label" style="color:rgba(255,255,255,.6);">Knowledge Base</span><h1>Real Estate <span>Insights</span></h1><p>Hyperlocal market updates, buyer tips, seller strategy, and neighborhood news — from someone who actually lives here.</p></div></div>
+
+<section style="background:var(--gray-light);">
+  <div class="inner">
+    <div class="category-filter">
+      <button class="cat-btn active">All Posts</button>
+      <button class="cat-btn">Market Updates</button>
+      <button class="cat-btn">Buyers Corner</button>
+      <button class="cat-btn">Sellers</button>
+      <button class="cat-btn">Finance</button>
+      <button class="cat-btn">Neighborhood</button>
+    </div>
+
+    <!-- Featured Posts -->
+    <div class="blog-grid">
+      <a class="blog-card" href="/vlog/property-tax-assessment-appeal-montgomery-county-maryland/">
+        <div class="blog-card-img"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80" alt="" /></div>
+        <div class="blog-card-body"><span class="blog-tag">Market Updates</span><h2>How to Appeal Your Property Tax Assessment in Montgomery County, MD</h2><p class="blog-excerpt">Montgomery County residential properties saw an average 12.6% value increase. Here's how to appeal in the 45-day window.</p><div class="blog-meta">June 15, 2026</div></div>
+      </a>
+      <a class="blog-card" href="/vlog/seller-rent-back-closing-maryland/">
+        <div class="blog-card-img"><img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600&q=80" alt="" /></div>
+        <div class="blog-card-body"><span class="blog-tag">Sellers</span><h2>Seller Rent-Back After Closing in Maryland: How It Works</h2><p class="blog-excerpt">In Maryland, sellers can remain in the home after closing for up to 60 days through a Post-Settlement Occupancy Agreement.</p><div class="blog-meta">June 14, 2026</div></div>
+      </a>
+      <a class="blog-card" href="/vlog/arm-vs-fixed-rate-mortgage-bethesda-maryland/">
+        <div class="blog-card-img"><img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&q=80" alt="" /></div>
+        <div class="blog-card-body"><span class="blog-tag">Finance</span><h2>ARM vs. Fixed-Rate Mortgage in Bethesda, MD: Which Makes Sense in 2026?</h2><p class="blog-excerpt">In Maryland right now, a 5/1 ARM is priced around 6.24% while the 30-year fixed sits near 6.49%. Here's how to decide.</p><div class="blog-meta">June 13, 2026</div></div>
+      </a>
+    </div>
+
+    <!-- More Posts List -->
+    <div class="blog-list">
+      <a class="blog-list-item" href="/vlog/maryland-homestead-tax-credit-bethesda/">
+        <div class="blog-list-img"><img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=200&q=80" alt="" /></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers</span><div class="blog-list-title">Maryland Homestead Tax Credit: What Bethesda Buyers Need to Know After Closing</div><div class="blog-list-meta">June 12, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/vlog/assumable-mortgage-bethesda-maryland-buyers/">
+        <div class="blog-list-img"><img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=200&q=80" alt="" /></div>
+        <div class="blog-list-body"><span class="blog-tag">Finance</span><div class="blog-list-title">How Assumable Mortgages Work for Bethesda Buyers (2026)</div><div class="blog-list-meta">June 11, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/vlog/avoid-pmi-buying-home-bethesda-maryland/">
+        <div class="blog-list-img"><img src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=200&q=80" alt="" /></div>
+        <div class="blog-list-body"><span class="blog-tag">Finance</span><div class="blog-list-title">How to Avoid PMI When Buying a Home in Bethesda, MD</div><div class="blog-list-meta">June 10, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/vlog/cash-offer-vs-financed-offer-bethesda-maryland/">
+        <div class="blog-list-img"><img src="https://images.unsplash.com/photo-1589758438368-0ad531db3366?w=200&q=80" alt="" /></div>
+        <div class="blog-list-body"><span class="blog-tag">Strategy</span><div class="blog-list-title">Cash Offer vs. Financed Offer in Bethesda, MD</div><div class="blog-list-meta">June 9, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/vlog/radon-testing-when-buying-a-home-in-montgomery-county-md/">
+        <div class="blog-list-img"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=200&q=80" alt="" /></div>
+        <div class="blog-list-body"><span class="blog-tag">Buyers Corner</span><div class="blog-list-title">Radon Testing When Buying a Home in Montgomery County, MD</div><div class="blog-list-meta">June 8, 2026</div></div>
+      </a>
+      <a class="blog-list-item" href="/vlog/credit-score-buy-home-maryland-bethesda/">
+        <div class="blog-list-img"><img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=200&q=80" alt="" /></div>
+        <div class="blog-list-body"><span class="blog-tag">Finance</span><div class="blog-list-title">What Credit Score Do You Need to Buy a Home in Maryland?</div><div class="blog-list-meta">June 7, 2026</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--black);text-align:center;padding:60px 40px;">
+  <div class="inner">
+    <span class="section-label" style="color:var(--red);">Stay Informed</span>
+    <h2 class="section-title" style="color:var(--white);margin-bottom:16px;">Questions About <span>The Market?</span></h2>
+    <p style="color:#aaa;max-width:460px;margin:0 auto 32px;line-height:1.7;font-size:.9rem;">I write about what's actually happening in Bethesda and the DC Metro — no fluff. Have a question? Ask me directly.</p>
+    <a href="/contact/" class="btn-primary">Talk to Pey</a>
+  </div>
+</section>
+
+<footer><div class="footer-inner"><div class="footer-top"><div class="footer-brand"><img src="https://assets.thesparksite.com/uploads/sites/103/2024/07/BETHESDA-w-RED.png" alt="@Bethesda" /><p>Your hyperlocal Bethesda real estate expert.</p></div><div class="footer-col"><h4>Buy</h4><ul><li><a href="/properties/">Properties</a></li><li><a href="/buyers-guide/">Buyer's Guide</a></li></ul></div><div class="footer-col"><h4>Areas</h4><ul><li><a href="/our-areas/bethesda/">Bethesda</a></li><li><a href="/our-areas/chevy-chase/">Chevy Chase</a></li><li><a href="/our-areas/potomac/">Potomac</a></li><li><a href="/our-areas/north-bethesda/">North Bethesda</a></li></ul></div><div class="footer-col"><h4>More</h4><ul><li><a href="/about/">About Pey</a></li><li><a href="/testimonials/">Testimonials</a></li><li><a href="/contact/">Contact</a></li></ul></div></div><div class="footer-bottom"><p>RLAH Properties | © 2026 @Bethesda Real Estate.</p></div></div></footer>
+<div class="mobile-bar"><a href="tel:+13016520643">📞 Call</a><a href="sms:+13016520643">💬 Text</a><a href="/contact/" class="primary">Connect</a><a href="/properties/">Search</a></div>
+<script src="../js/main.js"></script>
+</body></html>

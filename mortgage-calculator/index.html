@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mortgage Calculator | @Bethesda Real Estate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+    .result-box{background:var(--black);border-radius:8px;padding:36px;position:sticky;top:calc(var(--nav-h)+20px);}
+    .result-total{font-size:3rem;font-weight:900;color:var(--red);line-height:1;margin-bottom:6px;}
+    .result-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#666;}
+    .result-breakdown{margin-top:28px;border-top:1px solid #222;padding-top:20px;}
+    .result-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #1a1a1a;font-size:.83rem;}
+    .result-row:last-child{border-bottom:none;}
+    .result-row span:first-child{color:#888;}
+    .result-row span:last-child{color:var(--white);font-weight:700;}
+    .range-wrap{position:relative;}
+    .range-wrap input[type=range]{width:100%;accent-color:var(--red);margin-top:8px;}
+    .range-labels{display:flex;justify-content:space-between;font-size:.65rem;color:var(--gray-text);margin-top:4px;}
+    @media(max-width:800px){.calc-grid{grid-template-columns:1fr;}.result-box{position:static;}}
+  </style>
+</head>
+<body>
+<nav id="main-nav">
+  <a href="/" class="nav-logo"><img src="https://assets.thesparksite.com/uploads/sites/103/2024/07/BETHESDA-w-RED.png" alt="@Bethesda Real Estate" /></a>
+  <ul class="nav-links"><li><a href="/">Home</a></li><li class="nav-dropdown"><a href="/properties/" class="active">Buy ▾</a><ul class="nav-dropdown-menu"><li><a href="/properties/">Properties</a></li><li><a href="/perfect-home-finder/">Perfect Home Finder</a></li><li><a href="/buyers-guide/">Buyer's Guide</a></li><li><a href="/mortgage-calculator/">Mortgage Calculator</a></li></ul></li><li><a href="/whats-my-home-worth/">Sell</a></li><li><a href="/our-areas/">Featured Areas</a></li><li><a href="/about/">About</a></li><li><a href="/vlog/">Blog</a></li><li><a href="/contact/" class="nav-cta">Let's Connect</a></li></ul>
+</nav>
+<div class="page-hero" style="min-height:280px;"><div class="page-hero-bg" style="background:#0a0a0a;"></div><div class="page-hero-overlay" style="background:rgba(0,0,0,.5);"></div><div class="page-hero-content"><span class="section-label" style="color:rgba(255,255,255,.6);">Buyer Tools</span><h1>Mortgage <span>Calculator</span></h1><p>Estimate your monthly payment for any home price in the Bethesda area.</p></div></div>
+
+<section style="background:var(--white);">
+  <div class="inner">
+    <div class="calc-grid">
+      <form id="mortgage-form">
+        <div class="form-group"><label>Home Price</label><input type="number" id="mc-price" value="1200000" min="100000" max="5000000" step="10000" /></div>
+        <div class="form-group"><label>Down Payment: <span id="mc-down-pct">20</span>%</label><div class="range-wrap"><input type="range" id="mc-down" min="3" max="50" value="20" step="1" oninput="document.getElementById('mc-down-pct').textContent=this.value;" /><div class="range-labels"><span>3%</span><span>10%</span><span>20%</span><span>30%+</span></div></div></div>
+        <div class="form-group"><label>Interest Rate: <span id="mc-rate-display">6.50</span>%</label><div class="range-wrap"><input type="range" id="mc-rate" min="3" max="12" value="6.5" step="0.05" oninput="document.getElementById('mc-rate-display').textContent=parseFloat(this.value).toFixed(2);" /><div class="range-labels"><span>3%</span><span>6%</span><span>9%</span><span>12%</span></div></div></div>
+        <div class="form-group"><label>Loan Term</label><select id="mc-years"><option value="30" selected>30 Years</option><option value="20">20 Years</option><option value="15">15 Years</option><option value="10">10 Years</option></select></div>
+        <div class="form-group"><label>Annual Property Tax (est.)</label><input type="number" id="mc-tax" value="12000" min="0" step="500" /></div>
+        <div class="form-group"><label>Annual Home Insurance (est.)</label><input type="number" id="mc-ins" value="2400" min="0" step="100" /></div>
+      </form>
+      <div class="result-box">
+        <div class="result-label">Estimated Monthly Payment</div>
+        <div class="result-total" id="mc-result-total">$0</div>
+        <p style="color:#666;font-size:.75rem;margin-top:8px;">Principal, interest, taxes & insurance</p>
+        <div class="result-breakdown">
+          <div class="result-row"><span>Principal & Interest</span><span id="mc-result-pi">$0</span></div>
+          <div class="result-row"><span>Property Tax (mo.)</span><span id="mc-result-tax">$0</span></div>
+          <div class="result-row"><span>Home Insurance (mo.)</span><span id="mc-result-ins">$0</span></div>
+          <div class="result-row" style="border-top:1px solid #333;margin-top:8px;padding-top:12px;"><span style="color:#ccc;font-weight:700;">Loan Amount</span><span id="mc-result-loan" style="color:var(--red);">$0</span></div>
+          <div class="result-row"><span style="color:#ccc;font-weight:700;">Down Payment</span><span id="mc-result-down-amt" style="color:var(--red);">$0</span></div>
+        </div>
+        <a href="/contact/" class="btn-primary" style="width:100%;text-align:center;display:block;margin-top:28px;">Talk to Pey About Financing</a>
+        <p style="font-size:.68rem;color:#444;margin-top:12px;text-align:center;">This calculator is for estimation purposes only. Actual rates and payments vary by lender.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="footer-inner"><div class="footer-top"><div class="footer-brand"><img src="https://assets.thesparksite.com/uploads/sites/103/2024/07/BETHESDA-w-RED.png" alt="@Bethesda" /><p>Your hyperlocal Bethesda real estate expert.</p></div><div class="footer-col"><h4>Buy</h4><ul><li><a href="/properties/">Properties</a></li><li><a href="/buyers-guide/">Buyer's Guide</a></li><li><a href="/mortgage-calculator/">Mortgage Calculator</a></li></ul></div><div class="footer-col"><h4>Areas</h4><ul><li><a href="/our-areas/bethesda/">Bethesda</a></li><li><a href="/our-areas/chevy-chase/">Chevy Chase</a></li><li><a href="/our-areas/potomac/">Potomac</a></li><li><a href="/our-areas/north-bethesda/">North Bethesda</a></li></ul></div><div class="footer-col"><h4>More</h4><ul><li><a href="/about/">About Pey</a></li><li><a href="/contact/">Contact</a></li></ul></div></div><div class="footer-bottom"><p>RLAH Properties | © 2026 @Bethesda Real Estate. Calculator estimates only — not financial advice.</p></div></div></footer>
+<div class="mobile-bar"><a href="tel:+13016520643">📞 Call</a><a href="sms:+13016520643">💬 Text</a><a href="/contact/" class="primary">Connect</a><a href="/properties/">Search</a></div>
+<script src="../js/main.js"></script>
+<script>document.getElementById('mortgage-form').addEventListener('input', calcMortgage); calcMortgage();</script>
+</body></html>

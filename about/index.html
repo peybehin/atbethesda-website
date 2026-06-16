@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Pey Behin | @Bethesda Real Estate</title>
+  <meta name="description" content="Meet Pey Behin — your hyperlocal Bethesda and DC Metro real estate expert with RLAH Properties. Learn about Pey's approach and philosophy." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;600;700;900&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+
+    /* ── ALL PAGE HEADINGS: Anton ───────────────────────── */
+    h1, h2 { font-family: 'Anton', sans-serif; font-weight: 400; letter-spacing: 2px; }
+
+    /* ── HI, I'M PEY BEHIN ─────────────────────────────── */
+    .hi-pey { background: #150505; padding: 0; overflow: hidden; }
+    .hi-pey-grid {
+      display: flex;
+      align-items: stretch;
+      overflow: hidden;
+      min-height: 560px;
+    }
+    .hi-pey-content {
+      flex: 0 0 50%;
+      padding: 60px 40px 60px 6%;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .hi-pey-content h2 {
+      font-size: clamp(2.5rem, 7.33vw, 8rem);
+      color: var(--white);
+      text-transform: uppercase; line-height: 1;
+      letter-spacing: 3px;
+      margin-bottom: 24px;
+    }
+    .hi-pey-content p {
+      font-size: 1.06rem; color: #999; line-height: 1.85; max-width: 420px;
+    }
+    .hi-pey-photo {
+      flex: 0 0 50%;
+      display: flex; align-items: flex-end; justify-content: center;
+      overflow: hidden;
+    }
+    .hi-pey-photo img {
+      width: 100%; max-width: 540px; height: auto;
+      display: block; object-fit: contain; object-position: center bottom;
+    }
+
+    /* ── MY JOURNEY INTO REAL ESTATE ───────────────────── */
+    .journey { background: #000; padding: 0; }
+    .journey-grid {
+      display: grid;
+      grid-template-columns: 46% 54%;
+      grid-template-rows: 1fr;
+      background: #000;
+    }
+    .journey-video-cell {
+      grid-area: 1 / 1;
+      overflow: hidden;
+      background: #000;
+    }
+    .journey-video-inner {
+      position: relative;
+      width: 100%;
+      padding-bottom: 86.625%;
+      overflow: hidden;
+      background: #000;
+    }
+    .journey-video-inner iframe {
+      position: absolute; top: 0; left: 0;
+      width: 154%; height: 100%; border: 0;
+    }
+    .journey-quote-cell {
+      grid-area: 2 / 1;
+      background: #fff;
+      padding: 36px 44px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .journey-quote {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-style: italic; font-weight: bold;
+      font-size: clamp(16px, 1.8vw, 24px);
+      color: var(--red);
+      text-align: center; margin: 0; line-height: 1.45;
+    }
+    .journey-bio-cell {
+      grid-area: 1 / 2;
+      background: #000;
+      padding: 52px 6% 52px 5%;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .journey-bio-cell h2 {
+      font-family: 'Anton', sans-serif; font-weight: 400;
+      font-size: clamp(44px, 6.5vw, 88px);
+      color: var(--red);
+      line-height: 0.92; text-transform: uppercase;
+      margin: 0 0 26px;
+    }
+    .journey-bio-cell p {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(13px, 1.3vw, 16px);
+      color: #fff; line-height: 1.75; margin: 0;
+    }
+
+    /* ── WHAT I CAN DO FOR YOU ─────────────────────────── */
+    .wicd { background: var(--red); padding: 60px 40px; }
+    .wicd-grid {
+      display: grid; grid-template-columns: 1fr 1.3fr;
+      gap: 80px; align-items: center;
+    }
+    .wicd-left h2 {
+      font-size: clamp(2.2rem, 6.37vw, 7rem);
+      color: #0d0d0d;
+      text-transform: uppercase; line-height: 1;
+      margin-bottom: 24px;
+    }
+    .wicd-left p {
+      font-size: 1rem; color: rgba(255,255,255,.85); line-height: 1.8;
+    }
+    .wicd-cards {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    }
+    .wicd-card {
+      background: #f5f0e8; border-radius: 4px;
+      padding: 18px 16px;
+    }
+    .wicd-icon { font-size: 1.6rem; display: block; margin-bottom: 10px; line-height: 1; }
+    .wicd-card h3 {
+      font-size: .68rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .1em;
+      color: #1a1a1a; margin-bottom: 6px;
+    }
+    .wicd-card p {
+      font-size: .78rem; color: #555; line-height: 1.55; margin: 0;
+    }
+
+    /* ── TESTIMONIALS ──────────────────────────────────── */
+    .testimonials-bar {
+      background: var(--black);
+      text-align: center; padding: 48px 40px;
+    }
+    .testimonials-bar h2 {
+      font-size: clamp(2.5rem, 7.21vw, 8rem);
+      color: var(--white);
+      text-transform: uppercase; letter-spacing: .04em; margin: 0;
+    }
+    .testimonials-cols {
+      display: grid; grid-template-columns: 1fr 1fr;
+    }
+    .testi-block {
+      padding: 48px 60px;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .testi-block.cream { background: #f5f0e8; }
+    .testi-block.crimson { background: var(--red); }
+    .testi-photo {
+      width: 240px; height: 260px;
+      object-fit: cover; object-position: top center;
+      display: block; margin-bottom: 32px;
+    }
+    .testi-text {
+      font-size: 0.94rem; line-height: 1.8;
+      text-align: center; margin-bottom: 24px;
+    }
+    .testi-block.cream .testi-text { color: #222; }
+    .testi-block.crimson .testi-text { color: #fff; }
+    .testi-text strong { font-weight: 700; }
+    .testi-name {
+      font-size: .82rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .08em;
+      text-align: center;
+    }
+    .testi-block.cream .testi-name { color: #222; }
+    .testi-block.crimson .testi-name { color: #fff; }
+
+    /* ── HOW I WORK ────────────────────────────────────── */
+    .how-section { background: #0d0d0d; }
+    .how-header { text-align: center; margin-bottom: 60px; }
+    .how-header .section-label { color: var(--red); }
+    .how-header h2 {
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+      font-weight: 900; color: var(--white);
+      text-transform: uppercase; line-height: 1;
+      margin-top: 8px;
+    }
+    .how-header h2 span { color: var(--red); }
+    .how-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: #222;
+    }
+    .how-card {
+      background: #141414;
+      padding: 40px 34px;
+    }
+    .how-icon { font-size: 2rem; margin-bottom: 18px; display: block; }
+    .how-card h3 {
+      font-size: .72rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .12em;
+      color: var(--white); margin-bottom: 12px;
+    }
+    .how-card p {
+      font-size: .83rem; color: #777; line-height: 1.7; margin: 0;
+    }
+
+    /* ── CTA + INLINE FORM ─────────────────────────────── */
+    .cta-form-section { background: var(--black); }
+    .cta-form-inner { max-width: 720px; margin: 0 auto; }
+    .cta-form-section .section-label { color: var(--red); }
+    .cta-form-section h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900; color: var(--white);
+      text-transform: uppercase; line-height: 1.05;
+      margin-bottom: 12px;
+    }
+    .cta-form-section h2 span { color: var(--red); }
+    .cta-sub {
+      color: #888; font-size: .9rem; line-height: 1.75;
+      margin-bottom: 44px;
+    }
+    .cf-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+      margin-bottom: 0;
+    }
+    .cf-group {
+      display: flex; flex-direction: column; margin-bottom: 16px;
+    }
+    .cf-group label {
+      font-size: .62rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .12em;
+      color: #888; margin-bottom: 8px;
+    }
+    .cf-group label .req { color: var(--red); margin-left: 2px; }
+    .cf-group input,
+    .cf-group select,
+    .cf-group textarea {
+      background: #1c1c1c; border: 1px solid #2e2e2e;
+      color: var(--white); border-radius: 4px;
+      padding: 13px 15px; font-family: inherit; font-size: .87rem;
+      outline: none; transition: border-color .2s; appearance: none;
+      -webkit-appearance: none;
+    }
+    .cf-group input::placeholder,
+    .cf-group textarea::placeholder { color: #444; }
+    .cf-group input:focus,
+    .cf-group select:focus,
+    .cf-group textarea:focus { border-color: var(--red); }
+    .cf-group select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 38px; }
+    .cf-group select option { background: #1c1c1c; }
+    .cf-group textarea { min-height: 130px; resize: vertical; }
+    .cf-submit {
+      display: block; width: 100%;
+      background: var(--red); color: #fff; border: none;
+      border-radius: 4px; padding: 16px;
+      font-family: inherit; font-size: .75rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .14em;
+      cursor: pointer; transition: background .2s; margin-top: 8px;
+    }
+    .cf-submit:hover { background: var(--red-dark); }
+    .cf-note {
+      text-align: center; color: #555; font-size: .77rem; margin-top: 14px;
+    }
+
+    /* ── RESPONSIVE ────────────────────────────────────── */
+    @media(max-width:900px) {
+      .hi-pey-grid { grid-template-columns: 1fr; }
+      .hi-pey-content { padding: 40px 20px; }
+      .hi-pey-content p { max-width: 100%; }
+      .journey-grid { grid-template-columns: 1fr; gap: 40px; }
+      .wicd-grid { grid-template-columns: 1fr; gap: 40px; }
+      .testimonials-cols { grid-template-columns: 1fr; }
+      .testi-block { padding: 55px 30px; }
+      .how-grid { grid-template-columns: 1fr 1fr; }
+      .cf-row { grid-template-columns: 1fr; }
+    }
+    @media(max-width:600px) {
+      .how-grid { grid-template-columns: 1fr; }
+      .cta-form-section h2 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="main-nav">
+  <a href="/" class="nav-logo"><img src="https://assets.thesparksite.com/uploads/sites/103/2024/07/BETHESDA-w-RED.png" alt="@Bethesda Real Estate" /></a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/properties/">Buy</a></li>
+    <li><a href="/whats-my-home-worth/">Sell</a></li>
+    <li><a href="/our-areas/">Featured Areas</a></li>
+    <li class="nav-dropdown"><a href="/about/" class="active">About ▾</a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="/about/">About Pey</a></li>
+        <li><a href="/testimonials/">Testimonials</a></li>
+      </ul>
+    </li>
+    <li><a href="/vlog/">Blog</a></li>
+    <li><a href="/contact/" class="nav-cta">Let's Connect</a></li>
+  </ul>
+</nav>
+
+<!-- ── 1. HI, I'M PEY BEHIN ── -->
+<section class="hi-pey">
+  <div class="hi-pey-grid">
+    <div class="hi-pey-content">
+      <h2>Hi, I'm<br>Pey Behin.</h2>
+      <p>Your home is unique and we approach every buyer's and seller's need as such. However, unlike traditional agents in antiquated brokerages, we are heavily involved in AI/technology, video, and social media marketing. We are in the digital revolution of real estate. We embrace this era using analogue principles and tailoring them for application in the digital age.</p>
+    </div>
+    <div class="hi-pey-photo">
+      <img src="https://assets.thesparksite.com/uploads/sites/103/2026/05/pey-headshot-nobg.png"
+           alt="Pey Behin" />
+    </div>
+  </div>
+</section>
+
+<!-- ── 3. MY JOURNEY INTO REAL ESTATE ── -->
+<section class="journey">
+  <div class="journey-grid">
+    <div class="journey-video-cell">
+      <div class="journey-video-inner">
+        <iframe
+          src="https://www.youtube.com/embed/P4GLE10pJWM?rel=0&modestbranding=1"
+          title="My Journey Into Real Estate | Pey Behin"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+    <div class="journey-bio-cell">
+      <h2>MY JOURNEY<br>INTO REAL<br>ESTATE</h2>
+      <p>I came into real estate with a Computer Engineering background, a Marketing degree, and years in stand-up comedy. Engineering made me detail-oriented. Marketing gave me business sense. Comedy taught me how to communicate, read the room, and keep emotions steady when things get tense. Real estate lets me use all of it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── 4. WHAT I CAN DO FOR YOU ── -->
+<section class="wicd">
+  <div class="inner">
+    <div class="wicd-grid">
+      <div class="wicd-left">
+        <h2>What I<br>Can Do<br>For You</h2>
+        <p>I help you move through real estate with clarity, strategy, and confidence. My role is to educate you on the market and process, build a smart plan around timing, pricing, and negotiation, and position you to make strong decisions that lead to the best possible outcome.</p>
+      </div>
+      <div class="wicd-cards">
+        <div class="wicd-card">
+          <span class="wicd-icon">🎯</span>
+          <h3>Hyperlocal Knowledge</h3>
+          <p>I live and work in this market every day. I know which streets flood, which schools are actually as good as advertised, and which neighborhoods are about to pop before Zillow does.</p>
+        </div>
+        <div class="wicd-card">
+          <span class="wicd-icon">🤝</span>
+          <h3>Honest Guidance</h3>
+          <p>I won't tell you what you want to hear. If a home is overpriced, I'll tell you. My goal is your best outcome, not my commission.</p>
+        </div>
+        <div class="wicd-card">
+          <span class="wicd-icon">⚡</span>
+          <h3>Responsive &amp; Reliable</h3>
+          <p>In a competitive market, speed matters. I'm available, I respond fast, and when it's time to make a move, I move.</p>
+        </div>
+        <div class="wicd-card">
+          <span class="wicd-icon">📊</span>
+          <h3>Data-Driven Strategy</h3>
+          <p>Every offer I write is backed by data. Every pricing recommendation is based on what the market is actually doing — not gut feeling.</p>
+        </div>
+        <div class="wicd-card">
+          <span class="wicd-icon">🏆</span>
+          <h3>Relentless Negotiation</h3>
+          <p>My clients consistently get more — winning in multiple-offer situations as buyers, or negotiating top dollar as sellers.</p>
+        </div>
+        <div class="wicd-card">
+          <span class="wicd-icon">📍</span>
+          <h3>Long After Closing</h3>
+          <p>The transaction is just the beginning. I'm a resource for my clients long after we close — for recommendations, market updates, and honest answers.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 5. TESTIMONIALS ── -->
+<div class="testimonials-bar">
+  <h2>Testimonials</h2>
+</div>
+<div class="testimonials-cols">
+  <div class="testi-block cream">
+    <img class="testi-photo"
+         src="https://assets.thesparksite.com/uploads/sites/103/2026/05/Hussain-Family.png"
+         alt="Michelle and Viq Hussain" />
+    <p class="testi-text">
+      In today's competitive real estate market in the DMV, having the right person to navigate you through this complex market is critical. For the past several years, my wife and I had been trying to search for the perfect home with a long list of wants/needs. When I stumbled upon the house in Potomac, MD that checked all the boxes, there was only one person I would have trusted in this important journey.<br><br>
+      <strong>Knowing I had about 48 hours to get everything in line and make a compelling offer, I called Pey Behin.</strong> Pey quickly got me set up with a lender, a pre-inspection and walked me through the comps. He also helped me strategize the mechanics of my offer to make it the most appealing to the sellers — and within 48 hours we made an offer.<br><br>
+      <strong>With 5 other offers on the table we were able to beat them and get our dream home.</strong> If you are looking for someone who knows this complex market and can help you get the deal done, look no further.
+    </p>
+    <div class="testi-name">Michelle + Viq Hussain</div>
+  </div>
+  <div class="testi-block crimson">
+    <img class="testi-photo"
+         src="https://assets.thesparksite.com/uploads/sites/103/2026/05/Hassan-Fairfax.png"
+         alt="Hassan L" />
+    <p class="testi-text">
+      I was introduced to Pey through a friend who had trouble selling her home and he helped her. <strong>My house was on the market for months before I called Pey.</strong> Honestly, I loved his insight and I got the feeling that he actually cared.<br><br>
+      So, I ended my contract with my agent and hired Pey. He came in, told me exactly what I needed to do — <strong>then he did so much work to prepare the house and literally got us 5 offers in one weekend.</strong><br><br>
+      The best part is they escalated significantly over my asking price. <strong>Pey warned me that they may come back and ask for money back on the home inspection... so he got them to waive it!</strong> He really goes above and beyond and I would recommend him to anyone!
+    </p>
+    <div class="testi-name">Hassan L</div>
+  </div>
+</div>
+
+<!-- ── 6. CTA + INLINE FORM ── -->
+<section class="cta-form-section">
+  <div class="inner">
+    <div class="cta-form-inner">
+      <span class="section-label">Work With Pey</span>
+      <h2>Ready to <span>Get Started?</span></h2>
+      <p class="cta-sub">Whether you're buying, selling, or just trying to understand the market, I'm here to help. Reach out — no obligation, no pressure.</p>
+
+      <!--
+        FORM SETUP: This form uses Formspree for static site email delivery.
+        1. Go to https://formspree.io → create a free account → New Form
+        2. Copy your form ID and replace "YOUR_FORM_ID" in the action below
+        3. Formspree will email submissions to pey.behin@gmail.com
+      -->
+      <form class="cta-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input type="hidden" name="_subject" value="New inquiry from atbethesda.com" />
+
+        <div class="cf-row">
+          <div class="cf-group">
+            <label>First Name <span class="req">*</span></label>
+            <input type="text" name="first_name" placeholder="Jane" required />
+          </div>
+          <div class="cf-group">
+            <label>Last Name <span class="req">*</span></label>
+            <input type="text" name="last_name" placeholder="Smith" required />
+          </div>
+        </div>
+
+        <div class="cf-row">
+          <div class="cf-group">
+            <label>Email <span class="req">*</span></label>
+            <input type="email" name="email" placeholder="jane@email.com" required />
+          </div>
+          <div class="cf-group">
+            <label>Phone</label>
+            <input type="tel" name="phone" placeholder="(555) 000-0000" />
+          </div>
+        </div>
+
+        <div class="cf-group">
+          <label>I'm Interested In&hellip;</label>
+          <select name="interest">
+            <option value="" disabled selected>Select one</option>
+            <option value="buying">Buying a home</option>
+            <option value="selling">Selling my home</option>
+            <option value="both">Buying &amp; Selling</option>
+            <option value="investing">Investing</option>
+            <option value="exploring">Just exploring</option>
+          </select>
+        </div>
+
+        <div class="cf-group">
+          <label>Preferred Area</label>
+          <select name="preferred_area">
+            <option value="">No preference</option>
+            <option>Alexandria</option>
+            <option>Arlington</option>
+            <option>Bethesda</option>
+            <option>Cabin John</option>
+            <option>Chevy Chase</option>
+            <option>Chevy Chase DC</option>
+            <option>Fairfax</option>
+            <option>Falls Church</option>
+            <option>Friendship Heights</option>
+            <option>Gaithersburg</option>
+            <option>Georgetown</option>
+            <option>Great Falls</option>
+            <option>Kensington</option>
+            <option>McLean / Vienna / Tysons</option>
+            <option>North Bethesda</option>
+            <option>North Potomac</option>
+            <option>Palisades</option>
+            <option>Potomac</option>
+            <option>Rockville</option>
+            <option>Silver Spring</option>
+            <option>Spring Valley</option>
+          </select>
+        </div>
+
+        <div class="cf-group">
+          <label>Message</label>
+          <textarea name="message" placeholder="Tell me a bit about what you're looking for…"></textarea>
+        </div>
+
+        <button type="submit" class="cf-submit">Send Message</button>
+        <p class="cf-note">I typically respond within a few hours during business hours.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand"><img src="https://assets.thesparksite.com/uploads/sites/103/2024/07/BETHESDA-w-RED.png" alt="@Bethesda" /><p>Your hyperlocal Bethesda and DC Metro real estate expert.</p></div>
+      <div class="footer-col"><h4>Buy</h4><ul><li><a href="/properties/">Properties</a></li><li><a href="/buyers-guide/">Buyer's Guide</a></li><li><a href="/mortgage-calculator/">Mortgage Calculator</a></li></ul></div>
+      <div class="footer-col"><h4>Areas</h4><ul><li><a href="/our-areas/chevy-chase/">Chevy Chase</a></li><li><a href="/our-areas/potomac/">Potomac</a></li><li><a href="/our-areas/bethesda/">Bethesda</a></li><li><a href="/our-areas/north-bethesda/">North Bethesda</a></li></ul></div>
+      <div class="footer-col"><h4>More</h4><ul><li><a href="/about/">About Pey</a></li><li><a href="/testimonials/">Testimonials</a></li><li><a href="/vlog/">Blog</a></li><li><a href="/contact/">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>RLAH Properties | 4600 North Park Ave Suite 100, Chevy Chase, MD 20815 | (301) 652-0643 | © 2026 @Bethesda Real Estate. All rights reserved.</p></div>
+  </div>
+</footer>
+<div class="mobile-bar"><a href="tel:+13016520643">📞 Call</a><a href="sms:+13016520643">💬 Text</a><a href="/contact/" class="primary">Connect</a><a href="/properties/">Search</a></div>
+<script src="../js/main.js"></script>
+</body>
+</html>
