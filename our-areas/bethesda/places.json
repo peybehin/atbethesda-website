@@ -55,6 +55,24 @@
       "maps_url": "https://maps.google.com/?q=Capital+Grille+7100+Wisconsin+Ave+Bethesda+MD"
     },
     {
+      "name": "Founding Farmers",
+      "rating": 4.3,
+      "reviews": 3200,
+      "price": "$$$",
+      "category": "American Farm-to-Table",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Founding+Farmers+7113+Democracy+Blvd+Bethesda+MD"
+    },
+    {
+      "name": "Bethesda Crab House",
+      "rating": 4.2,
+      "reviews": 1100,
+      "price": "$$$",
+      "category": "Seafood",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Bethesda+Crab+House+MD"
+    },
+    {
       "name": "Passage to India",
       "rating": 4.4,
       "reviews": 640,
@@ -71,6 +89,15 @@
       "category": "Asian Fusion",
       "photo": null,
       "maps_url": "https://maps.google.com/?q=Nooshi+4905+Cordell+Ave+Bethesda+MD"
+    },
+    {
+      "name": "Cava",
+      "rating": 4.3,
+      "reviews": 780,
+      "price": "$",
+      "category": "Mediterranean",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Cava+Bethesda+MD"
     }
   ],
   "drink": [
@@ -129,6 +156,24 @@
       "category": "Outdoor Shopping District",
       "photo": null,
       "maps_url": "https://maps.google.com/?q=Bethesda+Row+MD"
+    },
+    {
+      "name": "Montgomery Mall",
+      "rating": 4.1,
+      "reviews": 5800,
+      "price": null,
+      "category": "Shopping Mall",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Montgomery+Mall+Bethesda+MD"
+    },
+    {
+      "name": "Wildwood Shopping Center",
+      "rating": 4,
+      "reviews": 340,
+      "price": null,
+      "category": "Neighborhood Shops",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Wildwood+Shopping+Center+Bethesda+MD"
     },
     {
       "name": "Second Story Books",
@@ -194,6 +239,15 @@
       "category": "Specialty Coffee",
       "photo": null,
       "maps_url": "https://maps.google.com/?q=Compass+Coffee+Bethesda+Row+MD"
+    },
+    {
+      "name": "Mayorga Coffee",
+      "rating": 4.4,
+      "reviews": 540,
+      "price": "$",
+      "category": "Organic Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Mayorga+Coffee+Bethesda+MD"
     },
     {
       "name": "Boulangerie Christophe",
@@ -326,6 +380,53 @@
       "category": "Dog Daycare & Grooming",
       "photo": null,
       "maps_url": "https://maps.google.com/?q=Healthy+Hound+Playground+Bethesda+MD"
+    }
+  ],
+  "parks": [
+    {
+      "name": "Capital Crescent Trail",
+      "rating": 4.8,
+      "reviews": 3200,
+      "price": null,
+      "category": "Running & Biking Trail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Capital+Crescent+Trail+Bethesda+MD"
+    },
+    {
+      "name": "Norwood Local Park",
+      "rating": 4.7,
+      "reviews": 420,
+      "price": null,
+      "category": "Neighborhood Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Norwood+Local+Park+Bethesda+MD"
+    },
+    {
+      "name": "Cabin John Regional Park",
+      "rating": 4.5,
+      "reviews": 1800,
+      "price": null,
+      "category": "Regional Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Cabin+John+Regional+Park+MD"
+    },
+    {
+      "name": "Bethesda Outdoor Pool",
+      "rating": 4.4,
+      "reviews": 290,
+      "price": "$",
+      "category": "Outdoor Pool",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Bethesda+Outdoor+Pool+MD"
+    },
+    {
+      "name": "Elm Street Urban Park",
+      "rating": 4.3,
+      "reviews": 180,
+      "price": null,
+      "category": "Urban Green Space",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Elm+Street+Urban+Park+Bethesda+MD"
     }
   ]
 }
