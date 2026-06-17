@@ -328,86 +328,7 @@
   </div>
 </section>
 
-<!-- Places / Yelp -->
-<section class="places-section">
-  <div class="inner">
-    <span class="section-label">Local Favorites</span>
-    <h2 class="section-title">Restaurants &amp; <span>Things To Do</span></h2>
-    <p class="section-sub">Bethesda Row and Woodmont Triangle offer some of the best dining in the DC Metro area.</p>
 
-    <div class="places-tabs">
-      <button class="places-tab active" onclick="showTab('restaurants',this)">Restaurants</button>
-      <button class="places-tab" onclick="showTab('cafes',this)">Cafés</button>
-      <button class="places-tab" onclick="showTab('shopping',this)">Shopping</button>
-      <button class="places-tab" onclick="showTab('parks',this)">Parks</button>
-    </div>
-
-    <div id="tab-restaurants">
-      <div class="places-grid">
-        <div class="place-card">
-          <div class="place-name">Jaleo</div>
-          <div class="place-category">Spanish Tapas • $$$$</div>
-          <div class="place-rating">★★★★☆ <span>(1,200+ reviews)</span></div>
-        </div>
-        <div class="place-card">
-          <div class="place-name">Mon Ami Gabi</div>
-          <div class="place-category">French Bistro • $$$</div>
-          <div class="place-rating">★★★★☆ <span>(900+ reviews)</span></div>
-        </div>
-        <div class="place-card">
-          <div class="place-name">Pupatella</div>
-          <div class="place-category">Neapolitan Pizza • $$</div>
-          <div class="place-rating">★★★★★ <span>(600+ reviews)</span></div>
-        </div>
-        <div class="place-card">
-          <div class="place-name">Cava</div>
-          <div class="place-category">Mediterranean • $</div>
-          <div class="place-rating">★★★★☆ <span>(500+ reviews)</span></div>
-        </div>
-        <div class="place-card">
-          <div class="place-name">Bethesda Crab House</div>
-          <div class="place-category">Seafood • $$$</div>
-          <div class="place-rating">★★★★☆ <span>(800+ reviews)</span></div>
-        </div>
-        <div class="place-card">
-          <div class="place-name">Founding Farmers</div>
-          <div class="place-category">American Farm-to-Table • $$$</div>
-          <div class="place-rating">★★★★☆ <span>(1,500+ reviews)</span></div>
-        </div>
-      </div>
-
-      <!-- Yelp Integration Placeholder -->
-      <div class="yelp-embed-placeholder" style="margin-top:28px;">
-        <p>🍽️ <strong>Yelp Integration:</strong> Paste your Yelp Fusion API embed or Yelp widget code here to show live, rated local businesses.</p>
-        <code style="display:block;background:#e8e8e8;padding:10px;border-radius:4px;font-size:.75rem;text-align:left;">&lt;!-- Yelp embed code goes here --&gt;</code>
-      </div>
-    </div>
-
-    <div id="tab-cafes" style="display:none;">
-      <div class="places-grid">
-        <div class="place-card"><div class="place-name">Compass Coffee</div><div class="place-category">Coffee Shop • $</div><div class="place-rating">★★★★★ <span>(400+ reviews)</span></div></div>
-        <div class="place-card"><div class="place-name">Mayorga Coffee</div><div class="place-category">Organic Coffee • $</div><div class="place-rating">★★★★☆ <span>(300+ reviews)</span></div></div>
-        <div class="place-card"><div class="place-name">Starbucks Reserve</div><div class="place-category">Coffee • $$</div><div class="place-rating">★★★★☆ <span>(200+ reviews)</span></div></div>
-      </div>
-    </div>
-
-    <div id="tab-shopping" style="display:none;">
-      <div class="places-grid">
-        <div class="place-card"><div class="place-name">Bethesda Row</div><div class="place-category">Shopping District</div><div class="place-rating">★★★★★ <span>(Walkable retail, dining & boutiques)</span></div></div>
-        <div class="place-card"><div class="place-name">Montgomery Mall</div><div class="place-category">Shopping Mall • 5 min drive</div><div class="place-rating">★★★★☆ <span>(Major anchors + 100+ stores)</span></div></div>
-        <div class="place-card"><div class="place-name">Wildwood Shopping Center</div><div class="place-category">Neighborhood Strip Mall</div><div class="place-rating">★★★★☆ <span>(Local favorites)</span></div></div>
-      </div>
-    </div>
-
-    <div id="tab-parks" style="display:none;">
-      <div class="places-grid">
-        <div class="place-card"><div class="place-name">Capital Crescent Trail</div><div class="place-category">Hiking / Biking Trail</div><div class="place-rating">★★★★★ <span>(Runs from Georgetown to Silver Spring)</span></div></div>
-        <div class="place-card"><div class="place-name">Cabin John Regional Park</div><div class="place-category">Regional Park</div><div class="place-rating">★★★★☆ <span>(Ice rink, tennis, trails)</span></div></div>
-        <div class="place-card"><div class="place-name">Norwood Local Park</div><div class="place-category">Neighborhood Park</div><div class="place-rating">★★★★★ <span>(Playground, fields, community)</span></div></div>
-      </div>
-    </div>
-  </div>
-</section>
 
 
 
@@ -600,13 +521,5 @@
 </div>
 
 <script src="../../js/main.js"></script>
-<script>
-  function showTab(name, btn) {
-    document.querySelectorAll('[id^="tab-"]').forEach(el => el.style.display = 'none');
-    document.querySelectorAll('.places-tab').forEach(t => t.classList.remove('active'));
-    document.getElementById('tab-' + name).style.display = 'block';
-    btn.classList.add('active');
-  }
-</script>
 </body>
 </html>
