@@ -1336,5 +1336,8 @@
   }
 </script>
 
+<script>
+function toggleMobileNav(){var n=document.getElementById("mobile-nav");n.classList.toggle("open");if(n.classList.contains("open")){document.addEventListener("click",function c(e){if(!n.contains(e.target)&&!document.getElementById("nav-hamburger").contains(e.target)){n.classList.remove("open");document.removeEventListener("click",c);}});}}
+</script>
 </body>
 </html>
