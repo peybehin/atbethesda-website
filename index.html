@@ -86,7 +86,7 @@
     html { scroll-behavior: smooth; }
     body { font-family: 'Montserrat', sans-serif; color: var(--black); overflow-x: hidden; }
 
-    /* ââ NAV ââ */
+    /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       height: var(--nav-h);
@@ -114,7 +114,7 @@
     }
     .nav-cta:hover { background: var(--red-dark); }
 
-    /* ââ HERO ââ */
+    /* ── HERO ── */
     #hero {
       position: relative; height: 100vh; min-height: 600px;
       display: flex; align-items: center; justify-content: center;
@@ -210,7 +210,7 @@
     }
     @keyframes bounce { from { transform: rotate(45deg) translateY(-3px); } to { transform: rotate(45deg) translateY(3px); } }
 
-    /* ââ SECTIONS shared ââ */
+    /* ── SECTIONS shared ── */
     section { padding: 90px 40px; }
     .section-label {
       font-size: .68rem; font-weight: 700; letter-spacing: .2em;
@@ -227,7 +227,7 @@
     }
     .section-header { margin-bottom: 50px; }
 
-    /* ââ 3-CARD CTA ââ */
+    /* ── 3-CARD CTA ── */
     #cta-cards { background: var(--white); }
     .cta-cards-inner { max-width: 1100px; margin: 0 auto; }
     .cta-grid {
@@ -255,7 +255,7 @@
     }
     .cta-link:hover { color: var(--red-dark); }
 
-    /* ââ SCHOOL MAP ââ */
+    /* ── SCHOOL MAP ── */
     #school-map { background: var(--black); padding: 90px 40px; }
     .school-map-inner {
       max-width: 1100px; margin: 0 auto;
@@ -291,7 +291,7 @@
       font-size: .72rem; font-weight: 600; letter-spacing: .05em;
     }
 
-    /* ââ FEATURED AREAS ââ */
+    /* ── FEATURED AREAS ── */
     #featured-areas { background: var(--gray-light); }
     .areas-inner { max-width: 1200px; margin: 0 auto; }
     .areas-header {
@@ -341,7 +341,7 @@
       border-radius: 10px; text-transform: uppercase; letter-spacing: .05em;
     }
 
-    /* ââ TESTIMONIALS ââ */
+    /* ── TESTIMONIALS ── */
     #testimonials { background: var(--white); }
     .testimonials-inner { max-width: 1100px; margin: 0 auto; }
     .testimonials-header { margin-bottom: 50px; text-align: center; }
@@ -390,7 +390,7 @@
     }
     .testi-dot.active { background: var(--red); }
 
-    /* ââ ABOUT ââ */
+    /* ── ABOUT ── */
     #about { background: var(--black); }
     .about-inner {
       max-width: 1100px; margin: 0 auto;
@@ -453,7 +453,7 @@
     }
     .btn-outline:hover { border-color: var(--white); }
 
-    /* ââ BLOG ââ */
+    /* ── BLOG ── */
     #blog { background: var(--gray-light); }
     .blog-inner { max-width: 1100px; margin: 0 auto; }
     .blog-header {
@@ -503,7 +503,7 @@
     .blog-list-item:hover .blog-list-title { color: var(--red); }
     .blog-list-date { font-size: .7rem; color: var(--gray-text); white-space: nowrap; }
 
-    /* ââ CONTACT ââ */
+    /* ── CONTACT ── */
     #contact { background: var(--white); }
     .contact-inner {
       max-width: 1100px; margin: 0 auto;
@@ -542,7 +542,7 @@
     }
     .form-submit:hover { background: var(--red-dark); }
 
-    /* ââ FOOTER ââ */
+    /* ── FOOTER ── */
     footer { background: #0a0a0a; color: #888; padding: 60px 40px 30px; }
     .footer-inner { max-width: 1100px; margin: 0 auto; }
     .footer-top {
@@ -576,7 +576,7 @@
     .footer-bottom-links a { color: #666; text-decoration: none; font-size: .73rem; transition: color .2s; }
     .footer-bottom-links a:hover { color: var(--white); }
 
-    /* ââ MOBILE STICKY ââ */
+    /* ── MOBILE STICKY ── */
     .mobile-bar {
       display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 99;
       background: var(--white); border-top: 1px solid var(--gray-mid);
@@ -611,7 +611,7 @@
 </head>
 <body>
 
-<!-- ââ NAV ââ -->
+<!-- ── NAV ── -->
 <nav id="main-nav">
   <a href="/" class="nav-logo">
     <img src="https://assets.thesparksite.com/uploads/sites/103/2024/07/BETHESDA-w-RED.png" alt="@Bethesda Real Estate" />
@@ -629,7 +629,7 @@
 </nav>
 <div class="mobile-nav" id="mobile-nav"><ul><li><a href="/">Home</a></li><li><a href="/properties/">Buy</a></li><li><a href="/whats-my-home-worth/">Sell</a></li><li><a href="/our-areas/">Featured Areas</a></li><li><a href="/about/">About</a></li><li><a href="/vlog/">Blog</a></li><li><a href="/contact/">Let&#39;s Connect</a></li></ul></div>
 
-<!-- ââ HERO ââ -->
+<!-- ── HERO ── -->
 <section id="hero">
   <video id="hero-video" autoplay muted loop playsinline poster="">
     <source src="https://videos.thesparksite.com/atbethesda.com/Bethesda.mp4" type="video/mp4" />
@@ -647,7 +647,7 @@
         <button class="hero-tab" onclick="setTab(this)">Sell</button>
       </div>
       <div class="hero-search-row">
-        <input type="text" placeholder="Search by city, neighborhood, zip, or school districtâ¦" />
+        <input type="text" placeholder="Search by city, neighborhood, zip, or school district&hellip;" />
         <button class="hero-search-btn" onclick="window.location='/properties/'">Search</button>
       </div>
     </div>
@@ -664,13 +664,13 @@
   </div>
 </section>
 
-<!-- ââ 3-CARD CTA ââ -->
+<!-- ── 3-CARD CTA ── -->
 <section id="cta-cards">
   <div class="cta-cards-inner">
     <div class="section-header" style="text-align:center; max-width:540px; margin: 0 auto 50px;">
       <div class="section-label">Start Here</div>
       <h2 class="section-title">Find Your <span>Ideal Home</span></h2>
-      <p class="section-sub">Whether you're buying, selling, or just exploring â I'm here to guide you every step of the way.</p>
+      <p class="section-sub">Whether you're buying, selling, or just exploring &mdash; I'm here to guide you every step of the way.</p>
     </div>
     <div class="cta-grid">
       <div class="cta-card">
@@ -678,30 +678,30 @@
           <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
         </svg>
         <h3>Home Search</h3>
-        <p>Browse available listings in Bethesda, Chevy Chase, Potomac, and surrounding DC Metro communities. Filter by school district â only here.</p>
-        <a href="/properties/" class="cta-link">Search Now â</a>
+        <p>Browse available listings in Bethesda, Chevy Chase, Potomac, and surrounding DC Metro communities. Filter by school district &mdash; only here.</p>
+        <a href="/properties/" class="cta-link">Search Now &rarr;</a>
       </div>
       <div class="cta-card">
         <svg class="cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
         </svg>
         <h3>Home Valuation</h3>
-        <p>Find out what your home is worth with a free, expert home analysis â tailored specifically to the Bethesda and Montgomery County market.</p>
-        <a href="/whats-my-home-worth/" class="cta-link">Get My Value â</a>
+        <p>Find out what your home is worth with a free, expert home analysis &mdash; tailored specifically to the Bethesda and Montgomery County market.</p>
+        <a href="/whats-my-home-worth/" class="cta-link">Get My Value &rarr;</a>
       </div>
       <div class="cta-card">
         <svg class="cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
         </svg>
         <h3>Let's Connect</h3>
-        <p>Ready to buy, sell, or just have questions about the market? Reach out â I respond fast and I'm always happy to talk through your options.</p>
-        <a href="#contact" class="cta-link">Contact Pey â</a>
+        <p>Ready to buy, sell, or just have questions about the market? Reach out &mdash; I respond fast and I'm always happy to talk through your options.</p>
+        <a href="#contact" class="cta-link">Contact Pey &rarr;</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ââ SCHOOL MAP ââ -->
+<!-- ── SCHOOL MAP ── -->
 <section id="school-map">
   <div class="school-map-inner">
     <div>
@@ -718,7 +718,7 @@
         <span class="school-badge">Walter Johnson HS</span>
         <span class="school-badge">Wootton HS</span>
       </div>
-      <a href="/properties/" class="map-overlay-btn">Search by School District â</a>
+      <a href="/properties/" class="map-overlay-btn">Search by School District &rarr;</a>
     </div>
     <div class="school-map-visual">
       <!-- Placeholder for the interactive IDX map embed -->
@@ -730,7 +730,7 @@
   </div>
 </section>
 
-<!-- ââ FEATURED AREAS ââ -->
+<!-- ── FEATURED AREAS ── -->
 <section id="featured-areas">
   <div class="areas-inner">
     <div class="areas-header">
@@ -738,7 +738,7 @@
         <div class="section-label">Explore the Area</div>
         <h2 class="section-title">Featured <span>Neighborhoods</span></h2>
       </div>
-      <a href="/our-areas/">View All Areas â</a>
+      <a href="/our-areas/">View All Areas &rarr;</a>
     </div>
     <div class="areas-grid">
       <a class="area-tile" href="/our-areas/chevy-chase/">
@@ -791,7 +791,7 @@
   </div>
 </section>
 
-<!-- ââ TESTIMONIALS ââ -->
+<!-- ── TESTIMONIALS ── -->
 <section id="testimonials">
   <div class="testimonials-inner">
     <div class="testimonials-header section-header">
@@ -805,121 +805,121 @@
         <!-- Slide 1 -->
         <div class="testi-slide"><div class="testi-grid">
           <div class="testi-card">
-            <div class="testi-stars">âââââ</div>
+            <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"Pey was great and helped guide me through the process from start to finish and made my first time home buying experience much less stressful. He had great insights and industry experience that helped me find the right place and was a pleasure to work with!"</blockquote>
-            <div class="testi-author"><div class="testi-avatar">AS</div><div><div class="testi-name">Alexander Stevens</div><div class="testi-role">First-Time Home Buyer Â&middot; Google Review</div></div></div>
+            <div class="testi-author"><div class="testi-avatar">AS</div><div><div class="testi-name">Alexander Stevens</div><div class="testi-role">First-Time Home Buyer �&middot; Google Review</div></div></div>
           </div>
           <div class="testi-card">
-            <div class="testi-stars">âââââ</div>
+            <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"I am a first time home buyer and found Pey through word of mouth. He assisted us in getting the best deal for our home and is incredibly knowledgeable on the contract process. He made us feel like VIPs throughout the whole process, and was available for any questions."</blockquote>
-            <div class="testi-author"><div class="testi-avatar">JM</div><div><div class="testi-name">Jeffrey Messer</div><div class="testi-role">First-Time Home Buyer Â&middot; Google Review</div></div></div>
+            <div class="testi-author"><div class="testi-avatar">JM</div><div><div class="testi-name">Jeffrey Messer</div><div class="testi-role">First-Time Home Buyer �&middot; Google Review</div></div></div>
           </div>
           <div class="testi-card">
-            <div class="testi-stars">âââââ</div>
+            <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"My husband and I were first time home buyers. Pey made us feel so comfortable from day 1. He was available to us day and night, and always made us feel heard. We cannot recommend Pey enough for his consistency, thoroughness, and having our best interest at heart."</blockquote>
-            <div class="testi-author"><div class="testi-avatar">SM</div><div><div class="testi-name">Selah Messer</div><div class="testi-role">First-Time Home Buyer Â&middot; Google Review</div></div></div>
+            <div class="testi-author"><div class="testi-avatar">SM</div><div><div class="testi-name">Selah Messer</div><div class="testi-role">First-Time Home Buyer �&middot; Google Review</div></div></div>
           </div>
         </div></div>
 
         <!-- Slide 2 -->
         <div class="testi-slide"><div class="testi-grid">
           <div class="testi-card">
-            <div class="testi-stars">âââââ</div>
-            <blockquote>"We had an outstanding experience working with Pey! He went above and beyond to help our family find the perfect homeâoff market, no less. His deep knowledge of the local market and extensive network made all the difference. His years of experience were evident in how smoothly everything went."</blockquote>
-            <div class="testi-author"><div class="testi-avatar">DK</div><div><div class="testi-name">Diana Kwan</div><div class="testi-role">Home Buyer Â&middot; Google Review</div></div></div>
+            <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <blockquote>"We had an outstanding experience working with Pey! He went above and beyond to help our family find the perfect home&mdash;off market, no less. His deep knowledge of the local market and extensive network made all the difference. His years of experience were evident in how smoothly everything went."</blockquote>
+            <div class="testi-author"><div class="testi-avatar">DK</div><div><div class="testi-name">Diana Kwan</div><div class="testi-role">Home Buyer �&middot; Google Review</div></div></div>
           </div>
           <div class="testi-card">
-            <div class="testi-stars">âââââ</div>
+            <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"Pey was awesome to work with. He is extremely knowledgeable and gave us very valuable advice any time we needed it. Pey has great instincts, and prevented us from proceeding with what he sensed could be a problematic home. He later found us the perfect home, before it hit the market."</blockquote>
-            <div class="testi-author"><div class="testi-avatar">ML</div><div><div class="testi-name">Mitch Ly</div><div class="testi-role">Home Buyer Â&middot; Google Review</div></div></div>
+            <div class="testi-author"><div class="testi-avatar">ML</div><div><div class="testi-name">Mitch Ly</div><div class="testi-role">Home Buyer �&middot; Google Review</div></div></div>
           </div>
           <div class="testi-card">
-            <div class="testi-stars">âââââ</div>
-            <blockquote>"Pey was the perfect guide for our home buying journeyâknowledgeable, empathetic, and always ready with just the right touch of humor to keep us grounded. With his steady guidance and thoughtful communication, what could have been a stressful experience turned into an exciting and memorable one."</blockquote>
-            <div class="testi-author"><div class="testi-avatar">MH</div><div><div class="testi-name">Michelle Hussain</div><div class="testi-role">Home Buyer Â&middot; Google Review</div></div></div>
+            <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <blockquote>"Pey was the perfect guide for our home buying journey&mdash;knowledgeable, empathetic, and always ready with just the right touch of humor to keep us grounded. With his steady guidance and thoughtful communication, what could have been a stressful experience turned into an exciting and memorable one."</blockquote>
+            <div class="testi-author"><div class="testi-avatar">MH</div><div><div class="testi-name">Michelle Hussain</div><div class="testi-role">Home Buyer �&middot; Google Review</div></div></div>
           </div>
         </div></div>
 
         <!-- Slide 3 -->
         <div class="testi-slide"><div class="testi-grid">
           <div class="testi-card">
-            <div class="testi-stars">âââââ</div>
+            <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"Having the right person in the DMV market is critical. Knowing I had about 48 hours to make a compelling offer, I called Pey. With 5 other offers on the table we were able to beat them and get our dream home. I'm looking forward to continuing my relationship with Pey."</blockquote>
-            <div class="testi-author"><div class="testi-avatar">VH</div><div><div class="testi-name">Viq Hussain</div><div class="testi-role">Home Buyer Â&middot; Google Review</div></div></div>
+            <div class="testi-author"><div class="testi-avatar">VH</div><div><div class="testi-name">Viq Hussain</div><div class="testi-role">Home Buyer �&middot; Google Review</div></div></div>
           </div>
           <div class="testi-card">
-            <div class="testi-stars">âââââ</div>
+            <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"Pey was great to work with! He was professional, honest, and friendly. He always made me feel like I had his full attention and was very easy to reach. I would definitely recommend him to anyone looking to buy or sell a home."</blockquote>
-            <div class="testi-author"><div class="testi-avatar">KC</div><div><div class="testi-name">Katerina Chulkov</div><div class="testi-role">Home Buyer Â&middot; Google Review</div></div></div>
+            <div class="testi-author"><div class="testi-avatar">KC</div><div><div class="testi-name">Katerina Chulkov</div><div class="testi-role">Home Buyer �&middot; Google Review</div></div></div>
           </div>
           <div class="testi-card">
-            <div class="testi-stars">âââââ</div>
+            <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"Pey was patient, zealous, professional, and kind. Pey went back to the seller and aggressively advocated on my behalf which resulted in me unexpectedly getting money back at closing. I overwhelmingly would recommend Pey as a real estate agent."</blockquote>
-            <div class="testi-author"><div class="testi-avatar">HP</div><div><div class="testi-name">Hector M. Perez-Casillas</div><div class="testi-role">Home Buyer Â&middot; Google Review</div></div></div>
+            <div class="testi-author"><div class="testi-avatar">HP</div><div><div class="testi-name">Hector M. Perez-Casillas</div><div class="testi-role">Home Buyer �&middot; Google Review</div></div></div>
           </div>
         </div></div>
 
         <!-- Slide 4 -->
         <div class="testi-slide"><div class="testi-grid">
           <div class="testi-card">
-            <div class="testi-stars">âââââ</div>
-            <blockquote>"Pey was an absolute dream to work with. He was incredibly communicative, knowledgeable, and helpful. Even when I didn't like what he was saying, he was always honest â and I truly think his advice is what made our home sell for $20K over asking."</blockquote>
-            <div class="testi-author"><div class="testi-avatar">JR</div><div><div class="testi-name">J R</div><div class="testi-role">Home Seller Â&middot; Google Review</div></div></div>
+            <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <blockquote>"Pey was an absolute dream to work with. He was incredibly communicative, knowledgeable, and helpful. Even when I didn't like what he was saying, he was always honest &mdash; and I truly think his advice is what made our home sell for $20K over asking."</blockquote>
+            <div class="testi-author"><div class="testi-avatar">JR</div><div><div class="testi-name">J R</div><div class="testi-role">Home Seller �&middot; Google Review</div></div></div>
           </div>
           <div class="testi-card">
-            <div class="testi-stars">âââââ</div>
+            <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"Pey helped me Buy a new home and Sell my old home. He is someone you can trust that he's looking out for your best interest and not just looking for the commission check. He was responsive, helpful, educational, and coached us throughout the whole process."</blockquote>
-            <div class="testi-author"><div class="testi-avatar">BV</div><div><div class="testi-name">Brandon V</div><div class="testi-role">Buyer &amp; Seller Â&middot; Google Review</div></div></div>
+            <div class="testi-author"><div class="testi-avatar">BV</div><div><div class="testi-name">Brandon V</div><div class="testi-role">Buyer &amp; Seller �&middot; Google Review</div></div></div>
           </div>
           <div class="testi-card">
-            <div class="testi-stars">âââââ</div>
+            <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"I live abroad and friends recommended Pey's services to help me with the sale of my apartment. Pey was extremely professional and diligent. He regularly kept me updated and took all the appropriate initiatives to protect my interests. With him, you will be in good hands!"</blockquote>
-            <div class="testi-author"><div class="testi-avatar">ME</div><div><div class="testi-name">Moh Elmaini</div><div class="testi-role">Home Seller Â&middot; Google Review</div></div></div>
+            <div class="testi-author"><div class="testi-avatar">ME</div><div><div class="testi-name">Moh Elmaini</div><div class="testi-role">Home Seller �&middot; Google Review</div></div></div>
           </div>
         </div></div>
 
         <!-- Slide 5 -->
         <div class="testi-slide"><div class="testi-grid">
           <div class="testi-card">
-            <div class="testi-stars">âââââ</div>
-            <blockquote>"Pey was wonderful to work with! He was knowledgeable AND honest. He wasn't pushy or impatient â he wanted to make sure I absolutely knew what I was getting. Ultimately, he was the one who found the house I purchased! As a first time home buyer, I couldn't have found a better agent."</blockquote>
-            <div class="testi-author"><div class="testi-avatar">SS</div><div><div class="testi-name">Sara S</div><div class="testi-role">First-Time Home Buyer Â&middot; Google Review</div></div></div>
+            <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <blockquote>"Pey was wonderful to work with! He was knowledgeable AND honest. He wasn't pushy or impatient &mdash; he wanted to make sure I absolutely knew what I was getting. Ultimately, he was the one who found the house I purchased! As a first time home buyer, I couldn't have found a better agent."</blockquote>
+            <div class="testi-author"><div class="testi-avatar">SS</div><div><div class="testi-name">Sara S</div><div class="testi-role">First-Time Home Buyer �&middot; Google Review</div></div></div>
           </div>
           <div class="testi-card">
-            <div class="testi-stars">âââââ</div>
+            <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"Pey is amazing! At a time where I was getting priced out of DC, Pey was able to use his relationships to find me a property that had yet to be listed. I've owned my property for over 14 months and the value has increased 20%. I'm grateful to Pey for being an amazing realtor and a genuine friend."</blockquote>
-            <div class="testi-author"><div class="testi-avatar">JV</div><div><div class="testi-name">Jason Vedamuthu</div><div class="testi-role">Home Buyer Â&middot; Google Review</div></div></div>
+            <div class="testi-author"><div class="testi-avatar">JV</div><div><div class="testi-name">Jason Vedamuthu</div><div class="testi-role">Home Buyer �&middot; Google Review</div></div></div>
           </div>
           <div class="testi-card">
-            <div class="testi-stars">âââââ</div>
+            <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"Pey Behin was the best real estate agent I have ever dealt with. He was very professional and knowledgeable. He went above and beyond my expectations and was extremely helpful, open, transparent, and reliable from start to finish. Highly recommended!"</blockquote>
-            <div class="testi-author"><div class="testi-avatar">JM</div><div><div class="testi-name">Javier Montero</div><div class="testi-role">Home Buyer Â&middot; Google Review</div></div></div>
+            <div class="testi-author"><div class="testi-avatar">JM</div><div><div class="testi-name">Javier Montero</div><div class="testi-role">Home Buyer �&middot; Google Review</div></div></div>
           </div>
         </div></div>
 
         <!-- Slide 6 -->
         <div class="testi-slide"><div class="testi-grid">
           <div class="testi-card">
-            <div class="testi-stars">âââââ</div>
+            <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"I can honestly say Pey is the best realtor we could have worked with and will 100% work with him again. He listened to what we were looking for and our limitations in budget and time. What really shown through was his honesty without being pushy and how hard he worked."</blockquote>
-            <div class="testi-author"><div class="testi-avatar">JU</div><div><div class="testi-name">Julie</div><div class="testi-role">Home Buyer Â&middot; Google Review</div></div></div>
+            <div class="testi-author"><div class="testi-avatar">JU</div><div><div class="testi-name">Julie</div><div class="testi-role">Home Buyer �&middot; Google Review</div></div></div>
           </div>
           <div class="testi-card">
-            <div class="testi-stars">âââââ</div>
-            <blockquote>"Peyman helped me on the sale of my home â because of his professionalism and excellent marketing my place got a contract within a week. If you're looking for a realtor who will be on your side 100%, call Peyman. This experience surpassed all other realtors I used in the past."</blockquote>
-            <div class="testi-author"><div class="testi-avatar">JF</div><div><div class="testi-name">Joanni Feild</div><div class="testi-role">Home Seller Â&middot; Google Review</div></div></div>
+            <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <blockquote>"Peyman helped me on the sale of my home &mdash; because of his professionalism and excellent marketing my place got a contract within a week. If you're looking for a realtor who will be on your side 100%, call Peyman. This experience surpassed all other realtors I used in the past."</blockquote>
+            <div class="testi-author"><div class="testi-avatar">JF</div><div><div class="testi-name">Joanni Feild</div><div class="testi-role">Home Seller �&middot; Google Review</div></div></div>
           </div>
           <div class="testi-card">
-            <div class="testi-stars">âââââ</div>
+            <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"I honestly couldn't have asked for a better realtor than Pey. He was incredibly responsive, never pushy, and just wanted us to find what we wanted in a home. He is also an amazing person all around, who we feel we can trust with anything."</blockquote>
-            <div class="testi-author"><div class="testi-avatar">MA</div><div><div class="testi-name">Maddy Alizadeh</div><div class="testi-role">Home Buyer Â&middot; Google Review</div></div></div>
+            <div class="testi-author"><div class="testi-avatar">MA</div><div><div class="testi-name">Maddy Alizadeh</div><div class="testi-role">Home Buyer �&middot; Google Review</div></div></div>
           </div>
         </div></div>
 
         <!-- Slide 7 -->
         <div class="testi-slide"><div class="testi-grid">
           <div class="testi-card">
-            <div class="testi-stars">âââââ</div>
+            <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"BEST Guy in the DMV!!"</blockquote>
             <div class="testi-author"><div class="testi-avatar">JA</div><div><div class="testi-name">Julio Amador</div><div class="testi-role">Google Review</div></div></div>
           </div>
@@ -929,8 +929,8 @@
     </div>
     <div style="text-align:center;margin:28px 0 8px;">
       <div style="display:inline-block;background:#b72545;padding:14px 28px;border-radius:6px;">
-        <div style="color:#fff;font-size:1.35rem;letter-spacing:2px;line-height:1;">âââââ</div>
-        <div style="color:#fff;font-size:0.7rem;font-family:'Montserrat',sans-serif;font-weight:600;letter-spacing:1.5px;margin-top:6px;text-transform:uppercase;">5â Average Rating</div>
+        <div style="color:#fff;font-size:1.35rem;letter-spacing:2px;line-height:1;">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div style="color:#fff;font-size:0.7rem;font-family:'Montserrat',sans-serif;font-weight:600;letter-spacing:1.5px;margin-top:6px;text-transform:uppercase;">5&#9733; Average Rating</div>
       </div>
     </div>
     <div class="testi-controls">
@@ -949,7 +949,7 @@
   </div>
 </section>
 
-<!-- ââ INSTAGRAM FEED ââ -->
+<!-- ── INSTAGRAM FEED ── -->
 <section id="instagram" style="background:#0a0a0a;padding:72px 0 80px;">
   <div style="max-width:1200px;margin:0 auto;padding:0 24px;">
     <div style="text-align:center;margin-bottom:48px;">
@@ -957,7 +957,7 @@
       <h2 class="section-title" style="margin-bottom:8px;color:#fff;">@<span>peybehin</span> on Instagram</h2>
       <a href="https://www.instagram.com/peybehin/" target="_blank" rel="noopener"
          style="color:#999;font-size:0.85rem;font-family:'Montserrat',sans-serif;text-decoration:none;">
-        instagram.com/peybehin â
+        instagram.com/peybehin &#8599;
       </a>
     </div>
 
@@ -968,7 +968,7 @@
     ">
       <!-- Posts injected by JS -->
       <div id="ig-loading" style="grid-column:1/-1;text-align:center;padding:60px 0;color:#555;font-family:'Montserrat',sans-serif;font-size:0.85rem;">
-        Loading postsâ¦
+        Loading posts&hellip;
       </div>
     </div>
 
@@ -1053,9 +1053,9 @@
         el.innerHTML = `
           <img src="${imgSrc}" alt="Instagram post" loading="lazy" />
           <div class="ig-overlay">
-            ${caption ? `<p>${caption.slice(0, 120)}${caption.length > 120 ? 'â¦' : ''}</p>` : ''}
+            ${caption ? `<p>${caption.slice(0, 120)}${caption.length > 120 ? '&hellip;' : ''}</p>` : ''}
           </div>
-          ${post.media_type === 'VIDEO' ? '<div class="ig-video-badge">â¶ Video</div>' : ''}
+          ${post.media_type === 'VIDEO' ? '<div class="ig-video-badge">&#9654; Video</div>' : ''}
         `;
         grid.appendChild(el);
       });
@@ -1069,7 +1069,7 @@
 })();
 </script>
 
-<!-- ââ BLOG ââ -->
+<!-- ── BLOG ── -->
 <section id="blog">
   <div class="blog-inner">
     <div class="blog-header">
@@ -1077,7 +1077,7 @@
         <div class="section-label">Insights &amp; Updates</div>
         <h2 class="section-title">Latest <span>Blog Posts</span></h2>
       </div>
-      <a href="/vlog/">View All Posts â</a>
+      <a href="/vlog/">View All Posts &rarr;</a>
     </div>
     <div class="blog-grid">
       <a class="blog-card" href="https://atbethesda.com/property-tax-assessment-appeal-montgomery-county-maryland/" style="text-decoration:none;color:inherit;">
@@ -1136,14 +1136,14 @@
   </div>
 </section>
 
-<!-- ââ CONTACT ââ -->
+<!-- ── CONTACT ── -->
 <section id="contact">
   <div class="contact-inner">
     <div class="contact-info">
       <div class="section-label">Get In Touch</div>
       <h2 class="section-title">Let's <span>Connect</span></h2>
       <p class="section-sub">
-        Ready to buy, sell, or just have questions about the Bethesda market? Reach out â I respond fast and I'm always happy to talk through your options.
+        Ready to buy, sell, or just have questions about the Bethesda market? Reach out &mdash; I respond fast and I'm always happy to talk through your options.
       </p>
       <div style="margin-top:36px;">
         <div class="contact-detail">
@@ -1184,7 +1184,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label>I'm interested inâ¦</label>
+        <label>I'm interested in&hellip;</label>
         <select>
           <option value="">Select one</option>
           <option>Buying a Home</option>
@@ -1197,14 +1197,14 @@
       </div>
       <div class="form-group">
         <label>Message</label>
-        <textarea placeholder="Tell me a little about what you're looking forâ¦"></textarea>
+        <textarea placeholder="Tell me a little about what you're looking for&hellip;"></textarea>
       </div>
       <button type="submit" class="form-submit">Send Message</button>
     </form>
   </div>
 </section>
 
-<!-- ââ FOOTER ââ -->
+<!-- ── FOOTER ── -->
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
@@ -1268,7 +1268,7 @@
     </div>
     <div class="footer-bottom">
       <p>RLAH Properties | 4600 North Park Ave Suite 100, Chevy Chase, MD 20815 | (301) 652-0643<br/>
-      All information deemed reliable but not guaranteed. Â&copy; 2026 @Bethesda Real Estate. All rights reserved.</p>
+      All information deemed reliable but not guaranteed. �&copy; 2026 @Bethesda Real Estate. All rights reserved.</p>
       <div class="footer-bottom-links">
         <a href="/about/">Privacy Policy</a>
         <a href="/about/">Terms of Use</a>
@@ -1277,10 +1277,10 @@
   </div>
 </footer>
 
-<!-- ââ MOBILE STICKY BAR ââ -->
+<!-- ── MOBILE STICKY BAR ── -->
 <div class="mobile-bar">
-  <a href="tel:+12026817454">ð Call</a>
-  <a href="sms:+12026817454">ð¬ Text</a>
+  <a href="tel:+12026817454">&#128222; Call</a>
+  <a href="sms:+12026817454">&#128172; Text</a>
   <a href="#contact" class="primary">Connect</a>
   <a href="/properties/">Search</a>
 </div>
@@ -1297,9 +1297,9 @@
     el.classList.add('active');
     const searchInput = document.querySelector('.hero-search-row input');
     if (el.textContent.trim() === 'Sell') {
-      searchInput.placeholder = 'Enter your address for a free home valuationâ¦';
+      searchInput.placeholder = 'Enter your address for a free home valuation&hellip;';
     } else {
-      searchInput.placeholder = 'Search by city, neighborhood, zip, or school districtâ¦';
+      searchInput.placeholder = 'Search by city, neighborhood, zip, or school district&hellip;';
     }
   }
 
@@ -1331,7 +1331,7 @@
   // Contact form
   function handleSubmit(e) {
     e.preventDefault();
-    e.target.innerHTML = '<div style="text-align:center;padding:60px 20px;"><h3 style="font-size:1.4rem;margin-bottom:12px;">Thanks â got it!</h3><p style="color:#555;">I\'ll be in touch shortly. If you need to reach me immediately, call <a href="tel:+12026817454" style="color:#b72545;">202-681-7454</a>.</p></div>';
+    e.target.innerHTML = '<div style="text-align:center;padding:60px 20px;"><h3 style="font-size:1.4rem;margin-bottom:12px;">Thanks &mdash; got it!</h3><p style="color:#555;">I\'ll be in touch shortly. If you need to reach me immediately, call <a href="tel:+12026817454" style="color:#b72545;">202-681-7454</a>.</p></div>';
   }
 </script>
 
