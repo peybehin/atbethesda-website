@@ -1551,6 +1551,61 @@ ${schoolsGrid}`;
   showToast(`Downloaded school snippet for ${areaName}`);
 }
 
+
+
+// ── IMAGE UPLOAD TO GITHUB ──────────────────────────────────────────
+function handleImgDrop(e) {
+  e.preventDefault();
+  document.getElementById('img-drop-zone').style.borderColor = '#ccc';
+  const file = e.dataTransfer.files[0];
+  if (file && file.type.startsWith('image/')) handleImgFile(file);
+}
+
+async function handleImgFile(file) {
+  if (!file) return;
+  const status = document.getElementById('img-upload-status');
+  status.style.color = '#888';
+  status.textContent = 'Uploading…';
+  
+  const GITHUB_TOKEN = document.getElementById('pw-input')?.dataset?.token || window._ghToken;
+  if (!GITHUB_TOKEN) { status.style.color='#c00'; status.textContent='Not logged in'; return; }
+  
+  // Read file as base64
+  const b64 = await new Promise((res, rej) => {
+    const reader = new FileReader();
+    reader.onload = () => res(reader.result.split(',')[1]);
+    reader.onerror = rej;
+    reader.readAsDataURL(file);
+  });
+  
+  const filename = file.name.replace(/[^a-zA-Z0-9._-]/g, '-').toLowerCase();
+  const path = 'images/blog/' + filename;
+  
+  // Check if already exists
+  const checkR = await fetch('https://api.github.com/repos/peybehin/atbethesda-website/contents/' + path, {
+    headers: {'Authorization': 'token ' + GITHUB_TOKEN}
+  });
+  const body = {message: 'Upload image: ' + filename, content: b64};
+  if (checkR.ok) { const existing = await checkR.json(); body.sha = existing.sha; }
+  
+  const pushR = await fetch('https://api.github.com/repos/peybehin/atbethesda-website/contents/' + path, {
+    method: 'PUT',
+    headers: {'Authorization': 'token ' + GITHUB_TOKEN, 'Content-Type': 'application/json'},
+    body: JSON.stringify(body)
+  });
+  
+  if (pushR.ok) {
+    const newUrl = '/images/blog/' + filename;
+    document.getElementById('post-image').value = newUrl;
+    previewImage();
+    status.style.color = '#0a0';
+    status.textContent = '✓ Uploaded: ' + filename;
+  } else {
+    status.style.color = '#c00';
+    status.textContent = 'Upload failed (' + pushR.status + ')';
+  }
+}
+// ───────────────────────────────────────────────────────────────────
 </script>
 </body>
 </html>
