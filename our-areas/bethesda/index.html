@@ -504,7 +504,7 @@
       }
       grid.innerHTML = items.map(function(b) {
         var photo = b.photo
-          ? '<img src="' + b.photo + '" alt="' + b.name + '" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">'
+          ? '<img src="' + b.photo + '" alt="' + b.name + '" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">'
           : '';
         var fallback = '<div class="ata-photo-fallback" style="' + (b.photo ? 'display:none' : '') + '">' + (cat === 'dine' ? '🍽️' : cat === 'drink' ? '🍹' : cat === 'shop' ? '🛍️' : cat === 'perk' ? '☕' : cat === 'sweat' ? '💪' : cat === 'groom' ? '✂️' : '🐾') + '</div>';
         var link = b.maps_url || '#';
