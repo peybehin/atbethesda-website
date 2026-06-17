@@ -35,7 +35,7 @@
 </head>
 <body>
 <nav id="main-nav">
-  <a href="/" class="nav-logo"><img src="/images/blog/BETHESDA-w-RED.png" alt="@Bethesda Real Estate" /></a>
+  <a href="/" class="nav-logo"><img src="https://assets.thesparksite.com/uploads/sites/103/2024/07/BETHESDA-w-RED.png" alt="@Bethesda Real Estate" /></a>
   <ul class="nav-links">
     <li><a href="/">Home</a></li>
     <li class="nav-dropdown"><a href="/properties/" class="active">Buy ▾</a>
@@ -57,9 +57,21 @@
     <li><a href="/vlog/">Blog</a></li>
     <li><a href="/contact/" class="nav-cta">Let's Connect</a></li>
   </ul>
-<button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileNav()" aria-label="Open menu">
+  <span></span><span></span><span></span>
+</button>
 </nav>
-<div class="mobile-nav" id="mobile-nav"><ul><li><a href="/">Home</a></li><li><a href="/properties/">Buy</a></li><li><a href="/whats-my-home-worth/">Sell</a></li><li><a href="/our-areas/">Featured Areas</a></li><li><a href="/about/">About</a></li><li><a href="/vlog/">Blog</a></li><li><a href="/contact/">Let&#39;s Connect</a></li></ul></div>
+<div class="mobile-nav" id="mobile-nav">
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/properties/">Buy</a></li>
+    <li><a href="/whats-my-home-worth/">Sell</a></li>
+    <li><a href="/our-areas/">Featured Areas</a></li>
+    <li><a href="/about/">About</a></li>
+    <li><a href="/vlog/">Blog</a></li>
+    <li><a href="/contact/">Let&#39;s Connect</a></li>
+  </ul>
+</div>
 
 <div class="search-hero">
   <div style="max-width:var(--max-w);margin:0 auto;">
@@ -116,18 +128,8 @@
     </div>
 
     <!-- IDX Property Search Embed -->
-    <div class="idx-placeholder">
-      <div class="icon">🏠</div>
-      <h3>IDX Property Search Widget Goes Here</h3>
-      <p>Paste your IDX Broker property search widget embed code below. This will display a full, live MLS search with map view, filtering, and school district overlays.</p>
-      <code>
-        &lt;!-- Step 1: Paste your IDX Broker search widget code here --&gt;<br/>
-        &lt;!-- Find it in your IDX Broker account under Widgets → Search Widget --&gt;<br/>
-        &lt;!-- For school district map: Widgets → Map Widget --&gt;
-      </code>
-      <div style="margin-top:20px;">
-        <a href="https://atbethesda.com/properties/" class="btn-primary" target="_blank">View Current Listings (existing site)</a>
-      </div>
+    <div id="idx-search-widget" style="background:var(--white);border-radius:8px;padding:8px;">
+      <script charset="UTF-8" type="text/javascript" id="idxwidgetsrc-3637" src="//search.atbethesda.com/idx/quicksearchjs.php?widgetid=3637"></script>
     </div>
 
   </div>
@@ -152,8 +154,8 @@
     <div class="footer-top">
       <div class="footer-brand">
         <div class="footer-logos">
-          <img src="/images/blog/logo-rlahatproperties-vertical-white.png" alt="RLAH Properties" />
-          <img src="/images/blog/BETHESDA-w-RED.png" alt="@Bethesda Real Estate" />
+          <img src="https://assets.thesparksite.com/uploads/sites/103/2026/05/logo-rlahatproperties-vertical-white.png" alt="RLAH Properties" />
+          <img src="https://assets.thesparksite.com/uploads/sites/103/2024/07/BETHESDA-w-RED.png" alt="@Bethesda Real Estate" />
         </div>
         <p>Your hyperlocal Bethesda and DC Metro real estate expert. The only site where you can search homes by school district.</p>
         <div class="footer-socials">
@@ -229,6 +231,20 @@
     // IDX Broker supports URL parameters for filtering
     console.log('Filter by school:', school);
   }
+</script>
+<script>
+function toggleMobileNav() {
+  const nav = document.getElementById('mobile-nav');
+  nav.classList.toggle('open');
+  if (nav.classList.contains('open')) {
+    document.addEventListener('click', function closeMobileNav(e) {
+      if (!nav.contains(e.target) && !document.getElementById('nav-hamburger').contains(e.target)) {
+        nav.classList.remove('open');
+        document.removeEventListener('click', closeMobileNav);
+      }
+    });
+  }
+}
 </script>
 </body>
 </html>
