@@ -15,10 +15,13 @@
 <link rel="stylesheet" href="/css/style.css">
 <script type="application/ld+json">[{"@context":"https://schema.org","@type":"BlogPosting","headline":"Why Some Homes in Bethesda Sell in Days While Others Sit on the Market","description":"Why do some homes in Bethesda sell in days while others sit on the market? Learn the key factors that influence how quickly properties sell.","image":"https://assets.thesparksite.com/uploads/sites/103/2026/03/Why-Do-Some-Homes-in-Bethesda-Sell-Fast-While-Others-Sit-on-the-Market.png","datePublished":"2026-03-13","dateModified":"2026-03-13","url":"https://atbethesda.com/why-some-homes-in-bethesda-sell-in-days-while-others-sit-on-the-market/","mainEntityOfPage":{"@type":"WebPage","@id":"https://atbethesda.com/why-some-homes-in-bethesda-sell-in-days-while-others-sit-on-the-market/"},"author":{"@type":"Person","name":"Pey Behin","url":"https://atbethesda.com/about/","jobTitle":"Real Estate Agent","worksFor":{"@type":"Organization","name":"RLAH @properties"}},"publisher":{"@type":"Organization","name":"@Bethesda Real Estate","logo":{"@type":"ImageObject","url":"https://assets.thesparksite.com/uploads/sites/103/2024/07/BETHESDA-w-RED.png"}},"keywords":"Sellers, Bethesda real estate, Maryland real estate","articleSection":"Sellers"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"1. Pricing Strategy Often Determines Early Interest","acceptedAnswer":{"@type":"Answer","text":"Pricing is one of the most important variables affecting how quickly a home sells. When a property is priced appropriately for the current market: It tends to generate strong early interestMore buyers schedule showings in the first weekThe home may receive multiple offers When a home is priced above market expectations, buyers may simply skip the listing. Even small pricing differences can influence how frequently a home appears in buyer searches."}},{"@type":"Question","name":"2. First Impressions Matter More Than Most Sellers Expect","acceptedAnswer":{"@type":"Answer","text":"Buyers often form an opinion about a home within minutes of entering. Elements that influence first impressions include: LightingCleanlinessFurniture layoutFlooring conditionOverall maintenance Homes that appear well-maintained and move-in ready often attract stronger buyer interest."}},{"@type":"Question","name":"3. Online Presentation Drives Showings","acceptedAnswer":{"@type":"Answer","text":"Most buyers begin their home search online. As a result, the quality of a listing’s presentation can significantly affect how many people schedule a showing. Important elements include: Professional photographyClear and accurate property descriptionsWell-composed listing photosStrong first image that attracts attention Homes with stronger online presentation tend to generate more initial traffic."}},{"@type":"Question","name":"4. Location Within Bethesda Still Matters","acceptedAnswer":{"@type":"Answer","text":"While Bethesda is widely considered a desirable area overall, location within the community can still influence buyer demand. Factors buyers often consider include: Proximity to Metro stationsWalkability to retail and restaurantsSchool boundariesNeighborhood reputation Homes in particularly convenient locations may attract more buyer interest."}},{"@type":"Question","name":"5. Condition and Updates Influence Buyer Confidence","acceptedAnswer":{"@type":"Answer","text":"Buyers often compare multiple properties in the same price range. When a home shows signs of deferred maintenance, buyers may assume additional repairs will be required after purchase. This can reduce interest even if the property is otherwise appealing. Common concerns include: Aging roofs or HVAC systemsOutdated kitchens or bathroomsVisible wear and tear Homes that appear well-maintained tend to generate more confidence from buyers."}},{"@type":"Question","name":"6. Timing Can Influence Market Activity","acceptedAnswer":{"@type":"Answer","text":"The time of year can also affect how quickly homes sell. Historically, periods with stronger buyer activity include: SpringEarly summer However, strong listings can still sell quickly at other times of the year if they are priced and presented effectively."}}]}]</script>
 <style>
-.post-hero{position:relative;height:420px;overflow:hidden;}
-.post-hero img{width:100%;height:100%;object-fit:cover;}
-.post-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.3) 0%,rgba(0,0,0,.7) 100%);}
-.post-hero-content{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:100%;padding:40px;max-width:860px;}
+.post-header{background:#0a0a0a;padding:64px 24px 48px;}
+.post-header-inner{max-width:860px;margin:0 auto;}
+.post-header h1{font-size:clamp(1.4rem,4vw,2.2rem);color:#fff;font-weight:900;line-height:1.2;margin-bottom:16px;}
+.post-header .post-cats{margin-bottom:16px;}
+.post-header .post-meta{color:rgba(255,255,255,.65);font-size:.78rem;}
+.post-featured-img{max-width:860px;margin:0 auto;padding:0 24px;}
+.post-featured-img img{width:100%;border-radius:8px;display:block;max-height:480px;object-fit:cover;}
 .post-body{max-width:760px;margin:0 auto;padding:60px 24px;}
 .post-body h2{font-size:1.4rem;font-weight:800;margin:36px 0 14px;line-height:1.3;}
 .post-body h3{font-size:1.1rem;font-weight:700;margin:28px 0 10px;}
@@ -39,18 +42,14 @@
 <nav id="main-nav">
   <a href="/" class="nav-logo"><img src="https://assets.thesparksite.com/uploads/sites/103/2024/07/BETHESDA-w-RED.png" alt="@Bethesda Real Estate"></a>
   <ul class="nav-links"><li><a href="/">Home</a></li><li><a href="/properties/">Buy</a></li><li><a href="/whats-my-home-worth/">Sell</a></li><li><a href="/our-areas/">Featured Areas</a></li><li><a href="/about/">About</a></li><li><a href="/vlog/" class="active">Blog</a></li><li><a href="/contact/" class="nav-cta">Let's Connect</a></li></ul>
+<button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
 </nav>
-<div class="post-hero">
-  <img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/Why-Do-Some-Homes-in-Bethesda-Sell-Fast-While-Others-Sit-on-the-Market.png" alt="Why Some Homes in Bethesda Sell in Days While Others Sit on the Market" loading="eager">
-  <div class="post-hero-overlay"></div>
-  <div class="post-hero-content">
-    <div style="margin-bottom:10px;"><span class="blog-tag" style="margin-right:6px;margin-bottom:4px;">Sellers</span></div>
+<div class="mobile-nav" id="mobile-nav"><ul><li><a href="/">Home</a></li><li><a href="/properties/">Buy</a></li><li><a href="/whats-my-home-worth/">Sell</a></li><li><a href="/our-areas/">Featured Areas</a></li><li><a href="/about/">About</a></li><li><a href="/vlog/">Blog</a></li><li><a href="/contact/">Let&#39;s Connect</a></li></ul></div>
+<div class="post-header"><div class="post-header-inner"><div style="margin-bottom:10px;"><span class="blog-tag" style="margin-right:6px;margin-bottom:4px;">Sellers</span></div>
     <h1 style="font-size:clamp(1.4rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin-bottom:10px;">Why Some Homes in Bethesda Sell in Days While Others Sit on the Market</h1>
-    <div style="color:rgba(255,255,255,.7);font-size:.8rem;font-family:'Montserrat',sans-serif;">By Pey Behin &nbsp;·&nbsp; March 13, 2026</div>
-  </div>
-</div>
-<section style="background:var(--white);">
-  <div class="post-body">
+    <div style="color:rgba(255,255,255,.7);font-size:.8rem;font-family:'Montserrat',sans-serif;">By Pey Behin &nbsp;·&nbsp; March 13, 2026</div></div></div>
+<div class="post-featured-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/Why-Do-Some-Homes-in-Bethesda-Sell-Fast-While-Others-Sit-on-the-Market.png" alt="Why Some Homes in Bethesda Sell in Days While Others Sit on the Market" loading="eager"></div>
+<div class="post-body">
     <a href="/vlog/" class="back-link">← Back to Blog</a>
     <div class="afe-content afe-content--spark_post"><div class="spark-content entry-content">
 	<div class="afe-block afe-block--custom-block"><style>

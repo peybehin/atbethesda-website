@@ -15,10 +15,13 @@
 <link rel="stylesheet" href="/css/style.css">
 <script type="application/ld+json">[{"@context":"https://schema.org","@type":"BlogPosting","headline":"The Most Common Mistakes Bethesda Home Sellers Make","description":"What mistakes do Bethesda home sellers commonly make? Learn the most common issues that can delay a sale and how sellers can avoid them.","image":"https://assets.thesparksite.com/uploads/sites/103/2026/03/Common-Bethesda-home-selling-mistakes-explained.png","datePublished":"2026-03-23","dateModified":"2026-03-23","url":"https://atbethesda.com/the-most-common-mistakes-bethesda-home-sellers-make/","mainEntityOfPage":{"@type":"WebPage","@id":"https://atbethesda.com/the-most-common-mistakes-bethesda-home-sellers-make/"},"author":{"@type":"Person","name":"Pey Behin","url":"https://atbethesda.com/about/","jobTitle":"Real Estate Agent","worksFor":{"@type":"Organization","name":"RLAH @properties"}},"publisher":{"@type":"Organization","name":"@Bethesda Real Estate","logo":{"@type":"ImageObject","url":"https://assets.thesparksite.com/uploads/sites/103/2024/07/BETHESDA-w-RED.png"}},"keywords":"Sellers, Bethesda real estate, Maryland real estate","articleSection":"Sellers"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"1. Pricing the Home Too High","acceptedAnswer":{"@type":"Answer","text":"One of the most common mistakes sellers make is setting the initial price above market expectations. Some homeowners assume that starting high leaves room for negotiation. In practice, an inflated price can reduce early interest from buyers. When a home enters the market: The first two weeks typically generate the most attentionBuyers often compare the property with competing listingsOverpriced homes may receive fewer showings Once a property sits on the market for an extended period, buyers may"}},{"@type":"Question","name":"2. Skipping Basic Preparation","acceptedAnswer":{"@type":"Answer","text":"Homes that appear well-maintained and clean tend to attract stronger buyer interest. Preparation often includes: Deep cleaningDeclutteringMinor repairsFresh paint where needed When sellers skip these steps, buyers may focus on small issues rather than the overall appeal of the property."}},{"@type":"Question","name":"3. Poor Listing Photos","acceptedAnswer":{"@type":"Answer","text":"Most buyers first encounter a property online. As a result, listing photos often determine whether someone schedules a showing. Photos that are: DarkPoorly composedTaken with wide-angle distortionShowing cluttered rooms can reduce the number of potential buyers who choose to view the home in person. Professional photography typically improves how a property appears in online searches."}},{"@type":"Question","name":"4. Ignoring Buyer Feedback","acceptedAnswer":{"@type":"Answer","text":"After showings begin, buyers often provide feedback through their agents. Some sellers dismiss this feedback, especially if it includes criticism of price or condition. However, consistent feedback patterns can reveal important signals about how buyers perceive the property. Adjustments to price or presentation may sometimes be necessary."}},{"@type":"Question","name":"5. Being Inflexible With Showings","acceptedAnswer":{"@type":"Answer","text":"Limiting showing availability can significantly reduce the number of buyers who view the property. Many buyers schedule home tours during evenings or weekends. If showing windows are too restrictive, some potential buyers may simply move on to other listings. Greater flexibility often increases exposure to qualified buyers."}},{"@type":"Question","name":"6. Over-Customized Features","acceptedAnswer":{"@type":"Answer","text":"Homes that reflect very specific personal tastes may appeal to a smaller group of buyers. Examples can include: Bold paint colorsHighly specialized built-insUnique design elements While these features may suit the homeowner’s preferences, neutral presentation often appeals to a broader audience."}}]}]</script>
 <style>
-.post-hero{position:relative;height:420px;overflow:hidden;}
-.post-hero img{width:100%;height:100%;object-fit:cover;}
-.post-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.3) 0%,rgba(0,0,0,.7) 100%);}
-.post-hero-content{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:100%;padding:40px;max-width:860px;}
+.post-header{background:#0a0a0a;padding:64px 24px 48px;}
+.post-header-inner{max-width:860px;margin:0 auto;}
+.post-header h1{font-size:clamp(1.4rem,4vw,2.2rem);color:#fff;font-weight:900;line-height:1.2;margin-bottom:16px;}
+.post-header .post-cats{margin-bottom:16px;}
+.post-header .post-meta{color:rgba(255,255,255,.65);font-size:.78rem;}
+.post-featured-img{max-width:860px;margin:0 auto;padding:0 24px;}
+.post-featured-img img{width:100%;border-radius:8px;display:block;max-height:480px;object-fit:cover;}
 .post-body{max-width:760px;margin:0 auto;padding:60px 24px;}
 .post-body h2{font-size:1.4rem;font-weight:800;margin:36px 0 14px;line-height:1.3;}
 .post-body h3{font-size:1.1rem;font-weight:700;margin:28px 0 10px;}
@@ -39,18 +42,14 @@
 <nav id="main-nav">
   <a href="/" class="nav-logo"><img src="https://assets.thesparksite.com/uploads/sites/103/2024/07/BETHESDA-w-RED.png" alt="@Bethesda Real Estate"></a>
   <ul class="nav-links"><li><a href="/">Home</a></li><li><a href="/properties/">Buy</a></li><li><a href="/whats-my-home-worth/">Sell</a></li><li><a href="/our-areas/">Featured Areas</a></li><li><a href="/about/">About</a></li><li><a href="/vlog/" class="active">Blog</a></li><li><a href="/contact/" class="nav-cta">Let's Connect</a></li></ul>
+<button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
 </nav>
-<div class="post-hero">
-  <img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/Common-Bethesda-home-selling-mistakes-explained.png" alt="The Most Common Mistakes Bethesda Home Sellers Make" loading="eager">
-  <div class="post-hero-overlay"></div>
-  <div class="post-hero-content">
-    <div style="margin-bottom:10px;"><span class="blog-tag" style="margin-right:6px;margin-bottom:4px;">Sellers</span></div>
+<div class="mobile-nav" id="mobile-nav"><ul><li><a href="/">Home</a></li><li><a href="/properties/">Buy</a></li><li><a href="/whats-my-home-worth/">Sell</a></li><li><a href="/our-areas/">Featured Areas</a></li><li><a href="/about/">About</a></li><li><a href="/vlog/">Blog</a></li><li><a href="/contact/">Let&#39;s Connect</a></li></ul></div>
+<div class="post-header"><div class="post-header-inner"><div style="margin-bottom:10px;"><span class="blog-tag" style="margin-right:6px;margin-bottom:4px;">Sellers</span></div>
     <h1 style="font-size:clamp(1.4rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin-bottom:10px;">The Most Common Mistakes Bethesda Home Sellers Make</h1>
-    <div style="color:rgba(255,255,255,.7);font-size:.8rem;font-family:'Montserrat',sans-serif;">By Pey Behin &nbsp;·&nbsp; March 23, 2026</div>
-  </div>
-</div>
-<section style="background:var(--white);">
-  <div class="post-body">
+    <div style="color:rgba(255,255,255,.7);font-size:.8rem;font-family:'Montserrat',sans-serif;">By Pey Behin &nbsp;·&nbsp; March 23, 2026</div></div></div>
+<div class="post-featured-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/03/Common-Bethesda-home-selling-mistakes-explained.png" alt="The Most Common Mistakes Bethesda Home Sellers Make" loading="eager"></div>
+<div class="post-body">
     <a href="/vlog/" class="back-link">← Back to Blog</a>
     <div class="afe-content afe-content--spark_post"><div class="spark-content entry-content">
 	<div class="afe-block afe-block--custom-block"><style>

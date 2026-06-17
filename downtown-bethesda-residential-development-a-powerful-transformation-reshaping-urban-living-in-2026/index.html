@@ -15,10 +15,13 @@
 <link rel="stylesheet" href="/css/style.css">
 <script type="application/ld+json">[{"@context":"https://schema.org","@type":"BlogPosting","headline":"Downtown Bethesda Residential Development: A Powerful Transformation Reshaping Urban Living in 2026","description":"","image":"https://img.youtube.com/vi/EailL45slis/hqdefault.jpg","datePublished":"2026-02-07","dateModified":"2026-02-07","url":"https://atbethesda.com/downtown-bethesda-residential-development-a-powerful-transformation-reshaping-urban-living-in-2026/","mainEntityOfPage":{"@type":"WebPage","@id":"https://atbethesda.com/downtown-bethesda-residential-development-a-powerful-transformation-reshaping-urban-living-in-2026/"},"author":{"@type":"Person","name":"Pey Behin","url":"https://atbethesda.com/about/","jobTitle":"Real Estate Agent","worksFor":{"@type":"Organization","name":"RLAH @properties"}},"publisher":{"@type":"Organization","name":"@Bethesda Real Estate","logo":{"@type":"ImageObject","url":"https://assets.thesparksite.com/uploads/sites/103/2024/07/BETHESDA-w-RED.png"}},"keywords":"Buyers Corner, Market Updates, Bethesda real estate, Maryland real estate","articleSection":"Buyers Corner"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"TL;DR — Downtown Bethesda Residential Development","acceptedAnswer":{"@type":"Answer","text":"A 29-story residential tower with 420 apartments is planned at Wisconsin Avenue & East West Highway in downtown Bethesda.The project replaces aging office buildings with new housing, retail, and 6,500 sq ft of public open space.The building will reach 302 feet at its tallest point and step down to reduce visual impact.It includes 74 affordable (MPDU) units, 274 parking spaces, and ground-floor retail.A direct underground tunnel to the Bethesda Metro Station makes it highly transit-oriented.Desig"}},{"@type":"Question","name":"Introduction to Downtown Bethesda Residential Development","acceptedAnswer":{"@type":"Answer","text":"The Downtown Bethesda Residential Development now moving through Montgomery County’s approval process marks one of the most significant urban transformations the area has seen in decades. At a time when many suburban downtowns are rethinking how people live, work, and commute, Bethesda is leaning fully into a dense, transit-oriented future. This project, centered at one of the busiest intersections in the region, represents far more than a new apartment building—it signals a shift in how downtow"}},{"@type":"Question","name":"Why Downtown Bethesda Is a Prime Location for Growth","acceptedAnswer":{"@type":"Answer","text":"Bethesda has long been one of Montgomery County’s most desirable urban centers. Known for its dining scene, proximity to Washington, DC, and strong transit infrastructure, downtown Bethesda has evolved from a suburban retail hub into a true urban node. Several factors make downtown Bethesda ideal for high-density residential development: Transit access via the Red LineEstablished retail and dining corridorsStrong employment base in healthcare, biotech, and professional servicesHigh walkability s"}},{"@type":"Question","name":"Overview of the 29-Story, 420-Unit Residential Tower","acceptedAnswer":{"@type":"Answer","text":"At the heart of the Downtown Bethesda Residential Development is a striking 29-story tower that will redefine the skyline at the intersection of Wisconsin Avenue and East West Highway. The site spans four parcels and is currently occupied by largely vacant office buildings—prime candidates for redevelopment."}},{"@type":"Question","name":"Project Location and Site History","acceptedAnswer":{"@type":"Answer","text":"The assemblage wraps multiple streets, creating a highly visible footprint in downtown Bethesda. For years, the properties struggled to compete with newer office stock. Their redevelopment represents a broader trend of adaptive reuse and commercial-to-residential conversion throughout the region."}},{"@type":"Question","name":"Developers Behind the Project","acceptedAnswer":{"@type":"Answer","text":"The project is led by MRP Realty in partnership with Prime Finance Special Situations, both experienced players in complex urban development. Their acquisition of the four-building portfolio reportedly totaled $28 million, reflecting confidence in Bethesda’s long-term growth."}}]}]</script>
 <style>
-.post-hero{position:relative;height:420px;overflow:hidden;}
-.post-hero img{width:100%;height:100%;object-fit:cover;}
-.post-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.3) 0%,rgba(0,0,0,.7) 100%);}
-.post-hero-content{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:100%;padding:40px;max-width:860px;}
+.post-header{background:#0a0a0a;padding:64px 24px 48px;}
+.post-header-inner{max-width:860px;margin:0 auto;}
+.post-header h1{font-size:clamp(1.4rem,4vw,2.2rem);color:#fff;font-weight:900;line-height:1.2;margin-bottom:16px;}
+.post-header .post-cats{margin-bottom:16px;}
+.post-header .post-meta{color:rgba(255,255,255,.65);font-size:.78rem;}
+.post-featured-img{max-width:860px;margin:0 auto;padding:0 24px;}
+.post-featured-img img{width:100%;border-radius:8px;display:block;max-height:480px;object-fit:cover;}
 .post-body{max-width:760px;margin:0 auto;padding:60px 24px;}
 .post-body h2{font-size:1.4rem;font-weight:800;margin:36px 0 14px;line-height:1.3;}
 .post-body h3{font-size:1.1rem;font-weight:700;margin:28px 0 10px;}
@@ -39,18 +42,14 @@
 <nav id="main-nav">
   <a href="/" class="nav-logo"><img src="https://assets.thesparksite.com/uploads/sites/103/2024/07/BETHESDA-w-RED.png" alt="@Bethesda Real Estate"></a>
   <ul class="nav-links"><li><a href="/">Home</a></li><li><a href="/properties/">Buy</a></li><li><a href="/whats-my-home-worth/">Sell</a></li><li><a href="/our-areas/">Featured Areas</a></li><li><a href="/about/">About</a></li><li><a href="/vlog/" class="active">Blog</a></li><li><a href="/contact/" class="nav-cta">Let's Connect</a></li></ul>
+<button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
 </nav>
-<div class="post-hero">
-  <img src="https://img.youtube.com/vi/EailL45slis/hqdefault.jpg" alt="Downtown Bethesda Residential Development: A Powerful Transformation Reshaping Urban Living in 2026" loading="eager">
-  <div class="post-hero-overlay"></div>
-  <div class="post-hero-content">
-    <div style="margin-bottom:10px;"><span class="blog-tag" style="margin-right:6px;margin-bottom:4px;">Buyers Corner</span><span class="blog-tag" style="margin-right:6px;margin-bottom:4px;">Market Updates</span><span class="video-badge-hero">▶ Video</span></div>
+<div class="mobile-nav" id="mobile-nav"><ul><li><a href="/">Home</a></li><li><a href="/properties/">Buy</a></li><li><a href="/whats-my-home-worth/">Sell</a></li><li><a href="/our-areas/">Featured Areas</a></li><li><a href="/about/">About</a></li><li><a href="/vlog/">Blog</a></li><li><a href="/contact/">Let&#39;s Connect</a></li></ul></div>
+<div class="post-header"><div class="post-header-inner"><div style="margin-bottom:10px;"><span class="blog-tag" style="margin-right:6px;margin-bottom:4px;">Buyers Corner</span><span class="blog-tag" style="margin-right:6px;margin-bottom:4px;">Market Updates</span><span class="video-badge-hero">▶ Video</span></div>
     <h1 style="font-size:clamp(1.4rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin-bottom:10px;">Downtown Bethesda Residential Development: A Powerful Transformation Reshaping Urban Living in 2026</h1>
-    <div style="color:rgba(255,255,255,.7);font-size:.8rem;font-family:'Montserrat',sans-serif;">By Pey Behin &nbsp;·&nbsp; February 7, 2026</div>
-  </div>
-</div>
-<section style="background:var(--white);">
-  <div class="post-body">
+    <div style="color:rgba(255,255,255,.7);font-size:.8rem;font-family:'Montserrat',sans-serif;">By Pey Behin &nbsp;·&nbsp; February 7, 2026</div></div></div>
+<div class="post-featured-img"><img src="https://img.youtube.com/vi/EailL45slis/hqdefault.jpg" alt="Downtown Bethesda Residential Development: A Powerful Transformation Reshaping Urban Living in 2026" loading="eager"></div>
+<div class="post-body">
     <a href="/vlog/" class="back-link">← Back to Blog</a>
     <div class="afe-content afe-content--spark_post"><div class="spark-content entry-content">
 	<div class="afe-block afe-block--custom-block"><style>

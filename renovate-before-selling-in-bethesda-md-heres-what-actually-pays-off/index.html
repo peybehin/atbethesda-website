@@ -15,10 +15,13 @@
 <link rel="stylesheet" href="/css/style.css">
 <script type="application/ld+json">[{"@context":"https://schema.org","@type":"BlogPosting","headline":"Renovate Before Selling in Bethesda, MD? Here’s What Actually Pays Off","description":"Should you renovate before selling your home in Bethesda, MD? Learn which upgrades actually pay off and which ones sellers should avoid.","image":"https://assets.thesparksite.com/uploads/sites/103/2026/04/Renovate-Before-Selling-in-Bethesda-MD-Heres-What-Actually-Pays-Off.png","datePublished":"2026-04-17","dateModified":"2026-04-17","url":"https://atbethesda.com/renovate-before-selling-in-bethesda-md-heres-what-actually-pays-off/","mainEntityOfPage":{"@type":"WebPage","@id":"https://atbethesda.com/renovate-before-selling-in-bethesda-md-heres-what-actually-pays-off/"},"author":{"@type":"Person","name":"Pey Behin","url":"https://atbethesda.com/about/","jobTitle":"Real Estate Agent","worksFor":{"@type":"Organization","name":"RLAH @properties"}},"publisher":{"@type":"Organization","name":"@Bethesda Real Estate","logo":{"@type":"ImageObject","url":"https://assets.thesparksite.com/uploads/sites/103/2024/07/BETHESDA-w-RED.png"}},"keywords":"Sellers, Bethesda real estate, Maryland real estate","articleSection":"Sellers"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"The Biggest Mistake Sellers Make","acceptedAnswer":{"@type":"Answer","text":"Many sellers assume: “If I renovate, I’ll get more money.” That is only sometimes true. What actually happens: You spend $80KBuyers expect the upgradesYou recover part of the cost, not all Renovating without a strategy often leads to over-improving for your market."}},{"@type":"Question","name":"What Buyers Actually Pay For","acceptedAnswer":{"@type":"Answer","text":"Buyers do not pay a premium for effort. They pay for: ConditionConveniencePerceived risk If your home feels: CleanMaintainedMove-in ready You are already meeting most buyer expectations."}},{"@type":"Question","name":"The Goal: Eliminate Friction","acceptedAnswer":{"@type":"Answer","text":"The purpose of pre-sale work is simple: Remove reasons for a buyer to hesitate That is different from: Trying to impress buyers with upgrades"}},{"@type":"Question","name":"What Actually Pays Off (High ROI)","acceptedAnswer":{"@type":"Answer","text":"These improvements consistently influence buyer behavior:"}},{"@type":"Question","name":"1. Paint (Highest ROI)","acceptedAnswer":{"@type":"Answer","text":"Neutral tonesBrightens spaceRemoves personalization"}},{"@type":"Question","name":"4. Deep Cleaning + Decluttering","acceptedAnswer":{"@type":"Answer","text":"Often underestimatedMakes home feel newerImproves photos significantly These are not glamorous.They work."}}]}]</script>
 <style>
-.post-hero{position:relative;height:420px;overflow:hidden;}
-.post-hero img{width:100%;height:100%;object-fit:cover;}
-.post-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.3) 0%,rgba(0,0,0,.7) 100%);}
-.post-hero-content{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:100%;padding:40px;max-width:860px;}
+.post-header{background:#0a0a0a;padding:64px 24px 48px;}
+.post-header-inner{max-width:860px;margin:0 auto;}
+.post-header h1{font-size:clamp(1.4rem,4vw,2.2rem);color:#fff;font-weight:900;line-height:1.2;margin-bottom:16px;}
+.post-header .post-cats{margin-bottom:16px;}
+.post-header .post-meta{color:rgba(255,255,255,.65);font-size:.78rem;}
+.post-featured-img{max-width:860px;margin:0 auto;padding:0 24px;}
+.post-featured-img img{width:100%;border-radius:8px;display:block;max-height:480px;object-fit:cover;}
 .post-body{max-width:760px;margin:0 auto;padding:60px 24px;}
 .post-body h2{font-size:1.4rem;font-weight:800;margin:36px 0 14px;line-height:1.3;}
 .post-body h3{font-size:1.1rem;font-weight:700;margin:28px 0 10px;}
@@ -39,18 +42,14 @@
 <nav id="main-nav">
   <a href="/" class="nav-logo"><img src="https://assets.thesparksite.com/uploads/sites/103/2024/07/BETHESDA-w-RED.png" alt="@Bethesda Real Estate"></a>
   <ul class="nav-links"><li><a href="/">Home</a></li><li><a href="/properties/">Buy</a></li><li><a href="/whats-my-home-worth/">Sell</a></li><li><a href="/our-areas/">Featured Areas</a></li><li><a href="/about/">About</a></li><li><a href="/vlog/" class="active">Blog</a></li><li><a href="/contact/" class="nav-cta">Let's Connect</a></li></ul>
+<button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
 </nav>
-<div class="post-hero">
-  <img src="https://assets.thesparksite.com/uploads/sites/103/2026/04/Renovate-Before-Selling-in-Bethesda-MD-Heres-What-Actually-Pays-Off.png" alt="Renovate Before Selling in Bethesda, MD? Here’s What Actually Pays Off" loading="eager">
-  <div class="post-hero-overlay"></div>
-  <div class="post-hero-content">
-    <div style="margin-bottom:10px;"><span class="blog-tag" style="margin-right:6px;margin-bottom:4px;">Sellers</span></div>
+<div class="mobile-nav" id="mobile-nav"><ul><li><a href="/">Home</a></li><li><a href="/properties/">Buy</a></li><li><a href="/whats-my-home-worth/">Sell</a></li><li><a href="/our-areas/">Featured Areas</a></li><li><a href="/about/">About</a></li><li><a href="/vlog/">Blog</a></li><li><a href="/contact/">Let&#39;s Connect</a></li></ul></div>
+<div class="post-header"><div class="post-header-inner"><div style="margin-bottom:10px;"><span class="blog-tag" style="margin-right:6px;margin-bottom:4px;">Sellers</span></div>
     <h1 style="font-size:clamp(1.4rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin-bottom:10px;">Renovate Before Selling in Bethesda, MD? Here’s What Actually Pays Off</h1>
-    <div style="color:rgba(255,255,255,.7);font-size:.8rem;font-family:'Montserrat',sans-serif;">By Pey Behin &nbsp;·&nbsp; April 17, 2026</div>
-  </div>
-</div>
-<section style="background:var(--white);">
-  <div class="post-body">
+    <div style="color:rgba(255,255,255,.7);font-size:.8rem;font-family:'Montserrat',sans-serif;">By Pey Behin &nbsp;·&nbsp; April 17, 2026</div></div></div>
+<div class="post-featured-img"><img src="https://assets.thesparksite.com/uploads/sites/103/2026/04/Renovate-Before-Selling-in-Bethesda-MD-Heres-What-Actually-Pays-Off.png" alt="Renovate Before Selling in Bethesda, MD? Here’s What Actually Pays Off" loading="eager"></div>
+<div class="post-body">
     <a href="/vlog/" class="back-link">← Back to Blog</a>
     <div class="afe-content afe-content--spark_post"><div class="spark-content entry-content">
 	<div class="afe-block afe-block--custom-block"><style>
