@@ -8,7 +8,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/css/style.css">
   <script type="application/ld+json">
   [
     {
@@ -31,9 +30,9 @@
       "description": "Hyperlocal Bethesda and DC Metro real estate expert. The only site where you can search homes by school district.",
       "url": "https://atbethesda.com",
       "telephone": "+12026817454",
-      "logo": "/images/blog/BETHESDA-w-RED.png",
-      "image": "/images/blog/BETHESDA-w-RED.png",
-      "priceRange": "$$",
+      "logo": "https://assets.thesparksite.com/uploads/sites/103/2024/07/BETHESDA-w-RED.png",
+      "image": "https://assets.thesparksite.com/uploads/sites/103/2024/07/BETHESDA-w-RED.png",
+      "priceRange": "$$$",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "4600 North Park Ave Suite 100",
@@ -42,13 +41,17 @@
         "postalCode": "20815",
         "addressCountry": "US"
       },
-      "geo": {"@type": "GeoCoordinates", "latitude": 38.9847, "longitude": -77.0947},
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 38.9847,
+        "longitude": -77.0947
+      },
       "areaServed": [
-        {"@type": "City", "name": "Bethesda"},
-        {"@type": "City", "name": "Chevy Chase"},
-        {"@type": "City", "name": "Potomac"},
-        {"@type": "City", "name": "North Bethesda"},
-        {"@type": "City", "name": "Washington DC"}
+        {"@type": "City", "name": "Bethesda", "containedInPlace": {"@type": "State", "name": "Maryland"}},
+        {"@type": "City", "name": "Chevy Chase", "containedInPlace": {"@type": "State", "name": "Maryland"}},
+        {"@type": "City", "name": "Potomac", "containedInPlace": {"@type": "State", "name": "Maryland"}},
+        {"@type": "City", "name": "North Bethesda", "containedInPlace": {"@type": "State", "name": "Maryland"}},
+        {"@type": "City", "name": "Washington", "containedInPlace": {"@type": "State", "name": "District of Columbia"}}
       ],
       "sameAs": [
         "https://www.facebook.com/peybehinestates",
@@ -87,7 +90,7 @@
     html { scroll-behavior: smooth; }
     body { font-family: 'Montserrat', sans-serif; color: var(--black); overflow-x: hidden; }
 
-    /* ── NAV ── */
+    /* -- NAV -- */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       height: var(--nav-h);
@@ -115,7 +118,7 @@
     }
     .nav-cta:hover { background: var(--red-dark); }
 
-    /* ── HERO ── */
+    /* -- HERO -- */
     #hero {
       position: relative; height: 100vh; min-height: 600px;
       display: flex; align-items: center; justify-content: center;
@@ -211,7 +214,7 @@
     }
     @keyframes bounce { from { transform: rotate(45deg) translateY(-3px); } to { transform: rotate(45deg) translateY(3px); } }
 
-    /* ── SECTIONS shared ── */
+    /* -- SECTIONS shared -- */
     section { padding: 90px 40px; }
     .section-label {
       font-size: .68rem; font-weight: 700; letter-spacing: .2em;
@@ -228,7 +231,7 @@
     }
     .section-header { margin-bottom: 50px; }
 
-    /* ── 3-CARD CTA ── */
+    /* -- 3-CARD CTA -- */
     #cta-cards { background: var(--white); }
     .cta-cards-inner { max-width: 1100px; margin: 0 auto; }
     .cta-grid {
@@ -256,7 +259,7 @@
     }
     .cta-link:hover { color: var(--red-dark); }
 
-    /* ── SCHOOL MAP ── */
+    /* -- SCHOOL MAP -- */
     #school-map { background: var(--black); padding: 90px 40px; }
     .school-map-inner {
       max-width: 1100px; margin: 0 auto;
@@ -292,7 +295,7 @@
       font-size: .72rem; font-weight: 600; letter-spacing: .05em;
     }
 
-    /* ── FEATURED AREAS ── */
+    /* -- FEATURED AREAS -- */
     #featured-areas { background: var(--gray-light); }
     .areas-inner { max-width: 1200px; margin: 0 auto; }
     .areas-header {
@@ -342,7 +345,7 @@
       border-radius: 10px; text-transform: uppercase; letter-spacing: .05em;
     }
 
-    /* ── TESTIMONIALS ── */
+    /* -- TESTIMONIALS -- */
     #testimonials { background: var(--white); }
     .testimonials-inner { max-width: 1100px; margin: 0 auto; }
     .testimonials-header { margin-bottom: 50px; text-align: center; }
@@ -391,7 +394,7 @@
     }
     .testi-dot.active { background: var(--red); }
 
-    /* ── ABOUT ── */
+    /* -- ABOUT -- */
     #about { background: var(--black); }
     .about-inner {
       max-width: 1100px; margin: 0 auto;
@@ -454,7 +457,7 @@
     }
     .btn-outline:hover { border-color: var(--white); }
 
-    /* ── BLOG ── */
+    /* -- BLOG -- */
     #blog { background: var(--gray-light); }
     .blog-inner { max-width: 1100px; margin: 0 auto; }
     .blog-header {
@@ -504,7 +507,7 @@
     .blog-list-item:hover .blog-list-title { color: var(--red); }
     .blog-list-date { font-size: .7rem; color: var(--gray-text); white-space: nowrap; }
 
-    /* ── CONTACT ── */
+    /* -- CONTACT -- */
     #contact { background: var(--white); }
     .contact-inner {
       max-width: 1100px; margin: 0 auto;
@@ -543,7 +546,7 @@
     }
     .form-submit:hover { background: var(--red-dark); }
 
-    /* ── FOOTER ── */
+    /* -- FOOTER -- */
     footer { background: #0a0a0a; color: #888; padding: 60px 40px 30px; }
     .footer-inner { max-width: 1100px; margin: 0 auto; }
     .footer-top {
@@ -577,7 +580,7 @@
     .footer-bottom-links a { color: #666; text-decoration: none; font-size: .73rem; transition: color .2s; }
     .footer-bottom-links a:hover { color: var(--white); }
 
-    /* ── MOBILE STICKY ── */
+    /* -- MOBILE STICKY -- */
     .mobile-bar {
       display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 99;
       background: var(--white); border-top: 1px solid var(--gray-mid);
@@ -595,6 +598,7 @@
     @media (max-width: 900px) {
       nav { padding: 0 20px; }
       .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
       section { padding: 60px 20px; }
       .cta-grid { grid-template-columns: 1fr; }
       .school-map-inner { grid-template-columns: 1fr; }
@@ -608,14 +612,26 @@
       .mobile-bar { display: grid; }
       footer { padding-bottom: 80px; }
     }
+
+    /* -- HAMBURGER NAV -- */
+    .nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer; background: none; border: none; padding: 8px; margin-left: auto; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: all .3s; }
+    nav.scrolled .nav-hamburger span { background: var(--black); }
+    .mobile-nav { display: none; position: fixed; top: 64px; left: 0; right: 0; background: #fff; z-index: 999; border-bottom: 2px solid var(--gray-mid); box-shadow: 0 8px 24px rgba(0,0,0,.12); }
+    .mobile-nav ul { list-style: none; margin: 0; padding: 0; }
+    .mobile-nav ul li a { display: block; padding: 16px 24px; font-weight: 700; font-size: .85rem; color: var(--black); text-decoration: none; border-bottom: 1px solid var(--gray-light); text-transform: uppercase; letter-spacing: .06em; transition: background .15s; }
+    .mobile-nav ul li:last-child a { background: var(--red); color: var(--white); text-align: center; letter-spacing: .1em; }
+    .mobile-nav ul li a:hover { background: var(--gray-light); }
+    .mobile-nav ul li:last-child a:hover { background: var(--red-dark); }
+    .mobile-nav.open { display: block; }
   </style>
 </head>
 <body>
 
-<!-- ── NAV ── -->
+<!-- -- NAV -- -->
 <nav id="main-nav">
   <a href="/" class="nav-logo">
-    <img src="/images/blog/BETHESDA-w-RED.png" alt="@Bethesda Real Estate" />
+    <img src="https://assets.thesparksite.com/uploads/sites/103/2024/07/BETHESDA-w-RED.png" alt="@Bethesda Real Estate" />
   </a>
   <ul class="nav-links">
     <li><a href="/">Home</a></li>
@@ -626,14 +642,26 @@
     <li><a href="/vlog/">Blog</a></li>
     <li><a href="#contact" class="nav-cta">Let's Connect</a></li>
   </ul>
-<button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileNav()" aria-label="Open menu">
+  <span></span><span></span><span></span>
+</button>
 </nav>
-<div class="mobile-nav" id="mobile-nav"><ul><li><a href="/">Home</a></li><li><a href="/properties/">Buy</a></li><li><a href="/whats-my-home-worth/">Sell</a></li><li><a href="/our-areas/">Featured Areas</a></li><li><a href="/about/">About</a></li><li><a href="/vlog/">Blog</a></li><li><a href="/contact/">Let&#39;s Connect</a></li></ul></div>
+<div class="mobile-nav" id="mobile-nav">
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/properties/">Buy</a></li>
+    <li><a href="/whats-my-home-worth/">Sell</a></li>
+    <li><a href="/our-areas/">Featured Areas</a></li>
+    <li><a href="/about/">About</a></li>
+    <li><a href="/vlog/">Blog</a></li>
+    <li><a href="#contact">Let&#39;s Connect</a></li>
+  </ul>
+</div>
 
-<!-- ── HERO ── -->
+<!-- -- HERO -- -->
 <section id="hero">
-  <video id="hero-video" autoplay muted loop playsinline>
-    <source src="/Bethesda%20%20Header.mp4" type="video/mp4" />
+  <video id="hero-video" autoplay muted loop playsinline poster="">
+    <source src="https://videos.thesparksite.com/atbethesda.com/Bethesda.mp4" type="video/mp4" />
   </video>
   <div class="hero-overlay"></div>
   <div class="hero-content">
@@ -665,7 +693,7 @@
   </div>
 </section>
 
-<!-- ── 3-CARD CTA ── -->
+<!-- -- 3-CARD CTA -- -->
 <section id="cta-cards">
   <div class="cta-cards-inner">
     <div class="section-header" style="text-align:center; max-width:540px; margin: 0 auto 50px;">
@@ -702,7 +730,7 @@
   </div>
 </section>
 
-<!-- ── SCHOOL MAP ── -->
+<!-- -- SCHOOL MAP -- -->
 <section id="school-map">
   <div class="school-map-inner">
     <div>
@@ -731,7 +759,7 @@
   </div>
 </section>
 
-<!-- ── FEATURED AREAS ── -->
+<!-- -- FEATURED AREAS -- -->
 <section id="featured-areas">
   <div class="areas-inner">
     <div class="areas-header">
@@ -792,7 +820,7 @@
   </div>
 </section>
 
-<!-- ── TESTIMONIALS ── -->
+<!-- -- TESTIMONIALS -- -->
 <section id="testimonials">
   <div class="testimonials-inner">
     <div class="testimonials-header section-header">
@@ -808,17 +836,17 @@
           <div class="testi-card">
             <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"Pey was great and helped guide me through the process from start to finish and made my first time home buying experience much less stressful. He had great insights and industry experience that helped me find the right place and was a pleasure to work with!"</blockquote>
-            <div class="testi-author"><div class="testi-avatar">AS</div><div><div class="testi-name">Alexander Stevens</div><div class="testi-role">First-Time Home Buyer �&middot; Google Review</div></div></div>
+            <div class="testi-author"><div class="testi-avatar">AS</div><div><div class="testi-name">Alexander Stevens</div><div class="testi-role">First-Time Home Buyer &middot; Google Review</div></div></div>
           </div>
           <div class="testi-card">
             <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"I am a first time home buyer and found Pey through word of mouth. He assisted us in getting the best deal for our home and is incredibly knowledgeable on the contract process. He made us feel like VIPs throughout the whole process, and was available for any questions."</blockquote>
-            <div class="testi-author"><div class="testi-avatar">JM</div><div><div class="testi-name">Jeffrey Messer</div><div class="testi-role">First-Time Home Buyer �&middot; Google Review</div></div></div>
+            <div class="testi-author"><div class="testi-avatar">JM</div><div><div class="testi-name">Jeffrey Messer</div><div class="testi-role">First-Time Home Buyer &middot; Google Review</div></div></div>
           </div>
           <div class="testi-card">
             <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"My husband and I were first time home buyers. Pey made us feel so comfortable from day 1. He was available to us day and night, and always made us feel heard. We cannot recommend Pey enough for his consistency, thoroughness, and having our best interest at heart."</blockquote>
-            <div class="testi-author"><div class="testi-avatar">SM</div><div><div class="testi-name">Selah Messer</div><div class="testi-role">First-Time Home Buyer �&middot; Google Review</div></div></div>
+            <div class="testi-author"><div class="testi-avatar">SM</div><div><div class="testi-name">Selah Messer</div><div class="testi-role">First-Time Home Buyer &middot; Google Review</div></div></div>
           </div>
         </div></div>
 
@@ -827,17 +855,17 @@
           <div class="testi-card">
             <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"We had an outstanding experience working with Pey! He went above and beyond to help our family find the perfect home&mdash;off market, no less. His deep knowledge of the local market and extensive network made all the difference. His years of experience were evident in how smoothly everything went."</blockquote>
-            <div class="testi-author"><div class="testi-avatar">DK</div><div><div class="testi-name">Diana Kwan</div><div class="testi-role">Home Buyer �&middot; Google Review</div></div></div>
+            <div class="testi-author"><div class="testi-avatar">DK</div><div><div class="testi-name">Diana Kwan</div><div class="testi-role">Home Buyer &middot; Google Review</div></div></div>
           </div>
           <div class="testi-card">
             <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"Pey was awesome to work with. He is extremely knowledgeable and gave us very valuable advice any time we needed it. Pey has great instincts, and prevented us from proceeding with what he sensed could be a problematic home. He later found us the perfect home, before it hit the market."</blockquote>
-            <div class="testi-author"><div class="testi-avatar">ML</div><div><div class="testi-name">Mitch Ly</div><div class="testi-role">Home Buyer �&middot; Google Review</div></div></div>
+            <div class="testi-author"><div class="testi-avatar">ML</div><div><div class="testi-name">Mitch Ly</div><div class="testi-role">Home Buyer &middot; Google Review</div></div></div>
           </div>
           <div class="testi-card">
             <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"Pey was the perfect guide for our home buying journey&mdash;knowledgeable, empathetic, and always ready with just the right touch of humor to keep us grounded. With his steady guidance and thoughtful communication, what could have been a stressful experience turned into an exciting and memorable one."</blockquote>
-            <div class="testi-author"><div class="testi-avatar">MH</div><div><div class="testi-name">Michelle Hussain</div><div class="testi-role">Home Buyer �&middot; Google Review</div></div></div>
+            <div class="testi-author"><div class="testi-avatar">MH</div><div><div class="testi-name">Michelle Hussain</div><div class="testi-role">Home Buyer &middot; Google Review</div></div></div>
           </div>
         </div></div>
 
@@ -846,17 +874,17 @@
           <div class="testi-card">
             <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"Having the right person in the DMV market is critical. Knowing I had about 48 hours to make a compelling offer, I called Pey. With 5 other offers on the table we were able to beat them and get our dream home. I'm looking forward to continuing my relationship with Pey."</blockquote>
-            <div class="testi-author"><div class="testi-avatar">VH</div><div><div class="testi-name">Viq Hussain</div><div class="testi-role">Home Buyer �&middot; Google Review</div></div></div>
+            <div class="testi-author"><div class="testi-avatar">VH</div><div><div class="testi-name">Viq Hussain</div><div class="testi-role">Home Buyer &middot; Google Review</div></div></div>
           </div>
           <div class="testi-card">
             <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"Pey was great to work with! He was professional, honest, and friendly. He always made me feel like I had his full attention and was very easy to reach. I would definitely recommend him to anyone looking to buy or sell a home."</blockquote>
-            <div class="testi-author"><div class="testi-avatar">KC</div><div><div class="testi-name">Katerina Chulkov</div><div class="testi-role">Home Buyer �&middot; Google Review</div></div></div>
+            <div class="testi-author"><div class="testi-avatar">KC</div><div><div class="testi-name">Katerina Chulkov</div><div class="testi-role">Home Buyer &middot; Google Review</div></div></div>
           </div>
           <div class="testi-card">
             <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"Pey was patient, zealous, professional, and kind. Pey went back to the seller and aggressively advocated on my behalf which resulted in me unexpectedly getting money back at closing. I overwhelmingly would recommend Pey as a real estate agent."</blockquote>
-            <div class="testi-author"><div class="testi-avatar">HP</div><div><div class="testi-name">Hector M. Perez-Casillas</div><div class="testi-role">Home Buyer �&middot; Google Review</div></div></div>
+            <div class="testi-author"><div class="testi-avatar">HP</div><div><div class="testi-name">Hector M. Perez-Casillas</div><div class="testi-role">Home Buyer &middot; Google Review</div></div></div>
           </div>
         </div></div>
 
@@ -865,17 +893,17 @@
           <div class="testi-card">
             <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"Pey was an absolute dream to work with. He was incredibly communicative, knowledgeable, and helpful. Even when I didn't like what he was saying, he was always honest &mdash; and I truly think his advice is what made our home sell for $20K over asking."</blockquote>
-            <div class="testi-author"><div class="testi-avatar">JR</div><div><div class="testi-name">J R</div><div class="testi-role">Home Seller �&middot; Google Review</div></div></div>
+            <div class="testi-author"><div class="testi-avatar">JR</div><div><div class="testi-name">J R</div><div class="testi-role">Home Seller &middot; Google Review</div></div></div>
           </div>
           <div class="testi-card">
             <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"Pey helped me Buy a new home and Sell my old home. He is someone you can trust that he's looking out for your best interest and not just looking for the commission check. He was responsive, helpful, educational, and coached us throughout the whole process."</blockquote>
-            <div class="testi-author"><div class="testi-avatar">BV</div><div><div class="testi-name">Brandon V</div><div class="testi-role">Buyer &amp; Seller �&middot; Google Review</div></div></div>
+            <div class="testi-author"><div class="testi-avatar">BV</div><div><div class="testi-name">Brandon V</div><div class="testi-role">Buyer &amp; Seller &middot; Google Review</div></div></div>
           </div>
           <div class="testi-card">
             <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"I live abroad and friends recommended Pey's services to help me with the sale of my apartment. Pey was extremely professional and diligent. He regularly kept me updated and took all the appropriate initiatives to protect my interests. With him, you will be in good hands!"</blockquote>
-            <div class="testi-author"><div class="testi-avatar">ME</div><div><div class="testi-name">Moh Elmaini</div><div class="testi-role">Home Seller �&middot; Google Review</div></div></div>
+            <div class="testi-author"><div class="testi-avatar">ME</div><div><div class="testi-name">Moh Elmaini</div><div class="testi-role">Home Seller &middot; Google Review</div></div></div>
           </div>
         </div></div>
 
@@ -884,17 +912,17 @@
           <div class="testi-card">
             <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"Pey was wonderful to work with! He was knowledgeable AND honest. He wasn't pushy or impatient &mdash; he wanted to make sure I absolutely knew what I was getting. Ultimately, he was the one who found the house I purchased! As a first time home buyer, I couldn't have found a better agent."</blockquote>
-            <div class="testi-author"><div class="testi-avatar">SS</div><div><div class="testi-name">Sara S</div><div class="testi-role">First-Time Home Buyer �&middot; Google Review</div></div></div>
+            <div class="testi-author"><div class="testi-avatar">SS</div><div><div class="testi-name">Sara S</div><div class="testi-role">First-Time Home Buyer &middot; Google Review</div></div></div>
           </div>
           <div class="testi-card">
             <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"Pey is amazing! At a time where I was getting priced out of DC, Pey was able to use his relationships to find me a property that had yet to be listed. I've owned my property for over 14 months and the value has increased 20%. I'm grateful to Pey for being an amazing realtor and a genuine friend."</blockquote>
-            <div class="testi-author"><div class="testi-avatar">JV</div><div><div class="testi-name">Jason Vedamuthu</div><div class="testi-role">Home Buyer �&middot; Google Review</div></div></div>
+            <div class="testi-author"><div class="testi-avatar">JV</div><div><div class="testi-name">Jason Vedamuthu</div><div class="testi-role">Home Buyer &middot; Google Review</div></div></div>
           </div>
           <div class="testi-card">
             <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"Pey Behin was the best real estate agent I have ever dealt with. He was very professional and knowledgeable. He went above and beyond my expectations and was extremely helpful, open, transparent, and reliable from start to finish. Highly recommended!"</blockquote>
-            <div class="testi-author"><div class="testi-avatar">JM</div><div><div class="testi-name">Javier Montero</div><div class="testi-role">Home Buyer �&middot; Google Review</div></div></div>
+            <div class="testi-author"><div class="testi-avatar">JM</div><div><div class="testi-name">Javier Montero</div><div class="testi-role">Home Buyer &middot; Google Review</div></div></div>
           </div>
         </div></div>
 
@@ -903,17 +931,17 @@
           <div class="testi-card">
             <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"I can honestly say Pey is the best realtor we could have worked with and will 100% work with him again. He listened to what we were looking for and our limitations in budget and time. What really shown through was his honesty without being pushy and how hard he worked."</blockquote>
-            <div class="testi-author"><div class="testi-avatar">JU</div><div><div class="testi-name">Julie</div><div class="testi-role">Home Buyer �&middot; Google Review</div></div></div>
+            <div class="testi-author"><div class="testi-avatar">JU</div><div><div class="testi-name">Julie</div><div class="testi-role">Home Buyer &middot; Google Review</div></div></div>
           </div>
           <div class="testi-card">
             <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"Peyman helped me on the sale of my home &mdash; because of his professionalism and excellent marketing my place got a contract within a week. If you're looking for a realtor who will be on your side 100%, call Peyman. This experience surpassed all other realtors I used in the past."</blockquote>
-            <div class="testi-author"><div class="testi-avatar">JF</div><div><div class="testi-name">Joanni Feild</div><div class="testi-role">Home Seller �&middot; Google Review</div></div></div>
+            <div class="testi-author"><div class="testi-avatar">JF</div><div><div class="testi-name">Joanni Feild</div><div class="testi-role">Home Seller &middot; Google Review</div></div></div>
           </div>
           <div class="testi-card">
             <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <blockquote>"I honestly couldn't have asked for a better realtor than Pey. He was incredibly responsive, never pushy, and just wanted us to find what we wanted in a home. He is also an amazing person all around, who we feel we can trust with anything."</blockquote>
-            <div class="testi-author"><div class="testi-avatar">MA</div><div><div class="testi-name">Maddy Alizadeh</div><div class="testi-role">Home Buyer �&middot; Google Review</div></div></div>
+            <div class="testi-author"><div class="testi-avatar">MA</div><div><div class="testi-name">Maddy Alizadeh</div><div class="testi-role">Home Buyer &middot; Google Review</div></div></div>
           </div>
         </div></div>
 
@@ -950,7 +978,7 @@
   </div>
 </section>
 
-<!-- ── INSTAGRAM FEED ── -->
+<!-- -- INSTAGRAM FEED -- -->
 <section id="instagram" style="background:#0a0a0a;padding:72px 0 80px;">
   <div style="max-width:1200px;margin:0 auto;padding:0 24px;">
     <div style="text-align:center;margin-bottom:48px;">
@@ -1070,7 +1098,7 @@
 })();
 </script>
 
-<!-- ── BLOG ── -->
+<!-- -- BLOG -- -->
 <section id="blog">
   <div class="blog-inner">
     <div class="blog-header">
@@ -1080,64 +1108,50 @@
       </div>
       <a href="/vlog/">View All Posts &rarr;</a>
     </div>
-    <div class="blog-grid">
-      <a class="blog-card" href="https://atbethesda.com/property-tax-assessment-appeal-montgomery-county-maryland/" style="text-decoration:none;color:inherit;">
-        <div class="blog-card-img" style="background:#e8d5d9;">
-          <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80" alt="Property Tax" />
-        </div>
-        <div class="blog-card-body">
-          <span class="blog-tag">Market Updates</span>
-          <h3>How to Appeal Your Property Tax Assessment in Montgomery County, MD</h3>
-          <div class="blog-card-meta">June 15, 2026</div>
-        </div>
-      </a>
-      <a class="blog-card" href="https://atbethesda.com/seller-rent-back-closing-maryland/" style="text-decoration:none;color:inherit;">
-        <div class="blog-card-img">
-          <img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600&q=80" alt="Seller Rent Back" />
-        </div>
-        <div class="blog-card-body">
-          <span class="blog-tag">Sellers</span>
-          <h3>Seller Rent-Back After Closing in Maryland: How It Works</h3>
-          <div class="blog-card-meta">June 14, 2026</div>
-        </div>
-      </a>
-      <a class="blog-card" href="https://atbethesda.com/arm-vs-fixed-rate-mortgage-bethesda-maryland/" style="text-decoration:none;color:inherit;">
-        <div class="blog-card-img">
-          <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&q=80" alt="ARM vs Fixed" />
-        </div>
-        <div class="blog-card-body">
-          <span class="blog-tag">Buyers Corner</span>
-          <h3>ARM vs. Fixed-Rate Mortgage in Bethesda, MD: Which Makes Sense in 2026?</h3>
-          <div class="blog-card-meta">June 13, 2026</div>
-        </div>
-      </a>
-    </div>
-    <div class="blog-list">
-      <a class="blog-list-item" href="https://atbethesda.com/maryland-homestead-tax-credit-bethesda/">
-        <span class="blog-list-tag">Buyers</span>
-        <span class="blog-list-title">Maryland Homestead Tax Credit: What Bethesda Buyers Need to Know After Closing</span>
-        <span class="blog-list-date">Jun 12, 2026</span>
-      </a>
-      <a class="blog-list-item" href="https://atbethesda.com/assumable-mortgage-bethesda-maryland-buyers/">
-        <span class="blog-list-tag">Finance</span>
-        <span class="blog-list-title">How Assumable Mortgages Work for Bethesda Buyers (2026)</span>
-        <span class="blog-list-date">Jun 11, 2026</span>
-      </a>
-      <a class="blog-list-item" href="https://atbethesda.com/avoid-pmi-buying-home-bethesda-maryland/">
-        <span class="blog-list-tag">Finance</span>
-        <span class="blog-list-title">How to Avoid PMI When Buying a Home in Bethesda, MD</span>
-        <span class="blog-list-date">Jun 10, 2026</span>
-      </a>
-      <a class="blog-list-item" href="https://atbethesda.com/cash-offer-vs-financed-offer-bethesda-maryland/">
-        <span class="blog-list-tag">Strategy</span>
-        <span class="blog-list-title">Cash Offer vs. Financed Offer in Bethesda, MD</span>
-        <span class="blog-list-date">Jun 9, 2026</span>
-      </a>
-    </div>
+    <div class="blog-grid" id="blog-grid-hp"></div>
+    <div class="blog-list" id="blog-list-hp"></div>
   </div>
 </section>
+<script>
+(async function() {
+  try {
+    const res = await fetch('/posts.json');
+    const posts = await res.json();
+    const grid = document.getElementById('blog-grid-hp');
+    const list = document.getElementById('blog-list-hp');
+    // Top 3 as cards
+    posts.slice(0, 3).forEach(p => {
+      const a = document.createElement('a');
+      a.className = 'blog-card';
+      a.href = p.url;
+      a.style.cssText = 'text-decoration:none;color:inherit;';
+      a.innerHTML = `
+        <div class="blog-card-img"><img src="${p.image}" alt="${p.title}" loading="lazy" /></div>
+        <div class="blog-card-body">
+          <span class="blog-tag">${p.category}</span>
+          <h3>${p.title}</h3>
+          <div class="blog-card-meta">${p.date}</div>
+        </div>`;
+      grid.appendChild(a);
+    });
+    // Next 4 as list items
+    posts.slice(3, 7).forEach(p => {
+      const a = document.createElement('a');
+      a.className = 'blog-list-item';
+      a.href = p.url;
+      a.innerHTML = `
+        <span class="blog-list-tag">${p.category}</span>
+        <span class="blog-list-title">${p.title}</span>
+        <span class="blog-list-date">${p.date}</span>`;
+      list.appendChild(a);
+    });
+  } catch(e) {
+    console.warn('Could not load posts.json', e);
+  }
+})();
+</script>
 
-<!-- ── CONTACT ── -->
+<!-- -- CONTACT -- -->
 <section id="contact">
   <div class="contact-inner">
     <div class="contact-info">
@@ -1205,14 +1219,14 @@
   </div>
 </section>
 
-<!-- ── FOOTER ── -->
+<!-- -- FOOTER -- -->
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
       <div class="footer-brand">
         <div class="footer-logos">
-          <img src="/images/blog/logo-rlahatproperties-vertical-white.png" alt="RLAH Properties" />
-          <img src="/images/blog/BETHESDA-w-RED.png" alt="@Bethesda Real Estate" />
+          <img src="https://assets.thesparksite.com/uploads/sites/103/2026/05/logo-rlahatproperties-vertical-white.png" alt="RLAH Properties" />
+          <img src="https://assets.thesparksite.com/uploads/sites/103/2024/07/BETHESDA-w-RED.png" alt="@Bethesda Real Estate" />
         </div>
         <p>Your hyperlocal Bethesda and DC Metro real estate expert. The only site where you can search homes by school district.</p>
         <div class="footer-socials">
@@ -1269,7 +1283,7 @@
     </div>
     <div class="footer-bottom">
       <p>RLAH Properties | 4600 North Park Ave Suite 100, Chevy Chase, MD 20815 | (301) 652-0643<br/>
-      All information deemed reliable but not guaranteed. �&copy; 2026 @Bethesda Real Estate. All rights reserved.</p>
+      All information deemed reliable but not guaranteed. &copy; 2026 @Bethesda Real Estate. All rights reserved.</p>
       <div class="footer-bottom-links">
         <a href="/about/">Privacy Policy</a>
         <a href="/about/">Terms of Use</a>
@@ -1278,7 +1292,7 @@
   </div>
 </footer>
 
-<!-- ── MOBILE STICKY BAR ── -->
+<!-- -- MOBILE STICKY BAR -- -->
 <div class="mobile-bar">
   <a href="tel:+12026817454">&#128222; Call</a>
   <a href="sms:+12026817454">&#128172; Text</a>
@@ -1287,6 +1301,21 @@
 </div>
 
 <script>
+
+  function toggleMobileNav() {
+    const nav = document.getElementById('mobile-nav');
+    nav.classList.toggle('open');
+    // Close when clicking outside
+    if (nav.classList.contains('open')) {
+      document.addEventListener('click', function closeMobileNav(e) {
+        if (!nav.contains(e.target) && !document.getElementById('nav-hamburger').contains(e.target)) {
+          nav.classList.remove('open');
+          document.removeEventListener('click', closeMobileNav);
+        }
+      });
+    }
+  }
+
   // Nav scroll effect
   window.addEventListener('scroll', () => {
     document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 60);
@@ -1336,8 +1365,5 @@
   }
 </script>
 
-<script>
-function toggleMobileNav(){var n=document.getElementById("mobile-nav");n.classList.toggle("open");if(n.classList.contains("open")){document.addEventListener("click",function c(e){if(!n.contains(e.target)&&!document.getElementById("nav-hamburger").contains(e.target)){n.classList.remove("open");document.removeEventListener("click",c);}});}}
-</script>
 </body>
 </html>
