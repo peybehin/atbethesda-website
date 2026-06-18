@@ -2,118 +2,840 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>What's My Home Worth? | @Bethesda Real Estate</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <title>What's My Home Worth? | Free DC Metro Home Valuation | @Bethesda Real Estate</title>
+  <meta name="description" content="Get a free, instant home value estimate for your Bethesda, Chevy Chase, Potomac, or DC Metro area home. Powered by real market data." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:ital@0;1&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* ── VALUATION TOOL STYLES ── */
+    .val-hero {
+      background: #0a0a0a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: calc(var(--nav-h) + 40px) 20px 60px;
+    }
+    .val-intro {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .val-intro .section-label { color: rgba(255,255,255,.5); }
+    .val-intro h1 { color: #fff; font-size: clamp(2rem, 5vw, 3.2rem); margin: 10px 0 14px; }
+    .val-intro p { color: #aaa; font-size: .95rem; max-width: 500px; margin: 0 auto; line-height: 1.7; }
 
+    .val-card {
+      background: #fff;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 580px;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,.5);
+    }
+
+    /* Progress bar */
+    .val-progress-wrap {
+      background: #f0f0f0;
+      height: 4px;
+    }
+    .val-progress-bar {
+      height: 4px;
+      background: var(--red);
+      transition: width .4s ease;
+      width: 20%;
+    }
+    .val-progress-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 28px 0;
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: #999;
+    }
+    .val-progress-label span:last-child { color: var(--red); }
+
+    /* Steps */
+    .val-steps-wrap { position: relative; overflow: hidden; }
+    .val-step {
+      padding: 28px 28px 32px;
+      display: none;
+      animation: slideIn .3s ease;
+    }
+    .val-step.active { display: block; }
+    @keyframes slideIn { from { opacity:0; transform:translateX(30px); } to { opacity:1; transform:translateX(0); } }
+    @keyframes slideBack { from { opacity:0; transform:translateX(-30px); } to { opacity:1; transform:translateX(0); } }
+    .val-step.back-anim { animation: slideBack .3s ease; }
+
+    .val-step-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #0a0a0a;
+      margin: 0 0 6px;
+      line-height: 1.25;
+    }
+    .val-step-sub {
+      font-size: .82rem;
+      color: #888;
+      margin: 0 0 24px;
+    }
+
+    /* Option cards (property type, condition) */
+    .val-option-grid {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .val-option-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .val-option-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .val-option {
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 16px 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all .2s;
+      user-select: none;
+    }
+    .val-option:hover { border-color: var(--red); background: rgba(183,37,69,.04); }
+    .val-option.selected { border-color: var(--red); background: rgba(183,37,69,.07); }
+    .val-option .opt-icon { font-size: 1.8rem; margin-bottom: 8px; }
+    .val-option .opt-label { font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: #222; }
+    .val-option .opt-sub { font-size: .7rem; color: #888; margin-top: 3px; line-height: 1.4; }
+    .val-option.selected .opt-label { color: var(--red); }
+
+    /* Form inputs */
+    .val-input-row {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .val-input-row.cols-2 { grid-template-columns: 1fr 1fr; }
+    .val-input-row.cols-3 { grid-template-columns: 2fr 1fr 1fr; }
+    .val-input-group { display: flex; flex-direction: column; gap: 5px; }
+    .val-input-group label {
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: #555;
+    }
+    .val-input-group input,
+    .val-input-group select {
+      padding: 11px 14px;
+      border: 1.5px solid #ddd;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: .88rem;
+      color: #222;
+      outline: none;
+      transition: border-color .2s;
+      background: #fff;
+    }
+    .val-input-group input:focus,
+    .val-input-group select:focus { border-color: var(--red); }
+    .val-input-group input::placeholder { color: #bbb; }
+
+    /* Buttons */
+    .val-btn-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .val-btn-primary {
+      flex: 1;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      padding: 14px 24px;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: .85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .val-btn-primary:hover { background: var(--red-dark, #9e1e3a); }
+    .val-btn-primary:disabled { background: #ccc; cursor: not-allowed; }
+    .val-btn-back {
+      background: transparent;
+      color: #888;
+      border: 1.5px solid #ddd;
+      padding: 14px 20px;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: .82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .val-btn-back:hover { border-color: #aaa; color: #555; }
+
+    /* Error message */
+    .val-error {
+      background: #fff5f7;
+      border: 1.5px solid #f8c0cc;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: .8rem;
+      color: var(--red);
+      margin-bottom: 14px;
+      display: none;
+    }
+    .val-error.visible { display: block; }
+
+    /* Loading step */
+    .val-loading {
+      text-align: center;
+      padding: 50px 28px;
+    }
+    .val-spinner {
+      width: 44px; height: 44px;
+      border: 3px solid #f0f0f0;
+      border-top-color: var(--red);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .val-loading p { color: #888; font-size: .88rem; }
+
+    /* Result step */
+    .val-result { padding: 28px; text-align: center; }
+    .val-result-label {
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--red);
+      margin-bottom: 8px;
+    }
+    .val-result-address {
+      font-size: .88rem;
+      color: #777;
+      margin-bottom: 20px;
+    }
+    .val-range-wrap {
+      background: #f8f8f8;
+      border-radius: 10px;
+      padding: 28px 20px;
+      margin-bottom: 24px;
+    }
+    .val-range-sub { font-size: .72rem; color: #999; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px; }
+    .val-range {
+      font-size: clamp(1.6rem, 6vw, 2.4rem);
+      font-weight: 900;
+      color: #0a0a0a;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+    .val-range-note { font-size: .74rem; color: #999; line-height: 1.5; }
+
+    .val-result-actions { display: flex; flex-direction: column; gap: 10px; }
+    .val-action-btn {
+      display: block;
+      padding: 14px 20px;
+      border-radius: 7px;
+      font-family: inherit;
+      font-size: .82rem;
+      font-weight: 700;
+      text-decoration: none;
+      text-align: center;
+      transition: all .2s;
+      cursor: pointer;
+    }
+    .val-action-primary {
+      background: var(--red);
+      color: #fff;
+      border: none;
+    }
+    .val-action-primary:hover { background: #9e1e3a; color: #fff; }
+    .val-action-outline {
+      border: 1.5px solid #ddd;
+      color: #444;
+      background: transparent;
+    }
+    .val-action-outline:hover { border-color: #aaa; }
+
+    .val-result-manual {
+      background: #fffbf0;
+      border: 1.5px solid #f0d98a;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+    .val-result-manual h3 { font-size: .95rem; margin: 0 0 8px; color: #333; }
+    .val-result-manual p { font-size: .8rem; color: #666; margin: 0; line-height: 1.6; }
+
+    /* Trust bar */
+    .val-trust {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+    .val-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .72rem;
+      color: rgba(255,255,255,.55);
+      font-weight: 600;
+    }
+    .val-trust-item svg { opacity: .6; }
+
+    @media (max-width: 540px) {
+      .val-option-grid.cols-3 { grid-template-columns: 1fr; }
+      .val-option-grid.cols-2 { grid-template-columns: 1fr; }
+      .val-input-row.cols-2,
+      .val-input-row.cols-3 { grid-template-columns: 1fr; }
+      .val-step { padding: 22px 18px 26px; }
+      .val-result { padding: 22px 18px; }
+    }
+  </style>
   <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "What's My Bethesda Home Worth? Free Home Valuation",
-  "description": "Get a free, instant home valuation for your Bethesda, Chevy Chase, or DC Metro property.",
-  "url": "https://atbethesda.com/whats-my-home-worth/",
-  "author": { "@type": "Person", "name": "Pey Behin", "url": "https://atbethesda.com/about/" }
-}
-</script>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "What's My Bethesda Home Worth? Free DC Metro Home Valuation",
+    "description": "Get a free instant home valuation estimate for your DC Metro area property. Powered by real market data.",
+    "url": "https://atbethesda.com/whats-my-home-worth/"
+  }
+  </script>
 </head>
 <body>
+
+<!-- NAV -->
 <nav id="main-nav">
   <a href="/" class="nav-logo"><img src="/images/blog/BETHESDA-w-RED.png" alt="@Bethesda Real Estate" /></a>
-  <ul class="nav-links"><li><a href="/">Home</a></li><li><a href="/properties/">Buy</a></li><li><a href="/whats-my-home-worth/">Sell</a></li><li><a href="/our-areas/">Featured Areas</a></li><li><a href="/about/">About</a></li><li><a href="/vlog/">Blog</a></li><li><a href="/contact/" class="nav-cta">Let's Connect</a></li></ul>
-<button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li class="nav-dropdown"><a href="/properties/">Buy ▾</a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="/properties/">Properties</a></li>
+        <li><a href="/perfect-home-finder/">Perfect Home Finder</a></li>
+        <li><a href="/buyers-guide/">Buyer's Guide</a></li>
+        <li><a href="/mortgage-calculator/">Mortgage Calculator</a></li>
+      </ul>
+    </li>
+    <li class="nav-dropdown"><a href="/whats-my-home-worth/" class="active">Sell ▾</a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="/whats-my-home-worth/">Home Valuation</a></li>
+        <li><a href="/sellers-guide/">Seller's Guide</a></li>
+      </ul>
+    </li>
+    <li><a href="/our-areas/">Featured Areas</a></li>
+    <li><a href="/about/">About</a></li>
+    <li><a href="/vlog/">Blog</a></li>
+    <li><a href="/contact/" class="nav-cta">Let's Connect</a></li>
+  </ul>
+  <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
 </nav>
-<div class="mobile-nav" id="mobile-nav"><ul><li><a href="/">Home</a></li><li><a href="/properties/">Buy</a></li><li><a href="/whats-my-home-worth/">Sell</a></li><li><a href="/our-areas/">Featured Areas</a></li><li><a href="/about/">About</a></li><li><a href="/vlog/">Blog</a></li><li><a href="/contact/">Let&#39;s Connect</a></li></ul></div>
-<div class="page-hero"><div class="page-hero-bg" style="background:#0a0a0a;"></div><div class="page-hero-overlay"></div><div class="page-hero-content"><span class="section-label" style="color:rgba(255,255,255,.6);">Tools</span><h1>What's My Home Worth?</h1><p>Get a free, expert home valuation for your Bethesda area property.</p></div></div>
-<section style="background:var(--white);">
-  <div class="inner" style="max-width:700px;">
-    <span class="section-label">Coming Soon</span>
-    <h2 class="section-title">What's My Home Worth?</h2>
-    <p style="font-size:.9rem;color:var(--gray-text);line-height:1.7;margin-bottom:32px;">Get a free, expert home valuation for your Bethesda area property.</p>
-    <div class="idx-placeholder">
-      <div class="icon">ð ï¸</div>
-      <h3>What's My Home Worth? â Content Goes Here</h3>
-      <p>This page will contain your What's My Home Worth? content â either a step-by-step guide, a form, or a third-party embed (like your home valuation tool or IDX widget).</p>
+<div class="mobile-nav" id="mobile-nav">
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/properties/">Buy</a></li>
+    <li><a href="/whats-my-home-worth/" class="active">Sell</a></li>
+    <li><a href="/our-areas/">Featured Areas</a></li>
+    <li><a href="/about/">About</a></li>
+    <li><a href="/vlog/">Blog</a></li>
+    <li><a href="/contact/">Let's Connect</a></li>
+  </ul>
+</div>
+
+<!-- HERO + FORM -->
+<div class="val-hero">
+  <div class="val-intro">
+    <span class="section-label">Free Home Valuation</span>
+    <h1>What's My Home Worth?</h1>
+    <p>Get an instant estimate for your Bethesda, Chevy Chase, Potomac, or DC Metro area home — no obligation.</p>
+  </div>
+
+  <div class="val-card">
+    <!-- Progress -->
+    <div class="val-progress-wrap">
+      <div class="val-progress-bar" id="val-progress-bar"></div>
     </div>
-    <div style="margin-top:36px;display:flex;gap:14px;flex-wrap:wrap;">
-      <a href="/contact/" class="btn-primary">Talk to Pey Instead</a>
-      <a href="/properties/" class="btn-outline">Browse Listings</a>
+    <div class="val-progress-label">
+      <span id="val-step-label">Step 1 of 5</span>
+      <span id="val-step-name">Your Address</span>
+    </div>
+
+    <div class="val-steps-wrap">
+
+      <!-- STEP 1: Address -->
+      <div class="val-step active" id="step-1">
+        <h2 class="val-step-title">Where is your home?</h2>
+        <p class="val-step-sub">Enter your property address to get started.</p>
+        <div class="val-error" id="err-1">Please fill in all address fields.</div>
+        <div class="val-input-row">
+          <div class="val-input-group">
+            <label for="f-street">Street Address</label>
+            <input type="text" id="f-street" placeholder="123 Main Street, Unit 4B" autocomplete="street-address" />
+          </div>
+        </div>
+        <div class="val-input-row cols-3">
+          <div class="val-input-group">
+            <label for="f-city">City</label>
+            <input type="text" id="f-city" placeholder="Bethesda" autocomplete="address-level2" />
+          </div>
+          <div class="val-input-group">
+            <label for="f-state">State</label>
+            <select id="f-state" autocomplete="address-level1">
+              <option value="MD" selected>MD</option>
+              <option value="VA">VA</option>
+              <option value="DC">DC</option>
+            </select>
+          </div>
+          <div class="val-input-group">
+            <label for="f-zip">Zip</label>
+            <input type="text" id="f-zip" placeholder="20814" maxlength="5" autocomplete="postal-code" />
+          </div>
+        </div>
+        <div class="val-btn-row">
+          <button class="val-btn-primary" onclick="goStep(2)">Next →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: Property Type -->
+      <div class="val-step" id="step-2">
+        <h2 class="val-step-title">What type of home is it?</h2>
+        <p class="val-step-sub">Select the option that best describes your property.</p>
+        <div class="val-error" id="err-2">Please select a property type.</div>
+        <div class="val-option-grid cols-3">
+          <div class="val-option" data-field="propertyType" data-value="Single Family">
+            <div class="opt-icon">🏡</div>
+            <div class="opt-label">Single Family</div>
+            <div class="opt-sub">Detached home</div>
+          </div>
+          <div class="val-option" data-field="propertyType" data-value="Townhouse">
+            <div class="opt-icon">🏘️</div>
+            <div class="opt-label">Townhouse</div>
+            <div class="opt-sub">Attached / row home</div>
+          </div>
+          <div class="val-option" data-field="propertyType" data-value="Condo">
+            <div class="opt-icon">🏢</div>
+            <div class="opt-label">Condo / Co-op</div>
+            <div class="opt-sub">Unit in building</div>
+          </div>
+        </div>
+        <div class="val-btn-row">
+          <button class="val-btn-back" onclick="goStep(1)">← Back</button>
+          <button class="val-btn-primary" onclick="goStep(3)">Next →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Home Details -->
+      <div class="val-step" id="step-3">
+        <h2 class="val-step-title">Tell us about your home</h2>
+        <p class="val-step-sub">Approximate details are fine — we'll refine with real data.</p>
+        <div class="val-error" id="err-3">Please fill in all home details.</div>
+        <div class="val-input-row cols-2">
+          <div class="val-input-group">
+            <label for="f-beds">Bedrooms</label>
+            <select id="f-beds">
+              <option value="">Select...</option>
+              <option value="1">1 Bed</option>
+              <option value="2">2 Beds</option>
+              <option value="3">3 Beds</option>
+              <option value="4">4 Beds</option>
+              <option value="5">5 Beds</option>
+              <option value="6">6+ Beds</option>
+            </select>
+          </div>
+          <div class="val-input-group">
+            <label for="f-baths">Bathrooms</label>
+            <select id="f-baths">
+              <option value="">Select...</option>
+              <option value="1">1 Bath</option>
+              <option value="1.5">1.5 Baths</option>
+              <option value="2">2 Baths</option>
+              <option value="2.5">2.5 Baths</option>
+              <option value="3">3 Baths</option>
+              <option value="3.5">3.5 Baths</option>
+              <option value="4">4+ Baths</option>
+            </select>
+          </div>
+        </div>
+        <div class="val-input-row cols-2">
+          <div class="val-input-group">
+            <label for="f-sqft">Approx. Sq. Ft.</label>
+            <input type="number" id="f-sqft" placeholder="e.g. 2400" min="200" max="20000" />
+          </div>
+          <div class="val-input-group">
+            <label for="f-year">Year Built</label>
+            <input type="number" id="f-year" placeholder="e.g. 1995" min="1800" max="2026" />
+          </div>
+        </div>
+        <div class="val-btn-row">
+          <button class="val-btn-back" onclick="goStep(2)">← Back</button>
+          <button class="val-btn-primary" onclick="goStep(4)">Next →</button>
+        </div>
+      </div>
+
+      <!-- STEP 4: Condition -->
+      <div class="val-step" id="step-4">
+        <h2 class="val-step-title">How's your home's condition?</h2>
+        <p class="val-step-sub">Be honest — it helps us give you a more accurate estimate.</p>
+        <div class="val-error" id="err-4">Please select your home's condition.</div>
+        <div class="val-option-grid cols-2">
+          <div class="val-option" data-field="condition" data-value="excellent">
+            <div class="opt-icon">✨</div>
+            <div class="opt-label">Excellent</div>
+            <div class="opt-sub">Recently renovated or move-in ready</div>
+          </div>
+          <div class="val-option" data-field="condition" data-value="good">
+            <div class="opt-icon">👍</div>
+            <div class="opt-label">Good</div>
+            <div class="opt-sub">Well-maintained, minor updates only</div>
+          </div>
+          <div class="val-option" data-field="condition" data-value="fair">
+            <div class="opt-icon">🔧</div>
+            <div class="opt-label">Fair</div>
+            <div class="opt-sub">Functional, some updates needed</div>
+          </div>
+          <div class="val-option" data-field="condition" data-value="needs-work">
+            <div class="opt-icon">🏗️</div>
+            <div class="opt-label">Needs Work</div>
+            <div class="opt-sub">Major repairs or updates required</div>
+          </div>
+        </div>
+        <div class="val-btn-row">
+          <button class="val-btn-back" onclick="goStep(3)">← Back</button>
+          <button class="val-btn-primary" onclick="goStep(5)">Next →</button>
+        </div>
+      </div>
+
+      <!-- STEP 5: Contact Info -->
+      <div class="val-step" id="step-5">
+        <h2 class="val-step-title">Where should we send your estimate?</h2>
+        <p class="val-step-sub">Your estimate is ready. Enter your contact info to unlock it.</p>
+        <div class="val-error" id="err-5">Please fill in your name, email, and phone number.</div>
+        <div class="val-input-row cols-2">
+          <div class="val-input-group">
+            <label for="f-fname">First Name</label>
+            <input type="text" id="f-fname" placeholder="Jane" autocomplete="given-name" />
+          </div>
+          <div class="val-input-group">
+            <label for="f-lname">Last Name</label>
+            <input type="text" id="f-lname" placeholder="Smith" autocomplete="family-name" />
+          </div>
+        </div>
+        <div class="val-input-row">
+          <div class="val-input-group">
+            <label for="f-email">Email Address</label>
+            <input type="email" id="f-email" placeholder="jane@example.com" autocomplete="email" />
+          </div>
+        </div>
+        <div class="val-input-row">
+          <div class="val-input-group">
+            <label for="f-phone">Phone Number</label>
+            <input type="tel" id="f-phone" placeholder="(301) 555-0123" autocomplete="tel" />
+          </div>
+        </div>
+        <div class="val-input-row">
+          <div class="val-input-group">
+            <label for="f-timeline">Thinking about selling…</label>
+            <select id="f-timeline">
+              <option value="asap">As soon as possible</option>
+              <option value="3months">Within 3 months</option>
+              <option value="6months" selected>Within 6 months</option>
+              <option value="1year">Within a year</option>
+              <option value="curious">Just curious for now</option>
+            </select>
+          </div>
+        </div>
+        <div class="val-btn-row">
+          <button class="val-btn-back" onclick="goStep(4)">← Back</button>
+          <button class="val-btn-primary" id="submit-btn" onclick="submitValuation()">Get My Estimate →</button>
+        </div>
+        <p style="font-size:.7rem;color:#bbb;margin-top:12px;text-align:center;line-height:1.5;">
+          By submitting, you agree to be contacted by Pey Behin, @Bethesda Real Estate. No spam, ever.
+        </p>
+      </div>
+
+      <!-- LOADING -->
+      <div class="val-step" id="step-loading">
+        <div class="val-loading">
+          <div class="val-spinner"></div>
+          <h3 style="font-size:1.1rem;margin:0 0 8px;">Calculating your estimate…</h3>
+          <p>Analyzing recent comparable sales in your area.</p>
+        </div>
+      </div>
+
+      <!-- RESULT -->
+      <div class="val-step" id="step-result">
+        <div class="val-result">
+          <div class="val-result-label">Your Home Value Estimate</div>
+          <div class="val-result-address" id="result-address"></div>
+
+          <!-- Estimate range (shown when we have data) -->
+          <div class="val-range-wrap" id="result-range-wrap">
+            <div class="val-range-sub">Estimated Market Value Range</div>
+            <div class="val-range" id="result-range">—</div>
+            <div class="val-range-note">
+              Based on recent comparable sales, public records, and your property details.<br />
+              Actual value may vary based on finishes, upgrades, and market timing.
+            </div>
+          </div>
+
+          <!-- Manual follow-up (shown when we couldn't calculate) -->
+          <div class="val-result-manual" id="result-manual" style="display:none;">
+            <h3>✅ We've received your request!</h3>
+            <p>Pey is pulling together a custom valuation for your home based on the latest comparable sales. You'll hear from him within 24 hours with a full market analysis.</p>
+          </div>
+
+          <div class="val-result-actions">
+            <a href="/contact/" class="val-action-btn val-action-primary">
+              Schedule a Free CMA with Pey
+            </a>
+            <a href="/our-areas/" class="val-action-btn val-action-outline">
+              Explore Your Neighborhood
+            </a>
+            <a href="/sellers-guide/" class="val-action-btn val-action-outline">
+              Read the Seller's Guide
+            </a>
+          </div>
+
+          <p style="font-size:.72rem;color:#bbb;margin-top:18px;line-height:1.5;text-align:center;">
+            This is an automated estimate, not an official appraisal. For a precise market value, schedule a free Comparative Market Analysis with Pey.
+          </p>
+        </div>
+      </div>
+
+    </div><!-- /val-steps-wrap -->
+  </div><!-- /val-card -->
+
+  <!-- Trust signals -->
+  <div class="val-trust">
+    <div class="val-trust-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      No obligation
+    </div>
+    <div class="val-trust-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Results in seconds
+    </div>
+    <div class="val-trust-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      Your data is private
     </div>
   </div>
-</section>
-<!-- ââ FOOTER ââ -->
+
+</div><!-- /val-hero -->
+
+<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
       <div class="footer-brand">
         <div class="footer-logos">
-          <img src="/images/blog/logo-rlahatproperties-vertical-white.png" alt="RLAH Properties" />
-          <img src="/images/blog/BETHESDA-w-RED.png" alt="@Bethesda Real Estate" />
+          <img src="https://assets.thesparksite.com/uploads/sites/103/2026/05/logo-rlahatproperties-vertical-white.png" alt="RLAH Properties" style="height:52px;width:auto;" />
+          <img src="https://assets.thesparksite.com/uploads/sites/103/2024/07/BETHESDA-w-RED.png" alt="@Bethesda Real Estate" style="height:36px;width:auto;" />
         </div>
-        <p>Your hyperlocal Bethesda and DC Metro real estate expert. The only site where you can search homes by school district.</p>
-        <div class="footer-socials">
-          <a href="https://www.facebook.com/peybehinestates" class="footer-social" aria-label="Facebook">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          </a>
-          <a href="https://www.instagram.com/peybehin/" class="footer-social" aria-label="Instagram">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          </a>
-          <a href="https://youtube.com/peybehin" class="footer-social" aria-label="YouTube">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon fill="#0a0a0a" points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
-          </a>
-          <a href="https://www.linkedin.com/in/peybehin/" class="footer-social" aria-label="LinkedIn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          </a>
-          <a href="https://tiktok.com/@peybehin" class="footer-social" aria-label="TikTok">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/></svg>
-          </a>
-        </div>
+        <p style="color:#888;font-size:.8rem;margin-top:12px;line-height:1.6;">Pey Behin, REALTOR® · RLAH @properties<br />Serving Bethesda, Chevy Chase, Potomac &amp; the DC Metro Area</p>
       </div>
-      <div class="footer-col">
-        <h4>Buy</h4>
-        <ul>
-          <li><a href="/properties/">Properties</a></li>
-          <li><a href="/#school-map">Search by School</a></li>
-          <li><a href="/perfect-home-finder/">Perfect Home Finder</a></li>
-          <li><a href="/buyers-guide/">Buyer's Guide</a></li>
-          <li><a href="/mortgage-calculator/">Mortgage Calculator</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
+      <div class="footer-links">
         <h4>Sell</h4>
         <ul>
           <li><a href="/whats-my-home-worth/">Home Valuation</a></li>
           <li><a href="/sellers-guide/">Seller's Guide</a></li>
         </ul>
-        <h4 style="margin-top:24px;">Areas</h4>
+      </div>
+      <div class="footer-links">
+        <h4>Buy</h4>
         <ul>
-          <li><a href="/our-areas/chevy-chase/">Chevy Chase</a></li>
-          <li><a href="/our-areas/potomac/">Potomac</a></li>
-          <li><a href="/our-areas/bethesda/">Bethesda</a></li>
-          <li><a href="/our-areas/north-bethesda/">North Bethesda</a></li>
+          <li><a href="/properties/">Search Homes</a></li>
+          <li><a href="/buyers-guide/">Buyer's Guide</a></li>
+          <li><a href="/mortgage-calculator/">Mortgage Calculator</a></li>
         </ul>
       </div>
-      <div class="footer-col">
-        <h4>More</h4>
+      <div class="footer-links">
+        <h4>Explore</h4>
         <ul>
+          <li><a href="/our-areas/">Our Areas</a></li>
           <li><a href="/about/">About Pey</a></li>
-          <li><a href="/testimonials/">Testimonials</a></li>
           <li><a href="/vlog/">Blog</a></li>
-          <li><a href="/#contact">Contact</a></li>
+          <li><a href="/contact/">Contact</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>RLAH Properties | 4600 North Park Ave Suite 100, Chevy Chase, MD 20815 | (301) 652-0643<br/>
-      All information deemed reliable but not guaranteed. &copy; 2026 @Bethesda Real Estate. All rights reserved.</p>
-      <div class="footer-bottom-links">
-        <a href="/about/">Privacy Policy</a>
-        <a href="/about/">Terms of Use</a>
-      </div>
+      <p>© 2026 @Bethesda Real Estate · Pey Behin, REALTOR® · RLAH @properties · Licensed in MD, VA &amp; DC</p>
     </div>
   </div>
 </footer>
-<div class="mobile-bar"><a href="tel:+12026817454">ð Call</a><a href="sms:+12026817454">ð¬ Text</a><a href="/contact/" class="primary">Connect</a><a href="/properties/">Search</a></div>
-<script src="../js/main.js"></script>
-</body></html>
+
+<script>
+// ── FORM STATE ──
+const state = {
+  propertyType: '',
+  condition: '',
+  currentStep: 1
+};
+
+const STEP_NAMES = ['', 'Your Address', 'Property Type', 'Home Details', 'Condition', 'Contact Info'];
+const TOTAL_STEPS = 5;
+
+// ── PROGRESS ──
+function updateProgress(step) {
+  const bar = document.getElementById('val-progress-bar');
+  const label = document.getElementById('val-step-label');
+  const name = document.getElementById('val-step-name');
+  bar.style.width = (step / TOTAL_STEPS * 100) + '%';
+  label.textContent = `Step ${step} of ${TOTAL_STEPS}`;
+  name.textContent = STEP_NAMES[step] || '';
+}
+
+// ── OPTION CARDS ──
+document.querySelectorAll('.val-option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    const field = opt.dataset.field;
+    document.querySelectorAll(`.val-option[data-field="${field}"]`).forEach(o => o.classList.remove('selected'));
+    opt.classList.add('selected');
+    state[field] = opt.dataset.value;
+  });
+});
+
+// ── VALIDATION ──
+function validateStep(step) {
+  const errEl = document.getElementById(`err-${step}`);
+  let valid = true;
+
+  if (step === 1) {
+    const street = document.getElementById('f-street').value.trim();
+    const city = document.getElementById('f-city').value.trim();
+    const zip = document.getElementById('f-zip').value.trim();
+    if (!street || !city || !zip || zip.length < 5) valid = false;
+  } else if (step === 2) {
+    if (!state.propertyType) valid = false;
+  } else if (step === 3) {
+    const beds = document.getElementById('f-beds').value;
+    const baths = document.getElementById('f-baths').value;
+    const sqft = document.getElementById('f-sqft').value;
+    const year = document.getElementById('f-year').value;
+    if (!beds || !baths || !sqft || !year) valid = false;
+  } else if (step === 4) {
+    if (!state.condition) valid = false;
+  } else if (step === 5) {
+    const fname = document.getElementById('f-fname').value.trim();
+    const lname = document.getElementById('f-lname').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+    const phone = document.getElementById('f-phone').value.trim();
+    if (!fname || !lname || !email || !phone || !email.includes('@')) valid = false;
+  }
+
+  if (errEl) errEl.classList.toggle('visible', !valid);
+  return valid;
+}
+
+// ── NAVIGATION ──
+function goStep(to) {
+  const from = state.currentStep;
+  if (to > from && !validateStep(from)) return;
+
+  const fromEl = document.getElementById(`step-${from}`);
+  const toEl = document.getElementById(`step-${to}`);
+  if (!toEl) return;
+
+  fromEl.classList.remove('active', 'back-anim');
+  toEl.classList.add('active');
+  if (to < from) toEl.classList.add('back-anim');
+  else toEl.classList.remove('back-anim');
+
+  state.currentStep = to;
+  updateProgress(Math.min(to, TOTAL_STEPS));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── SUBMIT ──
+async function submitValuation() {
+  if (!validateStep(5)) return;
+
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Calculating…';
+
+  // Show loading
+  document.getElementById('step-5').classList.remove('active');
+  document.getElementById('step-loading').classList.add('active');
+
+  const payload = {
+    street:       document.getElementById('f-street').value.trim(),
+    city:         document.getElementById('f-city').value.trim(),
+    state:        document.getElementById('f-state').value,
+    zip:          document.getElementById('f-zip').value.trim(),
+    propertyType: state.propertyType,
+    beds:         document.getElementById('f-beds').value,
+    baths:        document.getElementById('f-baths').value,
+    sqft:         parseInt(document.getElementById('f-sqft').value),
+    yearBuilt:    parseInt(document.getElementById('f-year').value),
+    condition:    state.condition,
+    name:         `${document.getElementById('f-fname').value.trim()} ${document.getElementById('f-lname').value.trim()}`,
+    email:        document.getElementById('f-email').value.trim(),
+    phone:        document.getElementById('f-phone').value.trim(),
+    timeline:     document.getElementById('f-timeline').value
+  };
+
+  try {
+    const res = await fetch('/api/estimate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+
+    // Show result
+    document.getElementById('step-loading').classList.remove('active');
+    document.getElementById('step-result').classList.add('active');
+
+    document.getElementById('result-address').textContent =
+      `${payload.street}, ${payload.city}, ${payload.state}`;
+
+    if (data.low && data.high) {
+      document.getElementById('result-range').textContent =
+        `$${data.low.toLocaleString()} – $${data.high.toLocaleString()}`;
+      document.getElementById('result-range-wrap').style.display = '';
+      document.getElementById('result-manual').style.display = 'none';
+    } else {
+      document.getElementById('result-range-wrap').style.display = 'none';
+      document.getElementById('result-manual').style.display = '';
+    }
+
+    // Hide progress bar for result
+    document.querySelector('.val-progress-wrap').style.display = 'none';
+    document.querySelector('.val-progress-label').style.display = 'none';
+
+  } catch (err) {
+    // Network error fallback
+    document.getElementById('step-loading').classList.remove('active');
+    document.getElementById('step-result').classList.add('active');
+    document.getElementById('result-address').textContent =
+      `${payload.street}, ${payload.city}, ${payload.state}`;
+    document.getElementById('result-range-wrap').style.display = 'none';
+    document.getElementById('result-manual').style.display = '';
+    document.querySelector('.val-progress-wrap').style.display = 'none';
+    document.querySelector('.val-progress-label').style.display = 'none';
+  }
+}
+
+// ── NAV ──
+function toggleMobileNav() {
+  document.getElementById('mobile-nav').classList.toggle('open');
+  document.getElementById('nav-hamburger').classList.toggle('open');
+}
+
+// Init
+updateProgress(1);
+</script>
+</body>
+</html>
