@@ -2,7 +2,7 @@
  * POST /api/estimate — Home valuation lead capture
  * Saves lead to Cloudflare KV (LEADS_KV binding)
  * Sends instant email via Cloudflare Email Workers (SEND_EMAIL binding)
- * Requires: LEADS_KV binding, SEND_EMAIL binding, LEADS_TOKEN secret
+ * Requires: LEADS_KV binding, SEND_EMAIL binding (destination: pey@peybehin.com)
  */
 export async function onRequestPost(context) {
   const { env, request } = context;
@@ -35,7 +35,7 @@ export async function onRequestPost(context) {
         condition && `Condition: ${condition}`,
       ].filter(Boolean).join('\n');
 
-      const emailBody = [
+      const emailText = [
         'New home valuation request from atbethesda.com',
         '',
         'CONTACT',
@@ -51,19 +51,12 @@ export async function onRequestPost(context) {
         `Submitted: ${new Date().toISOString()}`,
       ].join('\n');
 
-      const rawEmail = [
-        'From: "AT Bethesda" <leads@atbethesda.com>',
-        'To: pey@peybehin.com',
-        `Subject: New Lead: ${name || 'Unknown'} — ${address || 'No address'}`,
-        'MIME-Version: 1.0',
-        'Content-Type: text/plain; charset=utf-8',
-        '',
-        emailBody,
-      ].join('\r\n');
-
-      const { EmailMessage } = await import('cloudflare:email');
-      const message = new EmailMessage('leads@atbethesda.com', 'pey@peybehin.com', rawEmail);
-      await env.SEND_EMAIL.send(message);
+      await env.SEND_EMAIL.send({
+        from: 'leads@atbethesda.com',
+        to: 'pey@peybehin.com',
+        subject: `New Lead: ${name || 'Unknown'} — ${address || 'No address'}`,
+        text: emailText,
+      });
     } catch (err) {
       // Don't fail the request if email fails — lead is already saved to KV
       console.error('Email send failed:', err?.message);
