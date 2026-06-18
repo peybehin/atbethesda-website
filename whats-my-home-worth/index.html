@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>What's My Home Worth? | Free DC Metro Home Valuation | @Bethesda Real Estate</title>
-  <meta name="description" content="Get a free, instant home value estimate for your Bethesda, Chevy Chase, Potomac, or DC Metro area home. Powered by real market data." />
+  <meta name="description" content="Get a free home valuation for your Bethesda, Chevy Chase, Potomac, or DC Metro area home. Pey Behin will prepare a custom analysis and follow up personally." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:ital@0;1&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/style.css" />
   <style>
-    /* ── VALUATION TOOL STYLES ── */
     .val-hero {
       background: #0a0a0a;
       min-height: 100vh;
@@ -36,71 +35,31 @@
       box-shadow: 0 24px 80px rgba(0,0,0,.5);
     }
 
-    /* Progress bar */
-    .val-progress-wrap {
-      background: #f0f0f0;
-      height: 4px;
-    }
-    .val-progress-bar {
-      height: 4px;
-      background: var(--red);
-      transition: width .4s ease;
-      width: 20%;
-    }
+    .val-progress-wrap { background: #f0f0f0; height: 4px; }
+    .val-progress-bar { height: 4px; background: var(--red); transition: width .4s ease; width: 20%; }
     .val-progress-label {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      display: flex; justify-content: space-between; align-items: center;
       padding: 14px 28px 0;
-      font-size: .72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-      color: #999;
+      font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #999;
     }
     .val-progress-label span:last-child { color: var(--red); }
 
-    /* Steps */
     .val-steps-wrap { position: relative; overflow: hidden; }
-    .val-step {
-      padding: 28px 28px 32px;
-      display: none;
-      animation: slideIn .3s ease;
-    }
+    .val-step { padding: 28px 28px 32px; display: none; animation: slideIn .3s ease; }
     .val-step.active { display: block; }
     @keyframes slideIn { from { opacity:0; transform:translateX(30px); } to { opacity:1; transform:translateX(0); } }
     @keyframes slideBack { from { opacity:0; transform:translateX(-30px); } to { opacity:1; transform:translateX(0); } }
     .val-step.back-anim { animation: slideBack .3s ease; }
 
-    .val-step-title {
-      font-size: 1.35rem;
-      font-weight: 800;
-      color: #0a0a0a;
-      margin: 0 0 6px;
-      line-height: 1.25;
-    }
-    .val-step-sub {
-      font-size: .82rem;
-      color: #888;
-      margin: 0 0 24px;
-    }
+    .val-step-title { font-size: 1.35rem; font-weight: 800; color: #0a0a0a; margin: 0 0 6px; line-height: 1.25; }
+    .val-step-sub { font-size: .82rem; color: #888; margin: 0 0 24px; }
 
-    /* Option cards (property type, condition) */
-    .val-option-grid {
-      display: grid;
-      gap: 10px;
-      margin-bottom: 24px;
-    }
+    .val-option-grid { display: grid; gap: 10px; margin-bottom: 24px; }
     .val-option-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
     .val-option-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
     .val-option {
-      border: 2px solid #e0e0e0;
-      border-radius: 8px;
-      padding: 16px 12px;
-      text-align: center;
-      cursor: pointer;
-      transition: all .2s;
-      user-select: none;
+      border: 2px solid #e0e0e0; border-radius: 8px; padding: 16px 12px;
+      text-align: center; cursor: pointer; transition: all .2s; user-select: none;
     }
     .val-option:hover { border-color: var(--red); background: rgba(183,37,69,.04); }
     .val-option.selected { border-color: var(--red); background: rgba(183,37,69,.07); }
@@ -109,212 +68,90 @@
     .val-option .opt-sub { font-size: .7rem; color: #888; margin-top: 3px; line-height: 1.4; }
     .val-option.selected .opt-label { color: var(--red); }
 
-    /* Form inputs */
-    .val-input-row {
-      display: grid;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
+    .val-input-row { display: grid; gap: 12px; margin-bottom: 14px; }
     .val-input-row.cols-2 { grid-template-columns: 1fr 1fr; }
     .val-input-row.cols-3 { grid-template-columns: 2fr 1fr 1fr; }
     .val-input-group { display: flex; flex-direction: column; gap: 5px; }
-    .val-input-group label {
-      font-size: .72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .05em;
-      color: #555;
-    }
+    .val-input-group label { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #555; }
     .val-input-group input,
     .val-input-group select {
-      padding: 11px 14px;
-      border: 1.5px solid #ddd;
-      border-radius: 6px;
-      font-family: inherit;
-      font-size: .88rem;
-      color: #222;
-      outline: none;
-      transition: border-color .2s;
-      background: #fff;
+      padding: 11px 14px; border: 1.5px solid #ddd; border-radius: 6px;
+      font-family: inherit; font-size: .88rem; color: #222; outline: none;
+      transition: border-color .2s; background: #fff;
     }
     .val-input-group input:focus,
     .val-input-group select:focus { border-color: var(--red); }
     .val-input-group input::placeholder { color: #bbb; }
 
-    /* Buttons */
-    .val-btn-row {
-      display: flex;
-      gap: 10px;
-      margin-top: 8px;
-    }
+    .val-btn-row { display: flex; gap: 10px; margin-top: 8px; }
     .val-btn-primary {
-      flex: 1;
-      background: var(--red);
-      color: #fff;
-      border: none;
-      padding: 14px 24px;
-      border-radius: 6px;
-      font-family: inherit;
-      font-size: .85rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-      cursor: pointer;
-      transition: background .2s;
+      flex: 1; background: var(--red); color: #fff; border: none;
+      padding: 14px 24px; border-radius: 6px; font-family: inherit;
+      font-size: .85rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: .06em; cursor: pointer; transition: background .2s;
     }
     .val-btn-primary:hover { background: var(--red-dark, #9e1e3a); }
     .val-btn-primary:disabled { background: #ccc; cursor: not-allowed; }
     .val-btn-back {
-      background: transparent;
-      color: #888;
-      border: 1.5px solid #ddd;
-      padding: 14px 20px;
-      border-radius: 6px;
-      font-family: inherit;
-      font-size: .82rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all .2s;
+      background: transparent; color: #888; border: 1.5px solid #ddd;
+      padding: 14px 20px; border-radius: 6px; font-family: inherit;
+      font-size: .82rem; font-weight: 700; cursor: pointer; transition: all .2s;
     }
     .val-btn-back:hover { border-color: #aaa; color: #555; }
 
-    /* Error message */
     .val-error {
-      background: #fff5f7;
-      border: 1.5px solid #f8c0cc;
-      border-radius: 6px;
-      padding: 10px 14px;
-      font-size: .8rem;
-      color: var(--red);
-      margin-bottom: 14px;
-      display: none;
+      background: #fff5f7; border: 1.5px solid #f8c0cc; border-radius: 6px;
+      padding: 10px 14px; font-size: .8rem; color: var(--red);
+      margin-bottom: 14px; display: none;
     }
     .val-error.visible { display: block; }
 
-    /* Loading step */
-    .val-loading {
-      text-align: center;
-      padding: 50px 28px;
-    }
+    /* Loading */
+    .val-loading { text-align: center; padding: 50px 28px; }
     .val-spinner {
-      width: 44px; height: 44px;
-      border: 3px solid #f0f0f0;
-      border-top-color: var(--red);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin: 0 auto 20px;
+      width: 44px; height: 44px; border: 3px solid #f0f0f0;
+      border-top-color: var(--red); border-radius: 50%;
+      animation: spin 1s linear infinite; margin: 0 auto 20px;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
     .val-loading p { color: #888; font-size: .88rem; }
 
-    /* Result step */
-    .val-result { padding: 28px; text-align: center; }
-    .val-result-label {
-      font-size: .72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .1em;
-      color: var(--red);
-      margin-bottom: 8px;
-    }
-    .val-result-address {
-      font-size: .88rem;
-      color: #777;
-      margin-bottom: 20px;
-    }
-    .val-range-wrap {
-      background: #f8f8f8;
-      border-radius: 10px;
-      padding: 28px 20px;
-      margin-bottom: 24px;
-    }
-    .val-range-sub { font-size: .72rem; color: #999; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px; }
-    .val-range {
-      font-size: clamp(1.6rem, 6vw, 2.4rem);
-      font-weight: 900;
-      color: #0a0a0a;
-      line-height: 1.1;
-      margin-bottom: 6px;
-    }
-    .val-range-note { font-size: .74rem; color: #999; line-height: 1.5; }
-
-    .val-result-actions { display: flex; flex-direction: column; gap: 10px; }
+    /* Thank you */
+    .val-thankyou { padding: 40px 28px; text-align: center; }
+    .val-ty-icon { font-size: 3rem; margin-bottom: 16px; }
+    .val-ty-title { font-size: 1.5rem; font-weight: 900; color: #0a0a0a; margin: 0 0 12px; }
+    .val-ty-sub { font-size: .9rem; color: #666; line-height: 1.7; margin: 0 0 28px; max-width: 380px; margin-left: auto; margin-right: auto; }
+    .val-ty-actions { display: flex; flex-direction: column; gap: 10px; }
     .val-action-btn {
-      display: block;
-      padding: 14px 20px;
-      border-radius: 7px;
-      font-family: inherit;
-      font-size: .82rem;
-      font-weight: 700;
-      text-decoration: none;
-      text-align: center;
-      transition: all .2s;
-      cursor: pointer;
+      display: block; padding: 14px 20px; border-radius: 7px;
+      font-family: inherit; font-size: .82rem; font-weight: 700;
+      text-decoration: none; text-align: center; transition: all .2s; cursor: pointer;
     }
-    .val-action-primary {
-      background: var(--red);
-      color: #fff;
-      border: none;
-    }
+    .val-action-primary { background: var(--red); color: #fff; border: none; }
     .val-action-primary:hover { background: #9e1e3a; color: #fff; }
-    .val-action-outline {
-      border: 1.5px solid #ddd;
-      color: #444;
-      background: transparent;
-    }
+    .val-action-outline { border: 1.5px solid #ddd; color: #444; background: transparent; }
     .val-action-outline:hover { border-color: #aaa; }
 
-    .val-result-manual {
-      background: #fffbf0;
-      border: 1.5px solid #f0d98a;
-      border-radius: 10px;
-      padding: 20px;
-      margin-bottom: 24px;
-      text-align: left;
-    }
-    .val-result-manual h3 { font-size: .95rem; margin: 0 0 8px; color: #333; }
-    .val-result-manual p { font-size: .8rem; color: #666; margin: 0; line-height: 1.6; }
-
-    /* Trust bar */
     .val-trust {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 24px;
+      display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 24px;
     }
     .val-trust-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: .72rem;
-      color: rgba(255,255,255,.55);
-      font-weight: 600;
+      display: flex; align-items: center; gap: 6px;
+      font-size: .72rem; color: rgba(255,255,255,.55); font-weight: 600;
     }
     .val-trust-item svg { opacity: .6; }
 
     @media (max-width: 540px) {
       .val-option-grid.cols-3 { grid-template-columns: 1fr; }
       .val-option-grid.cols-2 { grid-template-columns: 1fr; }
-      .val-input-row.cols-2,
-      .val-input-row.cols-3 { grid-template-columns: 1fr; }
+      .val-input-row.cols-2, .val-input-row.cols-3 { grid-template-columns: 1fr; }
       .val-step { padding: 22px 18px 26px; }
-      .val-result { padding: 22px 18px; }
+      .val-thankyou { padding: 30px 18px; }
     }
   </style>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "What's My Bethesda Home Worth? Free DC Metro Home Valuation",
-    "description": "Get a free instant home valuation estimate for your DC Metro area property. Powered by real market data.",
-    "url": "https://atbethesda.com/whats-my-home-worth/"
-  }
-  </script>
 </head>
 <body>
 
-<!-- NAV -->
 <nav id="main-nav">
   <a href="/" class="nav-logo"><img src="/images/blog/BETHESDA-w-RED.png" alt="@Bethesda Real Estate" /></a>
   <ul class="nav-links">
@@ -352,20 +189,18 @@
   </ul>
 </div>
 
-<!-- HERO + FORM -->
 <div class="val-hero">
   <div class="val-intro">
     <span class="section-label">Free Home Valuation</span>
     <h1>What's My Home Worth?</h1>
-    <p>Get an instant estimate for your Bethesda, Chevy Chase, Potomac, or DC Metro area home — no obligation.</p>
+    <p>Tell us about your home and Pey will put together a personalized market analysis — no obligation, no pressure.</p>
   </div>
 
   <div class="val-card">
-    <!-- Progress -->
     <div class="val-progress-wrap">
       <div class="val-progress-bar" id="val-progress-bar"></div>
     </div>
-    <div class="val-progress-label">
+    <div class="val-progress-label" id="val-progress-label-row">
       <span id="val-step-label">Step 1 of 5</span>
       <span id="val-step-name">Your Address</span>
     </div>
@@ -437,7 +272,7 @@
       <!-- STEP 3: Home Details -->
       <div class="val-step" id="step-3">
         <h2 class="val-step-title">Tell us about your home</h2>
-        <p class="val-step-sub">Approximate details are fine — we'll refine with real data.</p>
+        <p class="val-step-sub">Approximate details are fine.</p>
         <div class="val-error" id="err-3">Please fill in all home details.</div>
         <div class="val-input-row cols-2">
           <div class="val-input-group">
@@ -485,7 +320,7 @@
       <!-- STEP 4: Condition -->
       <div class="val-step" id="step-4">
         <h2 class="val-step-title">How's your home's condition?</h2>
-        <p class="val-step-sub">Be honest — it helps us give you a more accurate estimate.</p>
+        <p class="val-step-sub">Be honest — it helps Pey prepare a more accurate analysis.</p>
         <div class="val-error" id="err-4">Please select your home's condition.</div>
         <div class="val-option-grid cols-2">
           <div class="val-option" data-field="condition" data-value="excellent">
@@ -517,8 +352,8 @@
 
       <!-- STEP 5: Contact Info -->
       <div class="val-step" id="step-5">
-        <h2 class="val-step-title">Where should we send your estimate?</h2>
-        <p class="val-step-sub">Your estimate is ready. Enter your contact info to unlock it.</p>
+        <h2 class="val-step-title">Where should we reach you?</h2>
+        <p class="val-step-sub">Pey will follow up personally with a full market analysis.</p>
         <div class="val-error" id="err-5">Please fill in your name, email, and phone number.</div>
         <div class="val-input-row cols-2">
           <div class="val-input-group">
@@ -556,7 +391,7 @@
         </div>
         <div class="val-btn-row">
           <button class="val-btn-back" onclick="goStep(4)">← Back</button>
-          <button class="val-btn-primary" id="submit-btn" onclick="submitValuation()">Get My Estimate →</button>
+          <button class="val-btn-primary" id="submit-btn" onclick="submitValuation()">Send My Request →</button>
         </div>
         <p style="font-size:.7rem;color:#bbb;margin-top:12px;text-align:center;line-height:1.5;">
           By submitting, you agree to be contacted by Pey Behin, @Bethesda Real Estate. No spam, ever.
@@ -567,55 +402,30 @@
       <div class="val-step" id="step-loading">
         <div class="val-loading">
           <div class="val-spinner"></div>
-          <h3 style="font-size:1.1rem;margin:0 0 8px;">Calculating your estimate…</h3>
-          <p>Analyzing recent comparable sales in your area.</p>
+          <h3 style="font-size:1.1rem;margin:0 0 8px;">Sending your request…</h3>
+          <p>Just a moment.</p>
         </div>
       </div>
 
-      <!-- RESULT -->
-      <div class="val-step" id="step-result">
-        <div class="val-result">
-          <div class="val-result-label">Your Home Value Estimate</div>
-          <div class="val-result-address" id="result-address"></div>
-
-          <!-- Estimate range (shown when we have data) -->
-          <div class="val-range-wrap" id="result-range-wrap">
-            <div class="val-range-sub">Estimated Market Value Range</div>
-            <div class="val-range" id="result-range">—</div>
-            <div class="val-range-note">
-              Based on recent comparable sales, public records, and your property details.<br />
-              Actual value may vary based on finishes, upgrades, and market timing.
-            </div>
-          </div>
-
-          <!-- Manual follow-up (shown when we couldn't calculate) -->
-          <div class="val-result-manual" id="result-manual" style="display:none;">
-            <h3>✅ We've received your request!</h3>
-            <p>Pey is pulling together a custom valuation for your home based on the latest comparable sales. You'll hear from him within 24 hours with a full market analysis.</p>
-          </div>
-
-          <div class="val-result-actions">
-            <a href="/contact/" class="val-action-btn val-action-primary">
-              Schedule a Free CMA with Pey
-            </a>
-            <a href="/our-areas/" class="val-action-btn val-action-outline">
-              Explore Your Neighborhood
-            </a>
-            <a href="/sellers-guide/" class="val-action-btn val-action-outline">
-              Read the Seller's Guide
-            </a>
-          </div>
-
-          <p style="font-size:.72rem;color:#bbb;margin-top:18px;line-height:1.5;text-align:center;">
-            This is an automated estimate, not an official appraisal. For a precise market value, schedule a free Comparative Market Analysis with Pey.
+      <!-- THANK YOU -->
+      <div class="val-step" id="step-thankyou">
+        <div class="val-thankyou">
+          <div class="val-ty-icon">✅</div>
+          <h2 class="val-ty-title">You're all set!</h2>
+          <p class="val-ty-sub">
+            Pey received your request and will reach out within 24 hours with a personalized market analysis for your home.
           </p>
+          <div class="val-ty-actions">
+            <a href="/contact/" class="val-action-btn val-action-primary">Schedule a Free Consultation</a>
+            <a href="/our-areas/" class="val-action-btn val-action-outline">Explore Your Neighborhood</a>
+            <a href="/sellers-guide/" class="val-action-btn val-action-outline">Read the Seller's Guide</a>
+          </div>
         </div>
       </div>
 
-    </div><!-- /val-steps-wrap -->
-  </div><!-- /val-card -->
+    </div>
+  </div>
 
-  <!-- Trust signals -->
   <div class="val-trust">
     <div class="val-trust-item">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -623,17 +433,15 @@
     </div>
     <div class="val-trust-item">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      Results in seconds
+      24-hour response
     </div>
     <div class="val-trust-item">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
       Your data is private
     </div>
   </div>
+</div>
 
-</div><!-- /val-hero -->
-
-<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
@@ -662,7 +470,7 @@
       <div class="footer-links">
         <h4>Explore</h4>
         <ul>
-          <li><a href="/our-areas/">Our Areas</a></li>
+          <li><a href="/our-areas/">Featured Areas</a></li>
           <li><a href="/about/">About Pey</a></li>
           <li><a href="/vlog/">Blog</a></li>
           <li><a href="/contact/">Contact</a></li>
@@ -676,27 +484,16 @@
 </footer>
 
 <script>
-// ── FORM STATE ──
-const state = {
-  propertyType: '',
-  condition: '',
-  currentStep: 1
-};
-
-const STEP_NAMES = ['', 'Your Address', 'Property Type', 'Home Details', 'Condition', 'Contact Info'];
+const state = { propertyType: '', condition: '', currentStep: 1 };
+const STEP_NAMES = ['','Your Address','Property Type','Home Details','Condition','Contact Info'];
 const TOTAL_STEPS = 5;
 
-// ── PROGRESS ──
 function updateProgress(step) {
-  const bar = document.getElementById('val-progress-bar');
-  const label = document.getElementById('val-step-label');
-  const name = document.getElementById('val-step-name');
-  bar.style.width = (step / TOTAL_STEPS * 100) + '%';
-  label.textContent = `Step ${step} of ${TOTAL_STEPS}`;
-  name.textContent = STEP_NAMES[step] || '';
+  document.getElementById('val-progress-bar').style.width = (step / TOTAL_STEPS * 100) + '%';
+  document.getElementById('val-step-label').textContent = `Step ${step} of ${TOTAL_STEPS}`;
+  document.getElementById('val-step-name').textContent = STEP_NAMES[step] || '';
 }
 
-// ── OPTION CARDS ──
 document.querySelectorAll('.val-option').forEach(opt => {
   opt.addEventListener('click', () => {
     const field = opt.dataset.field;
@@ -706,11 +503,9 @@ document.querySelectorAll('.val-option').forEach(opt => {
   });
 });
 
-// ── VALIDATION ──
 function validateStep(step) {
   const errEl = document.getElementById(`err-${step}`);
   let valid = true;
-
   if (step === 1) {
     const street = document.getElementById('f-street').value.trim();
     const city = document.getElementById('f-city').value.trim();
@@ -719,11 +514,8 @@ function validateStep(step) {
   } else if (step === 2) {
     if (!state.propertyType) valid = false;
   } else if (step === 3) {
-    const beds = document.getElementById('f-beds').value;
-    const baths = document.getElementById('f-baths').value;
-    const sqft = document.getElementById('f-sqft').value;
-    const year = document.getElementById('f-year').value;
-    if (!beds || !baths || !sqft || !year) valid = false;
+    if (!document.getElementById('f-beds').value || !document.getElementById('f-baths').value ||
+        !document.getElementById('f-sqft').value || !document.getElementById('f-year').value) valid = false;
   } else if (step === 4) {
     if (!state.condition) valid = false;
   } else if (step === 5) {
@@ -733,39 +525,30 @@ function validateStep(step) {
     const phone = document.getElementById('f-phone').value.trim();
     if (!fname || !lname || !email || !phone || !email.includes('@')) valid = false;
   }
-
   if (errEl) errEl.classList.toggle('visible', !valid);
   return valid;
 }
 
-// ── NAVIGATION ──
 function goStep(to) {
   const from = state.currentStep;
   if (to > from && !validateStep(from)) return;
-
   const fromEl = document.getElementById(`step-${from}`);
   const toEl = document.getElementById(`step-${to}`);
   if (!toEl) return;
-
   fromEl.classList.remove('active', 'back-anim');
   toEl.classList.add('active');
   if (to < from) toEl.classList.add('back-anim');
   else toEl.classList.remove('back-anim');
-
   state.currentStep = to;
   updateProgress(Math.min(to, TOTAL_STEPS));
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// ── SUBMIT ──
 async function submitValuation() {
   if (!validateStep(5)) return;
-
   const btn = document.getElementById('submit-btn');
   btn.disabled = true;
-  btn.textContent = 'Calculating…';
 
-  // Show loading
   document.getElementById('step-5').classList.remove('active');
   document.getElementById('step-loading').classList.add('active');
 
@@ -777,8 +560,8 @@ async function submitValuation() {
     propertyType: state.propertyType,
     beds:         document.getElementById('f-beds').value,
     baths:        document.getElementById('f-baths').value,
-    sqft:         parseInt(document.getElementById('f-sqft').value),
-    yearBuilt:    parseInt(document.getElementById('f-year').value),
+    sqft:         document.getElementById('f-sqft').value,
+    yearBuilt:    document.getElementById('f-year').value,
     condition:    state.condition,
     name:         `${document.getElementById('f-fname').value.trim()} ${document.getElementById('f-lname').value.trim()}`,
     email:        document.getElementById('f-email').value.trim(),
@@ -787,54 +570,24 @@ async function submitValuation() {
   };
 
   try {
-    const res = await fetch('/api/estimate', {
+    await fetch('/api/estimate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
-    const data = await res.json();
+  } catch (e) { /* network error — show thank you anyway */ }
 
-    // Show result
-    document.getElementById('step-loading').classList.remove('active');
-    document.getElementById('step-result').classList.add('active');
-
-    document.getElementById('result-address').textContent =
-      `${payload.street}, ${payload.city}, ${payload.state}`;
-
-    if (data.low && data.high) {
-      document.getElementById('result-range').textContent =
-        `$${data.low.toLocaleString()} – $${data.high.toLocaleString()}`;
-      document.getElementById('result-range-wrap').style.display = '';
-      document.getElementById('result-manual').style.display = 'none';
-    } else {
-      document.getElementById('result-range-wrap').style.display = 'none';
-      document.getElementById('result-manual').style.display = '';
-    }
-
-    // Hide progress bar for result
-    document.querySelector('.val-progress-wrap').style.display = 'none';
-    document.querySelector('.val-progress-label').style.display = 'none';
-
-  } catch (err) {
-    // Network error fallback
-    document.getElementById('step-loading').classList.remove('active');
-    document.getElementById('step-result').classList.add('active');
-    document.getElementById('result-address').textContent =
-      `${payload.street}, ${payload.city}, ${payload.state}`;
-    document.getElementById('result-range-wrap').style.display = 'none';
-    document.getElementById('result-manual').style.display = '';
-    document.querySelector('.val-progress-wrap').style.display = 'none';
-    document.querySelector('.val-progress-label').style.display = 'none';
-  }
+  document.getElementById('step-loading').classList.remove('active');
+  document.getElementById('step-thankyou').classList.add('active');
+  document.getElementById('val-progress-wrap') && (document.querySelector('.val-progress-wrap').style.display = 'none');
+  document.getElementById('val-progress-label-row').style.display = 'none';
 }
 
-// ── NAV ──
 function toggleMobileNav() {
   document.getElementById('mobile-nav').classList.toggle('open');
   document.getElementById('nav-hamburger').classList.toggle('open');
 }
 
-// Init
 updateProgress(1);
 </script>
 </body>
