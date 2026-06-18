@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>@Bethesda Admin — Blog Editor</title>
+<title>@Bethesda Admin â Blog Editor</title>
 <meta name="robots" content="noindex, nofollow" />
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet" />
 <!-- Quill rich text editor -->
@@ -19,7 +19,7 @@
 }
 body{font-family:var(--font);background:var(--gray-light);color:var(--black);min-height:100vh;}
 
-/* ── LOGIN ── */
+/* ââ LOGIN ââ */
 #login-screen{
   display:flex;align-items:center;justify-content:center;
   min-height:100vh;background:#0a0a0a;
@@ -42,7 +42,7 @@ body{font-family:var(--font);background:var(--gray-light);color:var(--black);min
 .login-box button:hover{background:var(--red-dark);}
 .login-error{color:#e57373;font-size:.78rem;margin-top:10px;display:none;}
 
-/* ── APP SHELL ── */
+/* ââ APP SHELL ââ */
 #app{display:none;min-height:100vh;flex-direction:row;}
 
 /* SIDEBAR */
@@ -105,7 +105,7 @@ body{font-family:var(--font);background:var(--gray-light);color:var(--black);min
 /* CONTENT */
 .content{padding:28px 32px;flex:1;}
 
-/* ── DASHBOARD (post list) ── */
+/* ââ DASHBOARD (post list) ââ */
 #view-dashboard{display:none;}
 .dash-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;}
 .dash-header h1{font-size:1.3rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;}
@@ -161,7 +161,7 @@ body{font-family:var(--font);background:var(--gray-light);color:var(--black);min
 .empty-state h3{font-size:1rem;margin-bottom:8px;color:#888;}
 .empty-state p{font-size:.82rem;line-height:1.6;}
 
-/* ── STATUS TABS ── */
+/* ââ STATUS TABS ââ */
 .status-tabs{display:flex;gap:4px;margin-bottom:20px;border-bottom:2px solid var(--gray-mid);padding-bottom:0;}
 .status-tab{
   padding:10px 20px;font-family:var(--font);font-size:.72rem;font-weight:700;
@@ -181,7 +181,7 @@ body{font-family:var(--font);background:var(--gray-light);color:var(--black);min
 .status-tab.tab-drafts .tab-count{background:#f57c00;color:#fff;}
 .status-tab.tab-drafts{color:#f57c00;}
 
-/* ── EDITOR ── */
+/* ââ EDITOR ââ */
 #view-editor{display:none;}
 .editor-grid{display:grid;grid-template-columns:1fr 300px;gap:24px;align-items:start;}
 .editor-main{display:flex;flex-direction:column;gap:20px;}
@@ -287,12 +287,12 @@ select.cat-select{margin-bottom:0;}
 .seo-checks{list-style:none;font-size:.72rem;color:#666;display:flex;flex-direction:column;gap:6px;}
 .seo-checks li{display:flex;align-items:flex-start;gap:6px;line-height:1.4;}
 .seo-checks li::before{flex-shrink:0;margin-top:1px;}
-.seo-pass::before{content:'✓';color:#4caf50;font-weight:700;}
-.seo-fail::before{content:'✗';color:#f44336;font-weight:700;}
-.seo-warn::before{content:'⚠';color:#ff9800;}
+.seo-pass::before{content:'â';color:#4caf50;font-weight:700;}
+.seo-fail::before{content:'â';color:#f44336;font-weight:700;}
+.seo-warn::before{content:'â ';color:#ff9800;}
 
 
-/* ── SCHOOLS VIEW ── */
+/* ââ SCHOOLS VIEW ââ */
 #view-schools{display:none;}
 .schools-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;}
 .schools-header h1{font-size:1.3rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;}
@@ -347,7 +347,7 @@ select.cat-select{margin-bottom:0;}
 </head>
 <body>
 
-<!-- ══════════════════════════════════════ LOGIN ══════════════════════════════════════ -->
+<!-- ââââââââââââââââââââââââââââââââââââââ LOGIN ââââââââââââââââââââââââââââââââââââââ -->
 <div id="login-screen">
   <div class="login-box">
     <img src="https://assets.thesparksite.com/uploads/sites/103/2024/07/BETHESDA-w-RED.png" alt="@Bethesda" />
@@ -358,12 +358,12 @@ select.cat-select{margin-bottom:0;}
   </div>
 </div>
 
-<!-- ══════════════════════════════════════ APP ══════════════════════════════════════ -->
+<!-- ââââââââââââââââââââââââââââââââââââââ APP ââââââââââââââââââââââââââââââââââââââ -->
 <div id="app">
 
   <!-- SCHEDULED POSTS BANNER -->
   <div id="scheduled-banner">
-    <span>🕐 Scheduled posts are ready to publish:</span>
+    <span>ð Scheduled posts are ready to publish:</span>
     <div class="banner-posts" id="banner-posts"></div>
     <button onclick="document.getElementById('scheduled-banner').classList.remove('show')">Dismiss</button>
   </div>
@@ -429,7 +429,7 @@ select.cat-select{margin-bottom:0;}
         Settings
       </button>
     <div class="sidebar-bottom">
-      <a href="/" target="_blank">← View Live Site</a>
+      <a href="/" target="_blank">â View Live Site</a>
     </div>
   </aside>
 
@@ -438,7 +438,7 @@ select.cat-select{margin-bottom:0;}
     <div class="topbar">
       <div class="topbar-title" id="topbar-title">All Posts</div>
       <div class="topbar-actions" id="topbar-actions">
-        <button class="btn btn-secondary btn-sm" onclick="openImport()" title="Import BOFU draft posts">⬆ Import Posts</button>
+        <button class="btn btn-secondary btn-sm" onclick="openImport()" title="Import BOFU draft posts">â¬ Import Posts</button>
         <button class="btn btn-primary btn-sm" onclick="newPost()">+ New Post</button>
       </div>
     </div>
@@ -492,19 +492,19 @@ select.cat-select{margin-bottom:0;}
 
             <!-- Title -->
             <div class="editor-card">
-              <input type="text" class="title-input" id="post-title" placeholder="Enter post title here…" oninput="onTitleChange()" />
+              <input type="text" class="title-input" id="post-title" placeholder="Enter post title hereâ¦" oninput="onTitleChange()" />
               <div class="slug-row">
                 <span class="slug-prefix">atbethesda.com/vlog/</span>
                 <input type="text" class="slug-input" id="post-slug" placeholder="url-slug" oninput="updateSEO()" />
               </div>
             </div>
 
-            <!-- AI Snippet — AEO answer box -->
+            <!-- AI Snippet â AEO answer box -->
             <div class="editor-card">
-              <h3>🤖 AI Snippet (AEO) — Answer Box</h3>
+              <h3>ð¤ AI Snippet (AEO) â Answer Box</h3>
               <div class="snippet-box">
-                <p>This 2–3 sentence summary appears at the top of your post as a highlighted answer box. Google AI Overview, Perplexity, and ChatGPT pull from this for featured answers. Write it to directly answer the post's main question.</p>
-                <textarea id="post-snippet" rows="3" placeholder="Example: The best time to buy a home in Bethesda is early spring, when inventory peaks and before summer bidding wars begin. Buyers who move quickly in March–April typically have more choices and less competition than those who wait until summer…" oninput="updateSEO()"></textarea>
+                <p>This 2â3 sentence summary appears at the top of your post as a highlighted answer box. Google AI Overview, Perplexity, and ChatGPT pull from this for featured answers. Write it to directly answer the post's main question.</p>
+                <textarea id="post-snippet" rows="3" placeholder="Example: The best time to buy a home in Bethesda is early spring, when inventory peaks and before summer bidding wars begin. Buyers who move quickly in MarchâApril typically have more choices and less competition than those who wait until summerâ¦" oninput="updateSEO()"></textarea>
               </div>
             </div>
 
@@ -514,9 +514,9 @@ select.cat-select{margin-bottom:0;}
               <div id="quill-editor"></div>
             </div>
 
-            <!-- FAQ Builder — AEO schema -->
+            <!-- FAQ Builder â AEO schema -->
             <div class="editor-card">
-              <h3>❓ FAQ Section (AEO Schema)</h3>
+              <h3>â FAQ Section (AEO Schema)</h3>
               <p style="font-size:.78rem;color:#888;margin-bottom:16px;line-height:1.5;">Add questions and answers. These appear at the bottom of your post AND generate FAQ schema markup, which helps your post appear in Google AI Overview and "People Also Ask" boxes.</p>
               <div id="faq-list"></div>
               <button class="add-faq-btn" onclick="addFaq()">+ Add Question &amp; Answer</button>
@@ -542,7 +542,7 @@ select.cat-select{margin-bottom:0;}
                 <span>Date</span>
                 <input type="date" id="post-date" style="width:auto;padding:4px 8px;font-size:.75rem;" oninput="onStatusChange()" />
               </div>
-              <!-- Time row — only shown when Scheduled -->
+              <!-- Time row â only shown when Scheduled -->
               <div class="status-row" id="time-row">
                 <span>Time</span>
                 <input type="time" id="post-time" value="06:00" style="width:auto;padding:4px 8px;font-size:.75rem;" />
@@ -550,9 +550,9 @@ select.cat-select{margin-bottom:0;}
               <!-- Scheduled preview label -->
               <div id="schedule-preview" style="display:none;background:#e3f2fd;border-radius:4px;padding:10px 12px;margin:10px 0;font-size:.75rem;color:#1565c0;line-height:1.5;"></div>
               <div class="publish-btn-row" style="gap:6px;margin-top:14px;">
-                <button class="btn btn-success" style="width:100%;justify-content:center;" onclick="saveDraft()">💾 Save Draft</button>
-                <button class="btn" style="width:100%;justify-content:center;background:#1565c0;color:#fff;" onclick="saveScheduled()">🕐 Schedule</button>
-                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="publishNow()">🚀 Publish to Site</button>
+                <button class="btn btn-success" style="width:100%;justify-content:center;" onclick="saveDraft()">ð¾ Save Draft</button>
+                <button class="btn" style="width:100%;justify-content:center;background:#1565c0;color:#fff;" onclick="saveScheduled()">ð Schedule</button>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="publishNow()">ð Publish to Site</button>
                 <button class="btn btn-outline btn-sm" style="width:100%;justify-content:center;margin-top:4px;" onclick="previewPost()">Preview</button>
               </div>
             </div>
@@ -561,7 +561,7 @@ select.cat-select{margin-bottom:0;}
             <div class="side-card">
               <h3>Category</h3>
               <select id="post-category" class="cat-select" onchange="updateSEO()">
-                <option value="">— Select Category —</option>
+                <option value="">â Select Category â</option>
                 <option value="Buying">Buying</option>
                 <option value="Selling">Selling</option>
                 <option value="News">News</option>
@@ -583,14 +583,14 @@ select.cat-select{margin-bottom:0;}
             <!-- Featured Image -->
             <div class="side-card">
               <h3>Featured Image</h3>
-              <input type="url" id="post-image" placeholder="https://…image.jpg" oninput="previewImage()" />
+              <input type="url" id="post-image" placeholder="https://â¦image.jpg" oninput="previewImage()" />
               <img id="image-thumb" class="image-preview" src="" alt="Preview" />
             </div>
 
             <!-- Meta / SEO -->
             <div class="side-card">
               <h3>SEO Meta Description</h3>
-              <textarea id="post-meta" rows="3" placeholder="160-char description for Google search results…" oninput="updateCharCount();updateSEO()"></textarea>
+              <textarea id="post-meta" rows="3" placeholder="160-char description for Google search resultsâ¦" oninput="updateCharCount();updateSEO()"></textarea>
               <div class="char-counter" id="meta-counter"><span>0</span> / 160 characters</div>
             </div>
 
@@ -622,7 +622,7 @@ select.cat-select{margin-bottom:0;}
           <h1>School Data</h1>
         </div>
         <div class="gs-note">
-          <strong>How it works:</strong> Select an area below to edit its school listings. Each school links to GreatSchools.org so visitors always see live, current ratings. When GreatSchools updates ratings (once a year), just verify the URLs are correct — no rating numbers to change here. Click <strong>Save Schools</strong> to store, then <strong>Download Updated Page</strong> to get fresh HTML to upload to your site.
+          <strong>How it works:</strong> Select an area below to edit its school listings. Each school links to GreatSchools.org so visitors always see live, current ratings. When GreatSchools updates ratings (once a year), just verify the URLs are correct â no rating numbers to change here. Click <strong>Save Schools</strong> to store, then <strong>Download Updated Page</strong> to get fresh HTML to upload to your site.
         </div>
         <div class="area-selector" id="area-selector-tabs"></div>
         <div id="schools-editor-area"></div>
@@ -632,9 +632,9 @@ select.cat-select{margin-bottom:0;}
       <div id="view-settings" style="display:none;">
         <div class="dash-header"><h1>Settings</h1></div>
         <div class="editor-card" style="max-width:600px;">
-          <h3>🔗 GitHub Sync</h3>
+          <h3>ð GitHub Sync</h3>
           <p style="font-size:.82rem;color:#666;margin-bottom:16px;line-height:1.6;">
-            Enter your GitHub Personal Access Token to publish posts <strong>directly to the live site</strong> — no download or upload steps needed. When you click Publish, the post goes live in ~60 seconds.
+            Enter your GitHub Personal Access Token to publish posts <strong>directly to the live site</strong> â no download or upload steps needed. When you click Publish, the post goes live in ~60 seconds.
           </p>
           <label class="field-label">Personal Access Token</label>
           <div style="display:flex;gap:8px;margin-bottom:8px;">
@@ -644,11 +644,11 @@ select.cat-select{margin-bottom:0;}
           <div id="gh-token-status" style="font-size:.78rem;min-height:20px;font-weight:600;"></div>
           <p style="font-size:.7rem;color:#aaa;margin-top:16px;line-height:1.8;">
             How to create a token:<br/>
-            1. Go to github.com → click your profile → Settings<br/>
-            2. Developer settings → Personal access tokens → Fine-grained tokens<br/>
-            3. Generate new token → set repo to <strong>atbethesda-website</strong><br/>
-            4. Under Permissions → Repository permissions → set <strong>Contents: Read and write</strong><br/>
-            5. Generate token → paste it above
+            1. Go to github.com â click your profile â Settings<br/>
+            2. Developer settings â Personal access tokens â Fine-grained tokens<br/>
+            3. Generate new token â set repo to <strong>atbethesda-website</strong><br/>
+            4. Under Permissions â Repository permissions â set <strong>Contents: Read and write</strong><br/>
+            5. Generate token â paste it above
           </p>
         </div>
       </div>
@@ -658,7 +658,7 @@ select.cat-select{margin-bottom:0;}
 <div id="toast"></div>
 
 <script>
-/* ══════════════ AUTH ══════════════ */
+/* ââââââââââââââ AUTH ââââââââââââââ */
 const ADMIN_PASSWORD = 'bethesda2026';
 const AUTH_KEY = 'ab_auth_expiry';
 const AUTH_DAYS = 30;
@@ -689,7 +689,7 @@ function doLogin() {
 }
 
 
-/* ══════════════ DATA STORE ══════════════ */
+/* ââââââââââââââ DATA STORE ââââââââââââââ */
 let posts = JSON.parse(localStorage.getItem('ab_posts') || '[]');
 let editingId = null;
 let tags = [];
@@ -699,7 +699,7 @@ function savePosts() {
   localStorage.setItem('ab_posts', JSON.stringify(posts));
 }
 
-/* ══════════════ INIT ══════════════ */
+/* ââââââââââââââ INIT ââââââââââââââ */
 function initApp() {
   // Load GitHub token
   window._ghToken = localStorage.getItem('ab_gh_token') || null;
@@ -716,7 +716,7 @@ function initApp() {
         ['clean']
       ]
     },
-    placeholder: 'Write your post content here…'
+    placeholder: 'Write your post content hereâ¦'
   });
   quill.on('text-change', updateSEO);
 
@@ -729,7 +729,7 @@ function initApp() {
   setInterval(() => renderPostList(), 60000);
 }
 
-/* ══════════════ NAVIGATION ══════════════ */
+/* ââââââââââââââ NAVIGATION ââââââââââââââ */
 function showView(view, filterCat, filterStat) {
   document.getElementById('view-dashboard').style.display = 'none';
   document.getElementById('view-editor').style.display = 'none';
@@ -741,7 +741,7 @@ function showView(view, filterCat, filterStat) {
     document.getElementById('nav-dashboard').classList.add('active');
     const label = filterCat ? filterCat : filterStat ? (filterStat.charAt(0).toUpperCase()+filterStat.slice(1)+' Posts') : 'All Posts';
     document.getElementById('topbar-title').textContent = label;
-    document.getElementById('topbar-actions').innerHTML = '<button class="btn btn-secondary btn-sm" onclick="openImport()" title="Import BOFU draft posts">⬆ Import Posts</button><button class="btn btn-primary btn-sm" onclick="newPost()">+ New Post</button>';
+    document.getElementById('topbar-actions').innerHTML = '<button class="btn btn-secondary btn-sm" onclick="openImport()" title="Import BOFU draft posts">â¬ Import Posts</button><button class="btn btn-primary btn-sm" onclick="newPost()">+ New Post</button>';
     if (filterStat) activeTab = filterStat;
     document.querySelectorAll('.status-tab').forEach(el => el.classList.remove('active'));
     const _tabId = activeTab === 'draft' ? 'drafts' : activeTab;
@@ -764,8 +764,8 @@ function showView(view, filterCat, filterStat) {
     const statusEl = document.getElementById('gh-token-status');
     if (statusEl) {
       statusEl.textContent = hasToken
-        ? '✓ GitHub token is set — Publish will sync directly to atbethesda.com.'
-        : '⚠ No token set — Publish will download the file instead.';
+        ? 'â GitHub token is set â Publish will sync directly to atbethesda.com.'
+        : 'â  No token set â Publish will download the file instead.';
       statusEl.style.color = hasToken ? '#2e7d32' : '#f57c00';
     }
   } else if (view === 'editor') {
@@ -773,8 +773,8 @@ function showView(view, filterCat, filterStat) {
     document.getElementById('nav-editor').classList.add('active');
     document.getElementById('topbar-title').textContent = editingId ? 'Edit Post' : 'New Post';
     document.getElementById('topbar-actions').innerHTML = `
-      <button class="btn btn-outline btn-sm" onclick="showView('dashboard')">← All Posts</button>
-      <button class="btn btn-success btn-sm" onclick="generatePost()">⬇ Generate HTML</button>
+      <button class="btn btn-outline btn-sm" onclick="showView('dashboard')">â All Posts</button>
+      <button class="btn btn-success btn-sm" onclick="generatePost()">â¬ Generate HTML</button>
     `;
     updateSEO();
   }
@@ -842,7 +842,7 @@ function filterStatus(status) {
   showView('dashboard', null, status);
 }
 
-/* ══════════════ STATUS CHANGE HANDLER ══════════════ */
+/* ââââââââââââââ STATUS CHANGE HANDLER ââââââââââââââ */
 function onStatusChange() {
   const statusEl = document.getElementById('post-status');
   const schedPreview = document.getElementById('schedule-preview');
@@ -859,11 +859,11 @@ function onStatusChange() {
       if (isPast) {
         schedPreview.style.background = '#fce4ec';
         schedPreview.style.color = '#c62828';
-        schedPreview.innerHTML = `⚠ That date/time is in the past. Change to a future date or switch to Published.`;
+        schedPreview.innerHTML = `â  That date/time is in the past. Change to a future date or switch to Published.`;
       } else {
         schedPreview.style.background = '#e3f2fd';
         schedPreview.style.color = '#1565c0';
-        schedPreview.innerHTML = `🕐 Will publish on<br><strong>${dt.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'})} at ${dt.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})}</strong>`;
+        schedPreview.innerHTML = `ð Will publish on<br><strong>${dt.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'})} at ${dt.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})}</strong>`;
       }
     } else {
       schedPreview.style.display = 'none';
@@ -873,7 +873,7 @@ function onStatusChange() {
   }
 }
 
-/* ══════════════ POST LIST ══════════════ */
+/* ââââââââââââââ POST LIST ââââââââââââââ */
 function isPostDue(post) {
   if (post.status !== 'scheduled') return false;
   const dt = new Date((post.date || '') + 'T' + (post.scheduledTime || '09:00'));
@@ -953,10 +953,10 @@ function renderPostList(filterCat, filterStat) {
   body.innerHTML = filtered.map(post => {
     const due = isPostDue(post);
     const scheduledLine = post.status === 'scheduled' && post.date
-      ? `<div style="font-size:.68rem;color:#1565c0;margin-top:3px;">🕐 ${formatDate(post.date)}${post.scheduledTime ? ' at ' + formatTime(post.scheduledTime) : ''}</div>`
+      ? `<div style="font-size:.68rem;color:#1565c0;margin-top:3px;">ð ${formatDate(post.date)}${post.scheduledTime ? ' at ' + formatTime(post.scheduledTime) : ''}</div>`
       : '';
     const dateDisplay = post.status === 'scheduled' && due
-      ? `<span style="color:#c62828;font-weight:700;font-size:.72rem;">⚡ Due now</span>`
+      ? `<span style="color:#c62828;font-weight:700;font-size:.72rem;">â¡ Due now</span>`
       : `<span style="font-size:.78rem;color:#888;">${formatDate(post.date)}</span>`;
     return `
     <tr>
@@ -964,17 +964,17 @@ function renderPostList(filterCat, filterStat) {
         <div style="font-size:.72rem;color:#aaa;margin-top:2px;">/${post.slug || ''}/</div>
         ${scheduledLine}
       </td>
-      <td>${post.category ? `<span class="cat-badge">${escHtml(post.category)}</span>` : '—'}</td>
+      <td>${post.category ? `<span class="cat-badge">${escHtml(post.category)}</span>` : 'â'}</td>
       <td><span class="post-status ${due ? 'due' : (post.status || 'draft')}">${due ? 'due now' : (post.status || 'draft')}</span></td>
       <td>${dateDisplay}</td>
       <td>
         <div class="tbl-actions">
           <button onclick="editPost('${post.id}')">Edit</button>
           ${post.status === 'scheduled'
-            ? `<button onclick="publishScheduled('${post.id}')">⬇ Publish Now</button>`
+            ? `<button onclick="publishScheduled('${post.id}')">â¬ Publish Now</button>`
             : post.status === 'published'
-              ? `<button onclick="generatePostById('${post.id}')">⬇ Download</button>`
-              : `<button onclick="generatePostById('${post.id}')">⬇ Download</button>`
+              ? `<button onclick="generatePostById('${post.id}')">â¬ Download</button>`
+              : `<button onclick="generatePostById('${post.id}')">â¬ Download</button>`
           }
           <button class="del" onclick="deletePost('${post.id}')">Delete</button>
         </div>
@@ -993,7 +993,7 @@ async function publishScheduled(id) {
   await pushPostToGitHub(post, html);
 }
 
-/* ══════════════ TAGS ══════════════ */
+/* ââââââââââââââ TAGS ââââââââââââââ */
 function handleTagKey(e) {
   if (e.key === 'Enter' || e.key === ',') {
     e.preventDefault();
@@ -1009,7 +1009,7 @@ function renderTagCloud() {
   ).join('');
 }
 
-/* ══════════════ IMAGE PREVIEW ══════════════ */
+/* ââââââââââââââ IMAGE PREVIEW ââââââââââââââ */
 function previewImage() {
   const url = document.getElementById('post-image').value.trim();
   const thumb = document.getElementById('image-thumb');
@@ -1017,7 +1017,7 @@ function previewImage() {
   else { thumb.style.display = 'none'; }
 }
 
-/* ══════════════ TITLE → SLUG ══════════════ */
+/* ââââââââââââââ TITLE â SLUG ââââââââââââââ */
 function onTitleChange() {
   const t = document.getElementById('post-title').value;
   document.getElementById('post-slug').value = slugify(t);
@@ -1027,7 +1027,7 @@ function slugify(t) {
   return t.toLowerCase().replace(/[^a-z0-9\s-]/g,'').replace(/\s+/g,'-').replace(/-+/g,'-').slice(0,80);
 }
 
-/* ══════════════ CHAR COUNTER ══════════════ */
+/* ââââââââââââââ CHAR COUNTER ââââââââââââââ */
 function updateCharCount() {
   const len = (document.getElementById('post-meta').value || '').length;
   const el = document.getElementById('meta-counter');
@@ -1035,7 +1035,7 @@ function updateCharCount() {
   el.className = 'char-counter' + (len > 160 ? ' over' : len > 140 ? ' warn' : '');
 }
 
-/* ══════════════ SEO SCORE ══════════════ */
+/* ââââââââââââââ SEO SCORE ââââââââââââââ */
 function updateSEO() {
   updateCharCount();
   const title = document.getElementById('post-title').value.trim();
@@ -1048,9 +1048,9 @@ function updateSEO() {
   const faqs = document.querySelectorAll('.faq-item').length;
 
   const checks = [
-    { id:'title', pass: title.length >= 30 && title.length <= 70, warn: title.length > 0 && (title.length < 30 || title.length > 70), label: `Title 30–70 chars (${title.length})` },
+    { id:'title', pass: title.length >= 30 && title.length <= 70, warn: title.length > 0 && (title.length < 30 || title.length > 70), label: `Title 30â70 chars (${title.length})` },
     { id:'slug', pass: slug.length > 0, label: 'URL slug set' },
-    { id:'meta', pass: meta.length >= 100 && meta.length <= 160, warn: meta.length > 0 && (meta.length < 100 || meta.length > 160), label: `Meta description 100–160 chars (${meta.length})` },
+    { id:'meta', pass: meta.length >= 100 && meta.length <= 160, warn: meta.length > 0 && (meta.length < 100 || meta.length > 160), label: `Meta description 100â160 chars (${meta.length})` },
     { id:'snippet', pass: snippet.length >= 50, label: 'AI snippet / answer box written' },
     { id:'image', pass: image.length > 0, label: 'Featured image added' },
     { id:'category', pass: cat.length > 0, label: 'Category selected' },
@@ -1071,18 +1071,18 @@ function updateSEO() {
   ).join('');
 }
 
-/* ══════════════ FAQ BUILDER ══════════════ */
+/* ââââââââââââââ FAQ BUILDER ââââââââââââââ */
 function addFaq(q='', a='') {
   const id = 'faq-' + Date.now() + Math.random();
   const div = document.createElement('div');
   div.className = 'faq-item';
   div.id = id;
   div.innerHTML = `
-    <button class="faq-remove" onclick="document.getElementById('${id}').remove();updateSEO()">✕</button>
+    <button class="faq-remove" onclick="document.getElementById('${id}').remove();updateSEO()">â</button>
     <label class="field-label">Question</label>
     <input type="text" placeholder="What is the average home price in Bethesda?" value="${escHtml(q)}" oninput="updateSEO()" />
     <label class="field-label">Answer</label>
-    <textarea rows="3" placeholder="Write a clear, concise answer…" oninput="updateSEO()">${escHtml(a)}</textarea>
+    <textarea rows="3" placeholder="Write a clear, concise answerâ¦" oninput="updateSEO()">${escHtml(a)}</textarea>
   `;
   document.getElementById('faq-list').appendChild(div);
   updateSEO();
@@ -1095,7 +1095,7 @@ function getFaqs() {
   })).filter(f => f.q && f.a);
 }
 
-/* ══════════════ SAVE TO localStorage ══════════════ */
+/* ââââââââââââââ SAVE TO localStorage ââââââââââââââ */
 function getCurrentPostData() {
   const status = document.getElementById('post-status').value;
   return {
@@ -1129,27 +1129,27 @@ function saveCurrentPost() {
   return data;
 }
 
-/* ══════════════ SAVE ACTIONS ══════════════ */
+/* ââââââââââââââ SAVE ACTIONS ââââââââââââââ */
 function saveDraft() {
   document.getElementById('post-status').value = 'draft';
   onStatusChange();
   const data = saveCurrentPost();
   showView('dashboard');
-  setTimeout(() => toast('💾 Saved as draft: ' + (data.title || 'Untitled')), 100);
+  setTimeout(() => toast('ð¾ Saved as draft: ' + (data.title || 'Untitled')), 100);
 }
 
 function saveScheduled() {
   const d = document.getElementById('post-date').value;
   const t = document.getElementById('post-time').value || '06:00';
-  if (!d) { toast('⚠ Set a publish date first'); return; }
+  if (!d) { toast('â  Set a publish date first'); return; }
   const dt = new Date(d + 'T' + t);
-  if (dt <= new Date()) { toast('⚠ Scheduled date must be in the future'); return; }
+  if (dt <= new Date()) { toast('â  Scheduled date must be in the future'); return; }
   document.getElementById('post-status').value = 'scheduled';
   onStatusChange();
   const data = saveCurrentPost();
   showView('dashboard');
   const label = dt.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) + ' at ' + formatTime(t);
-  setTimeout(() => toast('🕐 Scheduled for ' + label + ': ' + (data.title || 'Untitled')), 100);
+  setTimeout(() => toast('ð Scheduled for ' + label + ': ' + (data.title || 'Untitled')), 100);
 }
 
 async function publishNow() {
@@ -1161,21 +1161,21 @@ async function publishNow() {
   setTimeout(() => pushPostToGitHub(data, html), 100);
 }
 
-/* ══════════════ GITHUB SYNC ══════════════ */
+/* ââââââââââââââ GITHUB SYNC ââââââââââââââ */
 async function pushPostToGitHub(post, html) {
   const token = window._ghToken || localStorage.getItem('ab_gh_token');
   if (!token) {
-    // No token — fall back to download
+    // No token â fall back to download
     downloadFile(post.slug + '.html', html);
-    toast('📥 Downloaded — add a GitHub token in Settings to auto-publish.');
+    toast('ð¥ Downloaded â add a GitHub token in Settings to auto-publish.');
     return false;
   }
 
-  const path = 'vlog/' + post.slug + '/index.html';
+  const path = post.repoPath || ('vlog/' + post.slug + '/index.html');
   // Encode as base64 (btoa handles only Latin-1; encodeURIComponent + unescape handles full Unicode)
   const b64 = btoa(unescape(encodeURIComponent(html)));
 
-  toast('⏳ Publishing to atbethesda.com…');
+  toast('â³ Publishing to atbethesda.comâ¦');
 
   try {
     // GET existing file SHA (required to update an existing file)
@@ -1199,16 +1199,16 @@ async function pushPostToGitHub(post, html) {
     );
 
     if (pushR.ok) {
-      toast('✅ Live in ~60 sec → atbethesda.com/vlog/' + post.slug + '/');
+      toast('â Live in ~60 sec â atbethesda.com/vlog/' + post.slug + '/');
       return true;
     } else {
       const err = await pushR.json().catch(() => ({}));
-      toast('❌ GitHub error: ' + (err.message || pushR.status) + ' — downloading instead');
+      toast('â GitHub error: ' + (err.message || pushR.status) + ' â downloading instead');
       downloadFile(post.slug + '.html', html);
       return false;
     }
   } catch (err) {
-    toast('❌ Network error — downloading instead');
+    toast('â Network error â downloading instead');
     downloadFile(post.slug + '.html', html);
     return false;
   }
@@ -1228,33 +1228,33 @@ function saveGhToken() {
   window._ghToken = token;
   document.getElementById('gh-token-input').value = '';
   statusEl.style.color = '#2e7d32';
-  statusEl.textContent = '✓ Token saved! Publish now syncs directly to atbethesda.com.';
+  statusEl.textContent = 'â Token saved! Publish now syncs directly to atbethesda.com.';
 }
 
-/* ══════════════ GENERATE HTML ══════════════ */
+/* ââââââââââââââ GENERATE HTML ââââââââââââââ */
 function generatePost() {
   const post = saveCurrentPost();
   if (post.status === 'scheduled') {
     const dt = new Date(post.date + 'T' + (post.scheduledTime || '09:00'));
     const isPast = dt <= new Date();
     if (isPast) {
-      // Due now — publish it
+      // Due now â publish it
       post.status = 'published';
       const idx = posts.findIndex(p => p.id === post.id);
       if (idx >= 0) posts[idx].status = 'published';
       savePosts();
       const html = buildPostHTML(post);
       downloadFile(post.slug + '.html', html);
-      toast('✓ Published & downloaded: ' + post.slug + '.html');
+      toast('â Published & downloaded: ' + post.slug + '.html');
     } else {
-      toast('🕐 Saved as scheduled for ' + dt.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) + ' at ' + formatTime(post.scheduledTime));
+      toast('ð Saved as scheduled for ' + dt.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) + ' at ' + formatTime(post.scheduledTime));
       showView('dashboard');
     }
     return;
   }
   const html = buildPostHTML(post);
   downloadFile(post.slug + '.html', html);
-  toast('✓ Post downloaded: ' + post.slug + '.html');
+  toast('â Post downloaded: ' + post.slug + '.html');
 }
 
 function generatePostById(id) {
@@ -1262,7 +1262,7 @@ function generatePostById(id) {
   if (!post) return;
   const html = buildPostHTML(post);
   downloadFile(post.slug + '.html', html);
-  toast('✓ Downloaded: ' + post.slug + '.html');
+  toast('â Downloaded: ' + post.slug + '.html');
 }
 
 function previewPost() {
@@ -1272,13 +1272,13 @@ function previewPost() {
   window.open(URL.createObjectURL(blob), '_blank');
 }
 
-/* ══════════════ HTML GENERATOR ══════════════ */
+/* ââââââââââââââ HTML GENERATOR ââââââââââââââ */
 function buildPostHTML(post) {
   const title = post.title || 'Blog Post';
   const slug = post.slug || 'blog-post';
   const date = post.date || new Date().toISOString().split('T')[0];
   const dateFormatted = formatDate(date);
-  const meta = post.meta || (title + ' — @Bethesda Real Estate with Pey Behin.');
+  const meta = post.meta || (title + ' â @Bethesda Real Estate with Pey Behin.');
   const image = post.image || 'https://assets.thesparksite.com/uploads/sites/103/2024/07/BETHESDA-w-RED.png';
   const category = post.category || 'Real Estate';
   const snippet = post.snippet || '';
@@ -1371,7 +1371,7 @@ function buildPostHTML(post) {
 <html lang="en">
 <head>
 <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>${escHtml(title)} | @Bethesda Real Estate — Pey Behin</title>
+<title>${escHtml(title)} | @Bethesda Real Estate â Pey Behin</title>
 <meta name="description" content="${escHtml(meta)}" />
 <meta name="author" content="Pey Behin" />
 <link rel="canonical" href="${canonicalUrl}" />
@@ -1421,7 +1421,7 @@ ${speakableSchema ? `<script type="application/ld+json">${JSON.stringify(speakab
   <a href="/" class="nav-logo"><img src="https://assets.thesparksite.com/uploads/sites/103/2024/07/BETHESDA-w-RED.png" alt="@Bethesda Real Estate" /></a>
   <ul class="nav-links">
     <li><a href="/">Home</a></li>
-    <li class="nav-dropdown"><a href="/properties/">Buy ▾</a>
+    <li class="nav-dropdown"><a href="/properties/">Buy â¾</a>
       <ul class="nav-dropdown-menu">
         <li><a href="/properties/">Properties</a></li>
         <li><a href="/perfect-home-finder/">Perfect Home Finder</a></li>
@@ -1429,7 +1429,7 @@ ${speakableSchema ? `<script type="application/ld+json">${JSON.stringify(speakab
         <li><a href="/mortgage-calculator/">Mortgage Calculator</a></li>
       </ul>
     </li>
-    <li class="nav-dropdown"><a href="/whats-my-home-worth/">Sell ▾</a>
+    <li class="nav-dropdown"><a href="/whats-my-home-worth/">Sell â¾</a>
       <ul class="nav-dropdown-menu">
         <li><a href="/whats-my-home-worth/">Home Valuation</a></li>
         <li><a href="/sellers-guide/">Seller's Guide</a></li>
@@ -1447,14 +1447,14 @@ ${speakableSchema ? `<script type="application/ld+json">${JSON.stringify(speakab
   <div style="max-width:760px;margin:0 auto;">
     <nav aria-label="breadcrumb" style="display:flex;gap:8px;align-items:center;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.5);margin-bottom:16px;">
       <a href="/" style="color:rgba(255,255,255,.5);text-decoration:none;">Home</a>
-      <span style="color:rgba(255,255,255,.3);">›</span>
+      <span style="color:rgba(255,255,255,.3);">âº</span>
       <a href="/vlog/" style="color:rgba(255,255,255,.5);text-decoration:none;">Blog</a>
-      <span style="color:rgba(255,255,255,.3);">›</span>
+      <span style="color:rgba(255,255,255,.3);">âº</span>
       <span style="color:rgba(255,255,255,.7);">${escHtml(category)}</span>
     </nav>
     <span style="font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#b72545;display:block;margin-bottom:12px;">${escHtml(category)}</span>
     <h1 style="font-size:clamp(1.8rem,4vw,3rem);font-weight:900;text-transform:uppercase;letter-spacing:.04em;color:#fff;line-height:1.1;margin-bottom:14px;">${escHtml(title)}</h1>
-    <p style="font-size:.9rem;color:rgba(255,255,255,.7);">${dateFormatted} &nbsp;·&nbsp; By Pey Behin, RLAH Properties</p>
+    <p style="font-size:.9rem;color:rgba(255,255,255,.7);">${dateFormatted} &nbsp;Â·&nbsp; By Pey Behin, RLAH Properties</p>
   </div>
 </div>
 
@@ -1464,7 +1464,7 @@ ${speakableSchema ? `<script type="application/ld+json">${JSON.stringify(speakab
     <div class="author-avatar">P</div>
     <div class="author-info">
       <strong itemprop="author">Pey Behin</strong>
-      <span>REALTOR® · RLAH Properties · Bethesda, MD · <time itemprop="datePublished" datetime="${date}">${dateFormatted}</time></span>
+      <span>REALTORÂ® Â· RLAH Properties Â· Bethesda, MD Â· <time itemprop="datePublished" datetime="${date}">${dateFormatted}</time></span>
     </div>
   </div>
   ${snippetHTML}
@@ -1481,7 +1481,7 @@ ${faqHTML}
   <div style="max-width:600px;margin:0 auto;">
     <span style="font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6);display:block;margin-bottom:10px;">Work With Pey</span>
     <h2 style="font-size:clamp(1.4rem,3vw,2rem);font-weight:900;text-transform:uppercase;letter-spacing:.04em;color:#fff;margin-bottom:16px;">Ready to Make Your Move?</h2>
-    <p style="color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:28px;font-size:.9rem;">Whether you're buying, selling, or just exploring your options in Bethesda, Chevy Chase, or Potomac — let's talk.</p>
+    <p style="color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:28px;font-size:.9rem;">Whether you're buying, selling, or just exploring your options in Bethesda, Chevy Chase, or Potomac â let's talk.</p>
     <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
       <a href="/contact/" style="display:inline-block;background:#fff;color:#b72545;padding:13px 28px;border-radius:4px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;text-decoration:none;">Let's Connect</a>
       <a href="/whats-my-home-worth/" style="display:inline-block;background:transparent;color:#fff;border:2px solid rgba(255,255,255,.5);padding:12px 28px;border-radius:4px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;text-decoration:none;">Home Valuation</a>
@@ -1497,17 +1497,17 @@ ${faqHTML}
       <div class="footer-col"><h4>Areas</h4><ul><li><a href="/our-areas/bethesda/">Bethesda</a></li><li><a href="/our-areas/chevy-chase/">Chevy Chase</a></li><li><a href="/our-areas/potomac/">Potomac</a></li><li><a href="/our-areas/north-bethesda/">North Bethesda</a></li></ul></div>
       <div class="footer-col"><h4>More</h4><ul><li><a href="/about/">About Pey</a></li><li><a href="/testimonials/">Testimonials</a></li><li><a href="/vlog/">Blog</a></li><li><a href="/contact/">Contact</a></li></ul></div>
     </div>
-    <div class="footer-bottom"><p>RLAH Properties | 4600 North Park Ave Suite 100, Chevy Chase, MD 20815 | © ${new Date().getFullYear()} @Bethesda Real Estate. All rights reserved.</p></div>
+    <div class="footer-bottom"><p>RLAH Properties | 4600 North Park Ave Suite 100, Chevy Chase, MD 20815 | Â© ${new Date().getFullYear()} @Bethesda Real Estate. All rights reserved.</p></div>
   </div>
 </footer>
-<div class="mobile-bar"><a href="tel:+13016520643">📞 Call</a><a href="sms:+13016520643">💬 Text</a><a href="/contact/" class="primary">Connect</a><a href="/whats-my-home-worth/">Valuation</a></div>
+<div class="mobile-bar"><a href="tel:+13016520643">ð Call</a><a href="sms:+13016520643">ð¬ Text</a><a href="/contact/" class="primary">Connect</a><a href="/whats-my-home-worth/">Valuation</a></div>
 <script src="../../js/main.js"><\/script>
 
   <!-- IMPORT MODAL -->
   <div id="import-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;display:none;align-items:center;justify-content:center;">
     <div style="background:#fff;border-radius:12px;padding:36px 40px;max-width:540px;width:94%;box-shadow:0 20px 60px rgba(0,0,0,.3);">
       <h2 style="margin:0 0 8px;font-size:1.3rem;color:#0a0a0a;">Import BOFU Draft Posts</h2>
-      <p style="color:#666;font-size:.85rem;margin:0 0 20px;">Select the <code>ab_drafts_import.json</code> file from your Downloads folder. Posts are added as drafts — existing posts with the same ID are skipped.</p>
+      <p style="color:#666;font-size:.85rem;margin:0 0 20px;">Select the <code>ab_drafts_import.json</code> file from your Downloads folder. Posts are added as drafts â existing posts with the same ID are skipped.</p>
       <input type="file" id="import-file-input" accept=".json" style="display:block;width:100%;margin-bottom:16px;font-size:.85rem;">
       <div id="import-status" style="min-height:24px;font-size:.85rem;color:#1565c0;margin-bottom:16px;"></div>
       <div style="display:flex;gap:10px;justify-content:flex-end;">
@@ -1520,7 +1520,7 @@ ${faqHTML}
 </html>`;
 }
 
-/* ══════════════ UTILS ══════════════ */
+/* ââââââââââââââ UTILS ââââââââââââââ */
 function escHtml(str) {
   return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
@@ -1552,117 +1552,117 @@ function toast(msg) {
 /* Start on dashboard */
 showView('dashboard');
 
-/* ══════════════ SCHOOLS DATA ══════════════ */
+/* ââââââââââââââ SCHOOLS DATA ââââââââââââââ */
 const AREAS_SCHOOLS_DEFAULT = {
   'bethesda': { name:'Bethesda, MD', schools:[
-    {name:'Walter Johnson High School',grades:'9–12',url:'https://www.greatschools.org/maryland/bethesda/3499-walter-johnson-high-school/'},
-    {name:'Westland Middle School',grades:'6–8',url:'https://www.greatschools.org/maryland/bethesda/3498-westland-middle-school/'},
-    {name:'Walt Whitman High School',grades:'9–12',url:'https://www.greatschools.org/maryland/bethesda/3514-walt-whitman-high-school/'},
-    {name:'Westbrook Elementary',grades:'PK–5',url:'https://www.greatschools.org/maryland/bethesda/3497-westbrook-elementary/'},
+    {name:'Walter Johnson High School',grades:'9â12',url:'https://www.greatschools.org/maryland/bethesda/3499-walter-johnson-high-school/'},
+    {name:'Westland Middle School',grades:'6â8',url:'https://www.greatschools.org/maryland/bethesda/3498-westland-middle-school/'},
+    {name:'Walt Whitman High School',grades:'9â12',url:'https://www.greatschools.org/maryland/bethesda/3514-walt-whitman-high-school/'},
+    {name:'Westbrook Elementary',grades:'PKâ5',url:'https://www.greatschools.org/maryland/bethesda/3497-westbrook-elementary/'},
   ]},
   'chevy-chase': { name:'Chevy Chase, MD', schools:[
-    {name:'Bethesda-Chevy Chase High School',grades:'9–12',url:'https://www.greatschools.org/maryland/bethesda/3478-bethesda-chevy-chase-high/'},
-    {name:'Westland Middle School',grades:'6–8',url:'https://www.greatschools.org/maryland/bethesda/3498-westland-middle-school/'},
-    {name:'Chevy Chase Elementary',grades:'PK–5',url:'https://www.greatschools.org/maryland/chevy-chase/3479-chevy-chase-elementary/'},
+    {name:'Bethesda-Chevy Chase High School',grades:'9â12',url:'https://www.greatschools.org/maryland/bethesda/3478-bethesda-chevy-chase-high/'},
+    {name:'Westland Middle School',grades:'6â8',url:'https://www.greatschools.org/maryland/bethesda/3498-westland-middle-school/'},
+    {name:'Chevy Chase Elementary',grades:'PKâ5',url:'https://www.greatschools.org/maryland/chevy-chase/3479-chevy-chase-elementary/'},
   ]},
   'potomac': { name:'Potomac, MD', schools:[
-    {name:'Winston Churchill High School',grades:'9–12',url:'https://www.greatschools.org/maryland/potomac/3505-winston-churchill-high-school/'},
-    {name:'Herbert Hoover Middle School',grades:'6–8',url:'https://www.greatschools.org/maryland/potomac/3503-herbert-hoover-middle-school/'},
-    {name:'Potomac Elementary',grades:'PK–5',url:'https://www.greatschools.org/maryland/potomac/3504-potomac-elementary/'},
-    {name:'Beverly Farms Elementary',grades:'PK–5',url:'https://www.greatschools.org/maryland/potomac/3474-beverly-farms-elementary/'},
+    {name:'Winston Churchill High School',grades:'9â12',url:'https://www.greatschools.org/maryland/potomac/3505-winston-churchill-high-school/'},
+    {name:'Herbert Hoover Middle School',grades:'6â8',url:'https://www.greatschools.org/maryland/potomac/3503-herbert-hoover-middle-school/'},
+    {name:'Potomac Elementary',grades:'PKâ5',url:'https://www.greatschools.org/maryland/potomac/3504-potomac-elementary/'},
+    {name:'Beverly Farms Elementary',grades:'PKâ5',url:'https://www.greatschools.org/maryland/potomac/3474-beverly-farms-elementary/'},
   ]},
   'north-bethesda': { name:'North Bethesda, MD', schools:[
-    {name:'Thomas S. Wootton High School',grades:'9–12',url:'https://www.greatschools.org/maryland/rockville/3511-thomas-s-wootton-high-school/'},
-    {name:'Robert Frost Middle School',grades:'6–8',url:'https://www.greatschools.org/maryland/rockville/3508-robert-frost-middle-school/'},
-    {name:'Luxmanor Elementary',grades:'PK–5',url:'https://www.greatschools.org/maryland/rockville/3493-luxmanor-elementary/'},
+    {name:'Thomas S. Wootton High School',grades:'9â12',url:'https://www.greatschools.org/maryland/rockville/3511-thomas-s-wootton-high-school/'},
+    {name:'Robert Frost Middle School',grades:'6â8',url:'https://www.greatschools.org/maryland/rockville/3508-robert-frost-middle-school/'},
+    {name:'Luxmanor Elementary',grades:'PKâ5',url:'https://www.greatschools.org/maryland/rockville/3493-luxmanor-elementary/'},
   ]},
   'rockville': { name:'Rockville, MD', schools:[
-    {name:'Richard Montgomery High School',grades:'9–12',url:'https://www.greatschools.org/maryland/rockville/3507-richard-montgomery-high-school/'},
-    {name:'Thomas S. Wootton High School',grades:'9–12',url:'https://www.greatschools.org/maryland/rockville/3511-thomas-s-wootton-high-school/'},
-    {name:'Julius West Middle School',grades:'6–8',url:'https://www.greatschools.org/maryland/rockville/3490-julius-west-middle-school/'},
-    {name:'Robert Frost Middle School',grades:'6–8',url:'https://www.greatschools.org/maryland/rockville/3508-robert-frost-middle-school/'},
+    {name:'Richard Montgomery High School',grades:'9â12',url:'https://www.greatschools.org/maryland/rockville/3507-richard-montgomery-high-school/'},
+    {name:'Thomas S. Wootton High School',grades:'9â12',url:'https://www.greatschools.org/maryland/rockville/3511-thomas-s-wootton-high-school/'},
+    {name:'Julius West Middle School',grades:'6â8',url:'https://www.greatschools.org/maryland/rockville/3490-julius-west-middle-school/'},
+    {name:'Robert Frost Middle School',grades:'6â8',url:'https://www.greatschools.org/maryland/rockville/3508-robert-frost-middle-school/'},
   ]},
   'kensington': { name:'Kensington, MD', schools:[
-    {name:'Albert Einstein High School',grades:'9–12',url:'https://www.greatschools.org/maryland/kensington/3484-albert-einstein-high-school/'},
-    {name:'Kingsview Middle School',grades:'6–8',url:'https://www.greatschools.org/maryland/germantown/3491-kingsview-middle-school/'},
-    {name:'Oakland Terrace Elementary',grades:'PK–5',url:'https://www.greatschools.org/maryland/kensington/3500-oakland-terrace-elementary/'},
+    {name:'Albert Einstein High School',grades:'9â12',url:'https://www.greatschools.org/maryland/kensington/3484-albert-einstein-high-school/'},
+    {name:'Kingsview Middle School',grades:'6â8',url:'https://www.greatschools.org/maryland/germantown/3491-kingsview-middle-school/'},
+    {name:'Oakland Terrace Elementary',grades:'PKâ5',url:'https://www.greatschools.org/maryland/kensington/3500-oakland-terrace-elementary/'},
   ]},
   'silver-spring': { name:'Silver Spring, MD', schools:[
-    {name:'Montgomery Blair High School',grades:'9–12',url:'https://www.greatschools.org/maryland/silver-spring/3488-montgomery-blair-high-school/'},
-    {name:'Silver Spring International MS',grades:'6–8',url:'https://www.greatschools.org/maryland/silver-spring/3509-silver-spring-international-middle/'},
+    {name:'Montgomery Blair High School',grades:'9â12',url:'https://www.greatschools.org/maryland/silver-spring/3488-montgomery-blair-high-school/'},
+    {name:'Silver Spring International MS',grades:'6â8',url:'https://www.greatschools.org/maryland/silver-spring/3509-silver-spring-international-middle/'},
   ]},
   'gaithersburg': { name:'Gaithersburg, MD', schools:[
-    {name:'Quince Orchard High School',grades:'9–12',url:'https://www.greatschools.org/maryland/gaithersburg/3506-quince-orchard-high-school/'},
-    {name:'Gaithersburg High School',grades:'9–12',url:'https://www.greatschools.org/maryland/gaithersburg/3483-gaithersburg-high-school/'},
-    {name:'Gaithersburg Middle School',grades:'6–8',url:'https://www.greatschools.org/maryland/gaithersburg/3482-gaithersburg-middle-school/'},
+    {name:'Quince Orchard High School',grades:'9â12',url:'https://www.greatschools.org/maryland/gaithersburg/3506-quince-orchard-high-school/'},
+    {name:'Gaithersburg High School',grades:'9â12',url:'https://www.greatschools.org/maryland/gaithersburg/3483-gaithersburg-high-school/'},
+    {name:'Gaithersburg Middle School',grades:'6â8',url:'https://www.greatschools.org/maryland/gaithersburg/3482-gaithersburg-middle-school/'},
   ]},
   'north-potomac': { name:'North Potomac, MD', schools:[
-    {name:'Thomas S. Wootton High School',grades:'9–12',url:'https://www.greatschools.org/maryland/rockville/3511-thomas-s-wootton-high-school/'},
-    {name:'Robert Frost Middle School',grades:'6–8',url:'https://www.greatschools.org/maryland/rockville/3508-robert-frost-middle-school/'},
-    {name:'Travilah Elementary',grades:'PK–5',url:'https://www.greatschools.org/maryland/north-potomac/3513-travilah-elementary/'},
+    {name:'Thomas S. Wootton High School',grades:'9â12',url:'https://www.greatschools.org/maryland/rockville/3511-thomas-s-wootton-high-school/'},
+    {name:'Robert Frost Middle School',grades:'6â8',url:'https://www.greatschools.org/maryland/rockville/3508-robert-frost-middle-school/'},
+    {name:'Travilah Elementary',grades:'PKâ5',url:'https://www.greatschools.org/maryland/north-potomac/3513-travilah-elementary/'},
   ]},
   'cabin-john': { name:'Cabin John, MD', schools:[
-    {name:'Winston Churchill High School',grades:'9–12',url:'https://www.greatschools.org/maryland/potomac/3505-winston-churchill-high-school/'},
-    {name:'Cabin John Middle School',grades:'6–8',url:'https://www.greatschools.org/maryland/cabin-john/3477-cabin-john-middle-school/'},
-    {name:'Beverly Farms Elementary',grades:'PK–5',url:'https://www.greatschools.org/maryland/potomac/3474-beverly-farms-elementary/'},
+    {name:'Winston Churchill High School',grades:'9â12',url:'https://www.greatschools.org/maryland/potomac/3505-winston-churchill-high-school/'},
+    {name:'Cabin John Middle School',grades:'6â8',url:'https://www.greatschools.org/maryland/cabin-john/3477-cabin-john-middle-school/'},
+    {name:'Beverly Farms Elementary',grades:'PKâ5',url:'https://www.greatschools.org/maryland/potomac/3474-beverly-farms-elementary/'},
   ]},
   'friendship-heights': { name:'Friendship Heights, MD/DC', schools:[
-    {name:'Jackson-Reed High School (DC)',grades:'9–12',url:'https://www.greatschools.org/district-of-columbia/washington/5966-jackson-reed-high-school/'},
-    {name:'Deal Middle School (DC)',grades:'6–8',url:'https://www.greatschools.org/district-of-columbia/washington/5929-deal-middle-school/'},
-    {name:'Bethesda-Chevy Chase HS (MD)',grades:'9–12',url:'https://www.greatschools.org/maryland/bethesda/3478-bethesda-chevy-chase-high/'},
+    {name:'Jackson-Reed High School (DC)',grades:'9â12',url:'https://www.greatschools.org/district-of-columbia/washington/5966-jackson-reed-high-school/'},
+    {name:'Deal Middle School (DC)',grades:'6â8',url:'https://www.greatschools.org/district-of-columbia/washington/5929-deal-middle-school/'},
+    {name:'Bethesda-Chevy Chase HS (MD)',grades:'9â12',url:'https://www.greatschools.org/maryland/bethesda/3478-bethesda-chevy-chase-high/'},
   ]},
   'chevy-chase-dc': { name:'Chevy Chase, DC', schools:[
-    {name:'Jackson-Reed High School',grades:'9–12',url:'https://www.greatschools.org/district-of-columbia/washington/5966-jackson-reed-high-school/'},
-    {name:'Deal Middle School',grades:'6–8',url:'https://www.greatschools.org/district-of-columbia/washington/5929-deal-middle-school/'},
-    {name:'Lafayette Elementary',grades:'PK–5',url:'https://www.greatschools.org/district-of-columbia/washington/5931-lafayette-elementary-school/'},
+    {name:'Jackson-Reed High School',grades:'9â12',url:'https://www.greatschools.org/district-of-columbia/washington/5966-jackson-reed-high-school/'},
+    {name:'Deal Middle School',grades:'6â8',url:'https://www.greatschools.org/district-of-columbia/washington/5929-deal-middle-school/'},
+    {name:'Lafayette Elementary',grades:'PKâ5',url:'https://www.greatschools.org/district-of-columbia/washington/5931-lafayette-elementary-school/'},
   ]},
   'georgetown': { name:'Georgetown, DC', schools:[
-    {name:'Jackson-Reed High School',grades:'9–12',url:'https://www.greatschools.org/district-of-columbia/washington/5966-jackson-reed-high-school/'},
-    {name:'Hardy Middle School',grades:'6–8',url:'https://www.greatschools.org/district-of-columbia/washington/5930-hardy-middle-school/'},
-    {name:'Hyde-Addison Elementary',grades:'PK–5',url:'https://www.greatschools.org/district-of-columbia/washington/5928-hyde-addison-elementary-school/'},
+    {name:'Jackson-Reed High School',grades:'9â12',url:'https://www.greatschools.org/district-of-columbia/washington/5966-jackson-reed-high-school/'},
+    {name:'Hardy Middle School',grades:'6â8',url:'https://www.greatschools.org/district-of-columbia/washington/5930-hardy-middle-school/'},
+    {name:'Hyde-Addison Elementary',grades:'PKâ5',url:'https://www.greatschools.org/district-of-columbia/washington/5928-hyde-addison-elementary-school/'},
   ]},
   'palisades': { name:'The Palisades, DC', schools:[
-    {name:'Jackson-Reed High School',grades:'9–12',url:'https://www.greatschools.org/district-of-columbia/washington/5966-jackson-reed-high-school/'},
-    {name:'Hardy Middle School',grades:'6–8',url:'https://www.greatschools.org/district-of-columbia/washington/5930-hardy-middle-school/'},
-    {name:'Key Elementary',grades:'PK–5',url:'https://www.greatschools.org/district-of-columbia/washington/5932-francis-scott-key-elementary-school/'},
+    {name:'Jackson-Reed High School',grades:'9â12',url:'https://www.greatschools.org/district-of-columbia/washington/5966-jackson-reed-high-school/'},
+    {name:'Hardy Middle School',grades:'6â8',url:'https://www.greatschools.org/district-of-columbia/washington/5930-hardy-middle-school/'},
+    {name:'Key Elementary',grades:'PKâ5',url:'https://www.greatschools.org/district-of-columbia/washington/5932-francis-scott-key-elementary-school/'},
   ]},
   'spring-valley': { name:'Spring Valley, DC', schools:[
-    {name:'Jackson-Reed High School',grades:'9–12',url:'https://www.greatschools.org/district-of-columbia/washington/5966-jackson-reed-high-school/'},
-    {name:'Deal Middle School',grades:'6–8',url:'https://www.greatschools.org/district-of-columbia/washington/5929-deal-middle-school/'},
-    {name:'Janney Elementary',grades:'PK–5',url:'https://www.greatschools.org/district-of-columbia/washington/5933-janney-elementary-school/'},
+    {name:'Jackson-Reed High School',grades:'9â12',url:'https://www.greatschools.org/district-of-columbia/washington/5966-jackson-reed-high-school/'},
+    {name:'Deal Middle School',grades:'6â8',url:'https://www.greatschools.org/district-of-columbia/washington/5929-deal-middle-school/'},
+    {name:'Janney Elementary',grades:'PKâ5',url:'https://www.greatschools.org/district-of-columbia/washington/5933-janney-elementary-school/'},
   ]},
   'mclean-vienna-tysons': { name:'McLean / Vienna / Tysons', schools:[
-    {name:'McLean High School',grades:'9–12',url:'https://www.greatschools.org/virginia/mclean/4714-mclean-high-school/'},
-    {name:'Langley High School',grades:'9–12',url:'https://www.greatschools.org/virginia/mclean/4710-langley-high-school/'},
-    {name:'Cooper Middle School',grades:'6–8',url:'https://www.greatschools.org/virginia/mclean/4706-cooper-middle-school/'},
-    {name:'Longfellow Middle School',grades:'6–8',url:'https://www.greatschools.org/virginia/falls-church/4711-longfellow-middle-school/'},
+    {name:'McLean High School',grades:'9â12',url:'https://www.greatschools.org/virginia/mclean/4714-mclean-high-school/'},
+    {name:'Langley High School',grades:'9â12',url:'https://www.greatschools.org/virginia/mclean/4710-langley-high-school/'},
+    {name:'Cooper Middle School',grades:'6â8',url:'https://www.greatschools.org/virginia/mclean/4706-cooper-middle-school/'},
+    {name:'Longfellow Middle School',grades:'6â8',url:'https://www.greatschools.org/virginia/falls-church/4711-longfellow-middle-school/'},
   ]},
   'great-falls': { name:'Great Falls, VA', schools:[
-    {name:'Langley High School',grades:'9–12',url:'https://www.greatschools.org/virginia/mclean/4710-langley-high-school/'},
-    {name:'Cooper Middle School',grades:'6–8',url:'https://www.greatschools.org/virginia/mclean/4706-cooper-middle-school/'},
-    {name:'Great Falls Elementary',grades:'PK–5',url:'https://www.greatschools.org/virginia/great-falls/4708-great-falls-elementary/'},
+    {name:'Langley High School',grades:'9â12',url:'https://www.greatschools.org/virginia/mclean/4710-langley-high-school/'},
+    {name:'Cooper Middle School',grades:'6â8',url:'https://www.greatschools.org/virginia/mclean/4706-cooper-middle-school/'},
+    {name:'Great Falls Elementary',grades:'PKâ5',url:'https://www.greatschools.org/virginia/great-falls/4708-great-falls-elementary/'},
   ]},
   'arlington': { name:'Arlington, VA', schools:[
-    {name:'Yorktown High School',grades:'9–12',url:'https://www.greatschools.org/virginia/arlington/4637-yorktown-high-school/'},
-    {name:'Wakefield High School',grades:'9–12',url:'https://www.greatschools.org/virginia/arlington/4636-wakefield-high-school/'},
-    {name:'Washington-Liberty High School',grades:'9–12',url:'https://www.greatschools.org/virginia/arlington/4635-washington-liberty-high-school/'},
-    {name:'Swanson Middle School',grades:'6–8',url:'https://www.greatschools.org/virginia/arlington/4632-swanson-middle-school/'},
+    {name:'Yorktown High School',grades:'9â12',url:'https://www.greatschools.org/virginia/arlington/4637-yorktown-high-school/'},
+    {name:'Wakefield High School',grades:'9â12',url:'https://www.greatschools.org/virginia/arlington/4636-wakefield-high-school/'},
+    {name:'Washington-Liberty High School',grades:'9â12',url:'https://www.greatschools.org/virginia/arlington/4635-washington-liberty-high-school/'},
+    {name:'Swanson Middle School',grades:'6â8',url:'https://www.greatschools.org/virginia/arlington/4632-swanson-middle-school/'},
   ]},
   'alexandria': { name:'Alexandria, VA', schools:[
-    {name:'Alexandria City High School',grades:'9–12',url:'https://www.greatschools.org/virginia/alexandria/4591-alexandria-city-high-school/'},
-    {name:'George Washington Middle School',grades:'6–8',url:'https://www.greatschools.org/virginia/alexandria/4587-george-washington-middle-school/'},
-    {name:'Jefferson-Houston PreK–8',grades:'PK–8',url:'https://www.greatschools.org/virginia/alexandria/4588-jefferson-houston-preK-8-school/'},
+    {name:'Alexandria City High School',grades:'9â12',url:'https://www.greatschools.org/virginia/alexandria/4591-alexandria-city-high-school/'},
+    {name:'George Washington Middle School',grades:'6â8',url:'https://www.greatschools.org/virginia/alexandria/4587-george-washington-middle-school/'},
+    {name:'Jefferson-Houston PreKâ8',grades:'PKâ8',url:'https://www.greatschools.org/virginia/alexandria/4588-jefferson-houston-preK-8-school/'},
   ]},
   'fairfax': { name:'Fairfax, VA', schools:[
-    {name:'W.T. Woodson High School',grades:'9–12',url:'https://www.greatschools.org/virginia/fairfax/4701-w-t-woodson-high-school/'},
-    {name:'Fairfax High School',grades:'9–12',url:'https://www.greatschools.org/virginia/fairfax/4703-fairfax-high-school/'},
-    {name:'Frost Middle School',grades:'6–8',url:'https://www.greatschools.org/virginia/fairfax/4700-robert-frost-middle-school/'},
+    {name:'W.T. Woodson High School',grades:'9â12',url:'https://www.greatschools.org/virginia/fairfax/4701-w-t-woodson-high-school/'},
+    {name:'Fairfax High School',grades:'9â12',url:'https://www.greatschools.org/virginia/fairfax/4703-fairfax-high-school/'},
+    {name:'Frost Middle School',grades:'6â8',url:'https://www.greatschools.org/virginia/fairfax/4700-robert-frost-middle-school/'},
   ]},
   'falls-church': { name:'Falls Church, VA', schools:[
-    {name:'George Mason High School',grades:'9–12',url:'https://www.greatschools.org/virginia/falls-church/4620-george-mason-high-school/'},
-    {name:'Mary Ellen Henderson MS',grades:'6–8',url:'https://www.greatschools.org/virginia/falls-church/4621-mary-ellen-henderson-middle-school/'},
-    {name:'Mt. Daniel Elementary',grades:'PK–2',url:'https://www.greatschools.org/virginia/falls-church/4622-mt-daniel-elementary-school/'},
-    {name:'Thomas Jefferson Elementary',grades:'3–5',url:'https://www.greatschools.org/virginia/falls-church/4623-thomas-jefferson-elementary-school/'},
+    {name:'George Mason High School',grades:'9â12',url:'https://www.greatschools.org/virginia/falls-church/4620-george-mason-high-school/'},
+    {name:'Mary Ellen Henderson MS',grades:'6â8',url:'https://www.greatschools.org/virginia/falls-church/4621-mary-ellen-henderson-middle-school/'},
+    {name:'Mt. Daniel Elementary',grades:'PKâ2',url:'https://www.greatschools.org/virginia/falls-church/4622-mt-daniel-elementary-school/'},
+    {name:'Thomas Jefferson Elementary',grades:'3â5',url:'https://www.greatschools.org/virginia/falls-church/4623-thomas-jefferson-elementary-school/'},
   ]},
 };
 
@@ -1702,22 +1702,22 @@ function renderSchoolEditor(slug) {
   const area = schoolsData[slug] || AREAS_SCHOOLS_DEFAULT[slug];
   const el = document.getElementById('schools-editor-area');
   el.innerHTML = `
-    <h2 style="font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;margin-bottom:16px;">${area.name} — Schools</h2>
+    <h2 style="font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;margin-bottom:16px;">${area.name} â Schools</h2>
     <div id="school-cards-${slug}">
       ${area.schools.map((s,i) => schoolCard(slug,i,s)).join('')}
     </div>
     <button class="add-school-btn" onclick="addSchoolCard('${slug}')">+ Add School</button>
     <div class="schools-actions">
-      <button class="btn btn-primary" onclick="saveAndConfirm('${slug}')">💾 Save Schools</button>
-      <button class="btn btn-success" onclick="downloadAreaPage('${slug}')">⬇ Download Updated Page</button>
+      <button class="btn btn-primary" onclick="saveAndConfirm('${slug}')">ð¾ Save Schools</button>
+      <button class="btn btn-success" onclick="downloadAreaPage('${slug}')">â¬ Download Updated Page</button>
     </div>
-    <p style="font-size:.68rem;color:#aaa;margin-top:10px;">💡 Tip: Verify GreatSchools URLs once a year after they publish new ratings (usually Oct–Dec). Paste the URL directly from the school's GreatSchools profile page.</p>
+    <p style="font-size:.68rem;color:#aaa;margin-top:10px;">ð¡ Tip: Verify GreatSchools URLs once a year after they publish new ratings (usually OctâDec). Paste the URL directly from the school's GreatSchools profile page.</p>
   `;
 }
 
 function schoolCard(slug, idx, s) {
   return `<div class="school-editor-card" id="scard-${slug}-${idx}">
-    <button class="school-remove-btn" onclick="removeSchoolCard('${slug}',${idx})">✕</button>
+    <button class="school-remove-btn" onclick="removeSchoolCard('${slug}',${idx})">â</button>
     <div class="school-editor-row">
       <div>
         <span class="school-editor-label">School Name</span>
@@ -1770,19 +1770,19 @@ function saveCurrentAreaEdits() {
 function saveAndConfirm(slug) {
   saveCurrentAreaEdits();
   saveSchoolsData();
-  showToast('Schools saved for ' + schoolsData[slug].name + ' ✓');
+  showToast('Schools saved for ' + schoolsData[slug].name + ' â');
 }
 
-/* ══════════════ GENERATE AREA PAGE HTML ══════════════ */
+/* ââââââââââââââ GENERATE AREA PAGE HTML ââââââââââââââ */
 function buildSchoolsGrid(slug) {
   const area = schoolsData[slug] || AREAS_SCHOOLS_DEFAULT[slug];
   return area.schools.map(s => `
     <div class="school-card">
-      <div class="school-icon">🎓</div>
+      <div class="school-icon">ð</div>
       <div class="school-info">
         <strong>${s.name}</strong>
         <span>Grades ${s.grades}</span>
-        ${s.url ? `<a href="${s.url}" target="_blank" rel="noopener" class="gs-link">View on GreatSchools →</a>` : ''}
+        ${s.url ? `<a href="${s.url}" target="_blank" rel="noopener" class="gs-link">View on GreatSchools â</a>` : ''}
       </div>
     </div>`).join('');
 }
@@ -1800,7 +1800,7 @@ function downloadAreaPage(slug) {
 
   // Download the schools block as a snippet for now
   // (In a full deploy pipeline this would regenerate the whole page)
-  const snippet = `<!-- UPDATED SCHOOL CARDS for ${areaName} — paste inside .schools-grid div -->
+  const snippet = `<!-- UPDATED SCHOOL CARDS for ${areaName} â paste inside .schools-grid div -->
 ${schoolsGrid}`;
 
   const blob = new Blob([snippet], {type:'text/html'});
@@ -1813,7 +1813,7 @@ ${schoolsGrid}`;
 
 
 
-// ── IMAGE UPLOAD TO GITHUB ──────────────────────────────────────────
+// ââ IMAGE UPLOAD TO GITHUB ââââââââââââââââââââââââââââââââââââââââââ
 function handleImgDrop(e) {
   e.preventDefault();
   document.getElementById('img-drop-zone').style.borderColor = '#ccc';
@@ -1825,7 +1825,7 @@ async function handleImgFile(file) {
   if (!file) return;
   const status = document.getElementById('img-upload-status');
   status.style.color = '#888';
-  status.textContent = 'Uploading…';
+  status.textContent = 'Uploadingâ¦';
   
   const GITHUB_TOKEN = document.getElementById('pw-input')?.dataset?.token || window._ghToken;
   if (!GITHUB_TOKEN) { status.style.color='#c00'; status.textContent='Not logged in'; return; }
@@ -1859,16 +1859,16 @@ async function handleImgFile(file) {
     document.getElementById('post-image').value = newUrl;
     previewImage();
     status.style.color = '#0a0';
-    status.textContent = '✓ Uploaded: ' + filename;
+    status.textContent = 'â Uploaded: ' + filename;
   } else {
     status.style.color = '#c00';
     status.textContent = 'Upload failed (' + pushR.status + ')';
   }
 }
-// ───────────────────────────────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 
-// ── Import Posts ──────────────────────────────────────────────────────────────
+// ââ Import Posts ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function openImport() {
   const ov = document.getElementById('import-overlay');
   ov.style.display = 'flex';
@@ -1888,18 +1888,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const file = e.target.files[0];
     if (!file) return;
     const status = document.getElementById('import-status');
-    status.textContent = 'Reading file…';
+    status.textContent = 'Reading fileâ¦';
     const reader = new FileReader();
     reader.onload = function(ev) {
       try {
         const data = JSON.parse(ev.target.result);
         if (!Array.isArray(data)) throw new Error('Expected a JSON array');
-        status.textContent = '✓ Found ' + data.length + ' posts ready to import.';
+        status.textContent = 'â Found ' + data.length + ' posts ready to import.';
         status.style.color = '#2e7d32';
         document.getElementById('import-btn').disabled = false;
         document.getElementById('import-btn')._importData = data;
       } catch(err) {
-        status.textContent = '✗ Invalid file: ' + err.message;
+        status.textContent = 'â Invalid file: ' + err.message;
         status.style.color = '#c62828';
         document.getElementById('import-btn').disabled = true;
       }
@@ -1926,7 +1926,7 @@ function runImport() {
   });
   savePosts(posts);
   const status = document.getElementById('import-status');
-  status.textContent = '✓ Imported ' + added + ' posts' + (skipped ? ' (' + skipped + ' skipped — already exist)' : '') + '.';
+  status.textContent = 'â Imported ' + added + ' posts' + (skipped ? ' (' + skipped + ' skipped â already exist)' : '') + '.';
   status.style.color = '#2e7d32';
   btn.disabled = true;
   setTimeout(function() {
@@ -1934,7 +1934,7 @@ function runImport() {
     renderPostList();
   }, 1600);
 }
-// ──────────────────────────────────────────────────────────────────────────────
+// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 </script>
 </body>
 </html>
