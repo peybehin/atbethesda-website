@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Seller's Guide | @Bethesda Real Estate</title>
+  <title>Seller's Guide | @Bethesda Real Estate – Pey Behin</title>
+  <meta name="description" content="Your complete guide to selling a home in Bethesda and the DC Metro area. Learn how Pey Behin and RLAH @properties market, price, and sell your home for maximum return." />
   <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/style.css" />
-
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -16,41 +16,438 @@
   "url": "https://atbethesda.com/sellers-guide/",
   "author": { "@type": "Person", "name": "Pey Behin", "url": "https://atbethesda.com/about/" },
   "step": [
-    { "@type": "HowToStep", "name": "Get a Home Valuation", "text": "Understand your home's market value with a free CMA from Pey." },
-    { "@type": "HowToStep", "name": "Prepare Your Home", "text": "Declutter, stage, and make strategic repairs to maximize appeal." },
-    { "@type": "HowToStep", "name": "List Your Home", "text": "Launch with professional photography and targeted marketing." },
-    { "@type": "HowToStep", "name": "Review Offers", "text": "Evaluate offers with Pey and negotiate the best terms." },
-    { "@type": "HowToStep", "name": "Under Contract", "text": "Navigate inspections, appraisal, and buyer financing." },
-    { "@type": "HowToStep", "name": "Close", "text": "Sign at settlement and receive your proceeds." }
+    { "@type": "HowToStep", "name": "Price Your Home", "text": "Get an accurate CMA to price your home strategically for the Bethesda market." },
+    { "@type": "HowToStep", "name": "Prepare Your Home", "text": "Declutter, stage, and make strategic repairs to maximize buyer appeal." },
+    { "@type": "HowToStep", "name": "Launch with Maximum Exposure", "text": "Professional photography, MLS, Zillow, social media, and global network marketing." },
+    { "@type": "HowToStep", "name": "Review Offers", "text": "Evaluate and negotiate offers with Pey to secure the best terms." },
+    { "@type": "HowToStep", "name": "Navigate Contract to Close", "text": "Inspections, appraisal, disclosures, and settlement coordination." }
   ]
 }
-</script>
+  </script>
+  <style>
+    /* ── Sellers Guide Page Styles ── */
+    .sg-intro { background: var(--white); padding: 72px 0; }
+    .sg-intro .inner { max-width: 780px; }
+    .sg-intro p { font-size: 1.05rem; line-height: 1.85; color: var(--gray-text); margin-bottom: 0; }
+
+    /* Stats bar */
+    .sg-stats { background: var(--black); padding: 52px 0; }
+    .sg-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; max-width: 900px; margin: 0 auto; text-align: center; }
+    .sg-stat { padding: 24px 16px; }
+    .sg-stat-num { font-size: 2.6rem; font-weight: 900; color: var(--red); line-height: 1; margin-bottom: 8px; }
+    .sg-stat-label { font-size: .72rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.6); }
+
+    /* Chapter sections */
+    .sg-chapter { padding: 80px 0; }
+    .sg-chapter:nth-child(even) { background: #f9f9f9; }
+    .sg-chapter-header { display: flex; align-items: flex-start; gap: 24px; margin-bottom: 44px; }
+    .sg-chapter-num { font-size: 4rem; font-weight: 900; color: var(--red); line-height: 1; opacity: .15; flex-shrink: 0; width: 60px; }
+    .sg-chapter-title { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 900; text-transform: uppercase; letter-spacing: -.01em; line-height: 1.1; }
+    .sg-chapter-sub { font-size: 1rem; color: var(--gray-text); line-height: 1.7; margin-top: 10px; }
+
+    /* Feature cards */
+    .sg-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 36px; }
+    .sg-card { background: var(--white); border: 1px solid #eee; border-radius: 12px; padding: 28px; }
+    .sg-card h4 { font-size: .85rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+    .sg-card p { font-size: .9rem; line-height: 1.7; color: var(--gray-text); margin: 0; }
+
+    /* Checklist */
+    .sg-checklist { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px 32px; }
+    .sg-checklist li { font-size: .9rem; color: var(--gray-text); padding: 8px 0 8px 28px; position: relative; border-bottom: 1px solid #f0f0f0; }
+    .sg-checklist li::before { content: '✓'; position: absolute; left: 0; color: var(--red); font-weight: 700; }
+
+    /* Marketing list */
+    .sg-marketing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 28px; }
+    .sg-marketing-item { background: var(--white); border-left: 3px solid var(--red); padding: 12px 16px; font-size: .85rem; font-weight: 600; color: var(--black); }
+
+    /* Two-col layout */
+    .sg-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    @media(max-width:700px){ .sg-two-col { grid-template-columns: 1fr; } .sg-stats-grid { grid-template-columns: 1fr; } }
+
+    /* CMA factors */
+    .sg-factors { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-top: 28px; }
+    .sg-factor { background: var(--white); border: 1px solid #eee; border-radius: 8px; padding: 14px 16px; font-size: .82rem; color: var(--gray-text); display: flex; align-items: center; gap: 10px; }
+    .sg-factor::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+
+    /* CTA section */
+    .sg-cta { background: var(--black); padding: 80px 0; text-align: center; }
+    .sg-cta h2 { color: var(--white); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; text-transform: uppercase; margin-bottom: 16px; }
+    .sg-cta p { color: rgba(255,255,255,.65); font-size: 1rem; max-width: 520px; margin: 0 auto 36px; line-height: 1.7; }
+    .sg-cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    /* Global callout */
+    .sg-global-box { background: var(--black); color: var(--white); border-radius: 14px; padding: 40px; margin-top: 36px; }
+    .sg-global-box h4 { font-size: 1.2rem; font-weight: 900; text-transform: uppercase; margin-bottom: 14px; }
+    .sg-global-box p { color: rgba(255,255,255,.7); font-size: .9rem; line-height: 1.7; margin: 0; }
+    .sg-global-networks { display: flex; gap: 16px; margin-top: 20px; flex-wrap: wrap; }
+    .sg-network-tag { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); border-radius: 20px; padding: 6px 16px; font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--white); }
+
+    /* Community */
+    .sg-community-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 28px; }
+    @media(max-width:600px){ .sg-community-grid { grid-template-columns: 1fr; } }
+    .sg-community-card { background: var(--white); border-radius: 12px; padding: 32px; border: 1px solid #eee; }
+    .sg-community-card h4 { font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--red); margin-bottom: 12px; }
+    .sg-community-card p { font-size: .88rem; line-height: 1.75; color: var(--gray-text); margin: 0; }
+
+    /* TOC nav */
+    .sg-toc { background: #f4f4f4; border-radius: 12px; padding: 28px 32px; margin: 40px 0; }
+    .sg-toc h4 { font-size: .72rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--gray-text); margin-bottom: 16px; }
+    .sg-toc-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+    .sg-toc-list a { font-size: .82rem; font-weight: 600; color: var(--black); text-decoration: none; background: var(--white); border: 1px solid #ddd; border-radius: 20px; padding: 6px 16px; transition: all .2s; }
+    .sg-toc-list a:hover { border-color: var(--red); color: var(--red); }
+  </style>
 </head>
 <body>
 <nav id="main-nav">
   <a href="/" class="nav-logo"><img src="/images/blog/BETHESDA-w-RED.png" alt="@Bethesda Real Estate" /></a>
   <ul class="nav-links"><li><a href="/">Home</a></li><li><a href="/properties/">Buy</a></li><li><a href="/whats-my-home-worth/">Sell</a></li><li><a href="/our-areas/">Featured Areas</a></li><li><a href="/about/">About</a></li><li><a href="/vlog/">Blog</a></li><li><a href="/contact/" class="nav-cta">Let's Connect</a></li></ul>
-<button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
 </nav>
-<div class="mobile-nav" id="mobile-nav"><ul><li><a href="/">Home</a></li><li><a href="/properties/">Buy</a></li><li><a href="/whats-my-home-worth/">Sell</a></li><li><a href="/our-areas/">Featured Areas</a></li><li><a href="/about/">About</a></li><li><a href="/vlog/">Blog</a></li><li><a href="/contact/">Let&#39;s Connect</a></li></ul></div>
-<div class="page-hero"><div class="page-hero-bg" style="background:#0a0a0a;"></div><div class="page-hero-overlay"></div><div class="page-hero-content"><span class="section-label" style="color:rgba(255,255,255,.6);">Tools</span><h1>Seller's Guide</h1><p>How to price, prepare, and sell your home in the Bethesda market for maximum return.</p></div></div>
-<section style="background:var(--white);">
-  <div class="inner" style="max-width:700px;">
-    <span class="section-label">Coming Soon</span>
-    <h2 class="section-title">Seller's Guide</h2>
-    <p style="font-size:.9rem;color:var(--gray-text);line-height:1.7;margin-bottom:32px;">How to price, prepare, and sell your home in the Bethesda market for maximum return.</p>
-    <div class="idx-placeholder">
-      <div class="icon">ð ï¸</div>
-      <h3>Seller's Guide â Content Goes Here</h3>
-      <p>This page will contain your Seller's Guide content â either a step-by-step guide, a form, or a third-party embed (like your home valuation tool or IDX widget).</p>
-    </div>
-    <div style="margin-top:36px;display:flex;gap:14px;flex-wrap:wrap;">
-      <a href="/contact/" class="btn-primary">Talk to Pey Instead</a>
-      <a href="/properties/" class="btn-outline">Browse Listings</a>
+<div class="mobile-nav" id="mobile-nav"><ul><li><a href="/">Home</a></li><li><a href="/properties/">Buy</a></li><li><a href="/whats-my-home-worth/">Sell</a></li><li><a href="/our-areas/">Featured Areas</a></li><li><a href="/about/">About</a></li><li><a href="/vlog/">Blog</a></li><li><a href="/contact/">Let's Connect</a></li></ul></div>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg" style="background:#0a0a0a;"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <span class="section-label" style="color:rgba(255,255,255,.6);">Sell Your Home</span>
+    <h1>Seller's Guide</h1>
+    <p>How to price, prepare, and sell your home in the Bethesda &amp; DC Metro market for maximum return.</p>
+  </div>
+</div>
+
+<!-- INTRO -->
+<section class="sg-intro">
+  <div class="inner">
+    <span class="section-label">A Guide for Home Selling</span>
+    <h2 class="section-title">Your Home Deserves<br>Expert Representation</h2>
+    <p>With unparalleled local expertise, global reach, and an array of innovative resources that distinguish your home in the marketplace, RLAH @properties gives you a competitive advantage. You will benefit from sophisticated marketing programs that create maximum visibility for your home, as well as industry-leading technology that makes your selling experience more seamless every step of the way.</p>
+
+    <div class="sg-toc">
+      <h4>What's Inside</h4>
+      <ul class="sg-toc-list">
+        <li><a href="#story">01 · Every Home Has a Story</a></li>
+        <li><a href="#technology">02 · Industry-Leading Technology</a></li>
+        <li><a href="#exposure">03 · Exposure Is Everything</a></li>
+        <li><a href="#global">04 · We're Local, We're Global</a></li>
+        <li><a href="#market">05 · On the Market</a></li>
+        <li><a href="#community">06 · Community</a></li>
+      </ul>
     </div>
   </div>
 </section>
-<!-- ââ FOOTER ââ -->
+
+<!-- STATS -->
+<div class="sg-stats">
+  <div class="sg-stats-grid">
+    <div class="sg-stat">
+      <div class="sg-stat-num">#1</div>
+      <div class="sg-stat-label">Fastest Growing Real Estate Company in the DMV</div>
+    </div>
+    <div class="sg-stat">
+      <div class="sg-stat-num">$29B</div>
+      <div class="sg-stat-label">Annual Sales Volume Nationwide</div>
+    </div>
+    <div class="sg-stat">
+      <div class="sg-stat-num">#8</div>
+      <div class="sg-stat-label">Largest Brokerage Firm in the United States</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 01: EVERY HOME HAS A STORY -->
+<section class="sg-chapter" id="story">
+  <div class="inner">
+    <div class="sg-chapter-header">
+      <div class="sg-chapter-num">01</div>
+      <div>
+        <h2 class="sg-chapter-title">Every Home Has a Story</h2>
+        <p class="sg-chapter-sub">Leveraging local expertise and the innovative resources that have made RLAH @properties a leading local brokerage with a global network, we tell the story of your home like no one else can.</p>
+      </div>
+    </div>
+
+    <div class="sg-two-col">
+      <div>
+        <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:14px;">Can't Slow Us Down</h3>
+        <p style="font-size:.9rem;line-height:1.8;color:var(--gray-text);">@properties has grown into one of the top 10 brokerage firms in the nation with over $29 billion in annual sales volume. Meanwhile, RLAH @properties has been named the fastest-growing real estate company in the DMV according to the Washington Business Journal.</p>
+        <p style="font-size:.9rem;line-height:1.8;color:var(--gray-text);margin-top:16px;">When a strong agent is backed by one of the nation's most innovative real estate brands, the results are unmatched. Over the past two decades, @properties and its leaders have been widely recognized for making an impact in the industry.</p>
+      </div>
+      <div>
+        <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:14px;">Our Track Record</h3>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="background:#f9f9f9;border-radius:10px;padding:16px 20px;">
+            <div style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:4px;">2009</div>
+            <div style="font-size:.88rem;color:var(--gray-text);">#1 brokerage firm in Chicago — began expanding to surrounding suburbs</div>
+          </div>
+          <div style="background:#f9f9f9;border-radius:10px;padding:16px 20px;">
+            <div style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:4px;">2012</div>
+            <div style="font-size:.88rem;color:var(--gray-text);">Jason Sherman and Justin Levitch launch RLAH Real Estate in Chevy Chase and DuPont Circle</div>
+          </div>
+          <div style="background:#f9f9f9;border-radius:10px;padding:16px 20px;">
+            <div style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:4px;">2021</div>
+            <div style="font-size:.88rem;color:var(--gray-text);">RLAH surpasses $1 billion in annual sales; approaches $2 billion</div>
+          </div>
+          <div style="background:#f9f9f9;border-radius:10px;padding:16px 20px;">
+            <div style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:4px;">2022</div>
+            <div style="font-size:.88rem;color:var(--gray-text);">RLAH joins @properties as its first affiliate on the East Coast</div>
+          </div>
+          <div style="background:#f9f9f9;border-radius:10px;padding:16px 20px;">
+            <div style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:4px;">2023</div>
+            <div style="font-size:.88rem;color:var(--gray-text);">#8 largest brokerage firm in the nation by sales volume per RealTrends 500</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 02: TECHNOLOGY -->
+<section class="sg-chapter" id="technology">
+  <div class="inner">
+    <div class="sg-chapter-header">
+      <div class="sg-chapter-num">02</div>
+      <div>
+        <h2 class="sg-chapter-title">Industry-Leading Technology</h2>
+        <p class="sg-chapter-sub">As a leader in brokerage technology, @properties is driving innovation in the real estate world every day — providing world-class resources that keep our clients ahead of the curve.</p>
+      </div>
+    </div>
+
+    <div style="background:var(--black);color:var(--white);border-radius:14px;padding:36px;margin-bottom:28px;">
+      <div style="font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-bottom:12px;">The Ultimate</div>
+      <h3 style="font-size:1.5rem;font-weight:900;text-transform:uppercase;margin-bottom:14px;">Pl@tform™</h3>
+      <p style="color:rgba(255,255,255,.7);font-size:.9rem;line-height:1.7;margin:0;">Selling a home today involves technology at every turn. That's why @properties developed pl@tform™, the industry's premier brokerage-tech solution. With a variety of digital tools, pl@tform™ makes the selling experience more seamless every step of the way — from listing to marketing to closing.</p>
+    </div>
+
+    <div class="sg-cards">
+      <div class="sg-card">
+        <h4>Instant Scheduling</h4>
+        <p>Buyers can request a showing directly from the listing detail page. This ensures every lead is captured — no missed opportunities.</p>
+      </div>
+      <div class="sg-card">
+        <h4>The Hotlist</h4>
+        <p>Before your home is even listed in the MLS, we create exposure through The Hotlist — an internal database exclusive to RLAH @properties agents — to match your home with prospective buyers and gather pre-market feedback.</p>
+      </div>
+      <div class="sg-card">
+        <h4>Listing Detail Page</h4>
+        <p>Every RLAH @properties listing receives its own dedicated web page complete with professional photos, full property details, and an area map.</p>
+      </div>
+      <div class="sg-card">
+        <h4>Email Marketing</h4>
+        <p>Featuring attractive, professionally designed templates, our email marketing tool provides another highly effective way to market your home and engage qualified buyers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 03: EXPOSURE -->
+<section class="sg-chapter" id="exposure">
+  <div class="inner">
+    <div class="sg-chapter-header">
+      <div class="sg-chapter-num">03</div>
+      <div>
+        <h2 class="sg-chapter-title">Exposure Is Everything</h2>
+        <p class="sg-chapter-sub">This has been RLAH @properties' marketing mantra since day one. We showcase your home to the largest audience of potential buyers through programs built around maximum visibility — on both the local and global stage.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:1rem;font-weight:700;margin-bottom:4px;">Where Your Home Gets Seen</h3>
+    <p style="font-size:.88rem;color:var(--gray-text);margin-bottom:0;">Every listing is marketed across an extensive network of platforms and channels.</p>
+    <div class="sg-marketing-grid">
+      <div class="sg-marketing-item">rlahre.com</div>
+      <div class="sg-marketing-item">Zillow</div>
+      <div class="sg-marketing-item">Trulia</div>
+      <div class="sg-marketing-item">Realtor.com</div>
+      <div class="sg-marketing-item">MLS</div>
+      <div class="sg-marketing-item">LeadingRE.com</div>
+      <div class="sg-marketing-item">Who's Who in Luxury</div>
+      <div class="sg-marketing-item">Adwerx Display Ads</div>
+      <div class="sg-marketing-item">Social Media</div>
+      <div class="sg-marketing-item">E-Blasts</div>
+      <div class="sg-marketing-item">Direct Mail</div>
+      <div class="sg-marketing-item">Partner Brokerages</div>
+    </div>
+
+    <div class="sg-cards" style="margin-top:36px;">
+      <div class="sg-card">
+        <h4>Professional Photography</h4>
+        <p>High-quality photography is essential when selling a home. Every listing includes a professional photography package optimized for both print and web.</p>
+      </div>
+      <div class="sg-card">
+        <h4>Adwerx Digital Ads</h4>
+        <p>Adwerx puts your home in front of prospective buyers through a targeted listing ad that appears across hundreds of top websites they already visit.</p>
+      </div>
+      <div class="sg-card">
+        <h4>Direct Mail</h4>
+        <p>From "Just Listed" postcards to eye-catching mailers, we enhance your exposure through direct mail offerings that stand out from the crowd.</p>
+      </div>
+      <div class="sg-card">
+        <h4>Custom Brochures</h4>
+        <p>Professionally produced brochures highlight the key features and amenities of your home, giving buyers a glimpse of the lifestyle it offers.</p>
+      </div>
+      <div class="sg-card">
+        <h4>Social Media</h4>
+        <p>We leverage the power of social media to create additional exposure for your home — reaching buyers where they spend their time.</p>
+      </div>
+      <div class="sg-card">
+        <h4>QR Codes</h4>
+        <p>A unique QR code displayed on all marketing materials lets buyers instantly access your listing detail page with full photos and property info.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 04: LOCAL + GLOBAL -->
+<section class="sg-chapter" id="global">
+  <div class="inner">
+    <div class="sg-chapter-header">
+      <div class="sg-chapter-num">04</div>
+      <div>
+        <h2 class="sg-chapter-title">We're Local, We're Global</h2>
+        <p class="sg-chapter-sub">Real estate is a local business — every home deserves the care of a company that puts local first. But not all buyers are local, so when it comes to marketing, we think globally.</p>
+      </div>
+    </div>
+
+    <div class="sg-global-box">
+      <h4>Worldwide Reach for Your Home</h4>
+      <p>RLAH @properties offers sellers access to exclusive global networks that create more exposure for your property. We are members of both Leading Real Estate Companies of the World® (LeadingRE) and Who's Who in Luxury Real Estate — worldwide collections of top brokers representing some of the finest properties across the globe.</p>
+      <div class="sg-global-networks">
+        <span class="sg-network-tag">Leading Real Estate Companies of the World®</span>
+        <span class="sg-network-tag">Who's Who in Luxury Real Estate</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 05: ON THE MARKET -->
+<section class="sg-chapter" id="market">
+  <div class="inner">
+    <div class="sg-chapter-header">
+      <div class="sg-chapter-num">05</div>
+      <div>
+        <h2 class="sg-chapter-title">On the Market</h2>
+        <p class="sg-chapter-sub">You only get one chance at a first impression. Making the best first impression means setting an accurate list price and getting your property in top shape for both in-person and online showings.</p>
+      </div>
+    </div>
+
+    <!-- CMA -->
+    <div style="background:#f9f9f9;border-radius:14px;padding:36px;margin-bottom:36px;">
+      <span class="section-label">Pricing Strategy</span>
+      <h3 style="font-size:1.2rem;font-weight:900;text-transform:uppercase;margin:8px 0 12px;">Digital CMA</h3>
+      <p style="font-size:.9rem;line-height:1.8;color:var(--gray-text);">What is your home worth? RLAH @properties is in the best position to answer that question accurately thanks to experience and our Digital CMA — an interactive report updated in real time that helps you gauge market activity and determine the appropriate list price for the most lucrative, time-efficient sale.</p>
+      <p style="font-size:.85rem;font-weight:700;color:var(--black);margin:20px 0 10px;">Our CMA takes into account:</p>
+      <div class="sg-factors">
+        <div class="sg-factor">Supply &amp; demand</div>
+        <div class="sg-factor">Market activity</div>
+        <div class="sg-factor">Market time</div>
+        <div class="sg-factor">Price/status changes</div>
+        <div class="sg-factor">Interest rates</div>
+        <div class="sg-factor">Economic factors</div>
+        <div class="sg-factor">Seasonal demand</div>
+        <div class="sg-factor">Location</div>
+        <div class="sg-factor">Room count &amp; sqft</div>
+        <div class="sg-factor">Lot size</div>
+        <div class="sg-factor">Views</div>
+        <div class="sg-factor">Property condition</div>
+        <div class="sg-factor">Unique features</div>
+        <div class="sg-factor">Competition</div>
+      </div>
+    </div>
+
+    <!-- Prep + Staging -->
+    <div class="sg-two-col">
+      <div>
+        <h3 style="font-size:1rem;font-weight:700;margin-bottom:16px;">Before Your Home Is Shown</h3>
+        <p style="font-size:.88rem;line-height:1.75;color:var(--gray-text);margin-bottom:16px;">Position your home as the most desirable property in its price range. These preparations will set it apart from the competition.</p>
+        <ul class="sg-checklist">
+          <li>Declutter, clean, and organize</li>
+          <li>Maintain the exterior</li>
+          <li>Fresh paint where needed</li>
+          <li>Make necessary repairs</li>
+          <li>Brighten your home</li>
+          <li>Remove pets during showings</li>
+          <li>Hire a pre-listing home inspector</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="font-size:1rem;font-weight:700;margin-bottom:16px;">Staging Tips</h3>
+        <p style="font-size:.88rem;line-height:1.75;color:var(--gray-text);margin-bottom:16px;">Staging helps present your home in the best possible light and appeals to the widest audience.</p>
+        <ul class="sg-checklist">
+          <li>Eliminate excess or oversized furniture</li>
+          <li>Remove clutter from all surfaces</li>
+          <li>Maximize natural light in every room</li>
+          <li>Minimize personal photos and items</li>
+          <li>Add plants or flowers to outdoor spaces</li>
+          <li>Use neutral colors and décor</li>
+          <li>Emphasize each room's functionality</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Restoration -->
+    <div style="background:var(--black);color:var(--white);border-radius:14px;padding:36px;margin-top:36px;">
+      <span class="section-label" style="color:var(--red);">No Upfront Cost</span>
+      <h3 style="font-size:1.2rem;font-weight:900;text-transform:uppercase;color:var(--white);margin:10px 0 14px;">RLAH @properties Restoration</h3>
+      <p style="color:rgba(255,255,255,.7);font-size:.9rem;line-height:1.75;margin:0;">If your home needs updating, look no further. With services like staging, flooring, painting, and more, RLAH @properties Restoration helps you sell faster — and for a higher price — through projects that deliver maximum marketplace value. Payment is collected at settlement, so sellers don't pay anything out of pocket before the home is sold.</p>
+    </div>
+
+    <!-- Contract to Close -->
+    <div style="margin-top:36px;">
+      <h3 style="font-size:1rem;font-weight:700;margin-bottom:16px;">Contract to Close</h3>
+      <p style="font-size:.88rem;line-height:1.75;color:var(--gray-text);margin-bottom:20px;">Our emphasis on communication, organization, and follow-through ensures that deadlines are met and every item is in place for a seamless transaction.</p>
+      <ul class="sg-checklist">
+        <li>Earnest money &amp; escrow management</li>
+        <li>Distributing contracts</li>
+        <li>Coordinating home inspection</li>
+        <li>Providing information to lenders</li>
+        <li>Required disclosure forms</li>
+        <li>Collecting key documents</li>
+        <li>Coordinating the appraisal</li>
+        <li>Coordinating walk-throughs</li>
+        <li>Updating you on contingencies</li>
+        <li>Coordinating your closing</li>
+        <li>Helping you find your next home</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 06: COMMUNITY -->
+<section class="sg-chapter" id="community">
+  <div class="inner">
+    <div class="sg-chapter-header">
+      <div class="sg-chapter-num">06</div>
+      <div>
+        <h2 class="sg-chapter-title">Community</h2>
+        <p class="sg-chapter-sub">Real estate is about so much more than buying and selling homes — it's about bringing people together and strengthening our communities.</p>
+      </div>
+    </div>
+
+    <div class="sg-community-grid">
+      <div class="sg-community-card">
+        <h4>Unity Through Diversity</h4>
+        <p>RLAH @properties embodies a community dedicated to respecting and celebrating diversity. With more than 25 languages spoken, we are a proud award recipient and sponsor of organizations including the National Association of Hispanic Real Estate Professionals, the Asian Real Estate Association of America, and the LGBTQ+ Real Estate Alliance.</p>
+      </div>
+      <div class="sg-community-card">
+        <h4>Giving Back</h4>
+        <p>As part of our commitment to giving back in a meaningful way, RLAH @properties supports a variety of organizations that help those in need. Our agents have the opportunity to donate a percentage of each closing to their charity of choice — and RLAH @properties matches each agent's contribution.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="sg-cta">
+  <div class="inner">
+    <h2>Ready to Sell Your Home?</h2>
+    <p>Let's talk about your goals, your timeline, and what your home could sell for in today's market.</p>
+    <div class="sg-cta-btns">
+      <a href="/whats-my-home-worth/" class="btn-primary">Get a Free Home Valuation</a>
+      <a href="/contact/" class="btn-outline" style="border-color:rgba(255,255,255,.3);color:var(--white);">Talk to Pey</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
@@ -61,67 +458,26 @@
         </div>
         <p>Your hyperlocal Bethesda and DC Metro real estate expert. The only site where you can search homes by school district.</p>
         <div class="footer-socials">
-          <a href="https://www.facebook.com/peybehinestates" class="footer-social" aria-label="Facebook">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          </a>
-          <a href="https://www.instagram.com/peybehin/" class="footer-social" aria-label="Instagram">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          </a>
-          <a href="https://youtube.com/peybehin" class="footer-social" aria-label="YouTube">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon fill="#0a0a0a" points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
-          </a>
-          <a href="https://www.linkedin.com/in/peybehin/" class="footer-social" aria-label="LinkedIn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          </a>
-          <a href="https://tiktok.com/@peybehin" class="footer-social" aria-label="TikTok">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/></svg>
-          </a>
+          <a href="https://www.facebook.com/peybehinestates" class="footer-social" aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="https://www.instagram.com/peybehin/" class="footer-social" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="https://youtube.com/peybehin" class="footer-social" aria-label="YouTube"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon fill="#0a0a0a" points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
+          <a href="https://www.linkedin.com/in/peybehin/" class="footer-social" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="https://tiktok.com/@peybehin" class="footer-social" aria-label="TikTok"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/></svg></a>
         </div>
       </div>
-      <div class="footer-col">
-        <h4>Buy</h4>
-        <ul>
-          <li><a href="/properties/">Properties</a></li>
-          <li><a href="/#school-map">Search by School</a></li>
-          <li><a href="/perfect-home-finder/">Perfect Home Finder</a></li>
-          <li><a href="/buyers-guide/">Buyer's Guide</a></li>
-          <li><a href="/mortgage-calculator/">Mortgage Calculator</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Sell</h4>
-        <ul>
-          <li><a href="/whats-my-home-worth/">Home Valuation</a></li>
-          <li><a href="/sellers-guide/">Seller's Guide</a></li>
-        </ul>
-        <h4 style="margin-top:24px;">Areas</h4>
-        <ul>
-          <li><a href="/our-areas/chevy-chase/">Chevy Chase</a></li>
-          <li><a href="/our-areas/potomac/">Potomac</a></li>
-          <li><a href="/our-areas/bethesda/">Bethesda</a></li>
-          <li><a href="/our-areas/north-bethesda/">North Bethesda</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>More</h4>
-        <ul>
-          <li><a href="/about/">About Pey</a></li>
-          <li><a href="/testimonials/">Testimonials</a></li>
-          <li><a href="/vlog/">Blog</a></li>
-          <li><a href="/#contact">Contact</a></li>
-        </ul>
+      <div class="footer-links">
+        <div class="footer-col"><h4>Buy</h4><ul><li><a href="/properties/">Search Listings</a></li><li><a href="/buyers-guide/">Buyer's Guide</a></li><li><a href="/mortgage-calculator/">Mortgage Calculator</a></li><li><a href="/getting-preapproved/">Get Pre-Approved</a></li></ul></div>
+        <div class="footer-col"><h4>Sell</h4><ul><li><a href="/whats-my-home-worth/">Home Valuation</a></li><li><a href="/sellers-guide/">Seller's Guide</a></li><li><a href="/contact/">List With Pey</a></li></ul></div>
+        <div class="footer-col"><h4>Explore</h4><ul><li><a href="/our-areas/">Featured Areas</a></li><li><a href="/vlog/">Blog</a></li><li><a href="/about/">About Pey</a></li><li><a href="/contact/">Contact</a></li></ul></div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>RLAH Properties | 4600 North Park Ave Suite 100, Chevy Chase, MD 20815 | (301) 652-0643<br/>
-      All information deemed reliable but not guaranteed. �&copy; 2026 @Bethesda Real Estate. All rights reserved.</p>
-      <div class="footer-bottom-links">
-        <a href="/about/">Privacy Policy</a>
-        <a href="/about/">Terms of Use</a>
-      </div>
-    </div>
+    <div class="footer-bottom"><p>&copy; 2026 Pey Behin · RLAH @properties · Licensed in MD, VA &amp; DC · <a href="/contact/">pey@peybehin.com</a></p></div>
   </div>
 </footer>
-<div class="mobile-bar"><a href="tel:+12026817454">ð Call</a><a href="sms:+12026817454">ð¬ Text</a><a href="/contact/" class="primary">Connect</a><a href="/properties/">Search</a></div>
-<script src="../js/main.js"></script>
-</body></html>
+
+<script>
+function toggleMobileNav(){const n=document.getElementById('mobile-nav');n.classList.toggle('open');}
+window.addEventListener('scroll',()=>{const n=document.getElementById('main-nav');n.classList.toggle('scrolled',window.scrollY>40);});
+</script>
+</body>
+</html>
