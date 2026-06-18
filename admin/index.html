@@ -799,7 +799,6 @@ function onStatusChange() {
   const status = document.getElementById('post-status').value;
   const timeRow = document.getElementById('time-row');
   const schedPreview = document.getElementById('schedule-preview');
-  const btn = document.getElementById('main-action-btn');
 
   if (status === 'scheduled') {
     timeRow.style.display = 'flex';
@@ -807,8 +806,7 @@ function onStatusChange() {
     const time = document.getElementById('post-time').value || '09:00';
     if (date) {
       const dt = new Date(date + 'T' + time);
-      const now = new Date();
-      const isPast = dt <= now;
+      const isPast = dt <= new Date();
       schedPreview.style.display = 'block';
       if (isPast) {
         schedPreview.style.background = '#fce4ec';
@@ -822,17 +820,9 @@ function onStatusChange() {
     } else {
       schedPreview.style.display = 'none';
     }
-    btn.textContent = '🕐 Save as Scheduled';
-    btn.className = 'btn btn-sm' + ' ' + 'btn-schedule';
-    btn.style.background = '#1565c0';
-    btn.style.color = '#fff';
   } else {
     timeRow.style.display = 'none';
     schedPreview.style.display = 'none';
-    btn.textContent = '⬇ Generate & Download HTML';
-    btn.className = 'btn btn-success';
-    btn.style.background = '';
-    btn.style.color = '';
   }
 }
 
