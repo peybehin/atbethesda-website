@@ -1,0 +1,5 @@
+name = "atbethesda-website"
+
+[[send_email]]
+name = "SEND_EMAIL"
+destination_address = "pey@peybehin.com"
