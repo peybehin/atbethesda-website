@@ -1,173 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>North Bethesda, MD Real Estate | @Bethesda</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>North Bethesda, MD Real Estate | @Bethesda Real Estate</title>
+  <meta name="description" content="Homes for sale in North Bethesda, MD. Pike &amp; Rose, White Flint, and Red Line Metro access. Explore North Bethesda real estate with Pey Behin." />
+  <link rel="canonical" href="https://atbethesda.com/our-areas/north-bethesda/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="North Bethesda, MD Real Estate | @Bethesda Real Estate" />
+  <meta property="og:description" content="Homes for sale in North Bethesda, MD. Pike &amp; Rose, White Flint, and Red Line Metro access. Explore North Bethesda real estate with Pey Behin." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?w=1400&q=80" />
+  <meta property="og:url" content="https://atbethesda.com/our-areas/north-bethesda/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../../css/style.css" />
   <style>
-    .area-intro-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:70px;align-items:start;}
-    .area-intro-sidebar{background:var(--gray-light);border-radius:8px;padding:30px;}
-    .area-intro-sidebar h3{font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:20px;}
-    .area-detail-row{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--gray-mid);font-size:.83rem;}
-    .area-detail-row:last-child{border-bottom:none;}
-    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:40px;}
-    .stat-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:28px 20px;text-align:center;}
-    .stat-card .val{font-size:2rem;font-weight:900;color:var(--red);display:block;line-height:1;margin-bottom:8px;}
-    .stat-card .lbl{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#888;}
-    .schools-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:36px;}
-    .school-card{background:var(--white);border-radius:var(--radius);padding:24px;border-left:4px solid var(--red);}
-    .places-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:28px;}
-    .place-card{border:1px solid var(--gray-mid);border-radius:var(--radius);padding:20px;}
-    @media(max-width:900px){.area-intro-grid{grid-template-columns:1fr;}.stats-grid{grid-template-columns:repeat(2,1fr);}.schools-grid,.places-grid{grid-template-columns:1fr;}}
-  
-.gs-link{display:inline-block;margin-top:6px;font-size:.68rem;font-weight:700;color:var(--red);text-decoration:none;letter-spacing:.04em;}
-.gs-link:hover{text-decoration:underline;}
-.gs-attribution{display:flex;align-items:center;gap:8px;margin-top:20px;padding-top:16px;border-top:1px solid var(--gray-mid);font-size:.68rem;color:#aaa;}
-.gs-attribution img{height:16px;opacity:.6;}
-
-  /* ---- Around the Area ---- */
-  .around-section { padding: 80px 0; background: var(--white); }
-  .ata-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
-  .ata-tab {
-    display: inline-flex; align-items: center; gap: 7px;
-    padding: 8px 18px; border-radius: 6px; border: 1px solid #ddd;
-    background: var(--white); color: var(--gray-text);
-    font-size: .85rem; cursor: pointer; transition: all .15s;
-  }
-  .ata-tab:hover { border-color: var(--red); color: var(--red); }
-  .ata-tab.active { background: var(--red); color: #fff; border-color: var(--red); }
-  .ata-tab svg { flex-shrink: 0; }
-  .ata-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 16px;
-  }
-  .ata-card {
-    border-radius: 8px; overflow: hidden; border: 1px solid #eee;
-    background: var(--white); text-decoration: none; color: inherit;
-    transition: box-shadow .2s, transform .2s;
-    display: flex; flex-direction: column;
-  }
-  .ata-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.1); transform: translateY(-2px); }
-  .ata-card-img { width: 100%; aspect-ratio: 4/3; overflow: hidden; background: #f5f5f5; }
-  .ata-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .ata-photo-fallback {
-    width: 100%; height: 100%; display: flex; align-items: center;
-    justify-content: center; font-size: 2.5rem; background: #f9f9f9;
-  }
-  .ata-card-body { padding: 10px 12px 14px; }
-  .ata-card-name { font-size: .9rem; font-weight: 600; margin: 0 0 5px; color: var(--dark); line-height: 1.3; }
-  .ata-card-stars { display: flex; align-items: center; gap: 4px; margin-bottom: 3px; }
-  .ata-star { font-size: 13px; }
-  .ata-star.full, .ata-star.half { color: #fbbc04; }
-  .ata-star.empty { color: #ddd; }
-  .ata-card-rating { font-size: .8rem; font-weight: 600; color: var(--dark); }
-  .ata-card-meta { font-size: .75rem; color: var(--gray-text); margin: 0 0 2px; }
-  .ata-card-cat { font-size: .75rem; color: var(--gray-text); margin: 0; }
-  .ata-loading, .ata-empty { color: var(--gray-text); font-size: .9rem; padding: 40px 0; text-align: center; }
-  .ata-attribution {
-    display: flex; align-items: center; gap: 6px;
-    margin-top: 24px; font-size: .75rem; color: var(--gray-text);
-  }
-  @media (max-width: 600px) {
-    .ata-grid { grid-template-columns: repeat(2, 1fr); }
-    .ata-tab { padding: 7px 12px; font-size: .8rem; }
-  }
-
+    .area-intro { background: var(--white); }
+    .area-intro-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 70px; align-items: start; }
+    .area-intro-text h2 { font-size: clamp(1.4rem,2.5vw,2rem); font-weight:900; text-transform:uppercase; letter-spacing:.04em; margin-bottom:16px; }
+    .area-intro-text p { font-size:.9rem; color:var(--gray-text); line-height:1.75; margin-bottom:14px; }
+    .area-intro-sidebar { background: var(--gray-light); border-radius:8px; padding:30px; }
+    .area-intro-sidebar h3 { font-size:.78rem; font-weight:800; text-transform:uppercase; letter-spacing:.1em; margin-bottom:20px; color:#333; }
+    .area-detail-row { display:flex; justify-content:space-between; align-items:center; padding:11px 0; border-bottom:1px solid var(--gray-mid); font-size:.83rem; }
+    .area-detail-row:last-child { border-bottom:none; }
+    .area-detail-label { color:var(--gray-text); font-weight:600; }
+    .area-detail-value { font-weight:700; text-align:right; max-width:55%; }
+    .market-stats { background: var(--black); padding: 50px 40px 30px; }
+    .schools-section { background:var(--gray-light); }
+    .schools-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:36px; }
+    .school-card { background:var(--white); border-radius:var(--radius); padding:24px; border-left:4px solid var(--red); }
+    .school-icon { font-size:1.4rem; margin-bottom:8px; }
+    .school-info strong { display:block; font-size:.88rem; font-weight:700; margin-bottom:4px; }
+    .school-info span { font-size:.75rem; color:#888; display:block; }
+    .school-rating { display:inline-block; background:rgba(183,37,69,.1); color:var(--red); padding:3px 8px; border-radius:20px; font-size:.68rem; font-weight:700; margin-top:6px; }
+    .gs-link { display:inline-block; margin-top:6px; font-size:.68rem; font-weight:700; color:var(--red); text-decoration:none; letter-spacing:.04em; }
+    .gs-link:hover { text-decoration:underline; }
+    .around-section { padding: 80px 0; background: var(--white); }
+    .ata-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+    .ata-tab { display: inline-flex; align-items: center; gap: 7px; padding: 8px 18px; border-radius: 6px; border: 1px solid #ddd; background: var(--white); color: var(--gray-text); font-size: .85rem; cursor: pointer; transition: all .15s; }
+    .ata-tab:hover { border-color: var(--red); color: var(--red); }
+    .ata-tab.active { background: var(--red); color: #fff; border-color: var(--red); }
+    .ata-tab svg { flex-shrink: 0; }
+    .ata-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+    .ata-card { border-radius: 0 8px 8px 0; border: 1px solid #eee; border-left: 3px solid var(--red); background: var(--white); text-decoration: none; color: inherit; transition: box-shadow .2s, transform .2s; display: flex; flex-direction: column; }
+    .ata-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.1); transform: translateY(-2px); }
+    .ata-card-body { padding: 14px 16px; }
+    .ata-card-name { font-size: .9rem; font-weight: 600; margin: 0 0 5px; color: var(--dark); line-height: 1.3; }
+    .ata-card-stars { display: flex; align-items: center; gap: 4px; margin-bottom: 3px; }
+    .ata-star { font-size: 13px; }
+    .ata-star.full, .ata-star.half { color: #fbbc04; }
+    .ata-star.empty { color: #ddd; }
+    .ata-card-rating { font-size: .8rem; font-weight: 600; color: var(--dark); }
+    .ata-card-meta { font-size: .75rem; color: var(--gray-text); margin: 0 0 2px; }
+    .ata-card-cat { font-size: .75rem; color: var(--gray-text); margin: 0; }
+    .ata-loading, .ata-empty { color: var(--gray-text); font-size: .9rem; padding: 40px 0; text-align: center; }
+    .ata-attribution { display: flex; align-items: center; gap: 6px; margin-top: 24px; font-size: .75rem; color: var(--gray-text); }
+    @media(max-width:900px) {
+      .area-intro-grid { grid-template-columns: 1fr; }
+      .schools-grid { grid-template-columns: 1fr; }
+    }
+    @media(max-width:600px) {
+      .ata-grid { grid-template-columns: repeat(2, 1fr); }
+      .ata-tab { padding: 7px 12px; font-size: .8rem; }
+    }
   </style>
-
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Place",
-  "name": "North Bethesda",
-  "description": "North Bethesda, MD — a growing suburb with Pike & Rose, White Flint, and easy Metro access to downtown DC.",
-  "url": "https://atbethesda.com/our-areas/north-bethesda/",
-  "geo": { "@type": "GeoCoordinates", "latitude": 39.0445, "longitude": -77.1192 },
-  "address": { "@type": "PostalAddress", "addressLocality": "North Bethesda", "addressRegion": "MD", "addressCountry": "US" },
-  "containedInPlace": { "@type": "State", "name": "Maryland" }
-}
-</script>
+  <script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": "Place",
+    "name": "North Bethesda",
+    "description": "Homes for sale in North Bethesda, MD. Pike &amp; Rose, White Flint, and Red Line Metro access. Explore North Bethesda real estate with Pey Behin.",
+    "url": "https://atbethesda.com/our-areas/north-bethesda/",
+    "address": { "@type": "PostalAddress", "addressCountry": "US" },
+    "containedInPlace": { "@type": "State", "name": "Maryland" }
+  }</script>
 </head>
 <body>
+
 <nav id="main-nav">
   <a href="/" class="nav-logo"><img src="/images/blog/BETHESDA-w-RED.png" alt="@Bethesda Real Estate" /></a>
   <ul class="nav-links">
     <li><a href="/">Home</a></li>
-    <li><a href="/properties/">Buy</a></li>
-    <li><a href="/whats-my-home-worth/">Sell</a></li>
+    <li class="nav-dropdown"><a href="/properties/">Buy ▾</a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="/properties/">Properties</a></li>
+        <li><a href="/perfect-home-finder/">Perfect Home Finder</a></li>
+        <li><a href="/buyers-guide/">Buyer's Guide</a></li>
+        <li><a href="/mortgage-calculator/">Mortgage Calculator</a></li>
+      </ul>
+    </li>
+    <li class="nav-dropdown"><a href="/whats-my-home-worth/">Sell ▾</a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="/whats-my-home-worth/">Home Valuation</a></li>
+        <li><a href="/sellers-guide/">Seller's Guide</a></li>
+      </ul>
+    </li>
     <li><a href="/our-areas/" class="active">Featured Areas</a></li>
-    <li><a href="/about/">About</a></li>
+    <li class="nav-dropdown"><a href="/about/">About ▾</a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="/about/">About Pey</a></li>
+        <li><a href="/testimonials/">Testimonials</a></li>
+      </ul>
+    </li>
     <li><a href="/vlog/">Blog</a></li>
     <li><a href="/contact/" class="nav-cta">Let's Connect</a></li>
   </ul>
-<button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
 </nav>
-<div class="mobile-nav" id="mobile-nav"><ul><li><a href="/">Home</a></li><li><a href="/properties/">Buy</a></li><li><a href="/whats-my-home-worth/">Sell</a></li><li><a href="/our-areas/">Featured Areas</a></li><li><a href="/about/">About</a></li><li><a href="/vlog/">Blog</a></li><li><a href="/contact/">Let&#39;s Connect</a></li></ul></div>
+<div class="mobile-nav" id="mobile-nav"><ul><li><a href="/">Home</a></li><li><a href="/properties/">Buy</a></li><li><a href="/whats-my-home-worth/">Sell</a></li><li><a href="/our-areas/">Featured Areas</a></li><li><a href="/about/">About</a></li><li><a href="/vlog/">Blog</a></li><li><a href="/contact/">Let's Connect</a></li></ul></div>
 
+<!-- Hero -->
 <div class="page-hero" style="min-height:420px;">
   <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?w=1400&q=80');"></div>
   <div class="page-hero-overlay"></div>
   <div class="page-hero-content">
-    <div class="breadcrumb"><a href="/">Home</a><span>/</span><a href="/our-areas/">Featured Areas</a><span>/</span><span style="color:rgba(255,255,255,.8);">north-bethesda</span></div>
+    <div class="breadcrumb">
+      <a href="/">Home</a><span>/</span>
+      <a href="/our-areas/">Featured Areas</a><span>/</span>
+      <span style="color:rgba(255,255,255,.8);">North Bethesda</span>
+    </div>
     <span class="section-label" style="color:rgba(255,255,255,.6);">Montgomery County, MD</span>
     <h1>North Bethesda, <span>Maryland</span></h1>
-    <p>A rapidly evolving neighborhood anchored by Pike & Rose, Metro access, and great value for the DC Metro.</p>
+    <p>A community in transformation — Metro-connected, walkable, and packed with new energy.</p>
     <div style="display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;">
-      <a href="#search" class="btn-primary">View Homes for Sale</a>
+      <a href="/properties/?area=north-bethesda" class="btn-primary">View Homes for Sale</a>
       <a href="/whats-my-home-worth/" class="btn-outline light">Get Home Value</a>
     </div>
   </div>
 </div>
 
-<div style="background:var(--red);padding:16px 40px;">
-  <div style="max-width:var(--max-w);margin:0 auto;display:flex;gap:40px;flex-wrap:wrap;justify-content:center;">
-    <div style="text-align:center;color:#fff;"><div style="font-size:1.3rem;font-weight:900;">~$750K</div><div style="font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;opacity:.8;">Median Sale Price</div></div>
-    <div style="text-align:center;color:#fff;"><div style="font-size:1.3rem;font-weight:900;">14 Days</div><div style="font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;opacity:.8;">Avg Days on Market</div></div>
-    <div style="text-align:center;color:#fff;"><div style="font-size:1.3rem;font-weight:900;">99%</div><div style="font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;opacity:.8;">List-to-Sale Ratio</div></div>
-    <div style="text-align:center;color:#fff;"><div style="font-size:1.3rem;font-weight:900;">A+</div><div style="font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;opacity:.8;">School Rating</div></div>
-    <div style="text-align:center;color:#fff;"><div style="font-size:1.3rem;font-weight:900;">20852</div><div style="font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;opacity:.8;">Primary Zip Code</div></div>
-  </div>
-</div>
-
-<section style="background:var(--white);">
+<!-- About the Area -->
+<section class="area-intro">
   <div class="inner">
     <div class="area-intro-grid">
-      <div>
+      <div class="area-intro-text">
         <span class="section-label">About the Area</span>
-        <h2 class="section-title">Why People Love <span>North-bethesda</span></h2>
-        <p style="font-size:.9rem;color:var(--gray-text);line-height:1.75;margin-bottom:14px;">North Bethesda has transformed over the past decade. What was once a sleepy suburb is now a vibrant, walkable community anchored by Pike & Rose â a mixed-use development with restaurants, shops, a hotel, and green spaces that draws residents from across the region.</p>
-        <p style="font-size:.9rem;color:var(--gray-text);line-height:1.75;margin-bottom:14px;">The White Flint Metro station puts downtown DC within 30 minutes, and the housing mix â from modern condos and townhomes to single-family homes on quiet streets â makes it accessible to a wider range of buyers than its neighbors to the south.</p>
-        <p style="font-size:.9rem;color:var(--gray-text);line-height:1.75;margin-bottom:24px;">For buyers who want the Montgomery County school system and a Red Line address without paying Chevy Chase or Bethesda prices, North Bethesda is the smart play. It's one of the few areas in the county where you can still find genuine value.</p>
-        <div style="display:flex;gap:12px;flex-wrap:wrap;">
-          <a href="#search" class="btn-primary">Browse Listings</a>
-          <a href="/contact/" class="btn-outline">Ask Pey</a>
+        <h2>Why People Love <span style="color:var(--red);">North Bethesda</span></h2>
+        <p>North Bethesda is one of Montgomery County's most exciting evolving markets. Anchored by the White Flint Metro station and the Pike &amp; Rose mixed-use development, it's a community in the middle of a remarkable transformation — from a car-dependent strip of big-box retail into a genuine live-work-play urban district with walkable restaurants, boutiques, entertainment, and residential towers.</p>
+        <p>Pike &amp; Rose has become one of the region's standout destinations, bringing a curated mix of dining, entertainment, and independent retail that draws visitors from across the Metro. At the same time, surrounding neighborhoods of traditional single-family homes and townhomes offer buyers more conventional suburban living at a slight discount to nearby Bethesda — with the same MCPS school quality.</p>
+        <p>With the Red Line running directly through White Flint, DC is under 30 minutes away. And with continued development planned along Rockville Pike, North Bethesda's trajectory is unmistakably upward. Buyers who get in now are positioned to benefit from one of the most significant community transformations in Montgomery County's recent history.</p>
+        <div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;">
+          <a href="/properties/?area=north-bethesda" class="btn-primary">Browse North Bethesda Listings</a>
+          <a href="/contact/" class="btn-outline">Ask Pey About North Bethesda</a>
         </div>
       </div>
       <div class="area-intro-sidebar">
-        <h3>At a Glance</h3>
-        <div class="area-detail-row"><span style="color:var(--gray-text);font-weight:600;">County</span><span style="font-weight:700;">Montgomery County, MD</span></div>
-        <div class="area-detail-row"><span style="color:var(--gray-text);font-weight:600;">Zip Code</span><span style="font-weight:700;">20852</span></div>
-        <div class="area-detail-row"><span style="color:var(--gray-text);font-weight:600;">Median Price</span><span style="font-weight:700;">~$750K</span></div>
-        <div class="area-detail-row"><span style="color:var(--gray-text);font-weight:600;">High School</span><span style="font-weight:700;text-align:right;">Wootton / Walter Johnson HS</span></div>
-        <div class="area-detail-row"><span style="color:var(--gray-text);font-weight:600;">Tag</span><span style="font-weight:700;">Best Value</span></div>
-      <div style="margin-top: 16px; overflow: hidden; height: 195px;">
-        <iframe
-          src="https://altos.re/html/m-html/3fb7c94c-c27a-470f-82f0-147677247ebb?scale=1&houses=true&size=medium"
-          style="border:0;display:block;width:100%;height:400px;"
-          scrolling="no"
-          loading="lazy">
-        </iframe>
-      </div>
+        <h3>North Bethesda at a Glance</h3>
+        <div class="area-detail-row">
+          <span class="area-detail-label">County / Jurisdiction</span>
+          <span class="area-detail-value">Montgomery County, MD</span>
+        </div>
+        <div class="area-detail-row">
+          <span class="area-detail-label">Primary Zip Codes</span>
+          <span class="area-detail-value">20852</span>
+        </div>
+        <div class="area-detail-row">
+          <span class="area-detail-label">Metro Access</span>
+          <span class="area-detail-value">Red Line (White Flint) ✅</span>
+        </div>
+        <div class="area-detail-row">
+          <span class="area-detail-label">Drive to DC</span>
+          <span class="area-detail-value">~25 min</span>
+        </div>
+        <div class="area-detail-row">
+          <span class="area-detail-label">Walkability Score</span>
+          <span class="area-detail-value">Very Walkable (78)</span>
+        </div>
+        <div class="area-detail-row">
+          <span class="area-detail-label">Average Property Tax</span>
+          <span class="area-detail-value">~0.95% of assessed value</span>
+        </div>
+        <div style="margin-top: 20px; overflow: hidden; height: 195px;">
+          <iframe
+            src="https://altos.re/html/m-html/3fb7c94c-c27a-470f-82f0-147677247ebb?scale=1&houses=true&size=medium"
+            style="border:0;display:block;width:100%;height:400px;"
+            scrolling="no"
+            loading="lazy">
+          </iframe>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Market Stats -->
-<section style="background:var(--black);padding:50px 40px 30px;">
+<section class="market-stats">
   <div class="inner">
     <span class="section-label" style="color:var(--red);">Live Market Data</span>
     <h2 class="section-title" style="color:var(--white);">North Bethesda <span>Market Trends</span></h2>
@@ -187,12 +205,13 @@
   </div>
 </section>
 
-<section style="background:var(--gray-light);">
+<!-- Schools -->
+<section class="schools-section">
   <div class="inner">
     <span class="section-label">Education</span>
-    <h2 class="section-title">Schools in <span>North-bethesda</span></h2>
-    <p class="section-sub" style="margin-bottom:0;">Wootton HS (A), Walter Johnson HS (A+), Tilden MS (A), Luxmanor ES (A), Farmland ES (A)</p>
-          <div class="schools-grid">
+    <h2 class="section-title">Schools in <span>North Bethesda</span></h2>
+    <p class="section-sub">School assignments vary by address. Always verify current boundaries with the school district before purchasing.</p>
+    <div class="schools-grid">
         <div class="school-card" style="border-left: 4px solid var(--red)">
           <div class="school-icon">ð</div>
           <div class="school-info">
@@ -202,73 +221,31 @@
             <a href="https://www.greatschools.org/maryland/rockville/966-Thomas-S.-Wootton-High-School/" target="_blank" rel="noopener" class="gs-link">View on GreatSchools â</a>
           </div>
         </div>
-        <div class="school-card" style="border-left: 4px solid var(--red)">
-          <div class="school-icon">ð</div>
-          <div class="school-info">
-            <strong>Robert Frost Middle School</strong>
-            <span>Grades 6â8</span>
-            <div class="school-rating">9/10</div>
-            <a href="https://www.greatschools.org/maryland/rockville/997-Robert-Frost-Middle-School/" target="_blank" rel="noopener" class="gs-link">View on GreatSchools â</a>
-          </div>
-        </div>
-        <div class="school-card" style="border-left: 4px solid var(--red)">
-          <div class="school-icon">ð</div>
-          <div class="school-info">
-            <strong>Luxmanor Elementary School</strong>
-            <span>Grades Kâ5</span>
-            <div class="school-rating">9/10</div>
-            <a href="https://www.greatschools.org/maryland/rockville/920-Luxmanor-Elementary-School/" target="_blank" rel="noopener" class="gs-link">View on GreatSchools â</a>
-          </div>
-        </div>
-      </div>
+    <p style="margin-top:24px;font-size:.78rem;color:var(--gray-text);">
+      &#x1F4A1; <strong>Pro tip:</strong> School boundaries can change. Always verify your specific address's school assignment with <a href='https://www.montgomeryschoolsmd.org/' target='_blank' style='color:var(--red);'>Montgomery County Public Schools</a>.
+    </p>
   </div>
 </section>
 
-<section style="background:var(--white);">
-  <div class="inner">
-    <span class="section-label">Local Favorites</span>
-    <h2 class="section-title">Restaurants &amp; <span>Things To Do</span></h2>
-    <div class="places-grid">
-      <div class="place-card"><div style="font-size:.9rem;font-weight:700;margin-bottom:4px;">Local Dining</div><div style="font-size:.72rem;color:var(--gray-text);margin-bottom:8px;">Pike & Rose restaurants, Pinstripes, Summer House Santa Monica, Rock Spring Park, Strathmore Music Center</div><div style="font-size:.78rem;color:#f5a623;">âââââ</div></div>
-      <div class="place-card"><div style="font-size:.9rem;font-weight:700;margin-bottom:4px;">Parks & Outdoors</div><div style="font-size:.72rem;color:var(--gray-text);margin-bottom:8px;">C&O Canal, Rock Creek Park, local trails and green spaces throughout</div><div style="font-size:.78rem;color:#f5a623;">âââââ</div></div>
-      <div class="place-card"><div style="font-size:.9rem;font-weight:700;margin-bottom:4px;">Community</div><div style="font-size:.72rem;color:var(--gray-text);margin-bottom:8px;">Strong neighborhood associations, community events, farmer's markets</div><div style="font-size:.78rem;color:#f5a623;">âââââ</div></div>
-    </div>
-    <div class="idx-placeholder" style="margin-top:28px;"><div class="icon">ð½ï¸</div><h3>Yelp Integration Placeholder</h3><p>Paste your Yelp embed code here for live business listings.</p><code>&lt;!-- Yelp embed --&gt;</code></div>
-  </div>
-</section>
-
-<section id="search" style="background:var(--gray-light);">
-  <div class="inner">
-    <span class="section-label">Available Listings</span>
-    <h2 class="section-title">Homes for Sale in <span>North-bethesda</span></h2>
-    <div class="idx-placeholder" style="margin-top:24px;">
-      <div class="icon">ð </div><h3>IDX Property Search</h3>
-      <p>Paste your IDX Broker search widget embed code for zip code 20852.</p>
-      <code>&lt;!-- IDX Broker search widget â Zip: 20852 --&gt;</code>
-    </div>
-    <div style="text-align:center;margin-top:28px;"><a href="/properties/" class="btn-primary">View All Listings</a></div>
-  </div>
-</section>
-
+<!-- CTA -->
 <section style="background:var(--black);text-align:center;">
   <div class="inner">
-    <span class="section-label" style="color:var(--red);">Let's Talk</span>
-    <h2 class="section-title" style="color:var(--white);margin-bottom:16px;">Interested in <span>North-bethesda?</span></h2>
-    <p style="color:#aaa;max-width:500px;margin:0 auto 36px;line-height:1.7;font-size:.9rem;">I know this market well. Reach out and let's talk about whether north-bethesda is the right fit for your lifestyle and budget.</p>
+    <span class="section-label" style="color:var(--red);">Ready to Make a Move?</span>
+    <h2 class="section-title" style="color:var(--white);margin-bottom:16px;">I Know <span>North Bethesda</span> Inside and Out</h2>
+    <p style="color:#aaa;max-width:500px;margin:0 auto 36px;line-height:1.7;font-size:.9rem;">North Bethesda is one of the best value plays in Montgomery County right now. Let me help you find a home positioned to benefit from this community's continued growth.</p>
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
       <a href="/contact/" class="btn-primary">Contact Pey</a>
-      <a href="/our-areas/" class="btn-outline light">Explore Other Areas</a>
+      <a href="/whats-my-home-worth/" class="btn-outline light">Get Home Value</a>
     </div>
   </div>
 </section>
 
-
-  <!-- AROUND THE AREA -->
-  <section class="around-section">
-    <div class="inner">
-      <span class="section-label">Local Life</span>
-      <h2 class="section-title">Around <span>North Bethesda</span></h2>
-      <p class="section-sub">Browse through the top rated businesses in the most popular categories North Bethesda has to offer.</p>
+<!-- Around the Area -->
+<section class="around-section">
+  <div class="inner">
+    <span class="section-label">Local Life</span>
+    <h2 class="section-title">Around <span>North Bethesda</span></h2>
+    <p class="section-sub">Pike &amp; Rose has become the anchor of North Bethesda's dining and entertainment scene, with new options opening regularly.</p>
 
       <div class="ata-tabs" role="tablist">
         <button class="ata-tab active" role="tab" aria-selected="true"  data-cat="dine"  onclick="ataShow('dine',this)">
@@ -299,18 +276,22 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.898 2.344-3.328"/><path d="M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.96-1.898-2.344-3.328"/><path d="M8 14v.5"/><path d="M16 14v.5"/><path d="M11.25 16.25h1.5L12 17l-.75-.75Z"/><path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.061-.162-2.2-.493-3.309m-9.243-6.082A8.801 8.801 0 0 1 12 5c.78 0 1.5.108 2.161.306"/></svg>
           Wag
         </button>
+        <button class="ata-tab" role="tab" aria-selected="false" data-cat="parks" onclick="ataShow('parks',this)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M17 14V2"/><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22h0a3.13 3.13 0 0 1-3-3.88Z"/></svg>
+          Parks
+        </button>
       </div>
 
-      <div class="ata-grid" id="ataGrid">
-        <div class="ata-loading">Loading local favorites&hellip;</div>
-      </div>
-
-      <p class="ata-attribution">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        Powered by <strong>Google Places</strong> &mdash; data refreshed periodically
-      </p>
+    <div class="ata-grid" id="ataGrid">
+      <div class="ata-loading">Loading local favorites&hellip;</div>
     </div>
-  </section>
+
+    <p class="ata-attribution">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      Powered by <strong>Google Places</strong> &mdash; data refreshed periodically
+    </p>
+  </div>
+</section>
 
   <script>
   (function() {
@@ -334,13 +315,8 @@
         return;
       }
       grid.innerHTML = items.map(function(b) {
-        var photo = b.photo
-          ? '<img src="' + b.photo + '" alt="' + b.name + '" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">'
-          : '';
-        var fallback = '<div class="ata-photo-fallback" style="' + (b.photo ? 'display:none' : '') + '">' + (cat === 'dine' ? 'ð½ï¸' : cat === 'drink' ? 'ð¹' : cat === 'shop' ? 'ðï¸' : cat === 'perk' ? 'â' : cat === 'sweat' ? 'ðª' : cat === 'groom' ? 'âï¸' : 'ð¾') + '</div>';
         var link = b.maps_url || '#';
         return '<a class="ata-card" href="' + link + '" target="_blank" rel="noopener">'
-          + '<div class="ata-card-img">' + photo + fallback + '</div>'
           + '<div class="ata-card-body">'
           + '<p class="ata-card-name">' + b.name + '</p>'
           + '<div class="ata-card-stars">' + starsHtml(b.rating) + '<span class="ata-card-rating">' + b.rating.toFixed(1) + '</span></div>'
@@ -370,13 +346,11 @@
       })
       .catch(function() {
         document.getElementById('ataGrid').innerHTML =
-          '<p class="ata-empty">Local data not yet available. Run fetch_places.py to populate.</p>';
+          '<p class="ata-empty">Local data not yet available.</p>';
       });
   })();
   </script>
-  <!-- END AROUND THE AREA -->
 
-  <!-- ââ FOOTER ââ -->
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
@@ -440,7 +414,7 @@
     </div>
     <div class="footer-bottom">
       <p>RLAH Properties | 4600 North Park Ave Suite 100, Chevy Chase, MD 20815 | (301) 652-0643<br/>
-      All information deemed reliable but not guaranteed. �&copy; 2026 @Bethesda Real Estate. All rights reserved.</p>
+      All information deemed reliable but not guaranteed. &copy; 2026 @Bethesda Real Estate. All rights reserved.</p>
       <div class="footer-bottom-links">
         <a href="/about/">Privacy Policy</a>
         <a href="/about/">Terms of Use</a>
@@ -448,6 +422,14 @@
     </div>
   </div>
 </footer>
-<div class="mobile-bar"><a href="tel:+12026817454">ð Call</a><a href="sms:+12026817454">ð¬ Text</a><a href="/contact/" class="primary">Connect</a><a href="#search">Listings</a></div>
+
+<div class="mobile-bar">
+  <a href="tel:+13016520643">&#128222; Call</a>
+  <a href="sms:+13016520643">&#128172; Text</a>
+  <a href="/contact/" class="primary">Connect</a>
+  <a href="/whats-my-home-worth/">Get Home Value</a>
+</div>
+
 <script src="../../js/main.js"></script>
-</body></html>
+</body>
+</html>

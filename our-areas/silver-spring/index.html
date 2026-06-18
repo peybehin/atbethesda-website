@@ -1,143 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Homes for Sale in Silver Spring, MD | @Bethesda Real Estate — Pey Behin</title>
-<meta name="description" content="Explore Silver Spring, MD real estate with Pey Behin of RLAH Properties. DC's creative, energetic neighbor. Browse current listings, market stats, schools, and local insights." />
-<link rel="canonical" href="https://atbethesda.com/our-areas/silver-spring/" />
-<meta property="og:type" content="website" />
-<meta property="og:title" content="Silver Spring, MD Homes for Sale | @Bethesda Real Estate" />
-<meta property="og:description" content="DC's creative, energetic neighbor — explore Silver Spring real estate with Pey Behin." />
-<meta property="og:image" content="https://images.unsplash.com/photo-1576941089067-2de3c901e126?w=1400&q=80" />
-<meta property="og:url" content="https://atbethesda.com/our-areas/silver-spring/" />
-<meta name="twitter:card" content="summary_large_image" />
-<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="../../css/style.css" />
-<script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "Place",
-  "name": "Silver Spring, MD",
-  "description": "Silver Spring is one of the most culturally rich communities in the DC Metro area \u2014 a vibrant, eclectic city that has undergone extraordinary revitalization over the past two decades. Downtown Silver S",
-  "url": "https://atbethesda.com/our-areas/silver-spring/",
-  "containedInPlace": {
-    "@type": "State",
-    "name": "MD"
-  },
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://atbethesda.com/properties/?area=silver-spring",
-    "query-input": "required name=search_term"
-  }
-}</script>
-<script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://atbethesda.com"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Featured Areas",
-      "item": "https://atbethesda.com/our-areas/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Silver Spring",
-      "item": "https://atbethesda.com/our-areas/silver-spring/"
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Silver Spring, MD Real Estate | @Bethesda Real Estate</title>
+  <meta name="description" content="Homes for sale in Silver Spring, MD. A vibrant, diverse community with Red Line Metro access and a thriving arts and dining scene. Explore with Pey Behin." />
+  <link rel="canonical" href="https://atbethesda.com/our-areas/silver-spring/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Silver Spring, MD Real Estate | @Bethesda Real Estate" />
+  <meta property="og:description" content="Homes for sale in Silver Spring, MD. A vibrant, diverse community with Red Line Metro access and a thriving arts and dining scene. Explore with Pey Behin." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1576941089067-2de3c901e126?w=1400&q=80" />
+  <meta property="og:url" content="https://atbethesda.com/our-areas/silver-spring/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/style.css" />
+  <style>
+    .area-intro { background: var(--white); }
+    .area-intro-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 70px; align-items: start; }
+    .area-intro-text h2 { font-size: clamp(1.4rem,2.5vw,2rem); font-weight:900; text-transform:uppercase; letter-spacing:.04em; margin-bottom:16px; }
+    .area-intro-text p { font-size:.9rem; color:var(--gray-text); line-height:1.75; margin-bottom:14px; }
+    .area-intro-sidebar { background: var(--gray-light); border-radius:8px; padding:30px; }
+    .area-intro-sidebar h3 { font-size:.78rem; font-weight:800; text-transform:uppercase; letter-spacing:.1em; margin-bottom:20px; color:#333; }
+    .area-detail-row { display:flex; justify-content:space-between; align-items:center; padding:11px 0; border-bottom:1px solid var(--gray-mid); font-size:.83rem; }
+    .area-detail-row:last-child { border-bottom:none; }
+    .area-detail-label { color:var(--gray-text); font-weight:600; }
+    .area-detail-value { font-weight:700; text-align:right; max-width:55%; }
+    .market-stats { background: var(--black); padding: 50px 40px 30px; }
+    .schools-section { background:var(--gray-light); }
+    .schools-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:36px; }
+    .school-card { background:var(--white); border-radius:var(--radius); padding:24px; border-left:4px solid var(--red); }
+    .school-icon { font-size:1.4rem; margin-bottom:8px; }
+    .school-info strong { display:block; font-size:.88rem; font-weight:700; margin-bottom:4px; }
+    .school-info span { font-size:.75rem; color:#888; display:block; }
+    .school-rating { display:inline-block; background:rgba(183,37,69,.1); color:var(--red); padding:3px 8px; border-radius:20px; font-size:.68rem; font-weight:700; margin-top:6px; }
+    .gs-link { display:inline-block; margin-top:6px; font-size:.68rem; font-weight:700; color:var(--red); text-decoration:none; letter-spacing:.04em; }
+    .gs-link:hover { text-decoration:underline; }
+    .around-section { padding: 80px 0; background: var(--white); }
+    .ata-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+    .ata-tab { display: inline-flex; align-items: center; gap: 7px; padding: 8px 18px; border-radius: 6px; border: 1px solid #ddd; background: var(--white); color: var(--gray-text); font-size: .85rem; cursor: pointer; transition: all .15s; }
+    .ata-tab:hover { border-color: var(--red); color: var(--red); }
+    .ata-tab.active { background: var(--red); color: #fff; border-color: var(--red); }
+    .ata-tab svg { flex-shrink: 0; }
+    .ata-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+    .ata-card { border-radius: 0 8px 8px 0; border: 1px solid #eee; border-left: 3px solid var(--red); background: var(--white); text-decoration: none; color: inherit; transition: box-shadow .2s, transform .2s; display: flex; flex-direction: column; }
+    .ata-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.1); transform: translateY(-2px); }
+    .ata-card-body { padding: 14px 16px; }
+    .ata-card-name { font-size: .9rem; font-weight: 600; margin: 0 0 5px; color: var(--dark); line-height: 1.3; }
+    .ata-card-stars { display: flex; align-items: center; gap: 4px; margin-bottom: 3px; }
+    .ata-star { font-size: 13px; }
+    .ata-star.full, .ata-star.half { color: #fbbc04; }
+    .ata-star.empty { color: #ddd; }
+    .ata-card-rating { font-size: .8rem; font-weight: 600; color: var(--dark); }
+    .ata-card-meta { font-size: .75rem; color: var(--gray-text); margin: 0 0 2px; }
+    .ata-card-cat { font-size: .75rem; color: var(--gray-text); margin: 0; }
+    .ata-loading, .ata-empty { color: var(--gray-text); font-size: .9rem; padding: 40px 0; text-align: center; }
+    .ata-attribution { display: flex; align-items: center; gap: 6px; margin-top: 24px; font-size: .75rem; color: var(--gray-text); }
+    @media(max-width:900px) {
+      .area-intro-grid { grid-template-columns: 1fr; }
+      .schools-grid { grid-template-columns: 1fr; }
     }
-  ]
-}</script>
-<style>
-.stats-bar{background:var(--red);padding:20px 40px;display:flex;gap:0;}
-.stats-bar-inner{max-width:var(--max-w);margin:0 auto;display:flex;gap:0;width:100%;}
-.stat-block{flex:1;text-align:center;color:#fff;padding:10px 20px;border-right:1px solid rgba(255,255,255,.2);}
-.stat-block:last-child{border-right:none;}
-.stat-block .val{font-size:1.6rem;font-weight:900;display:block;letter-spacing:-.02em;}
-.stat-block .lbl{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;opacity:.8;}
-.area-grid{display:grid;grid-template-columns:1fr 300px;gap:40px;align-items:start;max-width:var(--max-w);margin:0 auto;}
-.area-main h2{font-size:1.4rem;font-weight:900;text-transform:uppercase;letter-spacing:.04em;margin-bottom:16px;}
-.area-main p{font-size:.92rem;line-height:1.8;color:#444;margin-bottom:16px;}
-.highlights-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin:20px 0;}
-.highlights-list li{font-size:.85rem;font-weight:600;color:#333;padding:8px 12px;background:rgba(183,37,69,.05);border-left:3px solid var(--red);border-radius:0 4px 4px 0;}
-.at-glance{background:#111;color:#fff;border-radius:8px;padding:28px;}
-.at-glance h3{font-size:.65rem;text-transform:uppercase;letter-spacing:.15em;color:#888;margin-bottom:18px;}
-.glance-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #222;font-size:.8rem;}
-.glance-row:last-child{border-bottom:none;}
-.glance-row span:first-child{color:#888;}
-.glance-row span:last-child{color:#fff;font-weight:700;text-align:right;max-width:55%;}
-.cta-area{margin-top:24px;}
-.schools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;}
-.school-card{background:#fff;border:1px solid var(--gray-mid);border-radius:6px;padding:18px;display:flex;gap:14px;align-items:flex-start;}
-.school-icon{font-size:1.5rem;flex-shrink:0;}
-.school-info strong{display:block;font-size:.85rem;font-weight:700;margin-bottom:4px;}
-.school-info span{font-size:.72rem;color:#888;display:block;}
-.school-rating{display:inline-block;background:rgba(183,37,69,.1);color:var(--red);padding:3px 8px;border-radius:20px;font-size:.68rem;font-weight:700;margin-top:6px;}
-@media(max-width:900px){.area-grid{grid-template-columns:1fr;}.stats-bar-inner{flex-wrap:wrap;}.stat-block{min-width:50%;border-right:none;border-bottom:1px solid rgba(255,255,255,.2);}}
-
-.gs-link{display:inline-block;margin-top:6px;font-size:.68rem;font-weight:700;color:var(--red);text-decoration:none;letter-spacing:.04em;}
-.gs-link:hover{text-decoration:underline;}
-.gs-attribution{display:flex;align-items:center;gap:8px;margin-top:20px;padding-top:16px;border-top:1px solid var(--gray-mid);font-size:.68rem;color:#aaa;}
-.gs-attribution img{height:16px;opacity:.6;}
-
-  /* ---- Around the Area ---- */
-  .around-section { padding: 80px 0; background: var(--white); }
-  .ata-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
-  .ata-tab {
-    display: inline-flex; align-items: center; gap: 7px;
-    padding: 8px 18px; border-radius: 6px; border: 1px solid #ddd;
-    background: var(--white); color: var(--gray-text);
-    font-size: .85rem; cursor: pointer; transition: all .15s;
-  }
-  .ata-tab:hover { border-color: var(--red); color: var(--red); }
-  .ata-tab.active { background: var(--red); color: #fff; border-color: var(--red); }
-  .ata-tab svg { flex-shrink: 0; }
-  .ata-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 16px;
-  }
-  .ata-card {
-    border-radius: 8px; overflow: hidden; border: 1px solid #eee;
-    background: var(--white); text-decoration: none; color: inherit;
-    transition: box-shadow .2s, transform .2s;
-    display: flex; flex-direction: column;
-  }
-  .ata-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.1); transform: translateY(-2px); }
-  .ata-card-img { width: 100%; aspect-ratio: 4/3; overflow: hidden; background: #f5f5f5; }
-  .ata-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .ata-photo-fallback {
-    width: 100%; height: 100%; display: flex; align-items: center;
-    justify-content: center; font-size: 2.5rem; background: #f9f9f9;
-  }
-  .ata-card-body { padding: 10px 12px 14px; }
-  .ata-card-name { font-size: .9rem; font-weight: 600; margin: 0 0 5px; color: var(--dark); line-height: 1.3; }
-  .ata-card-stars { display: flex; align-items: center; gap: 4px; margin-bottom: 3px; }
-  .ata-star { font-size: 13px; }
-  .ata-star.full, .ata-star.half { color: #fbbc04; }
-  .ata-star.empty { color: #ddd; }
-  .ata-card-rating { font-size: .8rem; font-weight: 600; color: var(--dark); }
-  .ata-card-meta { font-size: .75rem; color: var(--gray-text); margin: 0 0 2px; }
-  .ata-card-cat { font-size: .75rem; color: var(--gray-text); margin: 0; }
-  .ata-loading, .ata-empty { color: var(--gray-text); font-size: .9rem; padding: 40px 0; text-align: center; }
-  .ata-attribution {
-    display: flex; align-items: center; gap: 6px;
-    margin-top: 24px; font-size: .75rem; color: var(--gray-text);
-  }
-  @media (max-width: 600px) {
-    .ata-grid { grid-template-columns: repeat(2, 1fr); }
-    .ata-tab { padding: 7px 12px; font-size: .8rem; }
-  }
-
+    @media(max-width:600px) {
+      .ata-grid { grid-template-columns: repeat(2, 1fr); }
+      .ata-tab { padding: 7px 12px; font-size: .8rem; }
+    }
   </style>
+  <script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": "Place",
+    "name": "Silver Spring",
+    "description": "Homes for sale in Silver Spring, MD. A vibrant, diverse community with Red Line Metro access and a thriving arts and dining scene. Explore with Pey Behin.",
+    "url": "https://atbethesda.com/our-areas/silver-spring/",
+    "address": { "@type": "PostalAddress", "addressCountry": "US" },
+    "containedInPlace": { "@type": "State", "name": "Maryland" }
+  }</script>
 </head>
 <body>
+
 <nav id="main-nav">
   <a href="/" class="nav-logo"><img src="/images/blog/BETHESDA-w-RED.png" alt="@Bethesda Real Estate" /></a>
   <ul class="nav-links">
@@ -157,77 +97,95 @@
       </ul>
     </li>
     <li><a href="/our-areas/" class="active">Featured Areas</a></li>
-    <li><a href="/about/">About</a></li>
+    <li class="nav-dropdown"><a href="/about/">About ▾</a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="/about/">About Pey</a></li>
+        <li><a href="/testimonials/">Testimonials</a></li>
+      </ul>
+    </li>
     <li><a href="/vlog/">Blog</a></li>
     <li><a href="/contact/" class="nav-cta">Let's Connect</a></li>
   </ul>
-<button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
 </nav>
-<div class="mobile-nav" id="mobile-nav"><ul><li><a href="/">Home</a></li><li><a href="/properties/">Buy</a></li><li><a href="/whats-my-home-worth/">Sell</a></li><li><a href="/our-areas/">Featured Areas</a></li><li><a href="/about/">About</a></li><li><a href="/vlog/">Blog</a></li><li><a href="/contact/">Let&#39;s Connect</a></li></ul></div>
+<div class="mobile-nav" id="mobile-nav"><ul><li><a href="/">Home</a></li><li><a href="/properties/">Buy</a></li><li><a href="/whats-my-home-worth/">Sell</a></li><li><a href="/our-areas/">Featured Areas</a></li><li><a href="/about/">About</a></li><li><a href="/vlog/">Blog</a></li><li><a href="/contact/">Let's Connect</a></li></ul></div>
 
-<div class="page-hero">
+<!-- Hero -->
+<div class="page-hero" style="min-height:420px;">
   <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1576941089067-2de3c901e126?w=1400&q=80');"></div>
   <div class="page-hero-overlay"></div>
   <div class="page-hero-content">
-    <nav class="breadcrumb"><a href="/">Home</a><span>›</span><a href="/our-areas/">Featured Areas</a><span>›</span><span style="color:rgba(255,255,255,.8);">Silver Spring</span></nav>
-    <span class="section-label">MD Real Estate</span>
-    <h1>Silver Spring, <span>MD</span></h1>
-    <p>DC's creative, energetic neighbor</p>
-  </div>
-</div>
-
-<!-- Stats Bar -->
-<div class="stats-bar">
-  <div class="stats-bar-inner">
-    <div class="stat-block"><span class="val">$455,000</span><span class="lbl">Median Sale Price</span></div>
-    <div class="stat-block"><span class="val">9</span><span class="lbl">Avg. Days on Market</span></div>
-    <div class="stat-block"><span class="val">102%</span><span class="lbl">List-to-Sale Ratio</span></div>
-    <div class="stat-block"><span class="val">Active</span><span class="lbl">MLS Listings</span></div>
-  </div>
-</div>
-
-<!-- About + At a Glance -->
-<section>
-  <div class="area-grid">
-    <div class="area-main">
-      <span class="section-label">About the Area</span>
-      <h2>Living in Silver Spring</h2>
-      <p>Silver Spring is one of the most culturally rich communities in the DC Metro area — a vibrant, eclectic city that has undergone extraordinary revitalization over the past two decades. Downtown Silver Spring anchors the Red Line Metro's northern end, with AFI Silver Theatre, Fillmore music venue, and a remarkable restaurant scene spanning cuisines from Ethiopian to Salvadoran to Korean. For buyers priced out of Bethesda or looking for DC proximity with more house for their money, Silver Spring is the answer.</p>
-      <h3 style="font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;margin:24px 0 12px;">Why Silver Spring?</h3>
-      <ul class="highlights-list"><li>✓ Red Line Metro — 15 min to downtown DC</li>
-<li>✓ AFI Silver Theatre & Fillmore venue</li>
-<li>✓ Most eclectic dining scene in Maryland</li>
-<li>✓ Blair HS & Montgomery Blair arts magnet</li>
-<li>✓ Best value closest to DC in Montgomery County</li></ul>
+    <div class="breadcrumb">
+      <a href="/">Home</a><span>/</span>
+      <a href="/our-areas/">Featured Areas</a><span>/</span>
+      <span style="color:rgba(255,255,255,.8);">Silver Spring</span>
     </div>
-    <div>
-      <div class="at-glance">
-        <h3>At a Glance</h3>
-        <div class="glance-row"><span>County / Jurisdiction</span><span>Montgomery County, MD</span></div>
-        <div class="glance-row"><span>Commute to DC</span><span>Metro, 15–20 min to DC</span></div>
-        <div class="glance-row"><span>Neighborhood Vibe</span><span>Artsy, eclectic, urban energy</span></div>
-        <div class="glance-row"><span>Best For</span><span>Young buyers, urban lifestyle seekers</span></div>
-        <div class="glance-row"><span>ZIP Code</span><span>20910</span></div>
+    <span class="section-label" style="color:rgba(255,255,255,.6);">Montgomery County, MD</span>
+    <h1>Silver Spring, <span>Maryland</span></h1>
+    <p>A vibrant, diverse community with big-city energy, Metro access, and a thriving arts scene.</p>
+    <div style="display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;">
+      <a href="/properties/?area=silver-spring" class="btn-primary">View Homes for Sale</a>
+      <a href="/whats-my-home-worth/" class="btn-outline light">Get Home Value</a>
+    </div>
+  </div>
+</div>
+
+<!-- About the Area -->
+<section class="area-intro">
+  <div class="inner">
+    <div class="area-intro-grid">
+      <div class="area-intro-text">
+        <span class="section-label">About the Area</span>
+        <h2>Why People Love <span style="color:var(--red);">Silver Spring</span></h2>
+        <p>Silver Spring has undergone a remarkable transformation over the past two decades, evolving from a sleepy bedroom community into one of Montgomery County's most vibrant and culturally dynamic destinations. Downtown Silver Spring — anchored by The Fillmore music venue, AFI Silver Theatre, and a diverse restaurant corridor — buzzes with energy that feels more urban neighborhood than suburb.</p>
+        <p>The housing market reflects this evolution. Silver Spring offers an unusually wide range of options: historic pre-war homes in established neighborhoods like Four Corners and Woodside Park, post-war ranchers and split-levels throughout its residential streets, and a growing inventory of modern condos and apartments near the Metro. This variety, combined with relatively competitive pricing compared to Bethesda and Chevy Chase, makes it a perennial favorite for buyers seeking value without sacrificing quality.</p>
+        <p>With Red Line Metro stations at Silver Spring and Forest Glen providing direct service to DC, Bethesda, and Rockville, commuters are exceptionally well-served. And with Rock Creek Park bordering the western edge and Sligo Creek Park running through the center, Silver Spring is far greener than its density suggests.</p>
+        <div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;">
+          <a href="/properties/?area=silver-spring" class="btn-primary">Browse Silver Spring Listings</a>
+          <a href="/contact/" class="btn-outline">Ask Pey About Silver Spring</a>
+        </div>
       </div>
-      <div class="cta-area" style="background:var(--gray-light);border-radius:6px;padding:20px;margin-top:16px;text-align:center;">
-        <p style="font-size:.78rem;color:#666;margin-bottom:12px;line-height:1.6;">Interested in Silver Spring? Let Pey walk you through what's available right now.</p>
-        <a href="/contact/" class="btn-primary" style="display:inline-block;margin-bottom:8px;">Talk to Pey</a><br>
-        <a href="/properties/?area=silver-spring" class="btn-outline" style="display:inline-block;margin-top:8px;">Browse Listings</a>
-      </div>
-      <div style="margin-top: 16px; overflow: hidden; height: 195px;">
-        <iframe
-          src="https://altos.re/html/m-html/7238ac75-8ab8-4438-935b-17086a6a9fc2?scale=1&houses=true&size=medium"
-          style="border:0;display:block;width:100%;height:400px;"
-          scrolling="no"
-          loading="lazy">
-        </iframe>
+      <div class="area-intro-sidebar">
+        <h3>Silver Spring at a Glance</h3>
+        <div class="area-detail-row">
+          <span class="area-detail-label">County / Jurisdiction</span>
+          <span class="area-detail-value">Montgomery County, MD</span>
+        </div>
+        <div class="area-detail-row">
+          <span class="area-detail-label">Primary Zip Codes</span>
+          <span class="area-detail-value">20901, 20902, 20910</span>
+        </div>
+        <div class="area-detail-row">
+          <span class="area-detail-label">Metro Access</span>
+          <span class="area-detail-value">Red Line ✅</span>
+        </div>
+        <div class="area-detail-row">
+          <span class="area-detail-label">Drive to DC</span>
+          <span class="area-detail-value">~20–30 min</span>
+        </div>
+        <div class="area-detail-row">
+          <span class="area-detail-label">Walkability Score</span>
+          <span class="area-detail-value">Very Walkable (80)</span>
+        </div>
+        <div class="area-detail-row">
+          <span class="area-detail-label">Average Property Tax</span>
+          <span class="area-detail-value">~0.95% of assessed value</span>
+        </div>
+        <div style="margin-top: 20px; overflow: hidden; height: 195px;">
+          <iframe
+            src="https://altos.re/html/m-html/7238ac75-8ab8-4438-935b-17086a6a9fc2?scale=1&houses=true&size=medium"
+            style="border:0;display:block;width:100%;height:400px;"
+            scrolling="no"
+            loading="lazy">
+          </iframe>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Market Stats -->
-<section style="background:var(--black);padding:50px 40px 30px;">
+<section class="market-stats">
   <div class="inner">
     <span class="section-label" style="color:var(--red);">Live Market Data</span>
     <h2 class="section-title" style="color:var(--white);">Silver Spring <span>Market Trends</span></h2>
@@ -248,12 +206,12 @@
 </section>
 
 <!-- Schools -->
-<section style="background:var(--gray-light);">
+<section class="schools-section">
   <div class="inner">
     <span class="section-label">Education</span>
-    <h2 class="section-title">Silver Spring <span>Schools</span></h2>
-    <p class="section-sub" style="margin-bottom:32px;">School assignments vary by address. Always verify current boundaries with the school district before purchasing.</p>
-          <div class="schools-grid">
+    <h2 class="section-title">Schools in <span>Silver Spring</span></h2>
+    <p class="section-sub">School assignments vary by address. Always verify current boundaries with the school district before purchasing.</p>
+    <div class="schools-grid">
         <div class="school-card">
           <div class="school-icon">🎓</div>
           <div class="school-info">
@@ -263,52 +221,31 @@
             <a href="https://www.greatschools.org/maryland/silver-spring/927-Montgomery-Blair-High-School/" target="_blank" rel="noopener" class="gs-link">View on GreatSchools →</a>
           </div>
         </div>
-        <div class="school-card">
-          <div class="school-icon">🎓</div>
-          <div class="school-info">
-            <strong>Silver Spring International Middle School</strong>
-            <span>Grades 6–8</span>
-            <div class="school-rating">6/10</div>
-            <a href="https://www.greatschools.org/maryland/silver-spring/2009-Silver-Spring-International-Middle-School/" target="_blank" rel="noopener" class="gs-link">View on GreatSchools →</a>
-          </div>
-        </div>
-      </div>
+    <p style="margin-top:24px;font-size:.78rem;color:var(--gray-text);">
+      &#x1F4A1; <strong>Pro tip:</strong> School boundaries can change. Always verify your specific address's school assignment with <a href='https://www.montgomeryschoolsmd.org/' target='_blank' style='color:var(--red);'>Montgomery County Public Schools</a>.
+    </p>
   </div>
 </section>
 
-<!-- IDX Search -->
-<section>
+<!-- CTA -->
+<section style="background:var(--black);text-align:center;">
   <div class="inner">
-    <span class="section-label">Browse Listings</span>
-    <h2 class="section-title">Homes for Sale in <span>Silver Spring</span></h2>
-    <div class="idx-placeholder" style="margin-top:24px;">
-      <div class="icon">🏠</div>
-      <h3>IDX Property Search — Silver Spring</h3>
-      <p>Paste your IDX Broker search widget filtered to Silver Spring / 20910 here.</p>
+    <span class="section-label" style="color:var(--red);">Ready to Make a Move?</span>
+    <h2 class="section-title" style="color:var(--white);margin-bottom:16px;">I Know <span>Silver Spring</span> Inside and Out</h2>
+    <p style="color:#aaa;max-width:500px;margin:0 auto 36px;line-height:1.7;font-size:.9rem;">Silver Spring offers some of the best value in Montgomery County — and it's only getting better. Let me help you find your place in one of the Metro's most exciting communities.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="/contact/" class="btn-primary">Contact Pey</a>
+      <a href="/whats-my-home-worth/" class="btn-outline light">Get Home Value</a>
     </div>
   </div>
 </section>
 
-<!-- Dark CTA -->
-<section style="background:#111;padding:80px 40px;text-align:center;">
+<!-- Around the Area -->
+<section class="around-section">
   <div class="inner">
-    <span class="section-label" style="color:rgba(255,255,255,.5);">Your Silver Spring Expert</span>
-    <h2 class="section-title" style="color:#fff;">Ready to Explore <span>Silver Spring</span>?</h2>
-    <p style="color:#aaa;max-width:500px;margin:0 auto 32px;line-height:1.7;font-size:.9rem;">I know every street and every pocket of Silver Spring. Let me help you find the right home — or the right buyer — for your timeline and budget.</p>
-    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-      <a href="/contact/" class="btn-primary">Let's Connect</a>
-      <a href="/our-areas/" class="btn-outline light">View All Areas</a>
-    </div>
-  </div>
-</section>
-
-
-  <!-- AROUND THE AREA -->
-  <section class="around-section">
-    <div class="inner">
-      <span class="section-label">Local Life</span>
-      <h2 class="section-title">Around <span>Silver Spring</span></h2>
-      <p class="section-sub">Browse through the top rated businesses in the most popular categories Silver Spring has to offer.</p>
+    <span class="section-label">Local Life</span>
+    <h2 class="section-title">Around <span>Silver Spring</span></h2>
+    <p class="section-sub">Downtown Silver Spring's restaurant corridor, The Fillmore, and AFI Silver Theatre make it one of Montgomery County's most culturally rich destinations.</p>
 
       <div class="ata-tabs" role="tablist">
         <button class="ata-tab active" role="tab" aria-selected="true"  data-cat="dine"  onclick="ataShow('dine',this)">
@@ -339,18 +276,22 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.898 2.344-3.328"/><path d="M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.96-1.898-2.344-3.328"/><path d="M8 14v.5"/><path d="M16 14v.5"/><path d="M11.25 16.25h1.5L12 17l-.75-.75Z"/><path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.061-.162-2.2-.493-3.309m-9.243-6.082A8.801 8.801 0 0 1 12 5c.78 0 1.5.108 2.161.306"/></svg>
           Wag
         </button>
+        <button class="ata-tab" role="tab" aria-selected="false" data-cat="parks" onclick="ataShow('parks',this)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M17 14V2"/><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22h0a3.13 3.13 0 0 1-3-3.88Z"/></svg>
+          Parks
+        </button>
       </div>
 
-      <div class="ata-grid" id="ataGrid">
-        <div class="ata-loading">Loading local favorites&hellip;</div>
-      </div>
-
-      <p class="ata-attribution">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        Powered by <strong>Google Places</strong> &mdash; data refreshed periodically
-      </p>
+    <div class="ata-grid" id="ataGrid">
+      <div class="ata-loading">Loading local favorites&hellip;</div>
     </div>
-  </section>
+
+    <p class="ata-attribution">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      Powered by <strong>Google Places</strong> &mdash; data refreshed periodically
+    </p>
+  </div>
+</section>
 
   <script>
   (function() {
@@ -374,13 +315,8 @@
         return;
       }
       grid.innerHTML = items.map(function(b) {
-        var photo = b.photo
-          ? '<img src="' + b.photo + '" alt="' + b.name + '" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">'
-          : '';
-        var fallback = '<div class="ata-photo-fallback" style="' + (b.photo ? 'display:none' : '') + '">' + (cat === 'dine' ? '🍽️' : cat === 'drink' ? '🍹' : cat === 'shop' ? '🛍️' : cat === 'perk' ? '☕' : cat === 'sweat' ? '💪' : cat === 'groom' ? '✂️' : '🐾') + '</div>';
         var link = b.maps_url || '#';
         return '<a class="ata-card" href="' + link + '" target="_blank" rel="noopener">'
-          + '<div class="ata-card-img">' + photo + fallback + '</div>'
           + '<div class="ata-card-body">'
           + '<p class="ata-card-name">' + b.name + '</p>'
           + '<div class="ata-card-stars">' + starsHtml(b.rating) + '<span class="ata-card-rating">' + b.rating.toFixed(1) + '</span></div>'
@@ -410,13 +346,11 @@
       })
       .catch(function() {
         document.getElementById('ataGrid').innerHTML =
-          '<p class="ata-empty">Local data not yet available. Run fetch_places.py to populate.</p>';
+          '<p class="ata-empty">Local data not yet available.</p>';
       });
   })();
   </script>
-  <!-- END AROUND THE AREA -->
 
-  <!-- ── FOOTER ── -->
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
@@ -480,7 +414,7 @@
     </div>
     <div class="footer-bottom">
       <p>RLAH Properties | 4600 North Park Ave Suite 100, Chevy Chase, MD 20815 | (301) 652-0643<br/>
-      All information deemed reliable but not guaranteed. �&copy; 2026 @Bethesda Real Estate. All rights reserved.</p>
+      All information deemed reliable but not guaranteed. &copy; 2026 @Bethesda Real Estate. All rights reserved.</p>
       <div class="footer-bottom-links">
         <a href="/about/">Privacy Policy</a>
         <a href="/about/">Terms of Use</a>
@@ -488,7 +422,14 @@
     </div>
   </div>
 </footer>
-<div class="mobile-bar"><a href="tel:+12026817454">📞 Call</a><a href="sms:+12026817454">💬 Text</a><a href="/contact/" class="primary">Connect</a><a href="/whats-my-home-worth/">Valuation</a></div>
+
+<div class="mobile-bar">
+  <a href="tel:+13016520643">&#128222; Call</a>
+  <a href="sms:+13016520643">&#128172; Text</a>
+  <a href="/contact/" class="primary">Connect</a>
+  <a href="/whats-my-home-worth/">Get Home Value</a>
+</div>
+
 <script src="../../js/main.js"></script>
 </body>
 </html>
