@@ -628,12 +628,26 @@ select.cat-select{margin-bottom:0;}
 
 <script>
 /* ══════════════ AUTH ══════════════ */
-// Change this password to whatever you want
 const ADMIN_PASSWORD = 'bethesda2026';
+const AUTH_KEY = 'ab_auth_expiry';
+const AUTH_DAYS = 30;
+
+function checkAuth() {
+  const expiry = localStorage.getItem(AUTH_KEY);
+  if (expiry && Date.now() < parseInt(expiry, 10)) {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('app').style.display = 'flex';
+    initApp();
+    return true;
+  }
+  return false;
+}
 
 function doLogin() {
   const pw = document.getElementById('pw-input').value;
   if (pw === ADMIN_PASSWORD) {
+    const expiry = Date.now() + AUTH_DAYS * 24 * 60 * 60 * 1000;
+    localStorage.setItem(AUTH_KEY, expiry.toString());
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('app').style.display = 'flex';
     initApp();
@@ -642,6 +656,9 @@ function doLogin() {
     document.getElementById('pw-input').value = '';
   }
 }
+
+// Auto-login if session still valid
+checkAuth();
 
 /* ══════════════ DATA STORE ══════════════ */
 let posts = JSON.parse(localStorage.getItem('ab_posts') || '[]');
