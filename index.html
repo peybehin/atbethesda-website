@@ -295,6 +295,43 @@
       font-size: .72rem; font-weight: 600; letter-spacing: .05em;
     }
 
+
+    /* -- FEATURED LISTINGS -- */
+    #featured-listings {
+      background: #0a0a0a;
+      padding: 80px 0;
+    }
+    .listings-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .listings-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 48px;
+    }
+    .listings-header .section-title {
+      margin-bottom: 0;
+    }
+    .listings-header a {
+      color: #cc2936;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .listings-header a:hover { text-decoration: underline; }
+    /* IDX widget override styles */
+    #featured-listings .IDX-showcaseContainer,
+    #featured-listings .IDX-carousel,
+    #featured-listings [class*="idx-"] {
+      font-family: inherit;
+    }
+
     /* -- FEATURED AREAS -- */
     #featured-areas { background: var(--gray-light); }
     .areas-inner { max-width: 1200px; margin: 0 auto; }
@@ -756,6 +793,22 @@
       </svg>
       <p>Interactive school district map<br/>loads from your IDX integration</p>
     </div>
+  </div>
+</section>
+
+
+<!-- -- FEATURED LISTINGS -- -->
+<section id="featured-listings">
+  <div class="listings-inner">
+    <div class="listings-header">
+      <div>
+        <div class="section-label">DC Metro Real Estate</div>
+        <h2 class="section-title">Featured <span>Listings</span></h2>
+      </div>
+      <a href="//search.atbethesda.com/idx/results/listings">View All Listings &rarr;</a>
+    </div>
+    <!-- IDX Broker Featured Slide Show widget -->
+    <script charset="UTF-8" type="text/javascript" id="idxwidgetsrc-160389" src="//search.atbethesda.com/idx/widgets/160389"></script>
   </div>
 </section>
 
