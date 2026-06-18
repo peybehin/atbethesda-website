@@ -1,0 +1,369 @@
+{
+  "dine": [
+    {
+      "name": "Clyde's of Chevy Chase",
+      "rating": 4.2,
+      "reviews": 1800,
+      "price": "$$$",
+      "category": "American Brasserie",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Clydes+of+Chevy+Chase+MD"
+    },
+    {
+      "name": "Tavira",
+      "rating": 4.5,
+      "reviews": 890,
+      "price": "$$$",
+      "category": "Portuguese",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Tavira+Chevy+Chase+MD"
+    },
+    {
+      "name": "Sushiko",
+      "rating": 4.6,
+      "reviews": 1100,
+      "price": "$$$",
+      "category": "Japanese",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Sushiko+Chevy+Chase+MD"
+    },
+    {
+      "name": "Maggiano's Little Italy",
+      "rating": 4.3,
+      "reviews": 2400,
+      "price": "$$$",
+      "category": "Italian",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Maggianos+Chevy+Chase+MD"
+    },
+    {
+      "name": "Lia's",
+      "rating": 4.4,
+      "reviews": 760,
+      "price": "$$$",
+      "category": "Italian American",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Lias+Chevy+Chase+MD"
+    },
+    {
+      "name": "Bethesda Crab House",
+      "rating": 4.1,
+      "reviews": 950,
+      "price": "$$",
+      "category": "Seafood",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Bethesda+Crab+House+MD"
+    },
+    {
+      "name": "Parthenon Restaurant",
+      "rating": 4.2,
+      "reviews": 680,
+      "price": "$$",
+      "category": "Greek",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Parthenon+Restaurant+Chevy+Chase+MD"
+    }
+  ],
+  "drink": [
+    {
+      "name": "Quadrant Bar & Lounge",
+      "rating": 4.3,
+      "reviews": 540,
+      "price": "$$",
+      "category": "Cocktail Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Quadrant+Bar+Lounge+Chevy+Chase+MD"
+    },
+    {
+      "name": "Regal Cinemas Bar",
+      "rating": 4.0,
+      "reviews": 310,
+      "price": "$$",
+      "category": "Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Chevy+Chase+Pavilion+Bar+MD"
+    },
+    {
+      "name": "Starbucks Friendship Heights",
+      "rating": 4.1,
+      "reviews": 820,
+      "price": "$",
+      "category": "Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Starbucks+Friendship+Heights+MD"
+    },
+    {
+      "name": "Compass Coffee",
+      "rating": 4.5,
+      "reviews": 430,
+      "price": "$",
+      "category": "Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Compass+Coffee+Chevy+Chase+MD"
+    },
+    {
+      "name": "The Rye Bar",
+      "rating": 4.4,
+      "reviews": 610,
+      "price": "$$$",
+      "category": "Hotel Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Rye+Bar+Chevy+Chase+MD"
+    }
+  ],
+  "shop": [
+    {
+      "name": "Mazza Gallerie",
+      "rating": 4.2,
+      "reviews": 3100,
+      "price": "$$$",
+      "category": "Mall",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Mazza+Gallerie+Washington+DC"
+    },
+    {
+      "name": "The Collection at Chevy Chase",
+      "rating": 4.3,
+      "reviews": 1400,
+      "price": "$$$$",
+      "category": "Luxury Retail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Collection+Chevy+Chase+MD"
+    },
+    {
+      "name": "Neiman Marcus",
+      "rating": 4.4,
+      "reviews": 1900,
+      "price": "$$$$",
+      "category": "Department Store",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Neiman+Marcus+Mazza+Gallerie+DC"
+    },
+    {
+      "name": "Politics & Prose",
+      "rating": 4.8,
+      "reviews": 2700,
+      "price": "$$",
+      "category": "Bookstore",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Politics+and+Prose+Connecticut+Ave+DC"
+    },
+    {
+      "name": "H&M Friendship Heights",
+      "rating": 3.9,
+      "reviews": 870,
+      "price": "$$",
+      "category": "Clothing",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=H+M+Friendship+Heights+DC"
+    },
+    {
+      "name": "Anthropologie",
+      "rating": 4.3,
+      "reviews": 640,
+      "price": "$$$",
+      "category": "Women's Clothing",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Anthropologie+Chevy+Chase+MD"
+    }
+  ],
+  "perk": [
+    {
+      "name": "Starbucks",
+      "rating": 4.1,
+      "reviews": 820,
+      "price": "$",
+      "category": "Coffee Chain",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Starbucks+Wisconsin+Ave+Chevy+Chase+MD"
+    },
+    {
+      "name": "Compass Coffee",
+      "rating": 4.5,
+      "reviews": 430,
+      "price": "$",
+      "category": "Indie Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Compass+Coffee+Chevy+Chase+MD"
+    },
+    {
+      "name": "Mayorga Coffee",
+      "rating": 4.4,
+      "reviews": 290,
+      "price": "$",
+      "category": "Coffee Roaster",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Mayorga+Coffee+Chevy+Chase+MD"
+    },
+    {
+      "name": "Baked & Wired",
+      "rating": 4.7,
+      "reviews": 3100,
+      "price": "$",
+      "category": "Bakery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Baked+Wired+Georgetown+DC"
+    },
+    {
+      "name": "Levain Bakery",
+      "rating": 4.6,
+      "reviews": 1800,
+      "price": "$",
+      "category": "Bakery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Levain+Bakery+Chevy+Chase+DC"
+    }
+  ],
+  "sweat": [
+    {
+      "name": "Equinox Chevy Chase",
+      "rating": 4.5,
+      "reviews": 780,
+      "price": "$$$$",
+      "category": "Luxury Gym",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Equinox+Chevy+Chase+MD"
+    },
+    {
+      "name": "CorePower Yoga",
+      "rating": 4.4,
+      "reviews": 520,
+      "price": "$$$",
+      "category": "Yoga Studio",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=CorePower+Yoga+Chevy+Chase+MD"
+    },
+    {
+      "name": "SoulCycle Chevy Chase",
+      "rating": 4.5,
+      "reviews": 410,
+      "price": "$$$$",
+      "category": "Cycling Studio",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=SoulCycle+Chevy+Chase+MD"
+    },
+    {
+      "name": "OrangeTheory Fitness",
+      "rating": 4.4,
+      "reviews": 620,
+      "price": "$$$",
+      "category": "HIIT Studio",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=OrangeTheory+Chevy+Chase+MD"
+    }
+  ],
+  "groom": [
+    {
+      "name": "Salon Adeline",
+      "rating": 4.6,
+      "reviews": 340,
+      "price": "$$$",
+      "category": "Hair Salon",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Salon+Adeline+Chevy+Chase+MD"
+    },
+    {
+      "name": "Giovanni & Pileggi",
+      "rating": 4.5,
+      "reviews": 290,
+      "price": "$$$",
+      "category": "Hair Salon",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Giovanni+Pileggi+Chevy+Chase+MD"
+    },
+    {
+      "name": "The Art of Shaving",
+      "rating": 4.3,
+      "reviews": 410,
+      "price": "$$$",
+      "category": "Barber / Men's Grooming",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Art+of+Shaving+Friendship+Heights+DC"
+    }
+  ],
+  "wag": [
+    {
+      "name": "Canine Country Club",
+      "rating": 4.7,
+      "reviews": 380,
+      "price": "$$$",
+      "category": "Dog Boarding & Daycare",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Canine+Country+Club+Chevy+Chase+MD"
+    },
+    {
+      "name": "Rock Creek Park Dog Area",
+      "rating": 4.8,
+      "reviews": 1100,
+      "price": "Free",
+      "category": "Off-Leash Dog Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Rock+Creek+Park+Dog+Area+DC"
+    },
+    {
+      "name": "PetSmart Friendship Heights",
+      "rating": 4.1,
+      "reviews": 670,
+      "price": "$$",
+      "category": "Pet Store",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=PetSmart+Friendship+Heights+DC"
+    },
+    {
+      "name": "Dogma Bakery",
+      "rating": 4.7,
+      "reviews": 290,
+      "price": "$",
+      "category": "Dog Bakery & Boutique",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Dogma+Bakery+DC"
+    }
+  ],
+  "parks": [
+    {
+      "name": "Rock Creek Park",
+      "rating": 4.8,
+      "reviews": 8400,
+      "price": "Free",
+      "category": "National Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Rock+Creek+Park+DC"
+    },
+    {
+      "name": "Chevy Chase Circle Park",
+      "rating": 4.5,
+      "reviews": 310,
+      "price": "Free",
+      "category": "Neighborhood Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Chevy+Chase+Circle+DC"
+    },
+    {
+      "name": "Meadowbrook Park",
+      "rating": 4.6,
+      "reviews": 520,
+      "price": "Free",
+      "category": "Park & Trails",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Meadowbrook+Park+Chevy+Chase+MD"
+    },
+    {
+      "name": "Norwood Local Park",
+      "rating": 4.4,
+      "reviews": 240,
+      "price": "Free",
+      "category": "Local Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Norwood+Local+Park+Chevy+Chase+MD"
+    },
+    {
+      "name": "Boundary Bridge Natural Area",
+      "rating": 4.6,
+      "reviews": 380,
+      "price": "Free",
+      "category": "Nature Trail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Boundary+Bridge+Rock+Creek+Park+DC"
+    }
+  ]
+}

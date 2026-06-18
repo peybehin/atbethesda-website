@@ -1,0 +1,306 @@
+{
+  "dine": [
+    {
+      "name": "Buck's Fishing & Camping",
+      "rating": 4.5,
+      "reviews": 1600,
+      "price": "$$$",
+      "category": "New American",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Bucks+Fishing+Camping+DC"
+    },
+    {
+      "name": "Et Voila!",
+      "rating": 4.6,
+      "reviews": 1200,
+      "price": "$$$",
+      "category": "Belgian",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Et+Voila+Spring+Valley+DC"
+    },
+    {
+      "name": "Summer House Santa Monica",
+      "rating": 4.3,
+      "reviews": 1800,
+      "price": "$$$",
+      "category": "California Coastal",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Summer+House+Santa+Monica+DC"
+    },
+    {
+      "name": "Spring Valley Restaurant",
+      "rating": 4.3,
+      "reviews": 680,
+      "price": "$$",
+      "category": "American",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Spring+Valley+Restaurant+DC"
+    },
+    {
+      "name": "Paul Bakery",
+      "rating": 4.5,
+      "reviews": 1400,
+      "price": "$$",
+      "category": "French Bakery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Paul+Bakery+Spring+Valley+DC"
+    },
+    {
+      "name": "Sfoglina",
+      "rating": 4.7,
+      "reviews": 1800,
+      "price": "$$$",
+      "category": "Italian Pasta",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Sfoglina+Connecticut+Ave+DC"
+    }
+  ],
+  "drink": [
+    {
+      "name": "Spring Valley Shopping Center Cafe",
+      "rating": 4.3,
+      "reviews": 380,
+      "price": "$",
+      "category": "Neighborhood Cafe",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Spring+Valley+Shopping+Center+DC"
+    },
+    {
+      "name": "Starbucks Spring Valley",
+      "rating": 4.2,
+      "reviews": 680,
+      "price": "$",
+      "category": "Coffee Chain",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Starbucks+Spring+Valley+DC"
+    },
+    {
+      "name": "Open City",
+      "rating": 4.4,
+      "reviews": 1600,
+      "price": "$",
+      "category": "All-Day Cafe Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Open+City+DC"
+    },
+    {
+      "name": "Compass Coffee",
+      "rating": 4.5,
+      "reviews": 480,
+      "price": "$",
+      "category": "Specialty Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Compass+Coffee+Spring+Valley+DC"
+    }
+  ],
+  "shop": [
+    {
+      "name": "Spring Valley Shopping Center",
+      "rating": 4.3,
+      "reviews": 980,
+      "price": "$$",
+      "category": "Neighborhood Shopping",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Spring+Valley+Shopping+Center+DC"
+    },
+    {
+      "name": "American University Farmers Market",
+      "rating": 4.6,
+      "reviews": 480,
+      "price": "$",
+      "category": "Farmers Market",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=American+University+Farmers+Market+DC"
+    },
+    {
+      "name": "Politics & Prose",
+      "rating": 4.8,
+      "reviews": 2700,
+      "price": "$$",
+      "category": "Independent Bookstore",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Politics+Prose+DC"
+    },
+    {
+      "name": "Mazza Gallerie",
+      "rating": 4.2,
+      "reviews": 3100,
+      "price": "$$$",
+      "category": "Mall",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Mazza+Gallerie+DC"
+    }
+  ],
+  "perk": [
+    {
+      "name": "Paul Bakery",
+      "rating": 4.5,
+      "reviews": 1400,
+      "price": "$$",
+      "category": "French Bakery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Paul+Bakery+Spring+Valley+DC"
+    },
+    {
+      "name": "Compass Coffee",
+      "rating": 4.5,
+      "reviews": 480,
+      "price": "$",
+      "category": "Specialty Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Compass+Coffee+Spring+Valley+DC"
+    },
+    {
+      "name": "Open City",
+      "rating": 4.4,
+      "reviews": 1600,
+      "price": "$",
+      "category": "All-Day Cafe",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Open+City+DC"
+    }
+  ],
+  "sweat": [
+    {
+      "name": "Equinox Friendship Heights",
+      "rating": 4.5,
+      "reviews": 780,
+      "price": "$$$$",
+      "category": "Luxury Gym",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Equinox+Friendship+Heights+DC"
+    },
+    {
+      "name": "American University Fitness Center",
+      "rating": 4.2,
+      "reviews": 640,
+      "price": "$$",
+      "category": "University Gym",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=American+University+Fitness+Center+DC"
+    },
+    {
+      "name": "Solidcore Spring Valley",
+      "rating": 4.7,
+      "reviews": 280,
+      "price": "$$$",
+      "category": "Pilates Studio",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Solidcore+Spring+Valley+DC"
+    },
+    {
+      "name": "Rock Creek Park Trails",
+      "rating": 4.8,
+      "reviews": 6200,
+      "price": "Free",
+      "category": "Trail Running",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Rock+Creek+Park+DC"
+    }
+  ],
+  "groom": [
+    {
+      "name": "Salon Spring Valley",
+      "rating": 4.5,
+      "reviews": 240,
+      "price": "$$$",
+      "category": "Hair Salon",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Salon+Spring+Valley+DC"
+    },
+    {
+      "name": "Drybar Friendship Heights",
+      "rating": 4.5,
+      "reviews": 580,
+      "price": "$$$",
+      "category": "Blowout Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Drybar+Friendship+Heights+DC"
+    },
+    {
+      "name": "Giovanni & Pileggi",
+      "rating": 4.5,
+      "reviews": 290,
+      "price": "$$$",
+      "category": "Hair Salon",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Giovanni+Pileggi+Chevy+Chase+MD"
+    }
+  ],
+  "wag": [
+    {
+      "name": "Battery Kemble Park",
+      "rating": 4.6,
+      "reviews": 840,
+      "price": "Free",
+      "category": "Dog-Friendly Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Battery+Kemble+Park+DC"
+    },
+    {
+      "name": "Glover-Archbold Park",
+      "rating": 4.7,
+      "reviews": 1800,
+      "price": "Free",
+      "category": "Nature Trail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Glover+Archbold+Park+DC"
+    },
+    {
+      "name": "C&O Canal Towpath",
+      "rating": 4.9,
+      "reviews": 8400,
+      "price": "Free",
+      "category": "Dog Trail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=C+O+Canal+Georgetown+DC"
+    },
+    {
+      "name": "PetSmart Friendship Heights",
+      "rating": 4.1,
+      "reviews": 670,
+      "price": "$$",
+      "category": "Pet Store",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=PetSmart+Friendship+Heights+DC"
+    }
+  ],
+  "parks": [
+    {
+      "name": "Battery Kemble Park",
+      "rating": 4.6,
+      "reviews": 840,
+      "price": "Free",
+      "category": "Historic Civil War Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Battery+Kemble+Park+DC"
+    },
+    {
+      "name": "Glover-Archbold Park",
+      "rating": 4.7,
+      "reviews": 1800,
+      "price": "Free",
+      "category": "Nature Trail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Glover+Archbold+Park+DC"
+    },
+    {
+      "name": "American University Campus Greenway",
+      "rating": 4.4,
+      "reviews": 640,
+      "price": "Free",
+      "category": "Campus Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=American+University+DC"
+    },
+    {
+      "name": "Palisades Neighborhood Park",
+      "rating": 4.5,
+      "reviews": 480,
+      "price": "Free",
+      "category": "Neighborhood Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Palisades+Park+DC"
+    }
+  ]
+}

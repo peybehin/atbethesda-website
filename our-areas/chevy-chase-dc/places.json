@@ -1,0 +1,333 @@
+{
+  "dine": [
+    {
+      "name": "Bread Furst",
+      "rating": 4.7,
+      "reviews": 2100,
+      "price": "$",
+      "category": "Artisan Bakery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Bread+Furst+Connecticut+Ave+DC"
+    },
+    {
+      "name": "Politics & Prose Cafe",
+      "rating": 4.6,
+      "reviews": 980,
+      "price": "$",
+      "category": "Bookstore Cafe",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Politics+Prose+Connecticut+Ave+DC"
+    },
+    {
+      "name": "Comet Ping Pong",
+      "rating": 4.4,
+      "reviews": 2400,
+      "price": "$$",
+      "category": "Pizza & Ping Pong",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Comet+Ping+Pong+DC"
+    },
+    {
+      "name": "Buck's Fishing & Camping",
+      "rating": 4.5,
+      "reviews": 1600,
+      "price": "$$$",
+      "category": "New American",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Bucks+Fishing+Camping+DC"
+    },
+    {
+      "name": "Sfoglina",
+      "rating": 4.7,
+      "reviews": 1800,
+      "price": "$$$",
+      "category": "Italian Pasta",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Sfoglina+Connecticut+Ave+DC"
+    },
+    {
+      "name": "Vine Wine",
+      "rating": 4.5,
+      "reviews": 780,
+      "price": "$$$",
+      "category": "Wine Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Vine+Wine+Connecticut+Ave+DC"
+    },
+    {
+      "name": "Parthenon Restaurant",
+      "rating": 4.2,
+      "reviews": 680,
+      "price": "$$",
+      "category": "Greek",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Parthenon+Restaurant+DC"
+    }
+  ],
+  "drink": [
+    {
+      "name": "Broad Branch Market",
+      "rating": 4.6,
+      "reviews": 840,
+      "price": "$",
+      "category": "Neighborhood Market & Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Broad+Branch+Market+DC"
+    },
+    {
+      "name": "Craft Brew City",
+      "rating": 4.4,
+      "reviews": 480,
+      "price": "$$",
+      "category": "Craft Beer Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Craft+Brew+City+DC"
+    },
+    {
+      "name": "Bread Furst Coffee",
+      "rating": 4.7,
+      "reviews": 2100,
+      "price": "$",
+      "category": "Bakery Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Bread+Furst+Connecticut+Ave+DC"
+    },
+    {
+      "name": "Open City",
+      "rating": 4.4,
+      "reviews": 1600,
+      "price": "$",
+      "category": "Cafe & Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Open+City+DC"
+    }
+  ],
+  "shop": [
+    {
+      "name": "Connecticut Avenue NW",
+      "rating": 4.5,
+      "reviews": 3400,
+      "price": "$$",
+      "category": "Shopping Corridor",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Connecticut+Ave+NW+Chevy+Chase+DC"
+    },
+    {
+      "name": "Politics & Prose",
+      "rating": 4.8,
+      "reviews": 2700,
+      "price": "$$",
+      "category": "Independent Bookstore",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Politics+Prose+DC"
+    },
+    {
+      "name": "Mazza Gallerie",
+      "rating": 4.2,
+      "reviews": 3100,
+      "price": "$$$",
+      "category": "Mall",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Mazza+Gallerie+DC"
+    },
+    {
+      "name": "Wake Up Little Suzie",
+      "rating": 4.7,
+      "reviews": 480,
+      "price": "$$",
+      "category": "Gift & Home",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Wake+Up+Little+Suzie+DC"
+    },
+    {
+      "name": "The Collection",
+      "rating": 4.3,
+      "reviews": 1400,
+      "price": "$$$$",
+      "category": "Luxury Retail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=The+Collection+Chevy+Chase+DC"
+    }
+  ],
+  "perk": [
+    {
+      "name": "Bread Furst",
+      "rating": 4.7,
+      "reviews": 2100,
+      "price": "$",
+      "category": "Artisan Bakery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Bread+Furst+Connecticut+Ave+DC"
+    },
+    {
+      "name": "Open City",
+      "rating": 4.4,
+      "reviews": 1600,
+      "price": "$",
+      "category": "All-Day Cafe",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Open+City+DC"
+    },
+    {
+      "name": "Peregrine Espresso",
+      "rating": 4.7,
+      "reviews": 640,
+      "price": "$",
+      "category": "Specialty Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Peregrine+Espresso+DC"
+    },
+    {
+      "name": "Levain Bakery",
+      "rating": 4.6,
+      "reviews": 1800,
+      "price": "$",
+      "category": "Bakery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Levain+Bakery+Connecticut+Ave+DC"
+    }
+  ],
+  "sweat": [
+    {
+      "name": "Equinox Chevy Chase",
+      "rating": 4.5,
+      "reviews": 780,
+      "price": "$$$$",
+      "category": "Luxury Gym",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Equinox+Chevy+Chase+MD"
+    },
+    {
+      "name": "SoulCycle Chevy Chase",
+      "rating": 4.5,
+      "reviews": 410,
+      "price": "$$$$",
+      "category": "Cycling Studio",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=SoulCycle+Chevy+Chase+MD"
+    },
+    {
+      "name": "OrangeTheory Friendship Heights",
+      "rating": 4.4,
+      "reviews": 540,
+      "price": "$$$",
+      "category": "HIIT Studio",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=OrangeTheory+Friendship+Heights+DC"
+    },
+    {
+      "name": "Rock Creek Park Running Trails",
+      "rating": 4.8,
+      "reviews": 6200,
+      "price": "Free",
+      "category": "Trail Running",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Rock+Creek+Park+Running+Trails+DC"
+    }
+  ],
+  "groom": [
+    {
+      "name": "Salon Chase",
+      "rating": 4.5,
+      "reviews": 310,
+      "price": "$$$",
+      "category": "Hair Salon",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Salon+Chase+Chevy+Chase+DC"
+    },
+    {
+      "name": "Drybar Friendship Heights",
+      "rating": 4.5,
+      "reviews": 580,
+      "price": "$$$",
+      "category": "Blowout Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Drybar+Friendship+Heights+DC"
+    },
+    {
+      "name": "The Art of Shaving",
+      "rating": 4.3,
+      "reviews": 410,
+      "price": "$$$",
+      "category": "Men's Grooming",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Art+of+Shaving+Friendship+Heights+DC"
+    }
+  ],
+  "wag": [
+    {
+      "name": "Rock Creek Park Dog Area",
+      "rating": 4.8,
+      "reviews": 2800,
+      "price": "Free",
+      "category": "Off-Leash Dog Area",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Rock+Creek+Park+Dog+Area+DC"
+    },
+    {
+      "name": "Chevy Chase DC Dog Park",
+      "rating": 4.5,
+      "reviews": 680,
+      "price": "Free",
+      "category": "Off-Leash Dog Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Chevy+Chase+Dog+Park+DC"
+    },
+    {
+      "name": "Dogma Bakery",
+      "rating": 4.7,
+      "reviews": 290,
+      "price": "$",
+      "category": "Dog Bakery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Dogma+Bakery+DC"
+    },
+    {
+      "name": "PetSmart Friendship Heights",
+      "rating": 4.1,
+      "reviews": 670,
+      "price": "$$",
+      "category": "Pet Store",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=PetSmart+Friendship+Heights+DC"
+    }
+  ],
+  "parks": [
+    {
+      "name": "Rock Creek Park",
+      "rating": 4.8,
+      "reviews": 8400,
+      "price": "Free",
+      "category": "National Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Rock+Creek+Park+DC"
+    },
+    {
+      "name": "Chevy Chase Circle",
+      "rating": 4.5,
+      "reviews": 310,
+      "price": "Free",
+      "category": "Neighborhood Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Chevy+Chase+Circle+DC"
+    },
+    {
+      "name": "Lafayette Park DC",
+      "rating": 4.5,
+      "reviews": 2100,
+      "price": "Free",
+      "category": "Urban Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Lafayette+Square+DC"
+    },
+    {
+      "name": "Boundary Stone Natural Area",
+      "rating": 4.6,
+      "reviews": 380,
+      "price": "Free",
+      "category": "Nature Trail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Rock+Creek+Park+Boundary+Bridge+DC"
+    }
+  ]
+}

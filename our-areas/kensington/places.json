@@ -1,0 +1,288 @@
+{
+  "dine": [
+    {
+      "name": "Addie's",
+      "rating": 4.5,
+      "reviews": 890,
+      "price": "$$$",
+      "category": "American",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Addies+Restaurant+Kensington+MD"
+    },
+    {
+      "name": "Lighthouse Tofu Restaurant",
+      "rating": 4.5,
+      "reviews": 1100,
+      "price": "$$",
+      "category": "Korean",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Lighthouse+Tofu+Kensington+MD"
+    },
+    {
+      "name": "House of Musical Traditions Cafe",
+      "rating": 4.4,
+      "reviews": 340,
+      "price": "$",
+      "category": "Cafe",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=House+of+Musical+Traditions+Kensington+MD"
+    },
+    {
+      "name": "Mio Posto",
+      "rating": 4.5,
+      "reviews": 680,
+      "price": "$$",
+      "category": "Italian",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Mio+Posto+Kensington+MD"
+    },
+    {
+      "name": "Gifford's Ice Cream",
+      "rating": 4.6,
+      "reviews": 1400,
+      "price": "$",
+      "category": "Ice Cream",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Giffords+Ice+Cream+Kensington+MD"
+    },
+    {
+      "name": "The Grateful Table",
+      "rating": 4.4,
+      "reviews": 480,
+      "price": "$$",
+      "category": "American Cafe",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Grateful+Table+Kensington+MD"
+    }
+  ],
+  "drink": [
+    {
+      "name": "Lost Rhino Retreat",
+      "rating": 4.4,
+      "reviews": 580,
+      "price": "$$",
+      "category": "Craft Brewery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Lost+Rhino+Retreat+Kensington+MD"
+    },
+    {
+      "name": "Antique Row Coffee",
+      "rating": 4.5,
+      "reviews": 320,
+      "price": "$",
+      "category": "Indie Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Antique+Row+Coffee+Kensington+MD"
+    },
+    {
+      "name": "Starbucks Kensington",
+      "rating": 4.1,
+      "reviews": 560,
+      "price": "$",
+      "category": "Coffee Chain",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Starbucks+Kensington+MD"
+    },
+    {
+      "name": "Potomac Pizza",
+      "rating": 4.2,
+      "reviews": 890,
+      "price": "$$",
+      "category": "Bar & Pizza",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Potomac+Pizza+Kensington+MD"
+    }
+  ],
+  "shop": [
+    {
+      "name": "Howard Avenue Antique Row",
+      "rating": 4.7,
+      "reviews": 1100,
+      "price": "$$",
+      "category": "Antiques District",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Howard+Avenue+Antique+Row+Kensington+MD"
+    },
+    {
+      "name": "Kensington Farmers Market",
+      "rating": 4.8,
+      "reviews": 780,
+      "price": "$",
+      "category": "Farmers Market",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Kensington+Farmers+Market+MD"
+    },
+    {
+      "name": "Ace Hardware Kensington",
+      "rating": 4.4,
+      "reviews": 640,
+      "price": "$$",
+      "category": "Hardware",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Ace+Hardware+Kensington+MD"
+    },
+    {
+      "name": "The Kid's Closet",
+      "rating": 4.5,
+      "reviews": 280,
+      "price": "$$",
+      "category": "Children's Clothing",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Kids+Closet+Kensington+MD"
+    }
+  ],
+  "perk": [
+    {
+      "name": "Antique Row Coffee",
+      "rating": 4.5,
+      "reviews": 320,
+      "price": "$",
+      "category": "Indie Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Antique+Row+Coffee+Kensington+MD"
+    },
+    {
+      "name": "Starbucks",
+      "rating": 4.1,
+      "reviews": 560,
+      "price": "$",
+      "category": "Coffee Chain",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Starbucks+Kensington+MD"
+    },
+    {
+      "name": "Gifford's Ice Cream",
+      "rating": 4.6,
+      "reviews": 1400,
+      "price": "$",
+      "category": "Ice Cream",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Giffords+Ice+Cream+Kensington+MD"
+    }
+  ],
+  "sweat": [
+    {
+      "name": "Kensington Athletic Club",
+      "rating": 4.4,
+      "reviews": 340,
+      "price": "$$",
+      "category": "Gym",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Kensington+Athletic+Club+MD"
+    },
+    {
+      "name": "Snap Fitness",
+      "rating": 4.1,
+      "reviews": 280,
+      "price": "$$",
+      "category": "Gym",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Snap+Fitness+Kensington+MD"
+    },
+    {
+      "name": "CorePower Yoga",
+      "rating": 4.4,
+      "reviews": 390,
+      "price": "$$$",
+      "category": "Yoga",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=CorePower+Yoga+Kensington+MD"
+    }
+  ],
+  "groom": [
+    {
+      "name": "Salon Allure",
+      "rating": 4.5,
+      "reviews": 290,
+      "price": "$$$",
+      "category": "Hair Salon",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Salon+Allure+Kensington+MD"
+    },
+    {
+      "name": "John Allen Salon",
+      "rating": 4.6,
+      "reviews": 240,
+      "price": "$$$",
+      "category": "Hair Salon",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=John+Allen+Salon+Kensington+MD"
+    },
+    {
+      "name": "Kensington Barber Shop",
+      "rating": 4.4,
+      "reviews": 180,
+      "price": "$$",
+      "category": "Barbershop",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Kensington+Barber+Shop+MD"
+    }
+  ],
+  "wag": [
+    {
+      "name": "Rock Creek Stream Valley Park",
+      "rating": 4.7,
+      "reviews": 1800,
+      "price": "Free",
+      "category": "Stream Trail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Rock+Creek+Stream+Valley+Park+Kensington+MD"
+    },
+    {
+      "name": "Wheaton Regional Park Dog Park",
+      "rating": 4.6,
+      "reviews": 740,
+      "price": "Free",
+      "category": "Off-Leash Dog Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Wheaton+Regional+Park+Dog+Park+MD"
+    },
+    {
+      "name": "Vets on Call",
+      "rating": 4.7,
+      "reviews": 310,
+      "price": "$$",
+      "category": "Veterinarian",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Vets+on+Call+Kensington+MD"
+    }
+  ],
+  "parks": [
+    {
+      "name": "Rock Creek Stream Valley Park",
+      "rating": 4.7,
+      "reviews": 1800,
+      "price": "Free",
+      "category": "Stream Valley Trail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Rock+Creek+Stream+Valley+Park+Kensington+MD"
+    },
+    {
+      "name": "Wheaton Regional Park",
+      "rating": 4.7,
+      "reviews": 1800,
+      "price": "Free",
+      "category": "Regional Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Wheaton+Regional+Park+MD"
+    },
+    {
+      "name": "Ken-Gar Pines Local Park",
+      "rating": 4.4,
+      "reviews": 280,
+      "price": "Free",
+      "category": "Neighborhood Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Ken+Gar+Pines+Local+Park+Kensington+MD"
+    },
+    {
+      "name": "Kensington Historic Train Station",
+      "rating": 4.6,
+      "reviews": 480,
+      "price": "Free",
+      "category": "Historic Landmark",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Kensington+Historic+Train+Station+MD"
+    }
+  ]
+}

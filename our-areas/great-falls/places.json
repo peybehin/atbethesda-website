@@ -1,0 +1,315 @@
+{
+  "dine": [
+    {
+      "name": "J&G Steakhouse",
+      "rating": 4.4,
+      "reviews": 1200,
+      "price": "$$$$",
+      "category": "Steakhouse",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=J+G+Steakhouse+Tysons+VA"
+    },
+    {
+      "name": "L'Auberge Chez Fran\u00e7ois",
+      "rating": 4.7,
+      "reviews": 2800,
+      "price": "$$$$",
+      "category": "French",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=L+Auberge+Chez+Francois+Great+Falls+VA"
+    },
+    {
+      "name": "Clarity Restaurant",
+      "rating": 4.4,
+      "reviews": 760,
+      "price": "$$$",
+      "category": "New American",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Clarity+Restaurant+Fairfax+VA"
+    },
+    {
+      "name": "Fortune Restaurant",
+      "rating": 4.4,
+      "reviews": 1400,
+      "price": "$$",
+      "category": "Chinese Dim Sum",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Fortune+Restaurant+McLean+VA"
+    },
+    {
+      "name": "Rumi's Kitchen",
+      "rating": 4.5,
+      "reviews": 1100,
+      "price": "$$$",
+      "category": "Persian",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Rumis+Kitchen+McLean+VA"
+    },
+    {
+      "name": "Great Falls Tavern",
+      "rating": 4.2,
+      "reviews": 680,
+      "price": "$$",
+      "category": "American Pub",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Great+Falls+Tavern+VA"
+    }
+  ],
+  "drink": [
+    {
+      "name": "Great Falls Village Shops Cafe",
+      "rating": 4.3,
+      "reviews": 380,
+      "price": "$",
+      "category": "Village Cafe",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Great+Falls+Village+Centre+VA"
+    },
+    {
+      "name": "Starbucks Great Falls",
+      "rating": 4.2,
+      "reviews": 640,
+      "price": "$",
+      "category": "Coffee Chain",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Starbucks+Great+Falls+VA"
+    },
+    {
+      "name": "Reston Town Center Bars",
+      "rating": 4.3,
+      "reviews": 2400,
+      "price": "$$",
+      "category": "Bar District",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Reston+Town+Center+VA"
+    },
+    {
+      "name": "Founding Farmers",
+      "rating": 4.5,
+      "reviews": 3200,
+      "price": "$$",
+      "category": "Farm-to-Table Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Founding+Farmers+Reston+VA"
+    }
+  ],
+  "shop": [
+    {
+      "name": "Great Falls Village Centre",
+      "rating": 4.4,
+      "reviews": 980,
+      "price": "$$",
+      "category": "Village Shopping",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Great+Falls+Village+Centre+VA"
+    },
+    {
+      "name": "Reston Town Center",
+      "rating": 4.5,
+      "reviews": 4800,
+      "price": "$$$",
+      "category": "Mixed-Use District",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Reston+Town+Center+VA"
+    },
+    {
+      "name": "Riverbend Nursery",
+      "rating": 4.7,
+      "reviews": 480,
+      "price": "$$",
+      "category": "Garden Center",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Riverbend+Nursery+Great+Falls+VA"
+    },
+    {
+      "name": "Tysons Corner Center",
+      "rating": 4.4,
+      "reviews": 8200,
+      "price": "$$$",
+      "category": "Luxury Mall",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Tysons+Corner+Center+VA"
+    }
+  ],
+  "perk": [
+    {
+      "name": "Starbucks Great Falls",
+      "rating": 4.2,
+      "reviews": 640,
+      "price": "$",
+      "category": "Coffee Chain",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Starbucks+Great+Falls+VA"
+    },
+    {
+      "name": "Baked & Wired",
+      "rating": 4.7,
+      "reviews": 3100,
+      "price": "$",
+      "category": "Bakery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Baked+Wired+Georgetown+DC"
+    },
+    {
+      "name": "Compass Coffee",
+      "rating": 4.5,
+      "reviews": 380,
+      "price": "$",
+      "category": "Specialty Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Compass+Coffee+Reston+VA"
+    }
+  ],
+  "sweat": [
+    {
+      "name": "Great Falls Athletic Club",
+      "rating": 4.5,
+      "reviews": 480,
+      "price": "$$$",
+      "category": "Athletic Club",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Great+Falls+Athletic+Club+VA"
+    },
+    {
+      "name": "Equinox Tysons",
+      "rating": 4.5,
+      "reviews": 1100,
+      "price": "$$$$",
+      "category": "Luxury Gym",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Equinox+Tysons+VA"
+    },
+    {
+      "name": "Endorphin Fitness",
+      "rating": 4.6,
+      "reviews": 280,
+      "price": "$$$",
+      "category": "Boutique Gym",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Endorphin+Fitness+Great+Falls+VA"
+    },
+    {
+      "name": "SoulCycle Tysons",
+      "rating": 4.5,
+      "reviews": 640,
+      "price": "$$$$",
+      "category": "Cycling Studio",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=SoulCycle+Tysons+VA"
+    }
+  ],
+  "groom": [
+    {
+      "name": "Salon H Great Falls",
+      "rating": 4.6,
+      "reviews": 280,
+      "price": "$$$",
+      "category": "Hair Salon",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Salon+H+Great+Falls+VA"
+    },
+    {
+      "name": "Headlines Hair Salon",
+      "rating": 4.4,
+      "reviews": 240,
+      "price": "$$",
+      "category": "Hair Salon",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Headlines+Hair+Salon+Great+Falls+VA"
+    },
+    {
+      "name": "The Grooming Lounge",
+      "rating": 4.6,
+      "reviews": 320,
+      "price": "$$$",
+      "category": "Men's Grooming",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Grooming+Lounge+Tysons+VA"
+    }
+  ],
+  "wag": [
+    {
+      "name": "Great Falls Park",
+      "rating": 4.9,
+      "reviews": 9800,
+      "price": "$",
+      "category": "National Park & Dog Trails",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Great+Falls+Park+VA"
+    },
+    {
+      "name": "Difficult Run Trail",
+      "rating": 4.8,
+      "reviews": 2400,
+      "price": "Free",
+      "category": "Dog-Friendly Trail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Difficult+Run+Trail+Great+Falls+VA"
+    },
+    {
+      "name": "Riverbend Park Dog Trails",
+      "rating": 4.7,
+      "reviews": 1400,
+      "price": "Free",
+      "category": "Nature Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Riverbend+Park+Great+Falls+VA"
+    },
+    {
+      "name": "PetSmart Reston",
+      "rating": 4.1,
+      "reviews": 980,
+      "price": "$$",
+      "category": "Pet Store",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=PetSmart+Reston+VA"
+    }
+  ],
+  "parks": [
+    {
+      "name": "Great Falls Park",
+      "rating": 4.9,
+      "reviews": 9800,
+      "price": "$",
+      "category": "National Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Great+Falls+Park+VA"
+    },
+    {
+      "name": "Riverbend Park",
+      "rating": 4.7,
+      "reviews": 1400,
+      "price": "Free",
+      "category": "Nature Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Riverbend+Park+Great+Falls+VA"
+    },
+    {
+      "name": "Difficult Run Stream Valley Park",
+      "rating": 4.8,
+      "reviews": 2400,
+      "price": "Free",
+      "category": "Stream Valley Trail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Difficult+Run+Stream+Valley+Park+Great+Falls+VA"
+    },
+    {
+      "name": "Seneca Regional Park",
+      "rating": 4.6,
+      "reviews": 1200,
+      "price": "Free",
+      "category": "Regional Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Seneca+Regional+Park+Great+Falls+VA"
+    },
+    {
+      "name": "Colvin Run Mill Park",
+      "rating": 4.6,
+      "reviews": 780,
+      "price": "$",
+      "category": "Historic Mill Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Colvin+Run+Mill+Park+Great+Falls+VA"
+    }
+  ]
+}

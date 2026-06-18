@@ -1,0 +1,351 @@
+{
+  "dine": [
+    {
+      "name": "Fiola Mare",
+      "rating": 4.6,
+      "reviews": 2400,
+      "price": "$$$$",
+      "category": "Italian Seafood",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Fiola+Mare+Georgetown+DC"
+    },
+    {
+      "name": "1789 Restaurant",
+      "rating": 4.6,
+      "reviews": 2100,
+      "price": "$$$$",
+      "category": "American Fine Dining",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=1789+Restaurant+Georgetown+DC"
+    },
+    {
+      "name": "Filomena Ristorante",
+      "rating": 4.5,
+      "reviews": 3200,
+      "price": "$$$",
+      "category": "Italian",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Filomena+Ristorante+Georgetown+DC"
+    },
+    {
+      "name": "Tackle Box",
+      "rating": 4.4,
+      "reviews": 1800,
+      "price": "$$",
+      "category": "Seafood",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Tackle+Box+Georgetown+DC"
+    },
+    {
+      "name": "Cafe Milano",
+      "rating": 4.3,
+      "reviews": 2800,
+      "price": "$$$$",
+      "category": "Italian Power Scene",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Cafe+Milano+Georgetown+DC"
+    },
+    {
+      "name": "Farmers Fishers Bakers",
+      "rating": 4.4,
+      "reviews": 3600,
+      "price": "$$",
+      "category": "Farm-to-Table",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Farmers+Fishers+Bakers+Georgetown+DC"
+    },
+    {
+      "name": "Martin's Tavern",
+      "rating": 4.3,
+      "reviews": 2100,
+      "price": "$$$",
+      "category": "Historic American",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Martins+Tavern+Georgetown+DC"
+    }
+  ],
+  "drink": [
+    {
+      "name": "Baked & Wired",
+      "rating": 4.7,
+      "reviews": 3100,
+      "price": "$",
+      "category": "Bakery & Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Baked+Wired+Georgetown+DC"
+    },
+    {
+      "name": "Rhino Bar and Pumphouse",
+      "rating": 4.2,
+      "reviews": 1800,
+      "price": "$$",
+      "category": "Sports Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Rhino+Bar+Georgetown+DC"
+    },
+    {
+      "name": "Tombs",
+      "rating": 4.4,
+      "reviews": 2400,
+      "price": "$$",
+      "category": "College Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Tombs+Georgetown+DC"
+    },
+    {
+      "name": "The Sovereign",
+      "rating": 4.6,
+      "reviews": 1100,
+      "price": "$$$",
+      "category": "Belgian Beer Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=The+Sovereign+Georgetown+DC"
+    },
+    {
+      "name": "Georgetown Waterfront Bars",
+      "rating": 4.4,
+      "reviews": 3200,
+      "price": "$$",
+      "category": "Waterfront Bars",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Georgetown+Waterfront+Park+DC"
+    }
+  ],
+  "shop": [
+    {
+      "name": "M Street Georgetown",
+      "rating": 4.6,
+      "reviews": 9800,
+      "price": "$$$",
+      "category": "Main Shopping Street",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=M+Street+Georgetown+DC"
+    },
+    {
+      "name": "Book Hill Georgetown",
+      "rating": 4.6,
+      "reviews": 2400,
+      "price": "$$",
+      "category": "Antiques & Books District",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Book+Hill+Georgetown+DC"
+    },
+    {
+      "name": "Georgetown Park Mall",
+      "rating": 4.1,
+      "reviews": 3200,
+      "price": "$$$",
+      "category": "Indoor Mall",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Georgetown+Park+Mall+DC"
+    },
+    {
+      "name": "Anthropologie Georgetown",
+      "rating": 4.4,
+      "reviews": 1200,
+      "price": "$$$",
+      "category": "Clothing",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Anthropologie+Georgetown+DC"
+    },
+    {
+      "name": "J. Crew Georgetown",
+      "rating": 4.3,
+      "reviews": 980,
+      "price": "$$$",
+      "category": "Clothing",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=J+Crew+Georgetown+DC"
+    }
+  ],
+  "perk": [
+    {
+      "name": "Baked & Wired",
+      "rating": 4.7,
+      "reviews": 3100,
+      "price": "$",
+      "category": "Bakery & Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Baked+Wired+Georgetown+DC"
+    },
+    {
+      "name": "Georgetown Cupcake",
+      "rating": 4.4,
+      "reviews": 4800,
+      "price": "$",
+      "category": "Cupcake Bakery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Georgetown+Cupcake+DC"
+    },
+    {
+      "name": "Compass Coffee",
+      "rating": 4.5,
+      "reviews": 680,
+      "price": "$",
+      "category": "Specialty Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Compass+Coffee+Georgetown+DC"
+    },
+    {
+      "name": "Dean & DeLuca",
+      "rating": 4.4,
+      "reviews": 2100,
+      "price": "$$$",
+      "category": "Gourmet Market",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Dean+DeLuca+Georgetown+DC"
+    }
+  ],
+  "sweat": [
+    {
+      "name": "Vida Fitness Georgetown",
+      "rating": 4.5,
+      "reviews": 840,
+      "price": "$$$",
+      "category": "Gym",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Vida+Fitness+Georgetown+DC"
+    },
+    {
+      "name": "CorePower Yoga Georgetown",
+      "rating": 4.4,
+      "reviews": 520,
+      "price": "$$$",
+      "category": "Yoga Studio",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=CorePower+Yoga+Georgetown+DC"
+    },
+    {
+      "name": "Georgetown Waterfront Running Path",
+      "rating": 4.8,
+      "reviews": 4200,
+      "price": "Free",
+      "category": "Running Path",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Georgetown+Waterfront+Running+Path+DC"
+    },
+    {
+      "name": "Washington Harbour Athletic Club",
+      "rating": 4.3,
+      "reviews": 380,
+      "price": "$$$",
+      "category": "Athletic Club",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Washington+Harbour+Athletic+Club+DC"
+    }
+  ],
+  "groom": [
+    {
+      "name": "Johnny Lavoy Salon",
+      "rating": 4.6,
+      "reviews": 480,
+      "price": "$$$$",
+      "category": "Hair Salon",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Johnny+Lavoy+Salon+Georgetown+DC"
+    },
+    {
+      "name": "Salon Glow",
+      "rating": 4.5,
+      "reviews": 320,
+      "price": "$$$",
+      "category": "Hair Salon",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Salon+Glow+Georgetown+DC"
+    },
+    {
+      "name": "Rocky Mountain Chocolate Factory",
+      "rating": 4.4,
+      "reviews": 1400,
+      "price": "$",
+      "category": "Chocolate & Sweets",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Rocky+Mountain+Chocolate+Georgetown+DC"
+    }
+  ],
+  "wag": [
+    {
+      "name": "Georgetown Waterfront Park",
+      "rating": 4.7,
+      "reviews": 4800,
+      "price": "Free",
+      "category": "Dog-Friendly Waterfront",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Georgetown+Waterfront+Park+DC"
+    },
+    {
+      "name": "C&O Canal Towpath",
+      "rating": 4.9,
+      "reviews": 8400,
+      "price": "Free",
+      "category": "Dog-Friendly Trail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=C+O+Canal+Georgetown+DC"
+    },
+    {
+      "name": "Glover-Archbold Park",
+      "rating": 4.7,
+      "reviews": 1800,
+      "price": "Free",
+      "category": "Nature Trail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Glover+Archbold+Park+DC"
+    },
+    {
+      "name": "Georgetown Pet Stop",
+      "rating": 4.6,
+      "reviews": 290,
+      "price": "$$",
+      "category": "Pet Boutique",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Georgetown+Pet+Stop+DC"
+    }
+  ],
+  "parks": [
+    {
+      "name": "Georgetown Waterfront Park",
+      "rating": 4.7,
+      "reviews": 4800,
+      "price": "Free",
+      "category": "Waterfront Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Georgetown+Waterfront+Park+DC"
+    },
+    {
+      "name": "C&O Canal National Historical Park",
+      "rating": 4.9,
+      "reviews": 8400,
+      "price": "Free",
+      "category": "National Park & Trail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=C+O+Canal+Georgetown+DC"
+    },
+    {
+      "name": "Dumbarton Oaks Park",
+      "rating": 4.7,
+      "reviews": 2100,
+      "price": "Free",
+      "category": "Historic Gardens & Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Dumbarton+Oaks+Park+Georgetown+DC"
+    },
+    {
+      "name": "Glover-Archbold Park",
+      "rating": 4.7,
+      "reviews": 1800,
+      "price": "Free",
+      "category": "Nature Trail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Glover+Archbold+Park+DC"
+    },
+    {
+      "name": "Montrose Park",
+      "rating": 4.6,
+      "reviews": 1400,
+      "price": "Free",
+      "category": "Historic Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Montrose+Park+Georgetown+DC"
+    }
+  ]
+}

@@ -1,0 +1,351 @@
+{
+  "dine": [
+    {
+      "name": "Dogfish Head Alehouse",
+      "rating": 4.4,
+      "reviews": 2200,
+      "price": "$$",
+      "category": "Brewpub",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Dogfish+Head+Alehouse+Gaithersburg+MD"
+    },
+    {
+      "name": "Roti Modern Mediterranean",
+      "rating": 4.3,
+      "reviews": 980,
+      "price": "$$",
+      "category": "Mediterranean",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Roti+Modern+Mediterranean+Gaithersburg+MD"
+    },
+    {
+      "name": "FireWorks Pizza",
+      "rating": 4.4,
+      "reviews": 1400,
+      "price": "$$",
+      "category": "Pizza",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=FireWorks+Pizza+Gaithersburg+MD"
+    },
+    {
+      "name": "Safeway / Kentlands Table",
+      "rating": 4.2,
+      "reviews": 760,
+      "price": "$$",
+      "category": "American",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Kentlands+Table+Gaithersburg+MD"
+    },
+    {
+      "name": "Agora Restaurant",
+      "rating": 4.5,
+      "reviews": 890,
+      "price": "$$$",
+      "category": "Turkish",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Agora+Restaurant+Gaithersburg+MD"
+    },
+    {
+      "name": "Pho 75",
+      "rating": 4.4,
+      "reviews": 1100,
+      "price": "$",
+      "category": "Vietnamese",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Pho+75+Gaithersburg+MD"
+    },
+    {
+      "name": "Uncle Julio's",
+      "rating": 4.2,
+      "reviews": 1800,
+      "price": "$$$",
+      "category": "Mexican",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Uncle+Julios+Rio+Gaithersburg+MD"
+    }
+  ],
+  "drink": [
+    {
+      "name": "Dogfish Head Alehouse",
+      "rating": 4.4,
+      "reviews": 2200,
+      "price": "$$",
+      "category": "Craft Brewery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Dogfish+Head+Alehouse+Gaithersburg+MD"
+    },
+    {
+      "name": "Jailbreak Brewing Company",
+      "rating": 4.5,
+      "reviews": 1100,
+      "price": "$$",
+      "category": "Craft Brewery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Jailbreak+Brewing+Company+Laurel+MD"
+    },
+    {
+      "name": "Starbucks Kentlands",
+      "rating": 4.2,
+      "reviews": 840,
+      "price": "$",
+      "category": "Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Starbucks+Kentlands+Gaithersburg+MD"
+    },
+    {
+      "name": "The Wine Room",
+      "rating": 4.4,
+      "reviews": 420,
+      "price": "$$$",
+      "category": "Wine Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Wine+Room+Gaithersburg+MD"
+    },
+    {
+      "name": "Caribou Coffee",
+      "rating": 4.1,
+      "reviews": 560,
+      "price": "$",
+      "category": "Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Caribou+Coffee+Gaithersburg+MD"
+    }
+  ],
+  "shop": [
+    {
+      "name": "Kentlands Market Square",
+      "rating": 4.4,
+      "reviews": 2800,
+      "price": "$$",
+      "category": "Open-Air Shopping",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Kentlands+Market+Square+Gaithersburg+MD"
+    },
+    {
+      "name": "Rio Washingtonian Center",
+      "rating": 4.2,
+      "reviews": 3100,
+      "price": "$$",
+      "category": "Entertainment Center",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Rio+Washingtonian+Center+Gaithersburg+MD"
+    },
+    {
+      "name": "Crown Farm",
+      "rating": 4.3,
+      "reviews": 1400,
+      "price": "$$",
+      "category": "Shopping District",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Crown+Farm+Gaithersburg+MD"
+    },
+    {
+      "name": "Trader Joe's Gaithersburg",
+      "rating": 4.6,
+      "reviews": 1900,
+      "price": "$$",
+      "category": "Grocery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Trader+Joes+Gaithersburg+MD"
+    },
+    {
+      "name": "Target Kentlands",
+      "rating": 4.2,
+      "reviews": 1600,
+      "price": "$$",
+      "category": "Department Store",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Target+Kentlands+Gaithersburg+MD"
+    }
+  ],
+  "perk": [
+    {
+      "name": "Starbucks Kentlands",
+      "rating": 4.2,
+      "reviews": 840,
+      "price": "$",
+      "category": "Coffee Chain",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Starbucks+Kentlands+Gaithersburg+MD"
+    },
+    {
+      "name": "Philz Coffee Crown",
+      "rating": 4.5,
+      "reviews": 610,
+      "price": "$",
+      "category": "Specialty Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Philz+Coffee+Crown+Gaithersburg+MD"
+    },
+    {
+      "name": "Duck Donuts",
+      "rating": 4.5,
+      "reviews": 780,
+      "price": "$",
+      "category": "Donuts",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Duck+Donuts+Gaithersburg+MD"
+    },
+    {
+      "name": "The Coffee Bar",
+      "rating": 4.4,
+      "reviews": 340,
+      "price": "$",
+      "category": "Indie Cafe",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Coffee+Bar+Kentlands+Gaithersburg+MD"
+    }
+  ],
+  "sweat": [
+    {
+      "name": "Life Time Fitness",
+      "rating": 4.5,
+      "reviews": 1800,
+      "price": "$$$$",
+      "category": "Luxury Gym",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Life+Time+Fitness+Gaithersburg+MD"
+    },
+    {
+      "name": "CrossFit Gaithersburg",
+      "rating": 4.7,
+      "reviews": 290,
+      "price": "$$$",
+      "category": "CrossFit",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=CrossFit+Gaithersburg+MD"
+    },
+    {
+      "name": "Planet Fitness Gaithersburg",
+      "rating": 4.0,
+      "reviews": 1100,
+      "price": "$",
+      "category": "Gym",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Planet+Fitness+Gaithersburg+MD"
+    },
+    {
+      "name": "F45 Training",
+      "rating": 4.6,
+      "reviews": 380,
+      "price": "$$$",
+      "category": "Functional Training",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=F45+Training+Gaithersburg+MD"
+    }
+  ],
+  "groom": [
+    {
+      "name": "Arrojo Studio",
+      "rating": 4.5,
+      "reviews": 310,
+      "price": "$$$",
+      "category": "Hair Salon",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Arrojo+Studio+Gaithersburg+MD"
+    },
+    {
+      "name": "Hair Zone",
+      "rating": 4.3,
+      "reviews": 420,
+      "price": "$$",
+      "category": "Hair Salon",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Hair+Zone+Gaithersburg+MD"
+    },
+    {
+      "name": "European Wax Center",
+      "rating": 4.4,
+      "reviews": 580,
+      "price": "$$",
+      "category": "Waxing & Beauty",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=European+Wax+Center+Gaithersburg+MD"
+    }
+  ],
+  "wag": [
+    {
+      "name": "Seneca Creek State Park",
+      "rating": 4.7,
+      "reviews": 2800,
+      "price": "Free",
+      "category": "State Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Seneca+Creek+State+Park+Gaithersburg+MD"
+    },
+    {
+      "name": "PetSmart Gaithersburg",
+      "rating": 4.1,
+      "reviews": 1100,
+      "price": "$$",
+      "category": "Pet Store",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=PetSmart+Gaithersburg+MD"
+    },
+    {
+      "name": "Barkley Square",
+      "rating": 4.7,
+      "reviews": 310,
+      "price": "$$$",
+      "category": "Dog Daycare & Boarding",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Barkley+Square+Gaithersburg+MD"
+    },
+    {
+      "name": "Gaithersburg Dog Park",
+      "rating": 4.5,
+      "reviews": 480,
+      "price": "Free",
+      "category": "Off-Leash Dog Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Gaithersburg+Dog+Park+MD"
+    }
+  ],
+  "parks": [
+    {
+      "name": "Seneca Creek State Park",
+      "rating": 4.7,
+      "reviews": 2800,
+      "price": "Free",
+      "category": "State Park & Lake",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Seneca+Creek+State+Park+Gaithersburg+MD"
+    },
+    {
+      "name": "Rio Washingtonian Lakefront",
+      "rating": 4.4,
+      "reviews": 1600,
+      "price": "Free",
+      "category": "Waterfront Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Rio+Washingtonian+Lakefront+Gaithersburg+MD"
+    },
+    {
+      "name": "Bohrer Park",
+      "rating": 4.5,
+      "reviews": 1100,
+      "price": "Free",
+      "category": "Community Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Bohrer+Park+Gaithersburg+MD"
+    },
+    {
+      "name": "Kentlands Wetlands Park",
+      "rating": 4.5,
+      "reviews": 620,
+      "price": "Free",
+      "category": "Nature Area",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Kentlands+Wetlands+Park+Gaithersburg+MD"
+    },
+    {
+      "name": "Quince Orchard Local Park",
+      "rating": 4.3,
+      "reviews": 340,
+      "price": "Free",
+      "category": "Neighborhood Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Quince+Orchard+Local+Park+Gaithersburg+MD"
+    }
+  ]
+}

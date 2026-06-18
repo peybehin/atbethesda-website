@@ -1,0 +1,342 @@
+{
+  "dine": [
+    {
+      "name": "Gringos & Mariachis",
+      "rating": 4.4,
+      "reviews": 1200,
+      "price": "$$",
+      "category": "Mexican",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Gringos+Mariachis+North+Bethesda+MD"
+    },
+    {
+      "name": "Founding Farmers",
+      "rating": 4.5,
+      "reviews": 3200,
+      "price": "$$",
+      "category": "Farm-to-Table",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Founding+Farmers+Potomac+MD"
+    },
+    {
+      "name": "True Food Kitchen",
+      "rating": 4.4,
+      "reviews": 1800,
+      "price": "$$$",
+      "category": "Health-Conscious",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=True+Food+Kitchen+Pike+Rose+MD"
+    },
+    {
+      "name": "SER",
+      "rating": 4.5,
+      "reviews": 980,
+      "price": "$$$",
+      "category": "Spanish",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=SER+Restaurant+Pike+Rose+MD"
+    },
+    {
+      "name": "Hen Quarter",
+      "rating": 4.3,
+      "reviews": 1400,
+      "price": "$$",
+      "category": "Southern",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Hen+Quarter+Pike+Rose+MD"
+    },
+    {
+      "name": "Punch Bowl Social",
+      "rating": 4.2,
+      "reviews": 2100,
+      "price": "$$",
+      "category": "Bar & Entertainment",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Punch+Bowl+Social+North+Bethesda+MD"
+    },
+    {
+      "name": "Summer House Santa Monica",
+      "rating": 4.3,
+      "reviews": 1600,
+      "price": "$$$",
+      "category": "California Coastal",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Summer+House+Santa+Monica+Pike+Rose+MD"
+    }
+  ],
+  "drink": [
+    {
+      "name": "Pinstripes",
+      "rating": 4.2,
+      "reviews": 2400,
+      "price": "$$$",
+      "category": "Entertainment & Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Pinstripes+North+Bethesda+MD"
+    },
+    {
+      "name": "iPic Theaters Bar",
+      "rating": 4.4,
+      "reviews": 1100,
+      "price": "$$$",
+      "category": "Dine-In Cinema Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=iPic+Theaters+North+Bethesda+MD"
+    },
+    {
+      "name": "Starbucks Pike & Rose",
+      "rating": 4.2,
+      "reviews": 940,
+      "price": "$",
+      "category": "Coffee Chain",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Starbucks+Pike+Rose+North+Bethesda+MD"
+    },
+    {
+      "name": "Compass Coffee",
+      "rating": 4.5,
+      "reviews": 480,
+      "price": "$",
+      "category": "Specialty Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Compass+Coffee+North+Bethesda+MD"
+    },
+    {
+      "name": "Nando's Peri-Peri",
+      "rating": 4.3,
+      "reviews": 1200,
+      "price": "$$",
+      "category": "Bar & Chicken",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Nandos+North+Bethesda+MD"
+    }
+  ],
+  "shop": [
+    {
+      "name": "Pike & Rose",
+      "rating": 4.5,
+      "reviews": 4800,
+      "price": "$$",
+      "category": "Mixed-Use District",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Pike+and+Rose+North+Bethesda+MD"
+    },
+    {
+      "name": "Whole Foods Market",
+      "rating": 4.4,
+      "reviews": 2100,
+      "price": "$$$",
+      "category": "Grocery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Whole+Foods+North+Bethesda+MD"
+    },
+    {
+      "name": "lululemon",
+      "rating": 4.5,
+      "reviews": 780,
+      "price": "$$$$",
+      "category": "Athletic Wear",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=lululemon+Pike+Rose+MD"
+    },
+    {
+      "name": "Anthropologie",
+      "rating": 4.4,
+      "reviews": 640,
+      "price": "$$$",
+      "category": "Women's Clothing",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Anthropologie+Pike+Rose+MD"
+    },
+    {
+      "name": "REI Co-op",
+      "rating": 4.6,
+      "reviews": 1400,
+      "price": "$$$",
+      "category": "Outdoor Gear",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=REI+Pike+Rose+North+Bethesda+MD"
+    }
+  ],
+  "perk": [
+    {
+      "name": "Compass Coffee",
+      "rating": 4.5,
+      "reviews": 480,
+      "price": "$",
+      "category": "Specialty Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Compass+Coffee+North+Bethesda+MD"
+    },
+    {
+      "name": "Starbucks",
+      "rating": 4.2,
+      "reviews": 940,
+      "price": "$",
+      "category": "Coffee Chain",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Starbucks+Pike+Rose+North+Bethesda+MD"
+    },
+    {
+      "name": "Crumbl Cookies",
+      "rating": 4.5,
+      "reviews": 1100,
+      "price": "$",
+      "category": "Dessert",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Crumbl+Cookies+North+Bethesda+MD"
+    },
+    {
+      "name": "Insomnia Cookies",
+      "rating": 4.3,
+      "reviews": 680,
+      "price": "$",
+      "category": "Bakery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Insomnia+Cookies+North+Bethesda+MD"
+    }
+  ],
+  "sweat": [
+    {
+      "name": "Equinox White Flint",
+      "rating": 4.5,
+      "reviews": 890,
+      "price": "$$$$",
+      "category": "Luxury Gym",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Equinox+White+Flint+North+Bethesda+MD"
+    },
+    {
+      "name": "SoulCycle North Bethesda",
+      "rating": 4.5,
+      "reviews": 410,
+      "price": "$$$$",
+      "category": "Cycling Studio",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=SoulCycle+North+Bethesda+MD"
+    },
+    {
+      "name": "OrangeTheory Fitness",
+      "rating": 4.4,
+      "reviews": 620,
+      "price": "$$$",
+      "category": "HIIT Studio",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=OrangeTheory+North+Bethesda+MD"
+    },
+    {
+      "name": "Solidcore",
+      "rating": 4.7,
+      "reviews": 340,
+      "price": "$$$",
+      "category": "Pilates Studio",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Solidcore+Pike+Rose+MD"
+    }
+  ],
+  "groom": [
+    {
+      "name": "Drybar Pike & Rose",
+      "rating": 4.5,
+      "reviews": 680,
+      "price": "$$$",
+      "category": "Blowout Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Drybar+Pike+Rose+North+Bethesda+MD"
+    },
+    {
+      "name": "Salon Republic",
+      "rating": 4.4,
+      "reviews": 290,
+      "price": "$$$",
+      "category": "Hair Salon",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Salon+Republic+North+Bethesda+MD"
+    },
+    {
+      "name": "European Wax Center",
+      "rating": 4.4,
+      "reviews": 580,
+      "price": "$$",
+      "category": "Waxing & Beauty",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=European+Wax+Center+North+Bethesda+MD"
+    }
+  ],
+  "wag": [
+    {
+      "name": "Rock Creek Regional Park",
+      "rating": 4.7,
+      "reviews": 2100,
+      "price": "Free",
+      "category": "Nature Park & Dog Trails",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Rock+Creek+Regional+Park+MD"
+    },
+    {
+      "name": "Cabin John Regional Park",
+      "rating": 4.7,
+      "reviews": 3200,
+      "price": "Free",
+      "category": "Regional Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Cabin+John+Regional+Park+MD"
+    },
+    {
+      "name": "Petco North Bethesda",
+      "rating": 4.1,
+      "reviews": 780,
+      "price": "$$",
+      "category": "Pet Store",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Petco+North+Bethesda+MD"
+    },
+    {
+      "name": "Doggy Style Grooming",
+      "rating": 4.7,
+      "reviews": 310,
+      "price": "$$",
+      "category": "Dog Grooming",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Doggy+Style+Grooming+North+Bethesda+MD"
+    }
+  ],
+  "parks": [
+    {
+      "name": "Rock Creek Regional Park",
+      "rating": 4.7,
+      "reviews": 2100,
+      "price": "Free",
+      "category": "Nature Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Rock+Creek+Regional+Park+MD"
+    },
+    {
+      "name": "Cabin John Regional Park",
+      "rating": 4.7,
+      "reviews": 3200,
+      "price": "Free",
+      "category": "Regional Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Cabin+John+Regional+Park+MD"
+    },
+    {
+      "name": "White Flint Park",
+      "rating": 4.3,
+      "reviews": 480,
+      "price": "Free",
+      "category": "Urban Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=White+Flint+Park+North+Bethesda+MD"
+    },
+    {
+      "name": "Pike & Rose Rooftop Park",
+      "rating": 4.4,
+      "reviews": 620,
+      "price": "Free",
+      "category": "Urban Green Space",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Pike+Rose+Park+North+Bethesda+MD"
+    }
+  ]
+}

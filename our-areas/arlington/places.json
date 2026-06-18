@@ -1,0 +1,351 @@
+{
+  "dine": [
+    {
+      "name": "Ambar",
+      "rating": 4.6,
+      "reviews": 2800,
+      "price": "$$$",
+      "category": "Balkan",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Ambar+Arlington+VA"
+    },
+    {
+      "name": "Lyon Hall",
+      "rating": 4.4,
+      "reviews": 1600,
+      "price": "$$$",
+      "category": "American Brasserie",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Lyon+Hall+Arlington+VA"
+    },
+    {
+      "name": "Palette 22",
+      "rating": 4.4,
+      "reviews": 1100,
+      "price": "$$",
+      "category": "Tapas",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Palette+22+Arlington+VA"
+    },
+    {
+      "name": "Green Pig Bistro",
+      "rating": 4.5,
+      "reviews": 1400,
+      "price": "$$",
+      "category": "American",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Green+Pig+Bistro+Arlington+VA"
+    },
+    {
+      "name": "Kapnos Taverna",
+      "rating": 4.5,
+      "reviews": 980,
+      "price": "$$$",
+      "category": "Greek",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Kapnos+Taverna+Arlington+VA"
+    },
+    {
+      "name": "Maple Ave Restaurant",
+      "rating": 4.6,
+      "reviews": 780,
+      "price": "$$",
+      "category": "New American",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Maple+Ave+Restaurant+Vienna+VA"
+    },
+    {
+      "name": "Sushi Rock",
+      "rating": 4.3,
+      "reviews": 1200,
+      "price": "$$",
+      "category": "Japanese",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Sushi+Rock+Arlington+VA"
+    }
+  ],
+  "drink": [
+    {
+      "name": "Lost Dog Cafe",
+      "rating": 4.5,
+      "reviews": 1600,
+      "price": "$",
+      "category": "Coffee & Beer",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Lost+Dog+Cafe+Arlington+VA"
+    },
+    {
+      "name": "Northside Social",
+      "rating": 4.5,
+      "reviews": 2100,
+      "price": "$",
+      "category": "Coffee & Wine",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Northside+Social+Arlington+VA"
+    },
+    {
+      "name": "Whitlow's on Wilson",
+      "rating": 4.3,
+      "reviews": 2400,
+      "price": "$$",
+      "category": "Bar & Grill",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Whitlows+on+Wilson+Arlington+VA"
+    },
+    {
+      "name": "Rustico",
+      "rating": 4.4,
+      "reviews": 1800,
+      "price": "$$$",
+      "category": "Beer & Pizza",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Rustico+Arlington+VA"
+    },
+    {
+      "name": "Rhodeside Grill",
+      "rating": 4.3,
+      "reviews": 1400,
+      "price": "$$",
+      "category": "Dive Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Rhodeside+Grill+Arlington+VA"
+    }
+  ],
+  "shop": [
+    {
+      "name": "Clarendon District",
+      "rating": 4.5,
+      "reviews": 5200,
+      "price": "$$",
+      "category": "Shopping & Dining District",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Clarendon+Arlington+VA"
+    },
+    {
+      "name": "Ballston Quarter",
+      "rating": 4.2,
+      "reviews": 3100,
+      "price": "$$",
+      "category": "Shopping Mall",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Ballston+Quarter+Arlington+VA"
+    },
+    {
+      "name": "Shirlington Village",
+      "rating": 4.4,
+      "reviews": 2400,
+      "price": "$$",
+      "category": "Open-Air Shopping",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Shirlington+Village+Arlington+VA"
+    },
+    {
+      "name": "Whole Foods Market Clarendon",
+      "rating": 4.4,
+      "reviews": 2100,
+      "price": "$$$",
+      "category": "Grocery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Whole+Foods+Clarendon+Arlington+VA"
+    },
+    {
+      "name": "REI Flagship Arlington",
+      "rating": 4.6,
+      "reviews": 2800,
+      "price": "$$$",
+      "category": "Outdoor Gear",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=REI+Arlington+VA"
+    }
+  ],
+  "perk": [
+    {
+      "name": "Northside Social",
+      "rating": 4.5,
+      "reviews": 2100,
+      "price": "$",
+      "category": "Coffee & Wine Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Northside+Social+Arlington+VA"
+    },
+    {
+      "name": "Peregrine Espresso",
+      "rating": 4.7,
+      "reviews": 980,
+      "price": "$",
+      "category": "Specialty Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Peregrine+Espresso+Arlington+VA"
+    },
+    {
+      "name": "Compass Coffee",
+      "rating": 4.5,
+      "reviews": 760,
+      "price": "$",
+      "category": "Specialty Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Compass+Coffee+Arlington+VA"
+    },
+    {
+      "name": "Baked & Wired",
+      "rating": 4.7,
+      "reviews": 3100,
+      "price": "$",
+      "category": "Bakery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Baked+Wired+Georgetown+DC"
+    }
+  ],
+  "sweat": [
+    {
+      "name": "Equinox Clarendon",
+      "rating": 4.5,
+      "reviews": 1100,
+      "price": "$$$$",
+      "category": "Luxury Gym",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Equinox+Clarendon+Arlington+VA"
+    },
+    {
+      "name": "Solidcore",
+      "rating": 4.7,
+      "reviews": 480,
+      "price": "$$$",
+      "category": "Pilates Studio",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Solidcore+Arlington+VA"
+    },
+    {
+      "name": "SoulCycle Arlington",
+      "rating": 4.5,
+      "reviews": 540,
+      "price": "$$$$",
+      "category": "Cycling Studio",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=SoulCycle+Arlington+VA"
+    },
+    {
+      "name": "Washington-Lee Pool",
+      "rating": 4.4,
+      "reviews": 680,
+      "price": "$",
+      "category": "Public Pool",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Washington+Lee+Pool+Arlington+VA"
+    }
+  ],
+  "groom": [
+    {
+      "name": "G Michael Salon",
+      "rating": 4.6,
+      "reviews": 410,
+      "price": "$$$",
+      "category": "Hair Salon",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=G+Michael+Salon+Arlington+VA"
+    },
+    {
+      "name": "Rock Bottom Barber",
+      "rating": 4.5,
+      "reviews": 320,
+      "price": "$$",
+      "category": "Barbershop",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Rock+Bottom+Barber+Arlington+VA"
+    },
+    {
+      "name": "Drybar Clarendon",
+      "rating": 4.5,
+      "reviews": 580,
+      "price": "$$$",
+      "category": "Blowout Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Drybar+Clarendon+Arlington+VA"
+    }
+  ],
+  "wag": [
+    {
+      "name": "Barcroft Park Dog Park",
+      "rating": 4.6,
+      "reviews": 980,
+      "price": "Free",
+      "category": "Off-Leash Dog Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Barcroft+Park+Dog+Park+Arlington+VA"
+    },
+    {
+      "name": "Shirlington Dog Park",
+      "rating": 4.7,
+      "reviews": 1400,
+      "price": "Free",
+      "category": "Off-Leash Dog Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Shirlington+Dog+Park+Arlington+VA"
+    },
+    {
+      "name": "Dog Krazy",
+      "rating": 4.6,
+      "reviews": 380,
+      "price": "$$",
+      "category": "Pet Boutique",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Dog+Krazy+Arlington+VA"
+    },
+    {
+      "name": "PetSmart Ballston",
+      "rating": 4.1,
+      "reviews": 890,
+      "price": "$$",
+      "category": "Pet Store",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=PetSmart+Ballston+Arlington+VA"
+    }
+  ],
+  "parks": [
+    {
+      "name": "Potomac Overlook Regional Park",
+      "rating": 4.7,
+      "reviews": 1400,
+      "price": "Free",
+      "category": "Nature Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Potomac+Overlook+Regional+Park+Arlington+VA"
+    },
+    {
+      "name": "Gravelly Point Park",
+      "rating": 4.8,
+      "reviews": 6200,
+      "price": "Free",
+      "category": "Plane Watching Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Gravelly+Point+Park+Arlington+VA"
+    },
+    {
+      "name": "Theodore Roosevelt Island",
+      "rating": 4.7,
+      "reviews": 4800,
+      "price": "Free",
+      "category": "National Monument Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Theodore+Roosevelt+Island+Arlington+VA"
+    },
+    {
+      "name": "Lubber Run Amphitheater",
+      "rating": 4.5,
+      "reviews": 980,
+      "price": "Free",
+      "category": "Community Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Lubber+Run+Amphitheater+Arlington+VA"
+    },
+    {
+      "name": "Four Mile Run Trail",
+      "rating": 4.6,
+      "reviews": 2100,
+      "price": "Free",
+      "category": "Multi-Use Trail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Four+Mile+Run+Trail+Arlington+VA"
+    }
+  ]
+}

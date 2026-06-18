@@ -1,0 +1,297 @@
+{
+  "dine": [
+    {
+      "name": "Filomena Ristorante",
+      "rating": 4.5,
+      "reviews": 3200,
+      "price": "$$$",
+      "category": "Italian",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Filomena+Ristorante+Georgetown+DC"
+    },
+    {
+      "name": "Sfoglina",
+      "rating": 4.7,
+      "reviews": 1800,
+      "price": "$$$",
+      "category": "Italian Pasta",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Sfoglina+Connecticut+Ave+DC"
+    },
+    {
+      "name": "Leblon Restaurant",
+      "rating": 4.4,
+      "reviews": 1100,
+      "price": "$$$",
+      "category": "Brazilian",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Leblon+Restaurant+Friendship+Heights+DC"
+    },
+    {
+      "name": "Buck's Fishing & Camping",
+      "rating": 4.5,
+      "reviews": 1600,
+      "price": "$$$",
+      "category": "New American",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Bucks+Fishing+Camping+DC"
+    },
+    {
+      "name": "Maggiano's",
+      "rating": 4.3,
+      "reviews": 2400,
+      "price": "$$$",
+      "category": "Italian American",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Maggianos+Friendship+Heights+DC"
+    },
+    {
+      "name": "Paul Bakery",
+      "rating": 4.5,
+      "reviews": 1400,
+      "price": "$$",
+      "category": "French Bakery Cafe",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Paul+Bakery+Friendship+Heights+DC"
+    }
+  ],
+  "drink": [
+    {
+      "name": "Clyde's of Chevy Chase",
+      "rating": 4.2,
+      "reviews": 1800,
+      "price": "$$$",
+      "category": "American Brasserie Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Clydes+Chevy+Chase+MD"
+    },
+    {
+      "name": "The Rye Bar",
+      "rating": 4.4,
+      "reviews": 610,
+      "price": "$$$",
+      "category": "Hotel Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Rye+Bar+Chevy+Chase+MD"
+    },
+    {
+      "name": "Starbucks Friendship Heights",
+      "rating": 4.1,
+      "reviews": 820,
+      "price": "$",
+      "category": "Coffee Chain",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Starbucks+Friendship+Heights+DC"
+    },
+    {
+      "name": "Compass Coffee",
+      "rating": 4.5,
+      "reviews": 430,
+      "price": "$",
+      "category": "Specialty Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Compass+Coffee+Friendship+Heights+DC"
+    }
+  ],
+  "shop": [
+    {
+      "name": "Mazza Gallerie",
+      "rating": 4.2,
+      "reviews": 3100,
+      "price": "$$$",
+      "category": "Mall",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Mazza+Gallerie+DC"
+    },
+    {
+      "name": "The Collection at Chevy Chase",
+      "rating": 4.3,
+      "reviews": 1400,
+      "price": "$$$$",
+      "category": "Luxury Retail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Collection+Chevy+Chase+DC"
+    },
+    {
+      "name": "Neiman Marcus",
+      "rating": 4.4,
+      "reviews": 1900,
+      "price": "$$$$",
+      "category": "Luxury Department Store",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Neiman+Marcus+Friendship+Heights+DC"
+    },
+    {
+      "name": "Saks Fifth Avenue",
+      "rating": 4.4,
+      "reviews": 1600,
+      "price": "$$$$",
+      "category": "Luxury Department Store",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Saks+Fifth+Avenue+Chevy+Chase+DC"
+    },
+    {
+      "name": "Tiffany & Co.",
+      "rating": 4.5,
+      "reviews": 980,
+      "price": "$$$$",
+      "category": "Jewelry",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Tiffany+Co+Friendship+Heights+DC"
+    }
+  ],
+  "perk": [
+    {
+      "name": "Compass Coffee",
+      "rating": 4.5,
+      "reviews": 430,
+      "price": "$",
+      "category": "Specialty Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Compass+Coffee+Friendship+Heights+DC"
+    },
+    {
+      "name": "Paul Bakery",
+      "rating": 4.5,
+      "reviews": 1400,
+      "price": "$$",
+      "category": "French Bakery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Paul+Bakery+Friendship+Heights+DC"
+    },
+    {
+      "name": "Levain Bakery",
+      "rating": 4.6,
+      "reviews": 1800,
+      "price": "$",
+      "category": "Bakery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Levain+Bakery+Chevy+Chase+DC"
+    }
+  ],
+  "sweat": [
+    {
+      "name": "Equinox Friendship Heights",
+      "rating": 4.5,
+      "reviews": 780,
+      "price": "$$$$",
+      "category": "Luxury Gym",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Equinox+Friendship+Heights+DC"
+    },
+    {
+      "name": "SoulCycle Chevy Chase",
+      "rating": 4.5,
+      "reviews": 410,
+      "price": "$$$$",
+      "category": "Cycling Studio",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=SoulCycle+Chevy+Chase+MD"
+    },
+    {
+      "name": "CorePower Yoga",
+      "rating": 4.4,
+      "reviews": 520,
+      "price": "$$$",
+      "category": "Yoga Studio",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=CorePower+Yoga+Friendship+Heights+DC"
+    }
+  ],
+  "groom": [
+    {
+      "name": "Drybar Friendship Heights",
+      "rating": 4.5,
+      "reviews": 580,
+      "price": "$$$",
+      "category": "Blowout Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Drybar+Friendship+Heights+DC"
+    },
+    {
+      "name": "Giovanni & Pileggi",
+      "rating": 4.5,
+      "reviews": 290,
+      "price": "$$$",
+      "category": "Hair Salon",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Giovanni+Pileggi+Chevy+Chase+MD"
+    },
+    {
+      "name": "The Art of Shaving",
+      "rating": 4.3,
+      "reviews": 410,
+      "price": "$$$",
+      "category": "Men's Grooming",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Art+of+Shaving+Friendship+Heights+DC"
+    }
+  ],
+  "wag": [
+    {
+      "name": "Rock Creek Park",
+      "rating": 4.8,
+      "reviews": 8400,
+      "price": "Free",
+      "category": "Dog-Friendly Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Rock+Creek+Park+DC"
+    },
+    {
+      "name": "Chevy Chase Dog Park",
+      "rating": 4.5,
+      "reviews": 680,
+      "price": "Free",
+      "category": "Off-Leash Dog Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Chevy+Chase+Dog+Park+DC"
+    },
+    {
+      "name": "Dogma Bakery",
+      "rating": 4.7,
+      "reviews": 290,
+      "price": "$",
+      "category": "Dog Bakery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Dogma+Bakery+DC"
+    }
+  ],
+  "parks": [
+    {
+      "name": "Rock Creek Park",
+      "rating": 4.8,
+      "reviews": 8400,
+      "price": "Free",
+      "category": "National Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Rock+Creek+Park+DC"
+    },
+    {
+      "name": "Friendship Park DC",
+      "rating": 4.4,
+      "reviews": 480,
+      "price": "Free",
+      "category": "Neighborhood Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Friendship+Park+DC"
+    },
+    {
+      "name": "Chevy Chase Circle",
+      "rating": 4.5,
+      "reviews": 310,
+      "price": "Free",
+      "category": "Neighborhood Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Chevy+Chase+Circle+DC"
+    },
+    {
+      "name": "Battery Kemble Park",
+      "rating": 4.6,
+      "reviews": 840,
+      "price": "Free",
+      "category": "Historic Civil War Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Battery+Kemble+Park+DC"
+    }
+  ]
+}

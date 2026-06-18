@@ -1,0 +1,270 @@
+{
+  "dine": [
+    {
+      "name": "Old Angler's Inn",
+      "rating": 4.3,
+      "reviews": 980,
+      "price": "$$$$",
+      "category": "Historic American",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Old+Anglers+Inn+Potomac+MD"
+    },
+    {
+      "name": "Mussel Bar & Grille",
+      "rating": 4.3,
+      "reviews": 1100,
+      "price": "$$$",
+      "category": "Seafood",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Mussel+Bar+Grille+Bethesda+MD"
+    },
+    {
+      "name": "L'Academie Cafe",
+      "rating": 4.3,
+      "reviews": 580,
+      "price": "$$$",
+      "category": "French American",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=L+Academie+Cafe+Bethesda+MD"
+    },
+    {
+      "name": "Mon Ami Gabi",
+      "rating": 4.4,
+      "reviews": 2100,
+      "price": "$$$",
+      "category": "French Bistro",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Mon+Ami+Gabi+Bethesda+MD"
+    },
+    {
+      "name": "Founding Farmers Potomac",
+      "rating": 4.5,
+      "reviews": 3200,
+      "price": "$$",
+      "category": "Farm-to-Table",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Founding+Farmers+Potomac+MD"
+    }
+  ],
+  "drink": [
+    {
+      "name": "Old Angler's Inn Bar",
+      "rating": 4.3,
+      "reviews": 640,
+      "price": "$$$$",
+      "category": "Historic Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Old+Anglers+Inn+Bar+Potomac+MD"
+    },
+    {
+      "name": "Dogfish Head Alehouse",
+      "rating": 4.4,
+      "reviews": 2200,
+      "price": "$$",
+      "category": "Craft Brewery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Dogfish+Head+Alehouse+Bethesda+MD"
+    },
+    {
+      "name": "Starbucks Cabin John",
+      "rating": 4.2,
+      "reviews": 580,
+      "price": "$",
+      "category": "Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Starbucks+Cabin+John+MD"
+    },
+    {
+      "name": "Clyde's Cabin John",
+      "rating": 4.2,
+      "reviews": 1200,
+      "price": "$$$",
+      "category": "American Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Clydes+Cabin+John+Shopping+Center+MD"
+    }
+  ],
+  "shop": [
+    {
+      "name": "Cabin John Shopping Center",
+      "rating": 4.1,
+      "reviews": 980,
+      "price": "$$",
+      "category": "Shopping Center",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Cabin+John+Shopping+Center+MD"
+    },
+    {
+      "name": "Trader Joe's",
+      "rating": 4.6,
+      "reviews": 1800,
+      "price": "$$",
+      "category": "Grocery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Trader+Joes+Cabin+John+MD"
+    },
+    {
+      "name": "REI Co-op Rockville",
+      "rating": 4.6,
+      "reviews": 1400,
+      "price": "$$$",
+      "category": "Outdoor Gear",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=REI+Rockville+MD"
+    }
+  ],
+  "perk": [
+    {
+      "name": "Starbucks Cabin John",
+      "rating": 4.2,
+      "reviews": 580,
+      "price": "$",
+      "category": "Coffee Chain",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Starbucks+Cabin+John+MD"
+    },
+    {
+      "name": "Gifford's Ice Cream",
+      "rating": 4.6,
+      "reviews": 1400,
+      "price": "$",
+      "category": "Ice Cream",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Giffords+Ice+Cream+Cabin+John+MD"
+    },
+    {
+      "name": "Mayorga Coffee",
+      "rating": 4.4,
+      "reviews": 290,
+      "price": "$",
+      "category": "Coffee Roaster",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Mayorga+Coffee+Cabin+John+MD"
+    }
+  ],
+  "sweat": [
+    {
+      "name": "Cabin John Regional Park Ice Rink",
+      "rating": 4.6,
+      "reviews": 1800,
+      "price": "$$",
+      "category": "Ice Rink",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Cabin+John+Ice+Rink+MD"
+    },
+    {
+      "name": "Montgomery Aquatic Center",
+      "rating": 4.4,
+      "reviews": 920,
+      "price": "$$",
+      "category": "Aquatic Center",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Montgomery+Aquatic+Center+MD"
+    },
+    {
+      "name": "Pure Barre Bethesda",
+      "rating": 4.6,
+      "reviews": 410,
+      "price": "$$$",
+      "category": "Barre Studio",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Pure+Barre+Bethesda+MD"
+    }
+  ],
+  "groom": [
+    {
+      "name": "Salon Nordine",
+      "rating": 4.7,
+      "reviews": 410,
+      "price": "$$$",
+      "category": "Hair Salon",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Salon+Nordine+Bethesda+MD"
+    },
+    {
+      "name": "The Cabin John Barber",
+      "rating": 4.4,
+      "reviews": 180,
+      "price": "$$",
+      "category": "Barbershop",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Barbershop+Cabin+John+MD"
+    },
+    {
+      "name": "Natural Nail Bar",
+      "rating": 4.5,
+      "reviews": 290,
+      "price": "$$",
+      "category": "Nail Salon",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Natural+Nail+Bar+Bethesda+MD"
+    }
+  ],
+  "wag": [
+    {
+      "name": "C&O Canal Towpath",
+      "rating": 4.9,
+      "reviews": 8400,
+      "price": "Free",
+      "category": "Dog-Friendly Trail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=C+O+Canal+Cabin+John+MD"
+    },
+    {
+      "name": "Cabin John Regional Park Dog Park",
+      "rating": 4.6,
+      "reviews": 740,
+      "price": "Free",
+      "category": "Off-Leash Dog Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Cabin+John+Regional+Park+Dog+Park+MD"
+    },
+    {
+      "name": "Petco Rockville",
+      "rating": 4.1,
+      "reviews": 890,
+      "price": "$$",
+      "category": "Pet Store",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Petco+Rockville+MD"
+    }
+  ],
+  "parks": [
+    {
+      "name": "Cabin John Regional Park",
+      "rating": 4.7,
+      "reviews": 3200,
+      "price": "Free",
+      "category": "Regional Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Cabin+John+Regional+Park+MD"
+    },
+    {
+      "name": "C&O Canal National Historical Park",
+      "rating": 4.9,
+      "reviews": 8400,
+      "price": "Free",
+      "category": "National Park & Trail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=C+O+Canal+Cabin+John+MD"
+    },
+    {
+      "name": "Carderock Recreation Area",
+      "rating": 4.8,
+      "reviews": 1800,
+      "price": "Free",
+      "category": "Climbing & Picnic Area",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Carderock+Recreation+Area+MD"
+    },
+    {
+      "name": "Seven Locks Stream Valley Park",
+      "rating": 4.5,
+      "reviews": 480,
+      "price": "Free",
+      "category": "Stream Valley Trail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Seven+Locks+Stream+Valley+Park+MD"
+    }
+  ]
+}

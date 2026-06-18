@@ -1,0 +1,288 @@
+{
+  "dine": [
+    {
+      "name": "Clare & Don's Beach Shack",
+      "rating": 4.5,
+      "reviews": 1800,
+      "price": "$$",
+      "category": "Seafood Shack",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Clare+Dons+Beach+Shack+Falls+Church+VA"
+    },
+    {
+      "name": "Cafe Kindred",
+      "rating": 4.6,
+      "reviews": 980,
+      "price": "$$",
+      "category": "New American",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Cafe+Kindred+Falls+Church+VA"
+    },
+    {
+      "name": "Seven Corners",
+      "rating": 4.3,
+      "reviews": 1200,
+      "price": "$$",
+      "category": "International",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Seven+Corners+Falls+Church+VA"
+    },
+    {
+      "name": "Eden Center",
+      "rating": 4.6,
+      "reviews": 4200,
+      "price": "$",
+      "category": "Vietnamese Food Court",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Eden+Center+Falls+Church+VA"
+    },
+    {
+      "name": "Dogwood Tavern",
+      "rating": 4.4,
+      "reviews": 1400,
+      "price": "$$",
+      "category": "American Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Dogwood+Tavern+Falls+Church+VA"
+    },
+    {
+      "name": "Pho 75",
+      "rating": 4.4,
+      "reviews": 1100,
+      "price": "$",
+      "category": "Vietnamese",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Pho+75+Falls+Church+VA"
+    }
+  ],
+  "drink": [
+    {
+      "name": "Mad Fox Brewing Company",
+      "rating": 4.5,
+      "reviews": 1600,
+      "price": "$$",
+      "category": "Craft Brewery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Mad+Fox+Brewing+Company+Falls+Church+VA"
+    },
+    {
+      "name": "Dogwood Tavern",
+      "rating": 4.4,
+      "reviews": 1400,
+      "price": "$$",
+      "category": "Music Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Dogwood+Tavern+Falls+Church+VA"
+    },
+    {
+      "name": "Northside Social",
+      "rating": 4.5,
+      "reviews": 1800,
+      "price": "$",
+      "category": "Coffee & Wine",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Northside+Social+Falls+Church+VA"
+    },
+    {
+      "name": "Starbucks Falls Church",
+      "rating": 4.2,
+      "reviews": 740,
+      "price": "$",
+      "category": "Coffee Chain",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Starbucks+Falls+Church+VA"
+    }
+  ],
+  "shop": [
+    {
+      "name": "Broad Street Shops",
+      "rating": 4.3,
+      "reviews": 1800,
+      "price": "$$",
+      "category": "Main Street Shopping",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Broad+Street+Falls+Church+VA"
+    },
+    {
+      "name": "Eden Center",
+      "rating": 4.6,
+      "reviews": 4200,
+      "price": "$",
+      "category": "International Shopping",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Eden+Center+Falls+Church+VA"
+    },
+    {
+      "name": "Whole Foods Market",
+      "rating": 4.4,
+      "reviews": 1600,
+      "price": "$$$",
+      "category": "Grocery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Whole+Foods+Falls+Church+VA"
+    },
+    {
+      "name": "West End Farmers Market",
+      "rating": 4.7,
+      "reviews": 680,
+      "price": "$",
+      "category": "Farmers Market",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Falls+Church+Farmers+Market+VA"
+    }
+  ],
+  "perk": [
+    {
+      "name": "Northside Social",
+      "rating": 4.5,
+      "reviews": 1800,
+      "price": "$",
+      "category": "Coffee & Wine",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Northside+Social+Falls+Church+VA"
+    },
+    {
+      "name": "Peregrine Espresso",
+      "rating": 4.7,
+      "reviews": 480,
+      "price": "$",
+      "category": "Specialty Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Peregrine+Espresso+Falls+Church+VA"
+    },
+    {
+      "name": "Lazy Sundae Ice Cream",
+      "rating": 4.7,
+      "reviews": 380,
+      "price": "$",
+      "category": "Ice Cream",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Lazy+Sundae+Falls+Church+VA"
+    }
+  ],
+  "sweat": [
+    {
+      "name": "Washington Sports Club",
+      "rating": 4.1,
+      "reviews": 780,
+      "price": "$$",
+      "category": "Gym",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Washington+Sports+Club+Falls+Church+VA"
+    },
+    {
+      "name": "OrangeTheory Falls Church",
+      "rating": 4.4,
+      "reviews": 490,
+      "price": "$$$",
+      "category": "HIIT Studio",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=OrangeTheory+Falls+Church+VA"
+    },
+    {
+      "name": "CrossFit 7220",
+      "rating": 4.7,
+      "reviews": 280,
+      "price": "$$$",
+      "category": "CrossFit",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=CrossFit+7220+Falls+Church+VA"
+    }
+  ],
+  "groom": [
+    {
+      "name": "Studio 53 Salon",
+      "rating": 4.5,
+      "reviews": 290,
+      "price": "$$$",
+      "category": "Hair Salon",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Studio+53+Salon+Falls+Church+VA"
+    },
+    {
+      "name": "The Barber's Touch",
+      "rating": 4.5,
+      "reviews": 240,
+      "price": "$$",
+      "category": "Barbershop",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Barbers+Touch+Falls+Church+VA"
+    },
+    {
+      "name": "European Wax Center",
+      "rating": 4.3,
+      "reviews": 420,
+      "price": "$$",
+      "category": "Waxing & Beauty",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=European+Wax+Center+Falls+Church+VA"
+    }
+  ],
+  "wag": [
+    {
+      "name": "Tinner Hill Dog Park",
+      "rating": 4.5,
+      "reviews": 680,
+      "price": "Free",
+      "category": "Off-Leash Dog Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Tinner+Hill+Park+Falls+Church+VA"
+    },
+    {
+      "name": "PetSmart Falls Church",
+      "rating": 4.1,
+      "reviews": 880,
+      "price": "$$",
+      "category": "Pet Store",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=PetSmart+Falls+Church+VA"
+    },
+    {
+      "name": "Four Mile Run Trail",
+      "rating": 4.6,
+      "reviews": 2100,
+      "price": "Free",
+      "category": "Dog-Friendly Trail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Four+Mile+Run+Trail+Falls+Church+VA"
+    }
+  ],
+  "parks": [
+    {
+      "name": "Jefferson District Park",
+      "rating": 4.5,
+      "reviews": 980,
+      "price": "Free",
+      "category": "Community Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Jefferson+District+Park+Falls+Church+VA"
+    },
+    {
+      "name": "W&OD Trail",
+      "rating": 4.8,
+      "reviews": 5400,
+      "price": "Free",
+      "category": "Rail Trail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=W+OD+Trail+Falls+Church+VA"
+    },
+    {
+      "name": "Cherry Hill Farm Park",
+      "rating": 4.6,
+      "reviews": 1200,
+      "price": "Free",
+      "category": "Historic Farm Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Cherry+Hill+Farm+Park+Falls+Church+VA"
+    },
+    {
+      "name": "Berman Park",
+      "rating": 4.4,
+      "reviews": 480,
+      "price": "Free",
+      "category": "Community Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Berman+Park+Falls+Church+VA"
+    }
+  ]
+}

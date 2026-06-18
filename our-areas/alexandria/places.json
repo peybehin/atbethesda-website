@@ -1,0 +1,351 @@
+{
+  "dine": [
+    {
+      "name": "The Majestic",
+      "rating": 4.4,
+      "reviews": 1800,
+      "price": "$$$",
+      "category": "American",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=The+Majestic+Alexandria+VA"
+    },
+    {
+      "name": "Restaurant Eve",
+      "rating": 4.6,
+      "reviews": 2100,
+      "price": "$$$$",
+      "category": "Contemporary American",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Restaurant+Eve+Alexandria+VA"
+    },
+    {
+      "name": "Hummingbird",
+      "rating": 4.5,
+      "reviews": 1200,
+      "price": "$$",
+      "category": "Southern Comfort",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Hummingbird+Alexandria+VA"
+    },
+    {
+      "name": "Vermilion",
+      "rating": 4.5,
+      "reviews": 1400,
+      "price": "$$$",
+      "category": "American",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Vermilion+Alexandria+VA"
+    },
+    {
+      "name": "Landini Brothers",
+      "rating": 4.4,
+      "reviews": 1600,
+      "price": "$$$",
+      "category": "Italian",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Landini+Brothers+Alexandria+VA"
+    },
+    {
+      "name": "Brabo Restaurant",
+      "rating": 4.4,
+      "reviews": 980,
+      "price": "$$$",
+      "category": "Belgian",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Brabo+Alexandria+VA"
+    },
+    {
+      "name": "Eamonn's Dublin Chipper",
+      "rating": 4.4,
+      "reviews": 1100,
+      "price": "$",
+      "category": "Fish & Chips",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Eamonns+Dublin+Chipper+Alexandria+VA"
+    }
+  ],
+  "drink": [
+    {
+      "name": "Virtue Feed & Grain",
+      "rating": 4.4,
+      "reviews": 2400,
+      "price": "$$",
+      "category": "American Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Virtue+Feed+Grain+Alexandria+VA"
+    },
+    {
+      "name": "PX Speakeasy",
+      "rating": 4.5,
+      "reviews": 890,
+      "price": "$$$$",
+      "category": "Cocktail Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=PX+Alexandria+VA"
+    },
+    {
+      "name": "Buzz Bakery & Coffee",
+      "rating": 4.5,
+      "reviews": 980,
+      "price": "$",
+      "category": "Bakery & Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Buzz+Bakery+Alexandria+VA"
+    },
+    {
+      "name": "Port City Brewing Company",
+      "rating": 4.6,
+      "reviews": 1800,
+      "price": "$$",
+      "category": "Craft Brewery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Port+City+Brewing+Alexandria+VA"
+    },
+    {
+      "name": "Mia's Italian Kitchen Bar",
+      "rating": 4.3,
+      "reviews": 760,
+      "price": "$$",
+      "category": "Wine Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Mias+Italian+Kitchen+Alexandria+VA"
+    }
+  ],
+  "shop": [
+    {
+      "name": "King Street Old Town",
+      "rating": 4.7,
+      "reviews": 8200,
+      "price": "$$",
+      "category": "Shopping District",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=King+Street+Old+Town+Alexandria+VA"
+    },
+    {
+      "name": "Del Ray Artisans Gallery",
+      "rating": 4.7,
+      "reviews": 640,
+      "price": "$",
+      "category": "Art Gallery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Del+Ray+Artisans+Alexandria+VA"
+    },
+    {
+      "name": "The Avenue Del Ray",
+      "rating": 4.5,
+      "reviews": 1400,
+      "price": "$$",
+      "category": "Neighborhood Shopping",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=The+Avenue+Del+Ray+Alexandria+VA"
+    },
+    {
+      "name": "Old Town Books",
+      "rating": 4.7,
+      "reviews": 380,
+      "price": "$",
+      "category": "Independent Bookstore",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Old+Town+Books+Alexandria+VA"
+    },
+    {
+      "name": "Misha's Coffee",
+      "rating": 4.6,
+      "reviews": 1100,
+      "price": "$",
+      "category": "Coffee Roaster",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Mishas+Coffee+Alexandria+VA"
+    }
+  ],
+  "perk": [
+    {
+      "name": "Misha's Coffee",
+      "rating": 4.6,
+      "reviews": 1100,
+      "price": "$",
+      "category": "Coffee Roaster",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Mishas+Coffee+Alexandria+VA"
+    },
+    {
+      "name": "Buzz Bakery",
+      "rating": 4.5,
+      "reviews": 980,
+      "price": "$",
+      "category": "Bakery & Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Buzz+Bakery+Alexandria+VA"
+    },
+    {
+      "name": "Lost Dog Cafe",
+      "rating": 4.5,
+      "reviews": 1600,
+      "price": "$",
+      "category": "Coffee & Sandwiches",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Lost+Dog+Cafe+Alexandria+VA"
+    },
+    {
+      "name": "Stomping Ground",
+      "rating": 4.6,
+      "reviews": 480,
+      "price": "$",
+      "category": "Coffee & Brunch",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Stomping+Ground+Alexandria+VA"
+    }
+  ],
+  "sweat": [
+    {
+      "name": "Equinox Old Town",
+      "rating": 4.5,
+      "reviews": 890,
+      "price": "$$$$",
+      "category": "Luxury Gym",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Equinox+Old+Town+Alexandria+VA"
+    },
+    {
+      "name": "CorePower Yoga",
+      "rating": 4.4,
+      "reviews": 520,
+      "price": "$$$",
+      "category": "Yoga Studio",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=CorePower+Yoga+Alexandria+VA"
+    },
+    {
+      "name": "Alexandria YMCA",
+      "rating": 4.3,
+      "reviews": 980,
+      "price": "$$",
+      "category": "Gym",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=YMCA+Alexandria+VA"
+    },
+    {
+      "name": "OrangeTheory Alexandria",
+      "rating": 4.4,
+      "reviews": 640,
+      "price": "$$$",
+      "category": "HIIT Studio",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=OrangeTheory+Alexandria+VA"
+    }
+  ],
+  "groom": [
+    {
+      "name": "Salon Roi",
+      "rating": 4.6,
+      "reviews": 380,
+      "price": "$$$",
+      "category": "Hair Salon",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Salon+Roi+Alexandria+VA"
+    },
+    {
+      "name": "Old Town Barber Shop",
+      "rating": 4.5,
+      "reviews": 290,
+      "price": "$$",
+      "category": "Barbershop",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Old+Town+Barber+Shop+Alexandria+VA"
+    },
+    {
+      "name": "Tease Hair Studio",
+      "rating": 4.5,
+      "reviews": 340,
+      "price": "$$$",
+      "category": "Hair Salon",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Tease+Hair+Studio+Alexandria+VA"
+    }
+  ],
+  "wag": [
+    {
+      "name": "Ben Brenman Dog Park",
+      "rating": 4.6,
+      "reviews": 1100,
+      "price": "Free",
+      "category": "Off-Leash Dog Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Ben+Brenman+Dog+Park+Alexandria+VA"
+    },
+    {
+      "name": "Old Town Pet Emporium",
+      "rating": 4.7,
+      "reviews": 480,
+      "price": "$$",
+      "category": "Pet Boutique",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Old+Town+Pet+Emporium+Alexandria+VA"
+    },
+    {
+      "name": "PetSmart Alexandria",
+      "rating": 4.1,
+      "reviews": 980,
+      "price": "$$",
+      "category": "Pet Store",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=PetSmart+Alexandria+VA"
+    },
+    {
+      "name": "Four Mile Run Dog Park",
+      "rating": 4.5,
+      "reviews": 760,
+      "price": "Free",
+      "category": "Off-Leash Dog Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Four+Mile+Run+Dog+Park+Alexandria+VA"
+    }
+  ],
+  "parks": [
+    {
+      "name": "Waterfront Park Old Town",
+      "rating": 4.7,
+      "reviews": 3800,
+      "price": "Free",
+      "category": "Waterfront Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Waterfront+Park+Old+Town+Alexandria+VA"
+    },
+    {
+      "name": "Fort Ward Park",
+      "rating": 4.6,
+      "reviews": 1800,
+      "price": "Free",
+      "category": "Historic Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Fort+Ward+Park+Alexandria+VA"
+    },
+    {
+      "name": "Mount Vernon Trail",
+      "rating": 4.8,
+      "reviews": 4200,
+      "price": "Free",
+      "category": "Bike & Run Trail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Mount+Vernon+Trail+Alexandria+VA"
+    },
+    {
+      "name": "Four Mile Run Park",
+      "rating": 4.5,
+      "reviews": 1200,
+      "price": "Free",
+      "category": "Stream Valley Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Four+Mile+Run+Park+Alexandria+VA"
+    },
+    {
+      "name": "Jones Point Park",
+      "rating": 4.6,
+      "reviews": 980,
+      "price": "Free",
+      "category": "Waterfront Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Jones+Point+Park+Alexandria+VA"
+    }
+  ]
+}

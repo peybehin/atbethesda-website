@@ -1,0 +1,315 @@
+{
+  "dine": [
+    {
+      "name": "Old Angler's Inn",
+      "rating": 4.3,
+      "reviews": 980,
+      "price": "$$$$",
+      "category": "American",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Old+Anglers+Inn+Potomac+MD"
+    },
+    {
+      "name": "Normandie Farm",
+      "rating": 4.4,
+      "reviews": 1200,
+      "price": "$$$",
+      "category": "French American",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Normandie+Farm+Potomac+MD"
+    },
+    {
+      "name": "Potomac Grill",
+      "rating": 4.2,
+      "reviews": 760,
+      "price": "$$$",
+      "category": "American",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Potomac+Grill+MD"
+    },
+    {
+      "name": "Mussel Bar & Grille",
+      "rating": 4.3,
+      "reviews": 1100,
+      "price": "$$$",
+      "category": "Seafood",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Mussel+Bar+Grille+Potomac+MD"
+    },
+    {
+      "name": "Founding Farmers Potomac",
+      "rating": 4.5,
+      "reviews": 3200,
+      "price": "$$",
+      "category": "Farm-to-Table",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Founding+Farmers+Potomac+MD"
+    },
+    {
+      "name": "Clyde's of Rockville",
+      "rating": 4.2,
+      "reviews": 1800,
+      "price": "$$$",
+      "category": "American",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Clydes+of+Rockville+MD"
+    }
+  ],
+  "drink": [
+    {
+      "name": "Old Angler's Inn Bar",
+      "rating": 4.3,
+      "reviews": 640,
+      "price": "$$$$",
+      "category": "Upscale Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Old+Anglers+Inn+Bar+Potomac+MD"
+    },
+    {
+      "name": "Starbucks Potomac Village",
+      "rating": 4.2,
+      "reviews": 780,
+      "price": "$",
+      "category": "Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Starbucks+Potomac+Village+MD"
+    },
+    {
+      "name": "Suburban Club House Bar",
+      "rating": 4.1,
+      "reviews": 340,
+      "price": "$$$",
+      "category": "Country Club Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Suburban+Club+Bethesda+MD"
+    },
+    {
+      "name": "Compass Coffee",
+      "rating": 4.5,
+      "reviews": 290,
+      "price": "$",
+      "category": "Specialty Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Compass+Coffee+Potomac+MD"
+    }
+  ],
+  "shop": [
+    {
+      "name": "Potomac Village Shopping Center",
+      "rating": 4.2,
+      "reviews": 1400,
+      "price": "$$",
+      "category": "Shopping Center",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Potomac+Village+Shopping+Center+MD"
+    },
+    {
+      "name": "Trader Joe's Potomac",
+      "rating": 4.6,
+      "reviews": 1800,
+      "price": "$$",
+      "category": "Grocery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Trader+Joes+Potomac+MD"
+    },
+    {
+      "name": "Cabin John Shopping Center",
+      "rating": 4.1,
+      "reviews": 980,
+      "price": "$$",
+      "category": "Shopping Center",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Cabin+John+Shopping+Center+Potomac+MD"
+    },
+    {
+      "name": "Tara Grinna Swimwear",
+      "rating": 4.5,
+      "reviews": 240,
+      "price": "$$$",
+      "category": "Boutique",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Tara+Grinna+Swimwear+Potomac+MD"
+    }
+  ],
+  "perk": [
+    {
+      "name": "Starbucks Potomac",
+      "rating": 4.2,
+      "reviews": 780,
+      "price": "$",
+      "category": "Coffee Chain",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Starbucks+Potomac+Village+MD"
+    },
+    {
+      "name": "Compass Coffee",
+      "rating": 4.5,
+      "reviews": 290,
+      "price": "$",
+      "category": "Specialty Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Compass+Coffee+Potomac+MD"
+    },
+    {
+      "name": "Levain Bakery",
+      "rating": 4.6,
+      "reviews": 1800,
+      "price": "$",
+      "category": "Bakery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Levain+Bakery+Bethesda+MD"
+    }
+  ],
+  "sweat": [
+    {
+      "name": "Equinox Bethesda",
+      "rating": 4.5,
+      "reviews": 780,
+      "price": "$$$$",
+      "category": "Luxury Gym",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Equinox+Bethesda+MD"
+    },
+    {
+      "name": "Potomac Athletic Club",
+      "rating": 4.4,
+      "reviews": 520,
+      "price": "$$$",
+      "category": "Athletic Club",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Potomac+Athletic+Club+MD"
+    },
+    {
+      "name": "SoulCycle Potomac",
+      "rating": 4.5,
+      "reviews": 340,
+      "price": "$$$$",
+      "category": "Cycling Studio",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=SoulCycle+Potomac+MD"
+    },
+    {
+      "name": "Pure Barre Potomac",
+      "rating": 4.6,
+      "reviews": 290,
+      "price": "$$$",
+      "category": "Barre Studio",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Pure+Barre+Potomac+MD"
+    }
+  ],
+  "groom": [
+    {
+      "name": "Salon Nordine",
+      "rating": 4.7,
+      "reviews": 410,
+      "price": "$$$",
+      "category": "Hair Salon",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Salon+Nordine+Potomac+MD"
+    },
+    {
+      "name": "The Studio Salon",
+      "rating": 4.5,
+      "reviews": 280,
+      "price": "$$$",
+      "category": "Hair Salon",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Studio+Salon+Potomac+MD"
+    },
+    {
+      "name": "Massage Envy",
+      "rating": 4.2,
+      "reviews": 640,
+      "price": "$$",
+      "category": "Massage & Spa",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Massage+Envy+Potomac+MD"
+    }
+  ],
+  "wag": [
+    {
+      "name": "C&O Canal Dog Trails",
+      "rating": 4.9,
+      "reviews": 3200,
+      "price": "Free",
+      "category": "Dog-Friendly Trail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=C+O+Canal+Potomac+MD"
+    },
+    {
+      "name": "Riverbend Park",
+      "rating": 4.7,
+      "reviews": 1400,
+      "price": "Free",
+      "category": "Nature Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Riverbend+Park+Great+Falls+VA"
+    },
+    {
+      "name": "Petco Potomac",
+      "rating": 4.1,
+      "reviews": 780,
+      "price": "$$",
+      "category": "Pet Store",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Petco+Potomac+MD"
+    },
+    {
+      "name": "Paws & Claws Pet Resort",
+      "rating": 4.7,
+      "reviews": 390,
+      "price": "$$$",
+      "category": "Dog Boarding",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Paws+Claws+Pet+Resort+Potomac+MD"
+    }
+  ],
+  "parks": [
+    {
+      "name": "C&O Canal National Historical Park",
+      "rating": 4.9,
+      "reviews": 8400,
+      "price": "Free",
+      "category": "National Park & Trail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=C+O+Canal+Potomac+MD"
+    },
+    {
+      "name": "Riverbend Park",
+      "rating": 4.7,
+      "reviews": 1400,
+      "price": "Free",
+      "category": "Nature Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Riverbend+Park+Great+Falls+VA"
+    },
+    {
+      "name": "Cabin John Regional Park",
+      "rating": 4.7,
+      "reviews": 3200,
+      "price": "Free",
+      "category": "Regional Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Cabin+John+Regional+Park+MD"
+    },
+    {
+      "name": "Black Hill Regional Park",
+      "rating": 4.7,
+      "reviews": 2100,
+      "price": "Free",
+      "category": "Reservoir Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Black+Hill+Regional+Park+MD"
+    },
+    {
+      "name": "Pennyfield Lock C&O Canal",
+      "rating": 4.8,
+      "reviews": 680,
+      "price": "Free",
+      "category": "Canal Towpath",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Pennyfield+Lock+C+O+Canal+MD"
+    }
+  ]
+}

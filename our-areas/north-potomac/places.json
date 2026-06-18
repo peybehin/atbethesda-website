@@ -1,0 +1,306 @@
+{
+  "dine": [
+    {
+      "name": "Founding Farmers Potomac",
+      "rating": 4.5,
+      "reviews": 3200,
+      "price": "$$",
+      "category": "Farm-to-Table",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Founding+Farmers+Potomac+MD"
+    },
+    {
+      "name": "Nando's Peri-Peri",
+      "rating": 4.3,
+      "reviews": 1200,
+      "price": "$$",
+      "category": "Peri-Peri Chicken",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Nandos+North+Potomac+MD"
+    },
+    {
+      "name": "Agora Restaurant",
+      "rating": 4.5,
+      "reviews": 890,
+      "price": "$$$",
+      "category": "Turkish",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Agora+Restaurant+North+Potomac+MD"
+    },
+    {
+      "name": "Gom Ba Woo Korean BBQ",
+      "rating": 4.6,
+      "reviews": 1400,
+      "price": "$$",
+      "category": "Korean BBQ",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Gom+Ba+Woo+Rockville+MD"
+    },
+    {
+      "name": "FireWorks Pizza",
+      "rating": 4.4,
+      "reviews": 1400,
+      "price": "$$",
+      "category": "Pizza",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=FireWorks+Pizza+Kentlands+MD"
+    },
+    {
+      "name": "Dogfish Head Alehouse",
+      "rating": 4.4,
+      "reviews": 2200,
+      "price": "$$",
+      "category": "Brewpub",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Dogfish+Head+Alehouse+Gaithersburg+MD"
+    }
+  ],
+  "drink": [
+    {
+      "name": "Starbucks Quince Orchard",
+      "rating": 4.2,
+      "reviews": 680,
+      "price": "$",
+      "category": "Coffee Chain",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Starbucks+Quince+Orchard+MD"
+    },
+    {
+      "name": "Philz Coffee Crown",
+      "rating": 4.5,
+      "reviews": 610,
+      "price": "$",
+      "category": "Specialty Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Philz+Coffee+Crown+Gaithersburg+MD"
+    },
+    {
+      "name": "Rio Washingtonian Bar Scene",
+      "rating": 4.2,
+      "reviews": 1800,
+      "price": "$$",
+      "category": "Bar Strip",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Rio+Washingtonian+Center+Gaithersburg+MD"
+    },
+    {
+      "name": "Jailbreak Brewing Company",
+      "rating": 4.5,
+      "reviews": 1100,
+      "price": "$$",
+      "category": "Craft Brewery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Jailbreak+Brewing+Laurel+MD"
+    }
+  ],
+  "shop": [
+    {
+      "name": "Quince Orchard Shopping Center",
+      "rating": 4.1,
+      "reviews": 1100,
+      "price": "$$",
+      "category": "Shopping Center",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Quince+Orchard+Shopping+Center+MD"
+    },
+    {
+      "name": "Trader Joe's Gaithersburg",
+      "rating": 4.6,
+      "reviews": 1900,
+      "price": "$$",
+      "category": "Grocery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Trader+Joes+Gaithersburg+MD"
+    },
+    {
+      "name": "Rio Washingtonian Center",
+      "rating": 4.2,
+      "reviews": 3100,
+      "price": "$$",
+      "category": "Entertainment Center",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Rio+Washingtonian+Center+Gaithersburg+MD"
+    },
+    {
+      "name": "Crown Farm",
+      "rating": 4.3,
+      "reviews": 1400,
+      "price": "$$",
+      "category": "Shopping District",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Crown+Farm+Gaithersburg+MD"
+    }
+  ],
+  "perk": [
+    {
+      "name": "Starbucks",
+      "rating": 4.2,
+      "reviews": 680,
+      "price": "$",
+      "category": "Coffee Chain",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Starbucks+North+Potomac+MD"
+    },
+    {
+      "name": "Philz Coffee",
+      "rating": 4.5,
+      "reviews": 610,
+      "price": "$",
+      "category": "Specialty Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Philz+Coffee+Crown+Gaithersburg+MD"
+    },
+    {
+      "name": "Duck Donuts",
+      "rating": 4.5,
+      "reviews": 780,
+      "price": "$",
+      "category": "Donuts",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Duck+Donuts+Gaithersburg+MD"
+    }
+  ],
+  "sweat": [
+    {
+      "name": "Life Time Fitness Gaithersburg",
+      "rating": 4.5,
+      "reviews": 1800,
+      "price": "$$$$",
+      "category": "Luxury Gym",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Life+Time+Fitness+Gaithersburg+MD"
+    },
+    {
+      "name": "Gold's Gym North Potomac",
+      "rating": 4.1,
+      "reviews": 640,
+      "price": "$$",
+      "category": "Gym",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Golds+Gym+North+Potomac+MD"
+    },
+    {
+      "name": "F45 Training",
+      "rating": 4.6,
+      "reviews": 380,
+      "price": "$$$",
+      "category": "Functional Training",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=F45+Training+North+Potomac+MD"
+    },
+    {
+      "name": "Pure Barre Gaithersburg",
+      "rating": 4.5,
+      "reviews": 290,
+      "price": "$$$",
+      "category": "Barre Studio",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Pure+Barre+Gaithersburg+MD"
+    }
+  ],
+  "groom": [
+    {
+      "name": "Salon North Potomac",
+      "rating": 4.4,
+      "reviews": 240,
+      "price": "$$$",
+      "category": "Hair Salon",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Salon+North+Potomac+MD"
+    },
+    {
+      "name": "Great Clips",
+      "rating": 4.0,
+      "reviews": 490,
+      "price": "$",
+      "category": "Hair Salon",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Great+Clips+North+Potomac+MD"
+    },
+    {
+      "name": "Massage Envy",
+      "rating": 4.2,
+      "reviews": 520,
+      "price": "$$",
+      "category": "Massage & Spa",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Massage+Envy+North+Potomac+MD"
+    }
+  ],
+  "wag": [
+    {
+      "name": "Seneca Creek State Park",
+      "rating": 4.7,
+      "reviews": 2800,
+      "price": "Free",
+      "category": "State Park & Dog Trails",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Seneca+Creek+State+Park+MD"
+    },
+    {
+      "name": "Black Hill Regional Park",
+      "rating": 4.7,
+      "reviews": 2100,
+      "price": "Free",
+      "category": "Reservoir Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Black+Hill+Regional+Park+MD"
+    },
+    {
+      "name": "Petco Gaithersburg",
+      "rating": 4.1,
+      "reviews": 890,
+      "price": "$$",
+      "category": "Pet Store",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Petco+Gaithersburg+MD"
+    },
+    {
+      "name": "North Potomac Dog Park",
+      "rating": 4.5,
+      "reviews": 380,
+      "price": "Free",
+      "category": "Off-Leash Dog Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=North+Potomac+Dog+Park+MD"
+    }
+  ],
+  "parks": [
+    {
+      "name": "Seneca Creek State Park",
+      "rating": 4.7,
+      "reviews": 2800,
+      "price": "Free",
+      "category": "State Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Seneca+Creek+State+Park+MD"
+    },
+    {
+      "name": "Black Hill Regional Park",
+      "rating": 4.7,
+      "reviews": 2100,
+      "price": "Free",
+      "category": "Reservoir Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Black+Hill+Regional+Park+MD"
+    },
+    {
+      "name": "Quince Orchard Local Park",
+      "rating": 4.3,
+      "reviews": 340,
+      "price": "Free",
+      "category": "Neighborhood Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Quince+Orchard+Local+Park+MD"
+    },
+    {
+      "name": "Darnestown Road Greenway",
+      "rating": 4.4,
+      "reviews": 280,
+      "price": "Free",
+      "category": "Trail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Darnestown+Road+North+Potomac+MD"
+    }
+  ]
+}

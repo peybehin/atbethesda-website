@@ -1,0 +1,306 @@
+{
+  "dine": [
+    {
+      "name": "Augie's Montreal Deli",
+      "rating": 4.6,
+      "reviews": 1200,
+      "price": "$$",
+      "category": "Montreal Deli",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Augies+Montreal+Deli+Fairfax+VA"
+    },
+    {
+      "name": "Epicurean & Company",
+      "rating": 4.5,
+      "reviews": 980,
+      "price": "$$",
+      "category": "Modern American",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Epicurean+and+Company+Fairfax+VA"
+    },
+    {
+      "name": "Old Town Hall Restaurant",
+      "rating": 4.3,
+      "reviews": 1400,
+      "price": "$$",
+      "category": "American",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Old+Town+Hall+Fairfax+VA"
+    },
+    {
+      "name": "Dolce Vita",
+      "rating": 4.5,
+      "reviews": 890,
+      "price": "$$$",
+      "category": "Italian",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Dolce+Vita+Fairfax+VA"
+    },
+    {
+      "name": "Connaught Place",
+      "rating": 4.5,
+      "reviews": 1100,
+      "price": "$$",
+      "category": "Indian",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Connaught+Place+Fairfax+VA"
+    },
+    {
+      "name": "Clarity Restaurant",
+      "rating": 4.4,
+      "reviews": 760,
+      "price": "$$$",
+      "category": "New American",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Clarity+Restaurant+Fairfax+VA"
+    }
+  ],
+  "drink": [
+    {
+      "name": "Lost Rhino Brewing Company",
+      "rating": 4.5,
+      "reviews": 1800,
+      "price": "$$",
+      "category": "Craft Brewery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Lost+Rhino+Brewing+Ashburn+VA"
+    },
+    {
+      "name": "Ornery Beer Company",
+      "rating": 4.5,
+      "reviews": 1200,
+      "price": "$$",
+      "category": "Craft Brewery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Ornery+Beer+Company+Fairfax+VA"
+    },
+    {
+      "name": "Capital One Hall Bar",
+      "rating": 4.4,
+      "reviews": 1800,
+      "price": "$$$",
+      "category": "Venue Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Capital+One+Hall+Tysons+VA"
+    },
+    {
+      "name": "Starbucks Old Town Fairfax",
+      "rating": 4.2,
+      "reviews": 780,
+      "price": "$",
+      "category": "Coffee Chain",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Starbucks+Old+Town+Fairfax+VA"
+    }
+  ],
+  "shop": [
+    {
+      "name": "Old Town Fairfax",
+      "rating": 4.4,
+      "reviews": 2800,
+      "price": "$$",
+      "category": "Historic District Shopping",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Old+Town+Fairfax+VA"
+    },
+    {
+      "name": "Fair Oaks Mall",
+      "rating": 4.1,
+      "reviews": 4200,
+      "price": "$$",
+      "category": "Shopping Mall",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Fair+Oaks+Mall+Fairfax+VA"
+    },
+    {
+      "name": "Whole Foods Market",
+      "rating": 4.4,
+      "reviews": 1800,
+      "price": "$$$",
+      "category": "Grocery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Whole+Foods+Fairfax+VA"
+    },
+    {
+      "name": "Mosaic District",
+      "rating": 4.5,
+      "reviews": 3600,
+      "price": "$$",
+      "category": "Open-Air Shopping",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Mosaic+District+Fairfax+VA"
+    },
+    {
+      "name": "Target Fairfax",
+      "rating": 4.2,
+      "reviews": 1600,
+      "price": "$$",
+      "category": "Department Store",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Target+Fairfax+VA"
+    }
+  ],
+  "perk": [
+    {
+      "name": "Northside Social Fairfax",
+      "rating": 4.5,
+      "reviews": 480,
+      "price": "$",
+      "category": "Coffee & Wine",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Northside+Social+Fairfax+VA"
+    },
+    {
+      "name": "Compass Coffee",
+      "rating": 4.5,
+      "reviews": 390,
+      "price": "$",
+      "category": "Specialty Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Compass+Coffee+Fairfax+VA"
+    },
+    {
+      "name": "Honey Crullers",
+      "rating": 4.6,
+      "reviews": 640,
+      "price": "$",
+      "category": "Artisan Donuts",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Honey+Crullers+Fairfax+VA"
+    }
+  ],
+  "sweat": [
+    {
+      "name": "Lifetime Fitness Fairfax",
+      "rating": 4.5,
+      "reviews": 1600,
+      "price": "$$$$",
+      "category": "Luxury Gym",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Lifetime+Fitness+Fairfax+VA"
+    },
+    {
+      "name": "OrangeTheory Mosaic",
+      "rating": 4.4,
+      "reviews": 620,
+      "price": "$$$",
+      "category": "HIIT Studio",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=OrangeTheory+Mosaic+Fairfax+VA"
+    },
+    {
+      "name": "Gold's Gym Fairfax",
+      "rating": 4.1,
+      "reviews": 980,
+      "price": "$$",
+      "category": "Gym",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Golds+Gym+Fairfax+VA"
+    }
+  ],
+  "groom": [
+    {
+      "name": "Giovanni Salon",
+      "rating": 4.5,
+      "reviews": 320,
+      "price": "$$$",
+      "category": "Hair Salon",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Giovanni+Salon+Fairfax+VA"
+    },
+    {
+      "name": "Supercuts Fairfax",
+      "rating": 4.0,
+      "reviews": 560,
+      "price": "$",
+      "category": "Hair Salon",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Supercuts+Fairfax+VA"
+    },
+    {
+      "name": "Drybar Mosaic",
+      "rating": 4.5,
+      "reviews": 480,
+      "price": "$$$",
+      "category": "Blowout Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Drybar+Mosaic+District+VA"
+    }
+  ],
+  "wag": [
+    {
+      "name": "Daniels Run Dog Park",
+      "rating": 4.5,
+      "reviews": 680,
+      "price": "Free",
+      "category": "Off-Leash Dog Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Daniels+Run+Dog+Park+Fairfax+VA"
+    },
+    {
+      "name": "PetSmart Fairfax",
+      "rating": 4.1,
+      "reviews": 1200,
+      "price": "$$",
+      "category": "Pet Store",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=PetSmart+Fairfax+VA"
+    },
+    {
+      "name": "Petco Mosaic",
+      "rating": 4.2,
+      "reviews": 640,
+      "price": "$$",
+      "category": "Pet Store",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Petco+Mosaic+Fairfax+VA"
+    }
+  ],
+  "parks": [
+    {
+      "name": "Frying Pan Farm Park",
+      "rating": 4.6,
+      "reviews": 2100,
+      "price": "Free",
+      "category": "Farm & Nature Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Frying+Pan+Farm+Park+Fairfax+VA"
+    },
+    {
+      "name": "Difficult Run Stream Valley Park",
+      "rating": 4.7,
+      "reviews": 1400,
+      "price": "Free",
+      "category": "Stream Valley Trail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Difficult+Run+Stream+Valley+Park+Fairfax+VA"
+    },
+    {
+      "name": "Burke Lake Park",
+      "rating": 4.7,
+      "reviews": 2800,
+      "price": "$",
+      "category": "Lake Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Burke+Lake+Park+Fairfax+VA"
+    },
+    {
+      "name": "Lake Fairfax Park",
+      "rating": 4.6,
+      "reviews": 1800,
+      "price": "$",
+      "category": "Lake & Recreation Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Lake+Fairfax+Park+Reston+VA"
+    },
+    {
+      "name": "Ellanor C. Lawrence Park",
+      "rating": 4.6,
+      "reviews": 980,
+      "price": "Free",
+      "category": "Nature Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Ellanor+C+Lawrence+Park+Chantilly+VA"
+    }
+  ]
+}

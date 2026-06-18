@@ -1,0 +1,351 @@
+{
+  "dine": [
+    {
+      "name": "Bob's Shanghai 66",
+      "rating": 4.4,
+      "reviews": 1800,
+      "price": "$$",
+      "category": "Chinese",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Bobs+Shanghai+66+Rockville+MD"
+    },
+    {
+      "name": "Parkway Deli",
+      "rating": 4.5,
+      "reviews": 2100,
+      "price": "$$",
+      "category": "Jewish Deli",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Parkway+Deli+Rockville+MD"
+    },
+    {
+      "name": "Sergio Ristorante",
+      "rating": 4.5,
+      "reviews": 890,
+      "price": "$$$",
+      "category": "Italian",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Sergio+Ristorante+Rockville+MD"
+    },
+    {
+      "name": "Gom Ba Woo Korean BBQ",
+      "rating": 4.6,
+      "reviews": 1400,
+      "price": "$$",
+      "category": "Korean BBQ",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Gom+Ba+Woo+Rockville+MD"
+    },
+    {
+      "name": "La Canela",
+      "rating": 4.3,
+      "reviews": 760,
+      "price": "$$",
+      "category": "Peruvian",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=La+Canela+Rockville+MD"
+    },
+    {
+      "name": "Adega Wine Bar",
+      "rating": 4.4,
+      "reviews": 540,
+      "price": "$$$",
+      "category": "Wine Bar & Spanish",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Adega+Wine+Bar+Rockville+MD"
+    },
+    {
+      "name": "Roy's Place",
+      "rating": 4.3,
+      "reviews": 680,
+      "price": "$$",
+      "category": "Diner",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Roys+Place+Gaithersburg+MD"
+    }
+  ],
+  "drink": [
+    {
+      "name": "Denizens Brewing Co.",
+      "rating": 4.5,
+      "reviews": 1200,
+      "price": "$$",
+      "category": "Craft Brewery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Denizens+Brewing+Rockville+MD"
+    },
+    {
+      "name": "RockBottom Restaurant & Brewery",
+      "rating": 4.1,
+      "reviews": 1700,
+      "price": "$$",
+      "category": "Brewpub",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Rock+Bottom+Brewery+Rockville+MD"
+    },
+    {
+      "name": "Coastal Flats",
+      "rating": 4.2,
+      "reviews": 2200,
+      "price": "$$",
+      "category": "Bar & Grill",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Coastal+Flats+Rockville+MD"
+    },
+    {
+      "name": "Starbucks Rockville Town Square",
+      "rating": 4.2,
+      "reviews": 940,
+      "price": "$",
+      "category": "Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Starbucks+Rockville+Town+Square+MD"
+    },
+    {
+      "name": "Vigilante Coffee",
+      "rating": 4.6,
+      "reviews": 480,
+      "price": "$",
+      "category": "Specialty Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Vigilante+Coffee+Rockville+MD"
+    }
+  ],
+  "shop": [
+    {
+      "name": "Rockville Town Square",
+      "rating": 4.2,
+      "reviews": 1900,
+      "price": "$$",
+      "category": "Mixed-Use Center",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Rockville+Town+Square+MD"
+    },
+    {
+      "name": "Congressional Plaza",
+      "rating": 4.1,
+      "reviews": 1200,
+      "price": "$$",
+      "category": "Shopping Center",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Congressional+Plaza+Rockville+MD"
+    },
+    {
+      "name": "Whole Foods Market",
+      "rating": 4.4,
+      "reviews": 2100,
+      "price": "$$$",
+      "category": "Grocery",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Whole+Foods+Rockville+MD"
+    },
+    {
+      "name": "Barnes & Noble",
+      "rating": 4.4,
+      "reviews": 1600,
+      "price": "$$",
+      "category": "Bookstore",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Barnes+Noble+Rockville+MD"
+    },
+    {
+      "name": "Pike & Rose Shops",
+      "rating": 4.3,
+      "reviews": 2800,
+      "price": "$$",
+      "category": "Mixed-Use District",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Pike+and+Rose+North+Bethesda+MD"
+    }
+  ],
+  "perk": [
+    {
+      "name": "Vigilante Coffee",
+      "rating": 4.6,
+      "reviews": 480,
+      "price": "$",
+      "category": "Specialty Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Vigilante+Coffee+Rockville+MD"
+    },
+    {
+      "name": "Mayorga Coffee Roasters",
+      "rating": 4.5,
+      "reviews": 390,
+      "price": "$",
+      "category": "Coffee Roaster",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Mayorga+Coffee+Rockville+MD"
+    },
+    {
+      "name": "Starbucks",
+      "rating": 4.1,
+      "reviews": 940,
+      "price": "$",
+      "category": "Coffee Chain",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Starbucks+Rockville+Town+Square+MD"
+    },
+    {
+      "name": "Crumbl Cookies",
+      "rating": 4.5,
+      "reviews": 1100,
+      "price": "$",
+      "category": "Dessert",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Crumbl+Cookies+Rockville+MD"
+    }
+  ],
+  "sweat": [
+    {
+      "name": "LA Fitness Rockville",
+      "rating": 4.0,
+      "reviews": 1100,
+      "price": "$$",
+      "category": "Gym",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=LA+Fitness+Rockville+MD"
+    },
+    {
+      "name": "OrangeTheory Fitness",
+      "rating": 4.4,
+      "reviews": 580,
+      "price": "$$$",
+      "category": "HIIT Studio",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=OrangeTheory+Rockville+MD"
+    },
+    {
+      "name": "Gold's Gym Rockville",
+      "rating": 4.1,
+      "reviews": 760,
+      "price": "$$",
+      "category": "Gym",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Golds+Gym+Rockville+MD"
+    },
+    {
+      "name": "Lifetime Fitness Rockville",
+      "rating": 4.5,
+      "reviews": 1400,
+      "price": "$$$$",
+      "category": "Luxury Gym",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Lifetime+Fitness+Rockville+MD"
+    }
+  ],
+  "groom": [
+    {
+      "name": "Salon Nordine",
+      "rating": 4.7,
+      "reviews": 410,
+      "price": "$$$",
+      "category": "Hair Salon",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Salon+Nordine+Rockville+MD"
+    },
+    {
+      "name": "Sport Clips Haircuts",
+      "rating": 4.2,
+      "reviews": 680,
+      "price": "$$",
+      "category": "Barbershop",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Sport+Clips+Rockville+MD"
+    },
+    {
+      "name": "Gene Juarez Salon & Spa",
+      "rating": 4.4,
+      "reviews": 340,
+      "price": "$$$",
+      "category": "Salon & Spa",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Gene+Juarez+Rockville+MD"
+    }
+  ],
+  "wag": [
+    {
+      "name": "Dogfish Dog Daycare",
+      "rating": 4.7,
+      "reviews": 320,
+      "price": "$$$",
+      "category": "Dog Daycare",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Dogfish+Dog+Daycare+Rockville+MD"
+    },
+    {
+      "name": "Cabin John Regional Park Dog Park",
+      "rating": 4.6,
+      "reviews": 740,
+      "price": "Free",
+      "category": "Off-Leash Dog Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Cabin+John+Regional+Park+Dog+Park+MD"
+    },
+    {
+      "name": "Petco Rockville",
+      "rating": 4.1,
+      "reviews": 890,
+      "price": "$$",
+      "category": "Pet Store",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Petco+Rockville+MD"
+    },
+    {
+      "name": "Muddy Paws Dog Wash",
+      "rating": 4.6,
+      "reviews": 280,
+      "price": "$$",
+      "category": "Self-Serve Dog Wash",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Muddy+Paws+Dog+Wash+Rockville+MD"
+    }
+  ],
+  "parks": [
+    {
+      "name": "Cabin John Regional Park",
+      "rating": 4.7,
+      "reviews": 3200,
+      "price": "Free",
+      "category": "Regional Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Cabin+John+Regional+Park+MD"
+    },
+    {
+      "name": "Rock Creek Regional Park",
+      "rating": 4.7,
+      "reviews": 2100,
+      "price": "Free",
+      "category": "Nature Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Rock+Creek+Regional+Park+Rockville+MD"
+    },
+    {
+      "name": "Rockville Civic Center Park",
+      "rating": 4.5,
+      "reviews": 980,
+      "price": "Free",
+      "category": "City Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Rockville+Civic+Center+Park+MD"
+    },
+    {
+      "name": "King Farm Park",
+      "rating": 4.5,
+      "reviews": 640,
+      "price": "Free",
+      "category": "Neighborhood Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=King+Farm+Park+Rockville+MD"
+    },
+    {
+      "name": "Watts Branch Stream Valley Park",
+      "rating": 4.4,
+      "reviews": 320,
+      "price": "Free",
+      "category": "Stream Valley Trail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Watts+Branch+Stream+Valley+Park+Rockville+MD"
+    }
+  ]
+}
