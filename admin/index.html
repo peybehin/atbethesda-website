@@ -539,9 +539,9 @@ select.cat-select{margin-bottom:0;}
                 <input type="date" id="post-date" style="width:auto;padding:4px 8px;font-size:.75rem;" oninput="onStatusChange()" />
               </div>
               <!-- Time row — only shown when Scheduled -->
-              <div class="status-row" id="time-row" style="display:none;">
+              <div class="status-row" id="time-row">
                 <span>Time</span>
-                <input type="time" id="post-time" value="09:00" style="width:auto;padding:4px 8px;font-size:.75rem;" />
+                <input type="time" id="post-time" value="06:00" style="width:auto;padding:4px 8px;font-size:.75rem;" />
               </div>
               <!-- Scheduled preview label -->
               <div id="schedule-preview" style="display:none;background:#e3f2fd;border-radius:4px;padding:10px 12px;margin:10px 0;font-size:.75rem;color:#1565c0;line-height:1.5;"></div>
@@ -742,8 +742,9 @@ function newPost() {
   document.getElementById('post-meta').value = '';
   document.getElementById('post-image').value = '';
   document.getElementById('post-category').value = '';
-  document.getElementById('post-status').value = 'published';
+  document.getElementById('post-status').value = 'draft';
   document.getElementById('post-date').value = new Date().toISOString().split('T')[0];
+  document.getElementById('post-time').value = '06:00';
   document.getElementById('image-thumb').style.display = 'none';
   document.getElementById('tag-cloud').innerHTML = '';
   document.getElementById('faq-list').innerHTML = '';
@@ -765,7 +766,7 @@ function editPost(id) {
   document.getElementById('post-category').value = post.category || '';
   document.getElementById('post-status').value = post.status || 'published';
   document.getElementById('post-date').value = post.date || '';
-  document.getElementById('post-time').value = post.scheduledTime || '09:00';
+  document.getElementById('post-time').value = post.scheduledTime || '06:00';
   onStatusChange();
   renderTagCloud();
   previewImage();
@@ -796,14 +797,14 @@ function filterStatus(status) {
 
 /* ══════════════ STATUS CHANGE HANDLER ══════════════ */
 function onStatusChange() {
-  const status = document.getElementById('post-status').value;
-  const timeRow = document.getElementById('time-row');
+  const statusEl = document.getElementById('post-status');
   const schedPreview = document.getElementById('schedule-preview');
+  if (!statusEl || !schedPreview) return;
+  const status = statusEl.value;
 
   if (status === 'scheduled') {
-    timeRow.style.display = 'flex';
     const date = document.getElementById('post-date').value;
-    const time = document.getElementById('post-time').value || '09:00';
+    const time = document.getElementById('post-time').value || '06:00';
     if (date) {
       const dt = new Date(date + 'T' + time);
       const isPast = dt <= new Date();
@@ -821,7 +822,6 @@ function onStatusChange() {
       schedPreview.style.display = 'none';
     }
   } else {
-    timeRow.style.display = 'none';
     schedPreview.style.display = 'none';
   }
 }
@@ -1094,7 +1094,7 @@ function saveDraft() {
 
 function saveScheduled() {
   const d = document.getElementById('post-date').value;
-  const t = document.getElementById('post-time').value || '09:00';
+  const t = document.getElementById('post-time').value || '06:00';
   if (!d) { toast('⚠ Set a publish date first'); return; }
   const dt = new Date(d + 'T' + t);
   if (dt <= new Date()) { toast('⚠ Scheduled date must be in the future'); return; }
