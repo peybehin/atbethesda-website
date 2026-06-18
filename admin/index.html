@@ -94,6 +94,8 @@ body{font-family:var(--font);background:var(--gray-light);color:var(--black);min
 }
 .btn-primary{background:var(--red);color:#fff;}
 .btn-primary:hover{background:var(--red-dark);}
+.btn-secondary{background:#f0f0f0;color:#333;border:1px solid #ddd;}
+.btn-secondary:hover{background:#e0e0e0;}
 .btn-outline{background:transparent;color:var(--black);border:2px solid #ddd;}
 .btn-outline:hover{border-color:#999;}
 .btn-sm{padding:7px 14px;font-size:.68rem;}
@@ -432,6 +434,7 @@ select.cat-select{margin-bottom:0;}
     <div class="topbar">
       <div class="topbar-title" id="topbar-title">All Posts</div>
       <div class="topbar-actions" id="topbar-actions">
+        <button class="btn btn-secondary btn-sm" onclick="openImport()" title="Import BOFU draft posts">⬆ Import Posts</button>
         <button class="btn btn-primary btn-sm" onclick="newPost()">+ New Post</button>
       </div>
     </div>
@@ -688,7 +691,7 @@ function showView(view, filterCat, filterStat) {
     document.getElementById('nav-dashboard').classList.add('active');
     const label = filterCat ? filterCat : filterStat ? (filterStat.charAt(0).toUpperCase()+filterStat.slice(1)+' Posts') : 'All Posts';
     document.getElementById('topbar-title').textContent = label;
-    document.getElementById('topbar-actions').innerHTML = '<button class="btn btn-primary btn-sm" onclick="newPost()">+ New Post</button>';
+    document.getElementById('topbar-actions').innerHTML = '<button class="btn btn-secondary btn-sm" onclick="openImport()" title="Import BOFU draft posts">⬆ Import Posts</button><button class="btn btn-primary btn-sm" onclick="newPost()">+ New Post</button>';
     if (filterStat) activeTab = filterStat;
     document.querySelectorAll('.status-tab').forEach(el => el.classList.remove('active'));
     const _tabId = activeTab === 'draft' ? 'drafts' : activeTab;
@@ -1344,6 +1347,20 @@ ${faqHTML}
 </footer>
 <div class="mobile-bar"><a href="tel:+13016520643">📞 Call</a><a href="sms:+13016520643">💬 Text</a><a href="/contact/" class="primary">Connect</a><a href="/whats-my-home-worth/">Valuation</a></div>
 <script src="../../js/main.js"><\/script>
+
+  <!-- IMPORT MODAL -->
+  <div id="import-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;display:none;align-items:center;justify-content:center;">
+    <div style="background:#fff;border-radius:12px;padding:36px 40px;max-width:540px;width:94%;box-shadow:0 20px 60px rgba(0,0,0,.3);">
+      <h2 style="margin:0 0 8px;font-size:1.3rem;color:#0a0a0a;">Import BOFU Draft Posts</h2>
+      <p style="color:#666;font-size:.85rem;margin:0 0 20px;">Select the <code>ab_drafts_import.json</code> file from your Downloads folder. Posts are added as drafts — existing posts with the same ID are skipped.</p>
+      <input type="file" id="import-file-input" accept=".json" style="display:block;width:100%;margin-bottom:16px;font-size:.85rem;">
+      <div id="import-status" style="min-height:24px;font-size:.85rem;color:#1565c0;margin-bottom:16px;"></div>
+      <div style="display:flex;gap:10px;justify-content:flex-end;">
+        <button class="btn btn-secondary btn-sm" onclick="closeImport()">Cancel</button>
+        <button class="btn btn-primary btn-sm" id="import-btn" onclick="runImport()" disabled>Import Posts</button>
+      </div>
+    </div>
+  </div>
 </body>
 </html>`;
 }
@@ -1694,6 +1711,71 @@ async function handleImgFile(file) {
   }
 }
 // ───────────────────────────────────────────────────────────────────
+
+
+// ── Import Posts ──────────────────────────────────────────────────────────────
+function openImport() {
+  const ov = document.getElementById('import-overlay');
+  ov.style.display = 'flex';
+  document.getElementById('import-status').textContent = '';
+  document.getElementById('import-btn').disabled = true;
+  document.getElementById('import-file-input').value = '';
+}
+function closeImport() {
+  document.getElementById('import-overlay').style.display = 'none';
+}
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('import-file-input').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const status = document.getElementById('import-status');
+    status.textContent = 'Reading file…';
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      try {
+        const data = JSON.parse(ev.target.result);
+        if (!Array.isArray(data)) throw new Error('Expected a JSON array');
+        status.textContent = '✓ Found ' + data.length + ' posts ready to import.';
+        status.style.color = '#2e7d32';
+        document.getElementById('import-btn').disabled = false;
+        document.getElementById('import-btn')._importData = data;
+      } catch(err) {
+        status.textContent = '✗ Invalid file: ' + err.message;
+        status.style.color = '#c62828';
+        document.getElementById('import-btn').disabled = true;
+      }
+    };
+    reader.readAsText(file);
+  });
+});
+function runImport() {
+  const btn = document.getElementById('import-btn');
+  const data = btn._importData;
+  if (!data) return;
+  const posts = getPosts();
+  const existingIds = new Set(posts.map(p => p.id));
+  let added = 0, skipped = 0;
+  data.forEach(function(p) {
+    if (existingIds.has(p.id)) { skipped++; return; }
+    // Ensure required fields
+    if (!p.id) p.id = 'import-' + Date.now() + '-' + Math.random().toString(36).slice(2,7);
+    if (!p.status) p.status = 'draft';
+    if (!p.faqs) p.faqs = [];
+    if (!p.tags) p.tags = [];
+    posts.push(p);
+    added++;
+  });
+  savePosts(posts);
+  const status = document.getElementById('import-status');
+  status.textContent = '✓ Imported ' + added + ' posts' + (skipped ? ' (' + skipped + ' skipped — already exist)' : '') + '.';
+  status.style.color = '#2e7d32';
+  btn.disabled = true;
+  setTimeout(function() {
+    closeImport();
+    renderPostList();
+  }, 1600);
+}
+// ──────────────────────────────────────────────────────────────────────────────
 </script>
 </body>
 </html>
