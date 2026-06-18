@@ -659,8 +659,6 @@ function doLogin() {
   }
 }
 
-// Auto-login if session still valid
-checkAuth();
 
 /* ══════════════ DATA STORE ══════════════ */
 let posts = JSON.parse(localStorage.getItem('ab_posts') || '[]');
@@ -1777,7 +1775,11 @@ function closeImport() {
   document.getElementById('import-overlay').style.display = 'none';
 }
 document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('import-file-input').addEventListener('change', function(e) {
+  // Auto-login if session still valid (must run after DOM is ready)
+  checkAuth();
+
+  const importInput = document.getElementById('import-file-input');
+  if (importInput) importInput.addEventListener('change', function(e) {
     const file = e.target.files[0];
     if (!file) return;
     const status = document.getElementById('import-status');
