@@ -259,43 +259,6 @@
     }
     .cta-link:hover { color: var(--red-dark); }
 
-    /* -- SCHOOL MAP -- */
-    #school-map { background: var(--black); padding: 90px 40px; }
-    .school-map-inner {
-      max-width: 1100px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
-    }
-    .school-map-inner .section-label { color: #b72545; }
-    .school-map-inner .section-title { color: var(--white); }
-    .school-map-inner .section-sub { color: #aaa; max-width: 100%; }
-    .school-map-visual {
-      position: relative; border-radius: 8px; overflow: hidden;
-      aspect-ratio: 4/3;
-      background: #1a1a1a;
-      border: 1px solid #333;
-      display: flex; align-items: center; justify-content: center;
-      flex-direction: column; gap: 14px;
-    }
-    .school-map-visual svg { opacity: .5; }
-    .school-map-visual p {
-      color: #777; font-size: .8rem; text-align: center; padding: 0 20px;
-    }
-    .map-overlay-btn {
-      display: inline-block; background: var(--red); color: var(--white);
-      padding: 12px 28px; border-radius: var(--radius);
-      font-size: .78rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: .08em; text-decoration: none; margin-top: 28px;
-      transition: background .2s;
-    }
-    .map-overlay-btn:hover { background: var(--red-dark); }
-    .school-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
-    .school-badge {
-      background: rgba(183,37,69,.12); border: 1px solid rgba(183,37,69,.3);
-      color: #e0a0b0; padding: 6px 14px; border-radius: 20px;
-      font-size: .72rem; font-weight: 600; letter-spacing: .05em;
-    }
-
-
     /* -- FEATURED LISTINGS -- */
     #featured-listings {
       background: #0a0a0a;
@@ -638,7 +601,6 @@
       .nav-hamburger { display: flex; }
       section { padding: 60px 20px; }
       .cta-grid { grid-template-columns: 1fr; }
-      .school-map-inner { grid-template-columns: 1fr; }
       .areas-grid { grid-template-columns: repeat(2, 1fr); }
       .about-inner { grid-template-columns: 1fr; }
       .about-img-wrap { max-width: 380px; }
@@ -720,7 +682,7 @@
 
     <div class="hero-quick-links">
       <a href="/properties/">Browse Listings</a>
-      <a href="#school-map">Search by School</a>
+      <a href="#featured-listings">Featured Listings</a>
       <a href="/whats-my-home-worth/">Home Valuation</a>
     </div>
   </div>
@@ -767,34 +729,6 @@
   </div>
 </section>
 
-<!-- -- SCHOOL MAP -- -->
-<section id="school-map">
-  <div class="school-map-inner">
-    <div>
-      <div class="section-label">Hyperlocal Differentiator</div>
-      <h2 class="section-title" style="color:#fff;">Search Homes by <span>School District</span></h2>
-      <p class="section-sub" style="color:#aaa; max-width:100%;">
-        The only Bethesda real estate site that lets you click directly on a map and search listings by high school district. Because where your kids go to school matters as much as square footage.
-      </p>
-      <div class="school-badges">
-        <span class="school-badge">Walt Whitman HS</span>
-        <span class="school-badge">Winston Churchill HS</span>
-        <span class="school-badge">Bethesda-Chevy Chase HS</span>
-        <span class="school-badge">Richard Montgomery HS</span>
-        <span class="school-badge">Walter Johnson HS</span>
-        <span class="school-badge">Wootton HS</span>
-      </div>
-      <a href="/properties/" class="map-overlay-btn">Search by School District &rarr;</a>
-    </div>
-    <div class="school-map-visual">
-      <!-- Placeholder for the interactive IDX map embed -->
-      <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
-      </svg>
-      <p>Interactive school district map<br/>loads from your IDX integration</p>
-    </div>
-  </div>
-</section>
 
 
 <!-- -- FEATURED LISTINGS -- -->
@@ -1298,7 +1232,6 @@
         <h4>Buy</h4>
         <ul>
           <li><a href="/properties/">Properties</a></li>
-          <li><a href="#school-map">Search by School</a></li>
           <li><a href="/perfect-home-finder/">Perfect Home Finder</a></li>
           <li><a href="/buyers-guide/">Buyer's Guide</a></li>
           <li><a href="/mortgage-calculator/">Mortgage Calculator</a></li>
