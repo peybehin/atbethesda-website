@@ -424,6 +424,10 @@ select.cat-select{margin-bottom:0;}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         Schools
       </button>
+      <button class="sidebar-item" id="nav-settings" onclick="showView('settings')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        Settings
+      </button>
     <div class="sidebar-bottom">
       <a href="/" target="_blank">← View Live Site</a>
     </div>
@@ -548,7 +552,7 @@ select.cat-select{margin-bottom:0;}
               <div class="publish-btn-row" style="gap:6px;margin-top:14px;">
                 <button class="btn btn-success" style="width:100%;justify-content:center;" onclick="saveDraft()">💾 Save Draft</button>
                 <button class="btn" style="width:100%;justify-content:center;background:#1565c0;color:#fff;" onclick="saveScheduled()">🕐 Schedule</button>
-                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="publishNow()">✅ Publish &amp; Download</button>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="publishNow()">🚀 Publish to Site</button>
                 <button class="btn btn-outline btn-sm" style="width:100%;justify-content:center;margin-top:4px;" onclick="previewPost()">Preview</button>
               </div>
             </div>
@@ -624,6 +628,31 @@ select.cat-select{margin-bottom:0;}
         <div id="schools-editor-area"></div>
       </div>
 
+      <!-- SETTINGS -->
+      <div id="view-settings" style="display:none;">
+        <div class="dash-header"><h1>Settings</h1></div>
+        <div class="editor-card" style="max-width:600px;">
+          <h3>🔗 GitHub Sync</h3>
+          <p style="font-size:.82rem;color:#666;margin-bottom:16px;line-height:1.6;">
+            Enter your GitHub Personal Access Token to publish posts <strong>directly to the live site</strong> — no download or upload steps needed. When you click Publish, the post goes live in ~60 seconds.
+          </p>
+          <label class="field-label">Personal Access Token</label>
+          <div style="display:flex;gap:8px;margin-bottom:8px;">
+            <input type="password" id="gh-token-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" style="flex:1;" />
+            <button class="btn btn-primary btn-sm" onclick="saveGhToken()">Save Token</button>
+          </div>
+          <div id="gh-token-status" style="font-size:.78rem;min-height:20px;font-weight:600;"></div>
+          <p style="font-size:.7rem;color:#aaa;margin-top:16px;line-height:1.8;">
+            How to create a token:<br/>
+            1. Go to github.com → click your profile → Settings<br/>
+            2. Developer settings → Personal access tokens → Fine-grained tokens<br/>
+            3. Generate new token → set repo to <strong>atbethesda-website</strong><br/>
+            4. Under Permissions → Repository permissions → set <strong>Contents: Read and write</strong><br/>
+            5. Generate token → paste it above
+          </p>
+        </div>
+      </div>
+
 </div><!-- /app -->
 
 <div id="toast"></div>
@@ -672,6 +701,9 @@ function savePosts() {
 
 /* ══════════════ INIT ══════════════ */
 function initApp() {
+  // Load GitHub token
+  window._ghToken = localStorage.getItem('ab_gh_token') || null;
+
   // Init Quill
   quill = new Quill('#quill-editor', {
     theme: 'snow',
@@ -701,6 +733,7 @@ function initApp() {
 function showView(view, filterCat, filterStat) {
   document.getElementById('view-dashboard').style.display = 'none';
   document.getElementById('view-editor').style.display = 'none';
+  document.getElementById('view-settings').style.display = 'none';
   document.querySelectorAll('.sidebar-item').forEach(el => el.classList.remove('active'));
 
   if (view === 'dashboard') {
@@ -721,6 +754,20 @@ function showView(view, filterCat, filterStat) {
     document.getElementById('topbar-title').textContent = 'School Data';
     document.getElementById('topbar-actions').innerHTML = '';
     initSchoolsView();
+  } else if (view === 'settings') {
+    document.getElementById('view-settings').style.display = 'block';
+    document.getElementById('nav-settings').classList.add('active');
+    document.getElementById('topbar-title').textContent = 'Settings';
+    document.getElementById('topbar-actions').innerHTML = '';
+    // Show current token status
+    const hasToken = !!localStorage.getItem('ab_gh_token');
+    const statusEl = document.getElementById('gh-token-status');
+    if (statusEl) {
+      statusEl.textContent = hasToken
+        ? '✓ GitHub token is set — Publish will sync directly to atbethesda.com.'
+        : '⚠ No token set — Publish will download the file instead.';
+      statusEl.style.color = hasToken ? '#2e7d32' : '#f57c00';
+    }
   } else if (view === 'editor') {
     document.getElementById('view-editor').style.display = 'block';
     document.getElementById('nav-editor').classList.add('active');
@@ -936,15 +983,14 @@ function renderPostList(filterCat, filterStat) {
   }).join('');
 }
 
-function publishScheduled(id) {
+async function publishScheduled(id) {
   const post = posts.find(p => p.id === id);
   if (!post) return;
   post.status = 'published';
   savePosts();
   const html = buildPostHTML(post);
-  downloadFile(post.slug + '.html', html);
   renderPostList();
-  toast('✓ Published & downloaded: ' + post.slug + '.html');
+  await pushPostToGitHub(post, html);
 }
 
 /* ══════════════ TAGS ══════════════ */
@@ -1106,14 +1152,83 @@ function saveScheduled() {
   setTimeout(() => toast('🕐 Scheduled for ' + label + ': ' + (data.title || 'Untitled')), 100);
 }
 
-function publishNow() {
+async function publishNow() {
   document.getElementById('post-status').value = 'published';
   onStatusChange();
   const data = saveCurrentPost();
   const html = buildPostHTML(data);
-  downloadFile(data.slug + '.html', html);
   showView('dashboard');
-  setTimeout(() => toast('✅ Published & downloaded: ' + data.slug + '.html'), 100);
+  setTimeout(() => pushPostToGitHub(data, html), 100);
+}
+
+/* ══════════════ GITHUB SYNC ══════════════ */
+async function pushPostToGitHub(post, html) {
+  const token = window._ghToken || localStorage.getItem('ab_gh_token');
+  if (!token) {
+    // No token — fall back to download
+    downloadFile(post.slug + '.html', html);
+    toast('📥 Downloaded — add a GitHub token in Settings to auto-publish.');
+    return false;
+  }
+
+  const path = 'vlog/' + post.slug + '/index.html';
+  // Encode as base64 (btoa handles only Latin-1; encodeURIComponent + unescape handles full Unicode)
+  const b64 = btoa(unescape(encodeURIComponent(html)));
+
+  toast('⏳ Publishing to atbethesda.com…');
+
+  try {
+    // GET existing file SHA (required to update an existing file)
+    let sha = null;
+    const checkR = await fetch(
+      'https://api.github.com/repos/peybehin/atbethesda-website/contents/' + path,
+      { headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' } }
+    );
+    if (checkR.ok) { const existing = await checkR.json(); sha = existing.sha; }
+
+    const body = { message: 'Publish: ' + (post.title || post.slug), content: b64 };
+    if (sha) body.sha = sha;
+
+    const pushR = await fetch(
+      'https://api.github.com/repos/peybehin/atbethesda-website/contents/' + path,
+      {
+        method: 'PUT',
+        headers: { 'Authorization': 'token ' + token, 'Content-Type': 'application/json', 'Accept': 'application/vnd.github.v3+json' },
+        body: JSON.stringify(body)
+      }
+    );
+
+    if (pushR.ok) {
+      toast('✅ Live in ~60 sec → atbethesda.com/vlog/' + post.slug + '/');
+      return true;
+    } else {
+      const err = await pushR.json().catch(() => ({}));
+      toast('❌ GitHub error: ' + (err.message || pushR.status) + ' — downloading instead');
+      downloadFile(post.slug + '.html', html);
+      return false;
+    }
+  } catch (err) {
+    toast('❌ Network error — downloading instead');
+    downloadFile(post.slug + '.html', html);
+    return false;
+  }
+}
+
+function saveGhToken() {
+  const token = document.getElementById('gh-token-input').value.trim();
+  const statusEl = document.getElementById('gh-token-status');
+  if (!token) {
+    localStorage.removeItem('ab_gh_token');
+    window._ghToken = null;
+    statusEl.style.color = '#f57c00';
+    statusEl.textContent = 'Token cleared. Publish will download files instead.';
+    return;
+  }
+  localStorage.setItem('ab_gh_token', token);
+  window._ghToken = token;
+  document.getElementById('gh-token-input').value = '';
+  statusEl.style.color = '#2e7d32';
+  statusEl.textContent = '✓ Token saved! Publish now syncs directly to atbethesda.com.';
 }
 
 /* ══════════════ GENERATE HTML ══════════════ */
