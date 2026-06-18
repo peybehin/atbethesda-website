@@ -1,8 +1,7 @@
 /**
  * POST /api/estimate — Home valuation lead capture
  * Saves lead to Cloudflare KV (LEADS_KV binding)
- * Sends instant email via Cloudflare Email Workers (SEND_EMAIL binding)
- * Requires: LEADS_KV binding, SEND_EMAIL binding (destination: pey@peybehin.com)
+ * Sends instant email via atbethesda-email-sender Worker (EMAIL_WORKER_URL + WORKER_SECRET)
  */
 export async function onRequestPost(context) {
   const { env, request } = context;
@@ -22,8 +21,8 @@ export async function onRequestPost(context) {
     await env.LEADS_KV.put(key, JSON.stringify(lead)).catch(() => {});
   }
 
-  // Send instant email notification via Cloudflare Email Workers
-  if (env.SEND_EMAIL) {
+  // Send instant email via the atbethesda-email-sender Worker
+  if (env.EMAIL_WORKER_URL && env.WORKER_SECRET) {
     try {
       const address = [street, city, state, zip].filter(Boolean).join(', ');
       const details = [
@@ -35,31 +34,16 @@ export async function onRequestPost(context) {
         condition && `Condition: ${condition}`,
       ].filter(Boolean).join('\n');
 
-      const emailText = [
-        'New home valuation request from atbethesda.com',
-        '',
-        'CONTACT',
-        `Name:     ${name || '—'}`,
-        `Email:    ${email || '—'}`,
-        `Phone:    ${phone || '—'}`,
-        `Timeline: ${timeline || '—'}`,
-        '',
-        'PROPERTY',
-        `Address:  ${address || '—'}`,
-        details,
-        '',
-        `Submitted: ${new Date().toISOString()}`,
-      ].join('\n');
-
-      await env.SEND_EMAIL.send({
-        from: 'leads@atbethesda.com',
-        to: 'pey@peybehin.com',
-        subject: `New Lead: ${name || 'Unknown'} — ${address || 'No address'}`,
-        text: emailText,
+      await fetch(env.EMAIL_WORKER_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Secret': env.WORKER_SECRET,
+        },
+        body: JSON.stringify({ name, email, phone, timeline, address, details }),
       });
     } catch (err) {
-      // Don't fail the request if email fails — lead is already saved to KV
-      console.error('Email send failed:', err?.message);
+      console.error('Email worker call failed:', err?.message);
     }
   }
 
