@@ -95,6 +95,37 @@
     .sg-toc-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 10px; }
     .sg-toc-list a { font-size: .82rem; font-weight: 600; color: var(--black); text-decoration: none; background: var(--white); border: 1px solid #ddd; border-radius: 20px; padding: 6px 16px; transition: all .2s; }
     .sg-toc-list a:hover { border-color: var(--red); color: var(--red); }
+
+    /* ── Lead Capture Form ── */
+    .sg-download { background: var(--black); padding: 60px 0; }
+    .sg-download-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; max-width: 900px; margin: 0 auto; padding: 0 24px; }
+    @media(max-width:700px){ .sg-download-inner { grid-template-columns:1fr; } }
+    .sg-download-left h2 { color: var(--white); font-size: clamp(1.5rem,3vw,2rem); font-weight: 900; text-transform: uppercase; margin: 8px 0 12px; line-height: 1.1; }
+    .sg-download-left p { color: rgba(255,255,255,.65); font-size: .92rem; line-height: 1.75; margin: 0; }
+    .sg-download-badge { display: inline-block; background: var(--red); color: #fff; font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; }
+    .sg-download-form { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 14px; padding: 28px; }
+    .sg-form-field { margin-bottom: 14px; }
+    .sg-form-field label { display: block; font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 6px; }
+    .sg-form-field input { width: 100%; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15); border-radius: 8px; color: #fff; font-size: .9rem; padding: 11px 14px; box-sizing: border-box; outline: none; transition: border-color .2s; font-family: inherit; }
+    .sg-form-field input:focus { border-color: var(--red); }
+    .sg-form-field input::placeholder { color: rgba(255,255,255,.3); }
+    .sg-form-field input.error { border-color: #ff4444; }
+    .sg-form-error { font-size: .78rem; color: #ff6666; margin-top: 4px; display: none; }
+    .sg-form-submit { width: 100%; background: var(--red); color: #fff; border: none; border-radius: 8px; padding: 14px; font-size: .9rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: opacity .2s; font-family: inherit; margin-top: 4px; }
+    .sg-form-submit:hover { opacity: .88; }
+    .sg-form-submit:disabled { opacity: .5; cursor: not-allowed; }
+    .sg-form-note { font-size: .72rem; color: rgba(255,255,255,.35); text-align: center; margin-top: 10px; }
+    /* Success state */
+    .sg-form-success { display: none; text-align: center; padding: 20px 0; }
+    .sg-form-success-icon { font-size: 2.5rem; margin-bottom: 12px; }
+    .sg-form-success h3 { color: #fff; font-size: 1.1rem; font-weight: 900; text-transform: uppercase; margin: 0 0 8px; }
+    .sg-form-success p { color: rgba(255,255,255,.65); font-size: .88rem; line-height: 1.6; margin: 0; }
+    /* Sticky bar */
+    .sg-sticky-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--red); padding: 14px 24px; z-index: 999; display: flex; align-items: center; justify-content: space-between; gap: 16px; transform: translateY(100%); transition: transform .35s ease; flex-wrap: wrap; }
+    .sg-sticky-bar.visible { transform: translateY(0); }
+    .sg-sticky-bar p { color: #fff; font-size: .88rem; font-weight: 600; margin: 0; }
+    .sg-sticky-bar button { background: #fff; color: var(--red); border: none; border-radius: 6px; padding: 9px 20px; font-size: .82rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; cursor: pointer; flex-shrink: 0; font-family: inherit; }
+    .sg-sticky-close { background: none; border: none; color: rgba(255,255,255,.6); cursor: pointer; font-size: 1.2rem; padding: 0 0 0 8px; font-family: inherit; }
   </style>
 </head>
 <body>
@@ -114,6 +145,52 @@
     <h1>Seller's Guide</h1>
     <p>How to price, prepare, and sell your home in the Bethesda &amp; DC Metro market for maximum return.</p>
   </div>
+</div>
+
+
+<!-- LEAD CAPTURE / DOWNLOAD GATE -->
+<section class="sg-download" id="download-guide">
+  <div class="sg-download-inner">
+    <div class="sg-download-left">
+      <span class="sg-download-badge">Free Download</span>
+      <h2>Get the Complete<br>Seller's Guide PDF</h2>
+      <p>Everything in this guide — plus our full listing presentation, pricing strategy worksheets, and step-by-step checklist — compiled into one beautifully designed PDF. Yours free, instantly.</p>
+    </div>
+    <div class="sg-download-right">
+      <div class="sg-download-form">
+        <div id="sg-form-fields">
+          <div class="sg-form-field">
+            <label for="sg-name">Your Name *</label>
+            <input type="text" id="sg-name" placeholder="Jane Smith" autocomplete="name" />
+            <div class="sg-form-error" id="sg-name-error">Please enter your name</div>
+          </div>
+          <div class="sg-form-field">
+            <label for="sg-email">Email Address *</label>
+            <input type="email" id="sg-email" placeholder="jane@example.com" autocomplete="email" />
+            <div class="sg-form-error" id="sg-email-error">Please enter a valid email</div>
+          </div>
+          <div class="sg-form-field">
+            <label for="sg-phone">Phone (optional)</label>
+            <input type="tel" id="sg-phone" placeholder="(301) 555-0100" autocomplete="tel" />
+          </div>
+          <button class="sg-form-submit" id="sg-submit" onclick="submitDownloadForm()">Send Me the PDF →</button>
+          <p class="sg-form-note">We'll email you a confirmation link. No spam, ever.</p>
+        </div>
+        <div class="sg-form-success" id="sg-success">
+          <div class="sg-form-success-icon">📬</div>
+          <h3>Check Your Inbox!</h3>
+          <p>We just sent a confirmation link to your email. Click it to instantly download your Seller's Guide.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sticky bottom bar -->
+<div class="sg-sticky-bar" id="sg-sticky">
+  <p>📄 Want the full guide as a PDF? It's free.</p>
+  <button onclick="scrollToForm()">Download Free PDF</button>
+  <button class="sg-sticky-close" onclick="closeSticky()" aria-label="Close">✕</button>
 </div>
 
 <!-- INTRO -->
@@ -474,6 +551,95 @@
     <div class="footer-bottom"><p>&copy; 2026 Pey Behin · RLAH @properties · Licensed in MD, VA &amp; DC · <a href="/contact/">pey@peybehin.com</a></p></div>
   </div>
 </footer>
+
+
+<script>
+// Sticky bar: show after scrolling past the download form
+const stickyBar = document.getElementById('sg-sticky');
+let stickyClosed = false;
+window.addEventListener('scroll', () => {
+  if (stickyClosed) return;
+  const form = document.getElementById('download-guide');
+  if (!form) return;
+  const formBottom = form.getBoundingClientRect().bottom;
+  if (formBottom < 0) {
+    stickyBar.classList.add('visible');
+  } else {
+    stickyBar.classList.remove('visible');
+  }
+});
+function scrollToForm() {
+  document.getElementById('download-guide').scrollIntoView({ behavior: 'smooth' });
+  stickyBar.classList.remove('visible');
+}
+function closeSticky() {
+  stickyClosed = true;
+  stickyBar.classList.remove('visible');
+}
+
+// Form submission
+async function submitDownloadForm() {
+  const name = document.getElementById('sg-name').value.trim();
+  const email = document.getElementById('sg-email').value.trim();
+  const phone = document.getElementById('sg-phone').value.trim();
+
+  // Validate
+  let valid = true;
+  const nameErr = document.getElementById('sg-name-error');
+  const emailErr = document.getElementById('sg-email-error');
+  const nameInput = document.getElementById('sg-name');
+  const emailInput = document.getElementById('sg-email');
+
+  if (!name) {
+    nameErr.style.display = 'block'; nameInput.classList.add('error'); valid = false;
+  } else {
+    nameErr.style.display = 'none'; nameInput.classList.remove('error');
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!email || !emailRegex.test(email)) {
+    emailErr.style.display = 'block'; emailInput.classList.add('error'); valid = false;
+  } else {
+    emailErr.style.display = 'none'; emailInput.classList.remove('error');
+  }
+
+  if (!valid) return;
+
+  const btn = document.getElementById('sg-submit');
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+
+  try {
+    const res = await fetch('/api/request-download', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, phone }),
+    });
+    const data = await res.json();
+    if (data.success) {
+      document.getElementById('sg-form-fields').style.display = 'none';
+      document.getElementById('sg-success').style.display = 'block';
+      stickyClosed = true;
+      stickyBar.classList.remove('visible');
+    } else {
+      btn.disabled = false;
+      btn.textContent = 'Send Me the PDF →';
+      alert(data.error || 'Something went wrong. Please try again.');
+    }
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = 'Send Me the PDF →';
+    alert('Network error. Please try again.');
+  }
+}
+
+// Allow Enter key to submit
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && document.activeElement?.closest('#sg-form-fields')) {
+    submitDownloadForm();
+  }
+});
+</script>
 
 <script>
 function toggleMobileNav(){const n=document.getElementById('mobile-nav');n.classList.toggle('open');}
