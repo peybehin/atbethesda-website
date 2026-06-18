@@ -159,6 +159,26 @@ body{font-family:var(--font);background:var(--gray-light);color:var(--black);min
 .empty-state h3{font-size:1rem;margin-bottom:8px;color:#888;}
 .empty-state p{font-size:.82rem;line-height:1.6;}
 
+/* ── STATUS TABS ── */
+.status-tabs{display:flex;gap:4px;margin-bottom:20px;border-bottom:2px solid var(--gray-mid);padding-bottom:0;}
+.status-tab{
+  padding:10px 20px;font-family:var(--font);font-size:.72rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.07em;cursor:pointer;border:none;
+  background:none;color:#999;border-bottom:3px solid transparent;margin-bottom:-2px;
+  transition:all .15s;display:flex;align-items:center;gap:7px;
+}
+.status-tab:hover{color:var(--black);}
+.status-tab.active{color:var(--black);border-bottom-color:var(--red);}
+.status-tab .tab-count{
+  background:var(--gray-mid);color:#666;padding:2px 7px;
+  border-radius:20px;font-size:.6rem;transition:all .15s;
+}
+.status-tab.active .tab-count{background:var(--red);color:#fff;}
+.status-tab.tab-scheduled .tab-count{background:#1565c0;color:#fff;}
+.status-tab.tab-scheduled{color:#1565c0;}
+.status-tab.tab-drafts .tab-count{background:#f57c00;color:#fff;}
+.status-tab.tab-drafts{color:#f57c00;}
+
 /* ── EDITOR ── */
 #view-editor{display:none;}
 .editor-grid{display:grid;grid-template-columns:1fr 300px;gap:24px;align-items:start;}
@@ -363,11 +383,20 @@ select.cat-select{margin-bottom:0;}
       </button>
     </div>
     <div class="sidebar-section">
-      <div class="sidebar-label">Categories</div>
-      <button class="sidebar-item" id="nav-scheduled" onclick="filterStatus('scheduled')">
+      <div class="sidebar-label">Posts</div>
+      <button class="sidebar-item" onclick="switchTab('published');showView('dashboard')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        Published
+      </button>
+      <button class="sidebar-item" id="nav-scheduled" onclick="switchTab('scheduled');showView('dashboard')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         Scheduled <span id="scheduled-count" style="margin-left:auto;background:rgba(21,101,192,.3);color:#90caf9;padding:2px 7px;border-radius:20px;font-size:.6rem;display:none;"></span>
       </button>
+      <button class="sidebar-item" onclick="switchTab('draft');showView('dashboard')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        Drafts
+      </button>
+      <div class="sidebar-label" style="margin-top:8px;">Categories</div>
       <button class="sidebar-item" onclick="filterCat('Buying')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
         Buying
@@ -410,8 +439,20 @@ select.cat-select{margin-bottom:0;}
 
       <!-- DASHBOARD -->
       <div id="view-dashboard">
-        <div class="dash-header">
-          <h1>Blog Posts</h1>
+        <!-- Status Tabs -->
+        <div class="status-tabs">
+          <button class="status-tab active" id="tab-all" onclick="switchTab('all')">
+            All <span class="tab-count" id="count-all">0</span>
+          </button>
+          <button class="status-tab" id="tab-published" onclick="switchTab('published')">
+            Published <span class="tab-count" id="count-published">0</span>
+          </button>
+          <button class="status-tab tab-scheduled" id="tab-scheduled" onclick="switchTab('scheduled')">
+            Scheduled <span class="tab-count" id="count-scheduled">0</span>
+          </button>
+          <button class="status-tab tab-drafts" id="tab-drafts" onclick="switchTab('draft')">
+            Drafts <span class="tab-count" id="count-draft">0</span>
+          </button>
         </div>
         <div class="post-table">
           <table>
@@ -430,8 +471,8 @@ select.cat-select{margin-bottom:0;}
           </table>
         </div>
         <div class="empty-state" id="empty-state" style="display:none;">
-          <h3>No posts yet</h3>
-          <p>Click "+ New Post" to write your first blog post.</p>
+          <h3>No posts here</h3>
+          <p>Nothing in this section yet.</p>
         </div>
       </div>
 
@@ -648,7 +689,12 @@ function showView(view, filterCat, filterStat) {
     const label = filterCat ? filterCat : filterStat ? (filterStat.charAt(0).toUpperCase()+filterStat.slice(1)+' Posts') : 'All Posts';
     document.getElementById('topbar-title').textContent = label;
     document.getElementById('topbar-actions').innerHTML = '<button class="btn btn-primary btn-sm" onclick="newPost()">+ New Post</button>';
-    renderPostList(filterCat, filterStat);
+    if (filterStat) activeTab = filterStat;
+    document.querySelectorAll('.status-tab').forEach(el => el.classList.remove('active'));
+    const _tabId = activeTab === 'draft' ? 'drafts' : activeTab;
+    const _tabEl = document.getElementById('tab-' + _tabId);
+    if (_tabEl) _tabEl.classList.add('active');
+    renderPostList(filterCat);
   } else if (view === 'schools') {
     document.getElementById('view-schools').style.display = 'block';
     document.getElementById('nav-schools').classList.add('active');
@@ -777,22 +823,44 @@ function isPostDue(post) {
   return dt <= new Date();
 }
 
+let activeTab = 'all';
+
+function switchTab(tab) {
+  activeTab = tab;
+  document.querySelectorAll('.status-tab').forEach(el => el.classList.remove('active'));
+  const tabId = tab === 'draft' ? 'drafts' : tab;
+  const el = document.getElementById('tab-' + tabId);
+  if (el) el.classList.add('active');
+  renderPostList();
+}
+
 function renderPostList(filterCat, filterStat) {
+  // If called with explicit filterStat (from sidebar), switch tab
+  if (filterStat) { activeTab = filterStat; }
+
   const body = document.getElementById('post-list-body');
   const empty = document.getElementById('empty-state');
-  let filtered = [...posts];
-  if (filterCat) filtered = filtered.filter(p => p.category === filterCat);
-  if (filterStat) filtered = filtered.filter(p => p.status === filterStat);
 
-  // Update scheduled count badge
+  // Update tab counts
+  ['published', 'scheduled', 'draft'].forEach(s => {
+    const count = posts.filter(p => (p.status || 'draft') === s).length;
+    const el = document.getElementById('count-' + s);
+    if (el) el.textContent = count;
+  });
+  const allEl = document.getElementById('count-all');
+  if (allEl) allEl.textContent = posts.length;
+
+  // Update scheduled sidebar badge
   const scheduledPosts = posts.filter(p => p.status === 'scheduled');
   const duePosts = scheduledPosts.filter(isPostDue);
   const countEl = document.getElementById('scheduled-count');
-  if (scheduledPosts.length > 0) {
-    countEl.textContent = scheduledPosts.length;
-    countEl.style.display = 'inline';
-  } else {
-    countEl.style.display = 'none';
+  if (countEl) {
+    if (scheduledPosts.length > 0) {
+      countEl.textContent = scheduledPosts.length;
+      countEl.style.display = 'inline';
+    } else {
+      countEl.style.display = 'none';
+    }
   }
 
   // Show due-now banner
@@ -805,6 +873,20 @@ function renderPostList(filterCat, filterStat) {
     banner.classList.add('show');
   }
 
+  // Filter posts
+  let filtered = activeTab === 'all'
+    ? [...posts]
+    : posts.filter(p => (p.status || 'draft') === activeTab);
+  if (filterCat) filtered = filtered.filter(p => p.category === filterCat);
+
+  // Sort: scheduled by date asc, others by date desc
+  filtered.sort((a, b) => {
+    if (!a.date) return 1; if (!b.date) return -1;
+    return activeTab === 'scheduled'
+      ? new Date(a.date) - new Date(b.date)
+      : new Date(b.date) - new Date(a.date);
+  });
+
   if (filtered.length === 0) {
     body.innerHTML = '';
     empty.style.display = 'block';
@@ -813,11 +895,12 @@ function renderPostList(filterCat, filterStat) {
   empty.style.display = 'none';
   body.innerHTML = filtered.map(post => {
     const due = isPostDue(post);
-    const statusLabel = due ? 'due now' : (post.status || 'draft');
-    const statusClass = due ? 'due' : (post.status || 'draft');
     const scheduledLine = post.status === 'scheduled' && post.date
-      ? `<div style="font-size:.68rem;color:#1565c0;margin-top:3px;">🕐 ${formatDate(post.date)} ${post.scheduledTime ? 'at ' + formatTime(post.scheduledTime) : ''}</div>`
+      ? `<div style="font-size:.68rem;color:#1565c0;margin-top:3px;">🕐 ${formatDate(post.date)}${post.scheduledTime ? ' at ' + formatTime(post.scheduledTime) : ''}</div>`
       : '';
+    const dateDisplay = post.status === 'scheduled' && due
+      ? `<span style="color:#c62828;font-weight:700;font-size:.72rem;">⚡ Due now</span>`
+      : `<span style="font-size:.78rem;color:#888;">${formatDate(post.date)}</span>`;
     return `
     <tr>
       <td><strong style="font-size:.85rem;">${escHtml(post.title || '(Untitled)')}</strong>
@@ -825,12 +908,17 @@ function renderPostList(filterCat, filterStat) {
         ${scheduledLine}
       </td>
       <td>${post.category ? `<span class="cat-badge">${escHtml(post.category)}</span>` : '—'}</td>
-      <td><span class="post-status ${statusClass}">${statusLabel}</span></td>
-      <td style="font-size:.78rem;color:#888;">${formatDate(post.date)}</td>
+      <td><span class="post-status ${due ? 'due' : (post.status || 'draft')}">${due ? 'due now' : (post.status || 'draft')}</span></td>
+      <td>${dateDisplay}</td>
       <td>
         <div class="tbl-actions">
           <button onclick="editPost('${post.id}')">Edit</button>
-          ${post.status !== 'scheduled' ? `<button onclick="generatePostById('${post.id}')">⬇ Download</button>` : `<button onclick="publishScheduled('${post.id}')">⬇ Publish Now</button>`}
+          ${post.status === 'scheduled'
+            ? `<button onclick="publishScheduled('${post.id}')">⬇ Publish Now</button>`
+            : post.status === 'published'
+              ? `<button onclick="generatePostById('${post.id}')">⬇ Download</button>`
+              : `<button onclick="generatePostById('${post.id}')">⬇ Download</button>`
+          }
           <button class="del" onclick="deletePost('${post.id}')">Delete</button>
         </div>
       </td>
