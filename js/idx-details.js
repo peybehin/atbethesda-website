@@ -28,7 +28,7 @@
     "body.ab-detail .ab-stat span{font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--abd-muted);}",
     "body.ab-detail .ab-feat-title,body.ab-detail .ab-section-title{text-align:center;font-family:'Montserrat',sans-serif;font-weight:800;text-transform:uppercase;font-size:1.6rem;margin:34px 0 6px;}",
     "body.ab-detail .ab-feat-title{margin-bottom:24px;}",
-    "body.ab-detail [id^='IDX-panel-heading-']{font-family:'Montserrat',sans-serif!important;font-weight:800!important;text-transform:uppercase;font-size:1rem!important;color:var(--abd-ink)!ioportant;border-bottom:2px solid var(--abd-red)!important;padding-bottom:8px;margin-bottom:10px;background:none!important;}",
+    "body.ab-detail [id^='IDX-panel-heading-']{font-family:'Montserrat',sans-serif!important;font-weight:800!important;text-transform:uppercase;font-size:1rem!important;color:var(--abd-ink)!important;border-bottom:2px solid var(--abd-red)!important;padding-bottom:8px;margin-bottom:10px;background:none!important;}",
     "body.ab-detail #IDX-fieldsWrapper{column-count:3;column-gap:40px;}",
     "body.ab-detail .ab-section{max-width:1200px;margin:40px auto;padding:0 20px;}",
     "body.ab-detail .ab-section-sub{text-align:center;color:var(--abd-muted);font-size:.88rem;margin-bottom:24px;}",
