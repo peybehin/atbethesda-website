@@ -82,6 +82,7 @@
     "body.ab-detail #ab-connect input,body.ab-detail #ab-connect textarea,body.ab-detail #ab-connect select{color:#111!important;background:#fff!important;}",
     "body.ab-detail #ab-connect button,body.ab-detail #ab-connect input[type=submit]{background:var(--abd-red)!important;color:#fff!important;border:0!important;}",
     "body.ab-detail #ab-connect .IDX-detailsPageTitle{display:none!important;}",
+    "body.ab-detail #IDX-detailsAgentInfo{display:none!important;}",
     "body.ab-detail .IDX-googleRecaptchaPolicy{display:none!important;}",
     "body.ab-detail .ab-contact-line{display:flex;align-items:center;gap:10px;margin:12px 0;font-size:.95rem;}",
     "body.ab-detail .ab-contact-line svg{width:16px;height:16px;color:var(--abd-red);flex:0 0 auto;}",
@@ -317,25 +318,28 @@
       grid.appendChild(rcol);
     }
 
-    /* 8) Single-name form (match Cody): relabel First Name -> Name, hide Last Name, split on submit */
-    var fn = document.querySelector('#IDX-firstName');
-    var ln = document.querySelector('#IDX-lastName');
-    if (fn && !fn.__abNamed) {
-      fn.__abNamed = true;
-      var fnLab = document.querySelector('label[for="IDX-firstName"]');
-      if (fnLab) fnLab.textContent = 'Name';
-      fn.placeholder = 'Your full name';
-      if (ln) {
-        var lng = ln.closest('.IDX-form-group--PL') || ln.closest('div');
-        if (lng) lng.style.display = 'none';
-        var syncName = function () {
-          var parts = (fn.value || '').trim().split(/\s+/);
-          ln.value = parts.length > 1 ? parts.slice(1).join(' ') : (parts[0] || '');
-        };
-        fn.addEventListener('input', syncName);
-        var formEl = document.querySelector('#IDX-detailscontactContactForm');
-        if (formEl) formEl.addEventListener('submit', syncName);
-      }
+    /* 8) Single-name form (match Cody): relabel First Name -> Name, hide all Last Name fields/labels
+          (IDX renders the form more than once, so handle every instance) */
+    Array.prototype.forEach.call(document.querySelectorAll('label'), function (l) {
+      var t = (l.textContent || '').trim();
+      if (/^first name/i.test(t)) l.textContent = 'Name';
+      else if (/^last name/i.test(t)) l.style.display = 'none';
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[name="firstName"]'), function (f) { f.placeholder = 'Your full name'; });
+    Array.prototype.forEach.call(document.querySelectorAll('[name="lastName"]'), function (ln) {
+      var g = ln.closest('.IDX-form-group--PL') || ln.parentElement;
+      if (g) g.style.display = 'none';
+    });
+    var syncNames = function () {
+      Array.prototype.forEach.call(document.querySelectorAll('#IDX-detailscontactContactForm'), function (form) {
+        var f = form.querySelector('[name="firstName"]'), l = form.querySelector('[name="lastName"]');
+        if (f && l) { var p = (f.value || '').trim().split(/\s+/); l.value = p.length > 1 ? p.slice(1).join(' ') : (p[0] || ''); }
+      });
+    };
+    if (!document.__abSync) {
+      document.__abSync = true;
+      document.addEventListener('input', function (e) { if (e.target && e.target.name === 'firstName') syncNames(); });
+      Array.prototype.forEach.call(document.querySelectorAll('#IDX-detailscontactContactForm'), function (form) { form.addEventListener('submit', syncNames); });
     }
 
     /* prefill message */
