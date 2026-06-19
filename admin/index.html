@@ -516,6 +516,16 @@ select.cat-select{margin-bottom:0;}
             <div class="editor-card">
               <h3>Post Content</h3>
               <div id="quill-editor"></div>
+              <div style="margin-top:10px;">
+                <button class="btn btn-outline btn-sm" onclick="togglePasteHTML()" style="font-size:.72rem;color:#888;">⬇ Paste Raw HTML</button>
+                <div id="paste-html-wrap" style="display:none;margin-top:8px;">
+                  <textarea id="paste-html-input" rows="7" placeholder="Paste your HTML body here — lists and formatting will be preserved…" style="width:100%;box-sizing:border-box;font-family:monospace;font-size:.73rem;border:1.5px solid #ddd;border-radius:4px;padding:8px;resize:vertical;color:#333;"></textarea>
+                  <div style="display:flex;gap:8px;margin-top:6px;">
+                    <button class="btn btn-primary btn-sm" onclick="applyPastedHTML()">✓ Set Body</button>
+                    <button class="btn btn-outline btn-sm" onclick="togglePasteHTML()">Cancel</button>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <!-- FAQ Builder — AEO schema -->
@@ -596,6 +606,13 @@ select.cat-select{margin-bottom:0;}
               <h3>SEO Meta Description</h3>
               <textarea id="post-meta" rows="3" placeholder="160-char description for Google search results…" oninput="updateCharCount();updateSEO()"></textarea>
               <div class="char-counter" id="meta-counter"><span>0</span> / 160 characters</div>
+            </div>
+
+            <!-- Focus Keyphrase -->
+            <div class="side-card">
+              <h3>Focus Keyphrase</h3>
+              <input type="text" id="post-keyphrase" placeholder="e.g. buying home Bethesda MD" style="width:100%;box-sizing:border-box;" oninput="updateSEO()" />
+              <p style="font-size:.65rem;color:#aaa;margin-top:8px;line-height:1.5;">The main keyword you're targeting. Checked against title, meta, and body in the SEO score below.</p>
             </div>
 
             <!-- SEO Checklist -->
@@ -965,6 +982,7 @@ function editPost(id) {
   document.getElementById('post-status').value = post.status || 'published';
   document.getElementById('post-date').value = post.date || '';
   document.getElementById('post-time').value = post.scheduledTime || '06:00';
+  const kpField = document.getElementById('post-keyphrase'); if (kpField) kpField.value = post.keyphrase || '';
   onStatusChange();
   renderTagCloud();
   previewImage();
@@ -1279,6 +1297,8 @@ function updateSEO() {
   const slug = document.getElementById('post-slug').value.trim();
   const meta = document.getElementById('post-meta').value.trim();
   const snippet = document.getElementById('post-snippet').value.trim();
+  const kpEl = document.getElementById('post-keyphrase');
+  const keyphrase = kpEl ? kpEl.value.trim().toLowerCase() : '';
   const image = document.getElementById('post-image').value.trim();
   const cat = document.getElementById('post-category').value;
   const content = quill ? quill.getText().trim() : '';
@@ -1294,6 +1314,11 @@ function updateSEO() {
     { id:'content', pass: content.length >= 600, warn: content.length > 0 && content.length < 600, label: `Content 600+ words (${Math.round(content.split(/\s+/).filter(Boolean).length)} words)` },
     { id:'faq', pass: faqs >= 3, warn: faqs > 0 && faqs < 3, label: `FAQ section (${faqs} of 3+ questions)` },
     { id:'tags', pass: tags.length >= 2, label: `Tags added (${tags.length})` },
+    ...(keyphrase ? [
+      { id:'kp_title', pass: title.toLowerCase().includes(keyphrase), label: 'Keyphrase in title' },
+      { id:'kp_meta',  pass: meta.toLowerCase().includes(keyphrase),  label: 'Keyphrase in meta description' },
+      { id:'kp_body',  pass: content.toLowerCase().includes(keyphrase), label: 'Keyphrase in body content' },
+    ] : [{ id:'kp_missing', pass: false, label: 'Focus keyphrase not set' }]),
   ];
 
   const passed = checks.filter(c => c.pass).length;
@@ -1346,6 +1371,7 @@ function getCurrentPostData() {
     status: status,
     date: document.getElementById('post-date').value,
     scheduledTime: status === 'scheduled' ? (document.getElementById('post-time').value || '09:00') : null,
+    keyphrase: (document.getElementById('post-keyphrase')||{}).value?.trim()||'',
     tags: [...tags],
     content: quill ? quill.root.innerHTML : '',
     faqs: getFaqs(),
