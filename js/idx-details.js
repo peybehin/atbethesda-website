@@ -84,8 +84,15 @@
     var lid = val('listingID');
     var priceNum = parseInt(String(val('listingPrice')).replace(/[^0-9]/g, ''), 10) || 0;
     var region = (document.querySelector('#IDX-detailsAddressRegion') || {}).textContent || '';
-    var beds = fieldNum('bedrooms') || fieldNum('totalBedrooms') || (region.match(/\b(\d{1,2})\s*BD/i) || [])[1] || '';
-    var baths = fieldNum('totalBaths') || fieldNum('bathrooms') || (region.match(/\b(\d{1,2})\s*BTH/i) || [])[1] || '';
+    // region looks like "City, ST ZIP{beds} BD, {baths} BTH $price" — the zip (5 digits) is merged onto beds
+    function regCount(lbl) {
+      var m = region.match(new RegExp('(\\d+)\\s*' + lbl, 'i'));
+      if (!m) return '';
+      var v = m[1];
+      return v.length > 2 ? v.slice(5) : v; // strip 5-digit zip prefix when merged
+    }
+    var beds = regCount('BD');
+    var baths = fieldNum('totalBaths') || regCount('BTH');
     var sqft = fieldNum('totalSqft');
     var year = fieldNum('yearBuilt');
     var ppsfRaw = fieldNum('pricePerSqFt');
