@@ -84,54 +84,22 @@
 <!-- Filter Bar -->
 <div class="filter-bar">
   <div class="filter-bar-inner">
-    <select class="filter-select"><option>Any Price</option><option>Under $500K</option><option>$500K–$750K</option><option>$750K–$1M</option><option>$1M–$1.5M</option><option>$1.5M–$2M</option><option>$2M+</option></select>
-    <select class="filter-select"><option>Any Beds</option><option>2+ Beds</option><option>3+ Beds</option><option>4+ Beds</option><option>5+ Beds</option></select>
-    <select class="filter-select"><option>Any Type</option><option>Single Family</option><option>Townhome</option><option>Condo</option></select>
-    <select class="filter-select"><option>Any Area</option><option>Bethesda</option><option>Chevy Chase</option><option>Potomac</option><option>North Bethesda</option></select>
-    <button class="filter-btn">Search</button>
+    <select id="f-price" class="filter-select"><option>Any Price</option><option>Under $500K</option><option>$500K–$750K</option><option>$750K–$1M</option><option>$1M–$1.5M</option><option>$1.5M–$2M</option><option>$2M+</option></select>
+    <select id="f-beds" class="filter-select"><option>Any Beds</option><option>2+ Beds</option><option>3+ Beds</option><option>4+ Beds</option><option>5+ Beds</option></select>
+    <select id="f-type" class="filter-select"><option>Any Type</option><option>Single Family</option><option>Townhome</option><option>Condo</option></select>
+    <select id="f-area" class="filter-select"><option>Any Area</option><option>Bethesda</option><option>Chevy Chase</option><option>Potomac</option><option>North Bethesda</option></select>
+    <button class="filter-btn" id="f-search">Search</button>
   </div>
 </div>
 
 <div class="search-main">
   <div class="search-main-inner">
-
-    <!-- School District Filter — Your Differentiator -->
-    <div class="school-filter-section">
-      <h2>🎓 Search by School District</h2>
-      <p>Your unique advantage — click a high school below to see all homes in that district. The only Bethesda real estate site that lets you search this way.</p>
-      <div class="school-grid">
-        <button class="school-filter-btn" onclick="filterBySchool('bcc', this)">
-          <span class="school-btn-name">Bethesda-Chevy Chase HS</span>
-          <span class="school-btn-area">Bethesda & Chevy Chase</span>
-        </button>
-        <button class="school-filter-btn" onclick="filterBySchool('whitman', this)">
-          <span class="school-btn-name">Walt Whitman HS</span>
-          <span class="school-btn-area">Bethesda / Potomac</span>
-        </button>
-        <button class="school-filter-btn" onclick="filterBySchool('churchill', this)">
-          <span class="school-btn-name">Winston Churchill HS</span>
-          <span class="school-btn-area">Potomac</span>
-        </button>
-        <button class="school-filter-btn" onclick="filterBySchool('wj', this)">
-          <span class="school-btn-name">Walter Johnson HS</span>
-          <span class="school-btn-area">North Bethesda / Kensington</span>
-        </button>
-        <button class="school-filter-btn" onclick="filterBySchool('wootton', this)">
-          <span class="school-btn-name">Wootton HS</span>
-          <span class="school-btn-area">North Bethesda / Potomac</span>
-        </button>
-        <button class="school-filter-btn" onclick="filterBySchool('rm', this)">
-          <span class="school-btn-name">Richard Montgomery HS</span>
-          <span class="school-btn-area">Rockville</span>
-        </button>
-      </div>
+    <div style="background:var(--white);border-radius:8px;padding:48px 32px;text-align:center;">
+      <span class="section-label">Browse Listings</span>
+      <h2 class="section-title" style="margin-bottom:12px;">View <span>Available Homes</span></h2>
+      <p style="color:var(--gray-text);max-width:540px;margin:0 auto 28px;line-height:1.7;font-size:.9rem;">Use the filters above to search, or open the full interactive map of homes for sale across Bethesda, the DC Metro, Maryland, and Northern Virginia.</p>
+      <a href="https://search.atbethesda.com/idx/results/listings?city[]=Bethesda&srt=newest" class="btn-primary">View All Listings</a>
     </div>
-
-    <!-- IDX Property Search Embed -->
-    <div id="idx-search-widget" style="background:var(--white);border-radius:8px;padding:8px;">
-      <script charset="UTF-8" type="text/javascript" id="idxwidgetsrc-3637" src="//atbethesda.idxbroker.com/idx/quicksearchjs.php?widgetid=3637"></script>
-    </div>
-
   </div>
 </div>
 
@@ -224,13 +192,25 @@
 
 <script src="../js/main.js"></script>
 <script>
-  function filterBySchool(school, btn) {
-    document.querySelectorAll('.school-filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    // TODO: trigger IDX Broker filter for selected school district
-    // IDX Broker supports URL parameters for filtering
-    console.log('Filter by school:', school);
-  }
+(function(){
+  var RESULTS='https://search.atbethesda.com/idx/results/listings';
+  var btn=document.getElementById('f-search');
+  if(!btn) return;
+  btn.addEventListener('click',function(){
+    var qs=[];
+    var area=document.getElementById('f-area');
+    if(area && area.selectedIndex>0) qs.push('city[]='+encodeURIComponent(area.options[area.selectedIndex].text));
+    var pranges=[null,[0,500000],[500000,750000],[750000,1000000],[1000000,1500000],[1500000,2000000],[2000000,0]];
+    var pi=document.getElementById('f-price').selectedIndex;
+    var pr=pranges[pi];
+    if(pr){ if(pr[0]) qs.push('lp='+pr[0]); if(pr[1]) qs.push('hp='+pr[1]); }
+    var beds=[null,2,3,4,5][document.getElementById('f-beds').selectedIndex];
+    if(beds) qs.push('bd='+beds);
+    if(document.getElementById('f-type').selectedIndex>0) qs.push('pt=1');
+    qs.push('srt=newest');
+    window.location.href=RESULTS+'?'+qs.join('&');
+  });
+})();
 </script>
 <script>
 function toggleMobileNav() {
