@@ -681,8 +681,8 @@
         <button class="hero-tab" onclick="setTab(this)">Sell</button>
       </div>
       <div class="hero-search-row">
-        <input type="text" placeholder="Search by city, neighborhood, zip, or school district&hellip;" />
-        <button class="hero-search-btn" onclick="window.location='/properties/'">Search</button>
+        <input type="text" id="hero-search-input" placeholder="Search by city, neighborhood, zip, or school district&hellip;" onkeydown="if(event.key==='Enter')doHeroSearch()" />
+        <button class="hero-search-btn" onclick="doHeroSearch()">Search</button>
       </div>
     </div>
 
@@ -1350,6 +1350,18 @@
     e.preventDefault();
     e.target.innerHTML = '<div style="text-align:center;padding:60px 20px;"><h3 style="font-size:1.4rem;margin-bottom:12px;">Thanks &mdash; got it!</h3><p style="color:#555;">I\'ll be in touch shortly. If you need to reach me immediately, call <a href="tel:+12026817454" style="color:#b72545;">202-681-7454</a>.</p></div>';
   }
+
+function doHeroSearch() {
+  const q = (document.getElementById('hero-search-input').value || '').trim();
+  if (!q) { window.location = '/properties/'; return; }
+  const base = 'https://search.atbethesda.com/idx/results/listings?';
+  if (/^\d{5}$/.test(q)) {
+    window.location = base + 'zipcode[]=' + encodeURIComponent(q);
+  } else {
+    const city = q.split(' ').map(function(w){ return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase(); }).join('+');
+    window.location = base + 'pt=&bd=&ba=&lp=&hp=&city[]=' + city;
+  }
+}
 </script>
 
 </body>
