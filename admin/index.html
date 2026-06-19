@@ -1542,11 +1542,12 @@ function generatePostById(id) {
 
 async function previewPost() {
   const post = getCurrentPostData();
+  const win = window.open('', '_blank'); // open immediately to avoid popup blocker
   let siteCss = '';
   try { const r = await fetch('https://atbethesda.com/css/style.css'); siteCss = await r.text(); } catch(e) {}
   const html = buildPostHTML(post, siteCss);
   const blob = new Blob([html], { type: 'text/html' });
-  window.open(URL.createObjectURL(blob), '_blank');
+  win.location.href = URL.createObjectURL(blob);
 }
 
 /* ══════════════ HTML GENERATOR ══════════════ */
