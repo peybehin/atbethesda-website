@@ -1520,8 +1520,20 @@ async function publishNow() {
   onStatusChange();
   const data = saveCurrentPost();
   const html = buildPostHTML(data);
-  showView('dashboard');
-  setTimeout(() => pushPostToGitHub(data, html), 100);
+  const statusEl = document.getElementById('publish-status');
+  if (statusEl) { statusEl.style.display = 'block'; statusEl.style.color = '#888'; statusEl.style.background = ''; statusEl.textContent = '⏳ Publishing…'; }
+  try {
+    const ok = await pushPostToGitHub(data, html);
+    if (ok) {
+      if (statusEl) { statusEl.style.color = '#2e7d32'; statusEl.style.background = '#e8f5e9'; statusEl.textContent = '● Published'; }
+    } else {
+      if (statusEl) { statusEl.style.color = '#b72545'; statusEl.style.background = '#fdecea'; statusEl.textContent = '● Push Failed'; }
+    }
+  } catch(e) {
+    if (statusEl) { statusEl.style.color = '#b72545'; statusEl.style.background = '#fdecea'; statusEl.textContent = '● Push Failed'; }
+  }
+  // Stay on editor briefly so user can see publish status
+  setTimeout(() => showView('dashboard'), 1500);
 }
 
 /* ══════════════ GITHUB SYNC ══════════════ */
