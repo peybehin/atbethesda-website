@@ -883,8 +883,13 @@ function showView(view, filterCat, filterStat) {
     document.getElementById('view-editor').style.display = 'block';
     document.getElementById('nav-editor').classList.add('active');
     document.getElementById('topbar-title').textContent = editingId ? 'Edit Post' : 'New Post';
+    const editingPost = posts.find(p => p.id === editingId);
+    const previewBtn = editingPost && editingPost.status === 'published' && editingPost.slug
+      ? `<button class="btn btn-outline btn-sm" onclick="window.open('https://atbethesda.com/${editingPost.slug}/','_blank')">👁 Preview</button>`
+      : '';
     document.getElementById('topbar-actions').innerHTML = `
       <button class="btn btn-outline btn-sm" onclick="showView('dashboard')">← All Posts</button>
+      ${previewBtn}
       <button class="btn btn-success btn-sm" onclick="generatePost()">⬇ Generate HTML</button>
     `;
     updateSEO();
@@ -1160,7 +1165,11 @@ function renderPostList(filterCat, filterStat) {
       : `<span style="font-size:.78rem;color:#888;">${formatDate(post.date)}</span>`;
     return `
     <tr>
-      <td><strong style="font-size:.85rem;">${escHtml(post.title || '(Untitled)')}</strong>
+      <td>
+        ${post.status === 'published' && post.slug
+          ? `<a href="https://atbethesda.com/${post.slug}/" target="_blank" style="font-size:.85rem;font-weight:700;color:var(--black);text-decoration:none;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--black)'">${escHtml(post.title || '(Untitled)')}</a>`
+          : `<strong style="font-size:.85rem;">${escHtml(post.title || '(Untitled)')}</strong>`
+        }
         <div style="font-size:.72rem;color:#aaa;margin-top:2px;">/${post.slug || ''}/</div>
         ${scheduledLine}
       </td>
@@ -1170,11 +1179,13 @@ function renderPostList(filterCat, filterStat) {
       <td>
         <div class="tbl-actions">
           <button onclick="editPost('${post.id}')">Edit</button>
+          ${post.status === 'published' && post.slug
+            ? `<button onclick="window.open('https://atbethesda.com/${post.slug}/','_blank')">Preview</button>`
+            : ''
+          }
           ${post.status === 'scheduled'
             ? `<button onclick="publishScheduled('${post.id}')">⬇ Publish Now</button>`
-            : post.status === 'published'
-              ? `<button onclick="generatePostById('${post.id}')">⬇ Download</button>`
-              : `<button onclick="generatePostById('${post.id}')">⬇ Download</button>`
+            : `<button onclick="generatePostById('${post.id}')">⬇ Download</button>`
           }
           <button class="del" onclick="deletePost('${post.id}')">Delete</button>
         </div>
