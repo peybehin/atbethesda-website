@@ -522,7 +522,7 @@ select.cat-select{margin-bottom:0;}
                   <textarea id="paste-html-input" rows="7" placeholder="Paste your HTML body here — lists and formatting will be preserved…" style="width:100%;box-sizing:border-box;font-family:monospace;font-size:.73rem;border:1.5px solid #ddd;border-radius:4px;padding:8px;resize:vertical;color:#333;"></textarea>
                   <div style="display:flex;gap:8px;margin-top:6px;">
                     <button class="btn btn-primary btn-sm" onclick="var inp=document.getElementById('paste-html-input');var raw=inp?inp.value.trim():'';if(!raw||!quill)return;quill.clipboard.dangerouslyPasteHTML(raw);inp.value='';document.getElementById('paste-html-wrap').style.display='none';if(typeof updateSEO==='function')updateSEO();">✓ Set Body</button>
-                    <button class="btn btn-outline btn-sm" onclick="togglePasteHTML()">Cancel</button>
+                    <button class="btn btn-outline btn-sm" onclick="document.getElementById('paste-html-wrap').style.display='none';">Cancel</button>
                   </div>
                 </div>
               </div>
