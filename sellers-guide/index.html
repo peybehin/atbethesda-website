@@ -127,6 +127,7 @@
     .sg-sticky-bar button { background: #fff; color: var(--red); border: none; border-radius: 6px; padding: 9px 20px; font-size: .82rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; cursor: pointer; flex-shrink: 0; font-family: inherit; }
     .sg-sticky-close { background: none; border: none; color: rgba(255,255,255,.6); cursor: pointer; font-size: 1.2rem; padding: 0 0 0 8px; font-family: inherit; }
   </style>
+<script src="/js/source-tracker.js"></script>
 </head>
 <body>
 <nav id="main-nav">
@@ -613,7 +614,7 @@ async function submitDownloadForm() {
     const res = await fetch('/api/request-download', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, phone }),
+      body: JSON.stringify({ name, email, phone, source: (getLeadSource().label || 'Direct'), sourcePage: window.location.pathname, leadType: 'sellers-guide' }),
     });
     const data = await res.json();
     if (data.success) {
