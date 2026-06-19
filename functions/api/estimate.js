@@ -12,12 +12,20 @@ export async function onRequestPost(context) {
     return new Response(JSON.stringify({ success: false }), { status: 400, headers: cors });
   }
 
-  const { street, city, state, zip, propertyType, beds, baths, sqft, yearBuilt, condition, name, email, phone, timeline } = body;
+  const { street, city, state, zip, propertyType, beds, baths, sqft, yearBuilt, condition,
+          name, email, phone, timeline, source, sourcePage, leadType } = body;
 
   // Store lead in KV
   if (env.LEADS_KV) {
     const key = `lead:${Date.now()}`;
-    const lead = { name, email, phone, timeline, street, city, state, zip, propertyType, beds, baths, sqft, yearBuilt, condition, submittedAt: new Date().toISOString() };
+    const lead = {
+      leadType: leadType || 'valuation',
+      name, email, phone, timeline,
+      street, city, state, zip, propertyType, beds, baths, sqft, yearBuilt, condition,
+      source: source || 'Direct',
+      sourcePage: sourcePage || '',
+      submittedAt: new Date().toISOString()
+    };
     await env.LEADS_KV.put(key, JSON.stringify(lead)).catch(() => {});
   }
 
@@ -27,19 +35,18 @@ export async function onRequestPost(context) {
       const address = [street, city, state, zip].filter(Boolean).join(', ');
       const details = [
         propertyType && `Type: ${propertyType}`,
-        beds && `Beds: ${beds}`,
-        baths && `Baths: ${baths}`,
-        sqft && `Sqft: ${sqft}`,
-        yearBuilt && `Year Built: ${yearBuilt}`,
-        condition && `Condition: ${condition}`,
+        beds         && `Beds: ${beds}`,
+        baths        && `Baths: ${baths}`,
+        sqft         && `Sqft: ${sqft}`,
+        yearBuilt    && `Year Built: ${yearBuilt}`,
+        condition    && `Condition: ${condition}`,
+        source       && `Source: ${source}`,
+        sourcePage   && `Landing Page: ${sourcePage}`,
       ].filter(Boolean).join('\n');
 
       await fetch(env.EMAIL_WORKER_URL, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Secret': env.WORKER_SECRET,
-        },
+        headers: { 'Content-Type': 'application/json', 'X-Secret': env.WORKER_SECRET },
         body: JSON.stringify({ name, email, phone, timeline, address, details }),
       });
     } catch (err) {
