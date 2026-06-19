@@ -1,36 +1,44 @@
 /**
- * GET /api/leads?token=SECRET&since=ISO_TIMESTAMP
- * Returns leads from KV newer than `since` (defaults to all leads).
- * Protected by LEADS_TOKEN secret.
+ * GET /api/leads
+ * Returns all leads from KV, newest first.
  */
 export async function onRequestGet(context) {
-  const { env, request } = context;
+  const { env } = context;
   const cors = { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' };
 
-  const url = new URL(request.url);
-  const token = url.searchParams.get('token');
-  if (!env.LEADS_TOKEN || token !== env.LEADS_TOKEN) {
-    return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers: cors });
+  if (!env.LEADS_KV) {
+    return new Response(JSON.stringify({ error: 'LEADS_KV not configured' }), { status: 500, headers: cors });
   }
 
-  const since = url.searchParams.get('since');
-  const sinceMs = since ? new Date(since).getTime() : 0;
+  const [listA, listB] = await Promise.all([
+    env.LEADS_KV.list({ prefix: 'lead:' }),
+    env.LEADS_KV.list({ prefix: 'lead:download:' }),
+  ]);
 
-  // List all keys with prefix "lead:"
-  const list = await env.LEADS_KV.list({ prefix: 'lead:' });
-  const leads = [];
+  const seen = new Set();
+  const keys = [...listA.keys, ...listB.keys].filter(k => {
+    if (seen.has(k.name)) return false;
+    seen.add(k.name);
+    return true;
+  });
 
-  for (const key of list.keys) {
-    // Key format: lead:{timestamp}
-    const ts = parseInt(key.name.split(':')[1], 10);
-    if (ts >= sinceMs) {
-      const val = await env.LEADS_KV.get(key.name, { type: 'json' });
-      if (val) leads.push(val);
-    }
-  }
+  const leads = (await Promise.all(
+    keys.map(k => env.LEADS_KV.get(k.name, { type: 'json' }))
+  )).filter(Boolean);
 
-  // Sort newest first
-  leads.sort((a, b) => new Date(b.submittedAt) - new Date(a.submittedAt));
+  leads.sort((a, b) =>
+    new Date(b.submittedAt || b.createdAt || 0) - new Date(a.submittedAt || a.createdAt || 0)
+  );
 
   return new Response(JSON.stringify({ leads, count: leads.length }), { headers: cors });
+}
+
+export async function onRequestOptions() {
+  return new Response(null, {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
+    },
+  });
 }
