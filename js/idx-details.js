@@ -14,26 +14,54 @@
     "body.ab-detail #IDX-detailsWrapper,body.ab-detail #IDX-detailsMain{max-width:1200px;margin:0 auto;}",
     "body.ab-detail #IDX-detailsAddressStreet{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.7rem;color:var(--abd-ink);text-transform:uppercase;}",
     "body.ab-detail #IDX-detailsAddressRegion{color:var(--abd-muted);font-size:.95rem;}",
+    /* breadcrumb */
+    "body.ab-detail .ab-crumb{max-width:1200px;margin:0 auto;padding:14px 20px 0;font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;color:var(--abd-muted);font-family:'Montserrat',sans-serif;font-weight:600;}",
+    "body.ab-detail .ab-crumb a{color:var(--abd-muted);text-decoration:none;}",
+    "body.ab-detail .ab-crumb a:hover{color:var(--abd-red);}",
+    "body.ab-detail .ab-crumb span{margin:0 8px;color:#ccc;}",
+    /* swiper gallery */
+    "body.ab-detail.ab-has-swiper #IDX-primaryPhoto,body.ab-detail.ab-has-swiper #IDX-detailsSlidesActions{display:none!important;}",
+    "body.ab-detail #IDX-detailsShareThis{display:none!important;}",
+    "body.ab-detail .ab-swiper{width:100%;max-width:1200px;margin:8px auto 14px;border-radius:8px;overflow:hidden;position:relative;}",
+    "body.ab-detail .ab-swiper .swiper-wrapper{display:flex;}",
+    "body.ab-detail .ab-swiper .swiper-slide{min-width:100%;}",
+    "body.ab-detail .ab-swiper .swiper-slide img{width:100%;height:540px;object-fit:cover;display:block;}",
+    "body.ab-detail .ab-swiper .swiper-button-prev,body.ab-detail .ab-swiper .swiper-button-next{color:#fff;}",
+    "body.ab-detail .ab-swiper .swiper-pagination-bullet{background:#fff;opacity:.7;}",
+    "body.ab-detail .ab-swiper .swiper-pagination-bullet-active{background:var(--abd-red);opacity:1;}",
+    "@media(max-width:768px){body.ab-detail .ab-swiper .swiper-slide img{height:300px;}}",
+    /* price header */
     "body.ab-detail .ab-price{font-family:'Montserrat',sans-serif;font-weight:800;font-size:2.6rem;color:var(--abd-red);line-height:1;margin:.3rem 0;}",
     "body.ab-detail .ab-status{display:inline-block;background:var(--abd-red);color:#fff;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:4px;margin-bottom:8px;}",
     "body.ab-detail .ab-mls{color:var(--abd-muted);font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;margin-top:4px;}",
     "body.ab-detail a.ab-schedule{background:var(--abd-red)!important;color:#fff!important;border:0;border-radius:4px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase;padding:13px 26px;cursor:pointer;text-decoration:none!important;display:inline-block;}",
     "body.ab-detail a.ab-schedule:hover{background:var(--abd-red-dark)!important;}",
-    "body.ab-detail .ab-about{display:grid;grid-template-columns:1fr 320px;gap:40px;align-items:start;margin:36px auto;max-width:1200px;}",
+    /* share button (in header actions) */
+    "body.ab-detail .ab-share-btn{display:inline-flex;align-items:center;gap:7px;background:#fff;color:var(--abd-ink);border:1px solid var(--abd-line);border-radius:30px;padding:11px 20px;font-family:'Montserrat',sans-serif;font-weight:600;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;margin-left:8px;}",
+    "body.ab-detail .ab-share-btn:hover{border-color:var(--abd-red);color:var(--abd-red);}",
+    "body.ab-detail .ab-share-btn svg{width:15px;height:15px;}",
+    /* about + stats */
     "body.ab-detail #IDX-detailsDescription{font-size:.92rem;line-height:1.8;color:#333;border:0!important;}",
+    "body.ab-detail .ab-about{display:grid;grid-template-columns:1fr 320px;gap:40px;align-items:start;margin:36px auto;max-width:1200px;}",
     "body.ab-detail .ab-stats{background:#f7f7f7;border-top:3px solid var(--abd-red);padding:8px 22px;}",
     "body.ab-detail .ab-stat{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-bottom:1px solid #e9e9e9;}",
     "body.ab-detail .ab-stat:last-child{border-bottom:0;}",
     "body.ab-detail .ab-stat b{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.15rem;color:var(--abd-ink);}",
     "body.ab-detail .ab-stat span{font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--abd-muted);}",
+    /* features */
     "body.ab-detail .ab-feat-title,body.ab-detail .ab-section-title{text-align:center;font-family:'Montserrat',sans-serif;font-weight:800;text-transform:uppercase;font-size:1.6rem;margin:34px 0 6px;}",
     "body.ab-detail .ab-feat-title{margin-bottom:24px;}",
     "body.ab-detail [id^='IDX-panel-heading-']{font-family:'Montserrat',sans-serif!important;font-weight:800!important;text-transform:uppercase;font-size:1rem!important;color:var(--abd-ink)!important;border-bottom:2px solid var(--abd-red)!important;padding-bottom:8px;margin-bottom:10px;background:none!important;}",
     "body.ab-detail #IDX-fieldsWrapper{column-count:3;column-gap:40px;}",
+    /* center Basic Information panel */
+    "body.ab-detail #IDX-detailsBasicInfo{max-width:660px;margin:0 auto 26px;text-align:center;}",
+    "body.ab-detail #IDX-detailsBasicInfo [id^='IDX-panel-heading-']{text-align:center;}",
+    "body.ab-detail #IDX-detailsBasicInfo .IDX-field,body.ab-detail #IDX-detailsBasicInfo [class*='IDX-field-']{justify-content:center;gap:8px;}",
+    /* injected sections */
     "body.ab-detail .ab-section{max-width:1200px;margin:40px auto;padding:0 20px;}",
     "body.ab-detail .ab-section-sub{text-align:center;color:var(--abd-muted);font-size:.88rem;margin-bottom:24px;}",
     "body.ab-detail .ab-mc{display:grid;grid-template-columns:1fr 320px;gap:24px;border:1px solid var(--abd-line);border-radius:10px;padding:28px;}",
-    "body.ab-detail .ab-mc-row{margin-bottom:18px;}",
+    "body.ab-detail .ab-mc-row{margin-bottom:16px;}",
     "body.ab-detail .ab-mc-row label{display:flex;justify-content:space-between;font-size:.78rem;font-weight:700;font-family:'Montserrat',sans-serif;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px;color:var(--abd-ink);}",
     "body.ab-detail .ab-mc-row label span{color:var(--abd-red);}",
     "body.ab-detail .ab-mc input[type=range]{width:100%;accent-color:var(--abd-red);}",
@@ -42,6 +70,7 @@
     "body.ab-detail .ab-mc-out b{font-family:'Montserrat',sans-serif;font-weight:800;font-size:2.4rem;color:var(--abd-red);}",
     "body.ab-detail .ab-disclaimer{text-align:center;color:var(--abd-muted);font-size:.72rem;max-width:760px;margin:14px auto 0;line-height:1.6;}",
     "body.ab-detail .ab-map{display:block!important;width:100%!important;min-height:420px;height:420px!important;border:0;border-radius:10px;}",
+    /* let's connect */
     "body.ab-detail #ab-connect{background:#0e0e0e;color:#fff;padding:56px 0;margin-top:48px;}",
     "body.ab-detail #ab-connect .ab-connect-inner{max-width:1200px;margin:0 auto;padding:0 20px;}",
     "body.ab-detail .ab-inquiry{border-left:4px solid var(--abd-red);background:rgba(183,37,69,.16);padding:16px 20px;border-radius:4px;margin-bottom:28px;}",
@@ -49,9 +78,15 @@
     "body.ab-detail .ab-inquiry b{font-family:'Montserrat',sans-serif;font-size:1rem;color:#fff;}",
     "body.ab-detail .ab-cc-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;}",
     "body.ab-detail #ab-connect h2{font-family:'Montserrat',sans-serif;font-weight:800;text-transform:uppercase;font-size:2rem;color:#fff;margin-bottom:12px;}",
-    "body.ab-detail #ab-connect p,body.ab-detail #ab-connect label,body.ab-detail #ab-connect .IDX-detailsAgentText,body.ab-detail #ab-connect *{color:#ddd;}",
+    "body.ab-detail #ab-connect p,body.ab-detail #ab-connect label,body.ab-detail #ab-connect *{color:#ddd;}",
     "body.ab-detail #ab-connect input,body.ab-detail #ab-connect textarea,body.ab-detail #ab-connect select{color:#111!important;background:#fff!important;}",
     "body.ab-detail #ab-connect button,body.ab-detail #ab-connect input[type=submit]{background:var(--abd-red)!important;color:#fff!important;border:0!important;}",
+    "body.ab-detail #ab-connect .IDX-detailsPageTitle{display:none!important;}",
+    "body.ab-detail .IDX-googleRecaptchaPolicy{display:none!important;}",
+    "body.ab-detail .ab-contact-line{display:flex;align-items:center;gap:10px;margin:12px 0;font-size:.95rem;}",
+    "body.ab-detail .ab-contact-line svg{width:16px;height:16px;color:var(--abd-red);flex:0 0 auto;}",
+    "body.ab-detail .ab-contact-line a{color:#fff!important;text-decoration:none;}",
+    "body.ab-detail .ab-contact-line a:hover{color:var(--abd-red)!important;}",
     "@media(max-width:900px){body.ab-detail #IDX-fieldsWrapper{column-count:1;}body.ab-detail .ab-about,body.ab-detail .ab-mc,body.ab-detail .ab-cc-grid{grid-template-columns:1fr;}}"
   ].join("\n");
 
@@ -74,22 +109,37 @@
     var m = e.textContent.replace(/\s+/g, ' ').trim().match(/([\d,\.]+)\s*$/);
     return m ? m[1] : '';
   }
+  function hoaMonthly() {
+    var els = document.querySelectorAll('[id^="IDX-field-"]');
+    for (var i = 0; i < els.length; i++) {
+      var t = els[i].textContent.replace(/\s+/g, ' ');
+      if (/(condo\/?co-?op fee|hoa fee|association fee)/i.test(t) && /\d/.test(t)) {
+        var m = t.match(/([\d,]+(?:\.\d+)?)/);
+        if (!m) continue;
+        var num = parseFloat(m[1].replace(/,/g, '')) || 0;
+        if (/annual/i.test(t)) num = num / 12;
+        if (num > 0) return Math.round(num);
+      }
+    }
+    return 0;
+  }
 
   function build() {
     if (document.getElementById('ab-headerbox')) return;
     injectCSS();
     document.body.classList.add('ab-detail');
 
-    var addr = (val('address') + ', ' + val('cityName') + ', ' + val('state') + ' ' + val('zipcode')).replace(/\s+/g, ' ').trim();
+    var street = val('address');
+    var city = val('cityName');
+    var addr = (street + ', ' + city + ', ' + val('state') + ' ' + val('zipcode')).replace(/\s+/g, ' ').trim();
     var lid = val('listingID');
     var priceNum = parseInt(String(val('listingPrice')).replace(/[^0-9]/g, ''), 10) || 0;
     var region = (document.querySelector('#IDX-detailsAddressRegion') || {}).textContent || '';
-    // region looks like "City, ST ZIP{beds} BD, {baths} BTH $price" — the zip (5 digits) is merged onto beds
     function regCount(lbl) {
       var m = region.match(new RegExp('(\\d+)\\s*' + lbl, 'i'));
       if (!m) return '';
       var v = m[1];
-      return v.length > 2 ? v.slice(5) : v; // strip 5-digit zip prefix when merged
+      return v.length > 2 ? v.slice(5) : v;
     }
     var beds = regCount('BD');
     var baths = fieldNum('totalBaths') || regCount('BTH');
@@ -98,7 +148,45 @@
     var ppsfRaw = fieldNum('pricePerSqFt');
     var ppsf = ppsfRaw ? ('$' + Math.round(parseFloat(ppsfRaw.replace(/,/g, ''))).toLocaleString()) : '';
 
-    /* 1) price header */
+    /* 0) breadcrumb */
+    if (!document.querySelector('.ab-crumb')) {
+      var crumb = document.createElement('div'); crumb.className = 'ab-crumb';
+      crumb.innerHTML = '<a href="https://atbethesda.com/">Home</a><span>/</span>' +
+        '<a href="https://search.atbethesda.com/idx/results/listings?city[]=' + encodeURIComponent(city) + '">' + (city || 'Listings') + '</a>' +
+        '<span>/</span>' + (street || addr);
+      var top = document.querySelector('#IDX-detailsHeader') || document.querySelector('#IDX-detailsAddress');
+      if (top) top.parentNode.insertBefore(crumb, top);
+    }
+
+    /* 1) Swiper photo gallery */
+    if (!document.querySelector('.ab-swiper')) {
+      var seen = {}, photos = [];
+      Array.prototype.forEach.call(document.querySelectorAll('#IDX-detailsPageContainer img'), function (im) {
+        var s = (im.getAttribute('src') || im.getAttribute('data-src') || '').trim();
+        if (!/brightmls/i.test(s)) return;
+        var key = s.split('?')[0];
+        if (seen[key]) return; seen[key] = 1; photos.push(s);
+      });
+      if (photos.length >= 2) {
+        if (!document.getElementById('ab-swiper-css')) {
+          var lk = document.createElement('link'); lk.id = 'ab-swiper-css'; lk.rel = 'stylesheet';
+          lk.href = 'https://unpkg.com/swiper@11/swiper-bundle.min.css'; document.head.appendChild(lk);
+        }
+        var sw = document.createElement('div'); sw.className = 'ab-swiper swiper';
+        sw.innerHTML = '<div class="swiper-wrapper">' +
+          photos.map(function (u) { return '<div class="swiper-slide"><img src="' + u + '" alt="Listing photo"></div>'; }).join('') +
+          '</div><div class="swiper-button-prev"></div><div class="swiper-button-next"></div><div class="swiper-pagination"></div>';
+        var gal = document.querySelector('#IDX-primaryPhoto');
+        if (gal) { gal.parentNode.insertBefore(sw, gal); document.body.classList.add('ab-has-swiper'); }
+        var sj = document.createElement('script'); sj.src = 'https://unpkg.com/swiper@11/swiper-bundle.min.js';
+        sj.onload = function () {
+          try { new Swiper('.ab-swiper', { loop: true, pagination: { el: '.swiper-pagination', clickable: true }, navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' } }); } catch (e) {}
+        };
+        document.body.appendChild(sj);
+      }
+    }
+
+    /* 2) price header */
     var hdr = document.querySelector('#IDX-detailsAddress');
     if (hdr) {
       var box = document.createElement('div');
@@ -109,9 +197,28 @@
         '<div class="ab-mls">MLS #' + lid + '</div>' +
         '<a href="#ab-connect" class="ab-schedule" style="margin-top:14px;">Schedule a Showing</a>';
       hdr.parentNode.insertBefore(box, hdr.nextSibling);
+      var schedBtn = box.querySelector('.ab-schedule');
+      if (schedBtn) schedBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        var t = document.getElementById('ab-connect');
+        if (t) t.scrollIntoView({ behavior: 'smooth' });
+      });
     }
 
-    /* 2) About + stats */
+    /* 2b) Share button next to Favorites / Print */
+    var inlineBtns = document.querySelector('#IDX-detailsHeaderActions .IDX-inline-buttons') || document.querySelector('#IDX-detailsHeaderActions');
+    if (inlineBtns && !document.querySelector('.ab-share-btn')) {
+      var shb = document.createElement('button'); shb.type = 'button'; shb.className = 'ab-share-btn';
+      shb.innerHTML = "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 16V4'/><path d='M8 8l4-4 4 4'/><path d='M4 14v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4'/></svg> Share";
+      shb.addEventListener('click', function () {
+        if (navigator.share) { navigator.share({ title: street || addr, url: location.href }).catch(function () {}); }
+        else if (navigator.clipboard) { navigator.clipboard.writeText(location.href); shb.lastChild.textContent = ' Link copied'; }
+        else { window.prompt('Copy this link:', location.href); }
+      });
+      inlineBtns.appendChild(shb);
+    }
+
+    /* 3) About + stats */
     var desc = document.querySelector('#IDX-detailsDescription');
     if (desc && !document.querySelector('.ab-about')) {
       var wrap = document.createElement('div'); wrap.className = 'ab-about';
@@ -125,7 +232,7 @@
       wrap.appendChild(sb);
     }
 
-    /* 3) Features title */
+    /* 4) Features title */
     var fields = document.querySelector('#IDX-detailsFields');
     if (fields && !document.querySelector('.ab-feat-title')) {
       var ft = document.createElement('div'); ft.className = 'ab-feat-title'; ft.textContent = 'Features & Amenities';
@@ -141,8 +248,9 @@
       wrapper = node;
     }
 
-    /* 4) Mortgage calculator */
+    /* 5) Mortgage calculator (7 inputs) */
     if (priceNum && !document.getElementById('ab-mc-sec')) {
+      var hoa0 = hoaMonthly();
       var mc = document.createElement('div'); mc.id = 'ab-mc-sec'; mc.className = 'ab-section';
       mc.innerHTML = '<div class="ab-section-title">Mortgage Calculator</div>' +
         '<div class="ab-section-sub">Estimate your monthly payment</div>' +
@@ -151,28 +259,37 @@
         '<div class="ab-mc-row"><label>Down Payment <span id="mc-dpl">20% &middot; ' + money(Math.round(priceNum * 0.2)) + '</span></label><input id="mc-dp" type="range" min="0" max="50" value="20" step="1"></div>' +
         '<div class="ab-mc-row"><label>Loan Term <span id="mc-tl">30 years</span></label><input id="mc-term" type="range" min="10" max="30" value="30" step="5"></div>' +
         '<div class="ab-mc-row"><label>Interest Rate <span id="mc-rl">6.5%</span></label><input id="mc-rate" type="range" min="3" max="9" value="6.5" step="0.1"></div>' +
+        '<div class="ab-mc-row"><label>Property Tax <span id="mc-txl">1.1% / yr</span></label><input id="mc-tax" type="range" min="0" max="3" value="1.1" step="0.05"></div>' +
+        '<div class="ab-mc-row"><label>Homeowners Insurance <span id="mc-insl">$1,800 / yr</span></label><input id="mc-ins" type="range" min="0" max="6000" value="1800" step="100"></div>' +
+        '<div class="ab-mc-row"><label>HOA / Condo Fee <span id="mc-hoal">' + money(hoa0) + ' / mo</span></label><input id="mc-hoa" type="range" min="0" max="2000" value="' + hoa0 + '" step="25"></div>' +
         '</div><div class="ab-mc-out"><small>Estimated Monthly Payment</small><b id="mc-pay"></b></div></div>' +
-        '<p class="ab-disclaimer">Estimates only. Taxes and insurance vary by county and provider; figures here are a planning placeholder. For an accurate quote, confirm rates with your lender and a licensed insurance agent.</p>';
+        '<p class="ab-disclaimer">Estimates only. Taxes, insurance, and fees vary by county, lender, and provider; figures here are a planning placeholder. For an accurate quote, confirm with your lender and a licensed insurance agent.</p>';
       appendAfterWrapper(mc);
       var calc = function () {
         var P = +document.getElementById('mc-price').value,
           dp = +document.getElementById('mc-dp').value,
           term = +document.getElementById('mc-term').value,
-          rate = +document.getElementById('mc-rate').value / 100 / 12;
-        var loan = P * (1 - dp / 100), n = term * 12,
-          pi = rate > 0 ? loan * rate / (1 - Math.pow(1 + rate, -n)) : loan / n,
-          tax = P * 0.011 / 12, ins = 1400 / 12;
+          ratePct = +document.getElementById('mc-rate').value,
+          taxPct = +document.getElementById('mc-tax').value,
+          insYr = +document.getElementById('mc-ins').value,
+          hoaMo = +document.getElementById('mc-hoa').value;
+        var rate = ratePct / 100 / 12, loan = P * (1 - dp / 100), n = term * 12;
+        var pi = rate > 0 ? loan * rate / (1 - Math.pow(1 + rate, -n)) : loan / n;
+        var tax = P * (taxPct / 100) / 12, ins = insYr / 12;
         document.getElementById('mc-hp').textContent = money(P);
         document.getElementById('mc-dpl').innerHTML = dp + '% &middot; ' + money(Math.round(P * dp / 100));
         document.getElementById('mc-tl').textContent = term + ' years';
-        document.getElementById('mc-rl').textContent = (+document.getElementById('mc-rate').value).toFixed(1) + '%';
-        document.getElementById('mc-pay').textContent = money(Math.round(pi + tax + ins));
+        document.getElementById('mc-rl').textContent = ratePct.toFixed(1) + '%';
+        document.getElementById('mc-txl').textContent = taxPct.toFixed(2) + '% / yr';
+        document.getElementById('mc-insl').textContent = money(insYr) + ' / yr';
+        document.getElementById('mc-hoal').textContent = money(hoaMo) + ' / mo';
+        document.getElementById('mc-pay').textContent = money(Math.round(pi + tax + ins + hoaMo));
       };
-      ['mc-price', 'mc-dp', 'mc-term', 'mc-rate'].forEach(function (id) { document.getElementById(id).addEventListener('input', calc); });
+      ['mc-price', 'mc-dp', 'mc-term', 'mc-rate', 'mc-tax', 'mc-ins', 'mc-hoa'].forEach(function (id) { document.getElementById(id).addEventListener('input', calc); });
       calc();
     }
 
-    /* 5) Location map */
+    /* 6) Location map */
     if (!document.getElementById('ab-map-sec')) {
       var ms = document.createElement('div'); ms.id = 'ab-map-sec'; ms.className = 'ab-section';
       ms.innerHTML = '<div class="ab-section-title">Location</div><div class="ab-section-sub">' + addr + '</div>' +
@@ -180,7 +297,7 @@
       appendAfterWrapper(ms);
     }
 
-    /* 6) Let's Connect (move IDX contact form + agent info) */
+    /* 7) Let's Connect (move IDX contact form; custom phone/email on the left) */
     if (!document.getElementById('ab-connect')) {
       var conn = document.createElement('div'); conn.id = 'ab-connect'; appendAfterWrapper(conn);
       var inner = document.createElement('div'); inner.className = 'ab-connect-inner'; conn.appendChild(inner);
@@ -189,14 +306,36 @@
       inner.appendChild(banner);
       var grid = document.createElement('div'); grid.className = 'ab-cc-grid'; inner.appendChild(grid);
       var lcol = document.createElement('div');
-      lcol.innerHTML = "<h2>Let's Connect</h2><p style='line-height:1.7;font-size:.9rem;'>Whether you have a quick question or you're ready to tour this home, I'm here to help. Fill out the form and I'll get right back to you.</p>";
-      var agent = document.querySelector('#IDX-detailsAgentInfo');
-      if (agent) lcol.appendChild(agent);
+      lcol.innerHTML = "<h2>Let's Connect</h2>" +
+        "<p style='line-height:1.7;font-size:.9rem;'>Whether you have a quick question or you're ready to tour this home, I'm here to help. Fill out the form and I'll get right back to you.</p>" +
+        "<div class='ab-contact-line'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z'/></svg><a href='tel:+12026817454'>(202) 681-7454</a></div>" +
+        "<div class='ab-contact-line'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='2' y='4' width='20' height='16' rx='2'/><path d='m22 7-10 5L2 7'/></svg><a href='mailto:pey@peybehin.com'>pey@peybehin.com</a></div>";
       grid.appendChild(lcol);
       var rcol = document.createElement('div');
       var contact = document.querySelector('#IDX-detailsContact');
       if (contact) rcol.appendChild(contact);
       grid.appendChild(rcol);
+    }
+
+    /* 8) Single-name form (match Cody): relabel First Name -> Name, hide Last Name, split on submit */
+    var fn = document.querySelector('#IDX-firstName');
+    var ln = document.querySelector('#IDX-lastName');
+    if (fn && !fn.__abNamed) {
+      fn.__abNamed = true;
+      var fnLab = document.querySelector('label[for="IDX-firstName"]');
+      if (fnLab) fnLab.textContent = 'Name';
+      fn.placeholder = 'Your full name';
+      if (ln) {
+        var lng = ln.closest('.IDX-form-group--PL') || ln.closest('div');
+        if (lng) lng.style.display = 'none';
+        var syncName = function () {
+          var parts = (fn.value || '').trim().split(/\s+/);
+          ln.value = parts.length > 1 ? parts.slice(1).join(' ') : (parts[0] || '');
+        };
+        fn.addEventListener('input', syncName);
+        var formEl = document.querySelector('#IDX-detailscontactContactForm');
+        if (formEl) formEl.addEventListener('submit', syncName);
+      }
     }
 
     /* prefill message */
