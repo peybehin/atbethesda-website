@@ -517,11 +517,11 @@ select.cat-select{margin-bottom:0;}
               <h3>Post Content</h3>
               <div id="quill-editor"></div>
               <div style="margin-top:10px;">
-                <button class="btn btn-outline btn-sm" onclick="togglePasteHTML()" style="font-size:.72rem;color:#888;">⬇ Paste Raw HTML</button>
+                <button class="btn btn-outline btn-sm" onclick="var w=document.getElementById('paste-html-wrap');var s=w.style.display==='none';w.style.display=s?'block':'none';if(s)document.getElementById('paste-html-input').focus();" style="font-size:.72rem;color:#888;">⬇ Paste Raw HTML</button>
                 <div id="paste-html-wrap" style="display:none;margin-top:8px;">
                   <textarea id="paste-html-input" rows="7" placeholder="Paste your HTML body here — lists and formatting will be preserved…" style="width:100%;box-sizing:border-box;font-family:monospace;font-size:.73rem;border:1.5px solid #ddd;border-radius:4px;padding:8px;resize:vertical;color:#333;"></textarea>
                   <div style="display:flex;gap:8px;margin-top:6px;">
-                    <button class="btn btn-primary btn-sm" onclick="applyPastedHTML()">✓ Set Body</button>
+                    <button class="btn btn-primary btn-sm" onclick="var inp=document.getElementById('paste-html-input');var raw=inp?inp.value.trim():'';if(!raw||!quill)return;quill.clipboard.dangerouslyPasteHTML(raw);inp.value='';document.getElementById('paste-html-wrap').style.display='none';if(typeof updateSEO==='function')updateSEO();">✓ Set Body</button>
                     <button class="btn btn-outline btn-sm" onclick="togglePasteHTML()">Cancel</button>
                   </div>
                 </div>
