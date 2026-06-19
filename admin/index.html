@@ -598,10 +598,18 @@ select.cat-select{margin-bottom:0;}
             <!-- Featured Image -->
             <div class="side-card">
               <h3>Featured Image</h3>
-              <input type="url" id="post-image" placeholder="https://…image.jpg" oninput="previewImage()" />
+              <div id="img-drop-zone" style="border:2px dashed #555;border-radius:6px;padding:18px 12px;text-align:center;cursor:pointer;color:#888;font-size:.72rem;line-height:1.6;transition:border-color .2s,background .2s;"
+                ondragover="event.preventDefault();this.style.borderColor='#b72545';this.style.background='rgba(183,37,69,.07)';"
+                ondragleave="this.style.borderColor='#555';this.style.background='';"
+                ondrop="handleImageDrop(event)"
+                onclick="document.getElementById('img-file-input').click()">
+                <span id="img-drop-label">📷 Drop image here<br>or click to browse</span>
+                <input type="file" id="img-file-input" accept="image/*" style="display:none;" onchange="handleImageFile(this.files[0])" />
+              </div>
+              <div id="img-upload-status" style="font-size:.7rem;margin-top:6px;display:none;"></div>
+              <input type="url" id="post-image" placeholder="or paste image URL…" oninput="previewImage()" style="margin-top:8px;font-size:.72rem;" />
               <img id="image-thumb" class="image-preview" src="" alt="Preview" />
             </div>
-
             <!-- Meta / SEO -->
             <div class="side-card">
               <h3>SEO Meta Description</h3>
@@ -1271,6 +1279,78 @@ function previewImage() {
   const thumb = document.getElementById('image-thumb');
   if (url) { thumb.src = url; thumb.style.display = 'block'; }
   else { thumb.style.display = 'none'; }
+}
+
+/* ══════════════ IMAGE UPLOAD ══════════════ */
+function handleImageDrop(e) {
+  e.preventDefault();
+  const dz = document.getElementById('img-drop-zone');
+  dz.style.borderColor = '#555';
+  dz.style.background = '';
+  const file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+  if (file && file.type.startsWith('image/')) handleImageFile(file);
+}
+
+async function handleImageFile(file) {
+  if (!file) return;
+  const token = window._ghToken || localStorage.getItem('ab_gh_token');
+  if (!token) { toast('⚠ No GitHub token — add one in Settings first'); return; }
+
+  const statusEl = document.getElementById('img-upload-status');
+  const labelEl = document.getElementById('img-drop-label');
+  statusEl.style.display = 'block';
+  statusEl.style.color = '#888';
+  statusEl.textContent = '⏳ Uploading…';
+
+  const filename = file.name.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9._-]/g, '-');
+  const path = 'images/blog/' + filename;
+
+  try {
+    const base64 = await new Promise((res, rej) => {
+      const reader = new FileReader();
+      reader.onload = () => res(reader.result.split(',')[1]);
+      reader.onerror = rej;
+      reader.readAsDataURL(file);
+    });
+
+    // Check for existing file to get SHA (needed for update)
+    const checkRes = await fetch('https://api.github.com/repos/peybehin/atbethesda-website/contents/' + path, {
+      headers: { Authorization: 'token ' + token, Accept: 'application/vnd.github+json' }
+    });
+    const sha = checkRes.ok ? (await checkRes.json()).sha : null;
+
+    const putRes = await fetch('https://api.github.com/repos/peybehin/atbethesda-website/contents/' + path, {
+      method: 'PUT',
+      headers: {
+        Authorization: 'token ' + token,
+        'Content-Type': 'application/json',
+        Accept: 'application/vnd.github+json'
+      },
+      body: JSON.stringify({
+        message: 'Upload blog image: ' + filename,
+        content: base64,
+        ...(sha ? { sha } : {})
+      })
+    });
+
+    if (!putRes.ok) {
+      const err = await putRes.json();
+      throw new Error(err.message || putRes.status);
+    }
+
+    const deployedUrl = '/images/blog/' + filename;
+    document.getElementById('post-image').value = deployedUrl;
+    previewImage();
+    statusEl.style.color = '#2e7d32';
+    statusEl.textContent = '✓ Uploaded — live in ~60s';
+    if (labelEl) labelEl.innerHTML = '✓ ' + filename;
+    // Reset file input so same file can be re-selected
+    const fi = document.getElementById('img-file-input');
+    if (fi) fi.value = '';
+  } catch(err) {
+    statusEl.style.color = '#b72545';
+    statusEl.textContent = '✗ Upload failed: ' + err.message;
+  }
 }
 
 /* ══════════════ TITLE → SLUG ══════════════ */
