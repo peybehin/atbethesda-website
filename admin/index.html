@@ -1873,7 +1873,17 @@ function buildPostHTML(post, siteCss) {
 ${faqSchema ? `<script type="application/ld+json">${JSON.stringify(faqSchema, null, 2)}<\/script>` : ''}
 ${speakableSchema ? `<script type="application/ld+json">${JSON.stringify(speakableSchema, null, 2)}<\/script>` : ''}
 <style>
-.post-hero{background:linear-gradient(135deg,#0a0a0a 0%,rgba(183,37,69,.3) 100%);padding:calc(70px + 60px) 40px 60px;${image ? `background-image:linear-gradient(135deg,rgba(0,0,0,.8) 0%,rgba(183,37,69,.2) 100%),url('${image}');background-size:cover;background-position:center;` : ''}}
+.post-header{background:#0a0a0a;padding:64px 24px 48px;}
+.post-header-inner{max-width:860px;margin:0 auto;}
+.post-header h1{font-size:clamp(1.4rem,4vw,2.2rem);color:#fff;font-weight:900;line-height:1.2;margin-bottom:16px;}
+.post-header .post-cats{margin-bottom:16px;}
+.post-byline{color:#aaa;font-size:.9rem;margin:0;}
+.post-featured-img{max-width:960px;margin:0 auto;padding:0 24px;}
+.post-featured-img img{width:100%;border-radius:8px;display:block;margin-top:32px;}
+.back-link{display:inline-block;color:#b72545;text-decoration:none;font-size:.85rem;font-weight:600;margin-bottom:24px;}
+.back-link:hover{text-decoration:underline;}
+.tl-dr{background:#f8f9fa;border-left:4px solid #b72545;padding:20px 24px;border-radius:0 8px 8px 0;margin:0 0 2rem;}
+.tl-dr strong{color:#b72545;display:block;margin-bottom:.5rem;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em;}
 .post-body{max-width:760px;margin:0 auto;padding:56px 40px;font-size:1rem;line-height:1.85;color:#222;}
 .post-body h2{font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:900;text-transform:uppercase;letter-spacing:.04em;margin:40px 0 16px;color:#111;}
 .post-body h3{font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin:30px 0 12px;color:#b72545;}
@@ -1882,11 +1892,7 @@ ${speakableSchema ? `<script type="application/ld+json">${JSON.stringify(speakab
 .post-body li{margin-bottom:8px;}
 .post-body blockquote{border-left:3px solid #b72545;padding:14px 20px;margin:24px 0;background:#fff7f8;font-style:italic;color:#555;}
 .post-body a{color:#b72545;text-decoration:underline;}
-.author-bar{display:flex;align-items:center;gap:14px;padding:20px 0;border-top:1px solid #e0e0e0;border-bottom:1px solid #e0e0e0;margin-bottom:32px;}
-.author-avatar{width:48px;height:48px;border-radius:50%;object-fit:cover;background:#b72545;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:1.1rem;flex-shrink:0;}
-.author-info strong{display:block;font-size:.85rem;font-weight:700;}
-.author-info span{font-size:.75rem;color:#888;}
-@media(max-width:600px){.post-body{padding:40px 20px;}.post-hero{padding:calc(70px+40px) 20px 40px;}}
+@media(max-width:600px){.post-body{padding:40px 20px;}.post-header{padding:calc(70px + 40px) 24px 40px;}}
 </style>
 </head>
 <body>
@@ -1916,31 +1922,14 @@ ${speakableSchema ? `<script type="application/ld+json">${JSON.stringify(speakab
 </nav>
 
 <!-- Hero -->
-<div class="post-hero">
-  <div style="max-width:760px;margin:0 auto;">
-    <nav aria-label="breadcrumb" style="display:flex;gap:8px;align-items:center;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.5);margin-bottom:16px;">
-      <a href="/" style="color:rgba(255,255,255,.5);text-decoration:none;">Home</a>
-      <span style="color:rgba(255,255,255,.3);">›</span>
-      <a href="/vlog/" style="color:rgba(255,255,255,.5);text-decoration:none;">Blog</a>
-      <span style="color:rgba(255,255,255,.3);">›</span>
-      <span style="color:rgba(255,255,255,.7);">${escHtml(category)}</span>
-    </nav>
-    <span style="font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#b72545;display:block;margin-bottom:12px;">${escHtml(category)}</span>
-    <h1 style="font-size:clamp(1.8rem,4vw,3rem);font-weight:900;text-transform:uppercase;letter-spacing:.04em;color:#fff;line-height:1.1;margin-bottom:14px;">${escHtml(title)}</h1>
-    <p style="font-size:.9rem;color:rgba(255,255,255,.7);">${dateFormatted} &nbsp;·&nbsp; By Pey Behin</p>
-  </div>
-</div>
-
-<!-- Body -->
+<div class="post-header"><div class="post-header-inner"><div class="post-cats" style="margin-bottom:10px;"><span class="blog-tag" style="margin-right:6px;margin-bottom:4px;">${category}</span></div>
+    <h1 itemprop="headline">${title}</h1>
+    <p class="post-byline">By Pey Behin · <time itemprop="datePublished" datetime="${date}">${dateFormatted}</time></p>
+  </div></div>
+  ${image ? `<div class="post-featured-img"><img src="${image}" alt="${title}" loading="lazy"></div>` : ''}
 <article class="post-body" itemscope itemtype="https://schema.org/Article">
-  <div class="author-bar">
-    <div class="author-avatar">P</div>
-    <div class="author-info">
-      <strong itemprop="author">Pey Behin</strong>
-      <span>REALTOR® · RLAH Properties · Bethesda, MD · <time itemprop="datePublished" datetime="${date}">${dateFormatted}</time></span>
-    </div>
-  </div>
-  ${snippetHTML}
+  <p><a href="/vlog/" class="back-link">← Back to Blog</a></p>
+  ${snippet ? `<div class="tl-dr"><strong>TL;DR</strong><p>${snippet}</p></div>` : ''}
   <div itemprop="articleBody">
     ${post.content || ''}
   </div>
