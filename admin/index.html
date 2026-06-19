@@ -1542,12 +1542,13 @@ function generatePostById(id) {
 
 async function previewPost() {
   const post = getCurrentPostData();
-  const win = window.open('', '_blank'); // open immediately to avoid popup blocker
+  const win = window.open('', '_blank');
+  if (!win) { toast('⚠ Preview blocked by popup blocker — allow popups for this site'); return; }
+  win.document.open(); win.document.write('<p style="font:1rem sans-serif;padding:40px">Loading preview…</p>'); win.document.close();
   let siteCss = '';
   try { const r = await fetch('https://atbethesda.com/css/style.css'); siteCss = await r.text(); } catch(e) {}
   const html = buildPostHTML(post, siteCss);
-  const blob = new Blob([html], { type: 'text/html' });
-  win.location.href = URL.createObjectURL(blob);
+  win.document.open(); win.document.write(html); win.document.close();
 }
 
 /* ══════════════ HTML GENERATOR ══════════════ */
