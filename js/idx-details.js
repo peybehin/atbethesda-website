@@ -41,7 +41,7 @@
     "body.ab-detail .ab-mc-out small{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#bbb;}",
     "body.ab-detail .ab-mc-out b{font-family:'Montserrat',sans-serif;font-weight:800;font-size:2.4rem;color:var(--abd-red);}",
     "body.ab-detail .ab-disclaimer{text-align:center;color:var(--abd-muted);font-size:.72rem;max-width:760px;margin:14px auto 0;line-height:1.6;}",
-    "body.ab-detail .ab-map{width:100%;height:420px;border:0;border-radius:10px;}",
+    "body.ab-detail .ab-map{display:block!important;width:100%!important;min-height:420px;height:420px!important;border:0;border-radius:10px;}",
     "body.ab-detail #ab-connect{background:#0e0e0e;color:#fff;padding:56px 0;margin-top:48px;}",
     "body.ab-detail #ab-connect .ab-connect-inner{max-width:1200px;margin:0 auto;padding:0 20px;}",
     "body.ab-detail .ab-inquiry{border-left:4px solid var(--abd-red);background:rgba(183,37,69,.16);padding:16px 20px;border-radius:4px;margin-bottom:28px;}",
@@ -84,8 +84,8 @@
     var lid = val('listingID');
     var priceNum = parseInt(String(val('listingPrice')).replace(/[^0-9]/g, ''), 10) || 0;
     var region = (document.querySelector('#IDX-detailsAddressRegion') || {}).textContent || '';
-    var beds = (region.match(/(\d+)\s*BD/i) || [])[1] || '';
-    var baths = (region.match(/(\d+)\s*BTH/i) || [])[1] || '';
+    var beds = fieldNum('bedrooms') || fieldNum('totalBedrooms') || (region.match(/\b(\d{1,2})\s*BD/i) || [])[1] || '';
+    var baths = fieldNum('totalBaths') || fieldNum('bathrooms') || (region.match(/\b(\d{1,2})\s*BTH/i) || [])[1] || '';
     var sqft = fieldNum('totalSqft');
     var year = fieldNum('yearBuilt');
     var ppsfRaw = fieldNum('pricePerSqFt');
@@ -169,7 +169,7 @@
     if (!document.getElementById('ab-map-sec')) {
       var ms = document.createElement('div'); ms.id = 'ab-map-sec'; ms.className = 'ab-section';
       ms.innerHTML = '<div class="ab-section-title">Location</div><div class="ab-section-sub">' + addr + '</div>' +
-        '<iframe class="ab-map" loading="lazy" src="https://maps.google.com/maps?q=' + encodeURIComponent(addr) + '&z=14&output=embed"></iframe>';
+        '<iframe class="ab-map" width="100%" height="420" loading="lazy" src="https://maps.google.com/maps?q=' + encodeURIComponent(addr) + '&t=&z=14&ie=UTF8&iwloc=&output=embed"></iframe>';
       appendAfterWrapper(ms);
     }
 
