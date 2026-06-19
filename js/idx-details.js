@@ -73,14 +73,21 @@
     /* let's connect */
     "body.ab-detail #ab-connect{background:#0e0e0e;color:#fff;padding:56px 0;margin-top:48px;}",
     "body.ab-detail #ab-connect .ab-connect-inner{max-width:1200px;margin:0 auto;padding:0 20px;}",
-    "body.ab-detail .ab-inquiry{border-left:4px solid var(--abd-red);background:rgba(183,37,69,.16);padding:16px 20px;border-radius:4px;margin-bottom:28px;}",
-    "body.ab-detail .ab-inquiry small{display:block;color:#bbb;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px;}",
-    "body.ab-detail .ab-inquiry b{font-family:'Montserrat',sans-serif;font-size:1rem;color:#fff;}",
+    "body.ab-detail .ab-inquiry{display:flex;align-items:center;gap:14px;border:1px solid var(--abd-red);border-left:4px solid var(--abd-red);background:rgba(183,37,69,.10);padding:16px 22px;border-radius:6px;margin-bottom:34px;}",
+    "body.ab-detail .ab-inquiry .ab-pin{width:22px;height:22px;color:var(--abd-red);flex:0 0 auto;}",
+    "body.ab-detail .ab-inquiry small{display:block;color:#bbb;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px;}",
+    "body.ab-detail .ab-inquiry b{font-family:'Montserrat',sans-serif;font-size:1.05rem;color:#fff;}",
     "body.ab-detail .ab-cc-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;}",
     "body.ab-detail #ab-connect h2{font-family:'Montserrat',sans-serif;font-weight:800;text-transform:uppercase;font-size:2rem;color:#fff;margin-bottom:12px;}",
-    "body.ab-detail #ab-connect p,body.ab-detail #ab-connect label,body.ab-detail #ab-connect *{color:#ddd;}",
-    "body.ab-detail #ab-connect input,body.ab-detail #ab-connect textarea,body.ab-detail #ab-connect select{color:#111!important;background:#fff!important;}",
-    "body.ab-detail #ab-connect button,body.ab-detail #ab-connect input[type=submit]{background:var(--abd-red)!important;color:#fff!important;border:0!important;}",
+    "body.ab-detail #ab-connect p,body.ab-detail #ab-connect *{color:#ddd;}",
+    "body.ab-detail #ab-connect label{display:block;text-transform:uppercase;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.06em;color:#fff!important;margin-bottom:8px;}",
+    "body.ab-detail #ab-connect label .ab-req,body.ab-detail #ab-connect label .IDX-required,body.ab-detail #ab-connect .IDX-required{color:var(--abd-red)!important;}",
+    "body.ab-detail #ab-connect input,body.ab-detail #ab-connect textarea,body.ab-detail #ab-connect select{color:#fff!important;background:#1b1b1b!important;border:1px solid #333!important;border-radius:6px!important;padding:12px 14px!important;width:100%;box-sizing:border-box;}",
+    "body.ab-detail #ab-connect input::placeholder,body.ab-detail #ab-connect textarea::placeholder{color:#7a7a7a;}",
+    "body.ab-detail #ab-connect input:focus,body.ab-detail #ab-connect textarea:focus{border-color:var(--abd-red)!important;outline:none;}",
+    "body.ab-detail #ab-connect .ab-ep-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;}",
+    "body.ab-detail #ab-connect button,body.ab-detail #ab-connect input[type=submit]{background:var(--abd-red)!important;color:#fff!important;border:0!important;border-radius:4px!important;padding:14px 28px!important;width:auto!important;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;}",
+    "@media(max-width:600px){body.ab-detail #ab-connect .ab-ep-row{grid-template-columns:1fr;}}",
     "body.ab-detail #ab-connect .IDX-detailsPageTitle{display:none!important;}",
     "body.ab-detail #IDX-detailsAgentInfo{display:none!important;}",
     "body.ab-detail .IDX-googleRecaptchaPolicy{display:none!important;}",
@@ -303,7 +310,8 @@
       var conn = document.createElement('div'); conn.id = 'ab-connect'; appendAfterWrapper(conn);
       var inner = document.createElement('div'); inner.className = 'ab-connect-inner'; conn.appendChild(inner);
       var banner = document.createElement('div'); banner.className = 'ab-inquiry';
-      banner.innerHTML = "<small>You're inquiring about</small><b>" + addr + " (MLS# " + lid + ")</b>";
+      banner.innerHTML = "<svg class='ab-pin' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'/><circle cx='12' cy='10' r='3'/></svg>" +
+        "<div><small>You're inquiring about:</small><b>" + addr + " (MLS# " + lid + ")</b></div>";
       inner.appendChild(banner);
       var grid = document.createElement('div'); grid.className = 'ab-cc-grid'; inner.appendChild(grid);
       var lcol = document.createElement('div');
@@ -322,7 +330,7 @@
           (IDX renders the form more than once, so handle every instance) */
     Array.prototype.forEach.call(document.querySelectorAll('label'), function (l) {
       var t = (l.textContent || '').trim();
-      if (/^first name/i.test(t)) l.textContent = 'Name';
+      if (/^first name/i.test(t)) l.innerHTML = 'Name <span class="ab-req">*</span>';
       else if (/^last name/i.test(t)) l.style.display = 'none';
     });
     Array.prototype.forEach.call(document.querySelectorAll('[name="firstName"]'), function (f) { f.placeholder = 'Your full name'; });
@@ -342,10 +350,28 @@
       Array.prototype.forEach.call(document.querySelectorAll('#IDX-detailscontactContactForm'), function (form) { form.addEventListener('submit', syncNames); });
     }
 
+    /* 9) Email + Phone on one row (match Cody) */
+    var custom = document.querySelector('#ab-connect .IDX-customRegistrationFields');
+    if (custom && !custom.querySelector('.ab-ep-row')) {
+      var eInp = custom.querySelector('[name="email"]'), pInp = custom.querySelector('[name="phone"]');
+      var eG = eInp ? eInp.closest('.IDX-form-group--PL') : null, pG = pInp ? pInp.closest('.IDX-form-group--PL') : null;
+      var labs = Array.prototype.slice.call(custom.querySelectorAll('label'));
+      var eL = labs.filter(function (l) { return /^email/i.test((l.textContent || '').trim()); })[0];
+      var pL = labs.filter(function (l) { return /^phone/i.test((l.textContent || '').trim()); })[0];
+      if (eG && pG) {
+        var row = document.createElement('div'); row.className = 'ab-ep-row';
+        var c1 = document.createElement('div'), c2 = document.createElement('div');
+        if (eL) c1.appendChild(eL); c1.appendChild(eG);
+        if (pL) c2.appendChild(pL); c2.appendChild(pG);
+        row.appendChild(c1); row.appendChild(c2);
+        custom.appendChild(row);
+      }
+    }
+
     /* prefill message */
     var msg = document.querySelector('#IDX-detailscontactContactForm textarea');
     if (msg && !msg.value) {
-      msg.value = "I'm interested in " + addr + " (MLS# " + lid + "). Please send me more information or help me schedule a showing.";
+      msg.value = "I'd like to schedule a showing for " + addr + ". Please reach out with available times that work for me.";
     }
   }
 
