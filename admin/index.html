@@ -1390,6 +1390,7 @@ async function updateVlogIndex(post) {
       '\n      <div class="tag-row"><span class="blog-tag">' + cat + '</span>' + tags + '</div>' +
       '\n      <h2>' + post.title + '</h2>' +
       '\n      <p class="blog-excerpt">' + snippet + '…</p>' +
+      '\n      <div class="blog-meta">' + new Date(post.date).toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'}) + '</div>' +
       '\n    </div>' +
       '\n  </article>\n';
 
