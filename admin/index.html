@@ -1361,6 +1361,57 @@ async function handleImageFile(file) {
   }
 }
 
+/* ══════════════ VLOG INDEX UPDATE ══════════════ */
+const CAT_MAP = {'Buying':'Buyers Corner','Selling':'Sellers','News':'Market Updates','Renting':'Renting','Pey on The Street':'Local + Life','Finance':'Finance'};
+
+async function updateVlogIndex(post) {
+  const token = window._ghToken || localStorage.getItem('ab_gh_token');
+  if (!token) return;
+  try {
+    const res = await fetch('https://api.github.com/repos/peybehin/atbethesda-website/contents/vlog/index.html', {
+      headers: { Authorization: 'token ' + token, Accept: 'application/vnd.github+json' }
+    });
+    if (!res.ok) return;
+    const meta = await res.json();
+    const bytes = Uint8Array.from(atob(meta.content.replace(/\n/g,'')), c => c.charCodeAt(0));
+    let vlog = new TextDecoder('utf-8').decode(bytes);
+
+    // Skip if post already in index
+    if (vlog.includes('/' + post.slug + '/')) return;
+
+    const cat = CAT_MAP[post.category] || post.category || 'Buyers Corner';
+    const tags = (post.tags || []).map(t => '<span class="blog-tag">' + t + '</span>').join('');
+    const snippet = (post.snippet || post.meta || '').slice(0, 130);
+    const card = '<article class="blog-card" data-cats='["' + cat + '"]' onclick="location.href='/' + post.slug + '/'">' +
+      '\n    <div class="blog-card-img">' +
+      '\n      <img src="' + (post.image || '') + '" alt="' + post.title + '" loading="lazy"/>' +
+      '\n    </div>' +
+      '\n    <div class="blog-card-body">' +
+      '\n      <div class="tag-row"><span class="blog-tag">' + cat + '</span>' + tags + '</div>' +
+      '\n      <h2>' + post.title + '</h2>' +
+      '\n      <p class="blog-excerpt">' + snippet + '…</p>' +
+      '\n    </div>' +
+      '\n  </article>\n';
+
+    const gridMarker = '<div class="blog-grid" id="blog-grid">\n';
+    vlog = vlog.replace(gridMarker, gridMarker + card);
+
+    // Update post count
+    vlog = vlog.replace(/Showing 12 of (\d+)/, (_, n) => 'Showing 12 of ' + (parseInt(n) + 1));
+
+    const outBytes = new TextEncoder().encode(vlog);
+    let bin = '';
+    outBytes.forEach(b => bin += String.fromCharCode(b));
+    const b64 = btoa(bin);
+
+    await fetch('https://api.github.com/repos/peybehin/atbethesda-website/contents/vlog/index.html', {
+      method: 'PUT',
+      headers: { Authorization: 'token ' + token, 'Content-Type': 'application/json', Accept: 'application/vnd.github+json' },
+      body: JSON.stringify({ message: 'Add post to blog index: ' + post.slug, content: b64, sha: meta.sha })
+    });
+  } catch(e) { /* silent — post page still published */ }
+}
+
 /* ══════════════ TITLE → SLUG ══════════════ */
 function onTitleChange() {
   const t = document.getElementById('post-title').value;
@@ -1524,6 +1575,7 @@ async function publishNow() {
   if (statusEl) { statusEl.style.display = 'block'; statusEl.style.color = '#888'; statusEl.style.background = ''; statusEl.textContent = '⏳ Publishing…'; }
   try {
     const ok = await pushPostToGitHub(data, html);
+    if (ok) await updateVlogIndex(data);
     if (ok) {
       if (statusEl) { statusEl.style.color = '#2e7d32'; statusEl.style.background = '#e8f5e9'; statusEl.textContent = '● Published'; }
     } else {
