@@ -1790,6 +1790,24 @@ ${faqHTML}
       </div>
     </div>
   </div>
+<script>
+window.togglePasteHTML = function() {
+  var w = document.getElementById('paste-html-wrap');
+  if (!w) return;
+  var show = w.style.display === 'none';
+  w.style.display = show ? 'block' : 'none';
+  if (show) { var i = document.getElementById('paste-html-input'); if (i) i.focus(); }
+};
+window.applyPastedHTML = function() {
+  var i = document.getElementById('paste-html-input');
+  var raw = i ? i.value.trim() : '';
+  if (!raw || !window.quill) return;
+  window.quill.clipboard.dangerouslyPasteHTML(raw);
+  i.value = '';
+  document.getElementById('paste-html-wrap').style.display = 'none';
+  if (window.updateSEO) window.updateSEO();
+};
+</script>
 </body>
 </html>`;
 }
