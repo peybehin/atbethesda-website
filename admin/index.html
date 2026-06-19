@@ -1412,6 +1412,42 @@ async function updateVlogIndex(post) {
   } catch(e) { /* silent — post page still published */ }
 }
 
+/* ══════════════ POSTS.JSON UPDATE ══════════════ */
+async function updatePostsJSON(post) {
+  const token = window._ghToken || localStorage.getItem('ab_gh_token');
+  if (!token) return;
+  try {
+    const res = await fetch('https://api.github.com/repos/peybehin/atbethesda-website/contents/posts.json', {
+      headers: { Authorization: 'token ' + token, Accept: 'application/vnd.github+json' }
+    });
+    if (!res.ok) return;
+    const meta = await res.json();
+    const bytes = Uint8Array.from(atob(meta.content.replace(/\n/g,'')), c => c.charCodeAt(0));
+    const arr = JSON.parse(new TextDecoder('utf-8').decode(bytes));
+    // Skip if already in list
+    if (arr.some(p => p.slug === post.slug)) return;
+    const cat = (CAT_MAP && CAT_MAP[post.category]) || post.category || 'Buyers Corner';
+    arr.unshift({
+      title: post.title,
+      slug: post.slug,
+      url: '/' + post.slug + '/',
+      image: post.image || '',
+      category: cat,
+      categories: [cat],
+      excerpt: (post.snippet || post.meta || '').slice(0, 120),
+      date: new Date(post.date).toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'})
+    });
+    const outBytes = new TextEncoder().encode(JSON.stringify(arr, null, 2));
+    let bin = '';
+    outBytes.forEach(b => bin += String.fromCharCode(b));
+    await fetch('https://api.github.com/repos/peybehin/atbethesda-website/contents/posts.json', {
+      method: 'PUT',
+      headers: { Authorization: 'token ' + token, 'Content-Type': 'application/json', Accept: 'application/vnd.github+json' },
+      body: JSON.stringify({ message: 'Add post to posts.json: ' + post.slug, content: btoa(bin), sha: meta.sha })
+    });
+  } catch(e) { /* silent */ }
+}
+
 /* ══════════════ TITLE → SLUG ══════════════ */
 function onTitleChange() {
   const t = document.getElementById('post-title').value;
@@ -1575,7 +1611,7 @@ async function publishNow() {
   if (statusEl) { statusEl.style.display = 'block'; statusEl.style.color = '#888'; statusEl.style.background = ''; statusEl.textContent = '⏳ Publishing…'; }
   try {
     const ok = await pushPostToGitHub(data, html);
-    if (ok) await updateVlogIndex(data);
+    if (ok) { await updateVlogIndex(data); await updatePostsJSON(data); }
     if (ok) {
       if (statusEl) { statusEl.style.color = '#2e7d32'; statusEl.style.background = '#e8f5e9'; statusEl.textContent = '● Published'; }
     } else {
