@@ -651,6 +651,18 @@ select.cat-select{margin-bottom:0;}
             5. Generate token → paste it above
           </p>
         </div>
+
+        <div class="editor-card" style="max-width:600px;margin-top:24px;">
+          <h3>📦 Sync All Posts</h3>
+          <p style="font-size:.82rem;color:#666;margin-bottom:16px;line-height:1.6;">
+            Downloads the full content of all your legacy posts from the live site and stores them locally. After syncing, every post opens instantly with its full content ready — no loading delay, no network call needed.
+          </p>
+          <p style="font-size:.78rem;color:#f57c00;margin-bottom:16px;font-weight:600;">
+            ⚠ Make sure your GitHub token is saved above before syncing. This may take a few minutes for 127 posts.
+          </p>
+          <button class="btn btn-primary btn-sm" id="sync-all-btn" onclick="syncAllPosts()">⬇ Sync All Posts Now</button>
+          <div id="sync-progress" style="font-size:.82rem;margin-top:14px;min-height:20px;font-weight:600;"></div>
+        </div>
       </div>
 
 </div><!-- /app -->
@@ -697,6 +709,105 @@ let quill;
 
 function savePosts() {
   localStorage.setItem('ab_posts', JSON.stringify(posts));
+}
+
+/* ══════════════ INDEXED DB (unlimited body content cache) ══════════════ */
+let _bodyDB = null;
+
+function openBodyDB() {
+  if (_bodyDB) return Promise.resolve(_bodyDB);
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open('ab_content', 1);
+    req.onupgradeneeded = e => {
+      e.target.result.createObjectStore('bodies', { keyPath: 'id' });
+    };
+    req.onsuccess = e => { _bodyDB = e.target.result; resolve(_bodyDB); };
+    req.onerror = () => reject(req.error);
+  });
+}
+
+function storeBodyData(postId, data) {
+  return openBodyDB().then(db => new Promise((res, rej) => {
+    const tx = db.transaction('bodies', 'readwrite');
+    tx.objectStore('bodies').put({ id: postId, ...data });
+    tx.oncomplete = res; tx.onerror = () => rej(tx.error);
+  }));
+}
+
+function getBodyData(postId) {
+  return openBodyDB().then(db => new Promise((res, rej) => {
+    const tx = db.transaction('bodies', 'readonly');
+    const req = tx.objectStore('bodies').get(postId);
+    req.onsuccess = () => res(req.result || null);
+    req.onerror = () => rej(req.error);
+  }));
+}
+
+function _parsePostHTML(html) {
+  let bodyHTML = '';
+  const pbStart = html.indexOf('class="post-body"');
+  if (pbStart > -1) {
+    const tagEnd = html.indexOf('>', pbStart) + 1;
+    let depth = 1, i = tagEnd;
+    while (i < html.length && depth > 0) {
+      const nextOpen = html.indexOf('<div', i);
+      const nextClose = html.indexOf('</div', i);
+      if (nextClose === -1) break;
+      if (nextOpen > -1 && nextOpen < nextClose) { depth++; i = nextOpen + 4; }
+      else { depth--; if (depth === 0) { bodyHTML = html.substring(tagEnd, nextClose); } else { i = nextClose + 5; } }
+    }
+  }
+  const metaMatch = html.match(/name="description"\s+content="([^"]{0,300})"/);
+  const metaDesc = metaMatch ? metaMatch[1] : '';
+  const tagMatches = [...html.matchAll(/class="blog-tag"[^>]*>([^<]+)</g)];
+  const fetchedTags = tagMatches.map(m => m[1].trim()).filter(Boolean);
+  return { content: bodyHTML.trim(), meta: metaDesc, tags: fetchedTags };
+}
+
+async function syncAllPosts() {
+  const token = window._ghToken || localStorage.getItem('ab_gh_token');
+  if (!token) { toast('⚠ No GitHub token — add one in Settings first'); return; }
+
+  const legacyPosts = posts.filter(p => p.repoPath);
+  if (!legacyPosts.length) { toast('No legacy posts found'); return; }
+
+  const btn = document.getElementById('sync-all-btn');
+  const prog = document.getElementById('sync-progress');
+  if (btn) { btn.disabled = true; btn.textContent = 'Syncing…'; }
+  if (prog) prog.style.color = '#666';
+
+  let done = 0, failed = 0;
+
+  for (const post of legacyPosts) {
+    if (prog) prog.textContent = 'Fetching ' + (done + 1) + ' / ' + legacyPosts.length + ' — ' + (post.title || post.slug) + '…';
+    try {
+      const resp = await fetch(
+        'https://api.github.com/repos/peybehin/atbethesda-website/contents/' + post.repoPath,
+        { headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' } }
+      );
+      if (!resp.ok) { failed++; done++; continue; }
+      const data = await resp.json();
+      const html = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
+      const parsed = _parsePostHTML(html);
+      await storeBodyData(post.id, parsed);
+
+      // Update lightweight metadata in posts array
+      const idx = posts.findIndex(p => p.id === post.id);
+      if (idx > -1) {
+        if (parsed.meta && !posts[idx].meta) posts[idx].meta = parsed.meta;
+        if (parsed.tags.length && (!posts[idx].tags || !posts[idx].tags.length)) posts[idx].tags = parsed.tags;
+        posts[idx].content = ''; // ensure body is NOT in localStorage
+      }
+      done++;
+    } catch(e) { failed++; done++; }
+    await new Promise(r => setTimeout(r, 120)); // gentle rate-limit
+  }
+
+  savePosts();
+  if (btn) { btn.disabled = false; btn.textContent = '⬇ Sync All Posts Now'; }
+  const msg = '✅ ' + (done - failed) + ' of ' + legacyPosts.length + ' posts synced' + (failed ? ' (' + failed + ' failed)' : '') + '.';
+  if (prog) { prog.textContent = msg; prog.style.color = failed ? '#f57c00' : '#2e7d32'; }
+  toast('✅ All posts loaded — they will open instantly from now on.');
 }
 
 /* ══════════════ INIT ══════════════ */
@@ -828,9 +939,24 @@ function editPost(id) {
 
   showView('editor');
 
-  // Auto-load content for legacy posts that have no content yet
+  // For legacy posts: check local IndexedDB cache first, then fall back to GitHub
   if (post.repoPath && !post.content) {
-    loadLegacyContent(post);
+    getBodyData(post.id).then(cached => {
+      if (cached && cached.content) {
+        if (quill) quill.clipboard.dangerouslyPasteHTML(cached.content);
+        if (cached.meta && !document.getElementById('post-meta').value) {
+          document.getElementById('post-meta').value = cached.meta;
+          updateCharCount();
+        }
+        if (cached.tags && cached.tags.length && tags.length === 0) {
+          tags = cached.tags;
+          renderTagCloud();
+        }
+        toast('✅ Loaded from local cache');
+      } else {
+        loadLegacyContent(post);
+      }
+    }).catch(() => loadLegacyContent(post));
   }
 }
 
@@ -884,12 +1010,14 @@ async function loadLegacyContent(post) {
       renderTagCloud();
     }
 
-    // Persist back to localStorage so re-opening is instant
+    // Store body in IndexedDB (no size limit); keep localStorage lean
+    storeBodyData(post.id, { content: bodyHTML.trim(), meta: metaDesc, tags: fetchedTags });
     const idx = posts.findIndex(p => p.id === post.id);
     if (idx > -1) {
-      posts[idx].content = bodyHTML.trim();
-      if (metaDesc) posts[idx].meta = metaDesc;
-      if (fetchedTags.length) posts[idx].tags = fetchedTags;
+      // Update lightweight metadata only — no body in localStorage
+      if (metaDesc && !posts[idx].meta) posts[idx].meta = metaDesc;
+      if (fetchedTags.length && (!posts[idx].tags || !posts[idx].tags.length)) posts[idx].tags = fetchedTags;
+      posts[idx].content = '';
       savePosts();
     }
 
@@ -1190,15 +1318,26 @@ function getCurrentPostData() {
 
 function saveCurrentPost() {
   const data = getCurrentPostData();
+  const existingPost = posts.find(p => p.id === editingId);
+  const isLegacy = !!(existingPost && existingPost.repoPath);
+
   if (editingId) {
     const idx = posts.findIndex(p => p.id === editingId);
-    if (idx >= 0) posts[idx] = data; else posts.unshift(data);
+    // Legacy posts: strip body from localStorage, save it to IndexedDB
+    const toStore = isLegacy ? { ...data, content: '' } : data;
+    if (idx >= 0) posts[idx] = toStore; else posts.unshift(toStore);
   } else {
     editingId = data.id;
     posts.unshift(data);
   }
+
+  // Persist legacy body edits to IndexedDB
+  if (isLegacy && data.content) {
+    storeBodyData(editingId, { content: data.content, meta: data.meta, tags: data.tags });
+  }
+
   savePosts();
-  return data;
+  return data; // returns full data (with content) for buildPostHTML / pushPostToGitHub
 }
 
 /* ══════════════ SAVE ACTIONS ══════════════ */
