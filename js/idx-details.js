@@ -189,17 +189,33 @@
     /* 1) Swiper photo gallery */
     if (!document.querySelector('.ab-swiper')) {
       var seen = {}, photos = [];
-      Array.prototype.forEach.call(document.querySelectorAll('#IDX-detailsPageContainer img'), function (im) {
-        /* IDX runs its gallery as a loop-mode Swiper, which clones the LAST photo
-           to the front (.swiper-slide-duplicate). Reading DOM order would then put
-           that clone (often a floor plan) first. Skip the loop-clones (and our own
-           gallery) so we keep IDX's real, server-rendered order. */
-        if (im.closest('.swiper-slide-duplicate') || im.closest('.ab-swiper')) return;
-        var s = (im.getAttribute('src') || im.getAttribute('data-src') || '').trim();
-        if (!/brightmls/i.test(s)) return;
-        var key = s.split('?')[0];
-        if (seen[key]) return; seen[key] = 1; photos.push(s);
+      function pushPhoto(u) {
+        u = (u || '').trim();
+        if (!u || /^data:/.test(u)) return;
+        var key = u.split('?')[0];
+        if (seen[key]) return; seen[key] = 1; photos.push(u);
+      }
+      /* Read IDX's gallery slides directly, in order. Two IDX behaviors to handle:
+         1) IDX runs the gallery as a loop-mode Swiper, which clones the LAST photo to
+            the front (.swiper-slide-duplicate) -> skip those clones.
+         2) IDX lazy-loads images: once a slide loads, IDX clears its data-src and sets
+            src to a (non-brightmls) CDN url. This happens to the first/active slide, so
+            a brightmls-only filter would drop the real first photo. Prefer data-src,
+            fall back to src, so we keep every photo including the loaded first one. */
+      var idxSlides = document.querySelectorAll('#IDX-primaryPhoto .swiper-slide:not(.swiper-slide-duplicate)');
+      Array.prototype.forEach.call(idxSlides, function (slide) {
+        var im = slide.querySelector('img'); if (!im) return;
+        pushPhoto(im.getAttribute('data-src') || im.getAttribute('src'));
       });
+      /* fallback for any listing that doesn't use the swiper gallery structure */
+      if (photos.length < 2) {
+        Array.prototype.forEach.call(document.querySelectorAll('#IDX-detailsPageContainer img'), function (im) {
+          if (im.closest('.swiper-slide-duplicate') || im.closest('.ab-swiper')) return;
+          var s = (im.getAttribute('data-src') || im.getAttribute('src') || '').trim();
+          if (!/brightmls/i.test(s)) return;
+          pushPhoto(s);
+        });
+      }
       if (photos.length >= 2) {
         if (!document.getElementById('ab-swiper-css')) {
           var lk = document.createElement('link'); lk.id = 'ab-swiper-css'; lk.rel = 'stylesheet';
