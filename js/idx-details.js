@@ -1,4 +1,4 @@
-/* @Bethesda — IDX listing-detail template (mirrors Cody Posey layout, @Bethesda branding)
+/* @Bethesda â IDX listing-detail template (mirrors Cody Posey layout, @Bethesda branding)
    Hosted on atbethesda.com, referenced from the IDX Broker global wrapper.
    Runs only on /idx/details/ pages. Safe to edit + redeploy independently. */
 (function () {
@@ -467,3 +467,87 @@
     }
   }, 250);
 })();
+
+
+/* --- RESULTS PAGE: Price Sort Button ---
+   Injects $ ↑ / $ ↓ toggle into #idx-results-header.
+   srt=prd = highest price first, srt=pricelow = lowest price first. */
+(function () {
+  'use strict';
+  if (window.location.href.indexOf('/idx/results/') < 0) return;
+
+  function getSortDir() {
+    var params = new URLSearchParams(window.location.search);
+    var srt = params.get('srt') || '';
+    if (srt === 'prd') return 'high';
+    if (srt === 'pricelow') return 'low';
+    return 'none';
+  }
+
+  function makeSortURL(dir) {
+    var u = new URL(window.location.href);
+    u.searchParams.set('srt', dir === 'high' ? 'prd' : 'pricelow');
+    return u.toString();
+  }
+
+  function buildSortBtn() {
+    if (document.getElementById('ab-price-sort')) return;
+    var header = document.getElementById('idx-results-header');
+    if (!header) return;
+
+    var dir = getSortDir();
+    var btn = document.createElement('button');
+    btn.id = 'ab-price-sort';
+    btn.style.cssText = [
+      'border:1.5px solid #c0a96e',
+      'background:#fff',
+      'color:#1a1a1a',
+      'padding:5px 13px',
+      'border-radius:4px',
+      'cursor:pointer',
+      'font-size:14px',
+      'font-weight:700',
+      'margin:0 8px',
+      'vertical-align:middle',
+      'white-space:nowrap'
+    ].join(';');
+
+    if (dir === 'high') {
+      btn.innerHTML = '$ ↑';
+      btn.title = 'Sorted: highest first — click for lowest first';
+      btn.setAttribute('data-next', 'low');
+    } else if (dir === 'low') {
+      btn.innerHTML = '$ ↓';
+      btn.title = 'Sorted: lowest first — click for highest first';
+      btn.setAttribute('data-next', 'high');
+    } else {
+      btn.innerHTML = '$ ↕';
+      btn.title = 'Sort by price';
+      btn.setAttribute('data-next', 'high');
+    }
+
+    btn.addEventListener('click', function () {
+      window.location.href = makeSortURL(btn.getAttribute('data-next'));
+    });
+
+    var mapToggle = header.querySelector('.idx-results__map-toggle');
+    if (mapToggle) {
+      header.insertBefore(btn, mapToggle);
+    } else {
+      header.appendChild(btn);
+    }
+  }
+
+  var tries = 0;
+  var iv = setInterval(function () {
+    tries++;
+    var hasListings = document.querySelector('.idx-listing-card__price');
+    var hasHeader = document.getElementById('idx-results-header');
+    if ((hasListings && hasHeader) || tries > 80) {
+      clearInterval(iv);
+      if (hasListings && hasHeader) {
+        try { buildSortBtn(); } catch (e) { if (window.console) console.warn('ab-sort error', e); }
+      }
+    }
+  }, 250);
+}());
