@@ -749,14 +749,16 @@
       </div>
 
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css">
+      <div class="swiper-outer">
       <div class="featured-swiper swiper">
         <div class="swiper-wrapper" id="featured-swiper-wrapper">
           <div class="swiper-slide"><div class="prop-card prop-card--loading"><div class="prop-card__img-wrap"></div><div class="prop-card__body"><div class="prop-card__price">&nbsp;</div><div class="prop-card__address">&nbsp;</div></div></div></div>
           <div class="swiper-slide"><div class="prop-card prop-card--loading"><div class="prop-card__img-wrap"></div><div class="prop-card__body"><div class="prop-card__price">&nbsp;</div><div class="prop-card__address">&nbsp;</div></div></div></div>
           <div class="swiper-slide"><div class="prop-card prop-card--loading"><div class="prop-card__img-wrap"></div><div class="prop-card__body"><div class="prop-card__price">&nbsp;</div><div class="prop-card__address">&nbsp;</div></div></div></div>
         </div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
+      </div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
       </div>
 
       <div class="listings-cta">
@@ -791,9 +793,9 @@
       .prop-card__details{font-size:13px;color:#444;margin-bottom:18px;display:flex;gap:16px;}
       .prop-card__btn{display:block;text-align:center;border:2px solid #0a0a0a;color:#0a0a0a;background:transparent;padding:10px 16px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:background .18s,color .18s;}
       .prop-card__btn:hover{background:#0a0a0a;color:#fff;}
-      .featured-swiper{padding-bottom:8px;overflow:visible;}
-      .featured-swiper .swiper-button-next,.featured-swiper .swiper-button-prev{color:#0a0a0a;background:#fff;width:40px;height:40px;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,.15);}.featured-swiper .swiper-button-prev{left:-56px;}.featured-swiper .swiper-button-next{right:-56px;}
-      .featured-swiper .swiper-button-next::after,.featured-swiper .swiper-button-prev::after{font-size:14px;font-weight:900;}
+      .featured-swiper{padding-bottom:8px;}
+      .swiper-outer{position:relative;}.swiper-outer .swiper-button-next,.swiper-outer .swiper-button-prev{position:absolute;top:50%;transform:translateY(-50%);z-index:10;cursor:pointer;color:#0a0a0a;background:#fff;width:40px;height:40px;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,.15);display:flex;align-items:center;justify-content:center;}.swiper-outer .swiper-button-prev{left:-56px;}.swiper-outer .swiper-button-next{right:-56px;}
+      .swiper-outer .swiper-button-next::after,.swiper-outer .swiper-button-prev::after{font-size:14px;font-weight:900;}
       idx-listings-carousel{display:none!important;}
       .listings-cta{text-align:center;margin-top:48px;}
       .btn-primary-red{display:inline-block;background:var(--red,#e02020);color:#fff;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:14px 40px;text-decoration:none;transition:opacity .18s;}
