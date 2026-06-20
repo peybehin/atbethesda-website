@@ -83,8 +83,8 @@
     "body.ab-detail #ab-connect p,body.ab-detail #ab-connect *{color:#ddd;}",
     "body.ab-detail #ab-connect label{display:block;text-transform:uppercase;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.06em;color:#fff!important;margin-bottom:8px;}",
     "body.ab-detail #ab-connect label .ab-req,body.ab-detail #ab-connect label .IDX-required,body.ab-detail #ab-connect .IDX-required{color:var(--abd-red)!important;}",
-    "body.ab-detail #ab-connect input,body.ab-detail #ab-connect textarea,body.ab-detail #ab-connect select{color:#fff!important;background:#1b1b1b!important;border:1px solid #333!important;border-radius:6px!important;padding:15px 17px!important;font-size:.96rem!important;width:100%;box-sizing:border-box;}",
-    "body.ab-detail #ab-connect textarea{min-height:150px;resize:vertical;line-height:1.5;}",
+    "body.ab-detail #ab-connect input,body.ab-detail #ab-connect textarea,body.ab-detail #ab-connect select{color:#fff!important;background:#1b1b1b!important;border:1px solid #333!important;border-radius:6px!important;padding:15px 17px!important;font-size:.96rem!important;height:auto!important;min-height:56px;width:100%;box-sizing:border-box;}",
+    "body.ab-detail #ab-connect textarea{min-height:150px!important;resize:vertical;line-height:1.5;}",
     /* remove the white box border around the IDX form (item 2) */
     "body.ab-detail #ab-connect #IDX-detailscontactContactForm,body.ab-detail #ab-connect form.IDX-contactForm,body.ab-detail #ab-connect .IDX-contactForm{border:0!important;background:transparent!important;padding:0!important;box-shadow:none!important;}",
     /* force inquiry pin + contact icons red (override #ab-connect * grey) */
@@ -398,7 +398,7 @@
       if (d.children.length > 4) return;
       var t = (d.innerText || '').replace(/\s+/g, ' ').trim();
       if (!t) return;
-      if ((/information deemed reliable/i.test(t) && /bright mls/i.test(t) && t.length < 600) ||
+      if ((/information deemed reliable/i.test(t) && /bright mls/i.test(t) && t.length < 1000) ||
           (/^data services provided by idx broker/i.test(t) && t.length < 70)) {
         d.classList.add('ab-mls-fineprint');
       }
