@@ -71,8 +71,8 @@
     "body.ab-detail .ab-disclaimer{text-align:center;color:var(--abd-muted);font-size:.72rem;max-width:760px;margin:14px auto 0;line-height:1.6;}",
     "body.ab-detail .ab-map{display:block!important;width:100%!important;min-height:420px;height:420px!important;border:0;border-radius:10px;}",
     /* let's connect */
-    "body.ab-detail #ab-connect{background:#0e0e0e;color:#fff;padding:56px 0;margin-top:48px;}",
-    "body.ab-detail #ab-connect .ab-connect-inner{max-width:1280px;margin:0 auto;padding:0;}",
+    "body.ab-detail #ab-connect{background:#0a0a0a;color:#fff;padding:56px 0;margin-top:48px;margin-bottom:0!important;}",
+    "body.ab-detail #ab-connect .ab-connect-inner{max-width:1280px;margin:0 auto;padding:0 24px;}",
     "@media(max-width:1320px){body.ab-detail #ab-connect .ab-connect-inner{padding:0 22px;}}",
     "body.ab-detail .ab-inquiry{display:flex;align-items:center;gap:14px;border:1px solid var(--abd-red);border-left:4px solid var(--abd-red);background:rgba(183,37,69,.10);padding:16px 22px;border-radius:6px;margin-bottom:34px;}",
     "body.ab-detail .ab-inquiry .ab-pin{width:22px;height:22px;color:var(--abd-red);flex:0 0 auto;}",
@@ -92,6 +92,8 @@
     /* de-emphasized, compliant MLS / IDX fine print (item 5) */
     "body.ab-detail .ab-mls-fineprint{background:#0e0e0e!important;color:#5d5d5d!important;font-size:.62rem!important;line-height:1.6!important;text-align:center!important;padding:14px 22px!important;border:0!important;margin:0!important;}",
     "body.ab-detail .ab-mls-fineprint a{color:#7a7a7a!important;}",
+    "body.ab-detail .ab-idx-credit,footer .ab-idx-credit{font-size:9px!important;line-height:1.4!important;color:#5a5a5a!important;text-align:center!important;background:transparent!important;border:0!important;padding:8px 12px 10px!important;margin:0!important;opacity:.8;}",
+    "body.ab-detail .ab-idx-credit a,footer .ab-idx-credit a{color:#6a6a6a!important;text-decoration:none;}",
     "body.ab-detail #ab-connect input::placeholder,body.ab-detail #ab-connect textarea::placeholder{color:#7a7a7a;}",
     "body.ab-detail #ab-connect input:focus,body.ab-detail #ab-connect textarea:focus{border-color:var(--abd-red)!important;outline:none;}",
     "body.ab-detail #ab-connect .ab-ep-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;}",
@@ -335,6 +337,15 @@
       var contact = document.querySelector('#IDX-detailsContact');
       if (contact) rcol.appendChild(contact);
       grid.appendChild(rcol);
+
+      /* full-bleed: cancel the IDX container's side padding so the black spans edge-to-edge */
+      var cont = document.getElementById('IDX-detailsPageContainer');
+      if (cont) {
+        var cs = getComputedStyle(cont);
+        conn.style.marginLeft = '-' + (parseFloat(cs.paddingLeft) || 0) + 'px';
+        conn.style.marginRight = '-' + (parseFloat(cs.paddingRight) || 0) + 'px';
+      }
+      conn.style.marginBottom = '0';
     }
 
     /* 8) Single-name form (match Cody): relabel First Name -> Name, hide all Last Name fields/labels
@@ -392,15 +403,22 @@
   }
 
   function styleFinePrint() {
+    var footer = document.querySelector('footer') || document.querySelector('.IDX-footer, #IDX-footer');
     Array.prototype.forEach.call(document.querySelectorAll('body div'), function (d) {
-      if (d.classList.contains('ab-mls-fineprint')) return;
+      if (d.classList.contains('ab-fp-done')) return;
       if (d.closest('#ab-connect')) return;
       if (d.children.length > 4) return;
       var t = (d.innerText || '').replace(/\s+/g, ' ').trim();
       if (!t) return;
-      if ((/information deemed reliable/i.test(t) && /bright mls/i.test(t) && t.length < 1000) ||
-          (/^data services provided by idx broker/i.test(t) && t.length < 70)) {
-        d.classList.add('ab-mls-fineprint');
+      // Bright MLS "deemed reliable" block: redundant (already in site footer) -> remove
+      if (/information deemed reliable/i.test(t) && /bright mls/i.test(t) && t.length < 1000) {
+        d.classList.add('ab-fp-done');
+        d.style.display = 'none';
+      }
+      // IDX Broker attribution (required on the page) -> move tiny into the footer
+      else if (/^data services provided by idx broker/i.test(t) && t.length < 70) {
+        d.classList.add('ab-fp-done', 'ab-idx-credit');
+        if (footer && d.parentNode !== footer) footer.appendChild(d);
       }
     });
   }
