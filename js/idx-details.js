@@ -441,7 +441,8 @@
   var tries = 0;
   var iv = setInterval(function () {
     tries++;
-    if ((document.querySelector('#IDX-detailscontactContactForm') && document.querySelector('#IDX-detailsAddress')) || tries > 50) {
+    var idxSw=document.querySelector('#IDX-primaryPhoto .swiper-container,#IDX-primaryPhoto .swiper');
+        if ((document.querySelector('#IDX-detailscontactContactForm') && document.querySelector('#IDX-detailsAddress') && (idxSw&&idxSw.swiper)) || tries > 50) {
       clearInterval(iv);
       try { build(); } catch (e) { if (window.console) console.warn('ab-detail build error', e); }
     }
