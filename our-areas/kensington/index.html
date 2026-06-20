@@ -218,7 +218,7 @@
     <div class="listings-header">
       <div class="section-label">We ❤️ Kensington</div>
       <h2 class="section-title">Featured <span>Listings</span></h2>
-      <a href="//search.atbethesda.com/idx/results/listings?pt=1&ccz=city&city=Bethesda&minp=1500000&maxp=4000000" class="btn-view-all" target="_blank" rel="noopener">View All Listings →</a>
+      <a href="//search.atbethesda.com/idx/results/listings?pt=1&ccz=city&city=Kensington&state=MD" class="btn-view-all" target="_blank" rel="noopener">View All Listings →</a>
     </div>
     <div class="swiper-outer">
       <div class="area-featured-swiper swiper">
@@ -232,7 +232,7 @@
       <div class="swiper-button-next"></div>
     </div>
     <div class="listings-cta">
-      <a href="//search.atbethesda.com/idx/results/listings?pt=1&ccz=city&city=Bethesda&minp=1500000&maxp=4000000" class="btn-primary-red" target="_blank" rel="noopener">View All Listings</a>
+      <a href="//search.atbethesda.com/idx/results/listings?pt=1&ccz=city&city=Kensington&state=MD" class="btn-primary-red" target="_blank" rel="noopener">View All Listings</a>
     </div>
   </div>
   <script>
@@ -262,7 +262,7 @@
       }
       function extractFromIframe(){
         var iframe=document.createElement('iframe');
-        iframe.src='https://atbethesda.com/';
+        iframe.src='https://atbethesda.com/our-areas/kensington/widget.html';
         iframe.style.cssText='position:fixed;left:-9999px;top:0;width:1px;height:1px;border:none;';
         document.body.appendChild(iframe);
         iframe.addEventListener('load',function(){
@@ -284,12 +284,14 @@
                     var h4=article.querySelector('h4');var h5=article.querySelector('h5');
                     return{status:h5?h5.textContent.trim():'ACTIVE',price:h4?h4.textContent.trim():'',
                       address:addrEl?addrEl.textContent.trim():'',
-                      url:link?link.href:'https://search.atbethesda.com/idx/results/listings',
+                      url:link?(link.href.indexOf('search.atbethesda.com')>=0?link.href:''):'',
+                      mlsNum:article.getAttribute('data-mlsid')||'',
                       photo:(article.querySelector('img.idx-property-card__image')||imgs[0]||{}).src||'',
                       beds:spans[0]?spans[0].textContent.trim():'',
                       baths:spans[1]?spans[1].textContent.trim():'',
                       sqft:spans[2]?spans[2].textContent.trim():''};
                   });
+                  listings=listings.filter(function(l){return l.url;});
                   document.body.removeChild(iframe);
                   for(var i=listings.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=listings[i];listings[i]=listings[j];listings[j]=t;}
                   renderCards(listings);
