@@ -765,7 +765,7 @@
       </div>
     </div>
 
-    <!-- Hidden IDX widget ÃÂ¢ÃÂÃÂ data source only, never shown to user -->
+    <!-- Hidden IDX widget ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ data source only, never shown to user -->
     <div style="position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden" aria-hidden="true">
       <idx-listings-carousel id="idx-listings-carousel-160389"></idx-listings-carousel>
     </div>
@@ -850,7 +850,7 @@
             address:addrEls[0]?addrEls[0].textContent.trim():'',
             cityState:addrEls[1]?addrEls[1].textContent.trim():'',
             url:link?link.href:'https://search.atbethesda.com/idx/results/listings',
-            photo:(article.querySelector('img.idx-property-card__i')||imgs[0]||{}).src||'',
+            photo:(article.querySelector('img.idx-property-card__image')||imgs[0]||{}).src||'',
             beds:spans[0]?spans[0].textContent.trim():'',
             baths:spans[1]?spans[1].textContent.trim():'',
             sqft:spans[2]?spans[2].textContent.trim():''
