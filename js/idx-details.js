@@ -190,6 +190,7 @@
     if (!document.querySelector('.ab-swiper')) {
       var seen = {}, photos = [];
       Array.prototype.forEach.call(document.querySelectorAll('#IDX-detailsPageContainer img'), function (im) {
+        if (im.closest('.swiper-slide-duplicate')) return;
         var s = (im.getAttribute('src') || im.getAttribute('data-src') || '').trim();
         if (!/brightmls/i.test(s)) return;
         var key = s.split('?')[0];
