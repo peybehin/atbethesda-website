@@ -190,7 +190,11 @@
     if (!document.querySelector('.ab-swiper')) {
       var seen = {}, photos = [];
       Array.prototype.forEach.call(document.querySelectorAll('#IDX-detailsPageContainer img'), function (im) {
-        if (im.closest('.swiper-slide-duplicate')) return;
+        /* IDX runs its gallery as a loop-mode Swiper, which clones the LAST photo
+           to the front (.swiper-slide-duplicate). Reading DOM order would then put
+           that clone (often a floor plan) first. Skip the loop-clones (and our own
+           gallery) so we keep IDX's real, server-rendered order. */
+        if (im.closest('.swiper-slide-duplicate') || im.closest('.ab-swiper')) return;
         var s = (im.getAttribute('src') || im.getAttribute('data-src') || '').trim();
         if (!/brightmls/i.test(s)) return;
         var key = s.split('?')[0];
@@ -441,8 +445,7 @@
   var tries = 0;
   var iv = setInterval(function () {
     tries++;
-    var idxSw=document.querySelector('#IDX-primaryPhoto .swiper-container,#IDX-primaryPhoto .swiper');
-        if ((document.querySelector('#IDX-detailscontactContactForm') && document.querySelector('#IDX-detailsAddress') && (idxSw&&idxSw.swiper)) || tries > 50) {
+    if ((document.querySelector('#IDX-detailscontactContactForm') && document.querySelector('#IDX-detailsAddress')) || tries > 50) {
       clearInterval(iv);
       try { build(); } catch (e) { if (window.console) console.warn('ab-detail build error', e); }
     }
