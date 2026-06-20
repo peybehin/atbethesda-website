@@ -90,6 +90,8 @@
     "@media(max-width:600px){body.ab-detail #ab-connect .ab-ep-row{grid-template-columns:1fr;}}",
     "body.ab-detail #ab-connect .IDX-detailsPageTitle{display:none!important;}",
     "body.ab-detail #IDX-detailsAgentInfo{display:none!important;}",
+    "body.ab-detail #ab-connect .IDX-contactInfo{display:none!important;}",
+    "body.ab-detail #ab-connect .IDX-contact-form__title{display:none!important;}",
     "body.ab-detail .IDX-googleRecaptchaPolicy{display:none!important;}",
     "body.ab-detail .ab-contact-line{display:flex;align-items:center;gap:10px;margin:12px 0;font-size:.95rem;}",
     "body.ab-detail .ab-contact-line svg{width:16px;height:16px;color:var(--abd-red);flex:0 0 auto;}",
