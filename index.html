@@ -303,7 +303,7 @@
     #featured-areas { background: var(--gray-light); }
     .areas-inner { max-width: 1200px; margin: 0 auto; }
     .areas-header {
-      display: flex; justify-content: space-between; align-items: flex-end;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
       margin-bottom: 40px;
     }
     .areas-header a {
@@ -742,7 +742,7 @@
     <div class="listings-inner">
       <div class="listings-header">
         <div>
-          <div class="section-label">We â¤ï¸ Bethesda</div>
+          <div class="section-label">We Ã¢ÂÂ¤Ã¯Â¸Â Bethesda</div>
           <h2 class="section-title">Featured <span>Listings</span></h2>
         </div>
         <a href="//search.atbethesda.com/idx/results/listings?pt=1&ccz=city&city=Bethesda&minp=1500000&maxp=4000000" class="btn-view-all">View All Listings &rarr;</a>
@@ -764,7 +764,7 @@
       </div>
     </div>
 
-    <!-- Hidden IDX widget ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ data source only, never shown to user -->
+    <!-- Hidden IDX widget ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ data source only, never shown to user -->
     <div style="position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden" aria-hidden="true">
       <idx-listings-carousel id="idx-listings-carousel-160389"></idx-listings-carousel>
     </div>
@@ -875,8 +875,7 @@
   <div class="areas-inner">
     <div class="areas-header">
       <div>
-        <div class="section-label">Explore the Area</div>
-        <h2 class="section-title">Featured <span>Areas</span></h2>
+        <h2 class="section-title" style="text-align:center;">Featured <span>Areas</span></h2>
       </div>
       <a href="/our-areas/">View All Areas &rarr;</a>
     </div>
