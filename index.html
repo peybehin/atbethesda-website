@@ -761,8 +761,13 @@
       </div>
 
       <div class="listings-cta">
-        <a href="//search.atbethesda.com/idx/results/listings?pt=1&ccz=city&city=Bethesda&minp=1500000&maxp=4000000" class="btn btn-primary-red">View All Listings</a>
+        <a href="//search.atbethesda.com/idx/results/listings?pt=1&ccz=city&city=Bethesda&minp=1500000&maxp=4000000" class="btn-primary-red">View All Listings</a>
       </div>
+    </div>
+
+    <!-- Hidden IDX widget — data source only, never shown to user -->
+    <div style="position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden" aria-hidden="true">
+      <idx-listings-carousel id="idx-listings-carousel-160389"></idx-listings-carousel>
     </div>
 
     <style>
@@ -775,12 +780,13 @@
       .listings-subhead{font-size:14px;color:#555;margin:0;}
       .btn-view-all{font-size:13px;font-weight:700;color:#0a0a0a;text-decoration:none;border-bottom:2px solid #0a0a0a;white-space:nowrap;}
       .prop-card{background:#fff;box-shadow:rgba(0,0,0,.08) 0 4px 20px;border-radius:0;overflow:hidden;height:100%;}
-      .prop-card--loading{opacity:.4;pointer-events:none;}
+      .prop-card--loading{opacity:.25;pointer-events:none;animation:shimmer 1.4s infinite;}
+      @keyframes shimmer{0%,100%{opacity:.2}50%{opacity:.4}}
       .prop-card__img-wrap{position:relative;height:288px;overflow:hidden;background:#d4d4d4;}
       .prop-card__img{width:100%;height:100%;object-fit:cover;display:block;}
       .prop-card__status{position:absolute;top:16px;left:16px;background:var(--red,#e02020);color:#fff;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;}
       .prop-card__body{padding:20px;}
-      .prop-card__price{color:var(--red,#e02020);font-size:24px;font-weight:700;margin-bottom:4px;font-family:inherit;}
+      .prop-card__price{color:var(--red,#e02020);font-size:24px;font-weight:700;margin-bottom:4px;}
       .prop-card__address{font-weight:600;font-size:15px;color:#1a1a1a;margin-bottom:2px;}
       .prop-card__city{font-size:13px;color:#666;margin-bottom:10px;}
       .prop-card__details{font-size:13px;color:#444;margin-bottom:18px;display:flex;gap:16px;}
@@ -794,6 +800,7 @@
       .btn-primary-red:hover{opacity:.88;}
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
+    <script charset="UTF-8" type="text/javascript" id="idxwidgetsrc-160389" src="https://search.atbethesda.com/idx/widgets/160389"></script>
     <script>
     (function(){
       var sw = new Swiper('.featured-swiper',{
@@ -801,28 +808,57 @@
         navigation:{nextEl:'.swiper-button-next',prevEl:'.swiper-button-prev'},
         breakpoints:{680:{slidesPerView:2},1024:{slidesPerView:3}}
       });
-      fetch('/idx-featured').then(function(r){return r.json();}).then(function(data){
-        var listings = data.listings||[];
-        if(!listings.length) return;
-        var wrapper = document.getElementById('featured-swiper-wrapper');
-        wrapper.innerHTML = listings.map(function(l){
-          var photo = l.photo ? (l.photo.startsWith('//')?'https:'+l.photo:l.photo) : '';
-          var imgTag = photo ? '<img src="'+photo+'" alt="'+l.address+'" class="prop-card__img" loading="lazy">' : '';
-          var status = (l.status||'ACTIVE');
-          var details = [l.beds?l.beds+' Beds':'',l.baths?l.baths+' Baths':'',l.sqft?l.sqft+' sqft':''].filter(Boolean);
-          return '<div class="swiper-slide"><div class="prop-card">'+
-            '<div class="prop-card__img-wrap">'+imgTag+
+
+      function renderCards(listings){
+        var wrapper=document.getElementById('featured-swiper-wrapper');
+        if(!wrapper||!listings||!listings.length)return;
+        wrapper.innerHTML=listings.slice(0,9).map(function(l){
+          var photo=l.image&&(l.image.url||(l.image.resized&&l.image.resized.url)||(l.image.thumb&&l.image.thumb.url))||'';
+          if(photo&&photo.startsWith('//'))photo='https:'+photo;
+          var status=(l.propStatus||'ACTIVE').replace(/_/g,' ');
+          var details=[l.bedrooms?l.bedrooms+' Beds':'',l.totalBaths?l.totalBaths+' Baths':'',l.sqFt?l.sqFt+' sqft':''].filter(Boolean);
+          var url=l.detailsURL||'https://search.atbethesda.com/idx/results/listings';
+          return'<div class="swiper-slide"><div class="prop-card">'+
+            '<div class="prop-card__img-wrap">'+(photo?'<img src="'+photo+'" alt="" class="prop-card__img" loading="lazy">':'')+
             '<span class="prop-card__status">'+status+'</span></div>'+
             '<div class="prop-card__body">'+
-            '<div class="prop-card__price">'+l.price+'</div>'+
+            '<div class="prop-card__price">'+l.listingPrice+'</div>'+
             '<div class="prop-card__address">'+l.address+'</div>'+
-            '<div class="prop-card__city">'+l.city+', '+l.state+' '+l.zip+'</div>'+
-            '<div class="prop-card__details">'+details.map(function(d){return '<span>'+d+'</span>';}).join('')+'</div>'+
-            '<a href="'+l.url+'" class="prop-card__btn" target="_blank" rel="noopener">View Details</a>'+
+            '<div class="prop-card__city">'+l.cityName+', '+l.stateAbrv+' '+l.zipcode+'</div>'+
+            '<div class="prop-card__details">'+details.map(function(d){return'<span>'+d+'</span>';}).join('')+'</div>'+
+            '<a href="'+url+'" class="prop-card__btn" target="_blank" rel="noopener">View Details</a>'+
             '</div></div></div>';
         }).join('');
         sw.update();
-      }).catch(function(){});
+      }
+
+      function tryExtract(){
+        var el=document.getElementById('idx-listings-carousel-160389');
+        if(!el)return false;
+        // Vue 2: el.__vue__
+        var v2=el.__vue__;
+        if(v2){
+          var items=(v2.$data&&v2.$data.listings)||(v2.$props&&v2.$props.listings)||[];
+          if(items.length){renderCards(items);return true;}
+        }
+        // Vue 2 on child elements
+        var ch=el.children;
+        for(var i=0;i<ch.length;i++){var v=ch[i].__vue__;if(v&&v.$data&&v.$data.listings&&v.$data.listings.length){renderCards(v.$data.listings);return true;}}
+        // Vue 3
+        if(el.__vueParentComponent){
+          var ctx=el.__vueParentComponent.ctx;
+          var items2=ctx&&(ctx.listings||ctx.widgetListings||(ctx.widgetData&&ctx.widgetData.listings))||[];
+          if(items2.length){renderCards(items2);return true;}
+        }
+        return false;
+      }
+
+      var attempts=0;
+      function poll(){
+        if(tryExtract())return;
+        if(++attempts<24)setTimeout(poll,500);
+      }
+      setTimeout(poll,1500);
     })();
     </script>
   </section>
