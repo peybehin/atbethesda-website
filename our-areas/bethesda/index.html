@@ -341,7 +341,24 @@
           setTimeout(poll,1000);
         });
       }
-      extractFromIframe();
+      function fetchFromArea(){
+        var link=document.querySelector('#area-listings a.btn-view-all');
+        if(!link){extractFromIframe();return;}
+        var href=link.href||'';
+        var qi=href.indexOf('?');
+        var qp=new URLSearchParams(qi>=0?href.slice(qi+1):'');
+        var city=qp.get('city')||'';
+        var state=qp.get('state')||'';
+        var nbhd=qp.get('neighborhood')||'';
+        var api='/idx-area?';
+        if(nbhd)api+='neighborhood='+encodeURIComponent(nbhd);
+        else api+='city='+encodeURIComponent(city)+(state?'&state='+encodeURIComponent(state):'');
+        fetch(api).then(function(r){return r.json();}).then(function(lst){
+          if(lst&&Array.isArray(lst)&&lst.length>0){renderCards(lst);}
+          else{extractFromIframe();}
+        }).catch(function(){extractFromIframe();});
+      }
+      fetchFromArea();
     }
     if(typeof Swiper!=='undefined'){
       initAreaCarousel();
