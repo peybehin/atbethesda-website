@@ -843,14 +843,14 @@
           var link=article.querySelector('a.idx-property-card__l')||article.querySelector('a[href]');
           var imgs=article.querySelectorAll('img');
           var spans=article.querySelectorAll('span.idx-property-card__single-item');
-          var addrEls=article.querySelectorAll('.idx-property-card__property-ac');
+          var addrEl=article.querySelector('.idx-property-card__address');
           var h4=article.querySelector('h4');
           var h5=article.querySelector('h5');
           return{
             status:h5?h5.textContent.trim():'ACTIVE',
             price:h4?h4.textContent.trim():'',
-            address:addrEls[0]?addrEls[0].textContent.trim():'',
-            cityState:addrEls[1]?addrEls[1].textContent.trim():'',
+            address:addrEl?addrEl.textContent.trim():'',
+            cityState:'',
             url:link?link.href:'https://search.atbethesda.com/idx/results/listings',
             photo:(article.querySelector('img.idx-property-card__image')||imgs[0]||{}).src||'',
             beds:spans[0]?spans[0].textContent.trim():'',
