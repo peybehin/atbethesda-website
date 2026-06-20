@@ -17,60 +17,41 @@ export async function onRequest(context) {
   }
 
   const url = new URL(request.url);
-  const city        = url.searchParams.get('city')         || '';
-  const state       = url.searchParams.get('state')        || '';
+  const city         = url.searchParams.get('city')         || '';
+  const state        = url.searchParams.get('state')        || '';
   const neighborhood = url.searchParams.get('neighborhood') || '';
-  const debug       = url.searchParams.get('debug')        === '1';
+  const debug        = url.searchParams.get('debug')        === '1';
+
+  // Required IDX Broker headers
+  const idxHeaders = {
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'accesskey': apiKey,
+    'outputtype': 'json'
+  };
 
   try {
-    // Build query for IDX Broker REST API
-    // Only SF (proptype=sf), newest first
-    const params = new URLSearchParams();
-    params.set('outputtype', 'json');
-    params.set('orderby', 'listingDate');
-    params.set('order', 'desc');
-    params.set('limit', '12');
-    // Property type: single family only
-    params.append('proptype[]', 'sf');
+    // Fetch /clients/featured — the only client-tier endpoint for active listings
+    const featResp = await fetch(
+      'https://api.idxbroker.com/clients/featured?outputtype=json&limit=50',
+      { headers: idxHeaders }
+    );
 
-    // Area filter
-    if (neighborhood) {
-      params.append('neighborhood[]', neighborhood);
-    } else if (city) {
-      params.append('city[]', city);
-      if (state) params.append('state[]', state);
-    }
-
-    const idxUrl = 'https://api.idxbroker.com/clients/listings?' + params.toString();
-
-    const apiResp = await fetch(idxUrl, {
-      headers: {
-        'accesskey': apiKey,
-        'outputtype': 'json'
-      }
-    });
-
-    const rawText = await apiResp.text();
+    const featText = await featResp.text();
 
     if (debug) {
       return new Response(JSON.stringify({
-        status: apiResp.status,
-        url: idxUrl,
+        status: featResp.status,
         keyPrefix: apiKey.slice(0,5),
-        body: rawText.slice(0, 1000)
+        bodyPreview: featText.slice(0, 500)
       }), { status: 200, headers: corsHeaders });
     }
 
-    if (apiResp.status === 204 || !rawText || rawText === '[]') {
+    if (!featResp.ok || featResp.status === 204) {
       return new Response(JSON.stringify([]), { headers: corsHeaders });
     }
 
-    if (!apiResp.ok) {
-      return new Response(JSON.stringify([]), { status: 200, headers: corsHeaders });
-    }
-
     let data;
-    try { data = JSON.parse(rawText); } catch(e) {
+    try { data = JSON.parse(featText); } catch(e) {
       return new Response(JSON.stringify([]), { headers: corsHeaders });
     }
 
@@ -78,27 +59,58 @@ export async function onRequest(context) {
       return new Response(JSON.stringify([]), { headers: corsHeaders });
     }
 
-    const rows = Array.isArray(data) ? data : Object.values(data);
-    const listings = rows
-      .filter(l => l && typeof l === 'object')
-      .map(l => {
-        const raw = String(l.listingPrice || l.price || '').replace(/[^0-9]/g, '');
-        const price = raw ? '$' + Number(raw).toLocaleString('en-US') : '';
-        const photo = (l.image && l.image.url)
-                   || (l.image && l.image.resized && l.image.resized.url)
-                   || (Array.isArray(l.photos) && l.photos[0])
-                   || '';
-        return {
-          price,
-          address: [l.address, l.cityName, l.state, l.zip].filter(Boolean).join(', '),
-          beds:   l.bedrooms  || l.beds || '',
-          baths:  l.totalBaths || l.baths || '',
-          sqft:   l.sqFt || l.sqft || '',
-          status: (l.propStatus || l.status || 'Active').replace(/_/g, ' '),
-          photo,
-          url: l.detailsLink || l.url || 'https://search.atbethesda.com/idx/results/listings'
-        };
-      });
+    const allListings = Array.isArray(data) ? data : Object.values(data);
+
+    // Filter: SF only (propType === 'sf' or pt=1), then by city/neighborhood
+    let filtered = allListings.filter(l => {
+      if (!l || typeof l !== 'object') return false;
+      const pt = (l.propType || l.idxPropType || l.pt || '').toLowerCase();
+      const isSF = pt === 'sf' || pt === '1' || pt === 'res' || pt === '';
+      return isSF;
+    });
+
+    if (city) {
+      const cityLow = city.toLowerCase();
+      const cityFiltered = filtered.filter(l =>
+        (l.cityName || l.city || '').toLowerCase() === cityLow
+      );
+      if (cityFiltered.length > 0) filtered = cityFiltered;
+    }
+
+    if (neighborhood) {
+      const nbhdLow = neighborhood.toLowerCase();
+      const nbhdFiltered = filtered.filter(l =>
+        (l.subdivision || l.neighborhood || l.cityName || '').toLowerCase().includes(nbhdLow)
+      );
+      if (nbhdFiltered.length > 0) filtered = nbhdFiltered;
+    }
+
+    // Sort by listing date newest first
+    filtered.sort((a, b) => {
+      const da = new Date(a.listingDate || a.dateAdded || 0);
+      const db = new Date(b.listingDate || b.dateAdded || 0);
+      return db - da;
+    });
+
+    const listings = filtered.slice(0, 9).map(l => {
+      const raw = String(l.listingPrice || l.price || '').replace(/[^0-9]/g, '');
+      const price = raw ? '$' + Number(raw).toLocaleString('en-US') : '';
+      const photo = (l.image && l.image.url)
+                 || (l.image && l.image.resized && l.image.resized.url)
+                 || (Array.isArray(l.photos) && l.photos[0])
+                 || (typeof l.photos === 'string' && l.photos)
+                 || '';
+      return {
+        price,
+        address: [l.address, l.cityName || l.city, l.state, l.zip].filter(Boolean).join(', '),
+        beds:   l.bedrooms  || l.beds || '',
+        baths:  l.totalBaths || l.baths || '',
+        sqft:   l.sqFt || l.sqft || '',
+        status: (l.propStatus || l.status || 'Active').replace(/_/g, ' '),
+        photo,
+        url: l.detailsLink || l.url || 'https://search.atbethesda.com/idx/results/listings'
+      };
+    });
 
     return new Response(JSON.stringify(listings), { headers: corsHeaders });
 
