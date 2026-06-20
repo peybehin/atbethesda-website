@@ -82,7 +82,7 @@
   <a href="/" class="nav-logo"><img src="/images/blog/BETHESDA-w-RED.png" alt="@Bethesda Real Estate" /></a>
   <ul class="nav-links">
     <li><a href="/">Home</a></li>
-    <li class="nav-dropdown"><a href="/properties/">Buy â¾</a>
+    <li class="nav-dropdown"><a href="/properties/">Buy ▾</a>
       <ul class="nav-dropdown-menu">
         <li><a href="/properties/">Properties</a></li>
         <li><a href="/perfect-home-finder/">Perfect Home Finder</a></li>
@@ -90,14 +90,14 @@
         <li><a href="/mortgage-calculator/">Mortgage Calculator</a></li>
       </ul>
     </li>
-    <li class="nav-dropdown"><a href="/whats-my-home-worth/">Sell â¾</a>
+    <li class="nav-dropdown"><a href="/whats-my-home-worth/">Sell ▾</a>
       <ul class="nav-dropdown-menu">
         <li><a href="/whats-my-home-worth/">Home Valuation</a></li>
         <li><a href="/sellers-guide/">Seller's Guide</a></li>
       </ul>
     </li>
     <li><a href="/our-areas/" class="active">Featured Areas</a></li>
-    <li class="nav-dropdown"><a href="/about/">About â¾</a>
+    <li class="nav-dropdown"><a href="/about/">About ▾</a>
       <ul class="nav-dropdown-menu">
         <li><a href="/about/">About Pey</a></li>
         <li><a href="/testimonials/">Testimonials</a></li>
@@ -122,7 +122,7 @@
     </div>
     <span class="section-label" style="color:rgba(255,255,255,.6);display:block;">Montgomery County, MD</span>
     <h1>North Bethesda, <span>Maryland</span></h1>
-    <p>A community in transformation â Metro-connected, walkable, and packed with new energy.</p>
+    <p>A community in transformation — Metro-connected, walkable, and packed with new energy.</p>
     <div style="display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;">
       <a href="/properties/?area=north-bethesda" class="btn-primary">View Homes for Sale</a>
       <a href="/whats-my-home-worth/" class="btn-outline light">Get Home Value</a>
@@ -137,8 +137,8 @@
       <div class="area-intro-text">
         <span class="section-label">About the Area</span>
         <h2>Why People Love <span style="color:var(--red);">North Bethesda</span></h2>
-        <p>North Bethesda is one of Montgomery County's most exciting evolving markets. Anchored by the White Flint Metro station and the Pike &amp; Rose mixed-use development, it's a community in the middle of a remarkable transformation â from a car-dependent strip of big-box retail into a genuine live-work-play urban district with walkable restaurants, boutiques, entertainment, and residential towers.</p>
-        <p>Pike &amp; Rose has become one of the region's standout destinations, bringing a curated mix of dining, entertainment, and independent retail that draws visitors from across the Metro. At the same time, surrounding neighborhoods of traditional single-family homes and townhomes offer buyers more conventional suburban living at a slight discount to nearby Bethesda â with the same MCPS school quality.</p>
+        <p>North Bethesda is one of Montgomery County's most exciting evolving markets. Anchored by the White Flint Metro station and the Pike &amp; Rose mixed-use development, it's a community in the middle of a remarkable transformation — from a car-dependent strip of big-box retail into a genuine live-work-play urban district with walkable restaurants, boutiques, entertainment, and residential towers.</p>
+        <p>Pike &amp; Rose has become one of the region's standout destinations, bringing a curated mix of dining, entertainment, and independent retail that draws visitors from across the Metro. At the same time, surrounding neighborhoods of traditional single-family homes and townhomes offer buyers more conventional suburban living at a slight discount to nearby Bethesda — with the same MCPS school quality.</p>
         <p>With the Red Line running directly through White Flint, DC is under 30 minutes away. And with continued development planned along Rockville Pike, North Bethesda's trajectory is unmistakably upward. Buyers who get in now are positioned to benefit from one of the most significant community transformations in Montgomery County's recent history.</p>
         <div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;">
           <a href="/properties/?area=north-bethesda" class="btn-primary">Browse North Bethesda Listings</a>
@@ -157,7 +157,7 @@
         </div>
         <div class="area-detail-row">
           <span class="area-detail-label">Metro Access</span>
-          <span class="area-detail-value">Red Line (White Flint) â</span>
+          <span class="area-detail-value">Red Line (White Flint) ✅</span>
         </div>
         <div class="area-detail-row">
           <span class="area-detail-label">Drive to DC</span>
@@ -216,9 +216,9 @@
   </style>
   <div class="listings-inner">
     <div class="listings-header">
-      <div class="section-label">We â¤ï¸ North Bethesda</div>
+      <div class="section-label">We ❤️ North Bethesda</div>
       <h2 class="section-title">Featured <span>Listings</span></h2>
-      <a href="//search.atbethesda.com/idx/results/listings?pt=1&ccz=city&city=Bethesda&minp=1500000&maxp=4000000" class="btn-view-all" target="_blank" rel="noopener">View All Listings â</a>
+      <a href="//search.atbethesda.com/idx/results/listings?pt=1&ccz=city&city=Bethesda&minp=1500000&maxp=4000000" class="btn-view-all" target="_blank" rel="noopener">View All Listings →</a>
     </div>
     <div class="swiper-outer">
       <div class="area-featured-swiper swiper">
@@ -292,7 +292,7 @@
                   });
                   document.body.removeChild(iframe);
                   for(var i=listings.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=listings[i];listings[i]=listings[j];listings[j]=t;}
-                  var _lnk=document.querySelector('#area-listings a.btn-view-all'),_ec='';if(_lnk){var _qs=new URLSearchParams((_lnk.href+'').split('?')[1]||'');_ec=(_qs.get('city')||_qs.get('neighborhood')||'').toLowerCase();}var _fl=_ec?listings.filter(function(l){return(l.address||'').toLowerCase().indexOf(_ec)>=0;}):listings;if(_fl.length){renderCards(_fl);}else{var _sw=document.querySelector('#area-listings .swiper');if(_sw)_sw.style.display='none';}
+                  renderCards(listings);
                   return;
                 }
               }
@@ -340,7 +340,7 @@
   <div class="inner">
     <span class="section-label" style="color:var(--red);">Live Market Data</span>
     <h2 class="section-title" style="color:var(--black);">North Bethesda <span>Market Trends</span></h2>
-    <div style="text-align:center;margin-top:4px;"><span style="display:inline-block;background:var(--red,#e02020);color:#fff;font-size:10px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;padding:5px 16px;margin-bottom:14px;">Updated Every Week</span><p style="color:#555;font-size:1.05rem;max-width:580px;line-height:1.75;margin:0 auto;">Current snapshot of the North Bethesda real estate market â live data from <strong>Altos Research</strong>, refreshed <strong style="color:var(--red,#e02020);">every week</strong>.</p></div>
+    <div style="text-align:center;margin-top:4px;"><span style="display:inline-block;background:var(--red,#e02020);color:#fff;font-size:10px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;padding:5px 16px;margin-bottom:14px;">Updated Every Week</span><p style="color:#555;font-size:1.05rem;max-width:580px;line-height:1.75;margin:0 auto;">Current snapshot of the North Bethesda real estate market — live data from <strong>Altos Research</strong>, refreshed <strong style="color:var(--red,#e02020);">every week</strong>.</p></div>
   </div>
 </section>
 
@@ -364,12 +364,12 @@
     <p class="section-sub">School assignments vary by address. Always verify current boundaries with the school district before purchasing.</p>
     <div class="schools-grid">
         <div class="school-card" style="border-left: 4px solid var(--red)">
-          <div class="school-icon">Ã°ÂÂÂ</div>
+          <div class="school-icon">ð</div>
           <div class="school-info">
             <strong>Thomas S. Wootton High School</strong>
-            <span>Grades 9Ã¢ÂÂ12</span>
+            <span>Grades 9â12</span>
             <div class="school-rating">10/10</div>
-            <a href="https://www.greatschools.org/maryland/rockville/966-Thomas-S.-Wootton-High-School/" target="_blank" rel="noopener" class="gs-link">View on GreatSchools Ã¢ÂÂ</a>
+            <a href="https://www.greatschools.org/maryland/rockville/966-Thomas-S.-Wootton-High-School/" target="_blank" rel="noopener" class="gs-link">View on GreatSchools â</a>
           </div>
         </div>
     <p style="margin-top:24px;font-size:.78rem;color:var(--gray-text);">
