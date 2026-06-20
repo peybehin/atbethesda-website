@@ -97,7 +97,13 @@
     "body.ab-detail .ab-idx-credit a,footer .ab-idx-credit a{color:#6a6a6a!important;text-decoration:none;}",
     "body.ab-detail #ab-connect input::placeholder,body.ab-detail #ab-connect textarea::placeholder{color:#7a7a7a;}",
     "body.ab-detail #ab-connect input:focus,body.ab-detail #ab-connect textarea:focus{border-color:var(--abd-red)!important;outline:none;}",
-    "body.ab-detail #ab-connect .ab-ep-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;}",
+    "body.ab-detail #ab-connect .ab-ep-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;}",
+    /* align + even spacing: kill IDX's 30px side margins, make every control full-width & flush */
+    "body.ab-detail #ab-connect .IDX-customRegistrationFields{display:flex!important;flex-direction:column!important;gap:20px!important;margin:0 0 20px 0!important;padding:0!important;}",
+    "body.ab-detail #ab-connect .IDX-customRegistrationFields>div{margin-left:0!important;margin-right:0!important;width:100%!important;box-sizing:border-box!important;}",
+    "body.ab-detail #ab-connect .IDX-form-group--PL{margin-left:0!important;margin-right:0!important;width:100%!important;}",
+    "body.ab-detail #ab-connect .IDX-message-column{margin:0!important;padding:0!important;}",
+    "body.ab-detail #ab-connect .IDX-message-column .IDX-form-group--PL{margin:0!important;width:100%!important;}",
     "body.ab-detail #ab-connect button,body.ab-detail #ab-connect input[type=submit]{background:var(--abd-red)!important;color:#fff!important;border:0!important;border-radius:4px!important;padding:14px 28px!important;width:auto!important;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;}",
     "@media(max-width:600px){body.ab-detail #ab-connect .ab-ep-row{grid-template-columns:1fr;}}",
     "body.ab-detail #ab-connect .IDX-detailsPageTitle{display:none!important;}",
@@ -389,6 +395,12 @@
         row.appendChild(c1); row.appendChild(c2);
         custom.appendChild(row);
       }
+      /* hide now-empty / hidden IDX field wrappers so vertical spacing stays even */
+      Array.prototype.forEach.call(custom.children, function (ch) {
+        if (ch.classList.contains('ab-ep-row')) return;
+        var f = ch.querySelector('input:not([type=hidden]),textarea');
+        if (!f || f.offsetParent === null) ch.style.display = 'none';
+      });
     }
 
     /* prefill message */
