@@ -858,6 +858,7 @@
             sqft:spans[2]?spans[2].textContent.trim():''
           };
         });
+        for(var i=listings.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=listings[i];listings[i]=listings[j];listings[j]=t;}
         renderCards(listings);
         return true;
       }
