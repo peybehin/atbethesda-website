@@ -738,19 +738,94 @@
 
 
 <!-- -- FEATURED LISTINGS -- -->
-<section id="featured-listings">
-  <div class="listings-inner">
-    <div class="listings-header">
-      <div>
-        <div class="section-label">DC Metro Real Estate</div>
-        <h2 class="section-title">Featured <span>Listings</span></h2>
+  <section id="featured-listings">
+    <div class="listings-inner">
+      <div class="listings-header">
+        <div>
+          <div class="section-label">DC Metro Real Estate</div>
+          <h2 class="section-title">Featured <span>Listings</span></h2>
+          <p class="listings-subhead">Detached homes in Bethesda &bull; $1.5M&ndash;$4M</p>
+        </div>
+        <a href="//search.atbethesda.com/idx/results/listings?pt=1&ccz=city&city=Bethesda&minp=1500000&maxp=4000000" class="btn-view-all">View All Listings &rarr;</a>
       </div>
-      <a href="//search.atbethesda.com/idx/results/listings">View All Listings &rarr;</a>
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css">
+      <div class="featured-swiper swiper">
+        <div class="swiper-wrapper" id="featured-swiper-wrapper">
+          <div class="swiper-slide"><div class="prop-card prop-card--loading"><div class="prop-card__img-wrap"></div><div class="prop-card__body"><div class="prop-card__price">&nbsp;</div><div class="prop-card__address">&nbsp;</div></div></div></div>
+          <div class="swiper-slide"><div class="prop-card prop-card--loading"><div class="prop-card__img-wrap"></div><div class="prop-card__body"><div class="prop-card__price">&nbsp;</div><div class="prop-card__address">&nbsp;</div></div></div></div>
+          <div class="swiper-slide"><div class="prop-card prop-card--loading"><div class="prop-card__img-wrap"></div><div class="prop-card__body"><div class="prop-card__price">&nbsp;</div><div class="prop-card__address">&nbsp;</div></div></div></div>
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+
+      <div class="listings-cta">
+        <a href="//search.atbethesda.com/idx/results/listings?pt=1&ccz=city&city=Bethesda&minp=1500000&maxp=4000000" class="btn btn-primary-red">View All Listings</a>
+      </div>
     </div>
-    <!-- IDX Broker Featured Slide Show widget -->
-    <script charset="UTF-8" type="text/javascript" id="idxwidgetsrc-160389" src="//search.atbethesda.com/idx/widgets/160389"></script>
-  </div>
-</section>
+
+    <style>
+      #featured-listings{background:#e8e8e8;padding:80px 24px;}
+      #featured-listings .listings-inner{max-width:1200px;margin:0 auto;}
+      #featured-listings .listings-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:16px;}
+      #featured-listings .section-label{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red,#e02020);margin-bottom:8px;}
+      #featured-listings h2.section-title{font-size:clamp(32px,4vw,56px);font-weight:800;text-transform:uppercase;color:#0a0a0a;margin:0 0 6px;}
+      #featured-listings h2.section-title span{color:var(--red,#e02020);}
+      .listings-subhead{font-size:14px;color:#555;margin:0;}
+      .btn-view-all{font-size:13px;font-weight:700;color:#0a0a0a;text-decoration:none;border-bottom:2px solid #0a0a0a;white-space:nowrap;}
+      .prop-card{background:#fff;box-shadow:rgba(0,0,0,.08) 0 4px 20px;border-radius:0;overflow:hidden;height:100%;}
+      .prop-card--loading{opacity:.4;pointer-events:none;}
+      .prop-card__img-wrap{position:relative;height:288px;overflow:hidden;background:#d4d4d4;}
+      .prop-card__img{width:100%;height:100%;object-fit:cover;display:block;}
+      .prop-card__status{position:absolute;top:16px;left:16px;background:var(--red,#e02020);color:#fff;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;}
+      .prop-card__body{padding:20px;}
+      .prop-card__price{color:var(--red,#e02020);font-size:24px;font-weight:700;margin-bottom:4px;font-family:inherit;}
+      .prop-card__address{font-weight:600;font-size:15px;color:#1a1a1a;margin-bottom:2px;}
+      .prop-card__city{font-size:13px;color:#666;margin-bottom:10px;}
+      .prop-card__details{font-size:13px;color:#444;margin-bottom:18px;display:flex;gap:16px;}
+      .prop-card__btn{display:block;text-align:center;border:2px solid #0a0a0a;color:#0a0a0a;background:transparent;padding:10px 16px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:background .18s,color .18s;}
+      .prop-card__btn:hover{background:#0a0a0a;color:#fff;}
+      .featured-swiper{padding-bottom:8px;}
+      .featured-swiper .swiper-button-next,.featured-swiper .swiper-button-prev{color:#0a0a0a;background:#fff;width:40px;height:40px;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,.15);}
+      .featured-swiper .swiper-button-next::after,.featured-swiper .swiper-button-prev::after{font-size:14px;font-weight:900;}
+      .listings-cta{text-align:center;margin-top:48px;}
+      .btn-primary-red{display:inline-block;background:var(--red,#e02020);color:#fff;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:14px 40px;text-decoration:none;transition:opacity .18s;}
+      .btn-primary-red:hover{opacity:.88;}
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
+    <script>
+    (function(){
+      var sw = new Swiper('.featured-swiper',{
+        slidesPerView:1,spaceBetween:24,
+        navigation:{nextEl:'.swiper-button-next',prevEl:'.swiper-button-prev'},
+        breakpoints:{680:{slidesPerView:2},1024:{slidesPerView:3}}
+      });
+      fetch('/idx-featured').then(function(r){return r.json();}).then(function(data){
+        var listings = data.listings||[];
+        if(!listings.length) return;
+        var wrapper = document.getElementById('featured-swiper-wrapper');
+        wrapper.innerHTML = listings.map(function(l){
+          var photo = l.photo ? (l.photo.startsWith('//')?'https:'+l.photo:l.photo) : '';
+          var imgTag = photo ? '<img src="'+photo+'" alt="'+l.address+'" class="prop-card__img" loading="lazy">' : '';
+          var status = (l.status||'ACTIVE');
+          var details = [l.beds?l.beds+' Beds':'',l.baths?l.baths+' Baths':'',l.sqft?l.sqft+' sqft':''].filter(Boolean);
+          return '<div class="swiper-slide"><div class="prop-card">'+
+            '<div class="prop-card__img-wrap">'+imgTag+
+            '<span class="prop-card__status">'+status+'</span></div>'+
+            '<div class="prop-card__body">'+
+            '<div class="prop-card__price">'+l.price+'</div>'+
+            '<div class="prop-card__address">'+l.address+'</div>'+
+            '<div class="prop-card__city">'+l.city+', '+l.state+' '+l.zip+'</div>'+
+            '<div class="prop-card__details">'+details.map(function(d){return '<span>'+d+'</span>';}).join('')+'</div>'+
+            '<a href="'+l.url+'" class="prop-card__btn" target="_blank" rel="noopener">View Details</a>'+
+            '</div></div></div>';
+        }).join('');
+        sw.update();
+      }).catch(function(){});
+    })();
+    </script>
+  </section>
 
 <!-- -- FEATURED AREAS -- -->
 <section id="featured-areas">
