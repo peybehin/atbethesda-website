@@ -72,6 +72,7 @@
     "body.ab-detail .ab-map{display:block!important;width:100%!important;min-height:420px;height:420px!important;border:0;border-radius:10px;}",
     /* let's connect */
     "body.ab-detail #ab-connect{background:#0a0a0a;color:#fff;padding:56px 0;margin-top:48px;margin-bottom:0!important;}",
+    "body.ab-detail .idx-content-area>img{display:none!important;}",
     "body.ab-detail #ab-connect .ab-connect-inner{max-width:1280px;margin:0 auto;padding:0 24px;}",
     "@media(max-width:1320px){body.ab-detail #ab-connect .ab-connect-inner{padding:0 22px;}}",
     "body.ab-detail .ab-inquiry{display:flex;align-items:center;gap:14px;border:1px solid var(--abd-red);border-left:4px solid var(--abd-red);background:rgba(183,37,69,.10);padding:16px 22px;border-radius:6px;margin-bottom:34px;}",
