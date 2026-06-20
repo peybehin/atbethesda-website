@@ -1382,7 +1382,7 @@ async function updateVlogIndex(post) {
     const cat = CAT_MAP[post.category] || post.category || 'Buyers Corner';
     const tags = (post.tags || []).map(t => '<span class="blog-tag">' + t + '</span>').join('');
     const snippet = (post.snippet || post.meta || '').slice(0, 130);
-    const card = '<article class="blog-card" data-cats='["' + cat + '"]' onclick="location.href='/' + post.slug + '/'">' +
+    const card = '<article class="blog-card" data-cats=\'["' + cat + '"]\' onclick="location.href='/' + post.slug + '/'">' +
       '\n    <div class="blog-card-img">' +
       '\n      <img src="' + (post.image || '') + '" alt="' + post.title + '" loading="lazy"/>' +
       '\n    </div>' +
