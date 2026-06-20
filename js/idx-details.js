@@ -99,7 +99,7 @@
     "body.ab-detail #ab-connect input:focus,body.ab-detail #ab-connect textarea:focus{border-color:var(--abd-red)!important;outline:none;}",
     "body.ab-detail #ab-connect .ab-ep-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;}",
     /* align + even spacing: kill IDX's 30px side margins, make every control full-width & flush */
-    "body.ab-detail #ab-connect .IDX-customRegistrationFields{display:flex!important;flex-direction:column!important;gap:20px!important;margin:0 0 20px 0!important;padding:0!important;}",
+    "body.ab-detail #ab-connect .IDX-customRegistrationFields{display:flex!important;flex-direction:column!important;gap:20px!important;margin:0!important;padding:0!important;}",
     "body.ab-detail #ab-connect .IDX-customRegistrationFields>div{margin-left:0!important;margin-right:0!important;width:100%!important;box-sizing:border-box!important;}",
     "body.ab-detail #ab-connect .IDX-form-group--PL{margin-left:0!important;margin-right:0!important;width:100%!important;}",
     "body.ab-detail #ab-connect .IDX-message-column{margin:0!important;padding:0!important;}",
