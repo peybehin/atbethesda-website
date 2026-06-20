@@ -72,17 +72,26 @@
     "body.ab-detail .ab-map{display:block!important;width:100%!important;min-height:420px;height:420px!important;border:0;border-radius:10px;}",
     /* let's connect */
     "body.ab-detail #ab-connect{background:#0e0e0e;color:#fff;padding:56px 0;margin-top:48px;}",
-    "body.ab-detail #ab-connect .ab-connect-inner{max-width:1200px;margin:0 auto;padding:0 20px;}",
+    "body.ab-detail #ab-connect .ab-connect-inner{max-width:1280px;margin:0 auto;padding:0;}",
+    "@media(max-width:1320px){body.ab-detail #ab-connect .ab-connect-inner{padding:0 22px;}}",
     "body.ab-detail .ab-inquiry{display:flex;align-items:center;gap:14px;border:1px solid var(--abd-red);border-left:4px solid var(--abd-red);background:rgba(183,37,69,.10);padding:16px 22px;border-radius:6px;margin-bottom:34px;}",
     "body.ab-detail .ab-inquiry .ab-pin{width:22px;height:22px;color:var(--abd-red);flex:0 0 auto;}",
     "body.ab-detail .ab-inquiry small{display:block;color:#bbb;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px;}",
     "body.ab-detail .ab-inquiry b{font-family:'Montserrat',sans-serif;font-size:1.05rem;color:#fff;}",
     "body.ab-detail .ab-cc-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;}",
-    "body.ab-detail #ab-connect h2{font-family:'Montserrat',sans-serif;font-weight:800;text-transform:uppercase;font-size:2rem;color:#fff;margin-bottom:12px;}",
+    "body.ab-detail #ab-connect h2{font-family:'Montserrat',sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(2.6rem,4.6vw,4rem);line-height:1.02;color:#fff;margin-bottom:16px;}",
     "body.ab-detail #ab-connect p,body.ab-detail #ab-connect *{color:#ddd;}",
     "body.ab-detail #ab-connect label{display:block;text-transform:uppercase;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.06em;color:#fff!important;margin-bottom:8px;}",
     "body.ab-detail #ab-connect label .ab-req,body.ab-detail #ab-connect label .IDX-required,body.ab-detail #ab-connect .IDX-required{color:var(--abd-red)!important;}",
-    "body.ab-detail #ab-connect input,body.ab-detail #ab-connect textarea,body.ab-detail #ab-connect select{color:#fff!important;background:#1b1b1b!important;border:1px solid #333!important;border-radius:6px!important;padding:12px 14px!important;width:100%;box-sizing:border-box;}",
+    "body.ab-detail #ab-connect input,body.ab-detail #ab-connect textarea,body.ab-detail #ab-connect select{color:#fff!important;background:#1b1b1b!important;border:1px solid #333!important;border-radius:6px!important;padding:15px 17px!important;font-size:.96rem!important;width:100%;box-sizing:border-box;}",
+    "body.ab-detail #ab-connect textarea{min-height:150px;resize:vertical;line-height:1.5;}",
+    /* remove the white box border around the IDX form (item 2) */
+    "body.ab-detail #ab-connect #IDX-detailscontactContactForm,body.ab-detail #ab-connect form.IDX-contactForm,body.ab-detail #ab-connect .IDX-contactForm{border:0!important;background:transparent!important;padding:0!important;box-shadow:none!important;}",
+    /* force inquiry pin + contact icons red (override #ab-connect * grey) */
+    "body.ab-detail #ab-connect .ab-pin,body.ab-detail #ab-connect .ab-contact-line svg{color:var(--abd-red)!important;stroke:var(--abd-red)!important;}",
+    /* de-emphasized, compliant MLS / IDX fine print (item 5) */
+    "body.ab-detail .ab-mls-fineprint{background:#0e0e0e!important;color:#5d5d5d!important;font-size:.62rem!important;line-height:1.6!important;text-align:center!important;padding:14px 22px!important;border:0!important;margin:0!important;}",
+    "body.ab-detail .ab-mls-fineprint a{color:#7a7a7a!important;}",
     "body.ab-detail #ab-connect input::placeholder,body.ab-detail #ab-connect textarea::placeholder{color:#7a7a7a;}",
     "body.ab-detail #ab-connect input:focus,body.ab-detail #ab-connect textarea:focus{border-color:var(--abd-red)!important;outline:none;}",
     "body.ab-detail #ab-connect .ab-ep-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;}",
@@ -375,6 +384,25 @@
     if (msg && !msg.value) {
       msg.value = "I'd like to schedule a showing for " + addr + ". Please reach out with available times that work for me.";
     }
+
+    /* 10) De-emphasize the required Bright MLS disclaimer + IDX Broker attribution so they
+       read as subtle dark fine print (like Cody's footer) instead of a bright clashing block.
+       These are kept for MLS / IDX compliance, just restyled. */
+    styleFinePrint();
+  }
+
+  function styleFinePrint() {
+    Array.prototype.forEach.call(document.querySelectorAll('body div'), function (d) {
+      if (d.classList.contains('ab-mls-fineprint')) return;
+      if (d.closest('#ab-connect')) return;
+      if (d.children.length > 4) return;
+      var t = (d.innerText || '').replace(/\s+/g, ' ').trim();
+      if (!t) return;
+      if ((/information deemed reliable/i.test(t) && /bright mls/i.test(t) && t.length < 600) ||
+          (/^data services provided by idx broker/i.test(t) && t.length < 70)) {
+        d.classList.add('ab-mls-fineprint');
+      }
+    });
   }
 
   /* IDX details content loads after the wrapper script; poll until ready */
