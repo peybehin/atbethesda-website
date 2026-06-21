@@ -218,7 +218,11 @@
       #area-listings{padding:48px 48px;}
       #area-listings .swiper-outer .swiper-button-prev{left:0;}
       #area-listings .swiper-outer .swiper-button-next{right:0;}
+    #area-listings .area-featured-swiper{padding-bottom:32px;}
+    #area-listings .swiper-pagination-bullet{background:rgba(255,255,255,.4);opacity:1;}
+    #area-listings .swiper-pagination-bullet-active{background:#fff;}
     }
+    @media(min-width:768px){#area-listings .swiper-pagination{display:none;}}
 </style>
   <div class="listings-inner">
     <div class="listings-header">
@@ -233,6 +237,7 @@
           <div class="swiper-slide"><div class="prop-card prop-card--loading"><div class="prop-card__img-wrap"></div><div class="prop-card__body"><div class="prop-card__price">Loading...</div></div></div></div>
           <div class="swiper-slide"><div class="prop-card prop-card--loading"><div class="prop-card__img-wrap"></div><div class="prop-card__body"><div class="prop-card__price">Loading...</div></div></div></div>
         </div>
+        <div class="swiper-pagination"></div>
       </div>
       <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
@@ -247,6 +252,7 @@
       var sw=new Swiper('.area-featured-swiper',{
         slidesPerView:1,spaceBetween:24,
         navigation:{nextEl:'#area-listings .swiper-button-next',prevEl:'#area-listings .swiper-button-prev'},
+        pagination:{el:'#area-listings .swiper-pagination',clickable:true},
         breakpoints:{680:{slidesPerView:2},1024:{slidesPerView:3}}
       });
       function renderCards(listings){
