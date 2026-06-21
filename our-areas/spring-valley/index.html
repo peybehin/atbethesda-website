@@ -286,8 +286,35 @@
               var bestEl=null,bestLen=0;
               widgets.forEach(function(w){var len=w.shadowRoot?w.shadowRoot.innerHTML.length:0;if(len>bestLen){bestLen=len;bestEl=w;}});
               if(bestEl&&bestEl.shadowRoot){
-                var articles=bestEl.shadowRoot.querySelectorAll('article');
-                if(articles.length){
+                var sr=bestEl.shadowRoot;
+                /* Try idx-listing-card__ format (widget 160819 style) — wait for price to load */
+                var lcCards=sr.querySelectorAll('div.idx-listing-card');
+                if(lcCards.length&&sr.querySelector('span.idx-listing-card__listing-price')){
+                  var listings=Array.from(lcCards).map(function(card){
+                    var link=card.querySelector('a.idx-listing-card__link')||card.querySelector('a[href]');
+                    var img=card.querySelector('img.idx-listing-card__image')||card.querySelector('img');
+                    var statusEl=card.querySelector('[class*="prop-status"]');
+                    var priceEl=card.querySelector('span.idx-listing-card__listing-price');
+                    var addrEl=card.querySelector('[class*="idx-listing-card__address"]');
+                    var bedsEl=card.querySelector('[class*="idx-listing-card__bedrooms"]');
+                    var bathsEl=card.querySelector('[class*="idx-listing-card__total-baths"]');
+                    var sqftEl=card.querySelector('[class*="idx-listing-card__sqft"]');
+                    return{status:statusEl?statusEl.textContent.trim():'ACTIVE',
+                      price:priceEl?priceEl.textContent.trim():'',
+                      address:addrEl?addrEl.textContent.trim():'',
+                      url:link?link.href:'https://search.atbethesda.com/idx/results/listings',
+                      photo:img?img.src:'',
+                      beds:bedsEl?bedsEl.textContent.trim():'',
+                      baths:bathsEl?bathsEl.textContent.trim():'',
+                      sqft:sqftEl?sqftEl.textContent.trim():''};
+                  });
+                  document.body.removeChild(iframe);
+                  for(var i=listings.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=listings[i];listings[i]=listings[j];listings[j]=t;}
+                  renderCards(listings);return;
+                }
+                /* Try idx-property-card__ format (widget 160389/160772 style) */
+                var articles=sr.querySelectorAll('article');
+                if(articles.length&&(sr.querySelector('h4')||sr.querySelector('.idx-property-card__address'))){
                   var listings=Array.from(articles).map(function(article){
                     var link=article.querySelector('a[href]');
                     var imgs=article.querySelectorAll('img');
@@ -304,14 +331,13 @@
                   });
                   document.body.removeChild(iframe);
                   for(var i=listings.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=listings[i];listings[i]=listings[j];listings[j]=t;}
-                  renderCards(listings);
-                  return;
+                  renderCards(listings);return;
                 }
               }
             }catch(e){document.body.removeChild(iframe);return;}
-            if(++attempts<30)setTimeout(poll,500);else document.body.removeChild(iframe);
+            if(++attempts<40)setTimeout(poll,500);else document.body.removeChild(iframe);
           }
-          setTimeout(poll,1000);
+          setTimeout(poll,1500);
         });
       }
       function fetchFromArea(){

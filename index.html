@@ -1512,5 +1512,15 @@ function doHeroSearch() {
 }
 </script>
 
+
+  <!-- Hidden IDX widget — data source for area page carousels, never shown to user -->
+  <style>
+    #idx-hidden-feed { display: none !important; position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    #idx-hidden-feed idx-listings-carousel { display: none !important; }
+  </style>
+  <div id="idx-hidden-feed">
+    <idx-listings-carousel id="idx-listings-carousel-160389"></idx-listings-carousel>
+  </div>
+  <script charset="UTF-8" type="text/javascript" id="idxwidgetsrc-160389" src="https://search.atbethesda.com/idx/widgets/160389"></script>
 </body>
 </html>
