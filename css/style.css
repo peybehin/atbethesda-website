@@ -70,7 +70,7 @@ nav.scrolled { background: rgba(0,0,0,0.92); backdrop-filter: blur(8px); }
 nav.light-nav { background: rgba(255,255,255,.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--gray-mid); }
 nav.light-nav .nav-links a { color: #444; }
 nav.light-nav .nav-links a:hover { color: var(--black); }
-.nav-logo img { height: 44px; }
+.nav-logo img { height: 44px; width: auto; }
 .nav-links { display: flex; gap: 24px; list-style: none; align-items: center; }
 .nav-links a {
   color: #ddd; text-decoration: none; font-size: .75rem;
@@ -259,6 +259,7 @@ nav.light-nav .nav-hamburger span{background:var(--black);}
 
 @media (max-width: 900px) {
   nav { padding: 0 20px; }
+  .nav-logo img { height: 48px; }
   .nav-links { display: none; }
   .nav-hamburger { display: flex; }
   section { padding: 55px 20px; }
