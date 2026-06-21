@@ -362,12 +362,23 @@
 <!-- Market Snapshot Widget -->
 <section style="padding: 10px 20px 60px; background: #fff;">
   <div style="max-width: 1100px; margin: 0 auto;">
-    <iframe
-      src="https://altos.re/html/s-html/f6946893-acb9-4869-85b1-512fcf7fa838?scale=1&marketNarrative=true&houses=true&weeklyChange=true&stats=price_median%2Cdom_mean%2Cmai%2Ccount%2Cprice_of_new_listings_median%2Cdom_median%2Crental_price_median%2Cper_sqft_median&branding=false&size=medium"
-      style="border:0;display:block;width:100%;max-width:100%;height:600px"
-      scrolling="auto"
-      loading="lazy">
-    </iframe>
+    <div id="altos-snapshot-container"></div>
+<script>
+(function(){
+  var c=document.getElementById("altos-snapshot-container");
+  var f=document.createElement("iframe");
+  if(window.innerWidth<=768){
+    f.src="https://altos.re/html/s-html/f6946893-acb9-4869-85b1-512fcf7fa838?scale=1&marketNarrative=true&houses=true&weeklyChange=true&stats=price_median%2Cdom_mean%2Cmai%2Ccount%2Cprice_of_new_listings_median%2Cdom_median%2Cper_sqft_median%2Cprice_decreased_percent&branding=false&size=medium";
+    f.style.cssText="border:0;display:block;width:480px;max-width:100%;height:600px";
+  }else{
+    f.src="https://altos.re/html/s-html/f6946893-acb9-4869-85b1-512fcf7fa838?scale=1&marketNarrative=true&houses=true&weeklyChange=true&stats=price_median%2Cdom_mean%2Cmai%2Ccount%2Cprice_of_new_listings_median%2Cdom_median%2Crental_price_median%2Cper_sqft_median&branding=false&size=medium";
+    f.style.cssText="border:0;display:block;width:100%;max-width:100%;height:600px";
+  }
+  f.setAttribute("scrolling","auto");
+  f.setAttribute("loading","lazy");
+  c.appendChild(f);
+})();
+</script>
   </div>
 </section>
 
