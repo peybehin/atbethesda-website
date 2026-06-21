@@ -351,7 +351,7 @@ select.cat-select{margin-bottom:0;}
 <!-- ══════════════════════════════════════ LOGIN ══════════════════════════════════════ -->
 <div id="login-screen">
   <div class="login-box">
-    <img src="/images/logo-bethesda-residential.png" alt="@Bethesda" />
+    <img src="/images/logo-bethesda-residential.png?v=2" alt="@Bethesda" />
     <h2>Admin Login</h2>
     <input type="password" id="pw-input" placeholder="Password" onkeydown="if(event.key==='Enter')doLogin()" />
     <button onclick="doLogin()">Sign In</button>
@@ -372,7 +372,7 @@ select.cat-select{margin-bottom:0;}
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="sidebar-logo">
-      <img src="/images/logo-bethesda-residential.png" alt="@Bethesda" />
+      <img src="/images/logo-bethesda-residential.png?v=2" alt="@Bethesda" />
     </div>
     <div class="sidebar-section">
       <div class="sidebar-label">Content</div>
@@ -1781,7 +1781,7 @@ function buildPostHTML(post, siteCss) {
     "publisher": {
       "@type": "Organization",
       "name": "@Bethesda Real Estate",
-      "logo": { "@type": "ImageObject", "url": "/images/logo-bethesda-residential.png" }
+      "logo": { "@type": "ImageObject", "url": "/images/logo-bethesda-residential.png?v=2" }
     },
     "mainEntityOfPage": { "@type": "WebPage", "@id": canonicalUrl },
     "keywords": (post.tags || []).join(', ')
@@ -1897,7 +1897,7 @@ ${speakableSchema ? `<script type="application/ld+json">${JSON.stringify(speakab
 </head>
 <body>
 <nav id="main-nav">
-  <a href="/" class="nav-logo"><img src="/images/logo-bethesda-residential.png" alt="@Bethesda Real Estate" /></a>
+  <a href="/" class="nav-logo"><img src="/images/logo-bethesda-residential.png?v=2" alt="@Bethesda Real Estate" /></a>
   <ul class="nav-links">
     <li><a href="/">Home</a></li>
     <li class="nav-dropdown"><a href="/properties/">Buy ▾</a>
@@ -1954,7 +1954,7 @@ ${faqHTML}
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
-      <div class="footer-brand"><img src="/images/logo-bethesda-residential.png" alt="@Bethesda" /><p>The only Bethesda real estate site where you can search by school district.</p></div>
+      <div class="footer-brand"><img src="/images/logo-bethesda-residential.png?v=2" alt="@Bethesda" /><p>The only Bethesda real estate site where you can search by school district.</p></div>
       <div class="footer-col"><h4>Buy</h4><ul><li><a href="/properties/">Properties</a></li><li><a href="/buyers-guide/">Buyer's Guide</a></li><li><a href="/mortgage-calculator/">Mortgage Calculator</a></li></ul></div>
       <div class="footer-col"><h4>Areas</h4><ul><li><a href="/our-areas/bethesda/">Bethesda</a></li><li><a href="/our-areas/chevy-chase/">Chevy Chase</a></li><li><a href="/our-areas/potomac/">Potomac</a></li><li><a href="/our-areas/north-bethesda/">North Bethesda</a></li></ul></div>
       <div class="footer-col"><h4>More</h4><ul><li><a href="/about/">About Pey</a></li><li><a href="/testimonials/">Testimonials</a></li><li><a href="/vlog/">Blog</a></li><li><a href="/contact/">Contact</a></li></ul></div>
