@@ -213,7 +213,13 @@
     #area-listings .swiper-outer .swiper-button-prev::after{font-size:14px;font-weight:900;}
     #area-listings .listings-cta{text-align:center;margin-top:48px;}
     #area-listings .btn-primary-red{display:inline-block;background:var(--red,#e02020);color:#fff;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:14px 40px;text-decoration:none;}
-  </style>
+  
+    @media(max-width:767px){
+      #area-listings{padding:48px 20px;}
+      #area-listings .swiper-button-prev,
+      #area-listings .swiper-button-next{display:none;}
+    }
+</style>
   <div class="listings-inner">
     <div class="listings-header">
       <div class="section-label">We ❤️ Spring Valley</div>
