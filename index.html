@@ -840,7 +840,7 @@
       }
       function extractFromIframe(){
         var iframe=document.createElement('iframe');
-        iframe.src='https://atbethesda.com/';
+        iframe.src='https://atbethesda.com/our-areas/bethesda/widget.html';
         iframe.style.cssText='position:fixed;left:-9999px;top:0;width:1px;height:1px;border:none;';
         document.body.appendChild(iframe);
         iframe.addEventListener('load',function(){
@@ -852,21 +852,29 @@
               var bestEl=null,bestLen=0;
               widgets.forEach(function(w){var len=w.shadowRoot?w.shadowRoot.innerHTML.length:0;if(len>bestLen){bestLen=len;bestEl=w;}});
               if(bestEl&&bestEl.shadowRoot){
-                var articles=bestEl.shadowRoot.querySelectorAll('article');
-                if(articles.length){
-                  var listings=Array.from(articles).map(function(article){
-                    var link=article.querySelector('a[href]');
-                    var imgs=article.querySelectorAll('img');
-                    var spans=article.querySelectorAll('span.idx-property-card__single-item');
-                    var addrEl=article.querySelector('.idx-property-card__address');
-                    var h4=article.querySelector('h4');var h5=article.querySelector('h5');
-                    return{status:h5?h5.textContent.trim():'ACTIVE',price:h4?h4.textContent.trim():'',
+                var sr=bestEl.shadowRoot;
+                var cards=sr.querySelectorAll('div.idx-listing-card');
+                var priceLoaded=cards.length&&sr.querySelector('span.idx-listing-card__listing-price');
+                if(priceLoaded){
+                  var listings=Array.from(cards).map(function(card){
+                    var link=card.querySelector('a.idx-listing-card__link')||card.querySelector('a[href]');
+                    var img=card.querySelector('img.idx-listing-card__image')||card.querySelector('img');
+                    var statusEl=card.querySelector('[class*="prop-status"]');
+                    var priceEl=card.querySelector('span.idx-listing-card__listing-price');
+                    var addrEl=card.querySelector('[class*="idx-listing-card__address"]');
+                    var bedsEl=card.querySelector('[class*="idx-listing-card__bedrooms"]');
+                    var bathsEl=card.querySelector('[class*="idx-listing-card__total-baths"]');
+                    var sqftEl=card.querySelector('[class*="idx-listing-card__sqft"]');
+                    return{
+                      status:statusEl?statusEl.textContent.trim():'ACTIVE',
+                      price:priceEl?priceEl.textContent.trim():'',
                       address:addrEl?addrEl.textContent.trim():'',
                       url:link?link.href:'https://search.atbethesda.com/idx/results/listings',
-                      photo:(article.querySelector('img.idx-property-card__image')||imgs[0]||{}).src||'',
-                      beds:spans[0]?spans[0].textContent.trim():'',
-                      baths:spans[1]?spans[1].textContent.trim():'',
-                      sqft:spans[2]?spans[2].textContent.trim():''};
+                      photo:img?img.src:'',
+                      beds:bedsEl?bedsEl.textContent.trim():'',
+                      baths:bathsEl?bathsEl.textContent.trim():'',
+                      sqft:sqftEl?sqftEl.textContent.trim():''
+                    };
                   });
                   document.body.removeChild(iframe);
                   for(var i=listings.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=listings[i];listings[i]=listings[j];listings[j]=t;}
@@ -875,9 +883,9 @@
                 }
               }
             }catch(e){document.body.removeChild(iframe);return;}
-            if(++attempts<30)setTimeout(poll,500);else document.body.removeChild(iframe);
+            if(++attempts<40)setTimeout(poll,500);else document.body.removeChild(iframe);
           }
-          setTimeout(poll,1000);
+          setTimeout(poll,1500);
         });
       }
       function fetchFromArea(){
