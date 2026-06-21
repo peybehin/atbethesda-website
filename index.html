@@ -833,33 +833,59 @@
         breakpoints:{680:{slidesPerView:2},1024:{slidesPerView:3}}
       });
 
-      function renderCards(listings){
+      var done=false;
+
+      function showEmpty(){
+        if(done)return;
+        done=true;
         var wrapper=document.getElementById('featured-swiper-wrapper');
-        if(!wrapper||!listings||!listings.length)return;
+        if(!wrapper)return;
+        wrapper.innerHTML='<div class="swiper-slide" style="display:flex;align-items:center;justify-content:center;min-height:320px;width:100%;">'
+          +'<div style="text-align:center;padding:40px 20px;">'
+          +'<div style="font-size:40px;margin-bottom:16px;">&#127968;</div>'
+          +'<p style="font-size:18px;font-weight:700;margin:0 0 8px;color:#0a0a0a;">Listings Coming Soon</p>'
+          +'<p style="font-size:14px;color:#666;margin:0 0 24px;">Our MLS feed is being activated. Check back shortly.</p>'
+          +'<a href="https://search.atbethesda.com/idx/results/listings" class="prop-card__btn" style="display:inline-block;" target="_blank" rel="noopener">Browse All Listings &rarr;</a>'
+          +'</div></div>';
+        sw.update();
+      }
+
+      function renderCards(listings){
+        if(done)return;
+        if(!listings||!listings.length){showEmpty();return;}
+        done=true;
+        var wrapper=document.getElementById('featured-swiper-wrapper');
+        if(!wrapper)return;
         wrapper.innerHTML=listings.slice(0,9).map(function(l){
-          var details=[l.beds,l.baths,l.sqft].filter(Boolean);
-          return '<div class="swiper-slide"><div class="prop-card">'+
-            '<div class="prop-card__img-wrap">'+(l.photo?'<img src="'+l.photo+'" alt="" class="prop-card__img" loading="lazy">':'')+
-            '<span class="prop-card__status">'+l.status+'</span></div>'+
-            '<div class="prop-card__body">'+
-            '<div class="prop-card__price">'+l.price+'</div>'+
-            '<div class="prop-card__address">'+l.address+'</div>'+
-            (l.cityState?'<div class="prop-card__city">'+l.cityState+'</div>':'')+
-            (details.length?'<div class="prop-card__details">'+details.map(function(d){return'<span>'+d+'</span>'}).join('')+'</div>':'')+
-            '<a href="'+l.url+'" class="prop-card__btn" target="_blank" rel="noopener">View Details</a>'+
-            '</div></div></div>';
+          var price=l.price?'$'+Number(l.price).toLocaleString():l.price;
+          var details=[l.beds?l.beds+' bd':null,l.baths?l.baths+' ba':null,l.sqft?Number(l.sqft).toLocaleString()+' sqft':null].filter(Boolean);
+          var city=l.city?(l.city+(l.state?', '+l.state:'')):null;
+          return '<div class="swiper-slide"><div class="prop-card">'
+            +'<div class="prop-card__img-wrap">'+(l.photo?'<img src="'+l.photo+'" alt="" class="prop-card__img" loading="lazy">':'')
+            +'<span class="prop-card__status">'+(l.status||'ACTIVE')+'</span></div>'
+            +'<div class="prop-card__body">'
+            +'<div class="prop-card__price">'+(price||'')+'</div>'
+            +(city?'<div class="prop-card__address">'+city+'</div>':'')
+            +(details.length?'<div class="prop-card__details">'+details.map(function(d){return'<span>'+d+'</span>';}).join('')+'</div>':'')
+            +'<a href="'+l.url+'" class="prop-card__btn" target="_blank" rel="noopener">View Details</a>'
+            +'</div></div></div>';
         }).join('');
         sw.update();
       }
 
-      var done=false;
+      // Primary: fetch from /idx-featured API
+      fetch('/idx-featured')
+        .then(function(r){return r.json();})
+        .then(function(d){if(d.listings&&d.listings.length)renderCards(d.listings);})
+        .catch(function(){});
+
+      // Fallback: extract from IDX Broker shadow DOM widget
       function tryExtract(){
         if(done)return true;
         var c=document.querySelector('idx-listings-carousel');
         if(!c||!c.shadowRoot)return false;
         var articles=c.shadowRoot.querySelectorAll('article');
         if(!articles.length)return false;
-        done=true;
         var listings=Array.from(articles).map(function(article){
           var link=article.querySelector('a.idx-property-card__l')||article.querySelector('a[href]');
           var imgs=article.querySelectorAll('img');
@@ -870,8 +896,8 @@
           return{
             status:h5?h5.textContent.trim():'ACTIVE',
             price:h4?h4.textContent.trim():'',
-            address:addrEl?addrEl.textContent.trim():'',
-            cityState:'',
+            city:addrEl?addrEl.textContent.trim():'',
+            state:'',
             url:link?link.href:'https://search.atbethesda.com/idx/results/listings',
             photo:(article.querySelector('img.idx-property-card__image')||imgs[0]||{}).src||'',
             beds:spans[0]?spans[0].textContent.trim():'',
@@ -879,10 +905,6 @@
             sqft:spans[2]?spans[2].textContent.trim():''
           };
         });
-        for(var i=listings.length-1;i>0;i--){
-          var j=Math.floor(Math.random()*(i+1));
-          var t=listings[i];listings[i]=listings[j];listings[j]=t;
-        }
         renderCards(listings);
         return true;
       }
@@ -897,11 +919,14 @@
 
       var attempts=0;
       function poll(){
+        if(done)return;
         if(tryExtract())return;
-        if(++attempts<120)setTimeout(poll,500);
+        if(++attempts<20)setTimeout(poll,500);
+        else showEmpty();
       }
       setTimeout(function(){watchShadow();poll();},500);
-    })();        </script>
+    })();
+    </script>
   </section>
 
 <!-- -- FEATURED AREAS -- -->
