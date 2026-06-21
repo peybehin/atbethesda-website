@@ -637,13 +637,12 @@
     .mobile-nav.open { display: block; }
   </style>
   <script>
-    // Prevent pinch-to-zoom on iOS (iOS Safari ignores user-scalable=no since iOS 10)
-    document.addEventListener('touchstart', function(e) {
-      if (e.touches.length > 1) e.preventDefault();
-    }, { passive: false });
-    document.addEventListener('gesturestart', function(e) {
-      e.preventDefault();
-    });
+    // Prevent pinch-to-zoom on iOS
+    function blockZoom(e) { if (e.touches && e.touches.length > 1) e.preventDefault(); }
+    document.addEventListener('touchstart', blockZoom, { passive: false });
+    document.addEventListener('touchmove', blockZoom, { passive: false });
+    document.addEventListener('gesturestart', function(e) { e.preventDefault(); });
+    document.addEventListener('gesturechange', function(e) { e.preventDefault(); });
   </script>
 </head>
 <body>
