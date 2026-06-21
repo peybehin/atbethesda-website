@@ -1500,14 +1500,28 @@
   }
 
 function doHeroSearch() {
-  const q = (document.getElementById('hero-search-input').value || '').trim();
-  if (!q) { window.location = 'https://search.atbethesda.com/idx/results/listings?pt=&bd=&ba=&lp=&hp=&srt=newest&per=30&city[]=Bethesda&city[]=Chevy+Chase&city[]=Potomac&city[]=Kensington&city[]=North+Bethesda&city[]=North+Potomac&city[]=Cabin+John&city[]=Silver+Spring&city[]=Rockville&city[]=Gaithersburg&city[]=McLean&city[]=Vienna&city[]=Great+Falls&city[]=Falls+Church&city[]=Georgetown&city[]=Arlington&city[]=Alexandria&city[]=Fairfax&city[]=Friendship+Heights&city[]=Spring+Valley&city[]=Palisades'; return; }
-  const base = 'https://search.atbethesda.com/idx/results/listings?';
-  if (/^\d{5}$/.test(q)) {
-    window.location = base + 'zipcode[]=' + encodeURIComponent(q);
-  } else {
-    const city = q.split(' ').map(function(w){ return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase(); }).join('+');
-    window.location = base + 'pt=&bd=&ba=&lp=&hp=&city[]=' + city;
+  // Maps each area to its numeric IDX Broker ID (verified to return live listings).
+  var HERO_CITIES = {bethesda:3885,chevychase:8557,potomac:37589,northbethesda:33232,northpotomac:33488,kensington:24009,cabinjohn:6650,garrettpark:17552,glenecho:18064,silverspring:42989,takomapark:45732,rockville:39899,gaithersburg:17311,mclean:29390,greatfalls:18954,vienna:49080,fallschurch:15589,fairfax:15409,arlington:1609,alexandria:589,washington:50057,dc:50057,washingtondc:50057};
+  var HERO_COUNTIES = {montgomery:1341,fairfax:247,arlington:1246};
+  var CORE = [3885,8557,37589,33232,33488,24009,42989,39899,17311];
+  var IDX = 'https://search.atbethesda.com/idx/results/listings';
+  function norm(s){ return (s||'').toLowerCase().trim().replace(/[,\s]+(maryland|md|virginia|va|d\.?c\.?)\s*$/i,'').replace(/[^a-z0-9]/g,''); }
+  function url(ccz, field, id){ return IDX + '?pt=1&ccz=' + ccz + '&' + field + '[]=' + encodeURIComponent(id) + '&srt=newest&per=30'; }
+  var input = document.getElementById('hero-search-input');
+  var q = (input && input.value || '').trim();
+  // Empty -> core DC-metro cities, for sale, newest first
+  if (!q) { window.location = IDX + '?pt=1&ccz=city&' + CORE.map(function(i){ return 'city[]=' + i; }).join('&') + '&srt=newest&per=30'; return; }
+  // 5-digit ZIP
+  if (/^\d{5}$/.test(q)) { window.location = url('zipcode','zipcode',q); return; }
+  var hasCounty = /\bcounty\b/i.test(q), key = norm(q.replace(/\s*county\s*$/i,''));
+  if (hasCounty && HERO_COUNTIES[key]) { window.location = url('county','county',HERO_COUNTIES[key]); return; }
+  if (HERO_CITIES[key]) { window.location = url('city','city',HERO_CITIES[key]); return; }
+  if (HERO_COUNTIES[key]) { window.location = url('county','county',HERO_COUNTIES[key]); return; }
+  // No match -> friendly inline hint
+  if (input && input.setCustomValidity) {
+    input.setCustomValidity('Try a city like Bethesda or Chevy Chase, a county, or a 5-digit ZIP.');
+    input.reportValidity();
+    input.addEventListener('input', function clr(){ input.setCustomValidity(''); input.removeEventListener('input', clr); });
   }
 }
 </script>

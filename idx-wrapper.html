@@ -111,7 +111,7 @@
         <div class="footer-col">
           <h4>Buy</h4>
           <ul>
-            <li><a href="https://atbethesda.com/properties/">Search Properties</a></li>
+            <li><a href="https://search.atbethesda.com/idx/results/listings?pt=1&ccz=city&city[]=3885&city[]=8557&city[]=37589&city[]=33232&city[]=33488&city[]=24009&city[]=42989&city[]=39899&city[]=17311&srt=newest&per=30">Properties</a></li>
             <li><a href="https://atbethesda.com/perfect-home-finder/">Perfect Home Finder</a></li>
             <li><a href="https://atbethesda.com/buyers-guide/">Buyer's Guide</a></li>
             <li><a href="https://atbethesda.com/mortgage-calculator/">Mortgage Calculator</a></li>
@@ -123,11 +123,17 @@
             <li><a href="https://atbethesda.com/whats-my-home-worth/">Home Valuation</a></li>
             <li><a href="https://atbethesda.com/sellers-guide/">Seller's Guide</a></li>
           </ul>
+          <h4 style="margin-top:24px;">Areas</h4>
+          <ul>
+            <li><a href="https://atbethesda.com/our-areas/chevy-chase/">Chevy Chase</a></li>
+            <li><a href="https://atbethesda.com/our-areas/potomac/">Potomac</a></li>
+            <li><a href="https://atbethesda.com/our-areas/bethesda/">Bethesda</a></li>
+            <li><a href="https://atbethesda.com/our-areas/north-bethesda/">North Bethesda</a></li>
+          </ul>
         </div>
         <div class="footer-col">
-          <h4>Company</h4>
+          <h4>More</h4>
           <ul>
-            <li><a href="https://atbethesda.com/our-areas/">Featured Areas</a></li>
             <li><a href="https://atbethesda.com/about/">About Pey</a></li>
             <li><a href="https://atbethesda.com/testimonials/">Testimonials</a></li>
             <li><a href="https://atbethesda.com/vlog/">Blog</a></li>
@@ -137,7 +143,8 @@
       </div>
       <div class="footer-bottom">
         <p>RLAH Properties | 4600 North Park Ave Suite 100, Chevy Chase, MD 20815 | (301) 652-0643<br>
-        All information deemed reliable but not guaranteed. © 2026 @Bethesda Real Estate. All rights reserved.</p>
+        All information deemed reliable but not guaranteed. © 2026 @Bethesda Real Estate. All rights reserved.<br>
+        Data services provided by <a href="https://www.idxbroker.com/" target="_blank" rel="noopener">IDX Broker</a>.</p>
         <div class="footer-bottom-links">
           <a href="https://atbethesda.com/about/">Privacy Policy</a>
           <a href="https://atbethesda.com/about/">Terms of Use</a>
@@ -167,6 +174,57 @@
         else n.classList.remove('scrolled');
       }
     });
+  </script>
+
+  <!-- ── CUSTOM IDX SEARCH/FILTER BAR (price, beds, baths, type, list/map, save) ── -->
+  <script>
+  (function(){
+    var CITIES={bethesda:3885,chevychase:8557,potomac:37589,northbethesda:33232,northpotomac:33488,kensington:24009,cabinjohn:6650,garrettpark:17552,glenecho:18064,silverspring:42989,takomapark:45732,rockville:39899,gaithersburg:17311,mclean:29390,greatfalls:18954,vienna:49080,fallschurch:15589,fairfax:15409,arlington:1609,alexandria:589,washington:50057,dc:50057,washingtondc:50057};
+    function parse(){var o={};location.search.replace(/^\?/,'').split('&').forEach(function(kv){if(!kv)return;var i=kv.indexOf('=');var k=decodeURIComponent(kv.slice(0,i<0?kv.length:i));var v=i<0?'':decodeURIComponent(kv.slice(i+1));(o[k]=o[k]||[]).push(v);});return o;}
+    function build(o){var p=[];Object.keys(o).forEach(function(k){o[k].forEach(function(v){p.push(k+'='+encodeURIComponent(v));});});return p.join('&');}
+    function nav(o){if(!o.pt)o.pt=['1'];if(!o.srt)o.srt=['newest'];if(!o.per)o.per=['30'];location.href='/idx/results/listings?'+build(o);}
+    function setP(o,k,v){if(v===''||v==null)delete o[k];else o[k]=[v];}
+    function cur(k){var o=parse();return o[k]?o[k][0]:'';}
+    function norm(s){return (s||'').toLowerCase().trim().replace(/[,\s]+(maryland|md|virginia|va|d\.?c\.?)\s*$/i,'').replace(/[^a-z0-9]/g,'');}
+    function fmtK(n){n=+n;return n>=1000000?('$'+(n/1000000).toFixed(n%1000000?1:0)+'M'):('$'+(n/1000)+'k');}
+    function priceLabel(){var lp=cur('lp'),hp=cur('hp');if(!lp&&!hp)return 'Any Price';if(lp&&hp)return fmtK(lp)+' – '+fmtK(hp);if(lp)return fmtK(lp)+'+';return 'Up to '+fmtK(hp);}
+    function bedLabel(){var b=cur('bd');return b?b+'+ Beds':'Beds';}
+    function bathLabel(){var b=cur('tb');return b?b+'+ Baths':'Baths';}
+    function typeLabel(){var t=(parse()['a_propSubType[]']||[]).join('|');if(/Detached/.test(t))return 'Single Family';if(/Townhouse/.test(t))return 'Townhouse';if(/Apartment/.test(t))return 'Condo';return 'All Types';}
+    function buildBar(){
+      if(!/\/idx\/(results|search)/.test(location.pathname)) return true;
+      var anchor=document.querySelector('.idx-results'); if(!anchor) return false;
+      if(document.getElementById('atb-fb-wrap')) return true;
+      var bar=document.createElement('div');bar.id='atb-fb-wrap';bar.className='atb-fb';
+      bar.innerHTML='<div class="atb-fb__inner">'
+       +'<div class="atb-fb__search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg><input id="atb-fb-q" placeholder="City, neighborhood, or ZIP code…"></div>'
+       +'<div class="atb-fb__pill" data-k="price"><button>'+priceLabel()+' ▾</button><div class="atb-fb__panel"><div class="atb-fb__prow"><select id="atb-lp"></select><span>–</span><select id="atb-hp"></select></div><button class="atb-fb__apply" id="atb-priceApply">Apply</button></div></div>'
+       +'<div class="atb-fb__pill" data-k="beds"><button>'+bedLabel()+' ▾</button><div class="atb-fb__panel"><div class="atb-fb__grid" id="atb-beds"></div></div></div>'
+       +'<div class="atb-fb__pill" data-k="baths"><button>'+bathLabel()+' ▾</button><div class="atb-fb__panel"><div class="atb-fb__grid" id="atb-baths"></div></div></div>'
+       +'<div class="atb-fb__pill" data-k="type"><button>'+typeLabel()+' ▾</button><div class="atb-fb__panel"><div class="atb-fb__grid" id="atb-types" style="flex-direction:column;align-items:stretch;"></div></div></div>'
+       +'<div class="atb-fb__spacer"></div>'
+       +'<div class="atb-fb__toggle"><button data-view="list">List</button><button data-view="map" class="on">Map</button></div>'
+       +'<button class="atb-fb__save">Save search</button></div>';
+      anchor.insertBefore(bar,anchor.firstChild);
+      var lpSel=document.getElementById('atb-lp'),hpSel=document.getElementById('atb-hp');
+      [['','No Min'],[250000,'$250k'],[500000,'$500k'],[750000,'$750k'],[1000000,'$1M'],[1500000,'$1.5M'],[2000000,'$2M'],[3000000,'$3M']].forEach(function(m){var o=document.createElement('option');o.value=m[0];o.textContent=m[1];if(String(m[0])===cur('lp'))o.selected=true;lpSel.appendChild(o);});
+      [['','No Max'],[500000,'$500k'],[750000,'$750k'],[1000000,'$1M'],[1500000,'$1.5M'],[2000000,'$2M'],[3000000,'$3M'],[5000000,'$5M']].forEach(function(m){var o=document.createElement('option');o.value=m[0];o.textContent=m[1];if(String(m[0])===cur('hp'))o.selected=true;hpSel.appendChild(o);});
+      function makeOpts(elId,vals,curKey){var box=document.getElementById(elId);vals.forEach(function(v){var b=document.createElement('button');b.className='atb-fb__opt'+(String(v[0])===cur(curKey)?' on':'');b.textContent=v[1];b.onclick=function(){var o=parse();setP(o,curKey,v[0]===''?'':String(v[0]));nav(o);};box.appendChild(b);});}
+      makeOpts('atb-beds',[['','Any'],[1,'1+'],[2,'2+'],[3,'3+'],[4,'4+'],[5,'5+']],'bd');
+      makeOpts('atb-baths',[['','Any'],[1,'1+'],[2,'2+'],[3,'3+'],[4,'4+']],'tb');
+      var typeBox=document.getElementById('atb-types');var curType=(parse()['a_propSubType[]']||[]).join('|');
+      [['','All Types',[]],['sf','Single Family',['Detached']],['th','Townhouse',['Interior Row/Townhouse','End of Row/Townhouse']],['condo','Condo',['Unit/Flat/Apartment','Penthouse Unit/Flat/Apartment']]].forEach(function(t){var b=document.createElement('button');b.className='atb-fb__opt';b.style.textAlign='left';b.textContent=t[1];if((t[2].length&&t[2].join('|')===curType)||(!t[2].length&&!curType))b.classList.add('on');b.onclick=function(){var o=parse();delete o['a_propSubType[]'];if(t[2].length)o['a_propSubType[]']=t[2].slice();nav(o);};typeBox.appendChild(b);});
+      bar.querySelectorAll('.atb-fb__pill>button').forEach(function(btn){btn.onclick=function(e){e.stopPropagation();var panel=btn.nextElementSibling;var open=panel.classList.contains('open');bar.querySelectorAll('.atb-fb__panel').forEach(function(p){p.classList.remove('open');});if(!open)panel.classList.add('open');};});
+      document.addEventListener('click',function(e){if(!bar.contains(e.target))bar.querySelectorAll('.atb-fb__panel').forEach(function(p){p.classList.remove('open');});});
+      document.getElementById('atb-priceApply').onclick=function(){var o=parse();setP(o,'lp',lpSel.value);setP(o,'hp',hpSel.value);nav(o);};
+      var q=document.getElementById('atb-fb-q');q.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();var v=(q.value||'').trim();if(!v)return;var o=parse();delete o['city[]'];delete o['zipcode[]'];delete o['county[]'];if(/^\d{5}$/.test(v)){o.ccz=['zipcode'];o['zipcode[]']=[v];}else{var id=CITIES[norm(v)];if(!id){q.style.borderColor='#b72545';return;}o.ccz=['city'];o['city[]']=[String(id)];}nav(o);}});
+      bar.querySelectorAll('.atb-fb__toggle button').forEach(function(b){b.onclick=function(){bar.querySelectorAll('.atb-fb__toggle button').forEach(function(x){x.classList.remove('on');});b.classList.add('on');var t=document.getElementById('idx-results-map-toggle');if(t)t.click();};});
+      bar.querySelector('.atb-fb__save').onclick=function(){var s=document.querySelector('.IDX-save-search--no-refinement,[class*="save-search"]');if(s)s.click();};
+      ['price','beds','baths','type'].forEach(function(k){var sel=({price:cur('lp')||cur('hp'),beds:cur('bd'),baths:cur('tb'),type:(parse()['a_propSubType[]']||[]).length})[k];if(sel)bar.querySelector('.atb-fb__pill[data-k="'+k+'"]').classList.add('sel');});
+      return true;
+    }
+    if(!buildBar()){var n=0,iv=setInterval(function(){if(buildBar()||++n>40)clearInterval(iv);},250);}
+  })();
   </script>
 
 </body>
