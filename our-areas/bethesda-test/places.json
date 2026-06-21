@@ -1,0 +1,432 @@
+{
+  "dine": [
+    {
+      "name": "Mon Ami Gabi",
+      "rating": 4.4,
+      "reviews": 2100,
+      "price": "$$$",
+      "category": "French Bistro",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Mon+Ami+Gabi+7239+Woodmont+Ave+Bethesda+MD"
+    },
+    {
+      "name": "The Salt Line",
+      "rating": 4.5,
+      "reviews": 890,
+      "price": "$$$",
+      "category": "Seafood & Raw Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=The+Salt+Line+Bethesda+Row+MD"
+    },
+    {
+      "name": "Mussel Bar & Grille",
+      "rating": 4.2,
+      "reviews": 1100,
+      "price": "$$$",
+      "category": "Belgian Bistro",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Mussel+Bar+Bethesda+Row+MD"
+    },
+    {
+      "name": "Jaleo",
+      "rating": 4.5,
+      "reviews": 1820,
+      "price": "$$$",
+      "category": "Spanish Tapas",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Jaleo+7271+Woodmont+Ave+Bethesda+MD"
+    },
+    {
+      "name": "Pupatella",
+      "rating": 4.7,
+      "reviews": 760,
+      "price": "$$",
+      "category": "Neapolitan Pizza",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Pupatella+4838+Rugby+Ave+Bethesda+MD"
+    },
+    {
+      "name": "The Capital Grille",
+      "rating": 4.6,
+      "reviews": 1450,
+      "price": "$$$$",
+      "category": "Steakhouse",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Capital+Grille+7100+Wisconsin+Ave+Bethesda+MD"
+    },
+    {
+      "name": "Founding Farmers",
+      "rating": 4.3,
+      "reviews": 3200,
+      "price": "$$$",
+      "category": "American Farm-to-Table",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Founding+Farmers+7113+Democracy+Blvd+Bethesda+MD"
+    },
+    {
+      "name": "Bethesda Crab House",
+      "rating": 4.2,
+      "reviews": 1100,
+      "price": "$$$",
+      "category": "Seafood",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Bethesda+Crab+House+MD"
+    },
+    {
+      "name": "Passage to India",
+      "rating": 4.4,
+      "reviews": 640,
+      "price": "$$",
+      "category": "Indian",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Passage+to+India+4931+Cordell+Ave+Bethesda+MD"
+    },
+    {
+      "name": "Nooshi",
+      "rating": 4.1,
+      "reviews": 580,
+      "price": "$$",
+      "category": "Asian Fusion",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Nooshi+4905+Cordell+Ave+Bethesda+MD"
+    },
+    {
+      "name": "Cava",
+      "rating": 4.3,
+      "reviews": 780,
+      "price": "$",
+      "category": "Mediterranean",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Cava+Bethesda+MD"
+    }
+  ],
+  "drink": [
+    {
+      "name": "Bethesda Blues & Jazz Supper Club",
+      "rating": 4.5,
+      "reviews": 720,
+      "price": "$$",
+      "category": "Live Music & Cocktails",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Bethesda+Blues+Jazz+7719+Wisconsin+Ave+MD"
+    },
+    {
+      "name": "Flanagan's Harp & Fiddle",
+      "rating": 4.3,
+      "reviews": 540,
+      "price": "$$",
+      "category": "Irish Pub",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Flanagans+Harp+Fiddle+7207+Wisconsin+Ave+Bethesda+MD"
+    },
+    {
+      "name": "Iron Bar",
+      "rating": 4.2,
+      "reviews": 480,
+      "price": "$$",
+      "category": "Cocktail Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Iron+Bar+4844+Cordell+Ave+Bethesda+MD"
+    },
+    {
+      "name": "The Pint",
+      "rating": 4,
+      "reviews": 380,
+      "price": "$$",
+      "category": "American Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=The+Pint+Bethesda+MD"
+    },
+    {
+      "name": "Landmark Bethesda Row Cinema",
+      "rating": 4.4,
+      "reviews": 900,
+      "price": "$$",
+      "category": "Cinema & Cocktail Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Landmark+Bethesda+Row+Cinema+7235+Woodmont+Ave+MD"
+    }
+  ],
+  "shop": [
+    {
+      "name": "Bethesda Row",
+      "rating": 4.6,
+      "reviews": 2800,
+      "price": null,
+      "category": "Outdoor Shopping District",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Bethesda+Row+MD"
+    },
+    {
+      "name": "Montgomery Mall",
+      "rating": 4.1,
+      "reviews": 5800,
+      "price": null,
+      "category": "Shopping Mall",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Montgomery+Mall+Bethesda+MD"
+    },
+    {
+      "name": "Wildwood Shopping Center",
+      "rating": 4,
+      "reviews": 340,
+      "price": null,
+      "category": "Neighborhood Shops",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Wildwood+Shopping+Center+Bethesda+MD"
+    },
+    {
+      "name": "Second Story Books",
+      "rating": 4.8,
+      "reviews": 920,
+      "price": "$",
+      "category": "Used Bookstore",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Second+Story+Books+4836+Bethesda+Ave+MD"
+    },
+    {
+      "name": "FP Movement",
+      "rating": 4.5,
+      "reviews": 220,
+      "price": "$$$",
+      "category": "Activewear",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=FP+Movement+Woodmont+Ave+Bethesda+MD"
+    },
+    {
+      "name": "Indigo Octopus",
+      "rating": 4.6,
+      "reviews": 180,
+      "price": "$$$",
+      "category": "Gifts & Lifestyle",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Indigo+Octopus+Bethesda+Row+MD"
+    },
+    {
+      "name": "New Balance",
+      "rating": 4.4,
+      "reviews": 310,
+      "price": "$$$",
+      "category": "Footwear & Apparel",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=New+Balance+Bethesda+Row+MD"
+    }
+  ],
+  "perk": [
+    {
+      "name": "Tatte Bakery & Cafe",
+      "rating": 4.6,
+      "reviews": 840,
+      "price": "$$",
+      "category": "Bakery & Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Tatte+Bethesda+Ave+MD"
+    },
+    {
+      "name": "Dolcezza Gelato & Coffee",
+      "rating": 4.7,
+      "reviews": 980,
+      "price": "$$",
+      "category": "Gelato & Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Dolcezza+7111+Bethesda+Lane+MD"
+    },
+    {
+      "name": "Compass Coffee",
+      "rating": 4.5,
+      "reviews": 620,
+      "price": "$",
+      "category": "Specialty Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Compass+Coffee+Bethesda+Row+MD"
+    },
+    {
+      "name": "Mayorga Coffee",
+      "rating": 4.4,
+      "reviews": 540,
+      "price": "$",
+      "category": "Organic Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Mayorga+Coffee+Bethesda+MD"
+    },
+    {
+      "name": "Boulangerie Christophe",
+      "rating": 4.6,
+      "reviews": 450,
+      "price": "$$",
+      "category": "French Bakery & Cafe",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Boulangerie+Christophe+Bethesda+MD"
+    },
+    {
+      "name": "Grace Street Coffee",
+      "rating": 4.5,
+      "reviews": 380,
+      "price": "$",
+      "category": "Third-Wave Coffee",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Grace+Street+Coffee+Bethesda+MD"
+    }
+  ],
+  "sweat": [
+    {
+      "name": "Capital Crescent Trail",
+      "rating": 4.8,
+      "reviews": 3200,
+      "price": null,
+      "category": "Running & Cycling Trail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Capital+Crescent+Trail+Bethesda+MD"
+    },
+    {
+      "name": "Equinox",
+      "rating": 4.5,
+      "reviews": 680,
+      "price": "$$$$",
+      "category": "Full-Service Gym & Spa",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Equinox+4903+Elm+St+Bethesda+MD"
+    },
+    {
+      "name": "Truebody",
+      "rating": 4.6,
+      "reviews": 280,
+      "price": "$$$",
+      "category": "Pilates, Yoga & Barre",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Truebody+7400+Wisconsin+Ave+Bethesda+MD"
+    },
+    {
+      "name": "Solidcore",
+      "rating": 4.5,
+      "reviews": 420,
+      "price": "$$$",
+      "category": "Pilates Studio",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Solidcore+Bethesda+MD"
+    }
+  ],
+  "groom": [
+    {
+      "name": "Bluemercury",
+      "rating": 4.7,
+      "reviews": 380,
+      "price": "$$$$",
+      "category": "Luxury Skincare & Spa",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Bluemercury+Bethesda+Row+MD"
+    },
+    {
+      "name": "Drybar",
+      "rating": 4.5,
+      "reviews": 620,
+      "price": "$$$",
+      "category": "Blowout Bar",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Drybar+Bethesda+MD"
+    },
+    {
+      "name": "Hand & Stone Massage",
+      "rating": 4.4,
+      "reviews": 780,
+      "price": "$$",
+      "category": "Massage & Facial Spa",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Hand+Stone+Massage+Bethesda+MD"
+    }
+  ],
+  "wag": [
+    {
+      "name": "Norwood Local Park",
+      "rating": 4.7,
+      "reviews": 420,
+      "price": null,
+      "category": "Off-Leash Dog Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Norwood+Local+Park+Bethesda+MD"
+    },
+    {
+      "name": "Capital Crescent Trail",
+      "rating": 4.8,
+      "reviews": 3200,
+      "price": null,
+      "category": "Dog-Friendly Trail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Capital+Crescent+Trail+Bethesda+MD"
+    },
+    {
+      "name": "Dogtopia of Bethesda",
+      "rating": 4.7,
+      "reviews": 340,
+      "price": "$$",
+      "category": "Daycare & Boarding",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Dogtopia+4936+Fairmont+Ave+Bethesda+MD"
+    },
+    {
+      "name": "PetSmart",
+      "rating": 4.2,
+      "reviews": 960,
+      "price": "$$",
+      "category": "Pet Supplies & Grooming",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=PetSmart+6800+Wisconsin+Ave+Bethesda+MD"
+    },
+    {
+      "name": "Healthy Hound Playground",
+      "rating": 4.8,
+      "reviews": 510,
+      "price": "$$",
+      "category": "Dog Daycare & Grooming",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Healthy+Hound+Playground+Bethesda+MD"
+    }
+  ],
+  "parks": [
+    {
+      "name": "Capital Crescent Trail",
+      "rating": 4.8,
+      "reviews": 3200,
+      "price": null,
+      "category": "Running & Biking Trail",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Capital+Crescent+Trail+Bethesda+MD"
+    },
+    {
+      "name": "Norwood Local Park",
+      "rating": 4.7,
+      "reviews": 420,
+      "price": null,
+      "category": "Neighborhood Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Norwood+Local+Park+Bethesda+MD"
+    },
+    {
+      "name": "Cabin John Regional Park",
+      "rating": 4.5,
+      "reviews": 1800,
+      "price": null,
+      "category": "Regional Park",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Cabin+John+Regional+Park+MD"
+    },
+    {
+      "name": "Bethesda Outdoor Pool",
+      "rating": 4.4,
+      "reviews": 290,
+      "price": "$",
+      "category": "Outdoor Pool",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Bethesda+Outdoor+Pool+MD"
+    },
+    {
+      "name": "Elm Street Urban Park",
+      "rating": 4.3,
+      "reviews": 180,
+      "price": null,
+      "category": "Urban Green Space",
+      "photo": null,
+      "maps_url": "https://maps.google.com/?q=Elm+Street+Urban+Park+Bethesda+MD"
+    }
+  ]
+}
