@@ -6,26 +6,41 @@ export async function onRequest(context) {
     });
   }
 
-  try {
-    // Use IDX Broker API directly - much more reliable than widget scraping
-    const resp = await fetch('https://api.idxbroker.com/listings/featured?limit=12&rf[]=listingID&rf[]=listingPrice&rf[]=bedrooms&rf[]=totalBaths&rf[]=sqFt&rf[]=cityName&rf[]=state&rf[]=zipcode&rf[]=image&rf[]=detailsURL&rf[]=propStatus', {
-      headers: {
-        'accesskey': apiKey,
-        'outputtype': 'json',
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    });
+  const headers = {
+    'accesskey': apiKey,
+    'outputtype': 'json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+  };
 
-    if (!resp.ok) {
-      const errText = await resp.text();
-      return new Response(JSON.stringify({ error: 'api_error_' + resp.status, detail: errText.substring(0, 200), listings: [] }), {
-        headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
-      });
+  const fields = 'rf[]=listingID&rf[]=listingPrice&rf[]=bedrooms&rf[]=totalBaths&rf[]=sqFt&rf[]=cityName&rf[]=state&rf[]=zipcode&rf[]=image&rf[]=detailsURL&rf[]=propStatus';
+
+  try {
+    // Try /listings/featured first, fall back to /listings/search
+    let data = null;
+
+    const featuredResp = await fetch(
+      `https://api.idxbroker.com/listings/featured?limit=12&${fields}`,
+      { headers }
+    );
+
+    if (featuredResp.ok) {
+      data = await featuredResp.json();
+    } else {
+      // Fallback: search for active single-family listings in Bethesda area
+      const searchResp = await fetch(
+        `https://api.idxbroker.com/listings/search?limit=12&pt=sf&a_propStatus[]=Active&${fields}`,
+        { headers }
+      );
+      if (searchResp.ok) {
+        data = await searchResp.json();
+      } else {
+        const errText = await searchResp.text();
+        return new Response(JSON.stringify({ error: 'api_error_' + searchResp.status, detail: errText.substring(0, 200), listings: [] }), {
+          headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
+        });
+      }
     }
 
-    const data = await resp.json();
-
-    // IDX Broker API returns object keyed by listingID
     const entries = Array.isArray(data) ? data : Object.values(data);
 
     const listings = entries.slice(0, 12).map(l => ({
