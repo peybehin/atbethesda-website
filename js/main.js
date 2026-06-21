@@ -7,7 +7,7 @@
   const nav = document.getElementById('main-nav');
   if (!nav) return;
   window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
+    nav.classList.toggle('scrolled', window.scrollY > 10);
   });
 })();
 
