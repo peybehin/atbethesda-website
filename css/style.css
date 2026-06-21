@@ -276,3 +276,75 @@ nav.light-nav .nav-hamburger span{background:var(--black);}
 /* ── Blog post featured image ── */
 .post-featured-img{max-width:760px !important;margin:32px auto 0 !important;padding:0 40px !important;}
 .post-featured-img img{width:100% !important;border-radius:8px;display:block;}
+
+
+/* ============================================================
+   @Bethesda Residential — IDX results page customization
+   Custom search/filter bar, card polish, red map markers,
+   centered layout. Scoped to IDX (.idx-/.IDX-/.atb-) classes.
+   Loaded via idx-wrapper.html on search.atbethesda.com pages.
+   ============================================================ */
+:root{ --idx-red:#b72545; --idx-red-dark:#8f1a34; }
+
+/* ---------- custom filter bar ---------- */
+.atb-fb{background:#fff;border-bottom:1px solid #ececec;padding:12px 18px;font-family:'Montserrat',sans-serif;position:relative;z-index:50;}
+.atb-fb *{box-sizing:border-box;}
+.atb-fb__inner{display:flex;align-items:center;gap:9px;flex-wrap:wrap;max-width:1480px;margin:0 auto;}
+.atb-fb__search{display:flex;align-items:center;gap:8px;border:1px solid #dcdcdc;border-radius:999px;padding:9px 16px;flex:1 1 240px;max-width:330px;}
+.atb-fb__search svg{width:16px;height:16px;stroke:#999;fill:none;stroke-width:2;flex:none;}
+.atb-fb__search input{border:0;outline:0;font:inherit;font-size:13.5px;font-weight:600;color:#222;width:100%;background:transparent;}
+.atb-fb__search input::placeholder{font-weight:500;color:#777;}
+.atb-fb__pill{position:relative;}
+.atb-fb__pill>button{border:1px solid #dcdcdc;background:#fff;border-radius:999px;padding:10px 16px;font:inherit;font-size:13.5px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;cursor:pointer;white-space:nowrap;color:#222;}
+.atb-fb__pill>button:hover{border-color:#b0b0b0;}
+.atb-fb__pill.sel>button{border-color:var(--idx-red);color:var(--idx-red);}
+.atb-fb__panel{display:none;position:absolute;top:calc(100% + 8px);left:0;background:#fff;border:1px solid #e7e7e7;border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.15);padding:14px;z-index:80;min-width:210px;}
+.atb-fb__panel.open{display:block;}
+.atb-fb__grid{display:flex;flex-wrap:wrap;gap:6px;}
+.atb-fb__opt{border:1px solid #e2e2e2;background:#fff;padding:8px 12px;border-radius:8px;font:inherit;font-size:12.5px;font-weight:600;cursor:pointer;min-width:46px;text-align:center;}
+.atb-fb__opt:hover{border-color:#b0b0b0;}
+.atb-fb__opt.on{background:var(--idx-red);border-color:var(--idx-red);color:#fff;}
+.atb-fb__prow{display:flex;align-items:center;gap:8px;}
+.atb-fb__prow select{font:inherit;font-size:13px;padding:9px;border:1px solid #dcdcdc;border-radius:8px;background:#fff;}
+.atb-fb__apply{margin-top:12px;width:100%;background:var(--idx-red);color:#fff;border:0;border-radius:999px;padding:10px;font:inherit;font-weight:700;cursor:pointer;}
+.atb-fb__apply:hover{background:var(--idx-red-dark);}
+.atb-fb__spacer{flex:1 1 10px;}
+.atb-fb__toggle{display:flex;border:1px solid #dcdcdc;border-radius:999px;overflow:hidden;}
+.atb-fb__toggle button{border:0;background:#fff;padding:10px 18px;font:inherit;font-size:13.5px;font-weight:600;text-transform:uppercase;letter-spacing:1.2px;cursor:pointer;color:#222;}
+.atb-fb__toggle button.on{background:#111;color:#fff;}
+.atb-fb__save{background:var(--idx-red);color:#fff;border:0;border-radius:999px;padding:11px 22px;font:inherit;font-size:13.5px;font-weight:800;text-transform:uppercase;letter-spacing:1.2px;cursor:pointer;}
+.atb-fb__save:hover{background:var(--idx-red-dark);}
+
+/* ---------- hide IDX's old search/action buttons (replaced by the bar) ---------- */
+.IDX-topAction,.IDX-save-search--no-refinement{display:none!important;}
+
+/* ---------- listing card polish ---------- */
+.idx-listing-card__courtesy{display:none!important;}
+.IDX-resultsOpenHouse .IDX-open-house,.IDX-open-house,.IDX-resultsVirtualTour .IDX-psudolink,.IDX-resultsVirtualTour a{display:inline-block!important;background:var(--idx-red)!important;color:#fff!important;text-decoration:none!important;border-radius:999px!important;padding:4px 12px!important;font-size:11px!important;font-weight:700!important;letter-spacing:.03em;text-transform:uppercase;box-shadow:0 2px 6px rgba(0,0,0,.25);}
+.idx-listing-card__actions{display:flex!important;align-items:flex-start!important;gap:6px!important;flex-wrap:wrap!important;}
+.IDX-reduced{background:var(--idx-red)!important;color:#fff!important;border-radius:999px!important;padding:4px 10px!important;font-weight:700!important;font-size:11px!important;}
+.idx-listing-card__price{font-weight:800!important;}
+.idx-listing-card{transition:transform .15s ease,box-shadow .15s ease;}
+.idx-listing-card:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(0,0,0,.20)!important;z-index:2;}
+.idx-results__save-property{background:transparent!important;border-radius:0!important;width:auto!important;height:auto!important;box-shadow:none!important;filter:none!important;}
+.idx-results__save-property .fa-heart{color:#9aa0a4!important;}
+.idx-results__save-property .fa-heart-o{color:#fff!important;}
+.idx-results__save-property:hover .fa-heart,.IDX-saveProperty:hover .fa-heart{color:var(--idx-red)!important;}
+.IDX-wrapper-standard .idx-listing-card--active .idx-listing-card__link::after,.IDX-wrapper-standard .idx-listing-card__link:hover::after,.IDX-wrapper-standard .idx-listing-card__link:focus::after,.IDX-wrapper-standard .idx-listing-card__link:active::after{box-shadow:var(--idx-red) 0 0 0 3px inset!important;}
+.IDX-btn-primary{background:var(--idx-red)!important;border-color:var(--idx-red)!important;color:#fff!important;}
+.IDX-btn-primary:hover{background:var(--idx-red-dark)!important;border-color:var(--idx-red-dark)!important;}
+
+/* ---------- red map markers ---------- */
+.leaflet-label,.leaflet-tooltip.leaflet-label{background:var(--idx-red)!important;border-color:var(--idx-red)!important;}
+.leaflet-label--active,.leaflet-tooltip.leaflet-label--active{background:var(--idx-red-dark)!important;}
+.leaflet-tooltip-top.leaflet-label::before,.leaflet-label.leaflet-tooltip-top::before{border-top-color:var(--idx-red)!important;}
+.leaflet-tooltip-bottom.leaflet-label::before,.leaflet-label.leaflet-tooltip-bottom::before{border-bottom-color:var(--idx-red)!important;}
+.leaflet-tooltip-left.leaflet-label::before,.leaflet-label.leaflet-tooltip-left::before{border-left-color:var(--idx-red)!important;}
+.leaflet-tooltip-right.leaflet-label::before,.leaflet-label.leaflet-tooltip-right::before{border-right-color:var(--idx-red)!important;}
+
+/* ---------- center map + cards on wide screens; no footer bleed / no divider line ---------- */
+#IDX-main{height:auto!important;min-height:0!important;overflow:visible!important;padding-left:max(0px,calc((100% - 1480px)/2))!important;padding-right:max(0px,calc((100% - 1480px)/2))!important;}
+.idx-content-area{height:auto!important;min-height:0!important;overflow:visible!important;padding-bottom:0!important;}
+.idx-results{max-width:none!important;margin:0 0 40px 0!important;}
+.idx-results__content{border-bottom:0!important;}
+.idx-results__listings,.idx-results__category{max-height:600px!important;overflow-y:auto!important;}
