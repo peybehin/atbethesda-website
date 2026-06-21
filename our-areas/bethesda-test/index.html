@@ -255,11 +255,11 @@
         wrapper.innerHTML=listings.slice(0,9).map(function(l){
           var details=[l.beds,l.baths,l.sqft].filter(Boolean);
           return'<div class="swiper-slide"><div class="prop-card">'+
-            '<div class="prop-card__img-wrap">'+(l.photo?'<img src="'+l.photo+'" alt="" class="prop-card__img" loading="lazy">':'')+
-            '<span class="prop-card__status">'+l.status+'</span></div>'+
-            '<div class="prop-card__body">'+
-            '<div class="prop-card__price">'+l.price+'</div>'+
-            '<div class="prop-card__address">'+l.address+'</div>'+
+            '<div class="prop-card__img-wrap" style="height:280px;">'+(l.photo?'<img src="'+l.photo+'" alt="" class="prop-card__img" loading="lazy">':'')+
+            '<span class="prop-card__status">'+(l.status||'ACTIVE')+'</span></div>'+
+            '<div class="prop-card__body" style="min-height:120px;display:flex;flex-direction:column;justify-content:space-between;">'+
+            (l.price?'<div class="prop-card__price">'+l.price+'</div>':'')+
+            (l.address?'<div class="prop-card__address">'+l.address+'</div>':'')+
             (details.length?'<div class="prop-card__details">'+details.map(function(d){return'<span>'+d+'</span>';}).join('')+'</div>':'')+
             '<a href="'+l.url+'" class="prop-card__btn" target="_blank" rel="noopener">View Details</a>'+
             '</div></div></div>';
@@ -283,18 +283,35 @@
                 var articles=bestEl.shadowRoot.querySelectorAll('article');
                 if(articles.length){
                   var listings=Array.from(articles).map(function(article){
-                    var link=article.querySelector('a[href]');
-                    var imgs=article.querySelectorAll('img');
+                    /* widget 160819 uses idx-listing-card__ class prefix (minimal format) */
+                    var link=article.querySelector('a.idx-listing-card__link')||article.querySelector('a[href]');
+                    var img=article.querySelector('img.idx-listing-card__image')||article.querySelector('img');
+                    var statusEl=article.querySelector('[class*="prop-status"]');
+                    var openHouseEl=article.querySelector('[class*="open-house-small"]');
+                    /* address from img alt "123 Main St, Bethesda, MD image" → strip " image" */
+                    var altAddr=img?img.alt.replace(/\s+image$/i,'').trim():'';
+                    /* fallback: link title "View details page for 123 Main St" */
+                    var titleAddr=link?link.title.replace(/^View details page for\s*/i,'').trim():'';
+                    var addr=altAddr||titleAddr;
+                    var status=statusEl?statusEl.textContent.trim():'ACTIVE';
+                    if(openHouseEl&&openHouseEl.textContent.trim())status=openHouseEl.textContent.trim()+' • '+status;
+                    /* Also try idx-property-card__ format (Chevy Chase style) as fallback */
                     var spans=article.querySelectorAll('span.idx-property-card__single-item');
                     var addrEl=article.querySelector('.idx-property-card__address');
                     var h4=article.querySelector('h4');var h5=article.querySelector('h5');
-                    return{status:h5?h5.textContent.trim():'ACTIVE',price:h4?h4.textContent.trim():'',
-                      address:addrEl?addrEl.textContent.trim():'',
+                    if(h4||addrEl){
+                      /* full-detail widget format */
+                      return{status:h5?h5.textContent.trim():status,price:h4?h4.textContent.trim():'',
+                        address:addrEl?addrEl.textContent.trim():addr,
+                        url:link?link.href:'https://search.atbethesda.com/idx/results/listings',
+                        photo:img?img.src:'',
+                        beds:spans[0]?spans[0].textContent.trim():'',
+                        baths:spans[1]?spans[1].textContent.trim():'',
+                        sqft:spans[2]?spans[2].textContent.trim():''};
+                    }
+                    return{status:status,price:'',address:addr,
                       url:link?link.href:'https://search.atbethesda.com/idx/results/listings',
-                      photo:(article.querySelector('img.idx-property-card__image')||imgs[0]||{}).src||'',
-                      beds:spans[0]?spans[0].textContent.trim():'',
-                      baths:spans[1]?spans[1].textContent.trim():'',
-                      sqft:spans[2]?spans[2].textContent.trim():''};
+                      photo:img?img.src:'',beds:'',baths:'',sqft:''};
                   });
                   document.body.removeChild(iframe);
                   for(var i=listings.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=listings[i];listings[i]=listings[j];listings[j]=t;}
