@@ -37,7 +37,7 @@
   // Inject styles
   var style = document.createElement('style');
   style.textContent = [
-    '.author-bio-card{display:flex;gap:24px;align-items:flex-start;background:#f7f7f5;border-left:4px solid #d60717;padding:28px 28px 24px;margin:48px 0 32px;border-radius:2px;max-width:860px;}',
+    '.author-bio-card{display:flex;gap:24px;align-items:flex-start;background:#f7f7f5;border-left:4px solid #d60717;padding:28px 28px 24px;margin:48px auto 32px;border-radius:2px;max-width:860px;}',
     '.author-bio-photo{width:96px;height:96px;border-radius:50%;object-fit:cover;object-position:top;flex-shrink:0;}',
     '.author-bio-content{flex:1;min-width:0;}',
     '.author-bio-name{font-family:"Montserrat",sans-serif;font-weight:900;font-size:1rem;color:#0a0a0a;margin-bottom:3px;}',
