@@ -53,7 +53,7 @@ function renderAnalytics(data) {
         const label = p.path === '/' ? '/ (Home)' : p.path;
         return `<tr>
           <td class="tp-rank">${i+1}</td>
-          <td class="tp-path" title="${p.path}">${label}</td>
+          <td class="tp-path"><a href="https://atbethesda.com${p.path}" target="_blank" style="color:inherit;text-decoration:none;" title="Open ${p.path}">${label}</a></td>
           <td class="tp-count">${fmtNum(p.requests)}</td>
           <td class="tp-bar-cell"><div class="tp-bar" style="width:${pct}%"></div></td>
         </tr>`;
@@ -195,7 +195,7 @@ function renderGA4(data, days) {
         const label = path === '/' ? '/ (Home)' : path;
         return '<tr>' +
           '<td class="tp-rank">'+(i+1)+'</td>' +
-          '<td class="tp-path" title="'+path+'">'+label+'</td>' +
+          '<td class="tp-path"><a href="https://atbethesda.com'+path+'" target="_blank" style="color:inherit;text-decoration:none;" title="Open '+path+'">'+label+'</a></td>' +
           '<td class="tp-count">'+fmtNum(sess)+'</td>' +
           '<td class="tp-count" style="color:var(--gray-text)">'+fmtNum(views)+'</td>' +
           '<td class="tp-bar-cell"><div class="tp-bar" style="width:'+pct+'%"></div></td>' +
@@ -975,18 +975,6 @@ select.cat-select{margin-bottom:0;}
       <!-- LEADS -->
       <div id="view-analytics" style="display:none;">
         <div class="analytics-header">
-          <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-text);">Cloudflare Analytics</div>
-          <div class="analytics-range">
-            <button class="range-btn" onclick="loadAnalytics(1,this)">24h</button>
-            <button class="range-btn active" onclick="loadAnalytics(7,this)">7 Days</button>
-            <button class="range-btn" onclick="loadAnalytics(30,this)">30 Days</button>
-          </div>
-        </div>
-        <div id="analytics-body">
-          <div class="analytics-loading">Loading analytics...</div>
-        </div>
-        <div style="height:32px;"></div>
-        <div class="analytics-header" style="margin-top:8px;">
           <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-text);">Google Analytics 4</div>
           <div class="analytics-range">
             <button class="ga4-range-btn" onclick="loadGA4(1,this)">24h</button>
@@ -996,6 +984,18 @@ select.cat-select{margin-bottom:0;}
         </div>
         <div id="ga4-body">
           <div class="analytics-loading">Loading Google Analytics…</div>
+        </div>
+        <div style="height:32px;"></div>
+        <div class="analytics-header" style="margin-top:8px;">
+          <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-text);">Cloudflare Analytics</div>
+          <div class="analytics-range">
+            <button class="range-btn" onclick="loadAnalytics(1,this)">24h</button>
+            <button class="range-btn active" onclick="loadAnalytics(7,this)">7 Days</button>
+            <button class="range-btn" onclick="loadAnalytics(30,this)">30 Days</button>
+          </div>
+        </div>
+        <div id="analytics-body">
+          <div class="analytics-loading">Loading analytics...</div>
         </div>
       </div>
             <div id="view-leads" style="display:none;">
