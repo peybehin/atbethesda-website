@@ -109,6 +109,7 @@
   <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
 </nav>
 <div class="mobile-nav" id="mobile-nav"><ul><li><a href="/">Home</a></li><li><a href="/properties/">Buy</a></li><li><a href="/whats-my-home-worth/">Sell</a></li><li><a href="/our-areas/">Featured Areas</a></li><li><a href="/about/">About</a></li><li><a href="/vlog/">Blog</a></li><li><a href="/contact/">Let's Connect</a></li></ul></div>
+<script>function toggleMobileNav(){var nav=document.getElementById('mobile-nav');nav.classList.toggle('open');if(nav.classList.contains('open')){document.addEventListener('click',function c(e){if(!nav.contains(e.target)&&!document.getElementById('nav-hamburger').contains(e.target)){nav.classList.remove('open');document.removeEventListener('click',c);}});}}</script>
 
 <!-- Hero -->
 <div class="page-hero" style="min-height:420px;">
@@ -171,12 +172,13 @@
           <span class="area-detail-label">Average Property Tax</span>
           <span class="area-detail-value">~0.85% of assessed value</span>
         </div>
-        <div style="margin-top: 20px; overflow: hidden; height: 195px;">
+        <style>.area-mai-crop{margin-top:20px;overflow:hidden;height:195px;}@media(max-width:900px){.area-mai-crop{height:135px;}}</style>
+        <div class="area-mai-crop">
           <iframe
             src="https://altos.re/html/m-html/6d5362ce-da50-4f24-9c70-78a195a865ab?scale=1&houses=true&size=medium"
             style="border:0;display:block;width:100%;height:400px;"
             scrolling="no"
-            loading="lazy">
+            loading="eager">
           </iframe>
         </div>
       </div>
