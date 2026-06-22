@@ -125,6 +125,125 @@ function renderAnalytics(data) {
   `;
 }
 
+/* ══════════════ GA4 ANALYTICS ══════════════ */
+let ga4Loaded = false;
+let currentGA4Days = 7;
+
+async function loadGA4(days, btn) {
+  currentGA4Days = days;
+  if (btn) {
+    document.querySelectorAll('.ga4-range-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  const body = document.getElementById('ga4-body');
+  body.innerHTML = '<div class="analytics-loading">Loading Google Analytics…</div>';
+  try {
+    const resp = await fetch('/api/ga-analytics?days=' + days);
+    const data = await resp.json();
+    if (data.error) throw new Error(data.error);
+    renderGA4(data, days);
+    ga4Loaded = true;
+  } catch(e) {
+    body.innerHTML = '<div class="analytics-error">⚠ ' + e.message + '</div>';
+  }
+}
+
+function fmtDuration(secs) {
+  const s = Math.round(parseFloat(secs));
+  if (s < 60) return s + 's';
+  return Math.floor(s/60) + 'm ' + (s%60) + 's';
+}
+function fmtPct(v) { return (parseFloat(v)*100).toFixed(1) + '%'; }
+function delta(curr, prev) {
+  if (!prev || prev == 0) return '';
+  const change = ((curr - prev) / Math.abs(prev) * 100).toFixed(1);
+  const cls = change >= 0 ? 'delta-up' : 'delta-down';
+  return ' <span class="' + cls + '">' + (change >= 0 ? '+' : '') + change + '%</span>';
+}
+
+function renderGA4(data, days) {
+  const rows = data.totals && data.totals.rows;
+  const curr = rows && rows[0] ? rows[0].metricValues : [];
+  const prev = rows && rows[1] ? rows[1].metricValues : [];
+
+  const get = (arr, i) => arr[i] ? arr[i].value : '0';
+
+  const sessions    = parseInt(get(curr,0));
+  const users       = parseInt(get(curr,1));
+  const pageviews   = parseInt(get(curr,2));
+  const avgDur      = parseFloat(get(curr,3));
+  const bounce      = parseFloat(get(curr,4));
+  const newUsers    = parseInt(get(curr,5));
+
+  const pSessions   = parseInt(get(prev,0));
+  const pUsers      = parseInt(get(prev,1));
+  const pPageviews  = parseInt(get(prev,2));
+  const pAvgDur     = parseFloat(get(prev,3));
+  const pBounce     = parseFloat(get(prev,4));
+  const pNewUsers   = parseInt(get(prev,5));
+
+  const pageRows = (data.pages && data.pages.rows) || [];
+  const maxSess = Math.max(...pageRows.map(r => parseInt(r.metricValues[0].value)), 1);
+  const topPageRows = pageRows.length ? `
+    <table class="top-pages-table">
+      <thead><tr><th>#</th><th>Page</th><th>Sessions</th><th>Views</th><th></th></tr></thead>
+      <tbody>${pageRows.map((r,i) => {
+        const path  = r.dimensionValues[0].value;
+        const sess  = parseInt(r.metricValues[0].value);
+        const views = parseInt(r.metricValues[1].value);
+        const pct   = Math.round((sess/maxSess)*100);
+        const label = path === '/' ? '/ (Home)' : path;
+        return '<tr>' +
+          '<td class="tp-rank">'+(i+1)+'</td>' +
+          '<td class="tp-path" title="'+path+'">'+label+'</td>' +
+          '<td class="tp-count">'+fmtNum(sess)+'</td>' +
+          '<td class="tp-count" style="color:var(--gray-text)">'+fmtNum(views)+'</td>' +
+          '<td class="tp-bar-cell"><div class="tp-bar" style="width:'+pct+'%"></div></td>' +
+          '</tr>';
+      }).join('')}</tbody>
+    </table>` : '<div style="color:#aaa;font-size:.8rem;padding:20px">No data</div>';
+
+  document.getElementById('ga4-body').innerHTML = `
+    <div class="analytics-grid">
+      <div class="analytics-card ac-good">
+        <div class="ac-label">Sessions</div>
+        <div class="ac-value">${fmtNum(sessions)}${delta(sessions,pSessions)}</div>
+        <div class="ac-sub">vs prev period</div>
+      </div>
+      <div class="analytics-card ac-good">
+        <div class="ac-label">Active Users</div>
+        <div class="ac-value">${fmtNum(users)}${delta(users,pUsers)}</div>
+        <div class="ac-sub">Real people</div>
+      </div>
+      <div class="analytics-card">
+        <div class="ac-label">Page Views</div>
+        <div class="ac-value">${fmtNum(pageviews)}${delta(pageviews,pPageviews)}</div>
+        <div class="ac-sub">Total screens viewed</div>
+      </div>
+      <div class="analytics-card">
+        <div class="ac-label">New Users</div>
+        <div class="ac-value">${fmtNum(newUsers)}${delta(newUsers,pNewUsers)}</div>
+        <div class="ac-sub">First-time visitors</div>
+      </div>
+      <div class="analytics-card${avgDur < 30 ? ' ac-warn' : ' ac-good'}">
+        <div class="ac-label">Avg Session</div>
+        <div class="ac-value">${fmtDuration(avgDur)}${delta(avgDur,pAvgDur)}</div>
+        <div class="ac-sub">Time on site</div>
+      </div>
+      <div class="analytics-card${bounce > 0.7 ? ' ac-warn' : ' ac-good'}">
+        <div class="ac-label">Bounce Rate</div>
+        <div class="ac-value">${fmtPct(bounce)}${delta(pBounce,bounce)}</div>
+        <div class="ac-sub">Lower = better</div>
+      </div>
+    </div>
+    <div class="analytics-chart-box">
+      <h3>Top 10 Pages <span style="font-weight:400;color:var(--gray-text);font-size:.65rem;">(GA4 · last ${days}d)</span></h3>
+      ${topPageRows}
+    </div>
+  `;
+}
+
+
 </script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -464,6 +583,11 @@ select.cat-select{margin-bottom:0;}
 
 /* ── ANALYTICS ── */
 #view-analytics{display:none;padding:0 24px 40px;}
+.delta-up{font-size:.6rem;color:#2e7d32;font-weight:700;vertical-align:super;}
+.delta-down{font-size:.6rem;color:#c62828;font-weight:700;vertical-align:super;}
+.ga4-range-btn{padding:4px 12px;font-size:.72rem;font-weight:600;border:1px solid var(--gray-mid);background:#fff;border-radius:4px;cursor:pointer;color:var(--gray-text);font-family:var(--font);}
+.ga4-range-btn.active,.ga4-range-btn:hover{background:var(--red);color:#fff;border-color:var(--red);}
+
 .analytics-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px;}
 .analytics-range{display:flex;gap:6px;}
 .range-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#aaa;padding:5px 14px;border-radius:4px;cursor:pointer;font-size:.72rem;font-family:var(--font);font-weight:600;letter-spacing:.05em;transition:all .15s;}
@@ -863,6 +987,18 @@ select.cat-select{margin-bottom:0;}
         <div id="analytics-body">
           <div class="analytics-loading">Loading analytics...</div>
         </div>
+        <div style="height:32px;"></div>
+        <div class="analytics-header" style="margin-top:8px;">
+          <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-text);">Google Analytics 4</div>
+          <div class="analytics-range">
+            <button class="ga4-range-btn" onclick="loadGA4(1,this)">24h</button>
+            <button class="ga4-range-btn active" onclick="loadGA4(7,this)">7 Days</button>
+            <button class="ga4-range-btn" onclick="loadGA4(30,this)">30 Days</button>
+          </div>
+        </div>
+        <div id="ga4-body">
+          <div class="analytics-loading">Loading Google Analytics…</div>
+        </div>
       </div>
             <div id="view-leads" style="display:none;padding:0 24px 40px;">
         <div class="dash-header" style="padding:24px 0 20px;"><h1>Leads</h1></div>
@@ -1132,8 +1268,9 @@ function showView(view, filterCat, filterStat) {
     document.getElementById('view-analytics').style.display = 'block';
     document.getElementById('nav-analytics').classList.add('active');
     document.getElementById('topbar-title').textContent = 'Analytics';
-    document.getElementById('topbar-actions').innerHTML = '<button class="btn btn-sm btn-outline" onclick="loadAnalytics(currentAnalyticsDays)">↻ Refresh</button>';
+    document.getElementById('topbar-actions').innerHTML = '<button class="btn btn-sm btn-outline" onclick="loadAnalytics(currentAnalyticsDays);loadGA4(currentGA4Days)">↻ Refresh</button>';
     if (!analyticsLoaded) loadAnalytics(7);
+    if (!ga4Loaded) loadGA4(7);
   }
 }
 
