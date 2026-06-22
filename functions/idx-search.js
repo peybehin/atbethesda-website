@@ -3,34 +3,31 @@ export async function onRequest(context) {
     const apiKey = context.env.IDX_API_KEY;
     if (!apiKey) return resp({ error: 'no_api_key' });
     const h = { accesskey: apiKey, outputtype: 'json' };
-    const tests = {};
 
-    // KEY THEORY: idxID=b004 is the required MLS connection parameter
-    // Try search WITH idxID
-    const r1 = await fetch('https://api.idxbroker.com/clients/search?idxID=b004&limit=5', { headers: h });
-    tests.search_b004 = { status: r1.status, len: 0 };
-    const t1 = await r1.text(); tests.search_b004.len = t1.length;
-    try { const p = JSON.parse(t1); tests.search_b004.count = Array.isArray(p) ? p.length : Object.keys(p).length; tests.search_b004.sample = JSON.stringify(p).slice(0,100); } catch(e) { tests.search_b004.parseErr = e.message; tests.search_b004.raw = t1.slice(0,80); }
+    const r = await fetch('https://api.idxbroker.com/clients/featured?idxID=b004', { headers: h });
+    const text = await r.text();
+    let raw = null;
+    try { raw = JSON.parse(text); } catch(e) {}
 
-    // Try search with idxID + city
-    const r2 = await fetch('https://api.idxbroker.com/clients/search?idxID=b004&ccz=city&city=Bethesda&limit=5', { headers: h });
-    tests.search_b004_bethesda = { status: r2.status };
-    const t2 = await r2.text();
-    try { const p = JSON.parse(t2); tests.search_b004_bethesda.count = Array.isArray(p) ? p.length : Object.keys(p).length; } catch(e) { tests.search_b004_bethesda.raw = t2.slice(0,60); }
+    if (!raw || (typeof raw === 'object' && Object.keys(raw).length === 0)) {
+      return resp({ error: 'no_data', status: r.status, len: text.length });
+    }
 
-    // Try combinedActiveMLS
-    const r3 = await fetch('https://api.idxbroker.com/clients/search?idxID=combinedActiveMLS&limit=5', { headers: h });
-    tests.search_combined = { status: r3.status };
-    const t3 = await r3.text();
-    try { const p = JSON.parse(t3); tests.search_combined.count = Array.isArray(p) ? p.length : Object.keys(p).length; } catch(e) { tests.search_combined.raw = t3.slice(0,60); }
+    // Get listings array
+    const listings = Array.isArray(raw) ? raw : Object.values(raw);
+    const first = listings[0] || {};
 
-    // Try featured WITH idxID
-    const r4 = await fetch('https://api.idxbroker.com/clients/featured?idxID=b004&limit=5', { headers: h });
-    tests.featured_b004 = { status: r4.status };
-    const t4 = await r4.text();
-    try { const p = JSON.parse(t4); tests.featured_b004.count = Array.isArray(p) ? p.length : Object.keys(p).length; } catch(e) { tests.featured_b004.raw = t4.slice(0,60); }
+    // Return structural info about the first listing (field names + types only, not values)
+    const fieldTypes = {};
+    for (const [k,v] of Object.entries(first)) {
+      fieldTypes[k] = typeof v === 'string' ? (v.startsWith('http') ? 'url:' + v.slice(0,30) : 'str:' + v.slice(0,20)) : typeof v;
+    }
 
-    return resp({ tests });
+    return resp({
+      count: listings.length,
+      fieldTypes,
+      listingKeys: Object.keys(first)
+    });
   } catch(e) { return resp({ error: e.message }); }
 }
 function resp(data) {
