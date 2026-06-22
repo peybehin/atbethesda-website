@@ -1,4 +1,5 @@
 User-agent: *
+Disallow: /our-areas/bethesda-trends-test/
 Disallow: /widget-test/
 Disallow: /our-areas/bethesda-test/
 Disallow: /test-search-mobile/
