@@ -11,16 +11,16 @@
 </script>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Pey Behin | @Bethesda Real Estate</title>
-  <meta name="description" content="Meet Pey Behin â your hyperlocal Bethesda and DC Metro real estate expert with RLAH Properties. Learn about Pey's approach and philosophy." />
+  <meta name="description" content="Meet Pey Behin — your hyperlocal Bethesda and DC Metro real estate expert with RLAH Properties. Learn about Pey's approach and philosophy." />
   <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;600;700;900&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/style.css?v=4" />
   <style>
 
-    /* ââ ALL PAGE HEADINGS: Anton âââââââââââââââââââââââââ */
+    /* ── ALL PAGE HEADINGS: Anton ───────────────────────── */
     h1, h2 { font-family: 'Anton', sans-serif; font-weight: 400; letter-spacing: 2px; }
 
-    /* ââ HI, I'M PEY BEHIN âââââââââââââââââââââââââââââââ */
+    /* ── HI, I'M PEY BEHIN ─────────────────────────────── */
     .hi-pey { background: #150505; padding: 0; overflow: hidden; }
     .hi-pey-grid {
       display: flex;
@@ -53,7 +53,7 @@
       display: block; object-fit: contain; object-position: center bottom;
     }
 
-    /* ââ MY JOURNEY INTO REAL ESTATE âââââââââââââââââââââ */
+    /* ── MY JOURNEY INTO REAL ESTATE ───────────────────── */
     .journey { background: #000; padding: 0; }
     .journey-grid {
       display: grid;
@@ -109,7 +109,7 @@
       color: #fff; line-height: 1.75; margin: 0;
     }
 
-    /* ââ WHAT I CAN DO FOR YOU âââââââââââââââââââââââââââ */
+    /* ── WHAT I CAN DO FOR YOU ─────────────────────────── */
     .wicd { background: var(--red); padding: 60px 40px; }
     .wicd-grid {
       display: grid; grid-template-columns: 1fr 1.3fr;
@@ -141,7 +141,7 @@
       font-size: .78rem; color: #555; line-height: 1.55; margin: 0;
     }
 
-    /* ââ TESTIMONIALS ââââââââââââââââââââââââââââââââââââ */
+    /* ── TESTIMONIALS ──────────────────────────────────── */
     .testimonials-bar {
       background: var(--black);
       text-align: center; padding: 48px 40px;
@@ -180,7 +180,7 @@
     .testi-block.cream .testi-name { color: #222; }
     .testi-block.crimson .testi-name { color: #fff; }
 
-    /* ââ HOW I WORK ââââââââââââââââââââââââââââââââââââââ */
+    /* ── HOW I WORK ────────────────────────────────────── */
     .how-section { background: #0d0d0d; }
     .how-header { text-align: center; margin-bottom: 60px; }
     .how-header .section-label { color: var(--red); }
@@ -209,7 +209,7 @@
       font-size: .83rem; color: #777; line-height: 1.7; margin: 0;
     }
 
-    /* ââ CTA + INLINE FORM âââââââââââââââââââââââââââââââ */
+    /* ── CTA + INLINE FORM ─────────────────────────────── */
     .cta-form-section { background: var(--black); }
     .cta-form-inner { max-width: 720px; margin: 0 auto; }
     .cta-form-section .section-label { color: var(--red); }
@@ -267,15 +267,21 @@
       text-align: center; color: #555; font-size: .77rem; margin-top: 14px;
     }
 
-    /* ââ RESPONSIVE ââââââââââââââââââââââââââââââââââââââ */
+    /* ── RESPONSIVE ────────────────────────────────────── */
     @media(max-width:900px) {
-      .hi-pey-grid { grid-template-columns: 1fr; }
-      .hi-pey-content { padding: 40px 20px; }
+      .hi-pey-grid { flex-direction: column; min-height: 0; }
+      .hi-pey-content, .hi-pey-photo { flex: 0 0 auto; }
+      .hi-pey-content { padding: 44px 22px 30px; }
       .hi-pey-content p { max-width: 100%; }
-      .journey-grid { grid-template-columns: 1fr; gap: 40px; }
-      .wicd-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hi-pey-photo img { max-width: 340px; margin: 0 auto; }
+      .journey-grid { display: grid; grid-template-columns: 1fr; grid-template-rows: auto; gap: 0; }
+      .journey-video-cell, .journey-bio-cell, .journey-quote-cell { grid-area: auto; }
+      .journey-bio-cell { padding: 40px 22px; }
+      .wicd { padding: 50px 22px; }
+      .wicd-grid { grid-template-columns: 1fr; gap: 32px; }
+      .wicd-left h2, .wicd-left p { text-align: center; }
       .testimonials-cols { grid-template-columns: 1fr; }
-      .testi-block { padding: 55px 30px; }
+      .testi-block { padding: 50px 26px; }
       .how-grid { grid-template-columns: 1fr 1fr; }
       .cf-row { grid-template-columns: 1fr; }
     }
@@ -370,7 +376,7 @@
 </head>
 <body>
 
-<!-- ââ NAV ââ -->
+<!-- ── NAV ── -->
 <nav id="main-nav">
   <a href="/" class="nav-logo"><img src="/images/logo-bethesda-residential.png?v=2" alt="@Bethesda Real Estate" /></a>
   <ul class="nav-links">
@@ -392,7 +398,7 @@
 <div class="mobile-nav" id="mobile-nav"><ul><li><a href="/">Home</a></li><li><a href="/properties/">Buy</a></li><li><a href="/whats-my-home-worth/">Sell</a></li><li><a href="/our-areas/">Featured Areas</a></li><li><a href="/about/">About</a></li><li><a href="/vlog/">Blog</a></li><li><a href="/contact/">Let&#39;s Connect</a></li></ul></div>
 <script>function toggleMobileNav(){var nav=document.getElementById('mobile-nav');nav.classList.toggle('open');if(nav.classList.contains('open')){document.addEventListener('click',function c(e){if(!nav.contains(e.target)&&!document.getElementById('nav-hamburger').contains(e.target)){nav.classList.remove('open');document.removeEventListener('click',c);}});}}</script>
 
-<!-- ââ 1. HI, I'M PEY BEHIN ââ -->
+<!-- ── 1. HI, I'M PEY BEHIN ── -->
 <section class="hi-pey">
   <div class="hi-pey-grid">
     <div class="hi-pey-content">
@@ -406,7 +412,7 @@
   </div>
 </section>
 
-<!-- ââ 3. MY JOURNEY INTO REAL ESTATE ââ -->
+<!-- ── 3. MY JOURNEY INTO REAL ESTATE ── -->
 <section class="journey">
   <div class="journey-grid">
     <div class="journey-video-cell">
@@ -427,7 +433,7 @@
   </div>
 </section>
 
-<!-- ââ 4. WHAT I CAN DO FOR YOU ââ -->
+<!-- ── 4. WHAT I CAN DO FOR YOU ── -->
 <section class="wicd">
   <div class="inner">
     <div class="wicd-grid">
@@ -437,41 +443,41 @@
       </div>
       <div class="wicd-cards">
         <div class="wicd-card">
-          <span class="wicd-icon">ð¯</span>
+          <span class="wicd-icon">🎯</span>
           <h3>Hyperlocal Knowledge</h3>
           <p>I live and work in this market every day. I know which streets flood, which schools are actually as good as advertised, and which neighborhoods are about to pop before Zillow does.</p>
         </div>
         <div class="wicd-card">
-          <span class="wicd-icon">ð¤</span>
+          <span class="wicd-icon">🤝</span>
           <h3>Honest Guidance</h3>
           <p>I won't tell you what you want to hear. If a home is overpriced, I'll tell you. My goal is your best outcome, not my commission.</p>
         </div>
         <div class="wicd-card">
-          <span class="wicd-icon">â¡</span>
+          <span class="wicd-icon">⚡</span>
           <h3>Responsive &amp; Reliable</h3>
           <p>In a competitive market, speed matters. I'm available, I respond fast, and when it's time to make a move, I move.</p>
         </div>
         <div class="wicd-card">
-          <span class="wicd-icon">ð</span>
+          <span class="wicd-icon">📊</span>
           <h3>Data-Driven Strategy</h3>
-          <p>Every offer I write is backed by data. Every pricing recommendation is based on what the market is actually doing â not gut feeling.</p>
+          <p>Every offer I write is backed by data. Every pricing recommendation is based on what the market is actually doing — not gut feeling.</p>
         </div>
         <div class="wicd-card">
-          <span class="wicd-icon">ð</span>
+          <span class="wicd-icon">🏆</span>
           <h3>Relentless Negotiation</h3>
-          <p>My clients consistently get more â winning in multiple-offer situations as buyers, or negotiating top dollar as sellers.</p>
+          <p>My clients consistently get more — winning in multiple-offer situations as buyers, or negotiating top dollar as sellers.</p>
         </div>
         <div class="wicd-card">
-          <span class="wicd-icon">ð</span>
+          <span class="wicd-icon">📍</span>
           <h3>Long After Closing</h3>
-          <p>The transaction is just the beginning. I'm a resource for my clients long after we close â for recommendations, market updates, and honest answers.</p>
+          <p>The transaction is just the beginning. I'm a resource for my clients long after we close — for recommendations, market updates, and honest answers.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ââ 5. TESTIMONIALS ââ -->
+<!-- ── 5. TESTIMONIALS ── -->
 <div class="testimonials-bar">
   <h2>Testimonials</h2>
 </div>
@@ -482,7 +488,7 @@
          alt="Michelle and Viq Hussain" />
     <p class="testi-text">
       In today's competitive real estate market in the DMV, having the right person to navigate you through this complex market is critical. For the past several years, my wife and I had been trying to search for the perfect home with a long list of wants/needs. When I stumbled upon the house in Potomac, MD that checked all the boxes, there was only one person I would have trusted in this important journey.<br><br>
-      <strong>Knowing I had about 48 hours to get everything in line and make a compelling offer, I called Pey Behin.</strong> Pey quickly got me set up with a lender, a pre-inspection and walked me through the comps. He also helped me strategize the mechanics of my offer to make it the most appealing to the sellers â and within 48 hours we made an offer.<br><br>
+      <strong>Knowing I had about 48 hours to get everything in line and make a compelling offer, I called Pey Behin.</strong> Pey quickly got me set up with a lender, a pre-inspection and walked me through the comps. He also helped me strategize the mechanics of my offer to make it the most appealing to the sellers — and within 48 hours we made an offer.<br><br>
       <strong>With 5 other offers on the table we were able to beat them and get our dream home.</strong> If you are looking for someone who knows this complex market and can help you get the deal done, look no further.
     </p>
     <div class="testi-name">Michelle + Viq Hussain</div>
@@ -493,24 +499,24 @@
          alt="Hassan L" />
     <p class="testi-text">
       I was introduced to Pey through a friend who had trouble selling her home and he helped her. <strong>My house was on the market for months before I called Pey.</strong> Honestly, I loved his insight and I got the feeling that he actually cared.<br><br>
-      So, I ended my contract with my agent and hired Pey. He came in, told me exactly what I needed to do â <strong>then he did so much work to prepare the house and literally got us 5 offers in one weekend.</strong><br><br>
+      So, I ended my contract with my agent and hired Pey. He came in, told me exactly what I needed to do — <strong>then he did so much work to prepare the house and literally got us 5 offers in one weekend.</strong><br><br>
       The best part is they escalated significantly over my asking price. <strong>Pey warned me that they may come back and ask for money back on the home inspection... so he got them to waive it!</strong> He really goes above and beyond and I would recommend him to anyone!
     </p>
     <div class="testi-name">Hassan L</div>
   </div>
 </div>
 
-<!-- ââ 6. CTA + INLINE FORM ââ -->
+<!-- ── 6. CTA + INLINE FORM ── -->
 <section class="cta-form-section">
   <div class="inner">
     <div class="cta-form-inner">
       <span class="section-label">Work With Pey</span>
       <h2>Ready to <span>Get Started?</span></h2>
-      <p class="cta-sub">Whether you're buying, selling, or just trying to understand the market, I'm here to help. Reach out â no obligation, no pressure.</p>
+      <p class="cta-sub">Whether you're buying, selling, or just trying to understand the market, I'm here to help. Reach out — no obligation, no pressure.</p>
 
       <!--
         FORM SETUP: This form uses Formspree for static site email delivery.
-        1. Go to https://formspree.io â create a free account â New Form
+        1. Go to https://formspree.io → create a free account → New Form
         2. Copy your form ID and replace "YOUR_FORM_ID" in the action below
         3. Formspree will email submissions to pey.behin@gmail.com
       -->
@@ -581,7 +587,7 @@
 
         <div class="cf-group">
           <label>Message</label>
-          <textarea name="message" placeholder="Tell me a bit about what you're looking forâ¦"></textarea>
+          <textarea name="message" placeholder="Tell me a bit about what you're looking for…"></textarea>
         </div>
 
         <button type="submit" class="cf-submit">Send Message</button>
@@ -591,7 +597,7 @@
   </div>
 </section>
 
-<!-- ââ FOOTER ââ -->
+<!-- ── FOOTER ── -->
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
