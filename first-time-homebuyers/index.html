@@ -45,6 +45,7 @@
 <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
 </nav>
 <div class="mobile-nav" id="mobile-nav"><ul><li><a href="/">Home</a></li><li><a href="/properties/">Buy</a></li><li><a href="/whats-my-home-worth/">Sell</a></li><li><a href="/our-areas/">Featured Areas</a></li><li><a href="/about/">About</a></li><li><a href="/vlog/">Blog</a></li><li><a href="/contact/">Let&#39;s Connect</a></li></ul></div>
+<script>function toggleMobileNav(){var nav=document.getElementById('mobile-nav');nav.classList.toggle('open');if(nav.classList.contains('open')){document.addEventListener('click',function c(e){if(!nav.contains(e.target)&&!document.getElementById('nav-hamburger').contains(e.target)){nav.classList.remove('open');document.removeEventListener('click',c);}});}}</script>
 <div class="post-header"><div class="post-header-inner"><div style="margin-bottom:10px;"><span class="blog-tag" style="margin-right:6px;margin-bottom:4px;">Buyers Corner</span><span class="video-badge-hero">▶ Video</span></div>
     <h1 style="font-size:clamp(1.4rem,3vw,2.2rem);font-weight:900;color:#fff;line-height:1.25;margin-bottom:10px;">First-Time Homebuyers</h1>
     <div style="color:rgba(255,255,255,.7);font-size:.8rem;font-family:'Montserrat',sans-serif;">By Pey Behin &nbsp;·&nbsp; October 11, 2016</div></div></div>
