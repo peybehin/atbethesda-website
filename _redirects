@@ -1,0 +1,26 @@
+# Old AgentFire flat area URLs → new /our-areas/ structure (301 permanent)
+/bethesda/              /our-areas/bethesda/              301
+/silver-spring/         /our-areas/silver-spring/         301
+/chevy-chase/           /our-areas/chevy-chase/           301
+/potomac/               /our-areas/potomac/               301
+/rockville/             /our-areas/rockville/             301
+/north-bethesda/        /our-areas/north-bethesda/        301
+/gaithersburg/          /our-areas/gaithersburg/          301
+/great-falls/           /our-areas/great-falls/           301
+/kensington/            /our-areas/kensington/            301
+/cabin-john/            /our-areas/cabin-john/            301
+/north-potomac/         /our-areas/north-potomac/         301
+/mclean-vienna-tysons/  /our-areas/mclean-vienna-tysons/  301
+/arlington/             /our-areas/arlington/             301
+/alexandria/            /our-areas/alexandria/            301
+/fairfax/               /our-areas/fairfax/               301
+/falls-church/          /our-areas/falls-church/          301
+/georgetown/            /our-areas/georgetown/            301
+/spring-valley/         /our-areas/spring-valley/         301
+/palisades/             /our-areas/palisades/             301
+/friendship-heights/    /our-areas/friendship-heights/    301
+/chevy-chase-dc/        /our-areas/chevy-chase-dc/        301
+
+# Other dead AgentFire pages
+/mortgage-calculator/   /mortgage-calculator/             200
+/feed/                  /                                 301
