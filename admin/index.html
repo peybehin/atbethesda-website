@@ -7,7 +7,102 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet" />
 <!-- Quill rich text editor -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js">
+/* ══════════════ ANALYTICS ══════════════ */
+let analyticsLoaded = false;
+let currentAnalyticsDays = 7;
+
+async function loadAnalytics(days, btn) {
+  currentAnalyticsDays = days;
+  if (btn) {
+    document.querySelectorAll('.range-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  const body = document.getElementById('analytics-body');
+  body.innerHTML = '<div class="analytics-loading">Loading analytics...</div>';
+  try {
+    const resp = await fetch('/api/cf-analytics?days=' + days);
+    const data = await resp.json();
+    if (data.error) throw new Error(data.error);
+    renderAnalytics(data);
+    analyticsLoaded = true;
+  } catch(e) {
+    body.innerHTML = '<div class="analytics-error">⚠ ' + e.message + '</div>';
+  }
+}
+
+function fmtNum(n) {
+  if (n >= 1000000) return (n/1000000).toFixed(1) + 'M';
+  if (n >= 1000) return (n/1000).toFixed(1) + 'K';
+  return String(n);
+}
+
+function renderAnalytics(data) {
+  const s = data.summary;
+  const daily = data.daily || [];
+
+  // Build bar chart
+  const maxV = Math.max(...daily.map(d => d.visitors), 1);
+  const bars = daily.map(d => {
+    const h = Math.max(4, Math.round((d.visitors / maxV) * 110));
+    const label = d.date.slice(5); // MM-DD
+    return `<div class="bar-wrap" title="${d.date}: ${d.visitors.toLocaleString()} visitors">
+      <div class="bar" style="height:${h}px"></div>
+      <div class="bar-label">${label}</div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('analytics-body').innerHTML = `
+    <div class="analytics-grid">
+      <div class="analytics-card ac-good">
+        <div class="ac-label">Unique Visitors</div>
+        <div class="ac-value">${fmtNum(s.uniqueVisitors)}</div>
+        <div class="ac-sub">Real people, not bots</div>
+      </div>
+      <div class="analytics-card">
+        <div class="ac-label">Page Views</div>
+        <div class="ac-value">${fmtNum(s.pageViews)}</div>
+        <div class="ac-sub">Pages consumed</div>
+      </div>
+      <div class="analytics-card">
+        <div class="ac-label">Total Requests</div>
+        <div class="ac-value">${fmtNum(s.requests)}</div>
+        <div class="ac-sub">Incl. assets &amp; scripts</div>
+      </div>
+      <div class="analytics-card ac-good">
+        <div class="ac-label">Cache Hit Rate</div>
+        <div class="ac-value">${s.cacheHitRate}%</div>
+        <div class="ac-sub">Higher = faster</div>
+      </div>
+      <div class="analytics-card">
+        <div class="ac-label">Bandwidth Saved</div>
+        <div class="ac-value">${s.bandwidthGB} GB</div>
+        <div class="ac-sub">Served by Cloudflare</div>
+      </div>
+      <div class="analytics-card${s.threats > 0 ? ' ac-warn' : ''}">
+        <div class="ac-label">Threats Blocked</div>
+        <div class="ac-value">${fmtNum(s.threats)}</div>
+        <div class="ac-sub">WAF &amp; geo-block</div>
+      </div>
+      <div class="analytics-card${s.errors4xx > 100 ? ' ac-warn' : ''}">
+        <div class="ac-label">4xx Errors</div>
+        <div class="ac-value">${fmtNum(s.errors4xx)}</div>
+        <div class="ac-sub">Broken links / 404s</div>
+      </div>
+      <div class="analytics-card${s.errors5xx > 0 ? ' ac-warn' : ''}">
+        <div class="ac-label">5xx Errors</div>
+        <div class="ac-value">${fmtNum(s.errors5xx)}</div>
+        <div class="ac-sub">Server / function errors</div>
+      </div>
+    </div>
+    <div class="analytics-chart-box">
+      <h3>Daily Unique Visitors</h3>
+      <div class="bar-chart">${bars || '<div style="color:#aaa;font-size:.8rem;padding:20px">No data</div>'}</div>
+    </div>
+  `;
+}
+
+</script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
@@ -343,6 +438,30 @@ select.cat-select{margin-bottom:0;}
   transform:translateY(80px);opacity:0;transition:all .3s;
 }
 #toast.show{transform:translateY(0);opacity:1;}
+
+/* ── ANALYTICS ── */
+#view-analytics{display:none;padding:0 24px 40px;}
+.analytics-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px;}
+.analytics-range{display:flex;gap:6px;}
+.range-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#aaa;padding:5px 14px;border-radius:4px;cursor:pointer;font-size:.72rem;font-family:var(--font);font-weight:600;letter-spacing:.05em;transition:all .15s;}
+.range-btn:hover{background:rgba(183,37,69,.15);color:#fff;border-color:var(--red);}
+.range-btn.active{background:var(--red);color:#fff;border-color:var(--red);}
+.analytics-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;margin-bottom:28px;}
+.analytics-card{background:#fff;border-radius:6px;padding:20px 18px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.analytics-card .ac-label{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-text);margin-bottom:8px;}
+.analytics-card .ac-value{font-size:1.7rem;font-weight:800;color:var(--black);line-height:1;}
+.analytics-card .ac-sub{font-size:.7rem;color:var(--gray-text);margin-top:4px;}
+.analytics-card.ac-warn .ac-value{color:#d32f2f;}
+.analytics-card.ac-good .ac-value{color:#2e7d32;}
+.analytics-chart-box{background:#fff;border-radius:6px;padding:20px 18px;box-shadow:0 1px 4px rgba(0,0,0,.06);margin-bottom:20px;}
+.analytics-chart-box h3{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-text);margin-bottom:16px;}
+.bar-chart{display:flex;align-items:flex-end;gap:4px;height:120px;}
+.bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;}
+.bar{width:100%;background:var(--red);border-radius:2px 2px 0 0;min-height:2px;transition:height .3s;}
+.bar-label{font-size:.55rem;color:var(--gray-text);white-space:nowrap;}
+.analytics-loading{text-align:center;padding:60px 0;color:var(--gray-text);font-size:.85rem;}
+.analytics-error{background:#fff3f3;border:1px solid #ffcdd2;padding:16px;border-radius:6px;color:#c62828;font-size:.8rem;}
+
 </style>
 <script src="https://atbethesda.com/js/nav.js" defer></script>
 </head>
@@ -429,7 +548,11 @@ select.cat-select{margin-bottom:0;}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
         Leads <span id="leads-badge" style="margin-left:auto;background:rgba(183,37,69,.25);color:#f48fb1;padding:2px 7px;border-radius:20px;font-size:.6rem;display:none;"></span>
       </button>
-      <button class="sidebar-item" id="nav-settings" onclick="showView('settings')">
+      <button class="sidebar-item" id="nav-analytics" onclick="showView('analytics')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Analytics
+      </button>
+            <button class="sidebar-item" id="nav-settings" onclick="showView('settings')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
         Settings
       </button>
@@ -696,7 +819,20 @@ select.cat-select{margin-bottom:0;}
       </div>
 
       <!-- LEADS -->
-      <div id="view-leads" style="display:none;padding:0 24px 40px;">
+      <div id="view-analytics" style="display:none;padding:0 24px 40px;">
+        <div class="analytics-header">
+          <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-text);">Cloudflare Analytics</div>
+          <div class="analytics-range">
+            <button class="range-btn active" onclick="loadAnalytics(7,this)">7 Days</button>
+            <button class="range-btn" onclick="loadAnalytics(30,this)">30 Days</button>
+            <button class="range-btn" onclick="loadAnalytics(90,this)">90 Days</button>
+          </div>
+        </div>
+        <div id="analytics-body">
+          <div class="analytics-loading">Loading analytics...</div>
+        </div>
+      </div>
+            <div id="view-leads" style="display:none;padding:0 24px 40px;">
         <div class="dash-header" style="padding:24px 0 20px;"><h1>Leads</h1></div>
         <div style="display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;align-items:center;">
           <button class="btn btn-sm" id="lfilt-all" onclick="setLeadsFilter('all')" style="background:var(--red);color:#fff;border:none;padding:6px 14px;">All</button>
@@ -910,6 +1046,7 @@ function showView(view, filterCat, filterStat) {
   document.getElementById('view-editor').style.display = 'none';
   document.getElementById('view-settings').style.display = 'none';
   document.getElementById('view-leads').style.display = 'none';
+  document.getElementById('view-analytics').style.display = 'none';
   document.querySelectorAll('.sidebar-item').forEach(el => el.classList.remove('active'));
 
   if (view === 'dashboard') {
@@ -959,6 +1096,12 @@ function showView(view, filterCat, filterStat) {
     document.getElementById('topbar-title').textContent = 'Leads';
     document.getElementById('topbar-actions').innerHTML = '<button class="btn btn-sm btn-outline" onclick="loadLeads()">↻ Refresh</button>';
     loadLeads();
+  } else if (view === 'analytics') {
+    document.getElementById('view-analytics').style.display = 'block';
+    document.getElementById('nav-analytics').classList.add('active');
+    document.getElementById('topbar-title').textContent = 'Analytics';
+    document.getElementById('topbar-actions').innerHTML = '<button class="btn btn-sm btn-outline" onclick="loadAnalytics(currentAnalyticsDays)">↻ Refresh</button>';
+    if (!analyticsLoaded) loadAnalytics(7);
   }
 }
 
