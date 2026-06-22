@@ -1,2 +1,27 @@
+# Cache HTML pages at Cloudflare edge for 4 hours; browsers always revalidate
+/*
+  Cache-Control: public, max-age=0, s-maxage=14400
+
+# Cache JS/CSS/images aggressively (Cloudflare Pages busts on deploy)
+/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# IDX gallery JS — override above (short TTL, live data)
 /js/idx-gallery.js
   Cache-Control: public, max-age=300
+
+# Never cache API routes or admin
+/api/*
+  Cache-Control: no-store
+
+/admin
+  Cache-Control: no-store
+
+/admin/*
+  Cache-Control: no-store
