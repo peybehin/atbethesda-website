@@ -1,48 +1,33 @@
 export async function onRequest(context) {
   try {
     const apiKey = context.env.IDX_API_KEY;
-    if (!apiKey) return resp({ error: 'no_api_key', listings: [] });
+    if (!apiKey) return resp({ error: 'no_api_key' });
 
-    const url = new URL(context.request.url);
-    const city = url.searchParams.get('city') || 'Bethesda';
+    const h = { accesskey: apiKey, outputtype: 'json' };
 
-    const qp = ['pt=1','a_beds=1','lp=200000','hp=10000000','ccz=city','limit=5',
-      'city=' + encodeURIComponent(city)].join('&');
+    // Try 1: minimal search (no city)
+    const t1 = await (await fetch('https://api.idxbroker.com/clients/search?pt=1&lp=200000&hp=10000000&limit=5', { headers: h })).text();
+    const s1 = await (await fetch('https://api.idxbroker.com/clients/search?pt=1&lp=200000&hp=10000000&limit=5', { headers: h })).status;
 
-    const idxResp = await fetch(
-      'https://api.idxbroker.com/clients/search?' + qp,
-      { headers: { accesskey: apiKey, outputtype: 'json', 'Content-Type': 'application/x-www-form-urlencoded' } }
-    );
-    const text = await idxResp.text();
+    // Try 2: savedlinks
+    const r2 = await fetch('https://api.idxbroker.com/clients/savedlinks', { headers: h });
+    const t2 = await r2.text();
 
-    let raw = null;
-    try { raw = JSON.parse(text); } catch(e) {}
-
-    let listings = [];
-    if (raw && typeof raw === 'object' && !Array.isArray(raw)) listings = Object.values(raw);
-    else if (Array.isArray(raw)) listings = raw;
-
-    const normalized = listings.map(l => ({
-      id: l.listingID || '',
-      price: parseInt(l.listingPrice || 0, 10),
-      priceStr: l.listingPrice ? '$' + parseInt(l.listingPrice).toLocaleString() : 'N/A',
-      beds: l.bedrooms || '-', baths: l.totalBaths || '-', sqft: l.sqFt || '',
-      street: (l.streetNumber||'') + ' ' + (l.streetName||''),
-      city: l.cityName||'', state: l.state||'MD', zip: l.zipcode||'',
-      status: l.propStatus || 'Active', listDate: l.listDate||'',
-      detailsURL: l.detailsURL || '',
-      photos: l.image ? (typeof l.image === 'string' ? [l.image] : Object.values(l.image||{}).filter(v=>typeof v==='string'&&v.startsWith('http'))) : [],
-      rawFields: Object.keys(l)
-    }));
+    // Try 3: listings endpoint
+    const r3 = await fetch('https://api.idxbroker.com/clients/listings?limit=5', { headers: h });
+    const t3 = await r3.text();
 
     return resp({
-      listings: normalized, count: normalized.length,
-      idxStatus: idxResp.status,
-      idxBody: text.slice(0, 300),
-      error: normalized.length === 0 ? 'no_listings' : null
+      search_status: s1,
+      search_len: t1.length,
+      search_first50: t1.slice(0, 50),
+      savedlinks_status: r2.status,
+      savedlinks_first50: t2.slice(0, 50),
+      listings_status: r3.status,
+      listings_first50: t3.slice(0, 50)
     });
   } catch(e) {
-    return resp({ error: e.message, stack: (e.stack||'').slice(0,300), listings: [] });
+    return resp({ error: e.message });
   }
 }
 function resp(data) {
