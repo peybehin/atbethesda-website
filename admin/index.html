@@ -11,7 +11,7 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --red:#b72545;--red-dark:#8f1a34;
+  --red:#d60717;--red-dark:#a00511;
   --black:#111;--white:#fff;
   --sidebar:#1a1a1a;--sidebar-w:240px;
   --gray-light:#f5f5f5;--gray-mid:#e0e0e0;--gray-text:#666;
@@ -599,7 +599,7 @@ select.cat-select{margin-bottom:0;}
             <div class="side-card">
               <h3>Featured Image</h3>
               <div id="img-drop-zone" style="border:2px dashed #555;border-radius:6px;padding:18px 12px;text-align:center;cursor:pointer;color:#888;font-size:.72rem;line-height:1.6;transition:border-color .2s,background .2s;"
-                ondragover="event.preventDefault();this.style.borderColor='#b72545';this.style.background='rgba(183,37,69,.07)';"
+                ondragover="event.preventDefault();this.style.borderColor='#d60717';this.style.background='rgba(183,37,69,.07)';"
                 ondragleave="this.style.borderColor='#555';this.style.background='';"
                 ondrop="handleImageDrop(event)"
                 onclick="document.getElementById('img-file-input').click()">
@@ -1356,7 +1356,7 @@ async function handleImageFile(file) {
     const fi = document.getElementById('img-file-input');
     if (fi) fi.value = '';
   } catch(err) {
-    statusEl.style.color = '#b72545';
+    statusEl.style.color = '#d60717';
     statusEl.textContent = '✗ Upload failed: ' + err.message;
   }
 }
@@ -1616,10 +1616,10 @@ async function publishNow() {
     if (ok) {
       if (statusEl) { statusEl.style.color = '#2e7d32'; statusEl.style.background = '#e8f5e9'; statusEl.textContent = '● Published'; }
     } else {
-      if (statusEl) { statusEl.style.color = '#b72545'; statusEl.style.background = '#fdecea'; statusEl.textContent = '● Push Failed'; }
+      if (statusEl) { statusEl.style.color = '#d60717'; statusEl.style.background = '#fdecea'; statusEl.textContent = '● Push Failed'; }
     }
   } catch(e) {
-    if (statusEl) { statusEl.style.color = '#b72545'; statusEl.style.background = '#fdecea'; statusEl.textContent = '● Push Failed'; }
+    if (statusEl) { statusEl.style.color = '#d60717'; statusEl.style.background = '#fdecea'; statusEl.textContent = '● Push Failed'; }
   }
   // Stay on editor briefly so user can see publish status
   setTimeout(() => showView('dashboard'), 1500);
@@ -1820,12 +1820,12 @@ function buildPostHTML(post, siteCss) {
   const faqHTML = faqs.length > 0 ? `
   <section style="background:#f5f5f5;padding:60px 40px;">
     <div style="max-width:760px;margin:0 auto;">
-      <span style="font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#b72545;display:block;margin-bottom:10px;">FAQ</span>
+      <span style="font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#d60717;display:block;margin-bottom:10px;">FAQ</span>
       <h2 style="font-size:clamp(1.4rem,3vw,2rem);font-weight:900;text-transform:uppercase;letter-spacing:.04em;margin-bottom:36px;">People Also Ask</h2>
       ${faqs.map(f => `
       <details style="border:1px solid #e0e0e0;border-radius:4px;margin-bottom:12px;background:#fff;overflow:hidden;">
         <summary style="padding:18px 20px;font-weight:700;font-size:.9rem;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
-          ${escHtml(f.q)} <span style="color:#b72545;font-size:1.1rem;flex-shrink:0;margin-left:10px;">+</span>
+          ${escHtml(f.q)} <span style="color:#d60717;font-size:1.1rem;flex-shrink:0;margin-left:10px;">+</span>
         </summary>
         <div style="padding:0 20px 18px;font-size:.87rem;line-height:1.7;color:#555;">${escHtml(f.a)}</div>
       </details>`).join('')}
@@ -1833,8 +1833,8 @@ function buildPostHTML(post, siteCss) {
   </section>` : '';
 
   const snippetHTML = snippet ? `
-  <div class="ai-snippet" style="background:#fff7f8;border-left:4px solid #b72545;border-radius:4px;padding:20px 24px;margin-bottom:32px;">
-    <p style="font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#b72545;margin-bottom:8px;">Quick Answer</p>
+  <div class="ai-snippet" style="background:#fff7f8;border-left:4px solid #d60717;border-radius:4px;padding:20px 24px;margin-bottom:32px;">
+    <p style="font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#d60717;margin-bottom:8px;">Quick Answer</p>
     <p style="font-size:.95rem;line-height:1.7;color:#333;">${escHtml(snippet)}</p>
   </div>` : '';
 
@@ -1880,18 +1880,18 @@ ${speakableSchema ? `<script type="application/ld+json">${JSON.stringify(speakab
 .post-byline{color:#aaa;font-size:.9rem;margin:0;}
 .post-featured-img{max-width:760px;margin:32px auto 0;padding:0 40px;}
 .post-featured-img img{width:100%;border-radius:8px;display:block;margin-top:32px;}
-.back-link{display:inline-block;color:#b72545;text-decoration:none;font-size:.85rem;font-weight:600;margin-bottom:24px;}
+.back-link{display:inline-block;color:#d60717;text-decoration:none;font-size:.85rem;font-weight:600;margin-bottom:24px;}
 .back-link:hover{text-decoration:underline;}
-.tl-dr{background:#f8f9fa;border-left:4px solid #b72545;padding:20px 24px;border-radius:0 8px 8px 0;margin:0 0 2rem;}
-.tl-dr strong{color:#b72545;display:block;margin-bottom:.5rem;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em;}
+.tl-dr{background:#f8f9fa;border-left:4px solid #d60717;padding:20px 24px;border-radius:0 8px 8px 0;margin:0 0 2rem;}
+.tl-dr strong{color:#d60717;display:block;margin-bottom:.5rem;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em;}
 .post-body{max-width:760px;margin:0 auto;padding:56px 40px;font-size:1rem;line-height:1.85;color:#222;}
 .post-body h2{font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:900;text-transform:uppercase;letter-spacing:.04em;margin:40px 0 16px;color:#111;}
-.post-body h3{font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin:30px 0 12px;color:#b72545;}
+.post-body h3{font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin:30px 0 12px;color:#d60717;}
 .post-body p{margin-bottom:20px;}
 .post-body ul,.post-body ol{padding-left:24px;margin-bottom:20px;}
 .post-body li{margin-bottom:8px;}
-.post-body blockquote{border-left:3px solid #b72545;padding:14px 20px;margin:24px 0;background:#fff7f8;font-style:italic;color:#555;}
-.post-body a{color:#b72545;text-decoration:underline;}
+.post-body blockquote{border-left:3px solid #d60717;padding:14px 20px;margin:24px 0;background:#fff7f8;font-style:italic;color:#555;}
+.post-body a{color:#d60717;text-decoration:underline;}
 @media(max-width:600px){.post-body{padding:40px 20px;}.post-header{padding:calc(70px + 40px) 24px 40px;}}
 </style>
 </head>
@@ -1939,13 +1939,13 @@ ${speakableSchema ? `<script type="application/ld+json">${JSON.stringify(speakab
 ${faqHTML}
 
 <!-- CTA -->
-<section style="background:#b72545;padding:60px 40px;text-align:center;">
+<section style="background:#d60717;padding:60px 40px;text-align:center;">
   <div style="max-width:600px;margin:0 auto;">
     <span style="font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6);display:block;margin-bottom:10px;">Work With Pey</span>
     <h2 style="font-size:clamp(1.4rem,3vw,2rem);font-weight:900;text-transform:uppercase;letter-spacing:.04em;color:#fff;margin-bottom:16px;">Ready to Make Your Move?</h2>
     <p style="color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:28px;font-size:.9rem;">Whether you're buying, selling, or just exploring your options in Bethesda, Chevy Chase, or Potomac — let's talk.</p>
     <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-      <a href="/contact/" style="display:inline-block;background:#fff;color:#b72545;padding:13px 28px;border-radius:4px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;text-decoration:none;">Let's Connect</a>
+      <a href="/contact/" style="display:inline-block;background:#fff;color:#d60717;padding:13px 28px;border-radius:4px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;text-decoration:none;">Let's Connect</a>
       <a href="/whats-my-home-worth/" style="display:inline-block;background:transparent;color:#fff;border:2px solid rgba(255,255,255,.5);padding:12px 28px;border-radius:4px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;text-decoration:none;">Home Valuation</a>
     </div>
   </div>

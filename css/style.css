@@ -5,8 +5,8 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --red: #b72545;
-  --red-dark: #8f1a34;
+  --red: #d60717;
+  --red-dark: #a00511;
   --black: #111;
   --white: #fff;
   --gray-light: #f5f5f5;
@@ -284,7 +284,7 @@ nav.light-nav .nav-hamburger span{background:var(--black);}
    centered layout. Scoped to IDX (.idx-/.IDX-/.atb-) classes.
    Loaded via idx-wrapper.html on search.atbethesda.com pages.
    ============================================================ */
-:root{ --idx-red:#b72545; --idx-red-dark:#8f1a34; }
+:root{ --idx-red:#d60717; --idx-red-dark:#a00511; }
 
 /* ---------- custom filter bar ---------- */
 .atb-fb{background:#fff;border-bottom:1px solid #ececec;padding:12px 18px;font-family:'Montserrat',sans-serif;position:relative;z-index:50;}
