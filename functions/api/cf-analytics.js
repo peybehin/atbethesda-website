@@ -43,6 +43,14 @@ export async function onRequest(context) {
           count
           dimensions { clientRequestPath }
         }
+        top4xx: httpRequestsAdaptiveGroups(
+          limit: 25
+          filter: {datetime_geq: "${sinceISO}", datetime_leq: "${untilISO}", edgeResponseStatus_geq: 400, edgeResponseStatus_lt: 500}
+          orderBy: [count_DESC]
+        ) {
+          count
+          dimensions { clientRequestPath edgeResponseStatus }
+        }
       }
     }
   }`;
@@ -110,6 +118,11 @@ export async function onRequest(context) {
       })),
       topPages: topPages.map(p => ({
         path: p.dimensions.clientRequestPath,
+        requests: p.count
+      })),
+      top4xx: (zones.top4xx || []).map(p => ({
+        path: p.dimensions.clientRequestPath,
+        status: p.dimensions.edgeResponseStatus,
         requests: p.count
       }))
     }), {
