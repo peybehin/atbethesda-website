@@ -80,7 +80,8 @@ export async function onRequest(context) {
         value: cur != null ? d.fmt(cur) : '—',
         change: d.cfmt(delta),
         dir,
-        spark: tail(d.key)
+        spark: tail(d.key),
+        sparkFmt: tail(d.key).map(d.fmt)
       };
     });
 
@@ -88,6 +89,7 @@ export async function onRequest(context) {
       hash,
       resTypeId,
       dataDate: dates[last],
+      sparkDates: dates.slice(Math.max(0, dates.length - sparkN)),
       narrative: text.median_market_trend || '',
       stats
     });
