@@ -1,4 +1,44 @@
+# atbethesda.com robots.txt
+# AI search engines and all crawlers welcome — AEO optimized
+
 User-agent: *
+Allow: /
+Disallow: /admin/
 Disallow: /widget-test/
-Disallow: /our-areas/bethesda-test/
 Disallow: /test-search-mobile/
+Disallow: /our-areas/bethesda-test/
+Disallow: /our-areas/bethesda-4col-test/
+Disallow: /our-areas/bethesda-trends-test/
+
+# Explicitly allow all major AI search crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://atbethesda.com/sitemap.xml
