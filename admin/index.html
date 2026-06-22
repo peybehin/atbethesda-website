@@ -582,7 +582,7 @@ select.cat-select{margin-bottom:0;}
 #toast.show{transform:translateY(0);opacity:1;}
 
 /* ── ANALYTICS ── */
-#view-analytics{display:none;padding:0 24px 40px;}
+#view-analytics{display:none;}
 .delta-up{font-size:.6rem;color:#2e7d32;font-weight:700;vertical-align:super;}
 .delta-down{font-size:.6rem;color:#c62828;font-weight:700;vertical-align:super;}
 .ga4-range-btn{padding:4px 12px;font-size:.72rem;font-weight:600;border:1px solid var(--gray-mid);background:#fff;border-radius:4px;cursor:pointer;color:var(--gray-text);font-family:var(--font);}
@@ -922,8 +922,6 @@ select.cat-select{margin-bottom:0;}
         </div>
       </div>
 
-    </div><!-- /content -->
-  </div><!-- /main -->
 
       <!-- SCHOOLS -->
       <div id="view-schools">
@@ -975,7 +973,7 @@ select.cat-select{margin-bottom:0;}
       </div>
 
       <!-- LEADS -->
-      <div id="view-analytics" style="display:none;padding:0 24px 40px;">
+      <div id="view-analytics" style="display:none;">
         <div class="analytics-header">
           <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-text);">Cloudflare Analytics</div>
           <div class="analytics-range">
@@ -1000,7 +998,7 @@ select.cat-select{margin-bottom:0;}
           <div class="analytics-loading">Loading Google Analytics…</div>
         </div>
       </div>
-            <div id="view-leads" style="display:none;padding:0 24px 40px;">
+            <div id="view-leads" style="display:none;">
         <div class="dash-header" style="padding:24px 0 20px;"><h1>Leads</h1></div>
         <div style="display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;align-items:center;">
           <button class="btn btn-sm" id="lfilt-all" onclick="setLeadsFilter('all')" style="background:var(--red);color:#fff;border:none;padding:6px 14px;">All</button>
@@ -1026,6 +1024,8 @@ select.cat-select{margin-bottom:0;}
           <div id="leads-empty" style="text-align:center;padding:60px;color:#aaa;display:none;">No leads yet.</div>
         </div>
       </div>
+    </div><!-- /content -->
+  </div><!-- /main -->
 </div><!-- /app -->
 
 <div id="preview-modal" style="display:none;position:fixed;inset:0;z-index:99999;background:#111;flex-direction:column;">
