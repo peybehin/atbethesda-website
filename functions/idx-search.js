@@ -26,9 +26,12 @@ export async function onRequest(context) {
       // Photos: image is { "0": {url, sizes, caption}, "1": {...}, ... }
       const photos = [];
       if (l.image && typeof l.image === 'object') {
-        Object.values(l.image).forEach(photo => {
+        Object.values(l.image).forEach((photo, _i) => {
           if (photo && typeof photo === 'object' && photo.url && photo.url.startsWith('http')) {
-            photos.push(photo.url);
+            // cover (index 0): keep the optimized IDX-hosted image.
+            // gallery: use the 1024x768 thumbnail for speed (full is 2048x1536).
+            const _t = photo.sizes && photo.sizes.thumb;
+            photos.push(_i === 0 ? photo.url : (_t && _t.indexOf('http') === 0 ? _t : photo.url));
           } else if (typeof photo === 'string' && photo.startsWith('http')) {
             photos.push(photo);
           }
