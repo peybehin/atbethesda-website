@@ -8,30 +8,16 @@ export async function onRequest(context) {
     const listings = Array.isArray(raw.data) ? raw.data : Object.values(raw.data);
     const l = listings[0];
 
-    // Inspect key fields carefully
-    const inspect = (v) => {
-      if (v === null || v === undefined) return 'null';
-      if (typeof v === 'number') return 'num:' + v;
-      if (typeof v === 'string') return v.length === 0 ? 'empty_str' : 'str(' + v.length + ')starts:' + v.slice(0,8);
-      if (Array.isArray(v)) return 'arr[' + v.length + ']el0type:' + typeof v[0];
-      if (typeof v === 'object') {
-        const keys = Object.keys(v);
-        return 'obj{' + keys.length + '}keys:' + keys.slice(0,3).join(',');
-      }
-      return typeof v;
-    };
+    const img = l.image;
+    const imgVals = Object.values(img);
+    const img0 = imgVals[0];
+    const img0Type = typeof img0;
+    const img0Keys = img0 && typeof img0 === 'object' ? Object.keys(img0).slice(0,8) : null;
+    const img0Str = typeof img0 === 'string' ? img0.slice(0,40) : null;
+    // If img0 is object, get values
+    const img0SubVals = img0Keys ? Object.values(img0).map(v => typeof v === 'string' ? ('str:'+v.slice(0,30)) : typeof v).slice(0,5) : null;
 
-    return jsonResp({
-      listingPrice: inspect(l.listingPrice),
-      price: inspect(l.price),
-      priceData: inspect(l.priceData),
-      image: inspect(l.image),
-      mediaData: inspect(l.mediaData),
-      mlsPhotoCount: inspect(l.mlsPhotoCount),
-      idxStatus: inspect(l.idxStatus),
-      propStatus: inspect(l.propStatus),
-      address: inspect(l.address),
-    });
+    return jsonResp({ img0Type, img0Keys, img0Str, img0SubVals, imgCount: imgVals.length });
   } catch(e) { return jsonResp({ error: e.message }); }
 }
 function jsonResp(d) { return new Response(JSON.stringify(d), { headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Cache-Control': 'no-store' }}); }
