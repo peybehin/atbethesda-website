@@ -13,8 +13,8 @@ export async function onRequest(context) {
   const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
   const until = new Date().toISOString().split('T')[0];
 
-  // Datetime-based (for top pages — adaptive groups need ISO datetime)
-  const sinceISO = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString();
+  // Top pages always 24h — Free plan limits httpRequestsAdaptiveGroups to 1 day
+  const sinceISO = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
   const untilISO = new Date().toISOString();
 
   const query = `{
