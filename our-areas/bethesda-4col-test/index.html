@@ -417,7 +417,7 @@
     (function(){
       var el=document.getElementById('ams-snap');
       var hash=el.getAttribute('data-hash'),rt=el.getAttribute('data-restype')||'100',title=el.getAttribute('data-title')||'';
-      function fallback(){el.innerHTML='<iframe src="https://altos.re/html/s-html/'+hash+'?scale=1&marketNarrative=true&houses=true&weeklyChange=true&stats=price_median%2Cdom_mean%2Cmai%2Ccount%2Cprice_of_new_listings_median%2Cdom_median%2Cper_sqft_median%2Cprice_decreased_percent&branding=false&size=small" style="border:0;display:block;width:100%;max-width:100%;height:840px" scrolling="auto" loading="lazy"></iframe>';}
+      function fallback(){el.innerHTML='<iframe src="https://altos.re/html/s-html/'+hash+'?scale=1&marketNarrative=true&houses=true&weeklyChange=true&stats=price_median%2Cdom_mean%2Cmai%2Ccount%2Cprice_of_new_listings_median%2Cdom_median%2Cper_sqft_median%2Cprice_decreased_percent&branding=false&size=small" style="border:0;display:block;width:100%;max-width:100%;height:840px" scrolling="auto" loading="eager"></iframe>';}
       function esc(s){return (s||'').replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
       function fdate(s){try{return new Date(s+'T00:00:00').toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric'});}catch(e){return s;}}
       function spark(vals,fmts,dates){
