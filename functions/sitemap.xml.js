@@ -3,6 +3,7 @@ export async function onRequest(context) {
   const BASE_URL = 'https://atbethesda.com';
   const REPO = 'peybehin/atbethesda-website';
   const TODAY = new Date().toISOString().split('T')[0];
+  const GITHUB_TOKEN = context.env.GITHUB_TOKEN; // optional — add to CF Pages env vars for higher rate limit
 
   // Directories that are NOT public pages
   const EXCLUDE = new Set([
@@ -58,17 +59,22 @@ export async function onRequest(context) {
     'video-when-is-the-best-time-to-sell-a-house',
   ]);
 
+  let blogPosts = [];
+
+  // --- Strategy 1: GitHub Contents API (comprehensive, gets ALL dirs) ---
   try {
-    // Fetch root directory listing from GitHub (public repo, no auth needed)
+    const ghHeaders = { 'User-Agent': 'atbethesda-sitemap/1.0' };
+    if (GITHUB_TOKEN) ghHeaders['Authorization'] = `token ${GITHUB_TOKEN}`;
+
     const ghResp = await fetch(
       `https://api.github.com/repos/${REPO}/contents/`,
-      { headers: { 'User-Agent': 'atbethesda-sitemap/1.0' } }
+      { headers: ghHeaders }
     );
-    const items = await ghResp.json();
 
-    // Blog posts = dirs not in EXCLUDE and not in PAGE_SLUGS
-    const blogPosts = Array.isArray(items)
-      ? items
+    if (ghResp.ok) {
+      const items = await ghResp.json();
+      if (Array.isArray(items)) {
+        blogPosts = items
           .filter(item =>
             item.type === 'dir' &&
             !EXCLUDE.has(item.name) &&
@@ -79,12 +85,38 @@ export async function onRequest(context) {
             url: `/${item.name}/`,
             priority: '0.7',
             changefreq: 'monthly',
-          }))
-      : [];
+          }));
+      }
+    }
+  } catch (_) {
+    // GitHub API failed — fall through to posts.json fallback
+  }
 
-    const allUrls = [...PAGES, ...blogPosts];
+  // --- Strategy 2: posts.json fallback (if GitHub API failed or rate-limited) ---
+  if (blogPosts.length === 0) {
+    try {
+      const postsResp = await fetch(`${BASE_URL}/posts.json`);
+      if (postsResp.ok) {
+        const posts = await postsResp.json();
+        if (Array.isArray(posts)) {
+          const seenSlugs = new Set();
+          blogPosts = posts
+            .filter(p => p.slug && !seenSlugs.has(p.slug) && seenSlugs.add(p.slug))
+            .map(p => ({
+              url: `/${p.slug}/`,
+              priority: '0.7',
+              changefreq: 'monthly',
+            }));
+        }
+      }
+    } catch (_) {
+      // Both sources failed — sitemap will have static pages only
+    }
+  }
 
-    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+  const allUrls = [...PAGES, ...blogPosts];
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${allUrls.map(p => `  <url>
     <loc>${BASE_URL}${p.url}</loc>
@@ -94,17 +126,10 @@ ${allUrls.map(p => `  <url>
   </url>`).join('\n')}
 </urlset>`;
 
-    return new Response(xml, {
-      headers: {
-        'Content-Type': 'application/xml; charset=utf-8',
-        'Cache-Control': 'public, max-age=0, s-maxage=3600',
-      },
-    });
-
-  } catch (err) {
-    return new Response(`<?xml version="1.0"?><error>${err.message}</error>`, {
-      status: 500,
-      headers: { 'Content-Type': 'application/xml' },
-    });
-  }
+  return new Response(xml, {
+    headers: {
+      'Content-Type': 'application/xml; charset=utf-8',
+      'Cache-Control': 'public, max-age=0, s-maxage=3600',
+    },
+  });
 }
