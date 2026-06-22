@@ -1,3 +1,4 @@
+// GA4 analytics function (refresh token updated 2026-06-22)
 export async function onRequest(context) {
   const { env, request } = context;
 
