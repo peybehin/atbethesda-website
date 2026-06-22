@@ -348,3 +348,7 @@ nav.light-nav .nav-hamburger span{background:var(--black);}
 .idx-results{max-width:none!important;margin:0 0 40px 0!important;}
 .idx-results__content{border-bottom:0!important;}
 .idx-results__listings,.idx-results__category{max-height:600px!important;overflow-y:auto!important;}
+
+/* Area page Market Action Index gauge crop (mobile renders compact; crop caption+whitespace) */
+.area-mai-crop{margin-top:20px;overflow:hidden;height:195px;}
+@media (max-width:900px){.area-mai-crop{height:135px;}}
