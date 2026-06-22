@@ -42,6 +42,24 @@ function renderAnalytics(data) {
   const s = data.summary;
   const daily = data.daily || [];
 
+  // Build top pages table
+  const pages = data.topPages || [];
+  const maxReq = Math.max(...pages.map(p => p.requests), 1);
+  const topPageRows = pages.length ? `
+    <table class="top-pages-table">
+      <thead><tr><th>#</th><th>Page</th><th>Requests</th><th></th></tr></thead>
+      <tbody>${pages.map((p,i) => {
+        const pct = Math.round((p.requests/maxReq)*100);
+        const label = p.path === '/' ? '/ (Home)' : p.path;
+        return `<tr>
+          <td class="tp-rank">${i+1}</td>
+          <td class="tp-path" title="${p.path}">${label}</td>
+          <td class="tp-count">${fmtNum(p.requests)}</td>
+          <td class="tp-bar-cell"><div class="tp-bar" style="width:${pct}%"></div></td>
+        </tr>`;
+      }).join('')}</tbody>
+    </table>` : '<div style="color:#aaa;font-size:.8rem;padding:20px">No data</div>';
+
   // Build bar chart
   const maxV = Math.max(...daily.map(d => d.visitors), 1);
   const bars = daily.map(d => {
@@ -99,6 +117,10 @@ function renderAnalytics(data) {
     <div class="analytics-chart-box">
       <h3>Daily Unique Visitors</h3>
       <div class="bar-chart">${bars || '<div style="color:#aaa;font-size:.8rem;padding:20px">No data</div>'}</div>
+    </div>
+    <div class="analytics-chart-box">
+      <h3>Top 10 Pages</h3>
+      ${topPageRows}
     </div>
   `;
 }
@@ -455,6 +477,15 @@ select.cat-select{margin-bottom:0;}
 .analytics-card.ac-warn .ac-value{color:#d32f2f;}
 .analytics-card.ac-good .ac-value{color:#2e7d32;}
 .analytics-chart-box{background:#fff;border-radius:6px;padding:20px 18px;box-shadow:0 1px 4px rgba(0,0,0,.06);margin-bottom:20px;}
+.top-pages-table{width:100%;border-collapse:collapse;font-size:.78rem;}
+.top-pages-table thead th{text-align:left;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-text);padding-bottom:10px;border-bottom:1px solid var(--gray-mid);}
+.top-pages-table tbody tr:hover{background:#f9f9f9;}
+.top-pages-table td{padding:8px 6px;border-bottom:1px solid #f0f0f0;vertical-align:middle;}
+.tp-rank{color:var(--gray-text);font-weight:700;width:28px;}
+.tp-path{font-family:monospace;font-size:.75rem;max-width:320px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.tp-count{font-weight:700;color:#111;width:70px;text-align:right;}
+.tp-bar-cell{width:120px;padding-left:12px;}
+.tp-bar{height:6px;background:var(--red);border-radius:3px;min-width:2px;}
 .analytics-chart-box h3{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-text);margin-bottom:16px;}
 .bar-chart{display:flex;align-items:flex-end;gap:4px;height:120px;}
 .bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;}
@@ -824,9 +855,9 @@ select.cat-select{margin-bottom:0;}
         <div class="analytics-header">
           <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-text);">Cloudflare Analytics</div>
           <div class="analytics-range">
+            <button class="range-btn" onclick="loadAnalytics(1,this)">24h</button>
             <button class="range-btn active" onclick="loadAnalytics(7,this)">7 Days</button>
             <button class="range-btn" onclick="loadAnalytics(30,this)">30 Days</button>
-            <button class="range-btn" onclick="loadAnalytics(90,this)">90 Days</button>
           </div>
         </div>
         <div id="analytics-body">

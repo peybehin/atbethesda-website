@@ -8,8 +8,14 @@ export async function onRequest(context) {
 
   const zoneId = '597c8c4a1fa2480af4cd47567f491af9';
   const days = parseInt(new URL(context.request.url).searchParams.get('days') || '7');
+
+  // Date-based (for daily summary)
   const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
   const until = new Date().toISOString().split('T')[0];
+
+  // Datetime-based (for top pages — adaptive groups need ISO datetime)
+  const sinceISO = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString();
+  const untilISO = new Date().toISOString();
 
   const query = `{
     viewer {
@@ -19,28 +25,23 @@ export async function onRequest(context) {
           filter: {date_geq: "${since}", date_leq: "${until}"}
         ) {
           dimensions { date }
-          sum {
-            requests
-            pageViews
-            cachedRequests
-            bytes
-            threats
-          }
+          sum { requests pageViews cachedRequests bytes threats }
           uniq { uniques }
         }
         totals: httpRequests1dGroups(
           limit: 90
           filter: {date_geq: "${since}", date_leq: "${until}"}
         ) {
-          sum {
-            requests
-            pageViews
-            cachedRequests
-            bytes
-            threats
-            responseStatusMap { edgeResponseStatus requests }
-          }
+          sum { requests pageViews cachedRequests bytes threats responseStatusMap { edgeResponseStatus requests } }
           uniq { uniques }
+        }
+        topPages: httpRequestsAdaptiveGroups(
+          limit: 10
+          filter: {datetime_geq: "${sinceISO}", datetime_leq: "${untilISO}"}
+          orderBy: [count_DESC]
+        ) {
+          count
+          dimensions { clientRequestPath }
         }
       }
     }
@@ -49,10 +50,7 @@ export async function onRequest(context) {
   try {
     const resp = await fetch('https://api.cloudflare.com/client/v4/graphql', {
       method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({ query })
     });
     const data = await resp.json();
@@ -70,8 +68,9 @@ export async function onRequest(context) {
       });
     }
 
-    const daily = zones?.daily || [];
-    const totals = zones?.totals || [];
+    const daily = zones.daily || [];
+    const totals = zones.totals || [];
+    const topPages = zones.topPages || [];
 
     let aggRequests = 0, aggPageViews = 0, aggCached = 0, aggBytes = 0, aggThreats = 0, aggUniques = 0;
     let errors4xx = 0, errors5xx = 0;
@@ -90,7 +89,6 @@ export async function onRequest(context) {
       });
     });
 
-    // Sort daily by date ascending
     daily.sort((a, b) => a.dimensions.date.localeCompare(b.dimensions.date));
 
     return new Response(JSON.stringify({
@@ -109,12 +107,13 @@ export async function onRequest(context) {
         visitors: d.uniq.uniques,
         requests: d.sum.requests,
         pageViews: d.sum.pageViews
+      })),
+      topPages: topPages.map(p => ({
+        path: p.dimensions.clientRequestPath,
+        requests: p.count
       }))
     }), {
-      headers: {
-        'Content-Type': 'application/json',
-        'Cache-Control': 'no-store'
-      }
+      headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' }
     });
   } catch (e) {
     return new Response(JSON.stringify({ error: e.message }), {
