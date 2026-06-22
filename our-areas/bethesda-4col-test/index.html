@@ -452,7 +452,7 @@
           svg.addEventListener('mouseleave',function(){if(dot)dot.style.opacity='0';tip.style.opacity='0';});
         });
       }
-      fetch('/altos-snapshot?hash='+hash+'&resTypeId='+rt).then(function(r){return r.json();}).then(function(d){
+      fetch('/altos-snapshot?hash='+hash+'&resTypeId='+rt+'&v=2').then(function(r){return r.json();}).then(function(d){
         if(!d||d.error||!d.stats){return fallback();}
         var cells=d.stats.map(function(s){var t=s.dir==='up'?'▲':(s.dir==='down'?'▼':'');return '<div class="ams-stat"><div class="ams-label">'+esc(s.label)+'</div><div class="ams-value">'+esc(s.value)+'</div>'+spark(s.spark,s.sparkFmt,d.sparkDates)+'<div class="ams-chg '+s.dir+'"><span class="ams-tri">'+t+'</span>'+esc(s.change)+'</div></div>';}).join('');
         el.innerHTML='<div class="ams-card"><h2 class="ams-title">'+esc(title)+'</h2><div class="ams-date">Week of '+fdate(d.dataDate)+'</div><div class="ams-grid">'+cells+'</div><div class="ams-divider"></div><div class="ams-narr"><h3>Market Narrative</h3><p>'+esc(d.narrative)+'</p></div></div>';
