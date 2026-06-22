@@ -1,6 +1,7 @@
-/* @Bethesda Residential — swipe photo galleries on IDX search result cards.
-   Turns each result card's single cover photo into a native swipe gallery,
-   pulling each listing's photos from its detail page (client-side, lazily). */
+/* @Bethesda Residential — IDX search results enhancements.
+   1) Swipe photo galleries on each result card (lazy detail-page fetch).
+   2) Pagination styled as prominent numbered buttons (red active page).
+   3) Shrink the oversized BRIGHT MLS disclaimer logo. */
 (function () {
   if (window.__atbGalleryLoaded) return;
   window.__atbGalleryLoaded = true;
@@ -8,6 +9,7 @@
 
   var st = document.createElement('style');
   st.textContent =
+    /* --- swipe gallery --- */
     '.idx-listing-card__image-overlay{pointer-events:none!important;}' +
     '.atb-gal{position:relative;width:100%;height:0;padding-bottom:' + RATIO + '%;overflow:hidden;background:#e9e9ee;}' +
     '.atb-gal__track{position:absolute;inset:0;display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;}' +
@@ -17,7 +19,17 @@
     '.atb-gal__dots{position:absolute;left:0;right:0;bottom:7px;display:flex;justify-content:center;gap:5px;z-index:4;pointer-events:none;}' +
     '.atb-gal__dots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);box-shadow:0 0 2px rgba(0,0,0,.6);}' +
     '.atb-gal__dots i.on{background:#fff;}' +
-    '.atb-gal__count{position:absolute;right:8px;top:8px;background:rgba(0,0,0,.55);color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:11px;z-index:4;pointer-events:none;}';
+    /* --- pagination as numbered buttons --- */
+    '#idx-results-pagination{display:block!important;margin:18px 0 10px!important;}' +
+    '.idx-pagination{display:flex!important;flex-wrap:wrap;justify-content:center;align-items:center;gap:7px!important;padding:0!important;margin:0!important;}' +
+    '.idx-pagination li{min-width:42px;min-height:42px;display:flex!important;align-items:center;justify-content:center;}' +
+    '.idx-pagination li:not(.idx-pagination--borderless){border:1px solid #d3d3d3!important;border-radius:6px!important;}' +
+    '.idx-pagination li a{display:flex!important;align-items:center;justify-content:center;width:100%;height:100%;padding:0 8px!important;font-weight:700!important;font-size:15px!important;}' +
+    '.idx-pagination li.IDX-active{background:#d60717!important;border-color:#d60717!important;}' +
+    '.idx-pagination li.IDX-active a{color:#fff!important;}' +
+    /* --- shrink BRIGHT MLS disclaimer --- */
+    '.idx-results__listings>div:not([id]):not([class]){font-size:11px!important;line-height:1.45!important;color:#888!important;padding-top:6px!important;}' +
+    '.idx-results__listings>div:not([id]):not([class]) img{max-width:110px!important;height:auto!important;}';
   (document.head || document.documentElement).appendChild(st);
 
   function extract(html) {
@@ -38,7 +50,6 @@
     var track = document.createElement('div'); track.className = 'atb-gal__track';
     var s0 = document.createElement('div'); s0.className = 'atb-gal__slide';
     cover.parentNode.insertBefore(gal, cover); s0.appendChild(cover); track.appendChild(s0); gal.appendChild(track);
-    var count = document.createElement('div'); count.className = 'atb-gal__count'; count.textContent = ''; gal.appendChild(count);
     var dots = document.createElement('div'); dots.className = 'atb-gal__dots'; gal.appendChild(dots);
 
     fetch(link.href, { credentials: 'include' }).then(function (r) { return r.text(); }).then(function (html) {
@@ -51,7 +62,6 @@
         sl.appendChild(im); track.appendChild(sl);
       }
       var N = photos.length;
-      count.textContent = '1 / ' + N;
       var dotN = Math.min(N, 8);
       for (var d = 0; d < dotN; d++) { var di = document.createElement('i'); if (d === 0) di.className = 'on'; dots.appendChild(di); }
       var imgs = track.querySelectorAll('img');
@@ -59,7 +69,6 @@
         requestAnimationFrame(function () {
           var idx = Math.round(track.scrollLeft / track.clientWidth);
           if (idx < 0) idx = 0; if (idx > N - 1) idx = N - 1;
-          count.textContent = (idx + 1) + ' / ' + N;
           var act = Math.round(idx / (N - 1) * (dotN - 1));
           for (var k = 0; k < dots.children.length; k++) dots.children[k].className = (k === act ? 'on' : '');
           [idx, idx + 1, idx + 2].forEach(function (j) { var im = imgs[j]; if (im && im.getAttribute('data-src')) { im.src = im.getAttribute('data-src'); im.removeAttribute('data-src'); } });
