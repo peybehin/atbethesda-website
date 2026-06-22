@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /widget-test/
+Disallow: /our-areas/bethesda-test/
