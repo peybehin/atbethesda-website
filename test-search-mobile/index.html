@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <title>Bethesda Listings | @Bethesda</title>
 
-  <!-- Swiper v11.0.5 — matches site version -->
+  <!-- Swiper v11.0.5 â matches site version -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.0.5/swiper-bundle.min.css">
   <script src="https://cdn.jsdelivr.net/npm/swiper@11.0.5/swiper-bundle.min.js"></script>
 
@@ -32,7 +32,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ─── Header ─── */
+    /* âââ Header âââ */
     .site-header {
       position: sticky;
       top: 0;
@@ -55,7 +55,7 @@
       margin-top: 2px;
     }
 
-    /* ─── Filter bar ─── */
+    /* âââ Filter bar âââ */
     .filter-bar {
       padding: 12px 16px;
       display: flex;
@@ -87,7 +87,7 @@
     }
     .filter-chip:active { opacity: 0.75; }
 
-    /* ─── Search row ─── */
+    /* âââ Search row âââ */
     .search-row {
       padding: 10px 16px;
       display: flex;
@@ -117,7 +117,7 @@
     }
     .search-btn:active { opacity: 0.8; }
 
-    /* ─── Results count ─── */
+    /* âââ Results count âââ */
     .results-header {
       padding: 8px 16px 4px;
       font-size: 12px;
@@ -126,7 +126,7 @@
       text-transform: uppercase;
     }
 
-    /* ─── Listing cards list ─── */
+    /* âââ Listing cards list âââ */
     .cards-list {
       padding: 8px 16px 32px;
       display: flex;
@@ -134,7 +134,7 @@
       gap: 20px;
     }
 
-    /* ─── Card ─── */
+    /* âââ Card âââ */
     .listing-card {
       background: var(--surface);
       border-radius: var(--radius);
@@ -143,7 +143,7 @@
       box-shadow: 0 2px 12px rgba(0,0,0,0.4);
     }
 
-    /* ─── Photo Swiper ─── */
+    /* âââ Photo Swiper âââ */
     .photo-swiper {
       width: 100%;
       aspect-ratio: 4/3;
@@ -198,7 +198,7 @@
       gap: 4px;
     }
 
-    /* Swiper pagination dots — inside card */
+    /* Swiper pagination dots â inside card */
     .photo-swiper .swiper-pagination {
       bottom: 10px;
     }
@@ -227,7 +227,7 @@
     }
     .no-photo-placeholder svg { opacity: 0.3; }
 
-    /* ─── Card details ─── */
+    /* âââ Card details âââ */
     .card-details {
       padding: 14px 16px 16px;
     }
@@ -292,7 +292,7 @@
     }
     .card-cta:active { opacity: 0.8; }
 
-    /* ─── Loading / error states ─── */
+    /* âââ Loading / error states âââ */
     .state-block {
       display: flex;
       flex-direction: column;
@@ -316,7 +316,7 @@
     .state-block h3 { color: var(--text); font-size: 17px; }
     .state-block p  { font-size: 14px; line-height: 1.5; }
 
-    /* ─── Debug panel ─── */
+    /* âââ Debug panel âââ */
     #debug-panel {
       display: none;
       margin: 16px;
@@ -352,7 +352,7 @@
     <div class="filter-chip" data-filter="3" onclick="setFilter('3', this)">3+ Beds</div>
     <div class="filter-chip" data-filter="4" onclick="setFilter('4', this)">4+ Beds</div>
     <div class="filter-chip" data-filter="u1m" onclick="setFilter('u1m', this)">Under $1M</div>
-    <div class="filter-chip" data-filter="1-2m" onclick="setFilter('1-2m', this)">$1M–$2M</div>
+    <div class="filter-chip" data-filter="1-2m" onclick="setFilter('1-2m', this)">$1Mâ$2M</div>
     <div class="filter-chip" data-filter="o2m" onclick="setFilter('o2m', this)">$2M+</div>
   </div>
 
@@ -364,16 +364,16 @@
   <div id="debug-panel"></div>
 
   <script>
-  // ─────────────────────────────────────────
+  // âââââââââââââââââââââââââââââââââââââââââ
   //  State
-  // ─────────────────────────────────────────
+  // âââââââââââââââââââââââââââââââââââââââââ
   let allListings = [];
   let activeFilters = { beds: null, priceRange: null };
   let tapCount = 0;
 
-  // ─────────────────────────────────────────
+  // âââââââââââââââââââââââââââââââââââââââââ
   //  Boot
-  // ─────────────────────────────────────────
+  // âââââââââââââââââââââââââââââââââââââââââ
   document.addEventListener('DOMContentLoaded', () => {
     runSearch();
     // Secret debug tap (tap header 5x)
@@ -383,9 +383,9 @@
     });
   });
 
-  // ─────────────────────────────────────────
+  // âââââââââââââââââââââââââââââââââââââââââ
   //  Search
-  // ─────────────────────────────────────────
+  // âââââââââââââââââââââââââââââââââââââââââ
   async function runSearch() {
     showLoading();
     const city     = document.getElementById('city-input').value.trim() || 'Bethesda';
@@ -423,9 +423,9 @@
     }
   }
 
-  // ─────────────────────────────────────────
+  // âââââââââââââââââââââââââââââââââââââââââ
   //  Filters
-  // ─────────────────────────────────────────
+  // âââââââââââââââââââââââââââââââââââââââââ
   function setFilter(val, el) {
     document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
     el.classList.add('active');
@@ -440,9 +440,9 @@
     runSearch();
   }
 
-  // ─────────────────────────────────────────
+  // âââââââââââââââââââââââââââââââââââââââââ
   //  Render
-  // ─────────────────────────────────────────
+  // âââââââââââââââââââââââââââââââââââââââââ
   function renderListings(listings) {
     const list    = document.getElementById('cards-list');
     const header  = document.getElementById('results-header');
@@ -457,7 +457,7 @@
     }
 
     header.style.display = 'block';
-    header.textContent   = `${listings.length} listing${listings.length !== 1 ? 's' : ''} · ${city}`;
+    header.textContent   = `${listings.length} listing${listings.length !== 1 ? 's' : ''} Â· ${city}`;
     sub.textContent      = `${listings.length} active homes`;
 
     list.innerHTML = listings.map((l, i) => cardHTML(l, i)).join('');
@@ -483,10 +483,14 @@
     const multi    = photos.length > 1;
 
     const statusClass = {
-      'Active':          'active',
-      'Active UnderContract': 'pending',
-      'Pending':         'pending',
-      'Sold':            'sold',
+      'Active':               'active',
+      'Active UnderContract':  'pending',
+      'Pending':               'pending',
+      'Sold':                  'sold',
+      'ACTIVE':                'active',
+      'ACTIVE UNDER CONTRACT': 'pending',
+      'PENDING':               'pending',
+      'SOLD':                  'sold',
     }[l.status] || 'active';
 
     const sqft     = l.sqft     ? `<span class="card-stat"><strong>${parseInt(l.sqft).toLocaleString()}</strong><span class="card-stat-label"> sqft</span></span>` : '';
@@ -509,7 +513,7 @@
           </div>
         </div>`;
     } else if (!multi) {
-      // Single photo — no Swiper overhead
+      // Single photo â no Swiper overhead
       photoArea = `
         <div class="photo-swiper" style="position:relative;">
           <span class="status-badge ${statusClass}">${l.status || 'Active'}</span>
@@ -549,26 +553,26 @@
             ${sqft}
           </div>
           <div class="card-address">
-            <span class="card-street">${l.street || '–'}</span><br>
+            <span class="card-street">${l.street || 'â'}</span><br>
             ${l.city}, ${l.state} ${l.zip}
           </div>
           <div class="card-footer">
             <span class="card-listdate">${listDate}</span>
-            <a class="card-cta" href="${detailHref}" target="_blank">Details →</a>
+            <a class="card-cta" href="${detailHref}" target="_blank">Details â</a>
           </div>
         </div>
       </div>`;
   }
 
-  // ─────────────────────────────────────────
+  // âââââââââââââââââââââââââââââââââââââââââ
   //  States
-  // ─────────────────────────────────────────
+  // âââââââââââââââââââââââââââââââââââââââââ
   function showLoading() {
     document.getElementById('results-header').style.display = 'none';
     document.getElementById('cards-list').innerHTML = `
       <div class="state-block">
         <div class="spinner"></div>
-        <h3>Finding listings…</h3>
+        <h3>Finding listingsâ¦</h3>
         <p>Searching IDX Broker MLS data</p>
       </div>`;
   }
@@ -585,9 +589,9 @@
       </div>`;
   }
 
-  // ─────────────────────────────────────────
+  // âââââââââââââââââââââââââââââââââââââââââ
   //  Utils
-  // ─────────────────────────────────────────
+  // âââââââââââââââââââââââââââââââââââââââââ
   function formatDate(dateStr) {
     if (!dateStr) return '';
     try {
