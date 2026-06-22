@@ -15,7 +15,6 @@ export async function onRequest(context) {
     viewer {
       zones(filter: {zoneTag: "${zoneId}"}) {
         daily: httpRequests1dGroups(
-          orderBy: [date_ASC]
           limit: 90
           filter: {date_geq: "${since}", date_leq: "${until}"}
         ) {
@@ -30,7 +29,6 @@ export async function onRequest(context) {
           uniq { uniques }
         }
         totals: httpRequests1dGroups(
-          orderBy: [date_ASC]
           limit: 90
           filter: {date_geq: "${since}", date_leq: "${until}"}
         ) {
@@ -59,7 +57,6 @@ export async function onRequest(context) {
     });
     const data = await resp.json();
 
-    // Surface GraphQL errors if any
     if (data.errors && data.errors.length > 0) {
       return new Response(JSON.stringify({ error: 'GraphQL error', details: data.errors }), {
         status: 500, headers: { 'Content-Type': 'application/json' }
@@ -92,6 +89,9 @@ export async function onRequest(context) {
         if (code >= 500) errors5xx += s.requests;
       });
     });
+
+    // Sort daily by date ascending
+    daily.sort((a, b) => a.dimensions.date.localeCompare(b.dimensions.date));
 
     return new Response(JSON.stringify({
       summary: {
