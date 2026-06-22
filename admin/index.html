@@ -71,16 +71,9 @@ function renderAnalytics(data) {
     </div>`;
   }).join('');
 
-  const cacheAlert = s.cacheHitRate < 10 ? `
-    <div class="cache-alert">
-      <span style="font-size:1.1rem">⚠️</span>
-      <div style="font-size:.78rem;font-weight:600;color:#795500;">Cache Hit Rate is ${s.cacheHitRate}% — your pages aren't being cached by Cloudflare, which slows load times.
-        <a href="https://dash.cloudflare.com/?to=/:account/:zone/caching/configuration" target="_blank">Fix in Cloudflare →</a>
-      </div>
-    </div>` : '';
+
 
   document.getElementById('analytics-body').innerHTML = `
-    ${cacheAlert}
     <div class="analytics-grid">
       <div class="analytics-card ac-good">
         <div class="ac-label">Unique Visitors ${infoIcon('Real people who visited your site — bots and crawlers are filtered out by Cloudflare.')}</div>
@@ -97,8 +90,8 @@ function renderAnalytics(data) {
         <div class="ac-value">${fmtNum(s.requests)}</div>
         <div class="ac-sub">Incl. assets &amp; scripts</div>
       </div>
-      <div class="analytics-card${s.cacheHitRate < 10 ? ' ac-warn' : ' ac-good'}">
-        <div class="ac-label">Cache Hit Rate ${infoIcon('% of requests served from Cloudflare\'s cache instead of your origin server. Higher = faster page loads and lower server cost. Aim for 70%+.')}</div>
+      <div class="analytics-card ac-neutral">
+        <div class="ac-label">Cache Hit Rate ${infoIcon('% of requests served from Cloudflare\'s edge cache. For Pages-hosted sites this typically reads 0% in zone analytics — actual caching is handled by the Pages CDN and reflected in Bandwidth Saved.')}</div>
         <div class="ac-value">${s.cacheHitRate}%</div>
         <div class="ac-sub">Higher = faster</div>
       </div>
