@@ -404,19 +404,58 @@
       #ams-snap .ams-narr h3{font-size:18px;margin:0 0 8px;font-weight:700}
       #ams-snap .ams-narr p{font-size:14px;line-height:1.5;color:#333;margin:0}
       #ams-snap .ams-state{padding:30px;text-align:center;color:#888;font-size:14px}
+    /* desktop: 4 columns x 2 rows (mobile keeps 2 columns) */
+      @media(min-width:768px){#ams-snap{max-width:1000px}#ams-snap .ams-grid{grid-template-columns:repeat(4,1fr);column-gap:24px;row-gap:26px}}
+          #ams-snap{position:relative}
+      #ams-snap .ams-spark{cursor:crosshair}
+      #ams-snap .ams-tip{position:absolute;transform:translate(-50%,-100%);background:#fff;border:1px solid #d6d6d6;border-radius:6px;box-shadow:0 3px 10px rgba(0,0,0,.16);padding:5px 9px;pointer-events:none;opacity:0;white-space:nowrap;z-index:6;text-align:center}
+      #ams-snap .ams-tip-d{display:block;font-size:11px;color:#777;margin-bottom:1px}
+      #ams-snap .ams-tip-v{display:block;font-size:13px;font-weight:700;color:#1a1a1a}
     </style>
     <script>
     (function(){
       var el=document.getElementById('ams-snap');
       var hash=el.getAttribute('data-hash'),rt=el.getAttribute('data-restype')||'100',title=el.getAttribute('data-title')||'';
-      function fallback(){el.innerHTML='<iframe src="https://altos.re/html/s-html/'+hash+'?scale=1&marketNarrative=true&houses=true&weeklyChange=true&stats=price_median%2Cdom_mean%2Cmai%2Ccount%2Cprice_of_new_listings_median%2Cdom_median%2Cper_sqft_median%2Cprice_decreased_percent&branding=false&size=small" style="border:0;display:block;width:100%;max-width:100%;height:840px" scrolling="auto" loading="lazy"></iframe>';}
-      function spark(p){if(!p||p.length<2)return '<svg class="ams-spark" viewBox="0 0 120 34"></svg>';var w=120,h=34,mx=Math.max.apply(null,p),mn=Math.min.apply(null,p),rg=(mx-mn)||1,st=w/(p.length-1);var d=p.map(function(v,i){var x=i*st,y=h-4-((v-mn)/rg)*(h-8);return (i?'L':'M')+x.toFixed(1)+' '+y.toFixed(1);}).join(' ');var lx=(p.length-1)*st,ly=h-4-((p[p.length-1]-mn)/rg)*(h-8);return '<svg class="ams-spark" viewBox="0 0 120 34" preserveAspectRatio="none"><path d="'+d+'" fill="none" stroke="var(--ams-spark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="'+lx.toFixed(1)+'" cy="'+ly.toFixed(1)+'" r="2.4" fill="#a00511"/></svg>';}
-      function esc(s){return (s||'').replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
+      function fallback(){el.innerHTML='<iframe src="https://altos.re/html/s-html/'+hash+'?scale=1&marketNarrative=true&houses=true&weeklyChange=true&stats=price_median%2Cdom_mean%2Cmai%2Ccount%2Cprice_of_new_listings_median%2Cdom_median%2Cper_sqft_median%2Cprice_decreased_percent&branding=false&size=small" style="border:0;display:block;width:100%;max-width:100%;height:840px" scrolling="auto" loading="eager"></iframe>';}
+      function esc(s){return (s||'').replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
       function fdate(s){try{return new Date(s+'T00:00:00').toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric'});}catch(e){return s;}}
-      fetch('/altos-snapshot?hash='+hash+'&resTypeId='+rt).then(function(r){return r.json();}).then(function(d){
+      function spark(vals,fmts,dates){
+        if(!vals||vals.length<2)return '<svg class="ams-spark" viewBox="0 0 120 34"></svg>';
+        var w=120,h=34,mx=Math.max.apply(null,vals),mn=Math.min.apply(null,vals),rg=(mx-mn)||1,st=w/(vals.length-1);
+        var pts=vals.map(function(v,i){return {x:i*st,y:h-4-((v-mn)/rg)*(h-8)};});
+        var d=pts.map(function(p,i){return (i?'L':'M')+p.x.toFixed(1)+' '+p.y.toFixed(1);}).join(' ');
+        var lp=pts[pts.length-1];
+        var coords=pts.map(function(p){return p.x.toFixed(1)+','+p.y.toFixed(1);}).join(';');
+        return '<svg class="ams-spark" data-fmt="'+esc((fmts||[]).join('|'))+'" data-dates="'+esc((dates||[]).join('|'))+'" data-coords="'+coords+'" viewBox="0 0 120 34" preserveAspectRatio="none"><path d="'+d+'" fill="none" stroke="var(--ams-spark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="'+lp.x.toFixed(1)+'" cy="'+lp.y.toFixed(1)+'" r="2.4" fill="#a00511"/><circle class="ams-hdot" r="3.5" fill="var(--ams-spark)" stroke="#fff" stroke-width="1" style="opacity:0"/></svg>';
+      }
+      function setupHover(){
+        if(!window.matchMedia('(min-width:768px) and (pointer:fine)').matches)return;
+        var tip=document.createElement('div');tip.className='ams-tip';el.appendChild(tip);
+        [].slice.call(el.querySelectorAll('.ams-spark')).forEach(function(svg){
+          var fmts=(svg.getAttribute('data-fmt')||'').split('|');
+          var dates=(svg.getAttribute('data-dates')||'').split('|');
+          var coords=(svg.getAttribute('data-coords')||'').split(';').map(function(c){var a=c.split(',');return {x:parseFloat(a[0]),y:parseFloat(a[1])};});
+          if(coords.length<2)return;
+          var dot=svg.querySelector('.ams-hdot');
+          svg.addEventListener('mousemove',function(e){
+            var r=svg.getBoundingClientRect();
+            var idx=Math.round((e.clientX-r.left)/r.width*(coords.length-1));
+            if(idx<0)idx=0;if(idx>coords.length-1)idx=coords.length-1;
+            if(dot){dot.setAttribute('cx',coords[idx].x);dot.setAttribute('cy',coords[idx].y);dot.style.opacity='1';}
+            tip.innerHTML='<span class="ams-tip-d">'+esc(dates[idx]?fdate(dates[idx]):'')+'</span><span class="ams-tip-v">'+esc(fmts[idx]||'')+'</span>';
+            var wr=el.getBoundingClientRect();
+            tip.style.left=(e.clientX-wr.left)+'px';
+            tip.style.top=(r.top-wr.top-6)+'px';
+            tip.style.opacity='1';
+          });
+          svg.addEventListener('mouseleave',function(){if(dot)dot.style.opacity='0';tip.style.opacity='0';});
+        });
+      }
+      fetch('/altos-snapshot?hash='+hash+'&resTypeId='+rt+'&v=2').then(function(r){return r.json();}).then(function(d){
         if(!d||d.error||!d.stats){return fallback();}
-        var cells=d.stats.map(function(s){var t=s.dir==='up'?'▲':(s.dir==='down'?'▼':'');return '<div class="ams-stat"><div class="ams-label">'+esc(s.label)+'</div><div class="ams-value">'+esc(s.value)+'</div>'+spark(s.spark)+'<div class="ams-chg '+s.dir+'"><span class="ams-tri">'+t+'</span>'+esc(s.change)+'</div></div>';}).join('');
+        var cells=d.stats.map(function(s){var t=s.dir==='up'?'▲':(s.dir==='down'?'▼':'');return '<div class="ams-stat"><div class="ams-label">'+esc(s.label)+'</div><div class="ams-value">'+esc(s.value)+'</div>'+spark(s.spark,s.sparkFmt,d.sparkDates)+'<div class="ams-chg '+s.dir+'"><span class="ams-tri">'+t+'</span>'+esc(s.change)+'</div></div>';}).join('');
         el.innerHTML='<div class="ams-card"><h2 class="ams-title">'+esc(title)+'</h2><div class="ams-date">Week of '+fdate(d.dataDate)+'</div><div class="ams-grid">'+cells+'</div><div class="ams-divider"></div><div class="ams-narr"><h3>Market Narrative</h3><p>'+esc(d.narrative)+'</p></div></div>';
+        setupHover();
       }).catch(fallback);
     })();
     </script>
