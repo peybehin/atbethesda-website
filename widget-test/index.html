@@ -7,7 +7,7 @@
 <style>
   :root{
     --ink:#1a1a1a;--muted:#8a8a8a;--line:#e3e3e3;
-    --up:#1aa64b;--down:#d23b3b;--spark:#6b4ddb;
+    --up:#1aa64b;--down:#d23b3b;--spark:#b72545;
     --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   }
   *{box-sizing:border-box}
@@ -52,7 +52,7 @@
     var lx=(pts.length-1)*step, ly=h-4-((pts[pts.length-1]-min)/rng)*(h-8);
     return '<svg class="spark" viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="none">'+
       '<path d="'+d+'" fill="none" stroke="var(--spark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'+
-      '<circle cx="'+lx.toFixed(1)+'" cy="'+ly.toFixed(1)+'" r="2.4" fill="#111"/></svg>';
+      '<circle cx="'+lx.toFixed(1)+'" cy="'+ly.toFixed(1)+'" r="2.4" fill="#8f1a34"/></svg>';
   }
   function fmtDate(s){ try{var d=new Date(s+'T00:00:00');return d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric'});}catch(e){return s;} }
   function esc(s){return (s||'').replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
