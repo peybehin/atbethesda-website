@@ -1741,7 +1741,7 @@ async function previewPost() {
   frame.srcdoc = '<p style="font:1rem sans-serif;padding:40px;color:#666">Loading preview…</p>';
   // Fetch CSS and render
   let siteCss = '';
-  try { const r = await fetch('https://atbethesda.com/css/style.css'); siteCss = await r.text(); } catch(e) {}
+  try { const r = await fetch('https://atbethesda.com/css/style.css?v=3'); siteCss = await r.text(); } catch(e) {}
   const html = buildPostHTML(post, siteCss);
   frame.contentDocument.open();
   frame.contentDocument.write(html);
@@ -1866,7 +1866,7 @@ function buildPostHTML(post, siteCss) {
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
-<base href="https://atbethesda.com/" />${siteCss ? `<style>${siteCss.replace(/<\/style>/g,"<\\/style>")}<\/style>` : '<link rel="stylesheet" href="https://atbethesda.com/css/style.css" />'}
+<base href="https://atbethesda.com/" />${siteCss ? `<style>${siteCss.replace(/<\/style>/g,"<\\/style>")}<\/style>` : '<link rel="stylesheet" href="https://atbethesda.com/css/style.css?v=3" />'}
 <!-- JSON-LD Schemas -->
 <script type="application/ld+json">${JSON.stringify(articleSchema, null, 2)}<\/script>
 <script type="application/ld+json">${JSON.stringify(breadcrumbSchema, null, 2)}<\/script>
