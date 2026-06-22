@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Search Results — Swipe Photos (Prototype)</title>
+<style>
+  :root{--red:#d60717;--red-dark:#a00511;--ink:#1a1a1a;--muted:#6f6f76;--line:#e3e3e3;
+        --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:var(--font);color:var(--ink);background:#fff}
+  .proto{background:#fff8e1;border-bottom:1px solid #f0e0a8;color:#5a4b16;font-size:12.5px;line-height:1.5;padding:10px 14px}
+  .proto b{color:#7a5e00}
+  .top{background:#000;color:#fff;padding:18px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-weight:800;letter-spacing:2px;font-size:20px}.logo b{color:var(--red)}
+  .burger{display:flex;flex-direction:column;gap:5px}.burger span{display:block;width:24px;height:2px;background:#fff;border-radius:2px}
+  .searchwrap{background:#fff;padding:16px 16px 10px;border-bottom:1px solid var(--line)}
+  .sbox{display:flex;align-items:center;border:1px solid #cfcfcf;border-radius:999px;padding:11px 16px;color:#999;font-size:15px;margin-bottom:12px}
+  .pills{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:12px}
+  .pill{border:1px solid #cfcfcf;border-radius:999px;padding:9px 15px;font-size:13px;font-weight:700}
+  .acts{display:flex;gap:10px}.acts .seg{display:flex;border:1px solid #cfcfcf;border-radius:999px;overflow:hidden}
+  .acts .seg span{padding:9px 18px;font-size:13px;font-weight:800}.acts .seg span.on{background:var(--red);color:#fff}
+  .acts .save{background:var(--red);color:#fff;border:0;border-radius:999px;padding:9px 20px;font-size:13px;font-weight:800}
+  .countbar{background:#f1f1f3;padding:14px 16px;font-weight:800;font-size:14px;color:#333}
+  .results{padding:14px 16px 30px}
+  .card{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:18px;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+  .gal{position:relative}
+  .gal__track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .gal__track::-webkit-scrollbar{display:none}
+  .gal__slide{flex:0 0 100%;scroll-snap-align:center;height:220px;background:#e6e6ea}
+  .gal__slide img{width:100%;height:100%;object-fit:cover;display:block}
+  .gal__status{position:absolute;left:12px;top:12px;background:var(--red);color:#fff;font-size:11px;font-weight:800;letter-spacing:.04em;padding:4px 10px;border-radius:4px}
+  .gal__count{position:absolute;right:12px;top:12px;background:rgba(0,0,0,.6);color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px}
+  .gal__dots{position:absolute;left:0;right:0;bottom:10px;display:flex;justify-content:center;gap:6px;pointer-events:none}
+  .gal__dots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.55);box-shadow:0 0 2px rgba(0,0,0,.4);transition:transform .2s,background .2s}
+  .gal__dots i.on{background:#fff;transform:scale(1.35)}
+  .gal__heart{position:absolute;right:12px;bottom:10px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;font-size:16px;color:#888}
+  .body{padding:14px}
+  .price{font-size:22px;font-weight:800}
+  .addr{color:#555;font-size:14px;margin:4px 0 8px}
+  .meta{color:#444;font-size:13px;display:flex;gap:14px;margin-bottom:12px}
+  .vbtn{display:block;text-align:center;border:1px solid var(--ink);border-radius:8px;padding:11px;font-weight:800;font-size:13px;text-decoration:none;color:var(--ink)}
+  .foot{background:#000;color:#999;text-align:center;font-size:12px;padding:26px 16px}
+  .hint{font-size:12px;color:var(--muted);text-align:center;margin:2px 0 14px}
+</style>
+</head>
+<body>
+  <div class="proto">
+    <b>PROTOTYPE &mdash; swipe demo.</b> Swipe any photo left/right to move through the gallery (watch the dots + counter). The photos here are <b>placeholder/sample</b> images: your IDX account is in MLS restricted mode and doesn&rsquo;t expose real photo galleries to a custom page yet. This is only to test the swipe feel.
+  </div>
+  <div class="top"><div class="logo">@<b>BETHESDA</b></div><div class="burger"><span></span><span></span><span></span></div></div>
+  <div class="searchwrap">
+    <div class="sbox">&#128269; City, neighborhood, or ZIP code&hellip;</div>
+    <div class="pills"><span class="pill">ANY PRICE &#9662;</span><span class="pill">BEDS &#9662;</span><span class="pill">BATHS &#9662;</span><span class="pill">ALL TYPES &#9662;</span></div>
+    <div class="acts"><div class="seg"><span class="on">LIST</span><span>MAP</span></div><button class="save">SAVE SEARCH</button></div>
+  </div>
+  <div class="countbar">8 LISTINGS &middot; Potomac, MD</div>
+  <div class="hint">&larr; swipe the photos &rarr;</div>
+  <div class="results" id="results"></div>
+  <div class="foot">Your hyperlocal Bethesda &amp; DC Metro real estate expert.<br>Data services provided by IDX Broker</div>
+<script>
+  var U='https://images.unsplash.com/';
+  var P={
+    a:U+'photo-1568605114967-8130f3a36994?w=900&q=70', b:U+'photo-1570129477492-45c003edd2be?w=900&q=70',
+    c:U+'photo-1576941089067-2de3c901e126?w=900&q=70', d:U+'photo-1600585154340-be6161a56a0c?w=900&q=70',
+    e:U+'photo-1600596542815-ffad4c1539a9?w=900&q=70', f:U+'photo-1600607687939-ce8a6c25118c?w=900&q=70',
+    g:U+'photo-1600566753086-00f18fb6b3ea?w=900&q=70', h:U+'photo-1600210492486-724fe5c67fb0?w=900&q=70',
+    i:U+'photo-1505691938895-1758d7feb511?w=900&q=70', j:U+'photo-1512917774080-9991f1c4c750?w=900&q=70'};
+  var listings=[
+    {price:'$1,850,000',addr:'9012 Falls Bridge Ln, Potomac, MD',meta:'5 bd · 4 ba · 4,200 sqft',ph:[P.a,P.d,P.e,P.f,P.g]},
+    {price:'$1,299,000',addr:'11 Quince Orchard Blvd, Potomac, MD',meta:'4 bd · 3 ba · 3,100 sqft',ph:[P.b,P.h,P.i,P.j]},
+    {price:'$2,450,000',addr:'8800 Fox Hills Ln, Potomac, MD',meta:'6 bd · 6 ba · 6,800 sqft',ph:[P.c,P.e,P.a,P.f,P.d,P.g]},
+    {price:'$975,000',addr:'7 River Falls Dr, Potomac, MD',meta:'4 bd · 3 ba · 2,650 sqft',ph:[P.j,P.b,P.h,P.i]},
+    {price:'$3,100,000',addr:'10500 Stevens Forest Rd, Potomac, MD',meta:'6 bd · 7 ba · 8,100 sqft',ph:[P.f,P.a,P.d,P.e,P.g,P.c]},
+    {price:'$1,150,000',addr:'12 Bells Mill Rd, Potomac, MD',meta:'4 bd · 3 ba · 2,900 sqft',ph:[P.i,P.j,P.b,P.h]},
+    {price:'$1,675,000',addr:'9 Glen Mill Rd, Potomac, MD',meta:'5 bd · 5 ba · 4,500 sqft',ph:[P.d,P.f,P.g,P.a,P.e]},
+    {price:'$849,000',addr:'204 Watts Branch Pkwy, Potomac, MD',meta:'3 bd · 2 ba · 2,200 sqft',ph:[P.h,P.c,P.j]}
+  ];
+  function cardHTML(l,idx){
+    var slides=l.ph.map(function(src,i){var loading=i===0?'eager':'lazy';return '<div class="gal__slide"><img src="'+src+'" loading="'+loading+'" alt=""></div>';}).join('');
+    var dots=l.ph.map(function(_,i){return '<i'+(i===0?' class="on"':'')+'></i>';}).join('');
+    return '<div class="card"><div class="gal" data-idx="'+idx+'"><div class="gal__track" id="trk'+idx+'">'+slides+'</div>'+
+      '<span class="gal__status">ACTIVE</span><span class="gal__count" id="cnt'+idx+'">1 / '+l.ph.length+'</span>'+
+      '<div class="gal__heart">&#9825;</div><div class="gal__dots" id="dots'+idx+'">'+dots+'</div></div>'+
+      '<div class="body"><div class="price">'+l.price+'</div><div class="addr">'+l.addr+'</div>'+
+      '<div class="meta"><span>'+l.meta+'</span></div><a class="vbtn" href="#">View Details</a></div></div>';
+  }
+  document.getElementById('results').innerHTML=listings.map(cardHTML).join('');
+  listings.forEach(function(l,idx){
+    var trk=document.getElementById('trk'+idx);var dots=document.getElementById('dots'+idx).children;var cnt=document.getElementById('cnt'+idx);var total=l.ph.length;var raf;
+    trk.addEventListener('scroll',function(){if(raf)return;raf=requestAnimationFrame(function(){raf=0;var i=Math.round(trk.scrollLeft/trk.clientWidth);if(i<0)i=0;if(i>total-1)i=total-1;for(var d=0;d<dots.length;d++)dots[d].className=(d===i?'on':'');cnt.textContent=(i+1)+' / '+total;});},{passive:true});
+  });
+</script>
+</body>
+</html>
