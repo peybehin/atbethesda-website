@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2-Column Market Snapshot — Live Test (Bethesda)</title>
+<style>
+  :root{
+    --ink:#1a1a1a;--muted:#8a8a8a;--line:#e3e3e3;
+    --up:#1aa64b;--down:#d23b3b;--spark:#6b4ddb;
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#f4f4f6;font-family:var(--font);color:var(--ink);padding:16px}
+  .note{max-width:440px;margin:0 auto 14px;font-size:12px;line-height:1.5;color:#555;
+    background:#eef4ff;border:1px solid #cfe0ff;border-radius:8px;padding:10px 12px}
+  .card{max-width:440px;margin:0 auto;background:#fff;border:1px solid var(--line);
+    border-radius:14px;padding:22px 20px 24px;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+  .head h1{font-size:22px;margin:0 0 2px;font-weight:700;letter-spacing:-.01em}
+  .head .date{font-size:12px;color:var(--muted);margin-bottom:18px;font-weight:600}
+  .grid{display:grid;grid-template-columns:1fr 1fr;column-gap:18px;row-gap:22px}
+  .stat .label{font-size:13px;color:#3a3a3a;line-height:1.25;margin-bottom:8px;min-height:32px}
+  .stat .value{font-size:26px;font-weight:700;letter-spacing:-.02em;margin-bottom:6px}
+  .spark{display:block;width:100%;height:34px;margin-bottom:6px}
+  .chg{font-size:13px;font-weight:600;display:flex;align-items:center;gap:5px}
+  .chg.up{color:var(--up)} .chg.down{color:var(--down)} .chg.flat{color:var(--muted)}
+  .tri{font-size:10px;line-height:1}
+  .divider{height:1px;background:var(--line);margin:24px 0 18px}
+  .narr h2{font-size:18px;margin:0 0 8px;font-weight:700}
+  .narr p{font-size:14px;line-height:1.5;color:#333;margin:0}
+  .foot{max-width:440px;margin:14px auto 0;text-align:center;font-size:11px;color:#aaa}
+  .state{max-width:440px;margin:0 auto;padding:30px;text-align:center;color:#888;font-size:14px}
+</style>
+</head>
+<body>
+  <div class="note">
+    <strong>Live test — real Altos data.</strong> This page pulls the same numbers Altos's own widget uses, via a server-side proxy (<code>/altos-snapshot</code>), and renders them in a true 2-column layout. It does not touch your live area pages.
+  </div>
+
+  <div id="app"><div class="state">Loading live market data…</div></div>
+  <div class="foot">Custom 2-column widget · live data via /altos-snapshot</div>
+
+<script>
+  var HASH = "8adfabb4-c609-44c6-b93d-11f38d359190"; // Bethesda
+  var TITLE = "Bethesda, MD";
+
+  function sparkSVG(pts){
+    if(!pts||pts.length<2) return '<svg class="spark" viewBox="0 0 120 34"></svg>';
+    var w=120,h=34,max=Math.max.apply(null,pts),min=Math.min.apply(null,pts),rng=(max-min)||1;
+    var step=w/(pts.length-1);
+    var d=pts.map(function(v,i){var x=i*step;var y=h-4-((v-min)/rng)*(h-8);return (i?'L':'M')+x.toFixed(1)+' '+y.toFixed(1);}).join(' ');
+    var lx=(pts.length-1)*step, ly=h-4-((pts[pts.length-1]-min)/rng)*(h-8);
+    return '<svg class="spark" viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="none">'+
+      '<path d="'+d+'" fill="none" stroke="var(--spark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'+
+      '<circle cx="'+lx.toFixed(1)+'" cy="'+ly.toFixed(1)+'" r="2.4" fill="#111"/></svg>';
+  }
+  function fmtDate(s){ try{var d=new Date(s+'T00:00:00');return d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric'});}catch(e){return s;} }
+  function esc(s){return (s||'').replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
+
+  fetch('/altos-snapshot?hash='+HASH+'&resTypeId=100')
+    .then(function(r){return r.json();})
+    .then(function(d){
+      if(d.error){ document.getElementById('app').innerHTML='<div class="state">Could not load data ('+esc(d.error)+').</div>'; return; }
+      var cells = d.stats.map(function(s){
+        var tri = s.dir==='up' ? '▲' : (s.dir==='down' ? '▼' : '');
+        return '<div class="stat"><div class="label">'+esc(s.label)+'</div>'+
+          '<div class="value">'+esc(s.value)+'</div>'+ sparkSVG(s.spark)+
+          '<div class="chg '+s.dir+'"><span class="tri">'+tri+'</span>'+esc(s.change)+'</div></div>';
+      }).join('');
+      document.getElementById('app').innerHTML =
+        '<div class="card"><div class="head"><h1>'+esc(TITLE)+'</h1>'+
+        '<div class="date">Week of '+fmtDate(d.dataDate)+'</div></div>'+
+        '<div class="grid">'+cells+'</div>'+
+        '<div class="divider"></div>'+
+        '<div class="narr"><h2>Market Narrative</h2><p>'+esc(d.narrative)+'</p></div></div>';
+    })
+    .catch(function(e){ document.getElementById('app').innerHTML='<div class="state">Network error loading data.</div>'; });
+</script>
+</body>
+</html>
