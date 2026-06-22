@@ -71,55 +71,64 @@ function renderAnalytics(data) {
     </div>`;
   }).join('');
 
+  const cacheAlert = s.cacheHitRate < 10 ? `
+    <div class="cache-alert">
+      <span style="font-size:1.1rem">⚠️</span>
+      <div style="font-size:.78rem;font-weight:600;color:#795500;">Cache Hit Rate is ${s.cacheHitRate}% — your pages aren't being cached by Cloudflare, which slows load times.
+        <a href="https://dash.cloudflare.com/?to=/:account/:zone/caching/configuration" target="_blank">Fix in Cloudflare →</a>
+      </div>
+    </div>` : '';
+
   document.getElementById('analytics-body').innerHTML = `
+    ${cacheAlert}
     <div class="analytics-grid">
       <div class="analytics-card ac-good">
-        <div class="ac-label">Unique Visitors</div>
+        <div class="ac-label">Unique Visitors ${infoIcon('Real people who visited your site — bots and crawlers are filtered out by Cloudflare.')}</div>
         <div class="ac-value">${fmtNum(s.uniqueVisitors)}</div>
         <div class="ac-sub">Real people, not bots</div>
       </div>
       <div class="analytics-card">
-        <div class="ac-label">Page Views</div>
+        <div class="ac-label">Page Views ${infoIcon('Total pages viewed across all visitors. Includes bots, so it\'s usually higher than GA4\'s page views count.')}</div>
         <div class="ac-value">${fmtNum(s.pageViews)}</div>
         <div class="ac-sub">Pages consumed</div>
       </div>
       <div class="analytics-card">
-        <div class="ac-label">Total Requests</div>
+        <div class="ac-label">Total Requests ${infoIcon('Every file request your site made — pages, images, CSS, JS. One page load can trigger dozens of requests.')}</div>
         <div class="ac-value">${fmtNum(s.requests)}</div>
         <div class="ac-sub">Incl. assets &amp; scripts</div>
       </div>
-      <div class="analytics-card ac-good">
-        <div class="ac-label">Cache Hit Rate</div>
+      <div class="analytics-card${s.cacheHitRate < 10 ? ' ac-warn' : ' ac-good'}">
+        <div class="ac-label">Cache Hit Rate ${infoIcon('% of requests served from Cloudflare\'s cache instead of your origin server. Higher = faster page loads and lower server cost. Aim for 70%+.')}</div>
         <div class="ac-value">${s.cacheHitRate}%</div>
         <div class="ac-sub">Higher = faster</div>
       </div>
       <div class="analytics-card">
-        <div class="ac-label">Bandwidth Saved</div>
+        <div class="ac-label">Bandwidth Saved ${infoIcon('Data Cloudflare served from its cache so it didn\'t have to come from your server. More saved = lower hosting costs and faster load times globally.')}</div>
         <div class="ac-value">${s.bandwidthGB} GB</div>
         <div class="ac-sub">Served by Cloudflare</div>
       </div>
       <div class="analytics-card${s.threats > 0 ? ' ac-warn' : ''}">
-        <div class="ac-label">Threats Blocked</div>
+        <div class="ac-label">Threats Blocked ${infoIcon('Malicious requests stopped by your Cloudflare firewall rules — including the non-US/Canada geo-block and WAF rules you have set up.')}</div>
         <div class="ac-value">${fmtNum(s.threats)}</div>
         <div class="ac-sub">WAF &amp; geo-block</div>
       </div>
       <div class="analytics-card${s.errors4xx > 100 ? ' ac-warn' : ''}">
-        <div class="ac-label">4xx Errors</div>
+        <div class="ac-label">4xx Errors ${infoIcon('Pages visitors tried to reach that don\'t exist (404) or aren\'t allowed (403). High numbers mean broken links somewhere — check your most-linked pages.')}</div>
         <div class="ac-value">${fmtNum(s.errors4xx)}</div>
         <div class="ac-sub">Broken links / 404s</div>
       </div>
       <div class="analytics-card${s.errors5xx > 0 ? ' ac-warn' : ''}">
-        <div class="ac-label">5xx Errors</div>
+        <div class="ac-label">5xx Errors ${infoIcon('Server-side errors — something crashed or timed out on the backend. Even 1 is worth investigating since it means visitors hit a broken page.')}</div>
         <div class="ac-value">${fmtNum(s.errors5xx)}</div>
         <div class="ac-sub">Server / function errors</div>
       </div>
     </div>
-    <div class="analytics-chart-box">
-      <h3>Daily Unique Visitors</h3>
+    <div class="analytics-chart-box" style="margin-bottom:20px;">
+      <h3>Daily Unique Visitors ${infoIcon('How many real people visited each day. Useful for spotting when traffic spikes (a post went viral) or drops (something broke).')}</h3>
       <div class="bar-chart">${bars || '<div style="color:#aaa;font-size:.8rem;padding:20px">No data</div>'}</div>
     </div>
     <div class="analytics-chart-box">
-      <h3>Top 10 Pages <span style="font-weight:400;color:var(--gray-text);font-size:.65rem;">(last 24h)</span></h3>
+      <h3>Top 10 Pages <span style="font-weight:400;color:var(--gray-text);font-size:.65rem;">(last 24h)</span> ${infoIcon('Your most-requested pages from Cloudflare logs. Click any page to open it on the live site.')}</h3>
       ${topPageRows}
     </div>
   `;
@@ -138,10 +147,23 @@ async function loadGA4(days, btn) {
   const body = document.getElementById('ga4-body');
   body.innerHTML = '<div class="analytics-loading">Loading Google Analytics…</div>';
   try {
-    const resp = await fetch('/api/ga-analytics?days=' + days);
+    const [resp, leadsResp] = await Promise.all([
+      fetch('/api/ga-analytics?days=' + days),
+      fetch('/api/leads').catch(() => null),
+    ]);
     const data = await resp.json();
     if (data.error) throw new Error(data.error);
-    renderGA4(data, days);
+    let leadsCount = null;
+    if (leadsResp && leadsResp.ok) {
+      try {
+        const ld = await leadsResp.json();
+        if (ld.leads) {
+          const cutoff = new Date(); cutoff.setDate(cutoff.getDate() - days);
+          leadsCount = ld.leads.filter(l => new Date(l.submittedAt || l.createdAt || 0) >= cutoff).length;
+        }
+      } catch(_) {}
+    }
+    renderGA4(data, days, leadsCount);
     ga4Loaded = true;
   } catch(e) {
     body.innerHTML = '<div class="analytics-error">⚠ ' + e.message + '</div>';
@@ -160,30 +182,91 @@ function delta(curr, prev) {
   const cls = change >= 0 ? 'delta-up' : 'delta-down';
   return ' <span class="' + cls + '">' + (change >= 0 ? '+' : '') + change + '%</span>';
 }
+function infoIcon(tip) {
+  return '<span class="info-icon" data-tip="' + tip.replace(/"/g,'&quot;') + '">i</span>';
+}
 
-function renderGA4(data, days) {
+function renderGA4(data, days, leadsCount) {
   const rows = data.totals && data.totals.rows;
   const curr = rows && rows[0] ? rows[0].metricValues : [];
   const prev = rows && rows[1] ? rows[1].metricValues : [];
+  const get  = (arr, i) => arr[i] ? arr[i].value : '0';
 
-  const get = (arr, i) => arr[i] ? arr[i].value : '0';
+  const sessions  = parseInt(get(curr,0));
+  const users     = parseInt(get(curr,1));
+  const pageviews = parseInt(get(curr,2));
+  const avgDur    = parseFloat(get(curr,3));
+  const bounce    = parseFloat(get(curr,4));
+  const newUsers  = parseInt(get(curr,5));
+  const pSessions = parseInt(get(prev,0));
+  const pUsers    = parseInt(get(prev,1));
+  const pPageviews= parseInt(get(prev,2));
+  const pAvgDur   = parseFloat(get(prev,3));
+  const pBounce   = parseFloat(get(prev,4));
+  const pNewUsers = parseInt(get(prev,5));
 
-  const sessions    = parseInt(get(curr,0));
-  const users       = parseInt(get(curr,1));
-  const pageviews   = parseInt(get(curr,2));
-  const avgDur      = parseFloat(get(curr,3));
-  const bounce      = parseFloat(get(curr,4));
-  const newUsers    = parseInt(get(curr,5));
+  // ── Realtime ──────────────────────────────────────────────────────
+  const realtimeUsers = (data.realtime && data.realtime.rows && data.realtime.rows[0])
+    ? parseInt(data.realtime.rows[0].metricValues[0].value) : 0;
 
-  const pSessions   = parseInt(get(prev,0));
-  const pUsers      = parseInt(get(prev,1));
-  const pPageviews  = parseInt(get(prev,2));
-  const pAvgDur     = parseFloat(get(prev,3));
-  const pBounce     = parseFloat(get(prev,4));
-  const pNewUsers   = parseInt(get(prev,5));
+  // ── Sessions over time (bar chart) ────────────────────────────────
+  const dailyRows = (data.daily && data.daily.rows) || [];
+  const maxDailySess = Math.max(...dailyRows.map(r => parseInt(r.metricValues[0].value)), 1);
+  const dailyBars = dailyRows.map(d => {
+    const ds   = d.dimensionValues[0].value;
+    const sess = parseInt(d.metricValues[0].value);
+    const h    = Math.max(4, Math.round((sess / maxDailySess) * 110));
+    const lbl  = ds.slice(4,6) + '-' + ds.slice(6,8);
+    return `<div class="bar-wrap" title="${lbl}: ${sess.toLocaleString()} sessions"><div class="bar" style="height:${h}px"></div><div class="bar-label">${lbl}</div></div>`;
+  }).join('');
 
+  // ── Traffic sources ───────────────────────────────────────────────
+  const srcRows   = (data.sources && data.sources.rows) || [];
+  const srcTotal  = Math.max(srcRows.reduce((s,r) => s + parseInt(r.metricValues[0].value), 0), 1);
+  const srcColors = {'Organic Search':'#2e7d32','Direct':'#1565c0','Organic Social':'#e65100',
+    'Referral':'#6a1b9a','Email':'#ad1457','Paid Search':'#f57f17','Unassigned':'#bbb'};
+  const sourceBars = srcRows.map(r => {
+    const name  = r.dimensionValues[0].value;
+    const sess  = parseInt(r.metricValues[0].value);
+    const pct   = Math.round((sess / srcTotal) * 100);
+    const color = srcColors[name] || '#999';
+    return `<div class="source-row"><div class="source-label">${name}</div><div class="source-bar-bg"><div class="source-bar-fill" style="width:${pct}%;background:${color}"></div></div><div class="source-pct">${pct}%</div></div>`;
+  }).join('');
+
+  // ── Device breakdown ──────────────────────────────────────────────
+  const devRows   = (data.devices && data.devices.rows) || [];
+  const devTotal  = Math.max(devRows.reduce((s,r) => s + parseInt(r.metricValues[0].value), 0), 1);
+  const devColors = {mobile:'#1565c0', desktop:'#2e7d32', tablet:'#e65100'};
+  const devSegs   = devRows.map(r => {
+    const name  = r.dimensionValues[0].value.toLowerCase();
+    const pct   = Math.round((parseInt(r.metricValues[0].value) / devTotal) * 100);
+    return `<div class="device-segment" style="width:${pct}%;background:${devColors[name]||'#999'}" title="${name}: ${pct}%"></div>`;
+  }).join('');
+  const devLegend = devRows.map(r => {
+    const name = r.dimensionValues[0].value.toLowerCase();
+    const pct  = Math.round((parseInt(r.metricValues[0].value) / devTotal) * 100);
+    return `<span><span class="device-dot" style="background:${devColors[name]||'#999'}"></span>${name} ${pct}%</span>`;
+  }).join('');
+
+  // ── Lead conversion ───────────────────────────────────────────────
+  const convSection = (leadsCount !== null && sessions > 0) ? (() => {
+    const rate = ((leadsCount / sessions) * 100).toFixed(1);
+    const good = parseFloat(rate) >= 1;
+    return `<div class="analytics-chart-box" style="margin-bottom:20px;">
+      <h3>Lead Conversion ${infoIcon('How many site visitors turned into leads in this period. Calculated as leads ÷ sessions × 100. Aim for 1%+.')}</h3>
+      <div class="conversion-bar">
+        <div class="conversion-stat"><div class="conversion-num">${fmtNum(sessions)}</div><div class="conversion-label">Sessions</div></div>
+        <div class="conversion-arrow">→</div>
+        <div class="conversion-stat"><div class="conversion-num">${leadsCount}</div><div class="conversion-label">Leads</div></div>
+        <div class="conversion-arrow">=</div>
+        <div class="conversion-stat"><div class="conversion-num" style="color:${good?'#2e7d32':'#e65100'}">${rate}%</div><div class="conversion-label">Conv. Rate</div></div>
+      </div>
+    </div>`;
+  })() : '';
+
+  // ── Top pages ─────────────────────────────────────────────────────
   const pageRows = (data.pages && data.pages.rows) || [];
-  const maxSess = Math.max(...pageRows.map(r => parseInt(r.metricValues[0].value)), 1);
+  const maxSess  = Math.max(...pageRows.map(r => parseInt(r.metricValues[0].value)), 1);
   const topPageRows = pageRows.length ? `
     <table class="top-pages-table">
       <thead><tr><th>#</th><th>Page</th><th>Sessions</th><th>Views</th><th></th></tr></thead>
@@ -193,51 +276,69 @@ function renderGA4(data, days) {
         const views = parseInt(r.metricValues[1].value);
         const pct   = Math.round((sess/maxSess)*100);
         const label = path === '/' ? '/ (Home)' : path;
-        return '<tr>' +
-          '<td class="tp-rank">'+(i+1)+'</td>' +
-          '<td class="tp-path"><a href="https://atbethesda.com'+path+'" target="_blank" style="color:inherit;text-decoration:none;" title="Open '+path+'">'+label+'</a></td>' +
+        return '<tr><td class="tp-rank">'+(i+1)+'</td>' +
+          '<td class="tp-path"><a href="https://atbethesda.com'+path+'" target="_blank" style="color:inherit;text-decoration:none;">'+label+'</a></td>' +
           '<td class="tp-count">'+fmtNum(sess)+'</td>' +
           '<td class="tp-count" style="color:var(--gray-text)">'+fmtNum(views)+'</td>' +
-          '<td class="tp-bar-cell"><div class="tp-bar" style="width:'+pct+'%"></div></td>' +
-          '</tr>';
+          '<td class="tp-bar-cell"><div class="tp-bar" style="width:'+pct+'%"></div></td></tr>';
       }).join('')}</tbody>
     </table>` : '<div style="color:#aaa;font-size:.8rem;padding:20px">No data</div>';
 
   document.getElementById('ga4-body').innerHTML = `
+    <div class="realtime-bar">
+      <div class="realtime-pulse"></div>
+      <span class="realtime-count">${realtimeUsers}</span>&nbsp;
+      <span class="realtime-label">users on site right now</span>
+      ${infoIcon('People active on your site in the last 30 minutes, updated each time you load this page.')}
+    </div>
     <div class="analytics-grid">
       <div class="analytics-card ac-good">
-        <div class="ac-label">Sessions</div>
+        <div class="ac-label">Sessions ${infoIcon('One visit = one session. A person who visits Monday and again Friday = 2 sessions.')}</div>
         <div class="ac-value">${fmtNum(sessions)}${delta(sessions,pSessions)}</div>
         <div class="ac-sub">vs prev period</div>
       </div>
       <div class="analytics-card ac-good">
-        <div class="ac-label">Active Users</div>
+        <div class="ac-label">Active Users ${infoIcon('Unique people who visited. One person visiting 5 times still counts as 1 active user.')}</div>
         <div class="ac-value">${fmtNum(users)}${delta(users,pUsers)}</div>
-        <div class="ac-sub">Real people</div>
+        <div class="ac-sub">Unique people</div>
       </div>
       <div class="analytics-card">
-        <div class="ac-label">Page Views</div>
+        <div class="ac-label">Page Views ${infoIcon('Total pages loaded. If one person visits 5 pages, that counts as 5 page views.')}</div>
         <div class="ac-value">${fmtNum(pageviews)}${delta(pageviews,pPageviews)}</div>
-        <div class="ac-sub">Total screens viewed</div>
+        <div class="ac-sub">Total pages loaded</div>
       </div>
       <div class="analytics-card">
-        <div class="ac-label">New Users</div>
+        <div class="ac-label">New Users ${infoIcon('First-time visitors. High new users means your marketing is reaching fresh audiences.')}</div>
         <div class="ac-value">${fmtNum(newUsers)}${delta(newUsers,pNewUsers)}</div>
         <div class="ac-sub">First-time visitors</div>
       </div>
       <div class="analytics-card${avgDur < 30 ? ' ac-warn' : ' ac-good'}">
-        <div class="ac-label">Avg Session</div>
+        <div class="ac-label">Avg Session ${infoIcon('How long visitors spend on your site per visit. Under 30 seconds usually means they left without finding what they wanted.')}</div>
         <div class="ac-value">${fmtDuration(avgDur)}${delta(avgDur,pAvgDur)}</div>
         <div class="ac-sub">Time on site</div>
       </div>
       <div class="analytics-card${bounce > 0.7 ? ' ac-warn' : ' ac-good'}">
-        <div class="ac-label">Bounce Rate</div>
+        <div class="ac-label">Bounce Rate ${infoIcon('% who leave after just one page. Lower is better. Above 70% means most visitors aren\'t exploring your site.')}</div>
         <div class="ac-value">${fmtPct(bounce)}${delta(pBounce,bounce)}</div>
         <div class="ac-sub">Lower = better</div>
       </div>
     </div>
+    <div class="analytics-chart-box" style="margin-bottom:20px;">
+      <h3>Sessions Over Time ${infoIcon('Daily sessions for the selected period. Spikes usually mean a post went viral or you ran an ad. Drops can mean a technical issue.')}</h3>
+      <div class="bar-chart">${dailyBars||'<div style="color:#aaa;font-size:.8rem;padding:20px">No data</div>'}</div>
+    </div>
+    ${convSection}
+    <div class="analytics-chart-box" style="margin-bottom:20px;">
+      <h3>Traffic Sources ${infoIcon('Where visitors come from. Organic Search = Google/Bing. Direct = typed your URL. Social = Instagram/Facebook. Referral = another site linked to you.')}</h3>
+      <div class="source-bar-wrap" style="margin-top:12px;">${sourceBars||'<div style="color:#aaa;font-size:.8rem;padding:12px">No data</div>'}</div>
+    </div>
+    <div class="analytics-chart-box" style="margin-bottom:20px;">
+      <h3>Device Breakdown ${infoIcon('What devices your visitors use. Most real estate searches happen on mobile — your site should look great on phones first.')}</h3>
+      <div class="device-split">${devSegs}</div>
+      <div class="device-legend">${devLegend}</div>
+    </div>
     <div class="analytics-chart-box">
-      <h3>Top 10 Pages <span style="font-weight:400;color:var(--gray-text);font-size:.65rem;">(GA4 · last ${days}d)</span></h3>
+      <h3>Top 10 Pages <span style="font-weight:400;color:var(--gray-text);font-size:.65rem;">(GA4 · last ${days}d)</span> ${infoIcon('Your most-visited pages by sessions. Click any page name to open it on the live site.')}</h3>
       ${topPageRows}
     </div>
   `;
@@ -618,6 +719,39 @@ select.cat-select{margin-bottom:0;}
 .analytics-loading{text-align:center;padding:60px 0;color:var(--gray-text);font-size:.85rem;}
 .analytics-error{background:#fff3f3;border:1px solid #ffcdd2;padding:16px;border-radius:6px;color:#c62828;font-size:.8rem;}
 
+
+/* ── INFO TOOLTIPS ── */
+.info-icon{display:inline-flex;align-items:center;justify-content:center;width:13px;height:13px;border-radius:50%;border:1px solid #bbb;color:#aaa;font-size:.55rem;font-weight:700;font-style:normal;cursor:help;margin-left:4px;vertical-align:middle;position:relative;flex-shrink:0;line-height:1;}
+.info-icon::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#1a1a1a;color:#fff;padding:8px 12px;border-radius:5px;font-size:.7rem;white-space:normal;width:210px;line-height:1.5;z-index:999;pointer-events:none;opacity:0;transition:opacity .15s;font-style:normal;font-weight:400;text-transform:none;letter-spacing:0;}
+.info-icon::before{content:'';position:absolute;bottom:calc(100% + 3px);left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#1a1a1a;opacity:0;transition:opacity .15s;}
+.info-icon:hover::after,.info-icon:hover::before{opacity:1;}
+/* ── REALTIME BAR ── */
+.realtime-bar{display:flex;align-items:center;gap:10px;background:#f0faf4;border:1px solid #b2dfdb;border-radius:6px;padding:12px 18px;margin-bottom:20px;}
+.realtime-pulse{width:10px;height:10px;border-radius:50%;background:#2e7d32;animation:rt-pulse 2s infinite;flex-shrink:0;}
+@keyframes rt-pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(1.3);}}
+.realtime-count{font-size:1.25rem;font-weight:800;color:#1b5e20;}
+.realtime-label{font-size:.75rem;color:#2e7d32;font-weight:600;}
+/* ── TRAFFIC SOURCES ── */
+.source-row{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-size:.74rem;}
+.source-label{width:120px;color:var(--gray-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:0;}
+.source-bar-bg{flex:1;height:7px;background:#f0f0f0;border-radius:4px;overflow:hidden;}
+.source-bar-fill{height:100%;border-radius:4px;transition:width .4s;}
+.source-pct{width:34px;text-align:right;font-weight:700;color:#111;flex-shrink:0;}
+/* ── DEVICE SPLIT ── */
+.device-split{display:flex;height:10px;border-radius:5px;overflow:hidden;margin:12px 0 8px;gap:2px;}
+.device-segment{height:100%;}
+.device-legend{display:flex;gap:14px;font-size:.7rem;color:var(--gray-text);flex-wrap:wrap;}
+.device-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:3px;vertical-align:middle;}
+/* ── CONVERSION ── */
+.conversion-bar{display:flex;align-items:center;justify-content:center;gap:20px;padding:14px 0 4px;flex-wrap:wrap;}
+.conversion-stat{text-align:center;}
+.conversion-num{font-size:1.8rem;font-weight:800;color:#111;line-height:1;}
+.conversion-label{font-size:.63rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gray-text);margin-top:4px;}
+.conversion-arrow{color:#ccc;font-size:1.5rem;font-weight:300;}
+/* ── CACHE ALERT ── */
+.cache-alert{background:#fffde7;border:1px solid #ffe082;border-radius:6px;padding:12px 16px;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.cache-alert a{color:var(--red);font-weight:700;text-decoration:none;margin-left:6px;}
+.cache-alert a:hover{text-decoration:underline;}
 </style>
 <script src="https://atbethesda.com/js/nav.js" defer></script>
 </head>
