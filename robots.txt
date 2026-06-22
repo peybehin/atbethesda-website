@@ -42,3 +42,4 @@ User-agent: Bingbot
 Allow: /
 
 Sitemap: https://atbethesda.com/sitemap.xml
+
