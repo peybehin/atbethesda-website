@@ -59,8 +59,20 @@ export async function onRequest(context) {
     });
     const data = await resp.json();
 
-    // Aggregate totals across all days
+    // Surface GraphQL errors if any
+    if (data.errors && data.errors.length > 0) {
+      return new Response(JSON.stringify({ error: 'GraphQL error', details: data.errors }), {
+        status: 500, headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
     const zones = data?.data?.viewer?.zones?.[0];
+    if (!zones) {
+      return new Response(JSON.stringify({ error: 'No zone data', raw: data }), {
+        status: 500, headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
     const daily = zones?.daily || [];
     const totals = zones?.totals || [];
 
