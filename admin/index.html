@@ -1087,7 +1087,20 @@ select.cat-select{margin-bottom:0;}
           .badge-blog{background:#e8f5e9;color:#2e7d32;}
           .badge-headshots{background:#e3f2fd;color:#1565c0;}
           .badge-other{background:#f3e5f5;color:#6a1b9a;}
-        </style>
+        
+  .media-sort-select,.media-size-select{font-size:12px;border:1px solid #ddd;border-radius:4px;padding:3px 6px;background:#fff;cursor:pointer;height:28px;}
+  .media-new-folder-btn{font-size:12px;border:1px solid #ddd;border-radius:4px;padding:3px 9px;background:#fff;cursor:pointer;height:28px;white-space:nowrap;}
+  .media-new-folder-btn:hover{background:#f0f0f0;}
+  .media-card{position:relative;}
+  .media-usage-badge{font-size:9px;font-weight:700;padding:2px 5px;border-radius:3px;position:absolute;top:4px;right:4px;pointer-events:none;}
+  .media-usage-badge.used{background:rgba(46,125,50,.88);color:#fff;}
+  .media-usage-badge.unused{background:rgba(0,0,0,.5);color:#fff;}
+  .media-compress-row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;color:#666;}
+  .media-compress-btn{font-size:11px;padding:3px 8px;border:1px solid #e0a800;border-radius:4px;background:#fff8e1;color:#7a5c00;cursor:pointer;}
+  .media-compress-btn:hover{background:#fff3cd;}
+  .media-rename-btn{display:flex;align-items:center;justify-content:center;gap:5px;width:100%;padding:7px;margin:3px 0;border:1px solid #ddd;border-radius:5px;background:#fff;cursor:pointer;font-size:12px;}
+  .media-rename-btn:hover{background:#f0f0f0;}
+</style>
 
         <div class="media-toolbar">
           <div class="media-search">
@@ -1097,6 +1110,21 @@ select.cat-select{margin-bottom:0;}
           <select class="media-folder-select" id="media-folder-select" onchange="loadMediaLibrary()">
             <option value="images">All images</option>
           </select>
+          <select id="media-sort" class="media-sort-select" onchange="filterMedia()" title="Sort order">
+            <option value="newest">Newest first</option>
+            <option value="oldest">Oldest first</option>
+            <option value="name-az">Name A–Z</option>
+            <option value="name-za">Name Z–A</option>
+            <option value="size-desc">Largest first</option>
+            <option value="size-asc">Smallest first</option>
+          </select>
+          <select id="media-size-filter" class="media-size-select" onchange="filterMedia()" title="Filter by file size">
+            <option value="0">All sizes</option>
+            <option value="500">500 KB+</option>
+            <option value="1024">1 MB+</option>
+            <option value="2048">2 MB+</option>
+          </select>
+          <button class="media-new-folder-btn" onclick="createMediaSubfolder()">+ Folder</button>
           <span class="media-stats" id="media-stats"></span>
         </div>
 
@@ -1112,7 +1140,7 @@ select.cat-select{margin-bottom:0;}
               <div style="font-size:11px;margin-top:4px;color:#aaa;">JPG, PNG, WebP, SVG — uploads to <span id="media-target-folder">images/blog/</span></div>
               <input type="file" id="media-file-input" accept="image/*" multiple style="display:none" onchange="mediaOnFileSelect(event)" />
             </div>
-            <div id="media-upload-progress" style="display:none;font-size:12px;margin-bottom:12px;font-weight:600;padding:8px 12px;border-radius:6px;background:#f5f5f5;"></div>
+            <div id="media-upload-progress" style="display:none;font-size:12px;margin-bottom:12px;font-weight:600;padding:8px 12px;border-radius:6px;background:#f5f5f5;"><div class="media-progress-label"></div><div style="background:#eee;border-radius:2px;height:4px;width:100%;margin-top:4px;"><div class="media-progress-bar" style="height:4px;border-radius:2px;background:#4a86f7;width:0%;transition:width .3s;"></div></div></div>
 
             <!-- Grid -->
             <div id="media-grid" class="media-grid"></div>
@@ -1142,7 +1170,12 @@ select.cat-select{margin-bottom:0;}
             </div>
             <button class="media-action-btn" onclick="mediaUseAsFeatured()">⭐ Set as featured image</button>
             <button class="media-action-btn" style="margin-top:4px;" onclick="window.open(_selectedMedia?.url,'_blank')">↗ Open in new tab</button>
-            <button class="media-action-btn danger" onclick="mediaDeleteSelected()">🗑 Delete from GitHub</button>
+            <button class="media-rename-btn" onclick="renameMedia()">&#9998; Rename file</button>
+          <div class="media-compress-row">
+            <span id="media-compress-info" style="flex:1;color:#888;"></span>
+            <button class="media-compress-btn" id="media-compress-btn" onclick="compressSelected()">Compress</button>
+          </div>
+          <button class="media-action-btn danger" onclick="mediaDeleteSelected()">🗑 Delete from GitHub</button>
           </div>
         </div>
       </div>
@@ -1153,7 +1186,7 @@ select.cat-select{margin-bottom:0;}
           <h3>🔗 GitHub Sync</h3>
           <p style="font-size:.82rem;color:#666;margin-bottom:12px;line-height:1.6;">
             Posts are automatically synced to GitHub on every save. No token required — the connection is handled securely server-side via Cloudflare.
-          </p>
+           &nbsp;&bull;&nbsp; or paste from clipboard</p>
           <div id="gh-token-status" style="font-size:.82rem;font-weight:600;color:#2e7d32;padding:10px 14px;background:#e8f5e9;border-radius:8px;">
             ✓ GitHub sync active — posts save automatically to all browsers
           </div>
@@ -2821,7 +2854,8 @@ function closeImport() {
 /* ══════════════ MEDIA LIBRARY ══════════════ */
 let _mediaFiles = [];      // all files from GitHub
 let _mediaFiltered = [];   // after search/folder filter
-let _selectedMedia = null; // currently selected file
+let _selectedMedia = null;
+window._mediaUsage = null; // currently selected file
 window._mediaLoaded = false;
 
 function mediaOpenUpload() {
@@ -2894,6 +2928,8 @@ async function loadMediaLibrary(showLoading = true) {
   } catch(e) {
     const gr = document.getElementById('media-grid');
     if (gr) gr.innerHTML = '<p style="color:#c00;padding:20px;">Error: ' + e.message + '</p>';
+  
+    scanPostUsage();
   } finally {
     const ld = document.getElementById('media-loading');
     if (ld) ld.style.display = 'none';
@@ -2901,36 +2937,36 @@ async function loadMediaLibrary(showLoading = true) {
 }
 
 function filterMedia() {
-  const q = (document.getElementById('media-search-input')?.value || '').toLowerCase();
-  _mediaFiltered = q ? _mediaFiles.filter(f => f.name.toLowerCase().includes(q)) : [..._mediaFiles];
+  const q = (document.getElementById('media-search-input')?.value||'').toLowerCase().trim();
+  const sizeKB = +(document.getElementById('media-size-filter')?.value||0);
+  const sort = document.getElementById('media-sort')?.value || 'newest';
+  let files = q ? [..._mediaFiles].filter(f=>f.name.toLowerCase().includes(q)) : [..._mediaFiles];
+  if (sizeKB > 0) files = files.filter(f => (f.size||0) >= sizeKB * 1024);
+  if (sort === 'name-az') files.sort((a,b)=>a.name.localeCompare(b.name));
+  else if (sort === 'name-za') files.sort((a,b)=>b.name.localeCompare(a.name));
+  else if (sort === 'size-desc') files.sort((a,b)=>(b.size||0)-(a.size||0));
+  else if (sort === 'size-asc') files.sort((a,b)=>(a.size||0)-(b.size||0));
+  else if (sort === 'oldest') files = [...files].reverse();
+  _mediaFiltered = files;
   renderMediaGrid();
 }
-
 function renderMediaGrid() {
   const grid = document.getElementById('media-grid');
   const empty = document.getElementById('media-empty');
-  const stats = document.getElementById('media-stats');
-
-  if (!_mediaFiltered.length) {
+  if (!_mediaFiltered || !_mediaFiltered.length) {
     grid.innerHTML = '';
-    empty.style.display = 'block';
-    stats.textContent = '';
+    if (empty) empty.style.display = 'flex';
     return;
   }
-  empty.style.display = 'none';
-  const totalKB = Math.round(_mediaFiles.reduce((s, f) => s + f.size, 0) / 1024);
-  stats.textContent = _mediaFiltered.length + ' of ' + _mediaFiles.length + ' images · ' + (totalKB > 1024 ? (totalKB/1024).toFixed(1) + ' MB' : totalKB + ' KB');
-
-  grid.innerHTML = _mediaFiltered.map((f, i) => `
-    <div class="media-card${_selectedMedia?.path === f.path ? ' selected' : ''}" onclick="selectMedia(${i})">
-      <img class="media-thumb" src="${f.download_url}" alt="${f.name}" loading="lazy"
-           onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
-      <div class="media-thumb-icon" style="display:none">🖼</div>
-      <div class="media-card-info">
-        <div class="media-card-name" title="${f.name}">${f.name}</div>
-        <div class="media-card-size">${(f.size/1024).toFixed(1)} KB</div>
-      </div>
-    </div>`).join('');
+  if (empty) empty.style.display = 'none';
+  grid.innerHTML = _mediaFiltered.map((f, i) => {
+    const used = window._mediaUsage && window._mediaUsage[f.name];
+    const badge = (window._mediaUsage != null)
+      ? (used ? '<span class="media-usage-badge used">In use</span>' : '<span class="media-usage-badge unused">Unused</span>')
+      : '';
+    const kb = f.size ? (f.size >= 1048576 ? (f.size/1048576).toFixed(1)+' MB' : Math.round(f.size/1024)+' KB') : '';
+    return `<div class="media-card${_selectedMedia?.path===f.path?' selected':''}" onclick="selectMedia(${i})">${badge}<img src="${f.download_url}" loading="lazy" onerror="this.style.opacity='.3'"><div class="media-card-name">${f.name}</div><div class="media-card-size">${kb}</div></div>`;
+  }).join('');
 }
 
 function selectMedia(idx) {
@@ -2954,6 +2990,7 @@ function selectMedia(idx) {
   document.getElementById('media-detail-url').textContent = _selectedMedia.url;
   document.getElementById('media-detail-imgtag').textContent = '<img src="' + _selectedMedia.url + '" alt="" />';
 
+  updateCompressInfo(_selectedMedia);
   renderMediaGrid(); // re-render to show selection
 }
 
@@ -3002,42 +3039,67 @@ function mediaOnFileSelect(e) {
 
 async function mediaUploadFiles(files) {
   const folder = (document.getElementById('media-folder-select')?.value || 'images/blog');
-  const prog = document.getElementById('media-upload-progress');
-  prog.style.display = 'block';
-  prog.style.color = '#555';
-  prog.style.background = '#f5f5f5';
+  const progressEl = document.getElementById('media-upload-progress');
+  const progressBar = progressEl?.querySelector('.media-progress-bar');
+  const progressLabel = progressEl?.querySelector('.media-progress-label') || progressEl;
 
-  let done = 0;
-  for (const file of files) {
-    const filename = file.name.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9._-]/g, '-');
-    const path = folder + '/' + filename;
-    prog.textContent = 'Uploading ' + (done+1) + '/' + files.length + ': ' + filename + '…';
+  for (let i = 0; i < files.length; i++) {
+    let file = files[i];
+    const sizeMB = (file.size / 1048576).toFixed(2);
+
+    // Offer compression for images > 500 KB
+    if (file.size > 512000 && /\.(jpe?g|png|webp)$/i.test(file.name)) {
+      const doCompress = confirm(`"${file.name}" is ${sizeMB} MB.\nCompress before uploading? (reduces to ~JPEG 85% quality)\n\nClick OK to compress, Cancel to upload original.`);
+      if (doCompress) {
+        try { file = await compressFileToJpeg(file, 0.85); } catch(e) { /* keep original */ }
+      }
+    }
+
+    if (progressEl) {
+      progressEl.style.display = 'flex';
+      if (progressBar) { progressBar.style.width = '0%'; progressBar.style.transition = 'none'; }
+      if (progressLabel && progressLabel !== progressEl) progressLabel.textContent = `Uploading ${file.name}...`;
+    }
+
     try {
-      const b64 = await new Promise((res, rej) => {
-        const r = new FileReader();
-        r.onload = () => res(r.result.split(',')[1]);
-        r.onerror = rej;
-        r.readAsDataURL(file);
+      const base64 = await new Promise((res, rej) => {
+        const reader = new FileReader();
+        reader.onload = e => {
+          const b64 = e.target.result.split(',')[1];
+          res(b64);
+        };
+        reader.onerror = rej;
+        reader.readAsDataURL(file);
       });
-      const existing = await ghRead(path);
-      const sha = existing?.sha || null;
-      const result = await ghWrite(path, b64, 'Admin: upload ' + filename, sha);
-      if (result.ok) done++;
-      else prog.textContent = '❌ Failed: ' + filename;
+
+      if (progressBar) { progressBar.style.transition = 'width .4s'; progressBar.style.width = '60%'; }
+
+      const path = folder + '/' + file.name;
+      // Check if file exists (need SHA for update)
+      let sha = null;
+      try {
+        const check = await fetch('/api/github?path=' + encodeURIComponent(path), { headers: apiH() });
+        if (check.ok) { const j = await check.json(); sha = j.sha; }
+      } catch(e) {}
+
+      const body = { path, content: base64, message: 'Upload ' + file.name };
+      if (sha) body.sha = sha;
+      const resp = await fetch('/api/github', { method: 'PUT', headers: apiH(), body: JSON.stringify(body) });
+      if (!resp.ok) throw new Error('Upload failed: ' + resp.status);
+      if (progressBar) progressBar.style.width = '100%';
+      await new Promise(r => setTimeout(r, 300));
     } catch(e) {
-      prog.textContent = '❌ Error: ' + e.message;
+      alert('Error uploading ' + file.name + ': ' + e.message);
+    } finally {
+      if (progressEl) progressEl.style.display = 'none';
+      if (progressBar) progressBar.style.width = '0%';
     }
   }
-
-  prog.style.color = done === files.length ? '#2e7d32' : '#f57c00';
-  prog.style.background = done === files.length ? '#e8f5e9' : '#fff8e1';
-  prog.textContent = done + '/' + files.length + ' uploaded — live in ~60s';
-  window._mediaLoaded = false;
-  setTimeout(() => loadMediaLibrary(false), 1000);
-  setTimeout(() => { prog.style.display = 'none'; }, 5000);
+  loadMediaLibrary(false);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+  initClipboardPaste();
   // Auto-login if session still valid (must run after DOM is ready)
   checkAuth();
   // Always land on Analytics after init
@@ -3067,6 +3129,177 @@ document.addEventListener('DOMContentLoaded', function() {
     reader.readAsText(file);
   });
 });
+// ── Post usage scanner ────────────────────────────────────────
+async function scanPostUsage() {
+  try {
+    window._mediaUsage = null;
+    const resp = await fetch('/api/github?path=data/admin-posts.json', { headers: apiH() });
+    if (!resp.ok) return;
+    const j = await resp.json();
+    const raw = j.content ? j.content.replace(/\n/g,'') : null;
+    if (!raw) return;
+    const bytes = Uint8Array.from(atob(raw), c => c.charCodeAt(0));
+    const postsText = new TextDecoder('utf-8').decode(bytes);
+    const posts = JSON.parse(postsText);
+    const usage = {};
+    for (const post of posts) {
+      const haystack = JSON.stringify(post);
+      // Extract all image filenames referenced in this post
+      const matches = haystack.match(/([\w\-]+\.(?:jpg|jpeg|png|gif|webp|svg|avif))/gi) || [];
+      for (const m of matches) usage[m] = true;
+    }
+    window._mediaUsage = usage;
+    renderMediaGrid();
+  } catch(e) { /* silent fail */ }
+}
+
+// ── Create subfolder ──────────────────────────────────────────
+async function createMediaSubfolder() {
+  const name = prompt('New folder name (letters, numbers, hyphens only):');
+  if (!name) return;
+  const clean = name.trim().toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/-+/g,'-').replace(/^-|-$/g,'');
+  if (!clean) { alert('Invalid folder name'); return; }
+  const path = 'images/' + clean + '/.gitkeep';
+  try {
+    const check = await fetch('/api/github?path=' + encodeURIComponent(path), { headers: apiH() });
+    if (check.ok) { alert('Folder already exists'); return; }
+    const resp = await fetch('/api/github', {
+      method: 'PUT', headers: apiH(),
+      body: JSON.stringify({ path, content: btoa(''), message: 'Create images/' + clean + '/ folder' })
+    });
+    if (!resp.ok) throw new Error('Failed: ' + resp.status);
+    // Select new folder after reload
+    const sel = document.getElementById('media-folder-select');
+    await loadMediaLibrary();
+    if (sel) { sel.value = 'images/' + clean; loadMediaLibrary(); }
+  } catch(e) { alert('Error: ' + e.message); }
+}
+
+// ── Rename file ───────────────────────────────────────────────
+async function renameMedia() {
+  if (!_selectedMedia) return;
+  const oldName = _selectedMedia.name;
+  const ext = oldName.split('.').pop();
+  const newName = prompt('New filename:', oldName);
+  if (!newName || newName === oldName) return;
+  const folder = _selectedMedia._folder || 'images';
+  const oldPath = _selectedMedia.path;
+  const newPath = folder + '/' + newName;
+  try {
+    // Get current file content
+    const getResp = await fetch('/api/github?path=' + encodeURIComponent(oldPath), { headers: apiH() });
+    if (!getResp.ok) throw new Error('Could not read file');
+    const j = await getResp.json();
+    const content = j.content.replace(/\n/g,'');
+    const oldSha = j.sha;
+    // Create new file
+    const putResp = await fetch('/api/github', {
+      method: 'PUT', headers: apiH(),
+      body: JSON.stringify({ path: newPath, content, message: 'Rename ' + oldName + ' to ' + newName })
+    });
+    if (!putResp.ok) throw new Error('Failed to create renamed file');
+    // Delete old file
+    await fetch('/api/github', {
+      method: 'DELETE', headers: apiH(),
+      body: JSON.stringify({ path: oldPath, message: 'Delete original ' + oldName + ' (renamed)', sha: oldSha })
+    });
+    _selectedMedia = null;
+    document.getElementById('media-detail').style.display = 'none';
+    loadMediaLibrary(false);
+  } catch(e) { alert('Rename error: ' + e.message); }
+}
+
+// ── Compress existing selected image ─────────────────────────
+async function compressSelected() {
+  if (!_selectedMedia) return;
+  const url = _selectedMedia.download_url;
+  const name = _selectedMedia.name;
+  const oldSizeMB = _selectedMedia.size ? (_selectedMedia.size/1048576).toFixed(2) : '?';
+  const btn = document.getElementById('media-compress-btn');
+  if (btn) { btn.textContent = 'Working...'; btn.disabled = true; }
+  try {
+    const imgResp = await fetch(url);
+    const blob = await imgResp.blob();
+    const file = new File([blob], name, { type: blob.type });
+    const compressed = await compressFileToJpeg(file, 0.82);
+    const newSizeMB = (compressed.size/1048576).toFixed(2);
+    const ok = confirm(`Compress "${name}"?\nOriginal: ${oldSizeMB} MB  →  Compressed: ~${newSizeMB} MB\n\nThis will overwrite the file on GitHub.`);
+    if (!ok) { if (btn) { btn.textContent = 'Compress'; btn.disabled = false; } return; }
+    // Upload compressed version
+    const reader = new FileReader();
+    const base64 = await new Promise((res,rej) => {
+      reader.onload = e => res(e.target.result.split(',')[1]);
+      reader.onerror = rej;
+      reader.readAsDataURL(compressed);
+    });
+    const resp = await fetch('/api/github', {
+      method: 'PUT', headers: apiH(),
+      body: JSON.stringify({ path: _selectedMedia.path, content: base64, message: 'Compress ' + name, sha: _selectedMedia.sha })
+    });
+    if (!resp.ok) throw new Error('Upload failed');
+    alert('Compressed! ' + oldSizeMB + ' MB → ' + newSizeMB + ' MB');
+    loadMediaLibrary(false);
+  } catch(e) { alert('Compress error: ' + e.message); }
+  finally { if (btn) { btn.textContent = 'Compress'; btn.disabled = false; } }
+}
+
+// ── JPEG compression via canvas ───────────────────────────────
+function compressFileToJpeg(file, quality = 0.85) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+    img.onload = () => {
+      URL.revokeObjectURL(url);
+      const canvas = document.createElement('canvas');
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      canvas.toBlob(blob => {
+        if (!blob) { reject(new Error('Compression failed')); return; }
+        const outName = file.name.replace(/\.[^.]+$/, '.jpg');
+        resolve(new File([blob], outName, { type: 'image/jpeg' }));
+      }, 'image/jpeg', quality);
+    };
+    img.onerror = reject;
+    img.src = url;
+  });
+}
+
+// ── Update compress info in detail panel ─────────────────────
+function updateCompressInfo(file) {
+  const el = document.getElementById('media-compress-info');
+  if (!el || !file) return;
+  if (file.size > 512000) {
+    const mb = (file.size/1048576).toFixed(2);
+    el.textContent = mb + ' MB';
+    el.style.color = file.size > 1048576 ? '#c62828' : '#e65100';
+  } else {
+    el.textContent = '';
+  }
+}
+
+// ── Clipboard paste support ───────────────────────────────────
+function initClipboardPaste() {
+  document.addEventListener('paste', async (e) => {
+    const activeTab = document.querySelector('.nav-tab.active');
+    if (!activeTab || activeTab.dataset.tab !== 'media') return;
+    const items = Array.from(e.clipboardData?.items || []);
+    const imgItem = items.find(it => it.type.startsWith('image/'));
+    if (!imgItem) return;
+    e.preventDefault();
+    const blob = imgItem.getAsFile();
+    if (!blob) return;
+    const ts = new Date().toISOString().replace(/[:.]/g,'-').slice(0,19);
+    const suggestedName = 'pasted-' + ts + '.jpg';
+    const name = prompt('Filename for pasted image:', suggestedName);
+    if (!name) return;
+    const namedFile = new File([blob], name, { type: blob.type || 'image/png' });
+    mediaUploadFiles([namedFile]);
+  });
+}
+
+
 function runImport() {
   const btn = document.getElementById('import-btn');
   const data = btn._importData;
