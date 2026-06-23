@@ -1329,7 +1329,7 @@ function initApp() {
   // Set today's date
   document.getElementById('post-date').value = new Date().toISOString().split('T')[0];
 
-  showView('dashboard');
+  showView('analytics');
 
   // Check for due scheduled posts every minute
   setInterval(() => renderPostList(), 60000);
