@@ -2064,9 +2064,9 @@ function updateSEO() {
     { id:'faq', pass: faqs >= 3, warn: faqs > 0 && faqs < 3, label: `FAQ section (${faqs} of 3+ questions)` },
     { id:'tags', pass: tags.length >= 2, label: `Tags added (${tags.length})` },
     ...(keyphrase ? [
-      { id:'kp_title', pass: title.toLowerCase().includes(keyphrase), label: 'Keyphrase in title' },
-      { id:'kp_meta',  pass: meta.toLowerCase().includes(keyphrase),  label: 'Keyphrase in meta description' },
-      { id:'kp_body',  pass: content.toLowerCase().includes(keyphrase), label: 'Keyphrase in body content' },
+      { id:'kp_title', pass: title.toLowerCase().includes(keyphrase.toLowerCase()), label: 'Keyphrase in title' },
+      { id:'kp_meta',  pass: meta.toLowerCase().includes(keyphrase.toLowerCase()),  label: 'Keyphrase in meta description' },
+      { id:'kp_body',  pass: content.toLowerCase().includes(keyphrase.toLowerCase()), label: 'Keyphrase in body content' },
     ] : [{ id:'kp_missing', pass: false, label: 'Focus keyphrase not set' }]),
   ];
 
