@@ -1096,8 +1096,2905 @@ select.cat-select{margin-bottom:0;}
           </div>
           <select class="media-folder-select" id="media-folder-select" onchange="loadMediaLibrary()">
             <option value="images">All images</option>
-            <option value="images/blog">blog/</option>
-            <option value="images/headshots">headshots/</option>
+          </select>
+          <span class="media-stats" id="media-stats"></span>
+        </div>
+
+        <div class="media-body">
+          <div class="media-left">
+            <!-- Drop zone -->
+            <div class="media-upload-zone" id="media-drop-zone"
+              ondragover="event.preventDefault();this.classList.add('dragover')"
+              ondragleave="this.classList.remove('dragover')"
+              ondrop="mediaOnDrop(event)">
+              <span class="upload-icon">☁</span>
+              <div>Drop images here or <strong>click to upload</strong></div>
+              <div style="font-size:11px;margin-top:4px;color:#aaa;">JPG, PNG, WebP, SVG — uploads to <span id="media-target-folder">images/blog/</span></div>
+              <input type="file" id="media-file-input" accept="image/*" multiple style="display:none" onchange="mediaOnFileSelect(event)" />
+            </div>
+            <div id="media-upload-progress" style="display:none;font-size:12px;margin-bottom:12px;font-weight:600;padding:8px 12px;border-radius:6px;background:#f5f5f5;"></div>
+
+            <!-- Grid -->
+            <div id="media-grid" class="media-grid"></div>
+            <div id="media-empty" class="media-empty" style="display:none;">No images found in this folder.</div>
+            <div id="media-loading" class="media-loading">Loading images…</div>
+          </div>
+
+          <!-- Detail panel -->
+          <div class="media-detail" id="media-detail" style="display:none;">
+            <div id="media-detail-filename" style="font-size:13px;font-weight:600;margin-bottom:12px;word-break:break-all;"></div>
+            <img id="media-detail-img" class="media-detail-preview" src="" alt="" />
+            <div class="media-detail-label">Folder</div>
+            <div class="media-detail-value"><span id="media-detail-folder" class="media-folder-badge"></span></div>
+            <div class="media-detail-label">Dimensions</div>
+            <div class="media-detail-value" id="media-detail-dims">—</div>
+            <div class="media-detail-label">File size</div>
+            <div class="media-detail-value" id="media-detail-size"></div>
+            <div class="media-detail-label">Site URL</div>
+            <div class="media-url-box">
+              <span class="media-url-text" id="media-detail-url"></span>
+              <button class="media-copy-btn" onclick="mediaCopyUrl('site')">Copy</button>
+            </div>
+            <div class="media-detail-label">Use in post (img tag)</div>
+            <div class="media-url-box">
+              <span class="media-url-text" id="media-detail-imgtag" style="font-family:monospace;font-size:10px;"></span>
+              <button class="media-copy-btn" onclick="mediaCopyUrl('tag')">Copy</button>
+            </div>
+            <button class="media-action-btn" onclick="mediaUseAsFeatured()">⭐ Set as featured image</button>
+            <button class="media-action-btn" style="margin-top:4px;" onclick="window.open(_selectedMedia?.url,'_blank')">↗ Open in new tab</button>
+            <button class="media-action-btn danger" onclick="mediaDeleteSelected()">🗑 Delete from GitHub</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="view-settings" style="display:none;">
+        <div class="dash-header"><h1>Settings</h1></div>
+        <div class="editor-card" style="max-width:600px;">
+          <h3>🔗 GitHub Sync</h3>
+          <p style="font-size:.82rem;color:#666;margin-bottom:12px;line-height:1.6;">
+            Posts are automatically synced to GitHub on every save. No token required — the connection is handled securely server-side via Cloudflare.
+          </p>
+          <div id="gh-token-status" style="font-size:.82rem;font-weight:600;color:#2e7d32;padding:10px 14px;background:#e8f5e9;border-radius:8px;">
+            ✓ GitHub sync active — posts save automatically to all browsers
+          </div>
+        </div>
+
+        <div class="editor-card" style="max-width:600px;margin-top:24px;">
+          <h3>📦 Sync Legacy Post Content</h3>
+          <p style="font-size:.82rem;color:#666;margin-bottom:16px;line-height:1.6;">
+            Downloads the full body content of your migrated legacy posts. After syncing, every post opens instantly without a network call. No token required.
+          </p>
+          <button class="btn btn-primary btn-sm" id="sync-all-btn" onclick="syncAllPosts()">⬇ Sync All Posts Now</button>
+          <div id="sync-progress" style="font-size:.82rem;margin-top:14px;min-height:20px;font-weight:600;"></div>
+        </div>
+      </div>
+
+      <!-- LEADS -->
+      <div id="view-analytics" style="display:none;">
+        <div class="analytics-header">
+          <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-text);">Google Analytics 4</div>
+          <div class="analytics-range">
+            <button class="ga4-range-btn" onclick="loadGA4(1,this)">24h</button>
+            <button class="ga4-range-btn active" onclick="loadGA4(7,this)">7 Days</button>
+            <button class="ga4-range-btn" onclick="loadGA4(30,this)">30 Days</button>
+          </div>
+        </div>
+        <div id="ga4-body">
+          <div class="analytics-loading">Loading Google Analytics…</div>
+        </div>
+        <div style="height:32px;"></div>
+        <div class="analytics-header" style="margin-top:8px;">
+          <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-text);">Cloudflare Analytics</div>
+          <div class="analytics-range">
+            <button class="range-btn" onclick="loadAnalytics(1,this)">24h</button>
+            <button class="range-btn active" onclick="loadAnalytics(7,this)">7 Days</button>
+            <button class="range-btn" onclick="loadAnalytics(30,this)">30 Days</button>
+          </div>
+        </div>
+        <div id="analytics-body">
+          <div class="analytics-loading">Loading analytics...</div>
+        </div>
+      </div>
+            <div id="view-leads" style="display:none;">
+        <div class="dash-header" style="padding:24px 0 20px;"><h1>Leads</h1></div>
+        <div style="display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;align-items:center;">
+          <button class="btn btn-sm" id="lfilt-all" onclick="setLeadsFilter('all')" style="background:var(--red);color:#fff;border:none;padding:6px 14px;">All</button>
+          <button class="btn btn-sm btn-outline" id="lfilt-valuation" onclick="setLeadsFilter('valuation')" style="padding:6px 14px;">Home Valuation</button>
+          <button class="btn btn-sm btn-outline" id="lfilt-sellers-guide" onclick="setLeadsFilter('sellers-guide')" style="padding:6px 14px;">Seller's Guide</button>
+          <button class="btn btn-sm btn-outline" onclick="loadLeads()" style="margin-left:auto;padding:6px 14px;">↻ Refresh</button>
+        </div>
+        <div id="leads-loading" style="text-align:center;padding:60px;color:#888;font-size:.9rem;">Loading leads…</div>
+        <div id="leads-error" style="display:none;padding:20px;color:#c62828;font-size:.88rem;background:#fff5f5;border-radius:8px;margin-bottom:16px;"></div>
+        <div id="leads-table-wrap" style="display:none;overflow-x:auto;background:#fff;border-radius:10px;border:1px solid #eee;">
+          <table style="width:100%;border-collapse:collapse;font-size:.82rem;">
+            <thead><tr style="border-bottom:2px solid #f0f0f0;">
+              <th style="padding:12px 14px;text-align:left;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:#999;font-weight:700;">Name</th>
+              <th style="padding:12px 14px;text-align:left;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:#999;font-weight:700;">Email</th>
+              <th style="padding:12px 14px;text-align:left;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:#999;font-weight:700;">Phone</th>
+              <th style="padding:12px 14px;text-align:left;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:#999;font-weight:700;">Type</th>
+              <th style="padding:12px 14px;text-align:left;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:#999;font-weight:700;">Source</th>
+              <th style="padding:12px 14px;text-align:left;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:#999;font-weight:700;">Landing Page</th>
+              <th style="padding:12px 14px;text-align:left;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:#999;font-weight:700;">Date</th>
+            </tr></thead>
+            <tbody id="leads-tbody"></tbody>
+          </table>
+          <div id="leads-empty" style="text-align:center;padding:60px;color:#aaa;display:none;">No leads yet.</div>
+        </div>
+      </div>
+    </div><!-- /content -->
+  </div><!-- /main -->
+</div><!-- /app -->
+
+<div id="preview-modal" style="display:none;position:fixed;inset:0;z-index:99999;background:#111;flex-direction:column;">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 16px;background:#1a1a1a;border-bottom:1px solid #333;flex-shrink:0;">
+    <span style="color:#fff;font-size:.8rem;font-weight:600;">Preview — <span id="preview-post-title" style="font-weight:400;color:#aaa;"></span></span>
+    <button onclick="document.getElementById('preview-modal').style.display='none';" style="background:none;border:1px solid #555;color:#ccc;padding:4px 12px;border-radius:4px;cursor:pointer;font-size:.75rem;">✕ Close</button>
+  </div>
+  <iframe id="preview-frame" style="flex:1;border:none;width:100%;height:100%;"></iframe>
+</div>
+<div id="toast"></div>
+
+<script>
+/* ══════════════ AUTH ══════════════ */
+const ADMIN_PASSWORD = 'bethesda2026';
+const AUTH_KEY = 'ab_auth_expiry';
+// API helper — all Worker calls use the admin password as auth
+function apiH() { return { 'Content-Type': 'application/json', 'X-Admin-Password': ADMIN_PASSWORD }; }
+const AUTH_DAYS = 30;
+
+function checkAuth() {
+  const expiry = localStorage.getItem(AUTH_KEY);
+  if (expiry && Date.now() < parseInt(expiry, 10)) {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('app').style.display = 'flex';
+    initApp();
+    return true;
+  }
+  return false;
+}
+
+function doLogin() {
+  const pw = document.getElementById('pw-input').value;
+  if (pw === ADMIN_PASSWORD) {
+    const expiry = Date.now() + AUTH_DAYS * 24 * 60 * 60 * 1000;
+    localStorage.setItem(AUTH_KEY, expiry.toString());
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('app').style.display = 'flex';
+    initApp();
+  } else {
+    document.getElementById('login-error').style.display = 'block';
+    document.getElementById('pw-input').value = '';
+  }
+}
+
+
+/* ══════════════ DATA STORE ══════════════ */
+let posts = JSON.parse(localStorage.getItem('ab_posts') || '[]');
+let _postsSHA = null;   // current SHA of data/admin-posts.json in GitHub
+let editingId = null;
+let tags = [];
+let quill;
+
+// Save to localStorage (instant) + schedule a GitHub sync
+function savePosts() {
+  localStorage.setItem('ab_posts', JSON.stringify(posts));
+  _scheduleGitHubSync();
+}
+
+let _syncTimer = null;
+function _scheduleGitHubSync() {
+  clearTimeout(_syncTimer);
+  _syncTimer = setTimeout(_pushPostsToGitHub, 1500);
+}
+
+async function _pushPostsToGitHub() {
+  try {
+    const r = await fetch('/api/posts', {
+      method: 'PUT',
+      headers: apiH(),
+      body: JSON.stringify({ posts, sha: _postsSHA })
+    });
+    if (r.ok) { const d = await r.json(); if (d.sha) _postsSHA = d.sha; }
+  } catch(e) { /* offline — localStorage is the fallback */ }
+}
+
+// On app load: fetch posts from GitHub and refresh the UI
+async function _loadPostsFromGitHub() {
+  try {
+    const r = await fetch('/api/posts', { headers: apiH() });
+    if (!r.ok) return;
+    const d = await r.json();
+    _postsSHA = d.sha;
+    if (d.posts && d.posts.length > 0) {
+      posts = d.posts;
+      localStorage.setItem('ab_posts', JSON.stringify(posts));
+      renderPostList();
+    } else if (posts.length > 0) {
+      // First time: migrate localStorage posts up to GitHub
+      await _pushPostsToGitHub();
+    }
+  } catch(e) { /* use localStorage */ }
+}
+
+// Proxy all GitHub writes through the Worker (PAT never leaves the server)
+async function ghWrite(path, content, message, sha) {
+  const payload = { path, content, message };
+  if (sha) payload.sha = sha;
+  const r = await fetch('/api/github', {
+    method: 'PUT', headers: apiH(), body: JSON.stringify(payload)
+  });
+  const d = await r.json();
+  return { ok: r.ok, sha: d.sha };
+}
+
+async function ghDelete(path, sha, message) {
+  const r = await fetch('/api/github', {
+    method: 'DELETE', headers: apiH(), body: JSON.stringify({ path, sha, message })
+  });
+  return r.ok;
+}
+
+async function ghRead(path) {
+  const r = await fetch('/api/github?path=' + encodeURIComponent(path), { headers: apiH() });
+  return r.ok ? r.json() : null;
+}
+
+/* ══════════════ INDEXED DB (unlimited body content cache) ══════════════ */
+let _bodyDB = null;
+
+function openBodyDB() {
+  if (_bodyDB) return Promise.resolve(_bodyDB);
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open('ab_content', 1);
+    req.onupgradeneeded = e => {
+      e.target.result.createObjectStore('bodies', { keyPath: 'id' });
+    };
+    req.onsuccess = e => { _bodyDB = e.target.result; resolve(_bodyDB); };
+    req.onerror = () => reject(req.error);
+  });
+}
+
+function storeBodyData(postId, data) {
+  return openBodyDB().then(db => new Promise((res, rej) => {
+    const tx = db.transaction('bodies', 'readwrite');
+    tx.objectStore('bodies').put({ id: postId, ...data });
+    tx.oncomplete = res; tx.onerror = () => rej(tx.error);
+  }));
+}
+
+function getBodyData(postId) {
+  return openBodyDB().then(db => new Promise((res, rej) => {
+    const tx = db.transaction('bodies', 'readonly');
+    const req = tx.objectStore('bodies').get(postId);
+    req.onsuccess = () => res(req.result || null);
+    req.onerror = () => rej(req.error);
+  }));
+}
+
+function _parsePostHTML(html) {
+  let bodyHTML = '';
+  const pbStart = html.indexOf('class="post-body"');
+  if (pbStart > -1) {
+    const tagEnd = html.indexOf('>', pbStart) + 1;
+    let depth = 1, i = tagEnd;
+    while (i < html.length && depth > 0) {
+      const nextOpen = html.indexOf('<div', i);
+      const nextClose = html.indexOf('</div', i);
+      if (nextClose === -1) break;
+      if (nextOpen > -1 && nextOpen < nextClose) { depth++; i = nextOpen + 4; }
+      else { depth--; if (depth === 0) { bodyHTML = html.substring(tagEnd, nextClose); } else { i = nextClose + 5; } }
+    }
+  }
+  const metaMatch = html.match(/name="description"\s+content="([^"]{0,300})"/);
+  const metaDesc = metaMatch ? metaMatch[1] : '';
+  const tagMatches = [...html.matchAll(/class="blog-tag"[^>]*>([^<]+)</g)];
+  const fetchedTags = tagMatches.map(m => m[1].trim()).filter(Boolean);
+  return { content: bodyHTML.trim(), meta: metaDesc, tags: fetchedTags };
+}
+
+async function syncAllPosts() {
+  const legacyPosts = posts.filter(p => p.repoPath);
+  if (!legacyPosts.length) { toast('No legacy posts found'); return; }
+
+  const btn = document.getElementById('sync-all-btn');
+  const prog = document.getElementById('sync-progress');
+  if (btn) { btn.disabled = true; btn.textContent = 'Syncing…'; }
+  if (prog) prog.style.color = '#666';
+
+  let done = 0, failed = 0;
+
+  for (const post of legacyPosts) {
+    if (prog) prog.textContent = 'Fetching ' + (done + 1) + ' / ' + legacyPosts.length + ' — ' + (post.title || post.slug) + '…';
+    try {
+      // Public repo: read raw content without a token
+      const rawUrl = 'https://raw.githubusercontent.com/peybehin/atbethesda-website/main/' + post.repoPath;
+      const resp = await fetch(rawUrl);
+      if (!resp.ok) { failed++; done++; continue; }
+      const html = await resp.text();
+      const parsed = _parsePostHTML(html);
+      await storeBodyData(post.id, parsed);
+
+      // Update lightweight metadata in posts array
+      const idx = posts.findIndex(p => p.id === post.id);
+      if (idx > -1) {
+        if (parsed.meta && !posts[idx].meta) posts[idx].meta = parsed.meta;
+        if (parsed.tags.length && (!posts[idx].tags || !posts[idx].tags.length)) posts[idx].tags = parsed.tags;
+        posts[idx].content = ''; // ensure body is NOT in localStorage
+      }
+      done++;
+    } catch(e) { failed++; done++; }
+    await new Promise(r => setTimeout(r, 120)); // gentle rate-limit
+  }
+
+  savePosts();
+  if (btn) { btn.disabled = false; btn.textContent = '⬇ Sync All Posts Now'; }
+  const msg = '✅ ' + (done - failed) + ' of ' + legacyPosts.length + ' posts synced' + (failed ? ' (' + failed + ' failed)' : '') + '.';
+  if (prog) { prog.textContent = msg; prog.style.color = failed ? '#f57c00' : '#2e7d32'; }
+  toast('✅ All posts loaded — they will open instantly from now on.');
+}
+
+/* ══════════════ INIT ══════════════ */
+function initApp() {
+  // Load GitHub token (kept for legacy syncAllPosts)
+  window._ghToken = localStorage.getItem('ab_gh_token') || null;
+
+  // Init Quill
+  quill = new Quill('#quill-editor', {
+    theme: 'snow',
+    modules: {
+      toolbar: [
+        [{ header: [2, 3, false] }],
+        ['bold', 'italic', 'underline'],
+        [{ list: 'ordered' }, { list: 'bullet' }],
+        ['link', 'blockquote'],
+        ['clean']
+      ]
+    },
+    placeholder: 'Write your post content here…'
+  });
+  quill.on('text-change', updateSEO);
+
+  // Set today's date
+  document.getElementById('post-date').value = new Date().toISOString().split('T')[0];
+
+  showView('analytics');
+  _loadPostsFromGitHub(); // async: refresh from GitHub in background
+
+  // Check for due scheduled posts every minute
+  setInterval(() => renderPostList(), 60000);
+}
+
+/* ══════════════ NAVIGATION ══════════════ */
+function showView(view, filterCat, filterStat) {
+  document.getElementById('view-dashboard').style.display = 'none';
+  document.getElementById('view-editor').style.display = 'none';
+  document.getElementById('view-settings').style.display = 'none';
+  document.getElementById('view-leads').style.display = 'none';
+  document.getElementById('view-analytics').style.display = 'none';
+  const _vmedia = document.getElementById('view-media'); if (_vmedia) _vmedia.style.display = 'none';
+  document.querySelectorAll('.sidebar-item').forEach(el => el.classList.remove('active'));
+
+  if (view === 'dashboard') {
+    document.getElementById('view-dashboard').style.display = 'block';
+    document.getElementById('nav-dashboard').classList.add('active');
+    const label = filterCat ? filterCat : filterStat ? (filterStat.charAt(0).toUpperCase()+filterStat.slice(1)+' Posts') : 'All Posts';
+    document.getElementById('topbar-title').textContent = label;
+    document.getElementById('topbar-actions').innerHTML = '<button class="btn btn-secondary btn-sm" onclick="openImport()" title="Import BOFU draft posts">⬆ Import Posts</button><button class="btn btn-primary btn-sm" onclick="newPost()">+ New Post</button>';
+    if (filterStat) activeTab = filterStat;
+    document.querySelectorAll('.status-tab').forEach(el => el.classList.remove('active'));
+    const _tabId = activeTab === 'draft' ? 'drafts' : activeTab;
+    const _tabEl = document.getElementById('tab-' + _tabId);
+    if (_tabEl) _tabEl.classList.add('active');
+    renderPostList(filterCat);
+  } else if (view === 'schools') {
+    document.getElementById('view-schools').style.display = 'block';
+    document.getElementById('nav-schools').classList.add('active');
+    document.getElementById('topbar-title').textContent = 'School Data';
+    document.getElementById('topbar-actions').innerHTML = '';
+    initSchoolsView();
+  } else if (view === 'settings') {
+    document.getElementById('view-settings').style.display = 'block';
+    document.getElementById('nav-settings').classList.add('active');
+    document.getElementById('topbar-title').textContent = 'Settings';
+    document.getElementById('topbar-actions').innerHTML = '';
+  } else if (view === 'media') {
+    document.getElementById('view-media').style.display = 'block';
+    document.getElementById('nav-media').classList.add('active');
+    document.getElementById('topbar-title').textContent = 'Media Library';
+    document.getElementById('topbar-actions').innerHTML = '<button class="btn btn-primary btn-sm" onclick="mediaOpenUpload()">+ Upload Images</button>';
+    if (!window._mediaLoaded) loadMediaLibrary();
+  } else if (view === 'editor') {
+    document.getElementById('view-editor').style.display = 'block';
+    document.getElementById('nav-editor').classList.add('active');
+    document.getElementById('topbar-title').textContent = editingId ? 'Edit Post' : 'New Post';
+    document.getElementById('topbar-actions').innerHTML = `
+      <button class="btn btn-outline btn-sm" onclick="switchTab('draft');showView('dashboard')">← All Posts</button>
+      <button class="btn btn-success btn-sm" onclick="generatePost()">⬇ Generate HTML</button>
+    `;
+    updateSEO();
+  } else if (view === 'leads') {
+    document.getElementById('view-leads').style.display = 'block';
+    document.getElementById('nav-leads').classList.add('active');
+    document.getElementById('topbar-title').textContent = 'Leads';
+    document.getElementById('topbar-actions').innerHTML = '<button class="btn btn-sm btn-outline" onclick="loadLeads()">↻ Refresh</button>';
+    loadLeads();
+  } else if (view === 'analytics') {
+    document.getElementById('view-analytics').style.display = 'block';
+    document.getElementById('nav-analytics').classList.add('active');
+    document.getElementById('topbar-title').textContent = 'Analytics';
+    document.getElementById('topbar-actions').innerHTML = '<button class="btn btn-sm btn-outline" onclick="loadAnalytics(currentAnalyticsDays);loadGA4(currentGA4Days)">↻ Refresh</button>';
+    if (!analyticsLoaded) loadAnalytics(7);
+    if (!ga4Loaded) loadGA4(7);
+  }
+}
+
+function newPost() {
+  editingId = null;
+  tags = [];
+  document.getElementById('post-title').value = '';
+  document.getElementById('post-slug').value = '';
+  document.getElementById('post-snippet').value = '';
+  document.getElementById('post-meta').value = '';
+  document.getElementById('post-image').value = '';
+  document.getElementById('post-category').value = '';
+  document.getElementById('post-status').value = 'draft';
+  document.getElementById('post-date').value = new Date().toISOString().split('T')[0];
+  document.getElementById('post-time').value = '06:00';
+  document.getElementById('image-thumb').style.display = 'none';
+  document.getElementById('tag-cloud').innerHTML = '';
+  document.getElementById('faq-list').innerHTML = '';
+  if (quill) quill.setText('');
+  updateCharCount();
+  showView('editor');
+}
+
+function editPost(id) {
+  const post = posts.find(p => p.id === id);
+  if (!post) return;
+  editingId = id;
+  tags = post.tags ? [...post.tags] : [];
+  document.getElementById('post-title').value = post.title || '';
+  document.getElementById('post-slug').value = post.slug || '';
+  document.getElementById('post-snippet').value = post.snippet || '';
+  // meta may be stored as object from old import — normalize to string
+  const metaVal = post.meta && typeof post.meta === 'object' ? (post.meta.description || '') : (post.meta || '');
+  document.getElementById('post-meta').value = metaVal;
+  document.getElementById('post-image').value = post.image || '';
+  document.getElementById('post-category').value = post.category || '';
+  document.getElementById('post-status').value = post.status || 'published';
+  document.getElementById('post-date').value = post.date || '';
+  document.getElementById('post-time').value = post.scheduledTime || '06:00';
+  const kpField = document.getElementById('post-keyphrase'); if (kpField) kpField.value = post.keyphrase || '';
+  onStatusChange();
+  renderTagCloud();
+  previewImage();
+  updateCharCount();
+  if (quill) quill.clipboard.dangerouslyPasteHTML(post.content || '');
+
+  // FAQs
+  document.getElementById('faq-list').innerHTML = '';
+  (post.faqs || []).forEach(faq => addFaq(faq.q, faq.a));
+
+  showView('editor');
+
+  // For legacy posts: check local IndexedDB cache first, then fall back to GitHub
+  if (post.repoPath && !post.content) {
+    getBodyData(post.id).then(cached => {
+      if (cached && cached.content) {
+        if (quill) quill.clipboard.dangerouslyPasteHTML(cached.content);
+        if (cached.meta && !document.getElementById('post-meta').value) {
+          document.getElementById('post-meta').value = cached.meta;
+          updateCharCount();
+        }
+        if (cached.tags && cached.tags.length && tags.length === 0) {
+          tags = cached.tags;
+          renderTagCloud();
+        }
+        toast('✅ Loaded from local cache');
+      } else {
+        loadLegacyContent(post);
+      }
+    }).catch(() => loadLegacyContent(post));
+  }
+}
+
+async function loadLegacyContent(post) {
+  toast('⏳ Loading existing content from live site…');
+  try {
+    // Public repo — read raw content without a token
+    const rawUrl = 'https://raw.githubusercontent.com/peybehin/atbethesda-website/main/' + post.repoPath;
+    const resp = await fetch(rawUrl);
+    if (!resp.ok) { toast('⚠ Could not fetch live content.'); return; }
+    const html = await resp.text();
+
+    // Extract post body
+    const pbStart = html.indexOf('class="post-body"');
+    let bodyHTML = '';
+    if (pbStart > -1) {
+      // Find the div opening tag end
+      const tagEnd = html.indexOf('>', pbStart) + 1;
+      // Find matching closing div (track depth)
+      let depth = 1, i = tagEnd;
+      while (i < html.length && depth > 0) {
+        const nextOpen = html.indexOf('<div', i);
+        const nextClose = html.indexOf('</div', i);
+        if (nextClose === -1) break;
+        if (nextOpen > -1 && nextOpen < nextClose) { depth++; i = nextOpen + 4; }
+        else { depth--; if (depth === 0) { bodyHTML = html.substring(tagEnd, nextClose); } else { i = nextClose + 5; } }
+      }
+    }
+
+    // Extract meta description
+    const metaMatch = html.match(/name="description"\s+content="([^"]{0,300})"/);
+    const metaDesc = metaMatch ? metaMatch[1] : '';
+
+    // Extract tags from .blog-tag spans
+    const tagMatches = [...html.matchAll(/class="blog-tag"[^>]*>([^<]+)</g)];
+    const fetchedTags = tagMatches.map(m => m[1].trim()).filter(Boolean);
+
+    // Populate editor
+    if (bodyHTML && quill) quill.clipboard.dangerouslyPasteHTML(bodyHTML.trim());
+    if (metaDesc && !document.getElementById('post-meta').value) {
+      document.getElementById('post-meta').value = metaDesc;
+      updateCharCount();
+    }
+    if (fetchedTags.length && tags.length === 0) {
+      tags = fetchedTags;
+      renderTagCloud();
+    }
+
+    // Store body in IndexedDB (no size limit); keep localStorage lean
+    storeBodyData(post.id, { content: bodyHTML.trim(), meta: metaDesc, tags: fetchedTags });
+    const idx = posts.findIndex(p => p.id === post.id);
+    if (idx > -1) {
+      // Update lightweight metadata only — no body in localStorage
+      if (metaDesc && !posts[idx].meta) posts[idx].meta = metaDesc;
+      if (fetchedTags.length && (!posts[idx].tags || !posts[idx].tags.length)) posts[idx].tags = fetchedTags;
+      posts[idx].content = '';
+      savePosts();
+    }
+
+    toast('✅ Content loaded from live site.');
+  } catch(e) {
+    toast('⚠ Could not load live content: ' + e.message);
+  }
+}
+
+function deletePost(id) {
+  if (!confirm('Delete this post?')) return;
+  posts = posts.filter(p => p.id !== id);
+  savePosts();
+  renderPostList();
+}
+
+function filterCat(cat) {
+  showView('dashboard', cat);
+}
+
+function filterStatus(status) {
+  showView('dashboard', null, status);
+}
+
+/* ══════════════ STATUS CHANGE HANDLER ══════════════ */
+function onStatusChange() {
+  const statusEl = document.getElementById('post-status');
+  const schedPreview = document.getElementById('schedule-preview');
+  if (!statusEl || !schedPreview) return;
+  const status = statusEl.value;
+
+  if (status === 'scheduled') {
+    const date = document.getElementById('post-date').value;
+    const time = document.getElementById('post-time').value || '06:00';
+    if (date) {
+      const dt = new Date(date + 'T' + time);
+      const isPast = dt <= new Date();
+      schedPreview.style.display = 'block';
+      if (isPast) {
+        schedPreview.style.background = '#fce4ec';
+        schedPreview.style.color = '#c62828';
+        schedPreview.innerHTML = `⚠ That date/time is in the past. Change to a future date or switch to Published.`;
+      } else {
+        schedPreview.style.background = '#e3f2fd';
+        schedPreview.style.color = '#1565c0';
+        schedPreview.innerHTML = `🕐 Will publish on<br><strong>${dt.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'})} at ${dt.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})}</strong>`;
+      }
+    } else {
+      schedPreview.style.display = 'none';
+    }
+  } else {
+    schedPreview.style.display = 'none';
+  }
+}
+
+/* ══════════════ POST LIST ══════════════ */
+function isPostDue(post) {
+  if (post.status !== 'scheduled') return false;
+  const dt = new Date((post.date || '') + 'T' + (post.scheduledTime || '09:00'));
+  return dt <= new Date();
+}
+
+let activeTab = 'draft';
+
+function switchTab(tab) {
+  activeTab = tab;
+  document.querySelectorAll('.status-tab').forEach(el => el.classList.remove('active'));
+  const tabId = tab === 'draft' ? 'drafts' : tab;
+  const el = document.getElementById('tab-' + tabId);
+  if (el) el.classList.add('active');
+  renderPostList();
+}
+
+function renderPostList(filterCat, filterStat) {
+  // If called with explicit filterStat (from sidebar), switch tab
+  if (filterStat) { activeTab = filterStat; }
+
+  const body = document.getElementById('post-list-body');
+  const empty = document.getElementById('empty-state');
+
+  // Update tab counts
+  ['published', 'scheduled', 'draft'].forEach(s => {
+    const count = posts.filter(p => (p.status || 'draft') === s).length;
+    const el = document.getElementById('count-' + s);
+    if (el) el.textContent = count;
+  });
+  const allEl = document.getElementById('count-all');
+  if (allEl) allEl.textContent = posts.length;
+
+  // Update scheduled sidebar badge
+  const scheduledPosts = posts.filter(p => p.status === 'scheduled');
+  const duePosts = scheduledPosts.filter(isPostDue);
+  const countEl = document.getElementById('scheduled-count');
+  if (countEl) {
+    if (scheduledPosts.length > 0) {
+      countEl.textContent = scheduledPosts.length;
+      countEl.style.display = 'inline';
+    } else {
+      countEl.style.display = 'none';
+    }
+  }
+
+  // Show due-now banner
+  if (duePosts.length > 0) {
+    const banner = document.getElementById('scheduled-banner');
+    const bannerPosts = document.getElementById('banner-posts');
+    bannerPosts.innerHTML = duePosts.map(p =>
+      `<span class="banner-pill" onclick="editPost('${p.id}')">${escHtml(p.title || 'Untitled')}</span>`
+    ).join('');
+    banner.classList.add('show');
+  }
+
+  // Filter posts
+  let filtered = activeTab === 'all'
+    ? [...posts]
+    : posts.filter(p => (p.status || 'draft') === activeTab);
+  if (filterCat) filtered = filtered.filter(p => p.category === filterCat);
+
+  // Sort: scheduled by date asc, all by date-added (ID timestamp) desc, others by date desc
+  const getAddedTs = p => { const m = (p.id||'').match(/(\d{10,})/); return m ? parseInt(m[1]) : 0; };
+  filtered.sort((a, b) => {
+    if (activeTab === 'scheduled') {
+      if (!a.date) return 1; if (!b.date) return -1;
+      return new Date(a.date) - new Date(b.date);
+    }
+    if (activeTab === 'all') {
+      const ta = getAddedTs(a), tb = getAddedTs(b);
+      if (ta || tb) return tb - ta;
+      if (!a.date) return 1; if (!b.date) return -1;
+      return new Date(b.date) - new Date(a.date);
+    }
+    if (!a.date) return 1; if (!b.date) return -1;
+    return new Date(b.date) - new Date(a.date);
+  });
+
+  if (filtered.length === 0) {
+    body.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  body.innerHTML = filtered.map(post => {
+    const due = isPostDue(post);
+    const scheduledLine = post.status === 'scheduled' && post.date
+      ? `<div style="font-size:.68rem;color:#1565c0;margin-top:3px;">🕐 ${formatDate(post.date)}${post.scheduledTime ? ' at ' + formatTime(post.scheduledTime) : ''}</div>`
+      : '';
+    const dateDisplay = post.status === 'scheduled' && due
+      ? `<span style="color:#c62828;font-weight:700;font-size:.72rem;">⚡ Due now</span>`
+      : `<span style="font-size:.78rem;color:#888;">${formatDate(post.date)}</span>`;
+    return `
+    <tr>
+      <td>
+        <a href="javascript:void(0)" onclick="editPost('${post.id}')" style="font-size:.85rem;font-weight:700;color:var(--black);text-decoration:none;cursor:pointer;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--black)'">${escHtml(post.title || '(Untitled)')}</a>
+        <div style="font-size:.72rem;color:#aaa;margin-top:2px;">/${post.slug || ''}/</div>
+        ${scheduledLine}
+      </td>
+      <td>${post.category ? `<span class="cat-badge">${escHtml(post.category)}</span>` : '—'}</td>
+      <td><span class="post-status ${due ? 'due' : (post.status || 'draft')}">${due ? 'due now' : (post.status || 'draft')}</span></td>
+      <td>${dateDisplay}</td>
+      <td>
+        <div class="tbl-actions">
+          <button onclick="editPost('${post.id}')">Edit</button>
+          ${post.status === 'scheduled'
+            ? `<button onclick="publishScheduled('${post.id}')">⬇ Publish Now</button>`
+            : `<button onclick="generatePostById('${post.id}')">⬇ Download</button>`
+          }
+          <button class="del" onclick="deletePost('${post.id}')">Delete</button>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+async function publishScheduled(id) {
+  const post = posts.find(p => p.id === id);
+  if (!post) return;
+  post.status = 'published';
+  savePosts();
+  const html = buildPostHTML(post);
+  renderPostList();
+  await pushPostToGitHub(post, html);
+}
+
+/* ══════════════ TAGS ══════════════ */
+function handleTagKey(e) {
+  if (e.key === 'Enter' || e.key === ',') {
+    e.preventDefault();
+    const val = e.target.value.trim().replace(/,$/, '');
+    if (val && !tags.includes(val)) { tags.push(val); renderTagCloud(); }
+    e.target.value = '';
+  }
+}
+function removeTag(t) { tags = tags.filter(x => x !== t); renderTagCloud(); }
+function renderTagCloud() {
+  document.getElementById('tag-cloud').innerHTML = tags.map(t =>
+    `<span class="tag-pill">${escHtml(t)} <button onclick="removeTag('${escHtml(t)}')">&times;</button></span>`
+  ).join('');
+}
+
+/* ══════════════ IMAGE PREVIEW ══════════════ */
+function previewImage() {
+  const url = document.getElementById('post-image').value.trim();
+  const thumb = document.getElementById('image-thumb');
+  if (url) { thumb.src = url; thumb.style.display = 'block'; }
+  else { thumb.style.display = 'none'; }
+}
+
+/* ══════════════ IMAGE UPLOAD ══════════════ */
+function handleImageDrop(e) {
+  e.preventDefault();
+  const dz = document.getElementById('img-drop-zone');
+  dz.style.borderColor = '#555';
+  dz.style.background = '';
+  const file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+  if (file && file.type.startsWith('image/')) handleImageFile(file);
+}
+
+async function handleImageFile(file) {
+  if (!file) return;
+  const statusEl = document.getElementById('img-upload-status');
+  const labelEl = document.getElementById('img-drop-label');
+  statusEl.style.display = 'block';
+  statusEl.style.color = '#888';
+  statusEl.textContent = '⏳ Uploading…';
+
+  const filename = file.name.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9._-]/g, '-');
+  const path = 'images/blog/' + filename;
+
+  try {
+    const base64 = await new Promise((res, rej) => {
+      const reader = new FileReader();
+      reader.onload = () => res(reader.result.split(',')[1]);
+      reader.onerror = rej;
+      reader.readAsDataURL(file);
+    });
+
+    // Get SHA if file already exists (required to overwrite)
+    const existing = await ghRead(path);
+    const sha = existing?.sha || null;
+    const result = await ghWrite(path, base64, 'Upload blog image: ' + filename, sha);
+
+    if (!result.ok) throw new Error('Upload failed');
+
+    const deployedUrl = '/images/blog/' + filename;
+    document.getElementById('post-image').value = deployedUrl;
+    previewImage();
+    if (typeof saveCurrentPost === 'function') saveCurrentPost();
+    statusEl.style.color = '#2e7d32';
+    statusEl.textContent = '✓ Uploaded — live in ~60s';
+    if (labelEl) labelEl.innerHTML = '✓ ' + filename;
+    const fi = document.getElementById('img-file-input');
+    if (fi) fi.value = '';
+  } catch(err) {
+    statusEl.style.color = '#d60717';
+    statusEl.textContent = '✗ Upload failed: ' + err.message;
+  }
+}
+
+/* ══════════════ VLOG INDEX UPDATE ══════════════ */
+const CAT_MAP = {'Buying':'Buyers Corner','Selling':'Sellers','News':'Market Updates','Renting':'Renting','Pey on The Street':'Local + Life','Finance':'Finance'};
+
+async function updateVlogIndex(post) {
+  try {
+    const meta = await ghRead('vlog/index.html');
+    if (!meta || !meta.content) return;
+    const bytes = Uint8Array.from(atob(meta.content.replace(/\n/g,'')), c => c.charCodeAt(0));
+    let vlog = new TextDecoder('utf-8').decode(bytes);
+
+    // Skip if post already in index
+    if (vlog.includes('/' + post.slug + '/')) return;
+
+    const cat = CAT_MAP[post.category] || post.category || 'Buyers Corner';
+    const tags = (post.tags || []).map(t => '<span class="blog-tag">' + t + '</span>').join('');
+    const snippet = (post.snippet || post.meta || '').slice(0, 130);
+    const card = '<article class="blog-card" data-cats=\'["' + cat + '"]\' onclick="location.href='/' + post.slug + '/'">' +
+      '\n    <div class="blog-card-img">' +
+      '\n      <img src="' + (post.image || '') + '" alt="' + post.title + '" loading="lazy"/>' +
+      '\n    </div>' +
+      '\n    <div class="blog-card-body">' +
+      '\n      <div class="tag-row"><span class="blog-tag">' + cat + '</span>' + tags + '</div>' +
+      '\n      <h2>' + post.title + '</h2>' +
+      '\n      <p class="blog-excerpt">' + snippet + '…</p>' +
+      '\n      <div class="blog-meta">' + new Date(post.date).toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'}) + '</div>' +
+      '\n    </div>' +
+      '\n  </article>\n';
+
+    const gridMarker = '<div class="blog-grid" id="blog-grid">\n';
+    vlog = vlog.replace(gridMarker, gridMarker + card);
+
+    // Update post count
+    vlog = vlog.replace(/Showing 12 of (\d+)/, (_, n) => 'Showing 12 of ' + (parseInt(n) + 1));
+
+    const outBytes = new TextEncoder().encode(vlog);
+    let bin = '';
+    outBytes.forEach(b => bin += String.fromCharCode(b));
+    const b64 = btoa(bin);
+
+    await ghWrite('vlog/index.html', b64, 'Add post to blog index: ' + post.slug, meta.sha);
+  } catch(e) { /* silent */ }
+}
+
+/* ══════════════ POSTS.JSON UPDATE ══════════════ */
+async function updatePostsJSON(post) {
+  try {
+    const meta = await ghRead('posts.json');
+    if (!meta || !meta.content) return;
+    const bytes = Uint8Array.from(atob(meta.content.replace(/\n/g,'')), c => c.charCodeAt(0));
+    const arr = JSON.parse(new TextDecoder('utf-8').decode(bytes));
+    // Skip if already in list
+    if (arr.some(p => p.slug === post.slug)) return;
+    const cat = (CAT_MAP && CAT_MAP[post.category]) || post.category || 'Buyers Corner';
+    arr.unshift({
+      title: post.title,
+      slug: post.slug,
+      url: '/' + post.slug + '/',
+      image: post.image || '',
+      category: cat,
+      categories: [cat],
+      excerpt: (post.snippet || post.meta || '').slice(0, 120),
+      date: new Date(post.date).toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'})
+    });
+    const outBytes = new TextEncoder().encode(JSON.stringify(arr, null, 2));
+    let bin = '';
+    outBytes.forEach(b => bin += String.fromCharCode(b));
+    await ghWrite('posts.json', btoa(bin), 'Add post to posts.json: ' + post.slug, meta.sha);
+  } catch(e) { /* silent */ }
+}
+
+/* ══════════════ TITLE → SLUG ══════════════ */
+function onTitleChange() {
+  const t = document.getElementById('post-title').value;
+  document.getElementById('post-slug').value = slugify(t);
+  updateSEO();
+}
+function slugify(t) {
+  return t.toLowerCase().replace(/[^a-z0-9\s-]/g,'').replace(/\s+/g,'-').replace(/-+/g,'-').slice(0,80);
+}
+
+/* ══════════════ CHAR COUNTER ══════════════ */
+function updateCharCount() {
+  const len = (document.getElementById('post-meta').value || '').length;
+  const el = document.getElementById('meta-counter');
+  el.querySelector('span').textContent = len;
+  el.className = 'char-counter' + (len > 160 ? ' over' : len > 140 ? ' warn' : '');
+}
+
+/* ══════════════ SEO SCORE ══════════════ */
+function updateSEO() {
+  updateCharCount();
+  const title = document.getElementById('post-title').value.trim();
+  const slug = document.getElementById('post-slug').value.trim();
+  const meta = document.getElementById('post-meta').value.trim();
+  const snippet = document.getElementById('post-snippet').value.trim();
+  const kpEl = document.getElementById('post-keyphrase');
+  const keyphrase = kpEl ? kpEl.value.trim().toLowerCase() : '';
+  const image = document.getElementById('post-image').value.trim();
+  const cat = document.getElementById('post-category').value;
+  const content = quill ? quill.getText().trim() : '';
+  const faqs = document.querySelectorAll('.faq-item').length;
+
+  const checks = [
+    { id:'title', pass: title.length >= 30 && title.length <= 70, warn: title.length > 0 && (title.length < 30 || title.length > 70), label: `Title 30–70 chars (${title.length})` },
+    { id:'slug', pass: slug.length > 0, label: 'URL slug set' },
+    { id:'meta', pass: meta.length >= 100 && meta.length <= 160, warn: meta.length > 0 && (meta.length < 100 || meta.length > 160), label: `Meta description 100–160 chars (${meta.length})` },
+    { id:'snippet', pass: snippet.length >= 50, label: 'AI snippet / answer box written' },
+    { id:'image', pass: image.length > 0, label: 'Featured image added' },
+    { id:'category', pass: cat.length > 0, label: 'Category selected' },
+    { id:'content', pass: content.length >= 600, warn: content.length > 0 && content.length < 600, label: `Content 600+ words (${Math.round(content.split(/\s+/).filter(Boolean).length)} words)` },
+    { id:'faq', pass: faqs >= 3, warn: faqs > 0 && faqs < 3, label: `FAQ section (${faqs} of 3+ questions)` },
+    { id:'tags', pass: tags.length >= 2, label: `Tags added (${tags.length})` },
+    ...(keyphrase ? [
+      { id:'kp_title', pass: title.toLowerCase().includes(keyphrase), label: 'Keyphrase in title' },
+      { id:'kp_meta',  pass: meta.toLowerCase().includes(keyphrase),  label: 'Keyphrase in meta description' },
+      { id:'kp_body',  pass: content.toLowerCase().includes(keyphrase), label: 'Keyphrase in body content' },
+    ] : [{ id:'kp_missing', pass: false, label: 'Focus keyphrase not set' }]),
+  ];
+
+  const passed = checks.filter(c => c.pass).length;
+  const pct = Math.round(passed / checks.length * 100);
+  document.getElementById('seo-score-pct').textContent = pct + '%';
+  const fill = document.getElementById('seo-bar-fill');
+  fill.style.width = pct + '%';
+  fill.className = 'seo-bar-fill ' + (pct >= 80 ? 'seo-score-good' : pct >= 50 ? 'seo-score-ok' : 'seo-score-bad');
+
+  document.getElementById('seo-checks').innerHTML = checks.map(c =>
+    `<li class="${c.pass ? 'seo-pass' : c.warn ? 'seo-warn' : 'seo-fail'}">${escHtml(c.label)}</li>`
+  ).join('');
+}
+
+/* ══════════════ FAQ BUILDER ══════════════ */
+function addFaq(q='', a='') {
+  const id = 'faq-' + Date.now() + Math.random();
+  const div = document.createElement('div');
+  div.className = 'faq-item';
+  div.id = id;
+  div.innerHTML = `
+    <button class="faq-remove" onclick="document.getElementById('${id}').remove();updateSEO()">✕</button>
+    <label class="field-label">Question</label>
+    <input type="text" placeholder="What is the average home price in Bethesda?" value="${escHtml(q)}" oninput="updateSEO()" />
+    <label class="field-label">Answer</label>
+    <textarea rows="3" placeholder="Write a clear, concise answer…" oninput="updateSEO()">${escHtml(a)}</textarea>
+  `;
+  document.getElementById('faq-list').appendChild(div);
+  updateSEO();
+}
+
+function getFaqs() {
+  return [...document.querySelectorAll('.faq-item')].map(el => ({
+    q: el.querySelector('input').value.trim(),
+    a: el.querySelector('textarea').value.trim()
+  })).filter(f => f.q && f.a);
+}
+
+/* ══════════════ SAVE TO localStorage ══════════════ */
+function getCurrentPostData() {
+  const status = document.getElementById('post-status').value;
+  return {
+    id: editingId || ('post-' + Date.now()),
+    title: document.getElementById('post-title').value.trim(),
+    slug: document.getElementById('post-slug').value.trim(),
+    snippet: document.getElementById('post-snippet').value.trim(),
+    meta: document.getElementById('post-meta').value.trim(),
+    image: document.getElementById('post-image').value.trim(),
+    category: document.getElementById('post-category').value,
+    status: status,
+    date: document.getElementById('post-date').value,
+    scheduledTime: status === 'scheduled' ? (document.getElementById('post-time').value || '09:00') : null,
+    keyphrase: (document.getElementById('post-keyphrase')||{}).value?.trim()||'',
+    tags: [...tags],
+    content: quill ? quill.root.innerHTML : '',
+    faqs: getFaqs(),
+    updatedAt: new Date().toISOString()
+  };
+}
+
+function saveCurrentPost() {
+  const data = getCurrentPostData();
+  const existingPost = posts.find(p => p.id === editingId);
+  const isLegacy = !!(existingPost && existingPost.repoPath);
+
+  if (editingId) {
+    const idx = posts.findIndex(p => p.id === editingId);
+    // Legacy posts: strip body from localStorage, save it to IndexedDB
+    const toStore = isLegacy ? { ...data, content: '' } : data;
+    if (idx >= 0) posts[idx] = toStore; else posts.unshift(toStore);
+  } else {
+    editingId = data.id;
+    posts.unshift(data);
+  }
+
+  // Persist legacy body edits to IndexedDB
+  if (isLegacy && data.content) {
+    storeBodyData(editingId, { content: data.content, meta: data.meta, tags: data.tags });
+  }
+
+  savePosts();
+  return data; // returns full data (with content) for buildPostHTML / pushPostToGitHub
+}
+
+/* ══════════════ SAVE ACTIONS ══════════════ */
+function saveDraft() {
+  document.getElementById('post-status').value = 'draft';
+  onStatusChange();
+  const data = saveCurrentPost();
+  showView('dashboard');
+  setTimeout(() => toast('💾 Saved as draft: ' + (data.title || 'Untitled')), 100);
+}
+
+function saveScheduled() {
+  const d = document.getElementById('post-date').value;
+  const t = document.getElementById('post-time').value || '06:00';
+  if (!d) { toast('⚠ Set a publish date first'); return; }
+  const dt = new Date(d + 'T' + t);
+  if (dt <= new Date()) { toast('⚠ Scheduled date must be in the future'); return; }
+  document.getElementById('post-status').value = 'scheduled';
+  onStatusChange();
+  const data = saveCurrentPost();
+  showView('dashboard');
+  const label = dt.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) + ' at ' + formatTime(t);
+  setTimeout(() => toast('🕐 Scheduled for ' + label + ': ' + (data.title || 'Untitled')), 100);
+}
+
+async function publishNow() {
+  document.getElementById('post-status').value = 'published';
+  onStatusChange();
+  const data = saveCurrentPost();
+  const html = buildPostHTML(data);
+  const statusEl = document.getElementById('publish-status');
+  if (statusEl) { statusEl.style.display = 'block'; statusEl.style.color = '#888'; statusEl.style.background = ''; statusEl.textContent = '⏳ Publishing…'; }
+  try {
+    const ok = await pushPostToGitHub(data, html);
+    if (ok) { await updateVlogIndex(data); await updatePostsJSON(data); }
+    if (ok) {
+      if (statusEl) { statusEl.style.color = '#2e7d32'; statusEl.style.background = '#e8f5e9'; statusEl.textContent = '● Published'; }
+    } else {
+      if (statusEl) { statusEl.style.color = '#d60717'; statusEl.style.background = '#fdecea'; statusEl.textContent = '● Push Failed'; }
+    }
+  } catch(e) {
+    if (statusEl) { statusEl.style.color = '#d60717'; statusEl.style.background = '#fdecea'; statusEl.textContent = '● Push Failed'; }
+  }
+  // Stay on editor briefly so user can see publish status
+  setTimeout(() => showView('dashboard'), 1500);
+}
+
+/* ══════════════ GITHUB SYNC ══════════════ */
+async function pushPostToGitHub(post, html) {
+  const path = post.repoPath || (post.slug + '/index.html');
+  const b64 = btoa(unescape(encodeURIComponent(html)));
+  toast('⏳ Publishing to atbethesda.com…');
+  try {
+    // Get existing SHA (needed to update)
+    let sha = null;
+    const existing = await ghRead(path);
+    if (existing && existing.sha) sha = existing.sha;
+    const result = await ghWrite(path, b64, 'Publish: ' + (post.title || post.slug), sha);
+    if (result.ok) {
+      toast('✅ Live in ~60 sec → atbethesda.com/' + post.slug + '/');
+      return true;
+    } else {
+      toast('❌ Publish failed — downloading instead');
+      downloadFile(post.slug + '.html', html);
+      return false;
+    }
+  } catch(err) {
+    toast('❌ Network error — downloading instead');
+    downloadFile(post.slug + '.html', html);
+    return false;
+  }
+}
+
+// saveGhToken() removed — PAT now lives server-side in Cloudflare Pages env vars
+
+/* ══════════════ GENERATE HTML ══════════════ */
+function generatePost() {
+  const post = saveCurrentPost();
+  if (post.status === 'scheduled') {
+    const dt = new Date(post.date + 'T' + (post.scheduledTime || '09:00'));
+    const isPast = dt <= new Date();
+    if (isPast) {
+      // Due now — publish it
+      post.status = 'published';
+      const idx = posts.findIndex(p => p.id === post.id);
+      if (idx >= 0) posts[idx].status = 'published';
+      savePosts();
+      const html = buildPostHTML(post);
+      downloadFile(post.slug + '.html', html);
+      toast('✓ Published & downloaded: ' + post.slug + '.html');
+    } else {
+      toast('🕐 Saved as scheduled for ' + dt.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) + ' at ' + formatTime(post.scheduledTime));
+      showView('dashboard');
+    }
+    return;
+  }
+  const html = buildPostHTML(post);
+  downloadFile(post.slug + '.html', html);
+  toast('✓ Post downloaded: ' + post.slug + '.html');
+}
+
+function generatePostById(id) {
+  const post = posts.find(p => p.id === id);
+  if (!post) return;
+  const html = buildPostHTML(post);
+  downloadFile(post.slug + '.html', html);
+  toast('✓ Downloaded: ' + post.slug + '.html');
+}
+
+async function previewPost() {
+  const post = getCurrentPostData();
+  const modal = document.getElementById('preview-modal');
+  const frame = document.getElementById('preview-frame');
+  const titleEl = document.getElementById('preview-post-title');
+  if (!modal || !frame) return;
+  if (titleEl) titleEl.textContent = post.title || 'Untitled';
+  modal.style.display = 'flex';
+  // Show loading state
+  frame.srcdoc = '<p style="font:1rem sans-serif;padding:40px;color:#666">Loading preview…</p>';
+  // Fetch CSS and render
+  let siteCss = '';
+  try { const r = await fetch('https://atbethesda.com/css/style.css?v=4'); siteCss = await r.text(); } catch(e) {}
+  const html = buildPostHTML(post, siteCss);
+  frame.contentDocument.open();
+  frame.contentDocument.write(html);
+  frame.contentDocument.close();
+}
+
+/* ══════════════ HTML GENERATOR ══════════════ */
+function buildPostHTML(post, siteCss) {
+  const title = post.title || 'Blog Post';
+  const slug = post.slug || 'blog-post';
+  const date = post.date || new Date().toISOString().split('T')[0];
+  const dateFormatted = formatDate(date);
+  const meta = post.meta || (title + ' — @Bethesda Real Estate with Pey Behin.');
+  const image = post.image || '/images/logo-bethesda-residential.png';
+  const category = post.category || 'Real Estate';
+  const snippet = post.snippet || '';
+  const faqs = post.faqs || [];
+  const siteUrl = 'https://atbethesda.com';
+  const canonicalUrl = `${siteUrl}/vlog/${slug}/`;
+
+  // JSON-LD schemas
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": title,
+    "description": meta,
+    "image": image,
+    "datePublished": date,
+    "dateModified": post.updatedAt || date,
+    "author": {
+      "@type": "Person",
+      "name": "Pey Behin",
+      "url": `${siteUrl}/about/`,
+      "jobTitle": "Real Estate Agent",
+      "worksFor": { "@type": "Organization", "name": "RLAH Properties" }
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "@Bethesda Real Estate",
+      "logo": { "@type": "ImageObject", "url": "/images/logo-bethesda-residential.png?v=2" }
+    },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": canonicalUrl },
+    "keywords": (post.tags || []).join(', ')
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": siteUrl },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": `${siteUrl}/vlog/` },
+      { "@type": "ListItem", "position": 3, "name": title, "item": canonicalUrl }
+    ]
+  };
+
+  const faqSchema = faqs.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(f => ({
+      "@type": "Question",
+      "name": f.q,
+      "acceptedAnswer": { "@type": "Answer", "text": f.a }
+    }))
+  } : null;
+
+  const speakableSchema = snippet ? {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".ai-snippet", "h1", "h2"]
+    },
+    "url": canonicalUrl
+  } : null;
+
+  const faqHTML = faqs.length > 0 ? `
+  <section style="background:#f5f5f5;padding:60px 40px;">
+    <div style="max-width:760px;margin:0 auto;">
+      <span style="font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#d60717;display:block;margin-bottom:10px;">FAQ</span>
+      <h2 style="font-size:clamp(1.4rem,3vw,2rem);font-weight:900;text-transform:uppercase;letter-spacing:.04em;margin-bottom:36px;">People Also Ask</h2>
+      ${faqs.map(f => `
+      <details style="border:1px solid #e0e0e0;border-radius:4px;margin-bottom:12px;background:#fff;overflow:hidden;">
+        <summary style="padding:18px 20px;font-weight:700;font-size:.9rem;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
+          ${escHtml(f.q)} <span style="color:#d60717;font-size:1.1rem;flex-shrink:0;margin-left:10px;">+</span>
+        </summary>
+        <div style="padding:0 20px 18px;font-size:.87rem;line-height:1.7;color:#555;">${escHtml(f.a)}</div>
+      </details>`).join('')}
+    </div>
+  </section>` : '';
+
+  const snippetHTML = snippet ? `
+  <div class="ai-snippet" style="background:#fff7f8;border-left:4px solid #d60717;border-radius:4px;padding:20px 24px;margin-bottom:32px;">
+    <p style="font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#d60717;margin-bottom:8px;">Quick Answer</p>
+    <p style="font-size:.95rem;line-height:1.7;color:#333;">${escHtml(snippet)}</p>
+  </div>` : '';
+
+  const tagsHTML = ''; // Tags kept in JSON-LD keywords only — not shown to readers
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>${escHtml(title)} | @Bethesda Real Estate — Pey Behin</title>
+<meta name="description" content="${escHtml(meta)}" />
+<meta name="author" content="Pey Behin" />
+<link rel="canonical" href="${canonicalUrl}" />
+<!-- Open Graph -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="${escHtml(title)} | @Bethesda Real Estate" />
+<meta property="og:description" content="${escHtml(meta)}" />
+<meta property="og:image" content="${escHtml(image)}" />
+<meta property="og:url" content="${canonicalUrl}" />
+<meta property="og:site_name" content="@Bethesda Real Estate" />
+<meta property="article:author" content="Pey Behin" />
+<meta property="article:published_time" content="${date}" />
+<meta property="article:section" content="${escHtml(category)}" />
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="${escHtml(title)}" />
+<meta name="twitter:description" content="${escHtml(meta)}" />
+<meta name="twitter:image" content="${escHtml(image)}" />
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+<base href="https://atbethesda.com/" />${siteCss ? `<style>${siteCss.replace(/<\/style>/g,"<\\/style>")}<\/style>` : '<link rel="stylesheet" href="https://atbethesda.com/css/style.css?v=4" />'}
+<!-- JSON-LD Schemas -->
+<script type="application/ld+json">${JSON.stringify(articleSchema, null, 2)}<\/script>
+<script type="application/ld+json">${JSON.stringify(breadcrumbSchema, null, 2)}<\/script>
+${faqSchema ? `<script type="application/ld+json">${JSON.stringify(faqSchema, null, 2)}<\/script>` : ''}
+${speakableSchema ? `<script type="application/ld+json">${JSON.stringify(speakableSchema, null, 2)}<\/script>` : ''}
+<style>
+.post-header{background:#0a0a0a;padding:64px 24px 48px;}
+.post-header-inner{max-width:860px;margin:0 auto;}
+.post-header h1{font-size:clamp(1.4rem,4vw,2.2rem);color:#fff;font-weight:900;line-height:1.2;margin-bottom:16px;}
+.post-header .post-cats{margin-bottom:16px;}
+.post-byline{color:#aaa;font-size:.9rem;margin:0;}
+.post-featured-img{max-width:760px;margin:32px auto 0;padding:0 40px;}
+.post-featured-img img{width:100%;border-radius:8px;display:block;margin-top:32px;}
+.back-link{display:inline-block;color:#d60717;text-decoration:none;font-size:.85rem;font-weight:600;margin-bottom:24px;}
+.back-link:hover{text-decoration:underline;}
+.tl-dr{background:#f8f9fa;border-left:4px solid #d60717;padding:20px 24px;border-radius:0 8px 8px 0;margin:0 0 2rem;}
+.tl-dr strong{color:#d60717;display:block;margin-bottom:.5rem;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em;}
+.post-body{max-width:760px;margin:0 auto;padding:56px 40px;font-size:1rem;line-height:1.85;color:#222;}
+.post-body h2{font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:900;text-transform:uppercase;letter-spacing:.04em;margin:40px 0 16px;color:#111;}
+.post-body h3{font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin:30px 0 12px;color:#d60717;}
+.post-body p{margin-bottom:20px;}
+.post-body ul,.post-body ol{padding-left:24px;margin-bottom:20px;}
+.post-body li{margin-bottom:8px;}
+.post-body blockquote{border-left:3px solid #d60717;padding:14px 20px;margin:24px 0;background:#fff7f8;font-style:italic;color:#555;}
+.post-body a{color:#d60717;text-decoration:underline;}
+@media(max-width:600px){.post-body{padding:40px 20px;}.post-header{padding:calc(70px + 40px) 24px 40px;}}
+</style>
+</head>
+<body>
+<nav id="main-nav">
+  <a href="/" class="nav-logo"><img src="/images/logo-bethesda-residential.png?v=2" alt="@Bethesda Real Estate" /></a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li class="nav-dropdown"><a href="/properties/">Buy ▾</a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="/properties/">Properties</a></li>
+        <li><a href="/perfect-home-finder/">Perfect Home Finder</a></li>
+        <li><a href="/buyers-guide/">Buyer's Guide</a></li>
+        <li><a href="/mortgage-calculator/">Mortgage Calculator</a></li>
+      </ul>
+    </li>
+    <li class="nav-dropdown"><a href="/whats-my-home-worth/">Sell ▾</a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="/whats-my-home-worth/">Home Valuation</a></li>
+        <li><a href="/sellers-guide/">Seller's Guide</a></li>
+      </ul>
+    </li>
+    <li><a href="/our-areas/">Featured Areas</a></li>
+    <li><a href="/about/">About</a></li>
+    <li><a href="/vlog/" class="active">Blog</a></li>
+    <li><a href="/contact/" class="nav-cta">Let's Connect</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<div class="post-header"><div class="post-header-inner"><div class="post-cats" style="margin-bottom:10px;"><span class="blog-tag" style="margin-right:6px;margin-bottom:4px;">${category}</span></div>
+    <h1 itemprop="headline">${title}</h1>
+    <p class="post-byline">By Pey Behin · <time itemprop="datePublished" datetime="${date}">${dateFormatted}</time></p>
+  </div></div>
+  ${image ? `<div class="post-featured-img"><img src="${image}" alt="${title}" loading="lazy"></div>` : ''}
+<article class="post-body" itemscope itemtype="https://schema.org/Article">
+  <p><a href="/vlog/" class="back-link">← Back to Blog</a></p>
+  ${snippet ? `<div class="tl-dr"><strong>TL;DR</strong><p>${snippet}</p></div>` : ''}
+  <div itemprop="articleBody">
+    ${post.content || ''}
+  </div>
+  ${tagsHTML}
+</article>
+
+${faqHTML}
+
+<!-- CTA -->
+<section style="background:#d60717;padding:60px 40px;text-align:center;">
+  <div style="max-width:600px;margin:0 auto;">
+    <span style="font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6);display:block;margin-bottom:10px;">Work With Pey</span>
+    <h2 style="font-size:clamp(1.4rem,3vw,2rem);font-weight:900;text-transform:uppercase;letter-spacing:.04em;color:#fff;margin-bottom:16px;">Ready to Make Your Move?</h2>
+    <p style="color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:28px;font-size:.9rem;">Whether you're buying, selling, or just exploring your options in Bethesda, Chevy Chase, or Potomac — let's talk.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="/contact/" style="display:inline-block;background:#fff;color:#d60717;padding:13px 28px;border-radius:4px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;text-decoration:none;">Let's Connect</a>
+      <a href="/whats-my-home-worth/" style="display:inline-block;background:transparent;color:#fff;border:2px solid rgba(255,255,255,.5);padding:12px 28px;border-radius:4px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;text-decoration:none;">Home Valuation</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand"><img src="/images/logo-bethesda-residential.png?v=2" alt="@Bethesda" /><p>The only Bethesda real estate site where you can search by school district.</p></div>
+      <div class="footer-col"><h4>Buy</h4><ul><li><a href="/properties/">Properties</a></li><li><a href="/buyers-guide/">Buyer's Guide</a></li><li><a href="/mortgage-calculator/">Mortgage Calculator</a></li></ul></div>
+      <div class="footer-col"><h4>Areas</h4><ul><li><a href="/our-areas/bethesda/">Bethesda</a></li><li><a href="/our-areas/chevy-chase/">Chevy Chase</a></li><li><a href="/our-areas/potomac/">Potomac</a></li><li><a href="/our-areas/north-bethesda/">North Bethesda</a></li></ul></div>
+      <div class="footer-col"><h4>More</h4><ul><li><a href="/about/">About Pey</a></li><li><a href="/testimonials/">Testimonials</a></li><li><a href="/vlog/">Blog</a></li><li><a href="/contact/">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>RLAH Properties | 4600 North Park Ave Suite 100, Chevy Chase, MD 20815 | © ${new Date().getFullYear()} @Bethesda Real Estate. All rights reserved.</p></div>
+  </div>
+</footer>
+
+<script src="../../js/main.js"><\/script>
+<script src="/js/author-bio.js"><\/script>
+
+  <!-- IMPORT MODAL -->
+  <div id="import-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;display:none;align-items:center;justify-content:center;">
+    <div style="background:#fff;border-radius:12px;padding:36px 40px;max-width:540px;width:94%;box-shadow:0 20px 60px rgba(0,0,0,.3);">
+      <h2 style="margin:0 0 8px;font-size:1.3rem;color:#0a0a0a;">Import BOFU Draft Posts</h2>
+      <p style="color:#666;font-size:.85rem;margin:0 0 20px;">Select the <code>ab_drafts_import.json</code> file from your Downloads folder. Posts are added as drafts — existing posts with the same ID are skipped.</p>
+      <input type="file" id="import-file-input" accept=".json" style="display:block;width:100%;margin-bottom:16px;font-size:.85rem;">
+      <div id="import-status" style="min-height:24px;font-size:.85rem;color:#1565c0;margin-bottom:16px;"></div>
+      <div style="display:flex;gap:10px;justify-content:flex-end;">
+        <button class="btn btn-secondary btn-sm" onclick="closeImport()">Cancel</button>
+        <button class="btn btn-primary btn-sm" id="import-btn" onclick="runImport()" disabled>Import Posts</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>`;
+}
+
+/* ══════════════ UTILS ══════════════ */
+function escHtml(str) {
+  return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function formatDate(d) {
+  if (!d) return '';
+  const dt = new Date(d + 'T00:00:00');
+  return dt.toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+}
+function formatTime(t) {
+  if (!t) return '';
+  const [h, m] = t.split(':').map(Number);
+  const ampm = h >= 12 ? 'PM' : 'AM';
+  const hour = h % 12 || 12;
+  return `${hour}:${String(m).padStart(2,'0')} ${ampm}`;
+}
+function downloadFile(filename, content) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([content], { type: 'text/html' }));
+  a.download = filename;
+  a.click();
+}
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 3500);
+}
+
+/* Start on analytics */
+showView('analytics');
+
+/* ══════════════ SCHOOLS DATA ══════════════ */
+const AREAS_SCHOOLS_DEFAULT = {
+  'bethesda': { name:'Bethesda, MD', schools:[
+    {name:'Walter Johnson High School',grades:'9–12',url:'https://www.greatschools.org/maryland/bethesda/3499-walter-johnson-high-school/'},
+    {name:'Westland Middle School',grades:'6–8',url:'https://www.greatschools.org/maryland/bethesda/3498-westland-middle-school/'},
+    {name:'Walt Whitman High School',grades:'9–12',url:'https://www.greatschools.org/maryland/bethesda/3514-walt-whitman-high-school/'},
+    {name:'Westbrook Elementary',grades:'PK–5',url:'https://www.greatschools.org/maryland/bethesda/3497-westbrook-elementary/'},
+  ]},
+  'chevy-chase': { name:'Chevy Chase, MD', schools:[
+    {name:'Bethesda-Chevy Chase High School',grades:'9–12',url:'https://www.greatschools.org/maryland/bethesda/3478-bethesda-chevy-chase-high/'},
+    {name:'Westland Middle School',grades:'6–8',url:'https://www.greatschools.org/maryland/bethesda/3498-westland-middle-school/'},
+    {name:'Chevy Chase Elementary',grades:'PK–5',url:'https://www.greatschools.org/maryland/chevy-chase/3479-chevy-chase-elementary/'},
+  ]},
+  'potomac': { name:'Potomac, MD', schools:[
+    {name:'Winston Churchill High School',grades:'9–12',url:'https://www.greatschools.org/maryland/potomac/3505-winston-churchill-high-school/'},
+    {name:'Herbert Hoover Middle School',grades:'6–8',url:'https://www.greatschools.org/maryland/potomac/3503-herbert-hoover-middle-school/'},
+    {name:'Potomac Elementary',grades:'PK–5',url:'https://www.greatschools.org/maryland/potomac/3504-potomac-elementary/'},
+    {name:'Beverly Farms Elementary',grades:'PK–5',url:'https://www.greatschools.org/maryland/potomac/3474-beverly-farms-elementary/'},
+  ]},
+  'north-bethesda': { name:'North Bethesda, MD', schools:[
+    {name:'Thomas S. Wootton High School',grades:'9–12',url:'https://www.greatschools.org/maryland/rockville/3511-thomas-s-wootton-high-school/'},
+    {name:'Robert Frost Middle School',grades:'6–8',url:'https://www.greatschools.org/maryland/rockville/3508-robert-frost-middle-school/'},
+    {name:'Luxmanor Elementary',grades:'PK–5',url:'https://www.greatschools.org/maryland/rockville/3493-luxmanor-elementary/'},
+  ]},
+  'rockville': { name:'Rockville, MD', schools:[
+    {name:'Richard Montgomery High School',grades:'9–12',url:'https://www.greatschools.org/maryland/rockville/3507-richard-montgomery-high-school/'},
+    {name:'Thomas S. Wootton High School',grades:'9–12',url:'https://www.greatschools.org/maryland/rockville/3511-thomas-s-wootton-high-school/'},
+    {name:'Julius West Middle School',grades:'6–8',url:'https://www.greatschools.org/maryland/rockville/3490-julius-west-middle-school/'},
+    {name:'Robert Frost Middle School',grades:'6–8',url:'https://www.greatschools.org/maryland/rockville/3508-robert-frost-middle-school/'},
+  ]},
+  'kensington': { name:'Kensington, MD', schools:[
+    {name:'Albert Einstein High School',grades:'9–12',url:'https://www.greatschools.org/maryland/kensington/3484-albert-einstein-high-school/'},
+    {name:'Kingsview Middle School',grades:'6–8',url:'https://www.greatschools.org/maryland/germantown/3491-kingsview-middle-school/'},
+    {name:'Oakland Terrace Elementary',grades:'PK–5',url:'https://www.greatschools.org/maryland/kensington/3500-oakland-terrace-elementary/'},
+  ]},
+  'silver-spring': { name:'Silver Spring, MD', schools:[
+    {name:'Montgomery Blair High School',grades:'9–12',url:'https://www.greatschools.org/maryland/silver-spring/3488-montgomery-blair-high-school/'},
+    {name:'Silver Spring International MS',grades:'6–8',url:'https://www.greatschools.org/maryland/silver-spring/3509-silver-spring-international-middle/'},
+  ]},
+  'gaithersburg': { name:'Gaithersburg, MD', schools:[
+    {name:'Quince Orchard High School',grades:'9–12',url:'https://www.greatschools.org/maryland/gaithersburg/3506-quince-orchard-high-school/'},
+    {name:'Gaithersburg High School',grades:'9–12',url:'https://www.greatschools.org/maryland/gaithersburg/3483-gaithersburg-high-school/'},
+    {name:'Gaithersburg Middle School',grades:'6–8',url:'https://www.greatschools.org/maryland/gaithersburg/3482-gaithersburg-middle-school/'},
+  ]},
+  'north-potomac': { name:'North Potomac, MD', schools:[
+    {name:'Thomas S. Wootton High School',grades:'9–12',url:'https://www.greatschools.org/maryland/rockville/3511-thomas-s-wootton-high-school/'},
+    {name:'Robert Frost Middle School',grades:'6–8',url:'https://www.greatschools.org/maryland/rockville/3508-robert-frost-middle-school/'},
+    {name:'Travilah Elementary',grades:'PK–5',url:'https://www.greatschools.org/maryland/north-potomac/3513-travilah-elementary/'},
+  ]},
+  'cabin-john': { name:'Cabin John, MD', schools:[
+    {name:'Winston Churchill High School',grades:'9–12',url:'https://www.greatschools.org/maryland/potomac/3505-winston-churchill-high-school/'},
+    {name:'Cabin John Middle School',grades:'6–8',url:'https://www.greatschools.org/maryland/cabin-john/3477-cabin-john-middle-school/'},
+    {name:'Beverly Farms Elementary',grades:'PK–5',url:'https://www.greatschools.org/maryland/potomac/3474-beverly-farms-elementary/'},
+  ]},
+  'friendship-heights': { name:'Friendship Heights, MD/DC', schools:[
+    {name:'Jackson-Reed High School (DC)',grades:'9–12',url:'https://www.greatschools.org/district-of-columbia/washington/5966-jackson-reed-high-school/'},
+    {name:'Deal Middle School (DC)',grades:'6–8',url:'https://www.greatschools.org/district-of-columbia/washington/5929-deal-middle-school/'},
+    {name:'Bethesda-Chevy Chase HS (MD)',grades:'9–12',url:'https://www.greatschools.org/maryland/bethesda/3478-bethesda-chevy-chase-high/'},
+  ]},
+  'chevy-chase-dc': { name:'Chevy Chase, DC', schools:[
+    {name:'Jackson-Reed High School',grades:'9–12',url:'https://www.greatschools.org/district-of-columbia/washington/5966-jackson-reed-high-school/'},
+    {name:'Deal Middle School',grades:'6–8',url:'https://www.greatschools.org/district-of-columbia/washington/5929-deal-middle-school/'},
+    {name:'Lafayette Elementary',grades:'PK–5',url:'https://www.greatschools.org/district-of-columbia/washington/5931-lafayette-elementary-school/'},
+  ]},
+  'georgetown': { name:'Georgetown, DC', schools:[
+    {name:'Jackson-Reed High School',grades:'9–12',url:'https://www.greatschools.org/district-of-columbia/washington/5966-jackson-reed-high-school/'},
+    {name:'Hardy Middle School',grades:'6–8',url:'https://www.greatschools.org/district-of-columbia/washington/5930-hardy-middle-school/'},
+    {name:'Hyde-Addison Elementary',grades:'PK–5',url:'https://www.greatschools.org/district-of-columbia/washington/5928-hyde-addison-elementary-school/'},
+  ]},
+  'palisades': { name:'The Palisades, DC', schools:[
+    {name:'Jackson-Reed High School',grades:'9–12',url:'https://www.greatschools.org/district-of-columbia/washington/5966-jackson-reed-high-school/'},
+    {name:'Hardy Middle School',grades:'6–8',url:'https://www.greatschools.org/district-of-columbia/washington/5930-hardy-middle-school/'},
+    {name:'Key Elementary',grades:'PK–5',url:'https://www.greatschools.org/district-of-columbia/washington/5932-francis-scott-key-elementary-school/'},
+  ]},
+  'spring-valley': { name:'Spring Valley, DC', schools:[
+    {name:'Jackson-Reed High School',grades:'9–12',url:'https://www.greatschools.org/district-of-columbia/washington/5966-jackson-reed-high-school/'},
+    {name:'Deal Middle School',grades:'6–8',url:'https://www.greatschools.org/district-of-columbia/washington/5929-deal-middle-school/'},
+    {name:'Janney Elementary',grades:'PK–5',url:'https://www.greatschools.org/district-of-columbia/washington/5933-janney-elementary-school/'},
+  ]},
+  'mclean-vienna-tysons': { name:'McLean / Vienna / Tysons', schools:[
+    {name:'McLean High School',grades:'9–12',url:'https://www.greatschools.org/virginia/mclean/4714-mclean-high-school/'},
+    {name:'Langley High School',grades:'9–12',url:'https://www.greatschools.org/virginia/mclean/4710-langley-high-school/'},
+    {name:'Cooper Middle School',grades:'6–8',url:'https://www.greatschools.org/virginia/mclean/4706-cooper-middle-school/'},
+    {name:'Longfellow Middle School',grades:'6–8',url:'https://www.greatschools.org/virginia/falls-church/4711-longfellow-middle-school/'},
+  ]},
+  'great-falls': { name:'Great Falls, VA', schools:[
+    {name:'Langley High School',grades:'9–12',url:'https://www.greatschools.org/virginia/mclean/4710-langley-high-school/'},
+    {name:'Cooper Middle School',grades:'6–8',url:'https://www.greatschools.org/virginia/mclean/4706-cooper-middle-school/'},
+    {name:'Great Falls Elementary',grades:'PK–5',url:'https://www.greatschools.org/virginia/great-falls/4708-great-falls-elementary/'},
+  ]},
+  'arlington': { name:'Arlington, VA', schools:[
+    {name:'Yorktown High School',grades:'9–12',url:'https://www.greatschools.org/virginia/arlington/4637-yorktown-high-school/'},
+    {name:'Wakefield High School',grades:'9–12',url:'https://www.greatschools.org/virginia/arlington/4636-wakefield-high-school/'},
+    {name:'Washington-Liberty High School',grades:'9–12',url:'https://www.greatschools.org/virginia/arlington/4635-washington-liberty-high-school/'},
+    {name:'Swanson Middle School',grades:'6–8',url:'https://www.greatschools.org/virginia/arlington/4632-swanson-middle-school/'},
+  ]},
+  'alexandria': { name:'Alexandria, VA', schools:[
+    {name:'Alexandria City High School',grades:'9–12',url:'https://www.greatschools.org/virginia/alexandria/4591-alexandria-city-high-school/'},
+    {name:'George Washington Middle School',grades:'6–8',url:'https://www.greatschools.org/virginia/alexandria/4587-george-washington-middle-school/'},
+    {name:'Jefferson-Houston PreK–8',grades:'PK–8',url:'https://www.greatschools.org/virginia/alexandria/4588-jefferson-houston-preK-8-school/'},
+  ]},
+  'fairfax': { name:'Fairfax, VA', schools:[
+    {name:'W.T. Woodson High School',grades:'9–12',url:'https://www.greatschools.org/virginia/fairfax/4701-w-t-woodson-high-school/'},
+    {name:'Fairfax High School',grades:'9–12',url:'https://www.greatschools.org/virginia/fairfax/4703-fairfax-high-school/'},
+    {name:'Frost Middle School',grades:'6–8',url:'https://www.greatschools.org/virginia/fairfax/4700-robert-frost-middle-school/'},
+  ]},
+  'falls-church': { name:'Falls Church, VA', schools:[
+    {name:'George Mason High School',grades:'9–12',url:'https://www.greatschools.org/virginia/falls-church/4620-george-mason-high-school/'},
+    {name:'Mary Ellen Henderson MS',grades:'6–8',url:'https://www.greatschools.org/virginia/falls-church/4621-mary-ellen-henderson-middle-school/'},
+    {name:'Mt. Daniel Elementary',grades:'PK–2',url:'https://www.greatschools.org/virginia/falls-church/4622-mt-daniel-elementary-school/'},
+    {name:'Thomas Jefferson Elementary',grades:'3–5',url:'https://www.greatschools.org/virginia/falls-church/4623-thomas-jefferson-elementary-school/'},
+  ]},
+};
+
+// Load saved school data (merge with defaults)
+let schoolsData = JSON.parse(localStorage.getItem('ab_schools') || '{}');
+// Merge: for any area not in saved data, use default
+Object.keys(AREAS_SCHOOLS_DEFAULT).forEach(slug => {
+  if (!schoolsData[slug]) schoolsData[slug] = JSON.parse(JSON.stringify(AREAS_SCHOOLS_DEFAULT[slug]));
+});
+
+function saveSchoolsData() {
+  localStorage.setItem('ab_schools', JSON.stringify(schoolsData));
+}
+
+let activeAreaSlug = Object.keys(AREAS_SCHOOLS_DEFAULT)[0];
+
+function initSchoolsView() {
+  // Build area tabs
+  const tabsEl = document.getElementById('area-selector-tabs');
+  tabsEl.innerHTML = Object.keys(AREAS_SCHOOLS_DEFAULT).map(slug =>
+    `<button class="area-tab${slug===activeAreaSlug?' active':''}" onclick="selectArea('${slug}')">${AREAS_SCHOOLS_DEFAULT[slug].name}</button>`
+  ).join('');
+  renderSchoolEditor(activeAreaSlug);
+}
+
+function selectArea(slug) {
+  // Save current edits before switching
+  saveCurrentAreaEdits();
+  activeAreaSlug = slug;
+  document.querySelectorAll('.area-tab').forEach(t => {
+    t.classList.toggle('active', t.textContent.trim() === AREAS_SCHOOLS_DEFAULT[slug].name);
+  });
+  renderSchoolEditor(slug);
+}
+
+function renderSchoolEditor(slug) {
+  const area = schoolsData[slug] || AREAS_SCHOOLS_DEFAULT[slug];
+  const el = document.getElementById('schools-editor-area');
+  el.innerHTML = `
+    <h2 style="font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;margin-bottom:16px;">${area.name} — Schools</h2>
+    <div id="school-cards-${slug}">
+      ${area.schools.map((s,i) => schoolCard(slug,i,s)).join('')}
+    </div>
+    <button class="add-school-btn" onclick="addSchoolCard('${slug}')">+ Add School</button>
+    <div class="schools-actions">
+      <button class="btn btn-primary" onclick="saveAndConfirm('${slug}')">💾 Save Schools</button>
+      <button class="btn btn-success" onclick="downloadAreaPage('${slug}')">⬇ Download Updated Page</button>
+    </div>
+    <p style="font-size:.68rem;color:#aaa;margin-top:10px;">💡 Tip: Verify GreatSchools URLs once a year after they publish new ratings (usually Oct–Dec). Paste the URL directly from the school's GreatSchools profile page.</p>
+  `;
+}
+
+function schoolCard(slug, idx, s) {
+  return `<div class="school-editor-card" id="scard-${slug}-${idx}">
+    <button class="school-remove-btn" onclick="removeSchoolCard('${slug}',${idx})">✕</button>
+    <div class="school-editor-row">
+      <div>
+        <span class="school-editor-label">School Name</span>
+        <input type="text" value="${escHtml(s.name)}" id="sname-${slug}-${idx}" oninput="markUnsaved()" />
+      </div>
+      <div>
+        <span class="school-editor-label">Grades</span>
+        <input type="text" value="${escHtml(s.grades)}" id="sgrades-${slug}-${idx}" style="max-width:120px;" oninput="markUnsaved()" />
+      </div>
+      <div>
+        <span class="school-editor-label">GreatSchools URL</span>
+        <input type="url" value="${escHtml(s.url)}" id="surl-${slug}-${idx}" placeholder="https://www.greatschools.org/..." oninput="markUnsaved()" />
+      </div>
+    </div>
+  </div>`;
+}
+
+function addSchoolCard(slug) {
+  saveCurrentAreaEdits();
+  if (!schoolsData[slug]) schoolsData[slug] = JSON.parse(JSON.stringify(AREAS_SCHOOLS_DEFAULT[slug]));
+  schoolsData[slug].schools.push({name:'',grades:'',url:''});
+  renderSchoolEditor(slug);
+}
+
+function removeSchoolCard(slug, idx) {
+  saveCurrentAreaEdits();
+  schoolsData[slug].schools.splice(idx,1);
+  renderSchoolEditor(slug);
+}
+
+let unsaved = false;
+function markUnsaved() { unsaved = true; }
+
+function saveCurrentAreaEdits() {
+  const slug = activeAreaSlug;
+  if (!schoolsData[slug]) return;
+  const cards = document.querySelectorAll(`[id^="scard-${slug}-"]`);
+  if (!cards.length) return;
+  const schools = [];
+  cards.forEach((card, i) => {
+    const name = (document.getElementById(`sname-${slug}-${i}`)?.value||'').trim();
+    const grades = (document.getElementById(`sgrades-${slug}-${i}`)?.value||'').trim();
+    const url = (document.getElementById(`surl-${slug}-${i}`)?.value||'').trim();
+    if (name) schools.push({name,grades,url});
+  });
+  schoolsData[slug].schools = schools;
+  unsaved = false;
+}
+
+function saveAndConfirm(slug) {
+  saveCurrentAreaEdits();
+  saveSchoolsData();
+  showToast('Schools saved for ' + schoolsData[slug].name + ' ✓');
+}
+
+/* ══════════════ GENERATE AREA PAGE HTML ══════════════ */
+function buildSchoolsGrid(slug) {
+  const area = schoolsData[slug] || AREAS_SCHOOLS_DEFAULT[slug];
+  return area.schools.map(s => `
+    <div class="school-card">
+      <div class="school-icon">🎓</div>
+      <div class="school-info">
+        <strong>${s.name}</strong>
+        <span>Grades ${s.grades}</span>
+        ${s.url ? `<a href="${s.url}" target="_blank" rel="noopener" class="gs-link">View on GreatSchools →</a>` : ''}
+      </div>
+    </div>`).join('');
+}
+
+function downloadAreaPage(slug) {
+  saveCurrentAreaEdits();
+  saveSchoolsData();
+
+  // Fetch the existing area page and replace the school cards section
+  const areaPath = `/our-areas/${slug}/index.html`;
+
+  // We'll generate a schools block and inject it
+  const schoolsGrid = buildSchoolsGrid(slug);
+  const areaName = schoolsData[slug]?.name || slug;
+
+  // Download the schools block as a snippet for now
+  // (In a full deploy pipeline this would regenerate the whole page)
+  const snippet = `<!-- UPDATED SCHOOL CARDS for ${areaName} — paste inside .schools-grid div -->
+${schoolsGrid}`;
+
+  const blob = new Blob([snippet], {type:'text/html'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `schools-${slug}.html`;
+  a.click();
+  showToast(`Downloaded school snippet for ${areaName}`);
+}
+
+
+
+// ── IMAGE UPLOAD TO GITHUB ──────────────────────────────────────────
+function handleImgDrop(e) {
+  e.preventDefault();
+  document.getElementById('img-drop-zone').style.borderColor = '#ccc';
+  const file = e.dataTransfer.files[0];
+  if (file && file.type.startsWith('image/')) handleImgFile(file);
+}
+
+async function handleImgFile(file) {
+  if (!file) return;
+  const status = document.getElementById('img-upload-status');
+  status.style.color = '#888';
+  status.textContent = 'Uploading…';
+  
+  const b64 = await new Promise((res, rej) => {
+    const reader = new FileReader();
+    reader.onload = () => res(reader.result.split(',')[1]);
+    reader.onerror = rej;
+    reader.readAsDataURL(file);
+  });
+
+  const filename = file.name.replace(/[^a-zA-Z0-9._-]/g, '-').toLowerCase();
+  const path = 'images/blog/' + filename;
+  const existing = await ghRead(path);
+  const sha = existing?.sha || null;
+  const result = await ghWrite(path, b64, 'Upload image: ' + filename, sha);
+
+  if (result.ok) {
+    const newUrl = '/images/blog/' + filename;
+    document.getElementById('post-image').value = newUrl;
+    previewImage();
+    status.style.color = '#0a0';
+    status.textContent = '✓ Uploaded: ' + filename;
+  } else {
+    status.style.color = '#c00';
+    status.textContent = 'Upload failed';
+  }
+}
+// ───────────────────────────────────────────────────────────────────
+
+
+// ── Import Posts ──────────────────────────────────────────────────────────────
+function openImport() {
+  const ov = document.getElementById('import-overlay');
+  ov.style.display = 'flex';
+  document.getElementById('import-status').textContent = '';
+  document.getElementById('import-btn').disabled = true;
+  document.getElementById('import-file-input').value = '';
+}
+function closeImport() {
+  document.getElementById('import-overlay').style.display = 'none';
+}
+
+/* ══════════════ MEDIA LIBRARY ══════════════ */
+let _mediaFiles = [];      // all files from GitHub
+let _mediaFiltered = [];   // after search/folder filter
+let _selectedMedia = null; // currently selected file
+window._mediaLoaded = false;
+
+function mediaOpenUpload() {
+  document.getElementById('media-file-input').click();
+}
+
+async function loadMediaLibrary(showLoading = true) {
+  const folderSel = document.getElementById('media-folder-select');
+  const folder = folderSel ? folderSel.value || 'images' : 'images';
+  const targetEl = document.getElementById('media-target-folder');
+  if (targetEl) targetEl.textContent = folder + '/';
+  if (showLoading) {
+    const ld = document.getElementById('media-loading');
+    const gr = document.getElementById('media-grid');
+    if (ld) ld.style.display = 'flex';
+    if (gr) gr.innerHTML = '';
+  }
+  try {
+    let allFiles = [];
+    if (folder === 'images') {
+      // All: fetch root, build dropdown from dirs, aggregate all images
+      const rootItems = await ghRead('images');
+      if (!Array.isArray(rootItems)) throw new Error('Failed to load images/');
+      // Rebuild dropdown dynamically
+      if (folderSel) {
+        const dirs = rootItems.filter(i => i.type === 'dir');
+        const curVal = folderSel.value;
+        folderSel.innerHTML = '<option value="images">All images</option>';
+        dirs.forEach(d => {
+          const opt = document.createElement('option');
+          opt.value = 'images/' + d.name;
+          opt.textContent = d.name + '/';
+          folderSel.appendChild(opt);
+        });
+        folderSel.value = curVal;
+      }
+      // Root-level image files
+      const imgExt = /\.(jpg|jpeg|png|gif|webp|svg|avif)$/i;
+      const rootFiles = rootItems.filter(i => i.type === 'file' && imgExt.test(i.name));
+      rootFiles.forEach(f => { f._folder = 'images'; });
+      allFiles.push(...rootFiles);
+      // Files from each subdir
+      const dirs = rootItems.filter(i => i.type === 'dir');
+      for (const dir of dirs) {
+        const subItems = await ghRead('images/' + dir.name);
+        if (Array.isArray(subItems)) {
+          const subFiles = subItems.filter(i => i.type === 'file' && imgExt.test(i.name));
+          subFiles.forEach(f => { f._folder = 'images/' + dir.name; });
+          allFiles.push(...subFiles);
+        }
+      }
+    } else {
+      // Specific subfolder
+      const items = await ghRead(folder);
+      if (!Array.isArray(items)) throw new Error('Failed to load ' + folder);
+      const imgExt = /\.(jpg|jpeg|png|gif|webp|svg|avif)$/i;
+      allFiles = items.filter(i => i.type === 'file' && imgExt.test(i.name));
+      allFiles.forEach(f => { f._folder = folder; });
+    }
+    window._mediaFiles = allFiles;
+    const cntEl = document.getElementById('media-count');
+    if (cntEl) cntEl.textContent = allFiles.length + ' images';
+    const srchEl = document.getElementById('media-search');
+    if (srchEl && srchEl.value) {
+      filterMedia();
+    } else {
+      renderMediaGrid(allFiles);
+    }
+  } catch(e) {
+    const gr = document.getElementById('media-grid');
+    if (gr) gr.innerHTML = '<p style="color:#c00;padding:20px;">Error: ' + e.message + '</p>';
+  } finally {
+    const ld = document.getElementById('media-loading');
+    if (ld) ld.style.display = 'none';
+  }
+}<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>@Bethesda Admin — Blog Editor</title>
+<meta name="robots" content="noindex, nofollow" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet" />
+<!-- Quill rich text editor -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js"></script>
+<script>
+/* ══════════════ ANALYTICS ══════════════ */
+let analyticsLoaded = false;
+let currentAnalyticsDays = 7;
+
+async function loadAnalytics(days, btn) {
+  currentAnalyticsDays = days;
+  if (btn) {
+    document.querySelectorAll('.range-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  const body = document.getElementById('analytics-body');
+  body.innerHTML = '<div class="analytics-loading">Loading analytics...</div>';
+  try {
+    const resp = await fetch('/api/cf-analytics?days=' + days);
+    const data = await resp.json();
+    if (data.error) throw new Error(data.error);
+    renderAnalytics(data);
+    analyticsLoaded = true;
+  } catch(e) {
+    body.innerHTML = '<div class="analytics-error">⚠ ' + e.message + '</div>';
+  }
+}
+
+function fmtNum(n) {
+  if (n >= 1000000) return (n/1000000).toFixed(1) + 'M';
+  if (n >= 1000) return (n/1000).toFixed(1) + 'K';
+  return String(n);
+}
+
+function renderAnalytics(data) {
+  const s = data.summary;
+  const daily = data.daily || [];
+
+  // Build top pages table
+  const pages = data.topPages || [];
+  const maxReq = Math.max(...pages.map(p => p.requests), 1);
+  const topPageRows = pages.length ? `
+    <table class="top-pages-table">
+      <thead><tr><th>#</th><th>Page</th><th>Requests</th><th></th></tr></thead>
+      <tbody>${pages.map((p,i) => {
+        const pct = Math.round((p.requests/maxReq)*100);
+        const label = p.path === '/' ? '/ (Home)' : p.path;
+        return `<tr>
+          <td class="tp-rank">${i+1}</td>
+          <td class="tp-path"><a href="https://atbethesda.com${p.path}" target="_blank" style="color:inherit;text-decoration:none;" title="Open ${p.path}">${label}</a></td>
+          <td class="tp-count">${fmtNum(p.requests)}</td>
+          <td class="tp-bar-cell"><div class="tp-bar" style="width:${pct}%"></div></td>
+        </tr>`;
+      }).join('')}</tbody>
+    </table>` : '<div style="color:#aaa;font-size:.8rem;padding:20px">No data</div>';
+
+  // Build bar chart
+  const maxV = Math.max(...daily.map(d => d.visitors), 1);
+  const bars = daily.map(d => {
+    const h = Math.max(4, Math.round((d.visitors / maxV) * 110));
+    const label = d.date.slice(5); // MM-DD
+    return `<div class="bar-wrap" title="${d.date}: ${d.visitors.toLocaleString()} visitors">
+      <div class="bar" style="height:${h}px"></div>
+      <div class="bar-label">${label}</div>
+    </div>`;
+  }).join('');
+
+
+
+  document.getElementById('analytics-body').innerHTML = `
+    <div class="analytics-grid">
+      <div class="analytics-card ac-good">
+        <div class="ac-label">Unique Visitors ${infoIcon('Real people who visited your site — bots and crawlers are filtered out by Cloudflare.')}</div>
+        <div class="ac-value">${fmtNum(s.uniqueVisitors)}</div>
+        <div class="ac-sub">Real people, not bots</div>
+      </div>
+      <div class="analytics-card">
+        <div class="ac-label">Page Views ${infoIcon('Total pages viewed across all visitors. Includes bots, so it\'s usually higher than GA4\'s page views count.')}</div>
+        <div class="ac-value">${fmtNum(s.pageViews)}</div>
+        <div class="ac-sub">Pages consumed</div>
+      </div>
+      <div class="analytics-card">
+        <div class="ac-label">Total Requests ${infoIcon('Every file request your site made — pages, images, CSS, JS. One page load can trigger dozens of requests.')}</div>
+        <div class="ac-value">${fmtNum(s.requests)}</div>
+        <div class="ac-sub">Incl. assets &amp; scripts</div>
+      </div>
+      <div class="analytics-card ac-neutral">
+        <div class="ac-label">Cache Hit Rate ${infoIcon('% of requests served from Cloudflare\'s edge cache. For Pages-hosted sites this typically reads 0% in zone analytics — actual caching is handled by the Pages CDN and reflected in Bandwidth Saved.')}</div>
+        <div class="ac-value">${s.cacheHitRate}%</div>
+        <div class="ac-sub">Higher = faster</div>
+      </div>
+      <div class="analytics-card">
+        <div class="ac-label">Bandwidth Saved ${infoIcon('Data Cloudflare served from its cache so it didn\'t have to come from your server. More saved = lower hosting costs and faster load times globally.')}</div>
+        <div class="ac-value">${s.bandwidthGB} GB</div>
+        <div class="ac-sub">Served by Cloudflare</div>
+      </div>
+      <div class="analytics-card${s.threats > 0 ? ' ac-warn' : ''}">
+        <div class="ac-label">Threats Blocked ${infoIcon('Malicious requests stopped by your Cloudflare firewall rules — including the non-US/Canada geo-block and WAF rules you have set up.')}</div>
+        <div class="ac-value">${fmtNum(s.threats)}</div>
+        <div class="ac-sub">WAF &amp; geo-block</div>
+      </div>
+      <div class="analytics-card${s.errors4xx > 100 ? ' ac-warn' : ''}">
+        <div class="ac-label">4xx Errors ${infoIcon('Pages visitors tried to reach that don\'t exist (404) or aren\'t allowed (403). High numbers mean broken links somewhere — check your most-linked pages.')}</div>
+        <div class="ac-value">${fmtNum(s.errors4xx)}</div>
+        <div class="ac-sub">Broken links / 404s</div>
+      </div>
+      <div class="analytics-card${s.errors5xx > 0 ? ' ac-warn' : ''}">
+        <div class="ac-label">5xx Errors ${infoIcon('Server-side errors — something crashed or timed out on the backend. Even 1 is worth investigating since it means visitors hit a broken page.')}</div>
+        <div class="ac-value">${fmtNum(s.errors5xx)}</div>
+        <div class="ac-sub">Server / function errors</div>
+      </div>
+    </div>
+    <div class="analytics-chart-box" style="margin-bottom:20px;">
+      <h3>Daily Unique Visitors ${infoIcon('How many real people visited each day. Useful for spotting when traffic spikes (a post went viral) or drops (something broke).')}</h3>
+      <div class="bar-chart">${bars || '<div style="color:#aaa;font-size:.8rem;padding:20px">No data</div>'}</div>
+    </div>
+    <div class="analytics-chart-box">
+      <h3>Top 10 Pages <span style="font-weight:400;color:var(--gray-text);font-size:.65rem;">(last 24h)</span> ${infoIcon('Your most-requested pages from Cloudflare logs. Click any page to open it on the live site.')}</h3>
+      ${topPageRows}
+    </div>
+  `;
+}
+
+/* ══════════════ GA4 ANALYTICS ══════════════ */
+let ga4Loaded = false;
+let currentGA4Days = 7;
+
+async function loadGA4(days, btn) {
+  currentGA4Days = days;
+  if (btn) {
+    document.querySelectorAll('.ga4-range-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  const body = document.getElementById('ga4-body');
+  body.innerHTML = '<div class="analytics-loading">Loading Google Analytics…</div>';
+  try {
+    const [resp, leadsResp] = await Promise.all([
+      fetch('/api/ga-analytics?days=' + days),
+      fetch('/api/leads').catch(() => null),
+    ]);
+    const data = await resp.json();
+    if (data.error) throw new Error(data.error);
+    let leadsCount = null;
+    if (leadsResp && leadsResp.ok) {
+      try {
+        const ld = await leadsResp.json();
+        if (ld.leads) {
+          const cutoff = new Date(); cutoff.setDate(cutoff.getDate() - days);
+          leadsCount = ld.leads.filter(l => new Date(l.submittedAt || l.createdAt || 0) >= cutoff).length;
+        }
+      } catch(_) {}
+    }
+    renderGA4(data, days, leadsCount);
+    ga4Loaded = true;
+  } catch(e) {
+    body.innerHTML = '<div class="analytics-error">⚠ ' + e.message + '</div>';
+  }
+}
+
+function fmtDuration(secs) {
+  const s = Math.round(parseFloat(secs));
+  if (s < 60) return s + 's';
+  return Math.floor(s/60) + 'm ' + (s%60) + 's';
+}
+function fmtPct(v) { return (parseFloat(v)*100).toFixed(1) + '%'; }
+function delta(curr, prev) {
+  if (!prev || prev == 0) return '';
+  const change = ((curr - prev) / Math.abs(prev) * 100).toFixed(1);
+  const cls = change >= 0 ? 'delta-up' : 'delta-down';
+  return ' <span class="' + cls + '">' + (change >= 0 ? '+' : '') + change + '%</span>';
+}
+function infoIcon(tip) {
+  return '<span class="info-icon" data-tip="' + tip.replace(/"/g,'&quot;') + '">i</span>';
+}
+
+function renderGA4(data, days, leadsCount) {
+  const rows = data.totals && data.totals.rows;
+  const curr = rows && rows[0] ? rows[0].metricValues : [];
+  const prev = rows && rows[1] ? rows[1].metricValues : [];
+  const get  = (arr, i) => arr[i] ? arr[i].value : '0';
+
+  const sessions  = parseInt(get(curr,0));
+  const users     = parseInt(get(curr,1));
+  const pageviews = parseInt(get(curr,2));
+  const avgDur    = parseFloat(get(curr,3));
+  const bounce    = parseFloat(get(curr,4));
+  const newUsers  = parseInt(get(curr,5));
+  const pSessions = parseInt(get(prev,0));
+  const pUsers    = parseInt(get(prev,1));
+  const pPageviews= parseInt(get(prev,2));
+  const pAvgDur   = parseFloat(get(prev,3));
+  const pBounce   = parseFloat(get(prev,4));
+  const pNewUsers = parseInt(get(prev,5));
+
+  // ── Realtime ──────────────────────────────────────────────────────
+  const realtimeUsers = (data.realtime && data.realtime.rows && data.realtime.rows[0])
+    ? parseInt(data.realtime.rows[0].metricValues[0].value) : 0;
+
+  // ── Sessions over time (bar chart) ────────────────────────────────
+  const dailyRows = (data.daily && data.daily.rows) || [];
+  const maxDailySess = Math.max(...dailyRows.map(r => parseInt(r.metricValues[0].value)), 1);
+  const dailyBars = dailyRows.map(d => {
+    const ds   = d.dimensionValues[0].value;
+    const sess = parseInt(d.metricValues[0].value);
+    const h    = Math.max(4, Math.round((sess / maxDailySess) * 110));
+    const lbl  = ds.slice(4,6) + '-' + ds.slice(6,8);
+    return `<div class="bar-wrap" title="${lbl}: ${sess.toLocaleString()} sessions"><div class="bar" style="height:${h}px"></div><div class="bar-label">${lbl}</div></div>`;
+  }).join('');
+
+  // ── Traffic sources ───────────────────────────────────────────────
+  const srcRows   = (data.sources && data.sources.rows) || [];
+  const srcTotal  = Math.max(srcRows.reduce((s,r) => s + parseInt(r.metricValues[0].value), 0), 1);
+  const srcColors = {'Organic Search':'#2e7d32','Direct':'#1565c0','Organic Social':'#e65100',
+    'Referral':'#6a1b9a','Email':'#ad1457','Paid Search':'#f57f17','Unassigned':'#bbb'};
+  const sourceBars = srcRows.map(r => {
+    const name  = r.dimensionValues[0].value;
+    const sess  = parseInt(r.metricValues[0].value);
+    const pct   = Math.round((sess / srcTotal) * 100);
+    const color = srcColors[name] || '#999';
+    return `<div class="source-row"><div class="source-label">${name}</div><div class="source-bar-bg"><div class="source-bar-fill" style="width:${pct}%;background:${color}"></div></div><div class="source-pct">${pct}%</div></div>`;
+  }).join('');
+
+  // ── Device breakdown ──────────────────────────────────────────────
+  const devRows   = (data.devices && data.devices.rows) || [];
+  const devTotal  = Math.max(devRows.reduce((s,r) => s + parseInt(r.metricValues[0].value), 0), 1);
+  const devColors = {mobile:'#1565c0', desktop:'#2e7d32', tablet:'#e65100'};
+  const devSegs   = devRows.map(r => {
+    const name  = r.dimensionValues[0].value.toLowerCase();
+    const pct   = Math.round((parseInt(r.metricValues[0].value) / devTotal) * 100);
+    return `<div class="device-segment" style="width:${pct}%;background:${devColors[name]||'#999'}" title="${name}: ${pct}%"></div>`;
+  }).join('');
+  const devLegend = devRows.map(r => {
+    const name = r.dimensionValues[0].value.toLowerCase();
+    const pct  = Math.round((parseInt(r.metricValues[0].value) / devTotal) * 100);
+    return `<span><span class="device-dot" style="background:${devColors[name]||'#999'}"></span>${name} ${pct}%</span>`;
+  }).join('');
+
+  // ── Lead conversion ───────────────────────────────────────────────
+  const convSection = (leadsCount !== null && sessions > 0) ? (() => {
+    const rate = ((leadsCount / sessions) * 100).toFixed(1);
+    const good = parseFloat(rate) >= 1;
+    return `<div class="analytics-chart-box" style="margin-bottom:20px;">
+      <h3>Lead Conversion ${infoIcon('How many site visitors turned into leads in this period. Calculated as leads ÷ sessions × 100. Aim for 1%+.')}</h3>
+      <div class="conversion-bar">
+        <div class="conversion-stat"><div class="conversion-num">${fmtNum(sessions)}</div><div class="conversion-label">Sessions</div></div>
+        <div class="conversion-arrow">→</div>
+        <div class="conversion-stat"><div class="conversion-num">${leadsCount}</div><div class="conversion-label">Leads</div></div>
+        <div class="conversion-arrow">=</div>
+        <div class="conversion-stat"><div class="conversion-num" style="color:${good?'#2e7d32':'#e65100'}">${rate}%</div><div class="conversion-label">Conv. Rate</div></div>
+      </div>
+    </div>`;
+  })() : '';
+
+  // ── Top pages ─────────────────────────────────────────────────────
+  const pageRows = (data.pages && data.pages.rows) || [];
+  const maxSess  = Math.max(...pageRows.map(r => parseInt(r.metricValues[0].value)), 1);
+  const topPageRows = pageRows.length ? `
+    <table class="top-pages-table">
+      <thead><tr><th>#</th><th>Page</th><th>Sessions</th><th>Views</th><th></th></tr></thead>
+      <tbody>${pageRows.map((r,i) => {
+        const path  = r.dimensionValues[0].value;
+        const sess  = parseInt(r.metricValues[0].value);
+        const views = parseInt(r.metricValues[1].value);
+        const pct   = Math.round((sess/maxSess)*100);
+        const label = path === '/' ? '/ (Home)' : path;
+        return '<tr><td class="tp-rank">'+(i+1)+'</td>' +
+          '<td class="tp-path"><a href="https://atbethesda.com'+path+'" target="_blank" style="color:inherit;text-decoration:none;">'+label+'</a></td>' +
+          '<td class="tp-count">'+fmtNum(sess)+'</td>' +
+          '<td class="tp-count" style="color:var(--gray-text)">'+fmtNum(views)+'</td>' +
+          '<td class="tp-bar-cell"><div class="tp-bar" style="width:'+pct+'%"></div></td></tr>';
+      }).join('')}</tbody>
+    </table>` : '<div style="color:#aaa;font-size:.8rem;padding:20px">No data</div>';
+
+  document.getElementById('ga4-body').innerHTML = `
+    <div class="realtime-bar">
+      <div class="realtime-pulse"></div>
+      <span class="realtime-count">${realtimeUsers}</span>&nbsp;
+      <span class="realtime-label">users on site right now</span>
+      ${infoIcon('People active on your site in the last 30 minutes, updated each time you load this page.')}
+    </div>
+    <div class="analytics-grid">
+      <div class="analytics-card ac-good">
+        <div class="ac-label">Sessions ${infoIcon('One visit = one session. A person who visits Monday and again Friday = 2 sessions.')}</div>
+        <div class="ac-value">${fmtNum(sessions)}${delta(sessions,pSessions)}</div>
+        <div class="ac-sub">vs prev period</div>
+      </div>
+      <div class="analytics-card ac-good">
+        <div class="ac-label">Active Users ${infoIcon('Unique people who visited. One person visiting 5 times still counts as 1 active user.')}</div>
+        <div class="ac-value">${fmtNum(users)}${delta(users,pUsers)}</div>
+        <div class="ac-sub">Unique people</div>
+      </div>
+      <div class="analytics-card">
+        <div class="ac-label">Page Views ${infoIcon('Total pages loaded. If one person visits 5 pages, that counts as 5 page views.')}</div>
+        <div class="ac-value">${fmtNum(pageviews)}${delta(pageviews,pPageviews)}</div>
+        <div class="ac-sub">Total pages loaded</div>
+      </div>
+      <div class="analytics-card">
+        <div class="ac-label">New Users ${infoIcon('First-time visitors. High new users means your marketing is reaching fresh audiences.')}</div>
+        <div class="ac-value">${fmtNum(newUsers)}${delta(newUsers,pNewUsers)}</div>
+        <div class="ac-sub">First-time visitors</div>
+      </div>
+      <div class="analytics-card${avgDur < 30 ? ' ac-warn' : ' ac-good'}">
+        <div class="ac-label">Avg Session ${infoIcon('How long visitors spend on your site per visit. Under 30 seconds usually means they left without finding what they wanted.')}</div>
+        <div class="ac-value">${fmtDuration(avgDur)}${delta(avgDur,pAvgDur)}</div>
+        <div class="ac-sub">Time on site</div>
+      </div>
+      <div class="analytics-card${bounce > 0.7 ? ' ac-warn' : ' ac-good'}">
+        <div class="ac-label">Bounce Rate ${infoIcon('% who leave after just one page. Lower is better. Above 70% means most visitors aren\'t exploring your site.')}</div>
+        <div class="ac-value">${fmtPct(bounce)}${delta(pBounce,bounce)}</div>
+        <div class="ac-sub">Lower = better</div>
+      </div>
+    </div>
+    <div class="analytics-chart-box" style="margin-bottom:20px;">
+      <h3>Sessions Over Time ${infoIcon('Daily sessions for the selected period. Spikes usually mean a post went viral or you ran an ad. Drops can mean a technical issue.')}</h3>
+      <div class="bar-chart">${dailyBars||'<div style="color:#aaa;font-size:.8rem;padding:20px">No data</div>'}</div>
+    </div>
+    ${convSection}
+    <div class="analytics-chart-box" style="margin-bottom:20px;">
+      <h3>Traffic Sources ${infoIcon('Where visitors come from. Organic Search = Google/Bing. Direct = typed your URL. Social = Instagram/Facebook. Referral = another site linked to you.')}</h3>
+      <div class="source-bar-wrap" style="margin-top:12px;">${sourceBars||'<div style="color:#aaa;font-size:.8rem;padding:12px">No data</div>'}</div>
+    </div>
+    <div class="analytics-chart-box" style="margin-bottom:20px;">
+      <h3>Device Breakdown ${infoIcon('What devices your visitors use. Most real estate searches happen on mobile — your site should look great on phones first.')}</h3>
+      <div class="device-split">${devSegs}</div>
+      <div class="device-legend">${devLegend}</div>
+    </div>
+    <div class="analytics-chart-box">
+      <h3>Top 10 Pages <span style="font-weight:400;color:var(--gray-text);font-size:.65rem;">(GA4 · last ${days}d)</span> ${infoIcon('Your most-visited pages by sessions. Click any page name to open it on the live site.')}</h3>
+      ${topPageRows}
+    </div>
+  `;
+}
+
+
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --red:#d60717;--red-dark:#a00511;
+  --black:#111;--white:#fff;
+  --sidebar:#1a1a1a;--sidebar-w:240px;
+  --gray-light:#f5f5f5;--gray-mid:#e0e0e0;--gray-text:#666;
+  --radius:4px;--font:'Montserrat',sans-serif;
+}
+body{font-family:var(--font);background:var(--gray-light);color:var(--black);min-height:100vh;}
+
+/* ── LOGIN ── */
+#login-screen{
+  display:flex;align-items:center;justify-content:center;
+  min-height:100vh;background:#0a0a0a;
+}
+.login-box{background:#1a1a1a;padding:48px 40px;border-radius:8px;width:360px;text-align:center;}
+.login-box img{height:40px;margin-bottom:28px;filter:brightness(0) invert(1);}
+.login-box h2{color:#fff;font-size:1rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:24px;}
+.login-box input{
+  width:100%;padding:12px 14px;background:#0a0a0a;border:1px solid #333;
+  border-radius:var(--radius);color:#fff;font-family:var(--font);font-size:.9rem;
+  margin-bottom:14px;outline:none;transition:border-color .2s;
+}
+.login-box input:focus{border-color:var(--red);}
+.login-box button{
+  width:100%;padding:13px;background:var(--red);color:#fff;border:none;
+  border-radius:var(--radius);font-family:var(--font);font-size:.78rem;
+  font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;
+  transition:background .2s;
+}
+.login-box button:hover{background:var(--red-dark);}
+.login-error{color:#e57373;font-size:.78rem;margin-top:10px;display:none;}
+
+/* ── APP SHELL ── */
+#app{display:none;min-height:100vh;flex-direction:row;}
+
+/* SIDEBAR */
+.sidebar{
+  width:var(--sidebar-w);background:var(--sidebar);
+  position:fixed;top:0;left:0;bottom:0;z-index:50;
+  display:flex;flex-direction:column;overflow-y:auto;
+}
+.sidebar-logo{
+  padding:20px 20px 16px;border-bottom:1px solid #2a2a2a;
+  display:flex;align-items:center;gap:10px;
+}
+.sidebar-logo img{height:28px;filter:brightness(0) invert(1);}
+.sidebar-logo span{color:#555;font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;font-weight:700;}
+.sidebar-section{padding:8px 0;}
+.sidebar-label{
+  padding:12px 20px 4px;color:#444;
+  font-size:.6rem;text-transform:uppercase;letter-spacing:.15em;font-weight:700;
+}
+.sidebar-item{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 20px;color:#888;text-decoration:none;
+  font-size:.75rem;font-weight:600;letter-spacing:.04em;cursor:pointer;
+  transition:color .15s,background .15s;border:none;background:none;
+  width:100%;text-align:left;
+}
+.sidebar-item:hover{color:#fff;background:rgba(255,255,255,.04);}
+.sidebar-item.active{color:#fff;background:rgba(183,37,69,.15);border-left:3px solid var(--red);}
+.sidebar-item svg{width:16px;height:16px;flex-shrink:0;}
+.sidebar-bottom{margin-top:auto;padding:16px 20px;border-top:1px solid #2a2a2a;}
+.sidebar-bottom a{color:#555;font-size:.72rem;text-decoration:none;transition:color .2s;}
+.sidebar-bottom a:hover{color:#fff;}
+
+/* MAIN */
+.main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column;}
+
+/* TOP BAR */
+.topbar{
+  background:#fff;border-bottom:1px solid var(--gray-mid);
+  padding:0 32px;height:58px;display:flex;align-items:center;
+  justify-content:space-between;position:sticky;top:0;z-index:40;
+}
+.topbar-title{font-size:.85rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;}
+.topbar-actions{display:flex;gap:10px;align-items:center;}
+.btn{
+  padding:9px 20px;border-radius:var(--radius);font-family:var(--font);
+  font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  cursor:pointer;border:none;transition:all .2s;
+}
+.btn-primary{background:var(--red);color:#fff;}
+.btn-primary:hover{background:var(--red-dark);}
+.btn-secondary{background:#f0f0f0;color:#333;border:1px solid #ddd;}
+.btn-secondary:hover{background:#e0e0e0;}
+.btn-outline{background:transparent;color:var(--black);border:2px solid #ddd;}
+.btn-outline:hover{border-color:#999;}
+.btn-sm{padding:7px 14px;font-size:.68rem;}
+.btn-success{background:#2e7d32;color:#fff;}
+.btn-success:hover{background:#1b5e20;}
+
+/* CONTENT */
+.content{padding:28px 32px;flex:1;}
+
+/* ── DASHBOARD (post list) ── */
+#view-dashboard{display:none;}
+.dash-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;}
+.dash-header h1{font-size:1.3rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;}
+.post-table{background:#fff;border-radius:6px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.post-table table{width:100%;border-collapse:collapse;}
+.post-table th{
+  background:#f9f9f9;padding:12px 16px;text-align:left;
+  font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:#888;
+  border-bottom:1px solid var(--gray-mid);
+}
+.post-table td{padding:14px 16px;border-bottom:1px solid #f0f0f0;font-size:.82rem;vertical-align:middle;}
+.post-table tr:last-child td{border-bottom:none;}
+.post-table tr:hover td{background:#fafafa;}
+.post-status{
+  display:inline-block;padding:3px 8px;border-radius:20px;
+  font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+}
+.post-status.published{background:#e8f5e9;color:#2e7d32;}
+.post-status.draft{background:#fff8e1;color:#f57c00;}
+.post-status.scheduled{background:#e3f2fd;color:#1565c0;}
+.post-status.due{background:#fce4ec;color:#c62828;animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.6;}}
+
+/* SCHEDULED NOTIFICATION BANNER */
+#scheduled-banner{
+  display:none;background:#1565c0;color:#fff;
+  padding:12px 32px;font-size:.78rem;font-weight:700;
+  letter-spacing:.05em;align-items:center;justify-content:space-between;gap:16px;
+}
+#scheduled-banner.show{display:flex;}
+#scheduled-banner .banner-posts{display:flex;gap:8px;flex-wrap:wrap;}
+#scheduled-banner .banner-pill{
+  background:rgba(255,255,255,.2);padding:4px 10px;border-radius:20px;
+  font-size:.7rem;cursor:pointer;transition:background .2s;
+}
+#scheduled-banner .banner-pill:hover{background:rgba(255,255,255,.35);}
+#scheduled-banner button{background:rgba(255,255,255,.15);border:none;color:#fff;padding:6px 12px;border-radius:var(--radius);cursor:pointer;font-family:var(--font);font-size:.7rem;font-weight:700;}
+.cat-badge{
+  display:inline-block;padding:2px 8px;border-radius:20px;
+  font-size:.62rem;font-weight:700;text-transform:uppercase;
+  background:rgba(183,37,69,.1);color:var(--red);
+}
+.tbl-actions{display:flex;gap:8px;}
+.tbl-actions button{
+  padding:5px 10px;font-size:.65rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.05em;border-radius:var(--radius);cursor:pointer;border:1px solid #ddd;
+  background:#fff;color:#555;font-family:var(--font);transition:all .15s;
+}
+.tbl-actions button:hover{background:var(--gray-light);}
+.tbl-actions .del{border-color:#ffcdd2;color:#c62828;}
+.tbl-actions .del:hover{background:#ffebee;}
+.empty-state{text-align:center;padding:60px 20px;color:#aaa;}
+.empty-state h3{font-size:1rem;margin-bottom:8px;color:#888;}
+.empty-state p{font-size:.82rem;line-height:1.6;}
+
+/* ── STATUS TABS ── */
+.status-tabs{display:flex;gap:4px;margin-bottom:20px;border-bottom:2px solid var(--gray-mid);padding-bottom:0;}
+.status-tab{
+  padding:10px 20px;font-family:var(--font);font-size:.72rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.07em;cursor:pointer;border:none;
+  background:none;color:#999;border-bottom:3px solid transparent;margin-bottom:-2px;
+  transition:all .15s;display:flex;align-items:center;gap:7px;
+}
+.status-tab:hover{color:var(--black);}
+.status-tab.active{color:var(--black);border-bottom-color:var(--red);}
+.status-tab .tab-count{
+  background:var(--gray-mid);color:#666;padding:2px 7px;
+  border-radius:20px;font-size:.6rem;transition:all .15s;
+}
+.status-tab.active .tab-count{background:var(--red);color:#fff;}
+.status-tab.tab-scheduled .tab-count{background:#1565c0;color:#fff;}
+.status-tab.tab-scheduled{color:#1565c0;}
+.status-tab.tab-drafts .tab-count{background:#f57c00;color:#fff;}
+.status-tab.tab-drafts{color:#f57c00;}
+
+/* ── EDITOR ── */
+#view-editor{display:none;}
+.editor-grid{display:grid;grid-template-columns:1fr 300px;gap:24px;align-items:start;}
+.editor-main{display:flex;flex-direction:column;gap:20px;}
+.editor-card{background:#fff;border-radius:6px;padding:24px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.editor-card h3{
+  font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;
+  color:#888;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid #f0f0f0;
+}
+.field-label{
+  display:block;font-size:.68rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;color:#333;
+}
+.field-hint{font-size:.68rem;color:#aaa;margin-top:4px;}
+input[type=text],input[type=url],textarea,select{
+  width:100%;padding:11px 13px;border:1px solid var(--gray-mid);
+  border-radius:var(--radius);font-family:var(--font);font-size:.85rem;
+  color:var(--black);outline:none;transition:border-color .2s;
+}
+input:focus,textarea:focus,select:focus{border-color:var(--red);}
+textarea{resize:vertical;line-height:1.6;}
+.char-counter{font-size:.65rem;color:#aaa;text-align:right;margin-top:4px;}
+.char-counter span{font-weight:700;}
+.char-counter.warn span{color:#f57c00;}
+.char-counter.over span{color:#c62828;}
+.title-input{
+  width:100%;font-size:1.4rem;font-weight:800;border:none;
+  border-bottom:2px solid var(--gray-mid);padding:10px 0;
+  font-family:var(--font);outline:none;transition:border-color .2s;
+  text-transform:uppercase;letter-spacing:.03em;
+}
+.title-input:focus{border-color:var(--red);}
+.title-input::placeholder{color:#ccc;}
+.slug-row{display:flex;align-items:center;gap:8px;margin-top:8px;}
+.slug-prefix{font-size:.75rem;color:#aaa;white-space:nowrap;}
+.slug-input{
+  flex:1;padding:6px 10px;border:1px solid var(--gray-mid);border-radius:var(--radius);
+  font-family:monospace;font-size:.8rem;outline:none;transition:border-color .2s;
+}
+.slug-input:focus{border-color:var(--red);}
+
+/* Quill editor */
+.ql-toolbar.ql-snow{border:1px solid var(--gray-mid);border-radius:var(--radius) var(--radius) 0 0;background:#fafafa;}
+.ql-container.ql-snow{border:1px solid var(--gray-mid);border-top:none;border-radius:0 0 var(--radius) var(--radius);font-family:var(--font);font-size:.9rem;min-height:340px;}
+.ql-editor{min-height:320px;line-height:1.75;}
+.ql-editor h1,h2,h3{font-family:var(--font);}
+
+/* FAQ builder */
+.faq-item{
+  background:#fafafa;border:1px solid var(--gray-mid);border-radius:var(--radius);
+  padding:14px 16px;margin-bottom:12px;position:relative;
+}
+.faq-item input{margin-bottom:8px;}
+.faq-item textarea{min-height:70px;}
+.faq-remove{
+  position:absolute;top:10px;right:10px;
+  background:none;border:none;cursor:pointer;color:#ccc;font-size:1rem;padding:2px 6px;
+  transition:color .15s;
+}
+.faq-remove:hover{color:#c62828;}
+.add-faq-btn{
+  display:flex;align-items:center;gap:6px;padding:9px 16px;
+  border:2px dashed var(--gray-mid);border-radius:var(--radius);
+  background:none;font-family:var(--font);font-size:.75rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.06em;color:#aaa;cursor:pointer;
+  transition:all .2s;width:100%;justify-content:center;
+}
+.add-faq-btn:hover{border-color:var(--red);color:var(--red);}
+
+/* AI snippet */
+.snippet-box{
+  background:linear-gradient(135deg,#fff7f8,#fff);
+  border:1px solid rgba(183,37,69,.2);border-left:3px solid var(--red);
+  border-radius:var(--radius);padding:14px 16px;
+}
+.snippet-box p{font-size:.75rem;color:#888;margin-bottom:8px;line-height:1.5;}
+
+/* SIDEBAR PANEL */
+.editor-sidebar{display:flex;flex-direction:column;gap:16px;}
+.side-card{background:#fff;border-radius:6px;padding:20px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.side-card h3{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:#888;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #f0f0f0;}
+.publish-btn-row{display:flex;flex-direction:column;gap:8px;margin-top:14px;}
+.status-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:.8rem;}
+.status-row span:first-child{color:#888;font-weight:600;}
+select.cat-select{margin-bottom:0;}
+.tag-input-wrap{position:relative;}
+.tag-cloud{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+.tag-pill{
+  display:inline-flex;align-items:center;gap:4px;
+  background:rgba(183,37,69,.1);color:var(--red);
+  padding:4px 10px;border-radius:20px;font-size:.68rem;font-weight:700;
+}
+.tag-pill button{background:none;border:none;cursor:pointer;color:var(--red);font-size:.8rem;padding:0;line-height:1;}
+.image-preview{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:var(--radius);margin-top:10px;display:none;}
+
+/* SEO SCORE */
+.seo-bar{margin-bottom:10px;}
+.seo-bar-label{display:flex;justify-content:space-between;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;}
+.seo-bar-track{height:6px;background:#e0e0e0;border-radius:3px;overflow:hidden;}
+.seo-bar-fill{height:100%;border-radius:3px;transition:width .4s;}
+.seo-score-good{background:#4caf50;}
+.seo-score-ok{background:#ff9800;}
+.seo-score-bad{background:#f44336;}
+.seo-checks{list-style:none;font-size:.72rem;color:#666;display:flex;flex-direction:column;gap:6px;}
+.seo-checks li{display:flex;align-items:flex-start;gap:6px;line-height:1.4;}
+.seo-checks li::before{flex-shrink:0;margin-top:1px;}
+.seo-pass::before{content:'✓';color:#4caf50;font-weight:700;}
+.seo-fail::before{content:'✗';color:#f44336;font-weight:700;}
+.seo-warn::before{content:'⚠';color:#ff9800;}
+
+
+/* ── SCHOOLS VIEW ── */
+#view-schools{display:none;}
+.schools-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;}
+.schools-header h1{font-size:1.3rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;}
+.area-selector{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;}
+.area-tab{
+  padding:7px 14px;border-radius:20px;font-family:var(--font);font-size:.68rem;
+  font-weight:700;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;
+  border:1px solid var(--gray-mid);background:#fff;color:#666;transition:all .15s;
+}
+.area-tab:hover{border-color:var(--red);color:var(--red);}
+.area-tab.active{background:var(--red);color:#fff;border-color:var(--red);}
+.school-editor-card{
+  background:#fff;border-radius:6px;padding:20px;box-shadow:0 1px 4px rgba(0,0,0,.06);
+  margin-bottom:12px;position:relative;border-left:3px solid var(--gray-mid);
+  transition:border-color .2s;
+}
+.school-editor-card:hover{border-color:var(--red);}
+.school-editor-row{display:grid;grid-template-columns:2fr 1fr 3fr;gap:12px;align-items:end;}
+.school-editor-label{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#888;display:block;margin-bottom:4px;}
+.school-remove-btn{
+  position:absolute;top:12px;right:12px;background:none;border:none;
+  cursor:pointer;color:#ccc;font-size:1rem;transition:color .15s;padding:2px 6px;
+}
+.school-remove-btn:hover{color:#c62828;}
+.add-school-btn{
+  display:flex;align-items:center;gap:6px;padding:11px 16px;
+  border:2px dashed var(--gray-mid);border-radius:var(--radius);background:none;
+  font-family:var(--font);font-size:.75rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.06em;color:#aaa;cursor:pointer;transition:all .2s;width:100%;
+  justify-content:center;margin-top:8px;
+}
+.add-school-btn:hover{border-color:var(--red);color:var(--red);}
+.schools-actions{display:flex;gap:10px;margin-top:20px;padding-top:20px;border-top:1px solid var(--gray-mid);}
+.gs-note{
+  background:#fffde7;border:1px solid #ffe082;border-radius:var(--radius);
+  padding:12px 16px;font-size:.75rem;color:#5d4037;margin-bottom:20px;line-height:1.6;
+}
+.gs-note strong{color:#e65100;}
+
+
+.gs-link{display:inline-block;margin-top:6px;font-size:.68rem;font-weight:700;color:var(--red);text-decoration:none;letter-spacing:.04em;}
+.gs-link:hover{text-decoration:underline;}
+/* SUCCESS TOAST */
+#toast{
+  position:fixed;bottom:24px;right:24px;
+  background:#1a1a1a;color:#fff;padding:14px 20px;border-radius:6px;
+  font-size:.8rem;font-weight:600;z-index:999;
+  transform:translateY(80px);opacity:0;transition:all .3s;
+}
+#toast.show{transform:translateY(0);opacity:1;}
+
+/* ── ANALYTICS ── */
+#view-analytics{display:none;}
+.delta-up{font-size:.6rem;color:#2e7d32;font-weight:700;vertical-align:super;}
+.delta-down{font-size:.6rem;color:#c62828;font-weight:700;vertical-align:super;}
+.ga4-range-btn{padding:4px 12px;font-size:.72rem;font-weight:600;border:1px solid var(--gray-mid);background:#fff;border-radius:4px;cursor:pointer;color:var(--gray-text);font-family:var(--font);}
+.ga4-range-btn.active,.ga4-range-btn:hover{background:var(--red);color:#fff;border-color:var(--red);}
+
+.analytics-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px;}
+.analytics-range{display:flex;gap:6px;}
+.range-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#aaa;padding:5px 14px;border-radius:4px;cursor:pointer;font-size:.72rem;font-family:var(--font);font-weight:600;letter-spacing:.05em;transition:all .15s;}
+.range-btn:hover{background:rgba(183,37,69,.15);color:#fff;border-color:var(--red);}
+.range-btn.active{background:var(--red);color:#fff;border-color:var(--red);}
+.analytics-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;margin-bottom:28px;}
+.analytics-card{background:#fff;border-radius:6px;padding:20px 18px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.analytics-card .ac-label{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-text);margin-bottom:8px;}
+.analytics-card .ac-value{font-size:1.7rem;font-weight:800;color:var(--black);line-height:1;}
+.analytics-card .ac-sub{font-size:.7rem;color:var(--gray-text);margin-top:4px;}
+.analytics-card.ac-warn .ac-value{color:#d32f2f;}
+.analytics-card.ac-good .ac-value{color:#2e7d32;}
+.analytics-chart-box{background:#fff;border-radius:6px;padding:20px 18px;box-shadow:0 1px 4px rgba(0,0,0,.06);margin-bottom:20px;}
+.top-pages-table{width:100%;border-collapse:collapse;font-size:.78rem;}
+.top-pages-table thead th{text-align:left;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-text);padding-bottom:10px;border-bottom:1px solid var(--gray-mid);}
+.top-pages-table tbody tr:hover{background:#f9f9f9;}
+.top-pages-table td{padding:8px 6px;border-bottom:1px solid #f0f0f0;vertical-align:middle;}
+.tp-rank{color:var(--gray-text);font-weight:700;width:28px;}
+.tp-path{font-family:monospace;font-size:.75rem;max-width:320px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.tp-count{font-weight:700;color:#111;width:70px;text-align:right;}
+.tp-bar-cell{width:120px;padding-left:12px;}
+.tp-bar{height:6px;background:var(--red);border-radius:3px;min-width:2px;}
+.analytics-chart-box h3{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-text);margin-bottom:16px;}
+.bar-chart{display:flex;align-items:flex-end;gap:4px;height:120px;}
+.bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;}
+.bar{width:100%;background:var(--red);border-radius:2px 2px 0 0;min-height:2px;transition:height .3s;}
+.bar-label{font-size:.55rem;color:var(--gray-text);white-space:nowrap;}
+.analytics-loading{text-align:center;padding:60px 0;color:var(--gray-text);font-size:.85rem;}
+.analytics-error{background:#fff3f3;border:1px solid #ffcdd2;padding:16px;border-radius:6px;color:#c62828;font-size:.8rem;}
+
+
+/* ── INFO TOOLTIPS ── */
+.info-icon{display:inline-flex;align-items:center;justify-content:center;width:13px;height:13px;border-radius:50%;border:1px solid #bbb;color:#aaa;font-size:.55rem;font-weight:700;font-style:normal;cursor:help;margin-left:4px;vertical-align:middle;position:relative;flex-shrink:0;line-height:1;}
+.info-icon::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#1a1a1a;color:#fff;padding:8px 12px;border-radius:5px;font-size:.7rem;white-space:normal;width:210px;line-height:1.5;z-index:999;pointer-events:none;opacity:0;transition:opacity .15s;font-style:normal;font-weight:400;text-transform:none;letter-spacing:0;}
+.info-icon::before{content:'';position:absolute;bottom:calc(100% + 3px);left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#1a1a1a;opacity:0;transition:opacity .15s;}
+.info-icon:hover::after,.info-icon:hover::before{opacity:1;}
+/* ── REALTIME BAR ── */
+.realtime-bar{display:flex;align-items:center;gap:10px;background:#f0faf4;border:1px solid #b2dfdb;border-radius:6px;padding:12px 18px;margin-bottom:20px;}
+.realtime-pulse{width:10px;height:10px;border-radius:50%;background:#2e7d32;animation:rt-pulse 2s infinite;flex-shrink:0;}
+@keyframes rt-pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(1.3);}}
+.realtime-count{font-size:1.25rem;font-weight:800;color:#1b5e20;}
+.realtime-label{font-size:.75rem;color:#2e7d32;font-weight:600;}
+/* ── TRAFFIC SOURCES ── */
+.source-row{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-size:.74rem;}
+.source-label{width:120px;color:var(--gray-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:0;}
+.source-bar-bg{flex:1;height:7px;background:#f0f0f0;border-radius:4px;overflow:hidden;}
+.source-bar-fill{height:100%;border-radius:4px;transition:width .4s;}
+.source-pct{width:34px;text-align:right;font-weight:700;color:#111;flex-shrink:0;}
+/* ── DEVICE SPLIT ── */
+.device-split{display:flex;height:10px;border-radius:5px;overflow:hidden;margin:12px 0 8px;gap:2px;}
+.device-segment{height:100%;}
+.device-legend{display:flex;gap:14px;font-size:.7rem;color:var(--gray-text);flex-wrap:wrap;}
+.device-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:3px;vertical-align:middle;}
+/* ── CONVERSION ── */
+.conversion-bar{display:flex;align-items:center;justify-content:center;gap:20px;padding:14px 0 4px;flex-wrap:wrap;}
+.conversion-stat{text-align:center;}
+.conversion-num{font-size:1.8rem;font-weight:800;color:#111;line-height:1;}
+.conversion-label{font-size:.63rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gray-text);margin-top:4px;}
+.conversion-arrow{color:#ccc;font-size:1.5rem;font-weight:300;}
+/* ── CACHE ALERT ── */
+.cache-alert{background:#fffde7;border:1px solid #ffe082;border-radius:6px;padding:12px 16px;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.cache-alert a{color:var(--red);font-weight:700;text-decoration:none;margin-left:6px;}
+.cache-alert a:hover{text-decoration:underline;}
+</style>
+<script src="https://atbethesda.com/js/nav.js" defer></script>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════ LOGIN ══════════════════════════════════════ -->
+<div id="login-screen">
+  <div class="login-box">
+    <img src="/images/logo-bethesda-residential.png?v=2" alt="@Bethesda" />
+    <h2>Admin Login</h2>
+    <input type="password" id="pw-input" placeholder="Password" onkeydown="if(event.key==='Enter')doLogin()" />
+    <button onclick="doLogin()">Sign In</button>
+    <p class="login-error" id="login-error">Incorrect password. Try again.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ APP ══════════════════════════════════════ -->
+<div id="app">
+
+  <!-- SCHEDULED POSTS BANNER -->
+  <div id="scheduled-banner">
+    <span>🕐 Scheduled posts are ready to publish:</span>
+    <div class="banner-posts" id="banner-posts"></div>
+    <button onclick="document.getElementById('scheduled-banner').classList.remove('show')">Dismiss</button>
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <img src="/images/logo-bethesda-residential.png?v=2" alt="@Bethesda" />
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Content</div>
+      <button class="sidebar-item active" id="nav-dashboard" onclick="switchTab('draft');showView('dashboard')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        All Posts
+      </button>
+      <button class="sidebar-item" id="nav-editor" onclick="newPost()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        New Post
+      </button>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Posts</div>
+      <button class="sidebar-item" onclick="switchTab('published');showView('dashboard')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        Published
+      </button>
+      <button class="sidebar-item" id="nav-scheduled" onclick="switchTab('scheduled');showView('dashboard')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Scheduled <span id="scheduled-count" style="margin-left:auto;background:rgba(21,101,192,.3);color:#90caf9;padding:2px 7px;border-radius:20px;font-size:.6rem;display:none;"></span>
+      </button>
+      <button class="sidebar-item" onclick="switchTab('draft');showView('dashboard')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        Drafts
+      </button>
+    </div>
+      <button class="sidebar-item" id="nav-schools" onclick="showView('schools')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Schools
+      </button>
+      <button class="sidebar-item" id="nav-leads" onclick="showView('leads')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        Leads <span id="leads-badge" style="margin-left:auto;background:rgba(183,37,69,.25);color:#f48fb1;padding:2px 7px;border-radius:20px;font-size:.6rem;display:none;"></span>
+      </button>
+      <button class="sidebar-item" id="nav-analytics" onclick="showView('analytics')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Analytics
+      </button>
+      <button class="sidebar-item" id="nav-media" onclick="showView('media')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        Media
+      </button>
+            <button class="sidebar-item" id="nav-settings" onclick="showView('settings')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        Settings
+      </button>
+    <div class="sidebar-bottom">
+      <a href="/" target="_blank">← View Live Site</a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-title" id="topbar-title">All Posts</div>
+      <div class="topbar-actions" id="topbar-actions">
+        <button class="btn btn-secondary btn-sm" onclick="openImport()" title="Import BOFU draft posts">⬆ Import Posts</button>
+        <button class="btn btn-primary btn-sm" onclick="newPost()">+ New Post</button>
+      </div>
+    </div>
+    <div class="content">
+
+      <!-- DASHBOARD -->
+      <div id="view-dashboard">
+        <!-- Status Tabs -->
+        <div class="status-tabs">
+          <button class="status-tab" id="tab-all" onclick="switchTab('all')">
+            All <span class="tab-count" id="count-all">0</span>
+          </button>
+          <button class="status-tab" id="tab-published" onclick="switchTab('published')">
+            Published <span class="tab-count" id="count-published">0</span>
+          </button>
+          <button class="status-tab tab-scheduled" id="tab-scheduled" onclick="switchTab('scheduled')">
+            Scheduled <span class="tab-count" id="count-scheduled">0</span>
+          </button>
+          <button class="status-tab tab-drafts active" id="tab-drafts" onclick="switchTab('draft')">
+            Drafts <span class="tab-count" id="count-draft">0</span>
+          </button>
+        </div>
+        <div class="post-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="post-list-body">
+              <!-- populated by JS -->
+            </tbody>
+          </table>
+        </div>
+        <div class="empty-state" id="empty-state" style="display:none;">
+          <h3>No posts here</h3>
+          <p>Nothing in this section yet.</p>
+        </div>
+      </div>
+
+      <!-- EDITOR -->
+      <div id="view-editor">
+        <div class="editor-grid">
+
+          <!-- LEFT: Main editor -->
+          <div class="editor-main">
+
+            <!-- Title -->
+            <div class="editor-card">
+              <input type="text" class="title-input" id="post-title" placeholder="Enter post title here…" oninput="onTitleChange()" />
+              <div class="slug-row">
+                <span class="slug-prefix">atbethesda.com/</span>
+                <input type="text" class="slug-input" id="post-slug" placeholder="url-slug" oninput="updateSEO()" />
+              </div>
+            </div>
+
+            <!-- AI Snippet — AEO answer box -->
+            <div class="editor-card">
+              <h3>🤖 AI Snippet (AEO) — Answer Box</h3>
+              <div class="snippet-box">
+                <p>This 2–3 sentence summary appears at the top of your post as a highlighted answer box. Google AI Overview, Perplexity, and ChatGPT pull from this for featured answers. Write it to directly answer the post's main question.</p>
+                <textarea id="post-snippet" rows="3" placeholder="Example: The best time to buy a home in Bethesda is early spring, when inventory peaks and before summer bidding wars begin. Buyers who move quickly in March–April typically have more choices and less competition than those who wait until summer…" oninput="updateSEO()"></textarea>
+              </div>
+            </div>
+
+            <!-- Body content -->
+            <div class="editor-card">
+              <h3>Post Content</h3>
+              <div id="quill-editor"></div>
+              <div style="margin-top:10px;">
+                <button class="btn btn-outline btn-sm" onclick="var w=document.getElementById('paste-html-wrap');var s=w.style.display==='none';w.style.display=s?'block':'none';if(s)document.getElementById('paste-html-input').focus();" style="font-size:.72rem;color:#888;">⬇ Paste Raw HTML</button>
+                <div id="paste-html-wrap" style="display:none;margin-top:8px;">
+                  <textarea id="paste-html-input" rows="7" placeholder="Paste your HTML body here — lists and formatting will be preserved…" style="width:100%;box-sizing:border-box;font-family:monospace;font-size:.73rem;border:1.5px solid #ddd;border-radius:4px;padding:8px;resize:vertical;color:#333;"></textarea>
+                  <div style="display:flex;gap:8px;margin-top:6px;">
+                    <button class="btn btn-primary btn-sm" onclick="var inp=document.getElementById('paste-html-input');var raw=inp?inp.value.trim():'';if(!raw||!quill)return;quill.clipboard.dangerouslyPasteHTML(raw);inp.value='';document.getElementById('paste-html-wrap').style.display='none';if(typeof updateSEO==='function')updateSEO();">✓ Set Body</button>
+                    <button class="btn btn-outline btn-sm" onclick="document.getElementById('paste-html-wrap').style.display='none';">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ Builder — AEO schema -->
+            <div class="editor-card">
+              <h3>❓ FAQ Section (AEO Schema)</h3>
+              <p style="font-size:.78rem;color:#888;margin-bottom:16px;line-height:1.5;">Add questions and answers. These appear at the bottom of your post AND generate FAQ schema markup, which helps your post appear in Google AI Overview and "People Also Ask" boxes.</p>
+              <div id="faq-list"></div>
+              <button class="add-faq-btn" onclick="addFaq()">+ Add Question &amp; Answer</button>
+            </div>
+
+          </div>
+
+          <!-- RIGHT: Sidebar panels -->
+          <div class="editor-sidebar">
+
+            <!-- Publish -->
+            <div class="side-card">
+              <h3>Publish</h3>
+              <div class="status-row">
+                <span>Status</span>
+                <select id="post-status" style="width:auto;padding:4px 8px;font-size:.75rem;" onchange="onStatusChange()">
+                  <option value="published">Published</option>
+                  <option value="draft">Draft</option>
+                  <option value="scheduled">Scheduled</option>
+                </select>
+              </div>
+              <div class="status-row">
+                <span>Date</span>
+                <input type="date" id="post-date" style="width:auto;padding:4px 8px;font-size:.75rem;" oninput="onStatusChange()" />
+              </div>
+              <!-- Time row — only shown when Scheduled -->
+              <div class="status-row" id="time-row">
+                <span>Time</span>
+                <input type="time" id="post-time" value="06:00" style="width:auto;padding:4px 8px;font-size:.75rem;" />
+              </div>
+              <!-- Scheduled preview label -->
+              <div id="schedule-preview" style="display:none;background:#e3f2fd;border-radius:4px;padding:10px 12px;margin:10px 0;font-size:.75rem;color:#1565c0;line-height:1.5;"></div>
+              <div class="publish-btn-row" style="gap:6px;margin-top:14px;">
+                <button class="btn btn-success" style="width:100%;justify-content:center;" onclick="saveDraft()">💾 Save Draft</button>
+                <button class="btn" style="width:100%;justify-content:center;background:#1565c0;color:#fff;" onclick="saveScheduled()">🕐 Schedule</button>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="publishNow()">🚀 Publish to Site</button>
+                <button class="btn btn-outline btn-sm" style="width:100%;justify-content:center;margin-top:4px;" onclick="previewPost()">Preview</button>
+              </div>
+            </div>
+
+            <!-- Category -->
+            <div class="side-card">
+              <h3>Category</h3>
+              <select id="post-category" class="cat-select" onchange="updateSEO()">
+                <option value="">— Select Category —</option>
+                <option value="Buying">Buying</option>
+                <option value="Selling">Selling</option>
+                <option value="News">News</option>
+                <option value="Pey on The Street">Pey on The Street</option>
+                <option value="Renting">Renting</option>
+              </select>
+            </div>
+
+            <!-- Tags -->
+            <div class="side-card">
+              <h3>Tags</h3>
+              <div class="tag-input-wrap">
+                <input type="text" id="tag-input" placeholder="Add tag + press Enter" onkeydown="handleTagKey(event)" style="margin-bottom:0;" />
+              </div>
+              <div class="tag-cloud" id="tag-cloud"></div>
+              <p style="font-size:.65rem;color:#aaa;margin-top:10px;">Suggested: Bethesda, Chevy Chase, Potomac, Real Estate, Market Update, School District</p>
+            </div>
+
+            <!-- Featured Image -->
+            <div class="side-card">
+              <h3>Featured Image</h3>
+              <div id="img-drop-zone" style="border:2px dashed #555;border-radius:6px;padding:18px 12px;text-align:center;cursor:pointer;color:#888;font-size:.72rem;line-height:1.6;transition:border-color .2s,background .2s;"
+                ondragover="event.preventDefault();this.style.borderColor='#d60717';this.style.background='rgba(183,37,69,.07)';"
+                ondragleave="this.style.borderColor='#555';this.style.background='';"
+                ondrop="handleImageDrop(event)"
+                onclick="document.getElementById('img-file-input').click()">
+                <span id="img-drop-label">📷 Drop image here<br>or click to browse</span>
+                <input type="file" id="img-file-input" accept="image/*" style="display:none;" onchange="handleImageFile(this.files[0])" />
+              </div>
+              <div id="img-upload-status" style="font-size:.7rem;margin-top:6px;display:none;"></div>
+              <input type="url" id="post-image" placeholder="or paste image URL…" oninput="previewImage()" style="margin-top:8px;font-size:.72rem;" />
+              <img id="image-thumb" class="image-preview" src="" alt="Preview" />
+            </div>
+            <!-- Meta / SEO -->
+            <div class="side-card">
+              <h3>SEO Meta Description</h3>
+              <textarea id="post-meta" rows="3" placeholder="160-char description for Google search results…" oninput="updateCharCount();updateSEO()"></textarea>
+              <div class="char-counter" id="meta-counter"><span>0</span> / 160 characters</div>
+            </div>
+
+            <!-- Focus Keyphrase -->
+            <div class="side-card">
+              <h3>Focus Keyphrase</h3>
+              <input type="text" id="post-keyphrase" placeholder="e.g. buying home Bethesda MD" style="width:100%;box-sizing:border-box;" oninput="updateSEO()" />
+              <p style="font-size:.65rem;color:#aaa;margin-top:8px;line-height:1.5;">The main keyword you're targeting. Checked against title, meta, and body in the SEO score below.</p>
+            </div>
+
+            <!-- SEO Checklist -->
+            <div class="side-card">
+              <h3>SEO / AEO Score</h3>
+              <div class="seo-bar">
+                <div class="seo-bar-label">
+                  <span>Score</span>
+                  <span id="seo-score-pct">0%</span>
+                </div>
+                <div class="seo-bar-track">
+                  <div class="seo-bar-fill seo-score-bad" id="seo-bar-fill" style="width:0%"></div>
+                </div>
+              </div>
+              <ul class="seo-checks" id="seo-checks"></ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      <!-- SCHOOLS -->
+      <div id="view-schools">
+        <div class="schools-header">
+          <h1>School Data</h1>
+        </div>
+        <div class="gs-note">
+          <strong>How it works:</strong> Select an area below to edit its school listings. Each school links to GreatSchools.org so visitors always see live, current ratings. When GreatSchools updates ratings (once a year), just verify the URLs are correct — no rating numbers to change here. Click <strong>Save Schools</strong> to store, then <strong>Download Updated Page</strong> to get fresh HTML to upload to your site.
+        </div>
+        <div class="area-selector" id="area-selector-tabs"></div>
+        <div id="schools-editor-area"></div>
+      </div>
+
+      <!-- SETTINGS -->
+
+      <!-- MEDIA LIBRARY -->
+      <div id="view-media" style="display:none;">
+        <style>
+          .media-toolbar{display:flex;align-items:center;gap:10px;padding:20px 0 16px;flex-wrap:wrap;}
+          .media-search{display:flex;align-items:center;gap:6px;background:#f5f5f5;border:1px solid #e0e0e0;border-radius:8px;padding:6px 12px;flex:1;min-width:180px;max-width:280px;}
+          .media-search input{border:none;background:transparent;outline:none;font-size:13px;width:100%;}
+          .media-folder-select{border:1px solid #e0e0e0;border-radius:8px;padding:6px 10px;font-size:13px;background:#f5f5f5;}
+          .media-stats{font-size:12px;color:#888;margin-left:auto;}
+          .media-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-bottom:20px;}
+          .media-card{border:1px solid #e8e8e8;border-radius:8px;overflow:hidden;cursor:pointer;transition:border-color .15s,box-shadow .15s;}
+          .media-card:hover{border-color:#aaa;box-shadow:0 2px 8px rgba(0,0,0,.08);}
+          .media-card.selected{border:2px solid #2e7d32;box-shadow:0 0 0 2px rgba(46,125,50,.15);}
+          .media-thumb{width:100%;aspect-ratio:1;object-fit:cover;background:#f5f5f5;display:block;}
+          .media-thumb-icon{width:100%;aspect-ratio:1;display:flex;align-items:center;justify-content:center;background:#f0f0f0;font-size:32px;color:#bbb;}
+          .media-card-info{padding:6px 8px;border-top:1px solid #f0f0f0;}
+          .media-card-name{font-size:11px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#333;}
+          .media-card-size{font-size:10px;color:#aaa;margin-top:1px;}
+          .media-detail{width:256px;flex-shrink:0;border-left:1px solid #e8e8e8;background:#fafafa;padding:16px;overflow-y:auto;border-radius:0 8px 8px 0;}
+          .media-detail-preview{width:100%;aspect-ratio:1;object-fit:contain;background:#f0f0f0;border-radius:8px;margin-bottom:14px;border:1px solid #e8e8e8;}
+          .media-detail-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:#999;margin-bottom:4px;}
+          .media-detail-value{font-size:12px;color:#333;margin-bottom:12px;word-break:break-all;}
+          .media-url-box{display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #e0e0e0;border-radius:6px;padding:6px 8px;margin-bottom:12px;}
+          .media-url-text{flex:1;font-size:11px;color:#555;word-break:break-all;line-height:1.4;}
+          .media-copy-btn{flex-shrink:0;padding:4px 8px;font-size:11px;background:#f5f5f5;border:1px solid #ddd;border-radius:5px;cursor:pointer;white-space:nowrap;}
+          .media-copy-btn:hover{background:#e8e8e8;}
+          .media-action-btn{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:7px;font-size:12px;border:1px solid #e0e0e0;border-radius:6px;cursor:pointer;background:#fff;margin-bottom:6px;}
+          .media-action-btn:hover{background:#f5f5f5;}
+          .media-action-btn.danger{color:#c62828;border-color:#ffcdd2;}
+          .media-action-btn.danger:hover{background:#fff5f5;}
+          .media-upload-zone{border:2px dashed #ccc;border-radius:10px;padding:24px;text-align:center;margin-bottom:16px;color:#888;font-size:13px;cursor:pointer;transition:border-color .2s,background .2s;}
+          .media-upload-zone:hover,.media-upload-zone.dragover{border-color:#2e7d32;background:#f1f8e9;color:#2e7d32;}
+          .media-upload-zone .upload-icon{font-size:32px;margin-bottom:8px;display:block;}
+          .media-body{display:flex;gap:0;flex:1;overflow:hidden;}
+          .media-left{flex:1;overflow-y:auto;padding:0 20px 20px;}
+          .media-loading{text-align:center;padding:60px 0;color:#999;font-size:14px;}
+          .media-empty{text-align:center;padding:60px 0;color:#bbb;font-size:14px;}
+          .media-folder-badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:600;}
+          .badge-blog{background:#e8f5e9;color:#2e7d32;}
+          .badge-headshots{background:#e3f2fd;color:#1565c0;}
+          .badge-other{background:#f3e5f5;color:#6a1b9a;}
+        </style>
+
+        <div class="media-toolbar">
+          <div class="media-search">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="media-search-input" placeholder="Search images…" oninput="filterMedia()" />
+          </div>
+          <select class="media-folder-select" id="media-folder-select" onchange="loadMediaLibrary()">
+            <option value="images">All images</option>
           </select>
           <span class="media-stats" id="media-stats"></span>
         </div>
