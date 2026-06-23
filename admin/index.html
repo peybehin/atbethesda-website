@@ -814,6 +814,10 @@ select.cat-select{margin-bottom:0;}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
         Analytics
       </button>
+      <button class="sidebar-item" id="nav-media" onclick="showView('media')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        Media
+      </button>
             <button class="sidebar-item" id="nav-settings" onclick="showView('settings')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
         Settings
@@ -1042,36 +1046,125 @@ select.cat-select{margin-bottom:0;}
       </div>
 
       <!-- SETTINGS -->
+
+      <!-- MEDIA LIBRARY -->
+      <div id="view-media" style="display:none;">
+        <style>
+          .media-toolbar{display:flex;align-items:center;gap:10px;padding:20px 0 16px;flex-wrap:wrap;}
+          .media-search{display:flex;align-items:center;gap:6px;background:#f5f5f5;border:1px solid #e0e0e0;border-radius:8px;padding:6px 12px;flex:1;min-width:180px;max-width:280px;}
+          .media-search input{border:none;background:transparent;outline:none;font-size:13px;width:100%;}
+          .media-folder-select{border:1px solid #e0e0e0;border-radius:8px;padding:6px 10px;font-size:13px;background:#f5f5f5;}
+          .media-stats{font-size:12px;color:#888;margin-left:auto;}
+          .media-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-bottom:20px;}
+          .media-card{border:1px solid #e8e8e8;border-radius:8px;overflow:hidden;cursor:pointer;transition:border-color .15s,box-shadow .15s;}
+          .media-card:hover{border-color:#aaa;box-shadow:0 2px 8px rgba(0,0,0,.08);}
+          .media-card.selected{border:2px solid #2e7d32;box-shadow:0 0 0 2px rgba(46,125,50,.15);}
+          .media-thumb{width:100%;aspect-ratio:1;object-fit:cover;background:#f5f5f5;display:block;}
+          .media-thumb-icon{width:100%;aspect-ratio:1;display:flex;align-items:center;justify-content:center;background:#f0f0f0;font-size:32px;color:#bbb;}
+          .media-card-info{padding:6px 8px;border-top:1px solid #f0f0f0;}
+          .media-card-name{font-size:11px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#333;}
+          .media-card-size{font-size:10px;color:#aaa;margin-top:1px;}
+          .media-detail{width:256px;flex-shrink:0;border-left:1px solid #e8e8e8;background:#fafafa;padding:16px;overflow-y:auto;border-radius:0 8px 8px 0;}
+          .media-detail-preview{width:100%;aspect-ratio:1;object-fit:contain;background:#f0f0f0;border-radius:8px;margin-bottom:14px;border:1px solid #e8e8e8;}
+          .media-detail-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:#999;margin-bottom:4px;}
+          .media-detail-value{font-size:12px;color:#333;margin-bottom:12px;word-break:break-all;}
+          .media-url-box{display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #e0e0e0;border-radius:6px;padding:6px 8px;margin-bottom:12px;}
+          .media-url-text{flex:1;font-size:11px;color:#555;word-break:break-all;line-height:1.4;}
+          .media-copy-btn{flex-shrink:0;padding:4px 8px;font-size:11px;background:#f5f5f5;border:1px solid #ddd;border-radius:5px;cursor:pointer;white-space:nowrap;}
+          .media-copy-btn:hover{background:#e8e8e8;}
+          .media-action-btn{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:7px;font-size:12px;border:1px solid #e0e0e0;border-radius:6px;cursor:pointer;background:#fff;margin-bottom:6px;}
+          .media-action-btn:hover{background:#f5f5f5;}
+          .media-action-btn.danger{color:#c62828;border-color:#ffcdd2;}
+          .media-action-btn.danger:hover{background:#fff5f5;}
+          .media-upload-zone{border:2px dashed #ccc;border-radius:10px;padding:24px;text-align:center;margin-bottom:16px;color:#888;font-size:13px;cursor:pointer;transition:border-color .2s,background .2s;}
+          .media-upload-zone:hover,.media-upload-zone.dragover{border-color:#2e7d32;background:#f1f8e9;color:#2e7d32;}
+          .media-upload-zone .upload-icon{font-size:32px;margin-bottom:8px;display:block;}
+          .media-body{display:flex;gap:0;flex:1;overflow:hidden;}
+          .media-left{flex:1;overflow-y:auto;padding:0 20px 20px;}
+          .media-loading{text-align:center;padding:60px 0;color:#999;font-size:14px;}
+          .media-empty{text-align:center;padding:60px 0;color:#bbb;font-size:14px;}
+          .media-folder-badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:600;}
+          .badge-blog{background:#e8f5e9;color:#2e7d32;}
+          .badge-headshots{background:#e3f2fd;color:#1565c0;}
+          .badge-other{background:#f3e5f5;color:#6a1b9a;}
+        </style>
+
+        <div class="media-toolbar">
+          <div class="media-search">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="media-search-input" placeholder="Search images…" oninput="filterMedia()" />
+          </div>
+          <select class="media-folder-select" id="media-folder-select" onchange="loadMediaLibrary()">
+            <option value="images">All images</option>
+            <option value="images/blog">blog/</option>
+            <option value="images/headshots">headshots/</option>
+          </select>
+          <span class="media-stats" id="media-stats"></span>
+        </div>
+
+        <div class="media-body">
+          <div class="media-left">
+            <!-- Drop zone -->
+            <div class="media-upload-zone" id="media-drop-zone"
+              ondragover="event.preventDefault();this.classList.add('dragover')"
+              ondragleave="this.classList.remove('dragover')"
+              ondrop="mediaOnDrop(event)">
+              <span class="upload-icon">☁</span>
+              <div>Drop images here or <strong>click to upload</strong></div>
+              <div style="font-size:11px;margin-top:4px;color:#aaa;">JPG, PNG, WebP, SVG — uploads to <span id="media-target-folder">images/blog/</span></div>
+              <input type="file" id="media-file-input" accept="image/*" multiple style="display:none" onchange="mediaOnFileSelect(event)" />
+            </div>
+            <div id="media-upload-progress" style="display:none;font-size:12px;margin-bottom:12px;font-weight:600;padding:8px 12px;border-radius:6px;background:#f5f5f5;"></div>
+
+            <!-- Grid -->
+            <div id="media-grid" class="media-grid"></div>
+            <div id="media-empty" class="media-empty" style="display:none;">No images found in this folder.</div>
+            <div id="media-loading" class="media-loading">Loading images…</div>
+          </div>
+
+          <!-- Detail panel -->
+          <div class="media-detail" id="media-detail" style="display:none;">
+            <div id="media-detail-filename" style="font-size:13px;font-weight:600;margin-bottom:12px;word-break:break-all;"></div>
+            <img id="media-detail-img" class="media-detail-preview" src="" alt="" />
+            <div class="media-detail-label">Folder</div>
+            <div class="media-detail-value"><span id="media-detail-folder" class="media-folder-badge"></span></div>
+            <div class="media-detail-label">Dimensions</div>
+            <div class="media-detail-value" id="media-detail-dims">—</div>
+            <div class="media-detail-label">File size</div>
+            <div class="media-detail-value" id="media-detail-size"></div>
+            <div class="media-detail-label">Site URL</div>
+            <div class="media-url-box">
+              <span class="media-url-text" id="media-detail-url"></span>
+              <button class="media-copy-btn" onclick="mediaCopyUrl('site')">Copy</button>
+            </div>
+            <div class="media-detail-label">Use in post (img tag)</div>
+            <div class="media-url-box">
+              <span class="media-url-text" id="media-detail-imgtag" style="font-family:monospace;font-size:10px;"></span>
+              <button class="media-copy-btn" onclick="mediaCopyUrl('tag')">Copy</button>
+            </div>
+            <button class="media-action-btn" onclick="mediaUseAsFeatured()">⭐ Set as featured image</button>
+            <button class="media-action-btn" style="margin-top:4px;" onclick="window.open(_selectedMedia?.url,'_blank')">↗ Open in new tab</button>
+            <button class="media-action-btn danger" onclick="mediaDeleteSelected()">🗑 Delete from GitHub</button>
+          </div>
+        </div>
+      </div>
+
       <div id="view-settings" style="display:none;">
         <div class="dash-header"><h1>Settings</h1></div>
         <div class="editor-card" style="max-width:600px;">
           <h3>🔗 GitHub Sync</h3>
-          <p style="font-size:.82rem;color:#666;margin-bottom:16px;line-height:1.6;">
-            Enter your GitHub Personal Access Token to publish posts <strong>directly to the live site</strong> — no download or upload steps needed. When you click Publish, the post goes live in ~60 seconds.
+          <p style="font-size:.82rem;color:#666;margin-bottom:12px;line-height:1.6;">
+            Posts are automatically synced to GitHub on every save. No token required — the connection is handled securely server-side via Cloudflare.
           </p>
-          <label class="field-label">Personal Access Token</label>
-          <div style="display:flex;gap:8px;margin-bottom:8px;">
-            <input type="password" id="gh-token-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" style="flex:1;" />
-            <button class="btn btn-primary btn-sm" onclick="saveGhToken()">Save Token</button>
+          <div id="gh-token-status" style="font-size:.82rem;font-weight:600;color:#2e7d32;padding:10px 14px;background:#e8f5e9;border-radius:8px;">
+            ✓ GitHub sync active — posts save automatically to all browsers
           </div>
-          <div id="gh-token-status" style="font-size:.78rem;min-height:20px;font-weight:600;"></div>
-          <p style="font-size:.7rem;color:#aaa;margin-top:16px;line-height:1.8;">
-            How to create a token:<br/>
-            1. Go to github.com → click your profile → Settings<br/>
-            2. Developer settings → Personal access tokens → Fine-grained tokens<br/>
-            3. Generate new token → set repo to <strong>atbethesda-website</strong><br/>
-            4. Under Permissions → Repository permissions → set <strong>Contents: Read and write</strong><br/>
-            5. Generate token → paste it above
-          </p>
         </div>
 
         <div class="editor-card" style="max-width:600px;margin-top:24px;">
-          <h3>📦 Sync All Posts</h3>
+          <h3>📦 Sync Legacy Post Content</h3>
           <p style="font-size:.82rem;color:#666;margin-bottom:16px;line-height:1.6;">
-            Downloads the full content of all your legacy posts from the live site and stores them locally. After syncing, every post opens instantly with its full content ready — no loading delay, no network call needed.
-          </p>
-          <p style="font-size:.78rem;color:#f57c00;margin-bottom:16px;font-weight:600;">
-            ⚠ Make sure your GitHub token is saved above before syncing. This may take a few minutes for 127 posts.
+            Downloads the full body content of your migrated legacy posts. After syncing, every post opens instantly without a network call. No token required.
           </p>
           <button class="btn btn-primary btn-sm" id="sync-all-btn" onclick="syncAllPosts()">⬇ Sync All Posts Now</button>
           <div id="sync-progress" style="font-size:.82rem;margin-top:14px;min-height:20px;font-weight:600;"></div>
@@ -1147,6 +1240,8 @@ select.cat-select{margin-bottom:0;}
 /* ══════════════ AUTH ══════════════ */
 const ADMIN_PASSWORD = 'bethesda2026';
 const AUTH_KEY = 'ab_auth_expiry';
+// API helper — all Worker calls use the admin password as auth
+function apiH() { return { 'Content-Type': 'application/json', 'X-Admin-Password': ADMIN_PASSWORD }; }
 const AUTH_DAYS = 30;
 
 function checkAuth() {
@@ -1177,12 +1272,73 @@ function doLogin() {
 
 /* ══════════════ DATA STORE ══════════════ */
 let posts = JSON.parse(localStorage.getItem('ab_posts') || '[]');
+let _postsSHA = null;   // current SHA of data/admin-posts.json in GitHub
 let editingId = null;
 let tags = [];
 let quill;
 
+// Save to localStorage (instant) + schedule a GitHub sync
 function savePosts() {
   localStorage.setItem('ab_posts', JSON.stringify(posts));
+  _scheduleGitHubSync();
+}
+
+let _syncTimer = null;
+function _scheduleGitHubSync() {
+  clearTimeout(_syncTimer);
+  _syncTimer = setTimeout(_pushPostsToGitHub, 1500);
+}
+
+async function _pushPostsToGitHub() {
+  try {
+    const r = await fetch('/api/posts', {
+      method: 'PUT',
+      headers: apiH(),
+      body: JSON.stringify({ posts, sha: _postsSHA })
+    });
+    if (r.ok) { const d = await r.json(); if (d.sha) _postsSHA = d.sha; }
+  } catch(e) { /* offline — localStorage is the fallback */ }
+}
+
+// On app load: fetch posts from GitHub and refresh the UI
+async function _loadPostsFromGitHub() {
+  try {
+    const r = await fetch('/api/posts', { headers: apiH() });
+    if (!r.ok) return;
+    const d = await r.json();
+    _postsSHA = d.sha;
+    if (d.posts && d.posts.length > 0) {
+      posts = d.posts;
+      localStorage.setItem('ab_posts', JSON.stringify(posts));
+      renderPostList();
+    } else if (posts.length > 0) {
+      // First time: migrate localStorage posts up to GitHub
+      await _pushPostsToGitHub();
+    }
+  } catch(e) { /* use localStorage */ }
+}
+
+// Proxy all GitHub writes through the Worker (PAT never leaves the server)
+async function ghWrite(path, content, message, sha) {
+  const payload = { path, content, message };
+  if (sha) payload.sha = sha;
+  const r = await fetch('/api/github', {
+    method: 'PUT', headers: apiH(), body: JSON.stringify(payload)
+  });
+  const d = await r.json();
+  return { ok: r.ok, sha: d.sha };
+}
+
+async function ghDelete(path, sha, message) {
+  const r = await fetch('/api/github', {
+    method: 'DELETE', headers: apiH(), body: JSON.stringify({ path, sha, message })
+  });
+  return r.ok;
+}
+
+async function ghRead(path) {
+  const r = await fetch('/api/github?path=' + encodeURIComponent(path), { headers: apiH() });
+  return r.ok ? r.json() : null;
 }
 
 /* ══════════════ INDEXED DB (unlimited body content cache) ══════════════ */
@@ -1239,9 +1395,6 @@ function _parsePostHTML(html) {
 }
 
 async function syncAllPosts() {
-  const token = window._ghToken || localStorage.getItem('ab_gh_token');
-  if (!token) { toast('⚠ No GitHub token — add one in Settings first'); return; }
-
   const legacyPosts = posts.filter(p => p.repoPath);
   if (!legacyPosts.length) { toast('No legacy posts found'); return; }
 
@@ -1255,13 +1408,11 @@ async function syncAllPosts() {
   for (const post of legacyPosts) {
     if (prog) prog.textContent = 'Fetching ' + (done + 1) + ' / ' + legacyPosts.length + ' — ' + (post.title || post.slug) + '…';
     try {
-      const resp = await fetch(
-        'https://api.github.com/repos/peybehin/atbethesda-website/contents/' + post.repoPath,
-        { headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' } }
-      );
+      // Public repo: read raw content without a token
+      const rawUrl = 'https://raw.githubusercontent.com/peybehin/atbethesda-website/main/' + post.repoPath;
+      const resp = await fetch(rawUrl);
       if (!resp.ok) { failed++; done++; continue; }
-      const data = await resp.json();
-      const html = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
+      const html = await resp.text();
       const parsed = _parsePostHTML(html);
       await storeBodyData(post.id, parsed);
 
@@ -1286,7 +1437,7 @@ async function syncAllPosts() {
 
 /* ══════════════ INIT ══════════════ */
 function initApp() {
-  // Load GitHub token
+  // Load GitHub token (kept for legacy syncAllPosts)
   window._ghToken = localStorage.getItem('ab_gh_token') || null;
 
   // Init Quill
@@ -1309,6 +1460,7 @@ function initApp() {
   document.getElementById('post-date').value = new Date().toISOString().split('T')[0];
 
   showView('analytics');
+  _loadPostsFromGitHub(); // async: refresh from GitHub in background
 
   // Check for due scheduled posts every minute
   setInterval(() => renderPostList(), 60000);
@@ -1321,6 +1473,7 @@ function showView(view, filterCat, filterStat) {
   document.getElementById('view-settings').style.display = 'none';
   document.getElementById('view-leads').style.display = 'none';
   document.getElementById('view-analytics').style.display = 'none';
+  const _vmedia = document.getElementById('view-media'); if (_vmedia) _vmedia.style.display = 'none';
   document.querySelectorAll('.sidebar-item').forEach(el => el.classList.remove('active'));
 
   if (view === 'dashboard') {
@@ -1346,15 +1499,12 @@ function showView(view, filterCat, filterStat) {
     document.getElementById('nav-settings').classList.add('active');
     document.getElementById('topbar-title').textContent = 'Settings';
     document.getElementById('topbar-actions').innerHTML = '';
-    // Show current token status
-    const hasToken = !!localStorage.getItem('ab_gh_token');
-    const statusEl = document.getElementById('gh-token-status');
-    if (statusEl) {
-      statusEl.textContent = hasToken
-        ? '✓ GitHub token is set — Publish will sync directly to atbethesda.com.'
-        : '⚠ No token set — Publish will download the file instead.';
-      statusEl.style.color = hasToken ? '#2e7d32' : '#f57c00';
-    }
+  } else if (view === 'media') {
+    document.getElementById('view-media').style.display = 'block';
+    document.getElementById('nav-media').classList.add('active');
+    document.getElementById('topbar-title').textContent = 'Media Library';
+    document.getElementById('topbar-actions').innerHTML = '<button class="btn btn-primary btn-sm" onclick="mediaOpenUpload()">+ Upload Images</button>';
+    if (!window._mediaLoaded) loadMediaLibrary();
   } else if (view === 'editor') {
     document.getElementById('view-editor').style.display = 'block';
     document.getElementById('nav-editor').classList.add('active');
@@ -1451,18 +1601,13 @@ function editPost(id) {
 }
 
 async function loadLegacyContent(post) {
-  const token = window._ghToken || localStorage.getItem('ab_gh_token');
-  if (!token) return;
   toast('⏳ Loading existing content from live site…');
   try {
-    const resp = await fetch(
-      'https://api.github.com/repos/peybehin/atbethesda-website/contents/' + post.repoPath,
-      { headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' } }
-    );
+    // Public repo — read raw content without a token
+    const rawUrl = 'https://raw.githubusercontent.com/peybehin/atbethesda-website/main/' + post.repoPath;
+    const resp = await fetch(rawUrl);
     if (!resp.ok) { toast('⚠ Could not fetch live content.'); return; }
-    const data = await resp.json();
-    const _bytes = atob(data.content.replace(/\n/g, ''));
-    const html = decodeURIComponent(escape(_bytes));
+    const html = await resp.text();
 
     // Extract post body
     const pbStart = html.indexOf('class="post-body"');
@@ -1727,9 +1872,6 @@ function handleImageDrop(e) {
 
 async function handleImageFile(file) {
   if (!file) return;
-  const token = window._ghToken || localStorage.getItem('ab_gh_token');
-  if (!token) { toast('⚠ No GitHub token — add one in Settings first'); return; }
-
   const statusEl = document.getElementById('img-upload-status');
   const labelEl = document.getElementById('img-drop-label');
   statusEl.style.display = 'block';
@@ -1747,30 +1889,12 @@ async function handleImageFile(file) {
       reader.readAsDataURL(file);
     });
 
-    // Check for existing file to get SHA (needed for update)
-    const checkRes = await fetch('https://api.github.com/repos/peybehin/atbethesda-website/contents/' + path, {
-      headers: { Authorization: 'token ' + token, Accept: 'application/vnd.github+json' }
-    });
-    const sha = checkRes.ok ? (await checkRes.json()).sha : null;
+    // Get SHA if file already exists (required to overwrite)
+    const existing = await ghRead(path);
+    const sha = existing?.sha || null;
+    const result = await ghWrite(path, base64, 'Upload blog image: ' + filename, sha);
 
-    const putRes = await fetch('https://api.github.com/repos/peybehin/atbethesda-website/contents/' + path, {
-      method: 'PUT',
-      headers: {
-        Authorization: 'token ' + token,
-        'Content-Type': 'application/json',
-        Accept: 'application/vnd.github+json'
-      },
-      body: JSON.stringify({
-        message: 'Upload blog image: ' + filename,
-        content: base64,
-        ...(sha ? { sha } : {})
-      })
-    });
-
-    if (!putRes.ok) {
-      const err = await putRes.json();
-      throw new Error(err.message || putRes.status);
-    }
+    if (!result.ok) throw new Error('Upload failed');
 
     const deployedUrl = '/images/blog/' + filename;
     document.getElementById('post-image').value = deployedUrl;
@@ -1779,7 +1903,6 @@ async function handleImageFile(file) {
     statusEl.style.color = '#2e7d32';
     statusEl.textContent = '✓ Uploaded — live in ~60s';
     if (labelEl) labelEl.innerHTML = '✓ ' + filename;
-    // Reset file input so same file can be re-selected
     const fi = document.getElementById('img-file-input');
     if (fi) fi.value = '';
   } catch(err) {
@@ -1792,14 +1915,9 @@ async function handleImageFile(file) {
 const CAT_MAP = {'Buying':'Buyers Corner','Selling':'Sellers','News':'Market Updates','Renting':'Renting','Pey on The Street':'Local + Life','Finance':'Finance'};
 
 async function updateVlogIndex(post) {
-  const token = window._ghToken || localStorage.getItem('ab_gh_token');
-  if (!token) return;
   try {
-    const res = await fetch('https://api.github.com/repos/peybehin/atbethesda-website/contents/vlog/index.html', {
-      headers: { Authorization: 'token ' + token, Accept: 'application/vnd.github+json' }
-    });
-    if (!res.ok) return;
-    const meta = await res.json();
+    const meta = await ghRead('vlog/index.html');
+    if (!meta || !meta.content) return;
     const bytes = Uint8Array.from(atob(meta.content.replace(/\n/g,'')), c => c.charCodeAt(0));
     let vlog = new TextDecoder('utf-8').decode(bytes);
 
@@ -1832,24 +1950,15 @@ async function updateVlogIndex(post) {
     outBytes.forEach(b => bin += String.fromCharCode(b));
     const b64 = btoa(bin);
 
-    await fetch('https://api.github.com/repos/peybehin/atbethesda-website/contents/vlog/index.html', {
-      method: 'PUT',
-      headers: { Authorization: 'token ' + token, 'Content-Type': 'application/json', Accept: 'application/vnd.github+json' },
-      body: JSON.stringify({ message: 'Add post to blog index: ' + post.slug, content: b64, sha: meta.sha })
-    });
-  } catch(e) { /* silent — post page still published */ }
+    await ghWrite('vlog/index.html', b64, 'Add post to blog index: ' + post.slug, meta.sha);
+  } catch(e) { /* silent */ }
 }
 
 /* ══════════════ POSTS.JSON UPDATE ══════════════ */
 async function updatePostsJSON(post) {
-  const token = window._ghToken || localStorage.getItem('ab_gh_token');
-  if (!token) return;
   try {
-    const res = await fetch('https://api.github.com/repos/peybehin/atbethesda-website/contents/posts.json', {
-      headers: { Authorization: 'token ' + token, Accept: 'application/vnd.github+json' }
-    });
-    if (!res.ok) return;
-    const meta = await res.json();
+    const meta = await ghRead('posts.json');
+    if (!meta || !meta.content) return;
     const bytes = Uint8Array.from(atob(meta.content.replace(/\n/g,'')), c => c.charCodeAt(0));
     const arr = JSON.parse(new TextDecoder('utf-8').decode(bytes));
     // Skip if already in list
@@ -1868,11 +1977,7 @@ async function updatePostsJSON(post) {
     const outBytes = new TextEncoder().encode(JSON.stringify(arr, null, 2));
     let bin = '';
     outBytes.forEach(b => bin += String.fromCharCode(b));
-    await fetch('https://api.github.com/repos/peybehin/atbethesda-website/contents/posts.json', {
-      method: 'PUT',
-      headers: { Authorization: 'token ' + token, 'Content-Type': 'application/json', Accept: 'application/vnd.github+json' },
-      body: JSON.stringify({ message: 'Add post to posts.json: ' + post.slug, content: btoa(bin), sha: meta.sha })
-    });
+    await ghWrite('posts.json', btoa(bin), 'Add post to posts.json: ' + post.slug, meta.sha);
   } catch(e) { /* silent */ }
 }
 
@@ -2054,73 +2159,31 @@ async function publishNow() {
 
 /* ══════════════ GITHUB SYNC ══════════════ */
 async function pushPostToGitHub(post, html) {
-  const token = window._ghToken || localStorage.getItem('ab_gh_token');
-  if (!token) {
-    // No token — fall back to download
-    downloadFile(post.slug + '.html', html);
-    toast('📥 Downloaded — add a GitHub token in Settings to auto-publish.');
-    return false;
-  }
-
   const path = post.repoPath || (post.slug + '/index.html');
-  // Encode as base64 (btoa handles only Latin-1; encodeURIComponent + unescape handles full Unicode)
   const b64 = btoa(unescape(encodeURIComponent(html)));
-
   toast('⏳ Publishing to atbethesda.com…');
-
   try {
-    // GET existing file SHA (required to update an existing file)
+    // Get existing SHA (needed to update)
     let sha = null;
-    const checkR = await fetch(
-      'https://api.github.com/repos/peybehin/atbethesda-website/contents/' + path,
-      { headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' } }
-    );
-    if (checkR.ok) { const existing = await checkR.json(); sha = existing.sha; }
-
-    const body = { message: 'Publish: ' + (post.title || post.slug), content: b64 };
-    if (sha) body.sha = sha;
-
-    const pushR = await fetch(
-      'https://api.github.com/repos/peybehin/atbethesda-website/contents/' + path,
-      {
-        method: 'PUT',
-        headers: { 'Authorization': 'token ' + token, 'Content-Type': 'application/json', 'Accept': 'application/vnd.github.v3+json' },
-        body: JSON.stringify(body)
-      }
-    );
-
-    if (pushR.ok) {
+    const existing = await ghRead(path);
+    if (existing && existing.sha) sha = existing.sha;
+    const result = await ghWrite(path, b64, 'Publish: ' + (post.title || post.slug), sha);
+    if (result.ok) {
       toast('✅ Live in ~60 sec → atbethesda.com/' + post.slug + '/');
       return true;
     } else {
-      const err = await pushR.json().catch(() => ({}));
-      toast('❌ GitHub error: ' + (err.message || pushR.status) + ' — downloading instead');
+      toast('❌ Publish failed — downloading instead');
       downloadFile(post.slug + '.html', html);
       return false;
     }
-  } catch (err) {
+  } catch(err) {
     toast('❌ Network error — downloading instead');
     downloadFile(post.slug + '.html', html);
     return false;
   }
 }
 
-function saveGhToken() {
-  const token = document.getElementById('gh-token-input').value.trim();
-  const statusEl = document.getElementById('gh-token-status');
-  if (!token) {
-    localStorage.removeItem('ab_gh_token');
-    window._ghToken = null;
-    statusEl.style.color = '#f57c00';
-    statusEl.textContent = 'Token cleared. Publish will download files instead.';
-    return;
-  }
-  localStorage.setItem('ab_gh_token', token);
-  window._ghToken = token;
-  document.getElementById('gh-token-input').value = '';
-  statusEl.style.color = '#2e7d32';
-  statusEl.textContent = '✓ Token saved! Publish now syncs directly to atbethesda.com.';
-}
+// saveGhToken() removed — PAT now lives server-side in Cloudflare Pages env vars
 
 /* ══════════════ GENERATE HTML ══════════════ */
 function generatePost() {
@@ -2718,34 +2781,20 @@ async function handleImgFile(file) {
   status.style.color = '#888';
   status.textContent = 'Uploading…';
   
-  const GITHUB_TOKEN = document.getElementById('pw-input')?.dataset?.token || window._ghToken;
-  if (!GITHUB_TOKEN) { status.style.color='#c00'; status.textContent='Not logged in'; return; }
-  
-  // Read file as base64
   const b64 = await new Promise((res, rej) => {
     const reader = new FileReader();
     reader.onload = () => res(reader.result.split(',')[1]);
     reader.onerror = rej;
     reader.readAsDataURL(file);
   });
-  
+
   const filename = file.name.replace(/[^a-zA-Z0-9._-]/g, '-').toLowerCase();
   const path = 'images/blog/' + filename;
-  
-  // Check if already exists
-  const checkR = await fetch('https://api.github.com/repos/peybehin/atbethesda-website/contents/' + path, {
-    headers: {'Authorization': 'token ' + GITHUB_TOKEN}
-  });
-  const body = {message: 'Upload image: ' + filename, content: b64};
-  if (checkR.ok) { const existing = await checkR.json(); body.sha = existing.sha; }
-  
-  const pushR = await fetch('https://api.github.com/repos/peybehin/atbethesda-website/contents/' + path, {
-    method: 'PUT',
-    headers: {'Authorization': 'token ' + GITHUB_TOKEN, 'Content-Type': 'application/json'},
-    body: JSON.stringify(body)
-  });
-  
-  if (pushR.ok) {
+  const existing = await ghRead(path);
+  const sha = existing?.sha || null;
+  const result = await ghWrite(path, b64, 'Upload image: ' + filename, sha);
+
+  if (result.ok) {
     const newUrl = '/images/blog/' + filename;
     document.getElementById('post-image').value = newUrl;
     previewImage();
@@ -2753,7 +2802,7 @@ async function handleImgFile(file) {
     status.textContent = '✓ Uploaded: ' + filename;
   } else {
     status.style.color = '#c00';
-    status.textContent = 'Upload failed (' + pushR.status + ')';
+    status.textContent = 'Upload failed';
   }
 }
 // ───────────────────────────────────────────────────────────────────
@@ -2770,6 +2819,187 @@ function openImport() {
 function closeImport() {
   document.getElementById('import-overlay').style.display = 'none';
 }
+
+/* ══════════════ MEDIA LIBRARY ══════════════ */
+let _mediaFiles = [];      // all files from GitHub
+let _mediaFiltered = [];   // after search/folder filter
+let _selectedMedia = null; // currently selected file
+window._mediaLoaded = false;
+
+function mediaOpenUpload() {
+  document.getElementById('media-file-input').click();
+}
+
+async function loadMediaLibrary(showLoading = true) {
+  const folder = document.getElementById('media-folder-select')?.value || 'images';
+  document.getElementById('media-target-folder').textContent = folder + '/';
+  if (showLoading) {
+    document.getElementById('media-loading').style.display = 'block';
+    document.getElementById('media-grid').innerHTML = '';
+    document.getElementById('media-empty').style.display = 'none';
+  }
+
+  // Fetch directory listing via Worker
+  const data = await ghRead(folder);
+  document.getElementById('media-loading').style.display = 'none';
+
+  if (!data || !Array.isArray(data)) {
+    document.getElementById('media-empty').style.display = 'block';
+    return;
+  }
+
+  _mediaFiles = data
+    .filter(f => f.type === 'file' && /\.(jpe?g|png|gif|webp|svg|avif)$/i.test(f.name))
+    .map(f => ({
+      name: f.name,
+      path: f.path,
+      sha: f.sha,
+      size: f.size,
+      url: '/' + f.path,           // site-relative URL
+      download_url: f.download_url  // raw GitHub CDN URL for thumbnails
+    }));
+
+  window._mediaLoaded = true;
+  filterMedia();
+}
+
+function filterMedia() {
+  const q = (document.getElementById('media-search-input')?.value || '').toLowerCase();
+  _mediaFiltered = q ? _mediaFiles.filter(f => f.name.toLowerCase().includes(q)) : [..._mediaFiles];
+  renderMediaGrid();
+}
+
+function renderMediaGrid() {
+  const grid = document.getElementById('media-grid');
+  const empty = document.getElementById('media-empty');
+  const stats = document.getElementById('media-stats');
+
+  if (!_mediaFiltered.length) {
+    grid.innerHTML = '';
+    empty.style.display = 'block';
+    stats.textContent = '';
+    return;
+  }
+  empty.style.display = 'none';
+  const totalKB = Math.round(_mediaFiles.reduce((s, f) => s + f.size, 0) / 1024);
+  stats.textContent = _mediaFiltered.length + ' of ' + _mediaFiles.length + ' images · ' + (totalKB > 1024 ? (totalKB/1024).toFixed(1) + ' MB' : totalKB + ' KB');
+
+  grid.innerHTML = _mediaFiltered.map((f, i) => `
+    <div class="media-card${_selectedMedia?.path === f.path ? ' selected' : ''}" onclick="selectMedia(${i})">
+      <img class="media-thumb" src="${f.download_url}" alt="${f.name}" loading="lazy"
+           onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
+      <div class="media-thumb-icon" style="display:none">🖼</div>
+      <div class="media-card-info">
+        <div class="media-card-name" title="${f.name}">${f.name}</div>
+        <div class="media-card-size">${(f.size/1024).toFixed(1)} KB</div>
+      </div>
+    </div>`).join('');
+}
+
+function selectMedia(idx) {
+  _selectedMedia = _mediaFiltered[idx];
+  const detail = document.getElementById('media-detail');
+  detail.style.display = 'block';
+
+  document.getElementById('media-detail-filename').textContent = _selectedMedia.name;
+  const img = document.getElementById('media-detail-img');
+  img.src = _selectedMedia.download_url;
+  img.onload = () => {
+    document.getElementById('media-detail-dims').textContent = img.naturalWidth + ' × ' + img.naturalHeight + ' px';
+  };
+
+  const folder = _selectedMedia.path.split('/').slice(0,-1).join('/');
+  const badge = document.getElementById('media-detail-folder');
+  badge.textContent = folder || 'images';
+  badge.className = 'media-folder-badge ' + (folder.includes('blog') ? 'badge-blog' : folder.includes('headshot') ? 'badge-headshots' : 'badge-other');
+
+  document.getElementById('media-detail-size').textContent = (_selectedMedia.size / 1024).toFixed(1) + ' KB';
+  document.getElementById('media-detail-url').textContent = _selectedMedia.url;
+  document.getElementById('media-detail-imgtag').textContent = '<img src="' + _selectedMedia.url + '" alt="" />';
+
+  renderMediaGrid(); // re-render to show selection
+}
+
+function mediaCopyUrl(type) {
+  if (!_selectedMedia) return;
+  const text = type === 'tag'
+    ? '<img src="' + _selectedMedia.url + '" alt="" />'
+    : _selectedMedia.url;
+  navigator.clipboard.writeText(text).then(() => toast('✓ Copied to clipboard'));
+}
+
+function mediaUseAsFeatured() {
+  if (!_selectedMedia) return;
+  const field = document.getElementById('post-image');
+  if (field) { field.value = _selectedMedia.url; previewImage(); toast('✓ Set as featured image'); }
+  else toast('⚠ Open the post editor first');
+}
+
+async function mediaDeleteSelected() {
+  if (!_selectedMedia) return;
+  if (!confirm('Delete ' + _selectedMedia.name + ' from GitHub? This cannot be undone.')) return;
+  const ok = await ghDelete(_selectedMedia.path, _selectedMedia.sha, 'Admin: delete image ' + _selectedMedia.name);
+  if (ok) {
+    toast('🗑 Deleted: ' + _selectedMedia.name);
+    _selectedMedia = null;
+    document.getElementById('media-detail').style.display = 'none';
+    window._mediaLoaded = false;
+    loadMediaLibrary();
+  } else {
+    toast('❌ Delete failed');
+  }
+}
+
+function mediaOnDrop(e) {
+  e.preventDefault();
+  document.getElementById('media-drop-zone').classList.remove('dragover');
+  const files = [...(e.dataTransfer?.files || [])].filter(f => f.type.startsWith('image/'));
+  if (files.length) mediaUploadFiles(files);
+}
+
+function mediaOnFileSelect(e) {
+  const files = [...e.target.files];
+  if (files.length) mediaUploadFiles(files);
+  e.target.value = '';
+}
+
+async function mediaUploadFiles(files) {
+  const folder = (document.getElementById('media-folder-select')?.value || 'images/blog');
+  const prog = document.getElementById('media-upload-progress');
+  prog.style.display = 'block';
+  prog.style.color = '#555';
+  prog.style.background = '#f5f5f5';
+
+  let done = 0;
+  for (const file of files) {
+    const filename = file.name.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9._-]/g, '-');
+    const path = folder + '/' + filename;
+    prog.textContent = 'Uploading ' + (done+1) + '/' + files.length + ': ' + filename + '…';
+    try {
+      const b64 = await new Promise((res, rej) => {
+        const r = new FileReader();
+        r.onload = () => res(r.result.split(',')[1]);
+        r.onerror = rej;
+        r.readAsDataURL(file);
+      });
+      const existing = await ghRead(path);
+      const sha = existing?.sha || null;
+      const result = await ghWrite(path, b64, 'Admin: upload ' + filename, sha);
+      if (result.ok) done++;
+      else prog.textContent = '❌ Failed: ' + filename;
+    } catch(e) {
+      prog.textContent = '❌ Error: ' + e.message;
+    }
+  }
+
+  prog.style.color = done === files.length ? '#2e7d32' : '#f57c00';
+  prog.style.background = done === files.length ? '#e8f5e9' : '#fff8e1';
+  prog.textContent = done + '/' + files.length + ' uploaded — live in ~60s';
+  window._mediaLoaded = false;
+  setTimeout(() => loadMediaLibrary(false), 1000);
+  setTimeout(() => { prog.style.display = 'none'; }, 5000);
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   // Auto-login if session still valid (must run after DOM is ready)
   checkAuth();
