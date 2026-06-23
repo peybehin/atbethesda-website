@@ -778,7 +778,7 @@ select.cat-select{margin-bottom:0;}
     </div>
     <div class="sidebar-section">
       <div class="sidebar-label">Content</div>
-      <button class="sidebar-item active" id="nav-dashboard" onclick="showView('dashboard')">
+      <button class="sidebar-item active" id="nav-dashboard" onclick="switchTab('draft');showView('dashboard')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
         All Posts
       </button>
@@ -859,7 +859,7 @@ select.cat-select{margin-bottom:0;}
       <div id="view-dashboard">
         <!-- Status Tabs -->
         <div class="status-tabs">
-          <button class="status-tab active" id="tab-all" onclick="switchTab('all')">
+          <button class="status-tab" id="tab-all" onclick="switchTab('all')">
             All <span class="tab-count" id="count-all">0</span>
           </button>
           <button class="status-tab" id="tab-published" onclick="switchTab('published')">
@@ -868,7 +868,7 @@ select.cat-select{margin-bottom:0;}
           <button class="status-tab tab-scheduled" id="tab-scheduled" onclick="switchTab('scheduled')">
             Scheduled <span class="tab-count" id="count-scheduled">0</span>
           </button>
-          <button class="status-tab tab-drafts" id="tab-drafts" onclick="switchTab('draft')">
+          <button class="status-tab tab-drafts active" id="tab-drafts" onclick="switchTab('draft')">
             Drafts <span class="tab-count" id="count-draft">0</span>
           </button>
         </div>
@@ -1381,7 +1381,7 @@ function showView(view, filterCat, filterStat) {
     document.getElementById('nav-editor').classList.add('active');
     document.getElementById('topbar-title').textContent = editingId ? 'Edit Post' : 'New Post';
     document.getElementById('topbar-actions').innerHTML = `
-      <button class="btn btn-outline btn-sm" onclick="showView('dashboard')">← All Posts</button>
+      <button class="btn btn-outline btn-sm" onclick="switchTab('draft');showView('dashboard')">← All Posts</button>
       <button class="btn btn-success btn-sm" onclick="generatePost()">⬇ Generate HTML</button>
     `;
     updateSEO();
@@ -1591,7 +1591,7 @@ function isPostDue(post) {
   return dt <= new Date();
 }
 
-let activeTab = 'all';
+let activeTab = 'draft';
 
 function switchTab(tab) {
   activeTab = tab;
@@ -1647,12 +1647,21 @@ function renderPostList(filterCat, filterStat) {
     : posts.filter(p => (p.status || 'draft') === activeTab);
   if (filterCat) filtered = filtered.filter(p => p.category === filterCat);
 
-  // Sort: scheduled by date asc, others by date desc
+  // Sort: scheduled by date asc, all by date-added (ID timestamp) desc, others by date desc
+  const getAddedTs = p => { const m = (p.id||'').match(/(\d{10,})/); return m ? parseInt(m[1]) : 0; };
   filtered.sort((a, b) => {
+    if (activeTab === 'scheduled') {
+      if (!a.date) return 1; if (!b.date) return -1;
+      return new Date(a.date) - new Date(b.date);
+    }
+    if (activeTab === 'all') {
+      const ta = getAddedTs(a), tb = getAddedTs(b);
+      if (ta || tb) return tb - ta;
+      if (!a.date) return 1; if (!b.date) return -1;
+      return new Date(b.date) - new Date(a.date);
+    }
     if (!a.date) return 1; if (!b.date) return -1;
-    return activeTab === 'scheduled'
-      ? new Date(a.date) - new Date(b.date)
-      : new Date(b.date) - new Date(a.date);
+    return new Date(b.date) - new Date(a.date);
   });
 
   if (filtered.length === 0) {
@@ -2452,8 +2461,8 @@ function toast(msg) {
   setTimeout(() => el.classList.remove('show'), 3500);
 }
 
-/* Start on dashboard */
-showView('dashboard');
+/* Start on analytics */
+showView('analytics');
 
 /* ══════════════ SCHOOLS DATA ══════════════ */
 const AREAS_SCHOOLS_DEFAULT = {
