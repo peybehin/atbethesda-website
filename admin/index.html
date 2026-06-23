@@ -1055,15 +1055,15 @@ select.cat-select{margin-bottom:0;}
           .media-search input{border:none;background:transparent;outline:none;font-size:13px;width:100%;}
           .media-folder-select{border:1px solid #e0e0e0;border-radius:8px;padding:6px 10px;font-size:13px;background:#f5f5f5;}
           .media-stats{font-size:12px;color:#888;margin-left:auto;}
-          .media-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-bottom:20px;}
-          .media-card{border:1px solid #e8e8e8;border-radius:8px;overflow:hidden;cursor:pointer;transition:border-color .15s,box-shadow .15s;}
+          .media-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:8px;}
+          .media-card{border:1px solid #e8e8e8;border-radius:5px;overflow:hidden;cursor:pointer;transition:border-color .15s,box-shadow .15s;background:#f8f8f8;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;position:relative;}.media-card img{width:100%;height:100%;object-fit:contain;display:block;}
           .media-card:hover{border-color:#aaa;box-shadow:0 2px 8px rgba(0,0,0,.08);}
           .media-card.selected{border:2px solid #2e7d32;box-shadow:0 0 0 2px rgba(46,125,50,.15);}
           .media-thumb{width:100%;aspect-ratio:1;object-fit:cover;background:#f5f5f5;display:block;}
           .media-thumb-icon{width:100%;aspect-ratio:1;display:flex;align-items:center;justify-content:center;background:#f0f0f0;font-size:32px;color:#bbb;}
           .media-card-info{padding:6px 8px;border-top:1px solid #f0f0f0;}
-          .media-card-name{font-size:11px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#333;}
-          .media-card-size{font-size:10px;color:#aaa;margin-top:1px;}
+          .media-card-name{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.6);color:#fff;font-size:9px;padding:2px 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+          .media-card-size{display:none;}
           .media-detail{width:256px;flex-shrink:0;border-left:1px solid #e8e8e8;background:#fafafa;padding:16px;overflow-y:auto;border-radius:0 8px 8px 0;}
           .media-detail-preview{width:100%;aspect-ratio:1;object-fit:contain;background:#f0f0f0;border-radius:8px;margin-bottom:14px;border:1px solid #e8e8e8;}
           .media-detail-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:#999;margin-bottom:4px;}
@@ -1100,6 +1100,13 @@ select.cat-select{margin-bottom:0;}
   .media-compress-btn:hover{background:#fff3cd;}
   .media-rename-btn{display:flex;align-items:center;justify-content:center;gap:5px;width:100%;padding:7px;margin:3px 0;border:1px solid #ddd;border-radius:5px;background:#fff;cursor:pointer;font-size:12px;}
   .media-rename-btn:hover{background:#f0f0f0;}
+
+  .media-pagination{display:flex;align-items:center;justify-content:center;gap:4px;padding:8px 0 4px;}
+  .media-pg-btn{min-width:30px;height:28px;padding:0 6px;border:1px solid #ddd;border-radius:4px;background:#fff;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;}
+  .media-pg-btn:hover:not(:disabled){background:#f0f0f0;}
+  .media-pg-btn.active{background:#4a86f7;color:#fff;border-color:#4a86f7;font-weight:600;}
+  .media-pg-btn:disabled{opacity:.4;cursor:default;}
+  .media-pg-ellipsis{font-size:12px;color:#999;padding:0 2px;}
 </style>
 
         <div class="media-toolbar">
@@ -1144,7 +1151,8 @@ select.cat-select{margin-bottom:0;}
 
             <!-- Grid -->
             <div id="media-grid" class="media-grid"></div>
-            <div id="media-empty" class="media-empty" style="display:none;">No images found in this folder.</div>
+            <div class="media-pagination" id="media-pagination"></div>
+          <div id="media-empty" class="media-empty" style="display:none;">No images found in this folder.</div>
             <div id="media-loading" class="media-loading">Loading images…</div>
           </div>
 
@@ -2855,7 +2863,8 @@ function closeImport() {
 let _mediaFiles = [];      // all files from GitHub
 let _mediaFiltered = [];   // after search/folder filter
 let _selectedMedia = null;
-window._mediaUsage = null; // currently selected file
+window._mediaUsage = null;
+window._mediaPage = 0; // currently selected file
 window._mediaLoaded = false;
 
 function mediaOpenUpload() {
@@ -2947,26 +2956,69 @@ function filterMedia() {
   else if (sort === 'size-desc') files.sort((a,b)=>(b.size||0)-(a.size||0));
   else if (sort === 'size-asc') files.sort((a,b)=>(a.size||0)-(b.size||0));
   else if (sort === 'oldest') files = [...files].reverse();
+  window._mediaPage = 0;
   _mediaFiltered = files;
   renderMediaGrid();
 }
 function renderMediaGrid() {
   const grid = document.getElementById('media-grid');
   const empty = document.getElementById('media-empty');
+  const pgEl = document.getElementById('media-pagination');
+  const PER_PAGE = 50;
+
   if (!_mediaFiltered || !_mediaFiltered.length) {
     grid.innerHTML = '';
     if (empty) empty.style.display = 'flex';
+    if (pgEl) pgEl.innerHTML = '';
     return;
   }
   if (empty) empty.style.display = 'none';
-  grid.innerHTML = _mediaFiltered.map((f, i) => {
+
+  const totalPages = Math.ceil(_mediaFiltered.length / PER_PAGE);
+  if (window._mediaPage >= totalPages) window._mediaPage = totalPages - 1;
+  if (window._mediaPage < 0) window._mediaPage = 0;
+  const page = window._mediaPage;
+  const start = page * PER_PAGE;
+  const pageFiles = _mediaFiltered.slice(start, start + PER_PAGE);
+
+  grid.innerHTML = pageFiles.map((f, i) => {
+    const absIdx = start + i;
     const used = window._mediaUsage && window._mediaUsage[f.name];
     const badge = (window._mediaUsage != null)
       ? (used ? '<span class="media-usage-badge used">In use</span>' : '<span class="media-usage-badge unused">Unused</span>')
       : '';
-    const kb = f.size ? (f.size >= 1048576 ? (f.size/1048576).toFixed(1)+' MB' : Math.round(f.size/1024)+' KB') : '';
-    return `<div class="media-card${_selectedMedia?.path===f.path?' selected':''}" onclick="selectMedia(${i})">${badge}<img src="${f.download_url}" loading="lazy" onerror="this.style.opacity='.3'"><div class="media-card-name">${f.name}</div><div class="media-card-size">${kb}</div></div>`;
+    return `<div class="media-card${_selectedMedia?.path===f.path?' selected':''}" onclick="selectMedia(${absIdx})" title="${f.name}">${badge}<img src="${f.download_url}" loading="lazy" onerror="this.style.opacity='.3'"><div class="media-card-name">${f.name}</div></div>`;
   }).join('');
+
+  // Render pagination
+  if (pgEl) {
+    if (totalPages <= 1) { pgEl.innerHTML = ''; return; }
+    let html = '';
+    html += `<button class="media-pg-btn" onclick="goToMediaPage(0)" ${page===0?'disabled':''} title="First">&laquo;</button>`;
+    html += `<button class="media-pg-btn" onclick="goToMediaPage(${page-1})" ${page===0?'disabled':''} title="Previous">&lsaquo;</button>`;
+
+    // Page number buttons — show up to 5 around current page
+    const half = 2;
+    let pStart = Math.max(0, page - half);
+    let pEnd = Math.min(totalPages - 1, pStart + 4);
+    pStart = Math.max(0, pEnd - 4);
+    if (pStart > 0) html += `<span class="media-pg-ellipsis">${pStart > 1 ? '…' : ''}</span>`;
+    for (let p = pStart; p <= pEnd; p++) {
+      html += `<button class="media-pg-btn${p===page?' active':''}" onclick="goToMediaPage(${p})">${p+1}</button>`;
+    }
+    if (pEnd < totalPages - 1) html += `<span class="media-pg-ellipsis">${pEnd < totalPages - 2 ? '…' : ''}</span>`;
+    html += `<button class="media-pg-btn" onclick="goToMediaPage(${page+1})" ${page===totalPages-1?'disabled':''} title="Next">&rsaquo;</button>`;
+    html += `<button class="media-pg-btn" onclick="goToMediaPage(${totalPages-1})" ${page===totalPages-1?'disabled':''} title="Last">&raquo;</button>`;
+    pgEl.innerHTML = html;
+  }
+}
+
+function goToMediaPage(n) {
+  const total = Math.ceil((_mediaFiltered||[]).length / 50);
+  window._mediaPage = Math.max(0, Math.min(n, total - 1));
+  renderMediaGrid();
+  // Scroll grid into view
+  document.getElementById('media-grid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function selectMedia(idx) {
