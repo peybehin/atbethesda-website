@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>@Bethesda Admin Ã¢ÂÂ Blog Editor</title>
+<title>@Bethesda Admin — Blog Editor</title>
 <meta name="robots" content="noindex, nofollow" />
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet" />
 <!-- Quill rich text editor -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js"></script>
 <script>
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ ANALYTICS Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════ ANALYTICS ══════════════ */
 let analyticsLoaded = false;
 let currentAnalyticsDays = 7;
 
@@ -28,7 +28,7 @@ async function loadAnalytics(days, btn) {
     renderAnalytics(data);
     analyticsLoaded = true;
   } catch(e) {
-    body.innerHTML = '<div class="analytics-error">Ã¢ÂÂ  ' + e.message + '</div>';
+    body.innerHTML = '<div class="analytics-error">⚠ ' + e.message + '</div>';
   }
 }
 
@@ -76,7 +76,7 @@ function renderAnalytics(data) {
   document.getElementById('analytics-body').innerHTML = `
     <div class="analytics-grid">
       <div class="analytics-card ac-good">
-        <div class="ac-label">Unique Visitors ${infoIcon('Real people who visited your site Ã¢ÂÂ bots and crawlers are filtered out by Cloudflare.')}</div>
+        <div class="ac-label">Unique Visitors ${infoIcon('Real people who visited your site — bots and crawlers are filtered out by Cloudflare.')}</div>
         <div class="ac-value">${fmtNum(s.uniqueVisitors)}</div>
         <div class="ac-sub">Real people, not bots</div>
       </div>
@@ -86,12 +86,12 @@ function renderAnalytics(data) {
         <div class="ac-sub">Pages consumed</div>
       </div>
       <div class="analytics-card">
-        <div class="ac-label">Total Requests ${infoIcon('Every file request your site made Ã¢ÂÂ pages, images, CSS, JS. One page load can trigger dozens of requests.')}</div>
+        <div class="ac-label">Total Requests ${infoIcon('Every file request your site made — pages, images, CSS, JS. One page load can trigger dozens of requests.')}</div>
         <div class="ac-value">${fmtNum(s.requests)}</div>
         <div class="ac-sub">Incl. assets &amp; scripts</div>
       </div>
       <div class="analytics-card ac-neutral">
-        <div class="ac-label">Cache Hit Rate ${infoIcon('% of requests served from Cloudflare\'s edge cache. For Pages-hosted sites this typically reads 0% in zone analytics Ã¢ÂÂ actual caching is handled by the Pages CDN and reflected in Bandwidth Saved.')}</div>
+        <div class="ac-label">Cache Hit Rate ${infoIcon('% of requests served from Cloudflare\'s edge cache. For Pages-hosted sites this typically reads 0% in zone analytics — actual caching is handled by the Pages CDN and reflected in Bandwidth Saved.')}</div>
         <div class="ac-value">${s.cacheHitRate}%</div>
         <div class="ac-sub">Higher = faster</div>
       </div>
@@ -101,17 +101,17 @@ function renderAnalytics(data) {
         <div class="ac-sub">Served by Cloudflare</div>
       </div>
       <div class="analytics-card${s.threats > 0 ? ' ac-warn' : ''}">
-        <div class="ac-label">Threats Blocked ${infoIcon('Malicious requests stopped by your Cloudflare firewall rules Ã¢ÂÂ including the non-US/Canada geo-block and WAF rules you have set up.')}</div>
+        <div class="ac-label">Threats Blocked ${infoIcon('Malicious requests stopped by your Cloudflare firewall rules — including the non-US/Canada geo-block and WAF rules you have set up.')}</div>
         <div class="ac-value">${fmtNum(s.threats)}</div>
         <div class="ac-sub">WAF &amp; geo-block</div>
       </div>
       <div class="analytics-card${s.errors4xx > 100 ? ' ac-warn' : ''}">
-        <div class="ac-label">4xx Errors ${infoIcon('Pages visitors tried to reach that don\'t exist (404) or aren\'t allowed (403). High numbers mean broken links somewhere Ã¢ÂÂ check your most-linked pages.')}</div>
+        <div class="ac-label">4xx Errors ${infoIcon('Pages visitors tried to reach that don\'t exist (404) or aren\'t allowed (403). High numbers mean broken links somewhere — check your most-linked pages.')}</div>
         <div class="ac-value">${fmtNum(s.errors4xx)}</div>
         <div class="ac-sub">Broken links / 404s</div>
       </div>
       <div class="analytics-card${s.errors5xx > 0 ? ' ac-warn' : ''}">
-        <div class="ac-label">5xx Errors ${infoIcon('Server-side errors Ã¢ÂÂ something crashed or timed out on the backend. Even 1 is worth investigating since it means visitors hit a broken page.')}</div>
+        <div class="ac-label">5xx Errors ${infoIcon('Server-side errors — something crashed or timed out on the backend. Even 1 is worth investigating since it means visitors hit a broken page.')}</div>
         <div class="ac-value">${fmtNum(s.errors5xx)}</div>
         <div class="ac-sub">Server / function errors</div>
       </div>
@@ -127,7 +127,7 @@ function renderAnalytics(data) {
   `;
 }
 
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ GA4 ANALYTICS Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════ GA4 ANALYTICS ══════════════ */
 let ga4Loaded = false;
 let currentGA4Days = 7;
 
@@ -138,7 +138,7 @@ async function loadGA4(days, btn) {
     btn.classList.add('active');
   }
   const body = document.getElementById('ga4-body');
-  body.innerHTML = '<div class="analytics-loading">Loading Google AnalyticsÃ¢ÂÂ¦</div>';
+  body.innerHTML = '<div class="analytics-loading">Loading Google Analytics…</div>';
   try {
     const [resp, leadsResp] = await Promise.all([
       fetch('/api/ga-analytics?days=' + days),
@@ -159,7 +159,7 @@ async function loadGA4(days, btn) {
     renderGA4(data, days, leadsCount);
     ga4Loaded = true;
   } catch(e) {
-    body.innerHTML = '<div class="analytics-error">Ã¢ÂÂ  ' + e.message + '</div>';
+    body.innerHTML = '<div class="analytics-error">⚠ ' + e.message + '</div>';
   }
 }
 
@@ -198,11 +198,11 @@ function renderGA4(data, days, leadsCount) {
   const pBounce   = parseFloat(get(prev,4));
   const pNewUsers = parseInt(get(prev,5));
 
-  // Ã¢ÂÂÃ¢ÂÂ Realtime Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+  // ── Realtime ──────────────────────────────────────────────────────
   const realtimeUsers = (data.realtime && data.realtime.rows && data.realtime.rows[0])
     ? parseInt(data.realtime.rows[0].metricValues[0].value) : 0;
 
-  // Ã¢ÂÂÃ¢ÂÂ Sessions over time (bar chart) Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+  // ── Sessions over time (bar chart) ────────────────────────────────
   const dailyRows = (data.daily && data.daily.rows) || [];
   const maxDailySess = Math.max(...dailyRows.map(r => parseInt(r.metricValues[0].value)), 1);
   const dailyBars = dailyRows.map(d => {
@@ -213,7 +213,7 @@ function renderGA4(data, days, leadsCount) {
     return `<div class="bar-wrap" title="${lbl}: ${sess.toLocaleString()} sessions"><div class="bar" style="height:${h}px"></div><div class="bar-label">${lbl}</div></div>`;
   }).join('');
 
-  // Ã¢ÂÂÃ¢ÂÂ Traffic sources Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+  // ── Traffic sources ───────────────────────────────────────────────
   const srcRows   = (data.sources && data.sources.rows) || [];
   const srcTotal  = Math.max(srcRows.reduce((s,r) => s + parseInt(r.metricValues[0].value), 0), 1);
   const srcColors = {'Organic Search':'#2e7d32','Direct':'#1565c0','Organic Social':'#e65100',
@@ -226,7 +226,7 @@ function renderGA4(data, days, leadsCount) {
     return `<div class="source-row"><div class="source-label">${name}</div><div class="source-bar-bg"><div class="source-bar-fill" style="width:${pct}%;background:${color}"></div></div><div class="source-pct">${pct}%</div></div>`;
   }).join('');
 
-  // Ã¢ÂÂÃ¢ÂÂ Device breakdown Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+  // ── Device breakdown ──────────────────────────────────────────────
   const devRows   = (data.devices && data.devices.rows) || [];
   const devTotal  = Math.max(devRows.reduce((s,r) => s + parseInt(r.metricValues[0].value), 0), 1);
   const devColors = {mobile:'#1565c0', desktop:'#2e7d32', tablet:'#e65100'};
@@ -241,15 +241,15 @@ function renderGA4(data, days, leadsCount) {
     return `<span><span class="device-dot" style="background:${devColors[name]||'#999'}"></span>${name} ${pct}%</span>`;
   }).join('');
 
-  // Ã¢ÂÂÃ¢ÂÂ Lead conversion Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+  // ── Lead conversion ───────────────────────────────────────────────
   const convSection = (leadsCount !== null && sessions > 0) ? (() => {
     const rate = ((leadsCount / sessions) * 100).toFixed(1);
     const good = parseFloat(rate) >= 1;
     return `<div class="analytics-chart-box" style="margin-bottom:20px;">
-      <h3>Lead Conversion ${infoIcon('How many site visitors turned into leads in this period. Calculated as leads ÃÂ· sessions ÃÂ 100. Aim for 1%+.')}</h3>
+      <h3>Lead Conversion ${infoIcon('How many site visitors turned into leads in this period. Calculated as leads ÷ sessions × 100. Aim for 1%+.')}</h3>
       <div class="conversion-bar">
         <div class="conversion-stat"><div class="conversion-num">${fmtNum(sessions)}</div><div class="conversion-label">Sessions</div></div>
-        <div class="conversion-arrow">Ã¢ÂÂ</div>
+        <div class="conversion-arrow">→</div>
         <div class="conversion-stat"><div class="conversion-num">${leadsCount}</div><div class="conversion-label">Leads</div></div>
         <div class="conversion-arrow">=</div>
         <div class="conversion-stat"><div class="conversion-num" style="color:${good?'#2e7d32':'#e65100'}">${rate}%</div><div class="conversion-label">Conv. Rate</div></div>
@@ -257,7 +257,7 @@ function renderGA4(data, days, leadsCount) {
     </div>`;
   })() : '';
 
-  // Ã¢ÂÂÃ¢ÂÂ Top pages Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+  // ── Top pages ─────────────────────────────────────────────────────
   const pageRows = (data.pages && data.pages.rows) || [];
   const maxSess  = Math.max(...pageRows.map(r => parseInt(r.metricValues[0].value)), 1);
   const topPageRows = pageRows.length ? `
@@ -326,12 +326,12 @@ function renderGA4(data, days, leadsCount) {
       <div class="source-bar-wrap" style="margin-top:12px;">${sourceBars||'<div style="color:#aaa;font-size:.8rem;padding:12px">No data</div>'}</div>
     </div>
     <div class="analytics-chart-box" style="margin-bottom:20px;">
-      <h3>Device Breakdown ${infoIcon('What devices your visitors use. Most real estate searches happen on mobile Ã¢ÂÂ your site should look great on phones first.')}</h3>
+      <h3>Device Breakdown ${infoIcon('What devices your visitors use. Most real estate searches happen on mobile — your site should look great on phones first.')}</h3>
       <div class="device-split">${devSegs}</div>
       <div class="device-legend">${devLegend}</div>
     </div>
     <div class="analytics-chart-box">
-      <h3>Top 10 Pages <span style="font-weight:400;color:var(--gray-text);font-size:.65rem;">(GA4 ÃÂ· last ${days}d)</span> ${infoIcon('Your most-visited pages by sessions. Click any page name to open it on the live site.')}</h3>
+      <h3>Top 10 Pages <span style="font-weight:400;color:var(--gray-text);font-size:.65rem;">(GA4 · last ${days}d)</span> ${infoIcon('Your most-visited pages by sessions. Click any page name to open it on the live site.')}</h3>
       ${topPageRows}
     </div>
   `;
@@ -350,7 +350,7 @@ function renderGA4(data, days, leadsCount) {
 }
 body{font-family:var(--font);background:var(--gray-light);color:var(--black);min-height:100vh;}
 
-/* Ã¢ÂÂÃ¢ÂÂ LOGIN Ã¢ÂÂÃ¢ÂÂ */
+/* ── LOGIN ── */
 #login-screen{
   display:flex;align-items:center;justify-content:center;
   min-height:100vh;background:#0a0a0a;
@@ -373,7 +373,7 @@ body{font-family:var(--font);background:var(--gray-light);color:var(--black);min
 .login-box button:hover{background:var(--red-dark);}
 .login-error{color:#e57373;font-size:.78rem;margin-top:10px;display:none;}
 
-/* Ã¢ÂÂÃ¢ÂÂ APP SHELL Ã¢ÂÂÃ¢ÂÂ */
+/* ── APP SHELL ── */
 #app{display:none;min-height:100vh;flex-direction:row;}
 
 /* SIDEBAR */
@@ -436,7 +436,7 @@ body{font-family:var(--font);background:var(--gray-light);color:var(--black);min
 /* CONTENT */
 .content{padding:28px 32px;flex:1;}
 
-/* Ã¢ÂÂÃ¢ÂÂ DASHBOARD (post list) Ã¢ÂÂÃ¢ÂÂ */
+/* ── DASHBOARD (post list) ── */
 #view-dashboard{display:none;}
 .dash-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;}
 .dash-header h1{font-size:1.3rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;}
@@ -492,7 +492,7 @@ body{font-family:var(--font);background:var(--gray-light);color:var(--black);min
 .empty-state h3{font-size:1rem;margin-bottom:8px;color:#888;}
 .empty-state p{font-size:.82rem;line-height:1.6;}
 
-/* Ã¢ÂÂÃ¢ÂÂ STATUS TABS Ã¢ÂÂÃ¢ÂÂ */
+/* ── STATUS TABS ── */
 .status-tabs{display:flex;gap:4px;margin-bottom:20px;border-bottom:2px solid var(--gray-mid);padding-bottom:0;}
 .status-tab{
   padding:10px 20px;font-family:var(--font);font-size:.72rem;font-weight:700;
@@ -512,7 +512,7 @@ body{font-family:var(--font);background:var(--gray-light);color:var(--black);min
 .status-tab.tab-drafts .tab-count{background:#f57c00;color:#fff;}
 .status-tab.tab-drafts{color:#f57c00;}
 
-/* Ã¢ÂÂÃ¢ÂÂ EDITOR Ã¢ÂÂÃ¢ÂÂ */
+/* ── EDITOR ── */
 #view-editor{display:none;}
 .editor-grid{display:grid;grid-template-columns:1fr 300px;gap:24px;align-items:start;}
 .editor-main{display:flex;flex-direction:column;gap:20px;}
@@ -618,12 +618,12 @@ select.cat-select{margin-bottom:0;}
 .seo-checks{list-style:none;font-size:.72rem;color:#666;display:flex;flex-direction:column;gap:6px;}
 .seo-checks li{display:flex;align-items:flex-start;gap:6px;line-height:1.4;}
 .seo-checks li::before{flex-shrink:0;margin-top:1px;}
-.seo-pass::before{content:'Ã¢ÂÂ';color:#4caf50;font-weight:700;}
-.seo-fail::before{content:'Ã¢ÂÂ';color:#f44336;font-weight:700;}
-.seo-warn::before{content:'Ã¢ÂÂ ';color:#ff9800;}
+.seo-pass::before{content:'✓';color:#4caf50;font-weight:700;}
+.seo-fail::before{content:'✗';color:#f44336;font-weight:700;}
+.seo-warn::before{content:'⚠';color:#ff9800;}
 
 
-/* Ã¢ÂÂÃ¢ÂÂ SCHOOLS VIEW Ã¢ÂÂÃ¢ÂÂ */
+/* ── SCHOOLS VIEW ── */
 #view-schools{display:none;}
 .schools-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;}
 .schools-header h1{font-size:1.3rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;}
@@ -675,7 +675,7 @@ select.cat-select{margin-bottom:0;}
 }
 #toast.show{transform:translateY(0);opacity:1;}
 
-/* Ã¢ÂÂÃ¢ÂÂ ANALYTICS Ã¢ÂÂÃ¢ÂÂ */
+/* ── ANALYTICS ── */
 #view-analytics{display:none;}
 .delta-up{font-size:.6rem;color:#2e7d32;font-weight:700;vertical-align:super;}
 .delta-down{font-size:.6rem;color:#c62828;font-weight:700;vertical-align:super;}
@@ -713,35 +713,35 @@ select.cat-select{margin-bottom:0;}
 .analytics-error{background:#fff3f3;border:1px solid #ffcdd2;padding:16px;border-radius:6px;color:#c62828;font-size:.8rem;}
 
 
-/* Ã¢ÂÂÃ¢ÂÂ INFO TOOLTIPS Ã¢ÂÂÃ¢ÂÂ */
+/* ── INFO TOOLTIPS ── */
 .info-icon{display:inline-flex;align-items:center;justify-content:center;width:13px;height:13px;border-radius:50%;border:1px solid #bbb;color:#aaa;font-size:.55rem;font-weight:700;font-style:normal;cursor:help;margin-left:4px;vertical-align:middle;position:relative;flex-shrink:0;line-height:1;}
 .info-icon::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#1a1a1a;color:#fff;padding:8px 12px;border-radius:5px;font-size:.7rem;white-space:normal;width:210px;line-height:1.5;z-index:999;pointer-events:none;opacity:0;transition:opacity .15s;font-style:normal;font-weight:400;text-transform:none;letter-spacing:0;}
 .info-icon::before{content:'';position:absolute;bottom:calc(100% + 3px);left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#1a1a1a;opacity:0;transition:opacity .15s;}
 .info-icon:hover::after,.info-icon:hover::before{opacity:1;}
-/* Ã¢ÂÂÃ¢ÂÂ REALTIME BAR Ã¢ÂÂÃ¢ÂÂ */
+/* ── REALTIME BAR ── */
 .realtime-bar{display:flex;align-items:center;gap:10px;background:#f0faf4;border:1px solid #b2dfdb;border-radius:6px;padding:12px 18px;margin-bottom:20px;}
 .realtime-pulse{width:10px;height:10px;border-radius:50%;background:#2e7d32;animation:rt-pulse 2s infinite;flex-shrink:0;}
 @keyframes rt-pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(1.3);}}
 .realtime-count{font-size:1.25rem;font-weight:800;color:#1b5e20;}
 .realtime-label{font-size:.75rem;color:#2e7d32;font-weight:600;}
-/* Ã¢ÂÂÃ¢ÂÂ TRAFFIC SOURCES Ã¢ÂÂÃ¢ÂÂ */
+/* ── TRAFFIC SOURCES ── */
 .source-row{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-size:.74rem;}
 .source-label{width:120px;color:var(--gray-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:0;}
 .source-bar-bg{flex:1;height:7px;background:#f0f0f0;border-radius:4px;overflow:hidden;}
 .source-bar-fill{height:100%;border-radius:4px;transition:width .4s;}
 .source-pct{width:34px;text-align:right;font-weight:700;color:#111;flex-shrink:0;}
-/* Ã¢ÂÂÃ¢ÂÂ DEVICE SPLIT Ã¢ÂÂÃ¢ÂÂ */
+/* ── DEVICE SPLIT ── */
 .device-split{display:flex;height:10px;border-radius:5px;overflow:hidden;margin:12px 0 8px;gap:2px;}
 .device-segment{height:100%;}
 .device-legend{display:flex;gap:14px;font-size:.7rem;color:var(--gray-text);flex-wrap:wrap;}
 .device-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:3px;vertical-align:middle;}
-/* Ã¢ÂÂÃ¢ÂÂ CONVERSION Ã¢ÂÂÃ¢ÂÂ */
+/* ── CONVERSION ── */
 .conversion-bar{display:flex;align-items:center;justify-content:center;gap:20px;padding:14px 0 4px;flex-wrap:wrap;}
 .conversion-stat{text-align:center;}
 .conversion-num{font-size:1.8rem;font-weight:800;color:#111;line-height:1;}
 .conversion-label{font-size:.63rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gray-text);margin-top:4px;}
 .conversion-arrow{color:#ccc;font-size:1.5rem;font-weight:300;}
-/* Ã¢ÂÂÃ¢ÂÂ CACHE ALERT Ã¢ÂÂÃ¢ÂÂ */
+/* ── CACHE ALERT ── */
 .cache-alert{background:#fffde7;border:1px solid #ffe082;border-radius:6px;padding:12px 16px;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
 .cache-alert a{color:var(--red);font-weight:700;text-decoration:none;margin-left:6px;}
 .cache-alert a:hover{text-decoration:underline;}
@@ -750,7 +750,7 @@ select.cat-select{margin-bottom:0;}
 </head>
 <body>
 
-<!-- Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ LOGIN Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ -->
+<!-- ══════════════════════════════════════ LOGIN ══════════════════════════════════════ -->
 <div id="login-screen">
   <div class="login-box">
     <img src="/images/logo-bethesda-residential.png?v=2" alt="@Bethesda" />
@@ -761,12 +761,12 @@ select.cat-select{margin-bottom:0;}
   </div>
 </div>
 
-<!-- Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ APP Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ -->
+<!-- ══════════════════════════════════════ APP ══════════════════════════════════════ -->
 <div id="app">
 
   <!-- SCHEDULED POSTS BANNER -->
   <div id="scheduled-banner">
-    <span>Ã°ÂÂÂ Scheduled posts are ready to publish:</span>
+    <span>🕐 Scheduled posts are ready to publish:</span>
     <div class="banner-posts" id="banner-posts"></div>
     <button onclick="document.getElementById('scheduled-banner').classList.remove('show')">Dismiss</button>
   </div>
@@ -823,7 +823,7 @@ select.cat-select{margin-bottom:0;}
         Settings
       </button>
     <div class="sidebar-bottom">
-      <a href="/" target="_blank">Ã¢ÂÂ View Live Site</a>
+      <a href="/" target="_blank">← View Live Site</a>
     </div>
   </aside>
 
@@ -832,7 +832,7 @@ select.cat-select{margin-bottom:0;}
     <div class="topbar">
       <div class="topbar-title" id="topbar-title">All Posts</div>
       <div class="topbar-actions" id="topbar-actions">
-        <button class="btn btn-secondary btn-sm" onclick="openImport()" title="Import BOFU draft posts">Ã¢Â¬Â Import Posts</button>
+        <button class="btn btn-secondary btn-sm" onclick="openImport()" title="Import BOFU draft posts">⬆ Import Posts</button>
         <button class="btn btn-primary btn-sm" onclick="newPost()">+ New Post</button>
       </div>
     </div>
@@ -886,19 +886,19 @@ select.cat-select{margin-bottom:0;}
 
             <!-- Title -->
             <div class="editor-card">
-              <input type="text" class="title-input" id="post-title" placeholder="Enter post title hereÃ¢ÂÂ¦" oninput="onTitleChange()" />
+              <input type="text" class="title-input" id="post-title" placeholder="Enter post title here…" oninput="onTitleChange()" />
               <div class="slug-row">
                 <span class="slug-prefix">atbethesda.com/</span>
                 <input type="text" class="slug-input" id="post-slug" placeholder="url-slug" oninput="updateSEO()" />
               </div>
             </div>
 
-            <!-- AI Snippet Ã¢ÂÂ AEO answer box -->
+            <!-- AI Snippet — AEO answer box -->
             <div class="editor-card">
-              <h3>Ã°ÂÂ¤Â AI Snippet (AEO) Ã¢ÂÂ Answer Box</h3>
+              <h3>🤖 AI Snippet (AEO) — Answer Box</h3>
               <div class="snippet-box">
-                <p>This 2Ã¢ÂÂ3 sentence summary appears at the top of your post as a highlighted answer box. Google AI Overview, Perplexity, and ChatGPT pull from this for featured answers. Write it to directly answer the post's main question.</p>
-                <textarea id="post-snippet" rows="3" placeholder="Example: The best time to buy a home in Bethesda is early spring, when inventory peaks and before summer bidding wars begin. Buyers who move quickly in MarchÃ¢ÂÂApril typically have more choices and less competition than those who wait until summerÃ¢ÂÂ¦" oninput="updateSEO()"></textarea>
+                <p>This 2–3 sentence summary appears at the top of your post as a highlighted answer box. Google AI Overview, Perplexity, and ChatGPT pull from this for featured answers. Write it to directly answer the post's main question.</p>
+                <textarea id="post-snippet" rows="3" placeholder="Example: The best time to buy a home in Bethesda is early spring, when inventory peaks and before summer bidding wars begin. Buyers who move quickly in March–April typically have more choices and less competition than those who wait until summer…" oninput="updateSEO()"></textarea>
               </div>
             </div>
 
@@ -907,20 +907,20 @@ select.cat-select{margin-bottom:0;}
               <h3>Post Content</h3>
               <div id="quill-editor"></div>
               <div style="margin-top:10px;">
-                <button class="btn btn-outline btn-sm" onclick="var w=document.getElementById('paste-html-wrap');var s=w.style.display==='none';w.style.display=s?'block':'none';if(s)document.getElementById('paste-html-input').focus();" style="font-size:.72rem;color:#888;">Ã¢Â¬Â Paste Raw HTML</button>
+                <button class="btn btn-outline btn-sm" onclick="var w=document.getElementById('paste-html-wrap');var s=w.style.display==='none';w.style.display=s?'block':'none';if(s)document.getElementById('paste-html-input').focus();" style="font-size:.72rem;color:#888;">⬇ Paste Raw HTML</button>
                 <div id="paste-html-wrap" style="display:none;margin-top:8px;">
-                  <textarea id="paste-html-input" rows="7" placeholder="Paste your HTML body here Ã¢ÂÂ lists and formatting will be preservedÃ¢ÂÂ¦" style="width:100%;box-sizing:border-box;font-family:monospace;font-size:.73rem;border:1.5px solid #ddd;border-radius:4px;padding:8px;resize:vertical;color:#333;"></textarea>
+                  <textarea id="paste-html-input" rows="7" placeholder="Paste your HTML body here — lists and formatting will be preserved…" style="width:100%;box-sizing:border-box;font-family:monospace;font-size:.73rem;border:1.5px solid #ddd;border-radius:4px;padding:8px;resize:vertical;color:#333;"></textarea>
                   <div style="display:flex;gap:8px;margin-top:6px;">
-                    <button class="btn btn-primary btn-sm" onclick="var inp=document.getElementById('paste-html-input');var raw=inp?inp.value.trim():'';if(!raw||!quill)return;quill.clipboard.dangerouslyPasteHTML(raw);inp.value='';document.getElementById('paste-html-wrap').style.display='none';if(typeof updateSEO==='function')updateSEO();">Ã¢ÂÂ Set Body</button>
+                    <button class="btn btn-primary btn-sm" onclick="var inp=document.getElementById('paste-html-input');var raw=inp?inp.value.trim():'';if(!raw||!quill)return;quill.clipboard.dangerouslyPasteHTML(raw);inp.value='';document.getElementById('paste-html-wrap').style.display='none';if(typeof updateSEO==='function')updateSEO();">✓ Set Body</button>
                     <button class="btn btn-outline btn-sm" onclick="document.getElementById('paste-html-wrap').style.display='none';">Cancel</button>
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- FAQ Builder Ã¢ÂÂ AEO schema -->
+            <!-- FAQ Builder — AEO schema -->
             <div class="editor-card">
-              <h3>Ã¢ÂÂ FAQ Section (AEO Schema)</h3>
+              <h3>❓ FAQ Section (AEO Schema)</h3>
               <p style="font-size:.78rem;color:#888;margin-bottom:16px;line-height:1.5;">Add questions and answers. These appear at the bottom of your post AND generate FAQ schema markup, which helps your post appear in Google AI Overview and "People Also Ask" boxes.</p>
               <div id="faq-list"></div>
               <button class="add-faq-btn" onclick="addFaq()">+ Add Question &amp; Answer</button>
@@ -946,7 +946,7 @@ select.cat-select{margin-bottom:0;}
                 <span>Date</span>
                 <input type="date" id="post-date" style="width:auto;padding:4px 8px;font-size:.75rem;" oninput="onStatusChange()" />
               </div>
-              <!-- Time row Ã¢ÂÂ only shown when Scheduled -->
+              <!-- Time row — only shown when Scheduled -->
               <div class="status-row" id="time-row">
                 <span>Time</span>
                 <input type="time" id="post-time" value="06:00" style="width:auto;padding:4px 8px;font-size:.75rem;" />
@@ -954,9 +954,9 @@ select.cat-select{margin-bottom:0;}
               <!-- Scheduled preview label -->
               <div id="schedule-preview" style="display:none;background:#e3f2fd;border-radius:4px;padding:10px 12px;margin:10px 0;font-size:.75rem;color:#1565c0;line-height:1.5;"></div>
               <div class="publish-btn-row" style="gap:6px;margin-top:14px;">
-                <button class="btn btn-success" style="width:100%;justify-content:center;" onclick="saveDraft()">Ã°ÂÂÂ¾ Save Draft</button>
-                <button class="btn" style="width:100%;justify-content:center;background:#1565c0;color:#fff;" onclick="saveScheduled()">Ã°ÂÂÂ Schedule</button>
-                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="publishNow()">Ã°ÂÂÂ Publish to Site</button>
+                <button class="btn btn-success" style="width:100%;justify-content:center;" onclick="saveDraft()">💾 Save Draft</button>
+                <button class="btn" style="width:100%;justify-content:center;background:#1565c0;color:#fff;" onclick="saveScheduled()">🕐 Schedule</button>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="publishNow()">🚀 Publish to Site</button>
                 <button class="btn btn-outline btn-sm" style="width:100%;justify-content:center;margin-top:4px;" onclick="previewPost()">Preview</button>
               </div>
             </div>
@@ -965,7 +965,7 @@ select.cat-select{margin-bottom:0;}
             <div class="side-card">
               <h3>Category</h3>
               <select id="post-category" class="cat-select" onchange="updateSEO()">
-                <option value="">Ã¢ÂÂ Select Category Ã¢ÂÂ</option>
+                <option value="">— Select Category —</option>
                 <option value="Buying">Buying</option>
                 <option value="Selling">Selling</option>
                 <option value="News">News</option>
@@ -992,17 +992,17 @@ select.cat-select{margin-bottom:0;}
                 ondragleave="this.style.borderColor='#555';this.style.background='';"
                 ondrop="handleImageDrop(event)"
                 onclick="document.getElementById('img-file-input').click()">
-                <span id="img-drop-label">Ã°ÂÂÂ· Drop image here<br>or click to browse</span>
+                <span id="img-drop-label">📷 Drop image here<br>or click to browse</span>
                 <input type="file" id="img-file-input" accept="image/*" style="display:none;" onchange="handleImageFile(this.files[0])" />
               </div>
               <div id="img-upload-status" style="font-size:.7rem;margin-top:6px;display:none;"></div>
-              <input type="url" id="post-image" placeholder="or paste image URLÃ¢ÂÂ¦" oninput="previewImage()" style="margin-top:8px;font-size:.72rem;" />
+              <input type="url" id="post-image" placeholder="or paste image URL…" oninput="previewImage()" style="margin-top:8px;font-size:.72rem;" />
               <img id="image-thumb" class="image-preview" src="" alt="Preview" />
             </div>
             <!-- Meta / SEO -->
             <div class="side-card">
               <h3>SEO Meta Description</h3>
-              <textarea id="post-meta" rows="3" placeholder="160-char description for Google search resultsÃ¢ÂÂ¦" oninput="updateCharCount();updateSEO()"></textarea>
+              <textarea id="post-meta" rows="3" placeholder="160-char description for Google search results…" oninput="updateCharCount();updateSEO()"></textarea>
               <div class="char-counter" id="meta-counter"><span>0</span> / 160 characters</div>
             </div>
 
@@ -1039,7 +1039,7 @@ select.cat-select{margin-bottom:0;}
           <h1>School Data</h1>
         </div>
         <div class="gs-note">
-          <strong>How it works:</strong> Select an area below to edit its school listings. Each school links to GreatSchools.org so visitors always see live, current ratings. When GreatSchools updates ratings (once a year), just verify the URLs are correct Ã¢ÂÂ no rating numbers to change here. Click <strong>Save Schools</strong> to store, then <strong>Download Updated Page</strong> to get fresh HTML to upload to your site.
+          <strong>How it works:</strong> Select an area below to edit its school listings. Each school links to GreatSchools.org so visitors always see live, current ratings. When GreatSchools updates ratings (once a year), just verify the URLs are correct — no rating numbers to change here. Click <strong>Save Schools</strong> to store, then <strong>Download Updated Page</strong> to get fresh HTML to upload to your site.
         </div>
         <div class="area-selector" id="area-selector-tabs"></div>
         <div id="schools-editor-area"></div>
@@ -1092,7 +1092,7 @@ select.cat-select{margin-bottom:0;}
         <div class="media-toolbar">
           <div class="media-search">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <input type="text" id="media-search-input" placeholder="Search imagesÃ¢ÂÂ¦" oninput="filterMedia()" />
+            <input type="text" id="media-search-input" placeholder="Search images…" oninput="filterMedia()" />
           </div>
           <select class="media-folder-select" id="media-folder-select" onchange="loadMediaLibrary()">
             <option value="images">All images</option>
@@ -1107,9 +1107,9 @@ select.cat-select{margin-bottom:0;}
               ondragover="event.preventDefault();this.classList.add('dragover')"
               ondragleave="this.classList.remove('dragover')"
               ondrop="mediaOnDrop(event)">
-              <span class="upload-icon">Ã¢ÂÂ</span>
+              <span class="upload-icon">☁</span>
               <div>Drop images here or <strong>click to upload</strong></div>
-              <div style="font-size:11px;margin-top:4px;color:#aaa;">JPG, PNG, WebP, SVG Ã¢ÂÂ uploads to <span id="media-target-folder">images/blog/</span></div>
+              <div style="font-size:11px;margin-top:4px;color:#aaa;">JPG, PNG, WebP, SVG — uploads to <span id="media-target-folder">images/blog/</span></div>
               <input type="file" id="media-file-input" accept="image/*" multiple style="display:none" onchange="mediaOnFileSelect(event)" />
             </div>
             <div id="media-upload-progress" style="display:none;font-size:12px;margin-bottom:12px;font-weight:600;padding:8px 12px;border-radius:6px;background:#f5f5f5;"></div>
@@ -1117,7 +1117,7 @@ select.cat-select{margin-bottom:0;}
             <!-- Grid -->
             <div id="media-grid" class="media-grid"></div>
             <div id="media-empty" class="media-empty" style="display:none;">No images found in this folder.</div>
-            <div id="media-loading" class="media-loading">Loading imagesÃ¢ÂÂ¦</div>
+            <div id="media-loading" class="media-loading">Loading images…</div>
           </div>
 
           <!-- Detail panel -->
@@ -1127,7 +1127,7 @@ select.cat-select{margin-bottom:0;}
             <div class="media-detail-label">Folder</div>
             <div class="media-detail-value"><span id="media-detail-folder" class="media-folder-badge"></span></div>
             <div class="media-detail-label">Dimensions</div>
-            <div class="media-detail-value" id="media-detail-dims">Ã¢ÂÂ</div>
+            <div class="media-detail-value" id="media-detail-dims">—</div>
             <div class="media-detail-label">File size</div>
             <div class="media-detail-value" id="media-detail-size"></div>
             <div class="media-detail-label">Site URL</div>
@@ -1140,9 +1140,9 @@ select.cat-select{margin-bottom:0;}
               <span class="media-url-text" id="media-detail-imgtag" style="font-family:monospace;font-size:10px;"></span>
               <button class="media-copy-btn" onclick="mediaCopyUrl('tag')">Copy</button>
             </div>
-            <button class="media-action-btn" onclick="mediaUseAsFeatured()">Ã¢Â­Â Set as featured image</button>
-            <button class="media-action-btn" style="margin-top:4px;" onclick="window.open(_selectedMedia?.url,'_blank')">Ã¢ÂÂ Open in new tab</button>
-            <button class="media-action-btn danger" onclick="mediaDeleteSelected()">Ã°ÂÂÂ Delete from GitHub</button>
+            <button class="media-action-btn" onclick="mediaUseAsFeatured()">⭐ Set as featured image</button>
+            <button class="media-action-btn" style="margin-top:4px;" onclick="window.open(_selectedMedia?.url,'_blank')">↗ Open in new tab</button>
+            <button class="media-action-btn danger" onclick="mediaDeleteSelected()">🗑 Delete from GitHub</button>
           </div>
         </div>
       </div>
@@ -1150,21 +1150,21 @@ select.cat-select{margin-bottom:0;}
       <div id="view-settings" style="display:none;">
         <div class="dash-header"><h1>Settings</h1></div>
         <div class="editor-card" style="max-width:600px;">
-          <h3>Ã°ÂÂÂ GitHub Sync</h3>
+          <h3>🔗 GitHub Sync</h3>
           <p style="font-size:.82rem;color:#666;margin-bottom:12px;line-height:1.6;">
-            Posts are automatically synced to GitHub on every save. No token required Ã¢ÂÂ the connection is handled securely server-side via Cloudflare.
+            Posts are automatically synced to GitHub on every save. No token required — the connection is handled securely server-side via Cloudflare.
           </p>
           <div id="gh-token-status" style="font-size:.82rem;font-weight:600;color:#2e7d32;padding:10px 14px;background:#e8f5e9;border-radius:8px;">
-            Ã¢ÂÂ GitHub sync active Ã¢ÂÂ posts save automatically to all browsers
+            ✓ GitHub sync active — posts save automatically to all browsers
           </div>
         </div>
 
         <div class="editor-card" style="max-width:600px;margin-top:24px;">
-          <h3>Ã°ÂÂÂ¦ Sync Legacy Post Content</h3>
+          <h3>📦 Sync Legacy Post Content</h3>
           <p style="font-size:.82rem;color:#666;margin-bottom:16px;line-height:1.6;">
             Downloads the full body content of your migrated legacy posts. After syncing, every post opens instantly without a network call. No token required.
           </p>
-          <button class="btn btn-primary btn-sm" id="sync-all-btn" onclick="syncAllPosts()">Ã¢Â¬Â Sync All Posts Now</button>
+          <button class="btn btn-primary btn-sm" id="sync-all-btn" onclick="syncAllPosts()">⬇ Sync All Posts Now</button>
           <div id="sync-progress" style="font-size:.82rem;margin-top:14px;min-height:20px;font-weight:600;"></div>
         </div>
       </div>
@@ -1180,7 +1180,7 @@ select.cat-select{margin-bottom:0;}
           </div>
         </div>
         <div id="ga4-body">
-          <div class="analytics-loading">Loading Google AnalyticsÃ¢ÂÂ¦</div>
+          <div class="analytics-loading">Loading Google Analytics…</div>
         </div>
         <div style="height:32px;"></div>
         <div class="analytics-header" style="margin-top:8px;">
@@ -1201,9 +1201,9 @@ select.cat-select{margin-bottom:0;}
           <button class="btn btn-sm" id="lfilt-all" onclick="setLeadsFilter('all')" style="background:var(--red);color:#fff;border:none;padding:6px 14px;">All</button>
           <button class="btn btn-sm btn-outline" id="lfilt-valuation" onclick="setLeadsFilter('valuation')" style="padding:6px 14px;">Home Valuation</button>
           <button class="btn btn-sm btn-outline" id="lfilt-sellers-guide" onclick="setLeadsFilter('sellers-guide')" style="padding:6px 14px;">Seller's Guide</button>
-          <button class="btn btn-sm btn-outline" onclick="loadLeads()" style="margin-left:auto;padding:6px 14px;">Ã¢ÂÂ» Refresh</button>
+          <button class="btn btn-sm btn-outline" onclick="loadLeads()" style="margin-left:auto;padding:6px 14px;">↻ Refresh</button>
         </div>
-        <div id="leads-loading" style="text-align:center;padding:60px;color:#888;font-size:.9rem;">Loading leadsÃ¢ÂÂ¦</div>
+        <div id="leads-loading" style="text-align:center;padding:60px;color:#888;font-size:.9rem;">Loading leads…</div>
         <div id="leads-error" style="display:none;padding:20px;color:#c62828;font-size:.88rem;background:#fff5f5;border-radius:8px;margin-bottom:16px;"></div>
         <div id="leads-table-wrap" style="display:none;overflow-x:auto;background:#fff;border-radius:10px;border:1px solid #eee;">
           <table style="width:100%;border-collapse:collapse;font-size:.82rem;">
@@ -1227,18 +1227,18 @@ select.cat-select{margin-bottom:0;}
 
 <div id="preview-modal" style="display:none;position:fixed;inset:0;z-index:99999;background:#111;flex-direction:column;">
   <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 16px;background:#1a1a1a;border-bottom:1px solid #333;flex-shrink:0;">
-    <span style="color:#fff;font-size:.8rem;font-weight:600;">Preview Ã¢ÂÂ <span id="preview-post-title" style="font-weight:400;color:#aaa;"></span></span>
-    <button onclick="document.getElementById('preview-modal').style.display='none';" style="background:none;border:1px solid #555;color:#ccc;padding:4px 12px;border-radius:4px;cursor:pointer;font-size:.75rem;">Ã¢ÂÂ Close</button>
+    <span style="color:#fff;font-size:.8rem;font-weight:600;">Preview — <span id="preview-post-title" style="font-weight:400;color:#aaa;"></span></span>
+    <button onclick="document.getElementById('preview-modal').style.display='none';" style="background:none;border:1px solid #555;color:#ccc;padding:4px 12px;border-radius:4px;cursor:pointer;font-size:.75rem;">✕ Close</button>
   </div>
   <iframe id="preview-frame" style="flex:1;border:none;width:100%;height:100%;"></iframe>
 </div>
 <div id="toast"></div>
 
 <script>
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ AUTH Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════ AUTH ══════════════ */
 const ADMIN_PASSWORD = 'bethesda2026';
 const AUTH_KEY = 'ab_auth_expiry';
-// API helper Ã¢ÂÂ all Worker calls use the admin password as auth
+// API helper — all Worker calls use the admin password as auth
 function apiH() { return { 'Content-Type': 'application/json', 'X-Admin-Password': ADMIN_PASSWORD }; }
 const AUTH_DAYS = 30;
 
@@ -1268,7 +1268,7 @@ function doLogin() {
 }
 
 
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ DATA STORE Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════ DATA STORE ══════════════ */
 let posts = JSON.parse(localStorage.getItem('ab_posts') || '[]');
 let _postsSHA = null;   // current SHA of data/admin-posts.json in GitHub
 let editingId = null;
@@ -1295,7 +1295,7 @@ async function _pushPostsToGitHub() {
       body: JSON.stringify({ posts, sha: _postsSHA })
     });
     if (r.ok) { const d = await r.json(); if (d.sha) _postsSHA = d.sha; }
-  } catch(e) { /* offline Ã¢ÂÂ localStorage is the fallback */ }
+  } catch(e) { /* offline — localStorage is the fallback */ }
 }
 
 // On app load: fetch posts from GitHub and refresh the UI
@@ -1339,7 +1339,7 @@ async function ghRead(path) {
   return r.ok ? r.json() : null;
 }
 
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ INDEXED DB (unlimited body content cache) Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════ INDEXED DB (unlimited body content cache) ══════════════ */
 let _bodyDB = null;
 
 function openBodyDB() {
@@ -1398,13 +1398,13 @@ async function syncAllPosts() {
 
   const btn = document.getElementById('sync-all-btn');
   const prog = document.getElementById('sync-progress');
-  if (btn) { btn.disabled = true; btn.textContent = 'SyncingÃ¢ÂÂ¦'; }
+  if (btn) { btn.disabled = true; btn.textContent = 'Syncing…'; }
   if (prog) prog.style.color = '#666';
 
   let done = 0, failed = 0;
 
   for (const post of legacyPosts) {
-    if (prog) prog.textContent = 'Fetching ' + (done + 1) + ' / ' + legacyPosts.length + ' Ã¢ÂÂ ' + (post.title || post.slug) + 'Ã¢ÂÂ¦';
+    if (prog) prog.textContent = 'Fetching ' + (done + 1) + ' / ' + legacyPosts.length + ' — ' + (post.title || post.slug) + '…';
     try {
       // Public repo: read raw content without a token
       const rawUrl = 'https://raw.githubusercontent.com/peybehin/atbethesda-website/main/' + post.repoPath;
@@ -1427,13 +1427,13 @@ async function syncAllPosts() {
   }
 
   savePosts();
-  if (btn) { btn.disabled = false; btn.textContent = 'Ã¢Â¬Â Sync All Posts Now'; }
-  const msg = 'Ã¢ÂÂ ' + (done - failed) + ' of ' + legacyPosts.length + ' posts synced' + (failed ? ' (' + failed + ' failed)' : '') + '.';
+  if (btn) { btn.disabled = false; btn.textContent = '⬇ Sync All Posts Now'; }
+  const msg = '✅ ' + (done - failed) + ' of ' + legacyPosts.length + ' posts synced' + (failed ? ' (' + failed + ' failed)' : '') + '.';
   if (prog) { prog.textContent = msg; prog.style.color = failed ? '#f57c00' : '#2e7d32'; }
-  toast('Ã¢ÂÂ All posts loaded Ã¢ÂÂ they will open instantly from now on.');
+  toast('✅ All posts loaded — they will open instantly from now on.');
 }
 
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ INIT Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════ INIT ══════════════ */
 function initApp() {
   // Load GitHub token (kept for legacy syncAllPosts)
   window._ghToken = localStorage.getItem('ab_gh_token') || null;
@@ -1450,7 +1450,7 @@ function initApp() {
         ['clean']
       ]
     },
-    placeholder: 'Write your post content hereÃ¢ÂÂ¦'
+    placeholder: 'Write your post content here…'
   });
   quill.on('text-change', updateSEO);
 
@@ -1464,7 +1464,7 @@ function initApp() {
   setInterval(() => renderPostList(), 60000);
 }
 
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ NAVIGATION Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════ NAVIGATION ══════════════ */
 function showView(view, filterCat, filterStat) {
   document.getElementById('view-dashboard').style.display = 'none';
   document.getElementById('view-editor').style.display = 'none';
@@ -1479,7 +1479,7 @@ function showView(view, filterCat, filterStat) {
     document.getElementById('nav-dashboard').classList.add('active');
     const label = filterCat ? filterCat : filterStat ? (filterStat.charAt(0).toUpperCase()+filterStat.slice(1)+' Posts') : 'All Posts';
     document.getElementById('topbar-title').textContent = label;
-    document.getElementById('topbar-actions').innerHTML = '<button class="btn btn-secondary btn-sm" onclick="openImport()" title="Import BOFU draft posts">Ã¢Â¬Â Import Posts</button><button class="btn btn-primary btn-sm" onclick="newPost()">+ New Post</button>';
+    document.getElementById('topbar-actions').innerHTML = '<button class="btn btn-secondary btn-sm" onclick="openImport()" title="Import BOFU draft posts">⬆ Import Posts</button><button class="btn btn-primary btn-sm" onclick="newPost()">+ New Post</button>';
     if (filterStat) activeTab = filterStat;
     document.querySelectorAll('.status-tab').forEach(el => el.classList.remove('active'));
     const _tabId = activeTab === 'draft' ? 'drafts' : activeTab;
@@ -1508,21 +1508,21 @@ function showView(view, filterCat, filterStat) {
     document.getElementById('nav-editor').classList.add('active');
     document.getElementById('topbar-title').textContent = editingId ? 'Edit Post' : 'New Post';
     document.getElementById('topbar-actions').innerHTML = `
-      <button class="btn btn-outline btn-sm" onclick="switchTab('draft');showView('dashboard')">Ã¢ÂÂ All Posts</button>
-      <button class="btn btn-success btn-sm" onclick="generatePost()">Ã¢Â¬Â Generate HTML</button>
+      <button class="btn btn-outline btn-sm" onclick="switchTab('draft');showView('dashboard')">← All Posts</button>
+      <button class="btn btn-success btn-sm" onclick="generatePost()">⬇ Generate HTML</button>
     `;
     updateSEO();
   } else if (view === 'leads') {
     document.getElementById('view-leads').style.display = 'block';
     document.getElementById('nav-leads').classList.add('active');
     document.getElementById('topbar-title').textContent = 'Leads';
-    document.getElementById('topbar-actions').innerHTML = '<button class="btn btn-sm btn-outline" onclick="loadLeads()">Ã¢ÂÂ» Refresh</button>';
+    document.getElementById('topbar-actions').innerHTML = '<button class="btn btn-sm btn-outline" onclick="loadLeads()">↻ Refresh</button>';
     loadLeads();
   } else if (view === 'analytics') {
     document.getElementById('view-analytics').style.display = 'block';
     document.getElementById('nav-analytics').classList.add('active');
     document.getElementById('topbar-title').textContent = 'Analytics';
-    document.getElementById('topbar-actions').innerHTML = '<button class="btn btn-sm btn-outline" onclick="loadAnalytics(currentAnalyticsDays);loadGA4(currentGA4Days)">Ã¢ÂÂ» Refresh</button>';
+    document.getElementById('topbar-actions').innerHTML = '<button class="btn btn-sm btn-outline" onclick="loadAnalytics(currentAnalyticsDays);loadGA4(currentGA4Days)">↻ Refresh</button>';
     if (!analyticsLoaded) loadAnalytics(7);
     if (!ga4Loaded) loadGA4(7);
   }
@@ -1556,7 +1556,7 @@ function editPost(id) {
   document.getElementById('post-title').value = post.title || '';
   document.getElementById('post-slug').value = post.slug || '';
   document.getElementById('post-snippet').value = post.snippet || '';
-  // meta may be stored as object from old import Ã¢ÂÂ normalize to string
+  // meta may be stored as object from old import — normalize to string
   const metaVal = post.meta && typeof post.meta === 'object' ? (post.meta.description || '') : (post.meta || '');
   document.getElementById('post-meta').value = metaVal;
   document.getElementById('post-image').value = post.image || '';
@@ -1590,7 +1590,7 @@ function editPost(id) {
           tags = cached.tags;
           renderTagCloud();
         }
-        toast('Ã¢ÂÂ Loaded from local cache');
+        toast('✅ Loaded from local cache');
       } else {
         loadLegacyContent(post);
       }
@@ -1599,12 +1599,12 @@ function editPost(id) {
 }
 
 async function loadLegacyContent(post) {
-  toast('Ã¢ÂÂ³ Loading existing content from live siteÃ¢ÂÂ¦');
+  toast('⏳ Loading existing content from live site…');
   try {
-    // Public repo Ã¢ÂÂ read raw content without a token
+    // Public repo — read raw content without a token
     const rawUrl = 'https://raw.githubusercontent.com/peybehin/atbethesda-website/main/' + post.repoPath;
     const resp = await fetch(rawUrl);
-    if (!resp.ok) { toast('Ã¢ÂÂ  Could not fetch live content.'); return; }
+    if (!resp.ok) { toast('⚠ Could not fetch live content.'); return; }
     const html = await resp.text();
 
     // Extract post body
@@ -1647,16 +1647,16 @@ async function loadLegacyContent(post) {
     storeBodyData(post.id, { content: bodyHTML.trim(), meta: metaDesc, tags: fetchedTags });
     const idx = posts.findIndex(p => p.id === post.id);
     if (idx > -1) {
-      // Update lightweight metadata only Ã¢ÂÂ no body in localStorage
+      // Update lightweight metadata only — no body in localStorage
       if (metaDesc && !posts[idx].meta) posts[idx].meta = metaDesc;
       if (fetchedTags.length && (!posts[idx].tags || !posts[idx].tags.length)) posts[idx].tags = fetchedTags;
       posts[idx].content = '';
       savePosts();
     }
 
-    toast('Ã¢ÂÂ Content loaded from live site.');
+    toast('✅ Content loaded from live site.');
   } catch(e) {
-    toast('Ã¢ÂÂ  Could not load live content: ' + e.message);
+    toast('⚠ Could not load live content: ' + e.message);
   }
 }
 
@@ -1675,7 +1675,7 @@ function filterStatus(status) {
   showView('dashboard', null, status);
 }
 
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ STATUS CHANGE HANDLER Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════ STATUS CHANGE HANDLER ══════════════ */
 function onStatusChange() {
   const statusEl = document.getElementById('post-status');
   const schedPreview = document.getElementById('schedule-preview');
@@ -1692,11 +1692,11 @@ function onStatusChange() {
       if (isPast) {
         schedPreview.style.background = '#fce4ec';
         schedPreview.style.color = '#c62828';
-        schedPreview.innerHTML = `Ã¢ÂÂ  That date/time is in the past. Change to a future date or switch to Published.`;
+        schedPreview.innerHTML = `⚠ That date/time is in the past. Change to a future date or switch to Published.`;
       } else {
         schedPreview.style.background = '#e3f2fd';
         schedPreview.style.color = '#1565c0';
-        schedPreview.innerHTML = `Ã°ÂÂÂ Will publish on<br><strong>${dt.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'})} at ${dt.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})}</strong>`;
+        schedPreview.innerHTML = `🕐 Will publish on<br><strong>${dt.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'})} at ${dt.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})}</strong>`;
       }
     } else {
       schedPreview.style.display = 'none';
@@ -1706,7 +1706,7 @@ function onStatusChange() {
   }
 }
 
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ POST LIST Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════ POST LIST ══════════════ */
 function isPostDue(post) {
   if (post.status !== 'scheduled') return false;
   const dt = new Date((post.date || '') + 'T' + (post.scheduledTime || '09:00'));
@@ -1795,10 +1795,10 @@ function renderPostList(filterCat, filterStat) {
   body.innerHTML = filtered.map(post => {
     const due = isPostDue(post);
     const scheduledLine = post.status === 'scheduled' && post.date
-      ? `<div style="font-size:.68rem;color:#1565c0;margin-top:3px;">Ã°ÂÂÂ ${formatDate(post.date)}${post.scheduledTime ? ' at ' + formatTime(post.scheduledTime) : ''}</div>`
+      ? `<div style="font-size:.68rem;color:#1565c0;margin-top:3px;">🕐 ${formatDate(post.date)}${post.scheduledTime ? ' at ' + formatTime(post.scheduledTime) : ''}</div>`
       : '';
     const dateDisplay = post.status === 'scheduled' && due
-      ? `<span style="color:#c62828;font-weight:700;font-size:.72rem;">Ã¢ÂÂ¡ Due now</span>`
+      ? `<span style="color:#c62828;font-weight:700;font-size:.72rem;">⚡ Due now</span>`
       : `<span style="font-size:.78rem;color:#888;">${formatDate(post.date)}</span>`;
     return `
     <tr>
@@ -1807,15 +1807,15 @@ function renderPostList(filterCat, filterStat) {
         <div style="font-size:.72rem;color:#aaa;margin-top:2px;">/${post.slug || ''}/</div>
         ${scheduledLine}
       </td>
-      <td>${post.category ? `<span class="cat-badge">${escHtml(post.category)}</span>` : 'Ã¢ÂÂ'}</td>
+      <td>${post.category ? `<span class="cat-badge">${escHtml(post.category)}</span>` : '—'}</td>
       <td><span class="post-status ${due ? 'due' : (post.status || 'draft')}">${due ? 'due now' : (post.status || 'draft')}</span></td>
       <td>${dateDisplay}</td>
       <td>
         <div class="tbl-actions">
           <button onclick="editPost('${post.id}')">Edit</button>
           ${post.status === 'scheduled'
-            ? `<button onclick="publishScheduled('${post.id}')">Ã¢Â¬Â Publish Now</button>`
-            : `<button onclick="generatePostById('${post.id}')">Ã¢Â¬Â Download</button>`
+            ? `<button onclick="publishScheduled('${post.id}')">⬇ Publish Now</button>`
+            : `<button onclick="generatePostById('${post.id}')">⬇ Download</button>`
           }
           <button class="del" onclick="deletePost('${post.id}')">Delete</button>
         </div>
@@ -1834,7 +1834,7 @@ async function publishScheduled(id) {
   await pushPostToGitHub(post, html);
 }
 
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ TAGS Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════ TAGS ══════════════ */
 function handleTagKey(e) {
   if (e.key === 'Enter' || e.key === ',') {
     e.preventDefault();
@@ -1850,7 +1850,7 @@ function renderTagCloud() {
   ).join('');
 }
 
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ IMAGE PREVIEW Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════ IMAGE PREVIEW ══════════════ */
 function previewImage() {
   const url = document.getElementById('post-image').value.trim();
   const thumb = document.getElementById('image-thumb');
@@ -1858,7 +1858,7 @@ function previewImage() {
   else { thumb.style.display = 'none'; }
 }
 
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ IMAGE UPLOAD Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════ IMAGE UPLOAD ══════════════ */
 function handleImageDrop(e) {
   e.preventDefault();
   const dz = document.getElementById('img-drop-zone');
@@ -1874,7 +1874,7 @@ async function handleImageFile(file) {
   const labelEl = document.getElementById('img-drop-label');
   statusEl.style.display = 'block';
   statusEl.style.color = '#888';
-  statusEl.textContent = 'Ã¢ÂÂ³ UploadingÃ¢ÂÂ¦';
+  statusEl.textContent = '⏳ Uploading…';
 
   const filename = file.name.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9._-]/g, '-');
   const path = 'images/blog/' + filename;
@@ -1899,17 +1899,17 @@ async function handleImageFile(file) {
     previewImage();
     if (typeof saveCurrentPost === 'function') saveCurrentPost();
     statusEl.style.color = '#2e7d32';
-    statusEl.textContent = 'Ã¢ÂÂ Uploaded Ã¢ÂÂ live in ~60s';
-    if (labelEl) labelEl.innerHTML = 'Ã¢ÂÂ ' + filename;
+    statusEl.textContent = '✓ Uploaded — live in ~60s';
+    if (labelEl) labelEl.innerHTML = '✓ ' + filename;
     const fi = document.getElementById('img-file-input');
     if (fi) fi.value = '';
   } catch(err) {
     statusEl.style.color = '#d60717';
-    statusEl.textContent = 'Ã¢ÂÂ Upload failed: ' + err.message;
+    statusEl.textContent = '✗ Upload failed: ' + err.message;
   }
 }
 
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ VLOG INDEX UPDATE Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════ VLOG INDEX UPDATE ══════════════ */
 const CAT_MAP = {'Buying':'Buyers Corner','Selling':'Sellers','News':'Market Updates','Renting':'Renting','Pey on The Street':'Local + Life','Finance':'Finance'};
 
 async function updateVlogIndex(post) {
@@ -1932,7 +1932,7 @@ async function updateVlogIndex(post) {
       '\n    <div class="blog-card-body">' +
       '\n      <div class="tag-row"><span class="blog-tag">' + cat + '</span>' + tags + '</div>' +
       '\n      <h2>' + post.title + '</h2>' +
-      '\n      <p class="blog-excerpt">' + snippet + 'Ã¢ÂÂ¦</p>' +
+      '\n      <p class="blog-excerpt">' + snippet + '…</p>' +
       '\n      <div class="blog-meta">' + new Date(post.date).toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'}) + '</div>' +
       '\n    </div>' +
       '\n  </article>\n';
@@ -1952,7 +1952,7 @@ async function updateVlogIndex(post) {
   } catch(e) { /* silent */ }
 }
 
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ POSTS.JSON UPDATE Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════ POSTS.JSON UPDATE ══════════════ */
 async function updatePostsJSON(post) {
   try {
     const meta = await ghRead('posts.json');
@@ -1979,7 +1979,7 @@ async function updatePostsJSON(post) {
   } catch(e) { /* silent */ }
 }
 
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ TITLE Ã¢ÂÂ SLUG Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════ TITLE → SLUG ══════════════ */
 function onTitleChange() {
   const t = document.getElementById('post-title').value;
   document.getElementById('post-slug').value = slugify(t);
@@ -1989,7 +1989,7 @@ function slugify(t) {
   return t.toLowerCase().replace(/[^a-z0-9\s-]/g,'').replace(/\s+/g,'-').replace(/-+/g,'-').slice(0,80);
 }
 
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ CHAR COUNTER Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════ CHAR COUNTER ══════════════ */
 function updateCharCount() {
   const len = (document.getElementById('post-meta').value || '').length;
   const el = document.getElementById('meta-counter');
@@ -1997,7 +1997,7 @@ function updateCharCount() {
   el.className = 'char-counter' + (len > 160 ? ' over' : len > 140 ? ' warn' : '');
 }
 
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ SEO SCORE Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════ SEO SCORE ══════════════ */
 function updateSEO() {
   updateCharCount();
   const title = document.getElementById('post-title').value.trim();
@@ -2012,9 +2012,9 @@ function updateSEO() {
   const faqs = document.querySelectorAll('.faq-item').length;
 
   const checks = [
-    { id:'title', pass: title.length >= 30 && title.length <= 70, warn: title.length > 0 && (title.length < 30 || title.length > 70), label: `Title 30Ã¢ÂÂ70 chars (${title.length})` },
+    { id:'title', pass: title.length >= 30 && title.length <= 70, warn: title.length > 0 && (title.length < 30 || title.length > 70), label: `Title 30–70 chars (${title.length})` },
     { id:'slug', pass: slug.length > 0, label: 'URL slug set' },
-    { id:'meta', pass: meta.length >= 100 && meta.length <= 160, warn: meta.length > 0 && (meta.length < 100 || meta.length > 160), label: `Meta description 100Ã¢ÂÂ160 chars (${meta.length})` },
+    { id:'meta', pass: meta.length >= 100 && meta.length <= 160, warn: meta.length > 0 && (meta.length < 100 || meta.length > 160), label: `Meta description 100–160 chars (${meta.length})` },
     { id:'snippet', pass: snippet.length >= 50, label: 'AI snippet / answer box written' },
     { id:'image', pass: image.length > 0, label: 'Featured image added' },
     { id:'category', pass: cat.length > 0, label: 'Category selected' },
@@ -2040,18 +2040,18 @@ function updateSEO() {
   ).join('');
 }
 
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ FAQ BUILDER Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════ FAQ BUILDER ══════════════ */
 function addFaq(q='', a='') {
   const id = 'faq-' + Date.now() + Math.random();
   const div = document.createElement('div');
   div.className = 'faq-item';
   div.id = id;
   div.innerHTML = `
-    <button class="faq-remove" onclick="document.getElementById('${id}').remove();updateSEO()">Ã¢ÂÂ</button>
+    <button class="faq-remove" onclick="document.getElementById('${id}').remove();updateSEO()">✕</button>
     <label class="field-label">Question</label>
     <input type="text" placeholder="What is the average home price in Bethesda?" value="${escHtml(q)}" oninput="updateSEO()" />
     <label class="field-label">Answer</label>
-    <textarea rows="3" placeholder="Write a clear, concise answerÃ¢ÂÂ¦" oninput="updateSEO()">${escHtml(a)}</textarea>
+    <textarea rows="3" placeholder="Write a clear, concise answer…" oninput="updateSEO()">${escHtml(a)}</textarea>
   `;
   document.getElementById('faq-list').appendChild(div);
   updateSEO();
@@ -2064,7 +2064,7 @@ function getFaqs() {
   })).filter(f => f.q && f.a);
 }
 
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ SAVE TO localStorage Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════ SAVE TO localStorage ══════════════ */
 function getCurrentPostData() {
   const status = document.getElementById('post-status').value;
   return {
@@ -2110,27 +2110,27 @@ function saveCurrentPost() {
   return data; // returns full data (with content) for buildPostHTML / pushPostToGitHub
 }
 
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ SAVE ACTIONS Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════ SAVE ACTIONS ══════════════ */
 function saveDraft() {
   document.getElementById('post-status').value = 'draft';
   onStatusChange();
   const data = saveCurrentPost();
   showView('dashboard');
-  setTimeout(() => toast('Ã°ÂÂÂ¾ Saved as draft: ' + (data.title || 'Untitled')), 100);
+  setTimeout(() => toast('💾 Saved as draft: ' + (data.title || 'Untitled')), 100);
 }
 
 function saveScheduled() {
   const d = document.getElementById('post-date').value;
   const t = document.getElementById('post-time').value || '06:00';
-  if (!d) { toast('Ã¢ÂÂ  Set a publish date first'); return; }
+  if (!d) { toast('⚠ Set a publish date first'); return; }
   const dt = new Date(d + 'T' + t);
-  if (dt <= new Date()) { toast('Ã¢ÂÂ  Scheduled date must be in the future'); return; }
+  if (dt <= new Date()) { toast('⚠ Scheduled date must be in the future'); return; }
   document.getElementById('post-status').value = 'scheduled';
   onStatusChange();
   const data = saveCurrentPost();
   showView('dashboard');
   const label = dt.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) + ' at ' + formatTime(t);
-  setTimeout(() => toast('Ã°ÂÂÂ Scheduled for ' + label + ': ' + (data.title || 'Untitled')), 100);
+  setTimeout(() => toast('🕐 Scheduled for ' + label + ': ' + (data.title || 'Untitled')), 100);
 }
 
 async function publishNow() {
@@ -2139,27 +2139,27 @@ async function publishNow() {
   const data = saveCurrentPost();
   const html = buildPostHTML(data);
   const statusEl = document.getElementById('publish-status');
-  if (statusEl) { statusEl.style.display = 'block'; statusEl.style.color = '#888'; statusEl.style.background = ''; statusEl.textContent = 'Ã¢ÂÂ³ PublishingÃ¢ÂÂ¦'; }
+  if (statusEl) { statusEl.style.display = 'block'; statusEl.style.color = '#888'; statusEl.style.background = ''; statusEl.textContent = '⏳ Publishing…'; }
   try {
     const ok = await pushPostToGitHub(data, html);
     if (ok) { await updateVlogIndex(data); await updatePostsJSON(data); }
     if (ok) {
-      if (statusEl) { statusEl.style.color = '#2e7d32'; statusEl.style.background = '#e8f5e9'; statusEl.textContent = 'Ã¢ÂÂ Published'; }
+      if (statusEl) { statusEl.style.color = '#2e7d32'; statusEl.style.background = '#e8f5e9'; statusEl.textContent = '● Published'; }
     } else {
-      if (statusEl) { statusEl.style.color = '#d60717'; statusEl.style.background = '#fdecea'; statusEl.textContent = 'Ã¢ÂÂ Push Failed'; }
+      if (statusEl) { statusEl.style.color = '#d60717'; statusEl.style.background = '#fdecea'; statusEl.textContent = '● Push Failed'; }
     }
   } catch(e) {
-    if (statusEl) { statusEl.style.color = '#d60717'; statusEl.style.background = '#fdecea'; statusEl.textContent = 'Ã¢ÂÂ Push Failed'; }
+    if (statusEl) { statusEl.style.color = '#d60717'; statusEl.style.background = '#fdecea'; statusEl.textContent = '● Push Failed'; }
   }
   // Stay on editor briefly so user can see publish status
   setTimeout(() => showView('dashboard'), 1500);
 }
 
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ GITHUB SYNC Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════ GITHUB SYNC ══════════════ */
 async function pushPostToGitHub(post, html) {
   const path = post.repoPath || (post.slug + '/index.html');
   const b64 = btoa(unescape(encodeURIComponent(html)));
-  toast('Ã¢ÂÂ³ Publishing to atbethesda.comÃ¢ÂÂ¦');
+  toast('⏳ Publishing to atbethesda.com…');
   try {
     // Get existing SHA (needed to update)
     let sha = null;
@@ -2167,46 +2167,46 @@ async function pushPostToGitHub(post, html) {
     if (existing && existing.sha) sha = existing.sha;
     const result = await ghWrite(path, b64, 'Publish: ' + (post.title || post.slug), sha);
     if (result.ok) {
-      toast('Ã¢ÂÂ Live in ~60 sec Ã¢ÂÂ atbethesda.com/' + post.slug + '/');
+      toast('✅ Live in ~60 sec → atbethesda.com/' + post.slug + '/');
       return true;
     } else {
-      toast('Ã¢ÂÂ Publish failed Ã¢ÂÂ downloading instead');
+      toast('❌ Publish failed — downloading instead');
       downloadFile(post.slug + '.html', html);
       return false;
     }
   } catch(err) {
-    toast('Ã¢ÂÂ Network error Ã¢ÂÂ downloading instead');
+    toast('❌ Network error — downloading instead');
     downloadFile(post.slug + '.html', html);
     return false;
   }
 }
 
-// saveGhToken() removed Ã¢ÂÂ PAT now lives server-side in Cloudflare Pages env vars
+// saveGhToken() removed — PAT now lives server-side in Cloudflare Pages env vars
 
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ GENERATE HTML Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════ GENERATE HTML ══════════════ */
 function generatePost() {
   const post = saveCurrentPost();
   if (post.status === 'scheduled') {
     const dt = new Date(post.date + 'T' + (post.scheduledTime || '09:00'));
     const isPast = dt <= new Date();
     if (isPast) {
-      // Due now Ã¢ÂÂ publish it
+      // Due now — publish it
       post.status = 'published';
       const idx = posts.findIndex(p => p.id === post.id);
       if (idx >= 0) posts[idx].status = 'published';
       savePosts();
       const html = buildPostHTML(post);
       downloadFile(post.slug + '.html', html);
-      toast('Ã¢ÂÂ Published & downloaded: ' + post.slug + '.html');
+      toast('✓ Published & downloaded: ' + post.slug + '.html');
     } else {
-      toast('Ã°ÂÂÂ Saved as scheduled for ' + dt.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) + ' at ' + formatTime(post.scheduledTime));
+      toast('🕐 Saved as scheduled for ' + dt.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) + ' at ' + formatTime(post.scheduledTime));
       showView('dashboard');
     }
     return;
   }
   const html = buildPostHTML(post);
   downloadFile(post.slug + '.html', html);
-  toast('Ã¢ÂÂ Post downloaded: ' + post.slug + '.html');
+  toast('✓ Post downloaded: ' + post.slug + '.html');
 }
 
 function generatePostById(id) {
@@ -2214,7 +2214,7 @@ function generatePostById(id) {
   if (!post) return;
   const html = buildPostHTML(post);
   downloadFile(post.slug + '.html', html);
-  toast('Ã¢ÂÂ Downloaded: ' + post.slug + '.html');
+  toast('✓ Downloaded: ' + post.slug + '.html');
 }
 
 async function previewPost() {
@@ -2226,7 +2226,7 @@ async function previewPost() {
   if (titleEl) titleEl.textContent = post.title || 'Untitled';
   modal.style.display = 'flex';
   // Show loading state
-  frame.srcdoc = '<p style="font:1rem sans-serif;padding:40px;color:#666">Loading previewÃ¢ÂÂ¦</p>';
+  frame.srcdoc = '<p style="font:1rem sans-serif;padding:40px;color:#666">Loading preview…</p>';
   // Fetch CSS and render
   let siteCss = '';
   try { const r = await fetch('https://atbethesda.com/css/style.css?v=4'); siteCss = await r.text(); } catch(e) {}
@@ -2236,13 +2236,13 @@ async function previewPost() {
   frame.contentDocument.close();
 }
 
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ HTML GENERATOR Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════ HTML GENERATOR ══════════════ */
 function buildPostHTML(post, siteCss) {
   const title = post.title || 'Blog Post';
   const slug = post.slug || 'blog-post';
   const date = post.date || new Date().toISOString().split('T')[0];
   const dateFormatted = formatDate(date);
-  const meta = post.meta || (title + ' Ã¢ÂÂ @Bethesda Real Estate with Pey Behin.');
+  const meta = post.meta || (title + ' — @Bethesda Real Estate with Pey Behin.');
   const image = post.image || '/images/logo-bethesda-residential.png';
   const category = post.category || 'Real Estate';
   const snippet = post.snippet || '';
@@ -2326,13 +2326,13 @@ function buildPostHTML(post, siteCss) {
     <p style="font-size:.95rem;line-height:1.7;color:#333;">${escHtml(snippet)}</p>
   </div>` : '';
 
-  const tagsHTML = ''; // Tags kept in JSON-LD keywords only Ã¢ÂÂ not shown to readers
+  const tagsHTML = ''; // Tags kept in JSON-LD keywords only — not shown to readers
 
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>${escHtml(title)} | @Bethesda Real Estate Ã¢ÂÂ Pey Behin</title>
+<title>${escHtml(title)} | @Bethesda Real Estate — Pey Behin</title>
 <meta name="description" content="${escHtml(meta)}" />
 <meta name="author" content="Pey Behin" />
 <link rel="canonical" href="${canonicalUrl}" />
@@ -2388,7 +2388,7 @@ ${speakableSchema ? `<script type="application/ld+json">${JSON.stringify(speakab
   <a href="/" class="nav-logo"><img src="/images/logo-bethesda-residential.png?v=2" alt="@Bethesda Real Estate" /></a>
   <ul class="nav-links">
     <li><a href="/">Home</a></li>
-    <li class="nav-dropdown"><a href="/properties/">Buy Ã¢ÂÂ¾</a>
+    <li class="nav-dropdown"><a href="/properties/">Buy ▾</a>
       <ul class="nav-dropdown-menu">
         <li><a href="/properties/">Properties</a></li>
         <li><a href="/perfect-home-finder/">Perfect Home Finder</a></li>
@@ -2396,7 +2396,7 @@ ${speakableSchema ? `<script type="application/ld+json">${JSON.stringify(speakab
         <li><a href="/mortgage-calculator/">Mortgage Calculator</a></li>
       </ul>
     </li>
-    <li class="nav-dropdown"><a href="/whats-my-home-worth/">Sell Ã¢ÂÂ¾</a>
+    <li class="nav-dropdown"><a href="/whats-my-home-worth/">Sell ▾</a>
       <ul class="nav-dropdown-menu">
         <li><a href="/whats-my-home-worth/">Home Valuation</a></li>
         <li><a href="/sellers-guide/">Seller's Guide</a></li>
@@ -2412,11 +2412,11 @@ ${speakableSchema ? `<script type="application/ld+json">${JSON.stringify(speakab
 <!-- Hero -->
 <div class="post-header"><div class="post-header-inner"><div class="post-cats" style="margin-bottom:10px;"><span class="blog-tag" style="margin-right:6px;margin-bottom:4px;">${category}</span></div>
     <h1 itemprop="headline">${title}</h1>
-    <p class="post-byline">By Pey Behin ÃÂ· <time itemprop="datePublished" datetime="${date}">${dateFormatted}</time></p>
+    <p class="post-byline">By Pey Behin · <time itemprop="datePublished" datetime="${date}">${dateFormatted}</time></p>
   </div></div>
   ${image ? `<div class="post-featured-img"><img src="${image}" alt="${title}" loading="lazy"></div>` : ''}
 <article class="post-body" itemscope itemtype="https://schema.org/Article">
-  <p><a href="/vlog/" class="back-link">Ã¢ÂÂ Back to Blog</a></p>
+  <p><a href="/vlog/" class="back-link">← Back to Blog</a></p>
   ${snippet ? `<div class="tl-dr"><strong>TL;DR</strong><p>${snippet}</p></div>` : ''}
   <div itemprop="articleBody">
     ${post.content || ''}
@@ -2431,7 +2431,7 @@ ${faqHTML}
   <div style="max-width:600px;margin:0 auto;">
     <span style="font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6);display:block;margin-bottom:10px;">Work With Pey</span>
     <h2 style="font-size:clamp(1.4rem,3vw,2rem);font-weight:900;text-transform:uppercase;letter-spacing:.04em;color:#fff;margin-bottom:16px;">Ready to Make Your Move?</h2>
-    <p style="color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:28px;font-size:.9rem;">Whether you're buying, selling, or just exploring your options in Bethesda, Chevy Chase, or Potomac Ã¢ÂÂ let's talk.</p>
+    <p style="color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:28px;font-size:.9rem;">Whether you're buying, selling, or just exploring your options in Bethesda, Chevy Chase, or Potomac — let's talk.</p>
     <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
       <a href="/contact/" style="display:inline-block;background:#fff;color:#d60717;padding:13px 28px;border-radius:4px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;text-decoration:none;">Let's Connect</a>
       <a href="/whats-my-home-worth/" style="display:inline-block;background:transparent;color:#fff;border:2px solid rgba(255,255,255,.5);padding:12px 28px;border-radius:4px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;text-decoration:none;">Home Valuation</a>
@@ -2447,7 +2447,7 @@ ${faqHTML}
       <div class="footer-col"><h4>Areas</h4><ul><li><a href="/our-areas/bethesda/">Bethesda</a></li><li><a href="/our-areas/chevy-chase/">Chevy Chase</a></li><li><a href="/our-areas/potomac/">Potomac</a></li><li><a href="/our-areas/north-bethesda/">North Bethesda</a></li></ul></div>
       <div class="footer-col"><h4>More</h4><ul><li><a href="/about/">About Pey</a></li><li><a href="/testimonials/">Testimonials</a></li><li><a href="/vlog/">Blog</a></li><li><a href="/contact/">Contact</a></li></ul></div>
     </div>
-    <div class="footer-bottom"><p>RLAH Properties | 4600 North Park Ave Suite 100, Chevy Chase, MD 20815 | ÃÂ© ${new Date().getFullYear()} @Bethesda Real Estate. All rights reserved.</p></div>
+    <div class="footer-bottom"><p>RLAH Properties | 4600 North Park Ave Suite 100, Chevy Chase, MD 20815 | © ${new Date().getFullYear()} @Bethesda Real Estate. All rights reserved.</p></div>
   </div>
 </footer>
 
@@ -2458,7 +2458,7 @@ ${faqHTML}
   <div id="import-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;display:none;align-items:center;justify-content:center;">
     <div style="background:#fff;border-radius:12px;padding:36px 40px;max-width:540px;width:94%;box-shadow:0 20px 60px rgba(0,0,0,.3);">
       <h2 style="margin:0 0 8px;font-size:1.3rem;color:#0a0a0a;">Import BOFU Draft Posts</h2>
-      <p style="color:#666;font-size:.85rem;margin:0 0 20px;">Select the <code>ab_drafts_import.json</code> file from your Downloads folder. Posts are added as drafts Ã¢ÂÂ existing posts with the same ID are skipped.</p>
+      <p style="color:#666;font-size:.85rem;margin:0 0 20px;">Select the <code>ab_drafts_import.json</code> file from your Downloads folder. Posts are added as drafts — existing posts with the same ID are skipped.</p>
       <input type="file" id="import-file-input" accept=".json" style="display:block;width:100%;margin-bottom:16px;font-size:.85rem;">
       <div id="import-status" style="min-height:24px;font-size:.85rem;color:#1565c0;margin-bottom:16px;"></div>
       <div style="display:flex;gap:10px;justify-content:flex-end;">
@@ -2472,7 +2472,7 @@ ${faqHTML}
 </html>`;
 }
 
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ UTILS Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════ UTILS ══════════════ */
 function escHtml(str) {
   return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
@@ -2504,117 +2504,117 @@ function toast(msg) {
 /* Start on analytics */
 showView('analytics');
 
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ SCHOOLS DATA Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════ SCHOOLS DATA ══════════════ */
 const AREAS_SCHOOLS_DEFAULT = {
   'bethesda': { name:'Bethesda, MD', schools:[
-    {name:'Walter Johnson High School',grades:'9Ã¢ÂÂ12',url:'https://www.greatschools.org/maryland/bethesda/3499-walter-johnson-high-school/'},
-    {name:'Westland Middle School',grades:'6Ã¢ÂÂ8',url:'https://www.greatschools.org/maryland/bethesda/3498-westland-middle-school/'},
-    {name:'Walt Whitman High School',grades:'9Ã¢ÂÂ12',url:'https://www.greatschools.org/maryland/bethesda/3514-walt-whitman-high-school/'},
-    {name:'Westbrook Elementary',grades:'PKÃ¢ÂÂ5',url:'https://www.greatschools.org/maryland/bethesda/3497-westbrook-elementary/'},
+    {name:'Walter Johnson High School',grades:'9–12',url:'https://www.greatschools.org/maryland/bethesda/3499-walter-johnson-high-school/'},
+    {name:'Westland Middle School',grades:'6–8',url:'https://www.greatschools.org/maryland/bethesda/3498-westland-middle-school/'},
+    {name:'Walt Whitman High School',grades:'9–12',url:'https://www.greatschools.org/maryland/bethesda/3514-walt-whitman-high-school/'},
+    {name:'Westbrook Elementary',grades:'PK–5',url:'https://www.greatschools.org/maryland/bethesda/3497-westbrook-elementary/'},
   ]},
   'chevy-chase': { name:'Chevy Chase, MD', schools:[
-    {name:'Bethesda-Chevy Chase High School',grades:'9Ã¢ÂÂ12',url:'https://www.greatschools.org/maryland/bethesda/3478-bethesda-chevy-chase-high/'},
-    {name:'Westland Middle School',grades:'6Ã¢ÂÂ8',url:'https://www.greatschools.org/maryland/bethesda/3498-westland-middle-school/'},
-    {name:'Chevy Chase Elementary',grades:'PKÃ¢ÂÂ5',url:'https://www.greatschools.org/maryland/chevy-chase/3479-chevy-chase-elementary/'},
+    {name:'Bethesda-Chevy Chase High School',grades:'9–12',url:'https://www.greatschools.org/maryland/bethesda/3478-bethesda-chevy-chase-high/'},
+    {name:'Westland Middle School',grades:'6–8',url:'https://www.greatschools.org/maryland/bethesda/3498-westland-middle-school/'},
+    {name:'Chevy Chase Elementary',grades:'PK–5',url:'https://www.greatschools.org/maryland/chevy-chase/3479-chevy-chase-elementary/'},
   ]},
   'potomac': { name:'Potomac, MD', schools:[
-    {name:'Winston Churchill High School',grades:'9Ã¢ÂÂ12',url:'https://www.greatschools.org/maryland/potomac/3505-winston-churchill-high-school/'},
-    {name:'Herbert Hoover Middle School',grades:'6Ã¢ÂÂ8',url:'https://www.greatschools.org/maryland/potomac/3503-herbert-hoover-middle-school/'},
-    {name:'Potomac Elementary',grades:'PKÃ¢ÂÂ5',url:'https://www.greatschools.org/maryland/potomac/3504-potomac-elementary/'},
-    {name:'Beverly Farms Elementary',grades:'PKÃ¢ÂÂ5',url:'https://www.greatschools.org/maryland/potomac/3474-beverly-farms-elementary/'},
+    {name:'Winston Churchill High School',grades:'9–12',url:'https://www.greatschools.org/maryland/potomac/3505-winston-churchill-high-school/'},
+    {name:'Herbert Hoover Middle School',grades:'6–8',url:'https://www.greatschools.org/maryland/potomac/3503-herbert-hoover-middle-school/'},
+    {name:'Potomac Elementary',grades:'PK–5',url:'https://www.greatschools.org/maryland/potomac/3504-potomac-elementary/'},
+    {name:'Beverly Farms Elementary',grades:'PK–5',url:'https://www.greatschools.org/maryland/potomac/3474-beverly-farms-elementary/'},
   ]},
   'north-bethesda': { name:'North Bethesda, MD', schools:[
-    {name:'Thomas S. Wootton High School',grades:'9Ã¢ÂÂ12',url:'https://www.greatschools.org/maryland/rockville/3511-thomas-s-wootton-high-school/'},
-    {name:'Robert Frost Middle School',grades:'6Ã¢ÂÂ8',url:'https://www.greatschools.org/maryland/rockville/3508-robert-frost-middle-school/'},
-    {name:'Luxmanor Elementary',grades:'PKÃ¢ÂÂ5',url:'https://www.greatschools.org/maryland/rockville/3493-luxmanor-elementary/'},
+    {name:'Thomas S. Wootton High School',grades:'9–12',url:'https://www.greatschools.org/maryland/rockville/3511-thomas-s-wootton-high-school/'},
+    {name:'Robert Frost Middle School',grades:'6–8',url:'https://www.greatschools.org/maryland/rockville/3508-robert-frost-middle-school/'},
+    {name:'Luxmanor Elementary',grades:'PK–5',url:'https://www.greatschools.org/maryland/rockville/3493-luxmanor-elementary/'},
   ]},
   'rockville': { name:'Rockville, MD', schools:[
-    {name:'Richard Montgomery High School',grades:'9Ã¢ÂÂ12',url:'https://www.greatschools.org/maryland/rockville/3507-richard-montgomery-high-school/'},
-    {name:'Thomas S. Wootton High School',grades:'9Ã¢ÂÂ12',url:'https://www.greatschools.org/maryland/rockville/3511-thomas-s-wootton-high-school/'},
-    {name:'Julius West Middle School',grades:'6Ã¢ÂÂ8',url:'https://www.greatschools.org/maryland/rockville/3490-julius-west-middle-school/'},
-    {name:'Robert Frost Middle School',grades:'6Ã¢ÂÂ8',url:'https://www.greatschools.org/maryland/rockville/3508-robert-frost-middle-school/'},
+    {name:'Richard Montgomery High School',grades:'9–12',url:'https://www.greatschools.org/maryland/rockville/3507-richard-montgomery-high-school/'},
+    {name:'Thomas S. Wootton High School',grades:'9–12',url:'https://www.greatschools.org/maryland/rockville/3511-thomas-s-wootton-high-school/'},
+    {name:'Julius West Middle School',grades:'6–8',url:'https://www.greatschools.org/maryland/rockville/3490-julius-west-middle-school/'},
+    {name:'Robert Frost Middle School',grades:'6–8',url:'https://www.greatschools.org/maryland/rockville/3508-robert-frost-middle-school/'},
   ]},
   'kensington': { name:'Kensington, MD', schools:[
-    {name:'Albert Einstein High School',grades:'9Ã¢ÂÂ12',url:'https://www.greatschools.org/maryland/kensington/3484-albert-einstein-high-school/'},
-    {name:'Kingsview Middle School',grades:'6Ã¢ÂÂ8',url:'https://www.greatschools.org/maryland/germantown/3491-kingsview-middle-school/'},
-    {name:'Oakland Terrace Elementary',grades:'PKÃ¢ÂÂ5',url:'https://www.greatschools.org/maryland/kensington/3500-oakland-terrace-elementary/'},
+    {name:'Albert Einstein High School',grades:'9–12',url:'https://www.greatschools.org/maryland/kensington/3484-albert-einstein-high-school/'},
+    {name:'Kingsview Middle School',grades:'6–8',url:'https://www.greatschools.org/maryland/germantown/3491-kingsview-middle-school/'},
+    {name:'Oakland Terrace Elementary',grades:'PK–5',url:'https://www.greatschools.org/maryland/kensington/3500-oakland-terrace-elementary/'},
   ]},
   'silver-spring': { name:'Silver Spring, MD', schools:[
-    {name:'Montgomery Blair High School',grades:'9Ã¢ÂÂ12',url:'https://www.greatschools.org/maryland/silver-spring/3488-montgomery-blair-high-school/'},
-    {name:'Silver Spring International MS',grades:'6Ã¢ÂÂ8',url:'https://www.greatschools.org/maryland/silver-spring/3509-silver-spring-international-middle/'},
+    {name:'Montgomery Blair High School',grades:'9–12',url:'https://www.greatschools.org/maryland/silver-spring/3488-montgomery-blair-high-school/'},
+    {name:'Silver Spring International MS',grades:'6–8',url:'https://www.greatschools.org/maryland/silver-spring/3509-silver-spring-international-middle/'},
   ]},
   'gaithersburg': { name:'Gaithersburg, MD', schools:[
-    {name:'Quince Orchard High School',grades:'9Ã¢ÂÂ12',url:'https://www.greatschools.org/maryland/gaithersburg/3506-quince-orchard-high-school/'},
-    {name:'Gaithersburg High School',grades:'9Ã¢ÂÂ12',url:'https://www.greatschools.org/maryland/gaithersburg/3483-gaithersburg-high-school/'},
-    {name:'Gaithersburg Middle School',grades:'6Ã¢ÂÂ8',url:'https://www.greatschools.org/maryland/gaithersburg/3482-gaithersburg-middle-school/'},
+    {name:'Quince Orchard High School',grades:'9–12',url:'https://www.greatschools.org/maryland/gaithersburg/3506-quince-orchard-high-school/'},
+    {name:'Gaithersburg High School',grades:'9–12',url:'https://www.greatschools.org/maryland/gaithersburg/3483-gaithersburg-high-school/'},
+    {name:'Gaithersburg Middle School',grades:'6–8',url:'https://www.greatschools.org/maryland/gaithersburg/3482-gaithersburg-middle-school/'},
   ]},
   'north-potomac': { name:'North Potomac, MD', schools:[
-    {name:'Thomas S. Wootton High School',grades:'9Ã¢ÂÂ12',url:'https://www.greatschools.org/maryland/rockville/3511-thomas-s-wootton-high-school/'},
-    {name:'Robert Frost Middle School',grades:'6Ã¢ÂÂ8',url:'https://www.greatschools.org/maryland/rockville/3508-robert-frost-middle-school/'},
-    {name:'Travilah Elementary',grades:'PKÃ¢ÂÂ5',url:'https://www.greatschools.org/maryland/north-potomac/3513-travilah-elementary/'},
+    {name:'Thomas S. Wootton High School',grades:'9–12',url:'https://www.greatschools.org/maryland/rockville/3511-thomas-s-wootton-high-school/'},
+    {name:'Robert Frost Middle School',grades:'6–8',url:'https://www.greatschools.org/maryland/rockville/3508-robert-frost-middle-school/'},
+    {name:'Travilah Elementary',grades:'PK–5',url:'https://www.greatschools.org/maryland/north-potomac/3513-travilah-elementary/'},
   ]},
   'cabin-john': { name:'Cabin John, MD', schools:[
-    {name:'Winston Churchill High School',grades:'9Ã¢ÂÂ12',url:'https://www.greatschools.org/maryland/potomac/3505-winston-churchill-high-school/'},
-    {name:'Cabin John Middle School',grades:'6Ã¢ÂÂ8',url:'https://www.greatschools.org/maryland/cabin-john/3477-cabin-john-middle-school/'},
-    {name:'Beverly Farms Elementary',grades:'PKÃ¢ÂÂ5',url:'https://www.greatschools.org/maryland/potomac/3474-beverly-farms-elementary/'},
+    {name:'Winston Churchill High School',grades:'9–12',url:'https://www.greatschools.org/maryland/potomac/3505-winston-churchill-high-school/'},
+    {name:'Cabin John Middle School',grades:'6–8',url:'https://www.greatschools.org/maryland/cabin-john/3477-cabin-john-middle-school/'},
+    {name:'Beverly Farms Elementary',grades:'PK–5',url:'https://www.greatschools.org/maryland/potomac/3474-beverly-farms-elementary/'},
   ]},
   'friendship-heights': { name:'Friendship Heights, MD/DC', schools:[
-    {name:'Jackson-Reed High School (DC)',grades:'9Ã¢ÂÂ12',url:'https://www.greatschools.org/district-of-columbia/washington/5966-jackson-reed-high-school/'},
-    {name:'Deal Middle School (DC)',grades:'6Ã¢ÂÂ8',url:'https://www.greatschools.org/district-of-columbia/washington/5929-deal-middle-school/'},
-    {name:'Bethesda-Chevy Chase HS (MD)',grades:'9Ã¢ÂÂ12',url:'https://www.greatschools.org/maryland/bethesda/3478-bethesda-chevy-chase-high/'},
+    {name:'Jackson-Reed High School (DC)',grades:'9–12',url:'https://www.greatschools.org/district-of-columbia/washington/5966-jackson-reed-high-school/'},
+    {name:'Deal Middle School (DC)',grades:'6–8',url:'https://www.greatschools.org/district-of-columbia/washington/5929-deal-middle-school/'},
+    {name:'Bethesda-Chevy Chase HS (MD)',grades:'9–12',url:'https://www.greatschools.org/maryland/bethesda/3478-bethesda-chevy-chase-high/'},
   ]},
   'chevy-chase-dc': { name:'Chevy Chase, DC', schools:[
-    {name:'Jackson-Reed High School',grades:'9Ã¢ÂÂ12',url:'https://www.greatschools.org/district-of-columbia/washington/5966-jackson-reed-high-school/'},
-    {name:'Deal Middle School',grades:'6Ã¢ÂÂ8',url:'https://www.greatschools.org/district-of-columbia/washington/5929-deal-middle-school/'},
-    {name:'Lafayette Elementary',grades:'PKÃ¢ÂÂ5',url:'https://www.greatschools.org/district-of-columbia/washington/5931-lafayette-elementary-school/'},
+    {name:'Jackson-Reed High School',grades:'9–12',url:'https://www.greatschools.org/district-of-columbia/washington/5966-jackson-reed-high-school/'},
+    {name:'Deal Middle School',grades:'6–8',url:'https://www.greatschools.org/district-of-columbia/washington/5929-deal-middle-school/'},
+    {name:'Lafayette Elementary',grades:'PK–5',url:'https://www.greatschools.org/district-of-columbia/washington/5931-lafayette-elementary-school/'},
   ]},
   'georgetown': { name:'Georgetown, DC', schools:[
-    {name:'Jackson-Reed High School',grades:'9Ã¢ÂÂ12',url:'https://www.greatschools.org/district-of-columbia/washington/5966-jackson-reed-high-school/'},
-    {name:'Hardy Middle School',grades:'6Ã¢ÂÂ8',url:'https://www.greatschools.org/district-of-columbia/washington/5930-hardy-middle-school/'},
-    {name:'Hyde-Addison Elementary',grades:'PKÃ¢ÂÂ5',url:'https://www.greatschools.org/district-of-columbia/washington/5928-hyde-addison-elementary-school/'},
+    {name:'Jackson-Reed High School',grades:'9–12',url:'https://www.greatschools.org/district-of-columbia/washington/5966-jackson-reed-high-school/'},
+    {name:'Hardy Middle School',grades:'6–8',url:'https://www.greatschools.org/district-of-columbia/washington/5930-hardy-middle-school/'},
+    {name:'Hyde-Addison Elementary',grades:'PK–5',url:'https://www.greatschools.org/district-of-columbia/washington/5928-hyde-addison-elementary-school/'},
   ]},
   'palisades': { name:'The Palisades, DC', schools:[
-    {name:'Jackson-Reed High School',grades:'9Ã¢ÂÂ12',url:'https://www.greatschools.org/district-of-columbia/washington/5966-jackson-reed-high-school/'},
-    {name:'Hardy Middle School',grades:'6Ã¢ÂÂ8',url:'https://www.greatschools.org/district-of-columbia/washington/5930-hardy-middle-school/'},
-    {name:'Key Elementary',grades:'PKÃ¢ÂÂ5',url:'https://www.greatschools.org/district-of-columbia/washington/5932-francis-scott-key-elementary-school/'},
+    {name:'Jackson-Reed High School',grades:'9–12',url:'https://www.greatschools.org/district-of-columbia/washington/5966-jackson-reed-high-school/'},
+    {name:'Hardy Middle School',grades:'6–8',url:'https://www.greatschools.org/district-of-columbia/washington/5930-hardy-middle-school/'},
+    {name:'Key Elementary',grades:'PK–5',url:'https://www.greatschools.org/district-of-columbia/washington/5932-francis-scott-key-elementary-school/'},
   ]},
   'spring-valley': { name:'Spring Valley, DC', schools:[
-    {name:'Jackson-Reed High School',grades:'9Ã¢ÂÂ12',url:'https://www.greatschools.org/district-of-columbia/washington/5966-jackson-reed-high-school/'},
-    {name:'Deal Middle School',grades:'6Ã¢ÂÂ8',url:'https://www.greatschools.org/district-of-columbia/washington/5929-deal-middle-school/'},
-    {name:'Janney Elementary',grades:'PKÃ¢ÂÂ5',url:'https://www.greatschools.org/district-of-columbia/washington/5933-janney-elementary-school/'},
+    {name:'Jackson-Reed High School',grades:'9–12',url:'https://www.greatschools.org/district-of-columbia/washington/5966-jackson-reed-high-school/'},
+    {name:'Deal Middle School',grades:'6–8',url:'https://www.greatschools.org/district-of-columbia/washington/5929-deal-middle-school/'},
+    {name:'Janney Elementary',grades:'PK–5',url:'https://www.greatschools.org/district-of-columbia/washington/5933-janney-elementary-school/'},
   ]},
   'mclean-vienna-tysons': { name:'McLean / Vienna / Tysons', schools:[
-    {name:'McLean High School',grades:'9Ã¢ÂÂ12',url:'https://www.greatschools.org/virginia/mclean/4714-mclean-high-school/'},
-    {name:'Langley High School',grades:'9Ã¢ÂÂ12',url:'https://www.greatschools.org/virginia/mclean/4710-langley-high-school/'},
-    {name:'Cooper Middle School',grades:'6Ã¢ÂÂ8',url:'https://www.greatschools.org/virginia/mclean/4706-cooper-middle-school/'},
-    {name:'Longfellow Middle School',grades:'6Ã¢ÂÂ8',url:'https://www.greatschools.org/virginia/falls-church/4711-longfellow-middle-school/'},
+    {name:'McLean High School',grades:'9–12',url:'https://www.greatschools.org/virginia/mclean/4714-mclean-high-school/'},
+    {name:'Langley High School',grades:'9–12',url:'https://www.greatschools.org/virginia/mclean/4710-langley-high-school/'},
+    {name:'Cooper Middle School',grades:'6–8',url:'https://www.greatschools.org/virginia/mclean/4706-cooper-middle-school/'},
+    {name:'Longfellow Middle School',grades:'6–8',url:'https://www.greatschools.org/virginia/falls-church/4711-longfellow-middle-school/'},
   ]},
   'great-falls': { name:'Great Falls, VA', schools:[
-    {name:'Langley High School',grades:'9Ã¢ÂÂ12',url:'https://www.greatschools.org/virginia/mclean/4710-langley-high-school/'},
-    {name:'Cooper Middle School',grades:'6Ã¢ÂÂ8',url:'https://www.greatschools.org/virginia/mclean/4706-cooper-middle-school/'},
-    {name:'Great Falls Elementary',grades:'PKÃ¢ÂÂ5',url:'https://www.greatschools.org/virginia/great-falls/4708-great-falls-elementary/'},
+    {name:'Langley High School',grades:'9–12',url:'https://www.greatschools.org/virginia/mclean/4710-langley-high-school/'},
+    {name:'Cooper Middle School',grades:'6–8',url:'https://www.greatschools.org/virginia/mclean/4706-cooper-middle-school/'},
+    {name:'Great Falls Elementary',grades:'PK–5',url:'https://www.greatschools.org/virginia/great-falls/4708-great-falls-elementary/'},
   ]},
   'arlington': { name:'Arlington, VA', schools:[
-    {name:'Yorktown High School',grades:'9Ã¢ÂÂ12',url:'https://www.greatschools.org/virginia/arlington/4637-yorktown-high-school/'},
-    {name:'Wakefield High School',grades:'9Ã¢ÂÂ12',url:'https://www.greatschools.org/virginia/arlington/4636-wakefield-high-school/'},
-    {name:'Washington-Liberty High School',grades:'9Ã¢ÂÂ12',url:'https://www.greatschools.org/virginia/arlington/4635-washington-liberty-high-school/'},
-    {name:'Swanson Middle School',grades:'6Ã¢ÂÂ8',url:'https://www.greatschools.org/virginia/arlington/4632-swanson-middle-school/'},
+    {name:'Yorktown High School',grades:'9–12',url:'https://www.greatschools.org/virginia/arlington/4637-yorktown-high-school/'},
+    {name:'Wakefield High School',grades:'9–12',url:'https://www.greatschools.org/virginia/arlington/4636-wakefield-high-school/'},
+    {name:'Washington-Liberty High School',grades:'9–12',url:'https://www.greatschools.org/virginia/arlington/4635-washington-liberty-high-school/'},
+    {name:'Swanson Middle School',grades:'6–8',url:'https://www.greatschools.org/virginia/arlington/4632-swanson-middle-school/'},
   ]},
   'alexandria': { name:'Alexandria, VA', schools:[
-    {name:'Alexandria City High School',grades:'9Ã¢ÂÂ12',url:'https://www.greatschools.org/virginia/alexandria/4591-alexandria-city-high-school/'},
-    {name:'George Washington Middle School',grades:'6Ã¢ÂÂ8',url:'https://www.greatschools.org/virginia/alexandria/4587-george-washington-middle-school/'},
-    {name:'Jefferson-Houston PreKÃ¢ÂÂ8',grades:'PKÃ¢ÂÂ8',url:'https://www.greatschools.org/virginia/alexandria/4588-jefferson-houston-preK-8-school/'},
+    {name:'Alexandria City High School',grades:'9–12',url:'https://www.greatschools.org/virginia/alexandria/4591-alexandria-city-high-school/'},
+    {name:'George Washington Middle School',grades:'6–8',url:'https://www.greatschools.org/virginia/alexandria/4587-george-washington-middle-school/'},
+    {name:'Jefferson-Houston PreK–8',grades:'PK–8',url:'https://www.greatschools.org/virginia/alexandria/4588-jefferson-houston-preK-8-school/'},
   ]},
   'fairfax': { name:'Fairfax, VA', schools:[
-    {name:'W.T. Woodson High School',grades:'9Ã¢ÂÂ12',url:'https://www.greatschools.org/virginia/fairfax/4701-w-t-woodson-high-school/'},
-    {name:'Fairfax High School',grades:'9Ã¢ÂÂ12',url:'https://www.greatschools.org/virginia/fairfax/4703-fairfax-high-school/'},
-    {name:'Frost Middle School',grades:'6Ã¢ÂÂ8',url:'https://www.greatschools.org/virginia/fairfax/4700-robert-frost-middle-school/'},
+    {name:'W.T. Woodson High School',grades:'9–12',url:'https://www.greatschools.org/virginia/fairfax/4701-w-t-woodson-high-school/'},
+    {name:'Fairfax High School',grades:'9–12',url:'https://www.greatschools.org/virginia/fairfax/4703-fairfax-high-school/'},
+    {name:'Frost Middle School',grades:'6–8',url:'https://www.greatschools.org/virginia/fairfax/4700-robert-frost-middle-school/'},
   ]},
   'falls-church': { name:'Falls Church, VA', schools:[
-    {name:'George Mason High School',grades:'9Ã¢ÂÂ12',url:'https://www.greatschools.org/virginia/falls-church/4620-george-mason-high-school/'},
-    {name:'Mary Ellen Henderson MS',grades:'6Ã¢ÂÂ8',url:'https://www.greatschools.org/virginia/falls-church/4621-mary-ellen-henderson-middle-school/'},
-    {name:'Mt. Daniel Elementary',grades:'PKÃ¢ÂÂ2',url:'https://www.greatschools.org/virginia/falls-church/4622-mt-daniel-elementary-school/'},
-    {name:'Thomas Jefferson Elementary',grades:'3Ã¢ÂÂ5',url:'https://www.greatschools.org/virginia/falls-church/4623-thomas-jefferson-elementary-school/'},
+    {name:'George Mason High School',grades:'9–12',url:'https://www.greatschools.org/virginia/falls-church/4620-george-mason-high-school/'},
+    {name:'Mary Ellen Henderson MS',grades:'6–8',url:'https://www.greatschools.org/virginia/falls-church/4621-mary-ellen-henderson-middle-school/'},
+    {name:'Mt. Daniel Elementary',grades:'PK–2',url:'https://www.greatschools.org/virginia/falls-church/4622-mt-daniel-elementary-school/'},
+    {name:'Thomas Jefferson Elementary',grades:'3–5',url:'https://www.greatschools.org/virginia/falls-church/4623-thomas-jefferson-elementary-school/'},
   ]},
 };
 
@@ -2654,22 +2654,22 @@ function renderSchoolEditor(slug) {
   const area = schoolsData[slug] || AREAS_SCHOOLS_DEFAULT[slug];
   const el = document.getElementById('schools-editor-area');
   el.innerHTML = `
-    <h2 style="font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;margin-bottom:16px;">${area.name} Ã¢ÂÂ Schools</h2>
+    <h2 style="font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;margin-bottom:16px;">${area.name} — Schools</h2>
     <div id="school-cards-${slug}">
       ${area.schools.map((s,i) => schoolCard(slug,i,s)).join('')}
     </div>
     <button class="add-school-btn" onclick="addSchoolCard('${slug}')">+ Add School</button>
     <div class="schools-actions">
-      <button class="btn btn-primary" onclick="saveAndConfirm('${slug}')">Ã°ÂÂÂ¾ Save Schools</button>
-      <button class="btn btn-success" onclick="downloadAreaPage('${slug}')">Ã¢Â¬Â Download Updated Page</button>
+      <button class="btn btn-primary" onclick="saveAndConfirm('${slug}')">💾 Save Schools</button>
+      <button class="btn btn-success" onclick="downloadAreaPage('${slug}')">⬇ Download Updated Page</button>
     </div>
-    <p style="font-size:.68rem;color:#aaa;margin-top:10px;">Ã°ÂÂÂ¡ Tip: Verify GreatSchools URLs once a year after they publish new ratings (usually OctÃ¢ÂÂDec). Paste the URL directly from the school's GreatSchools profile page.</p>
+    <p style="font-size:.68rem;color:#aaa;margin-top:10px;">💡 Tip: Verify GreatSchools URLs once a year after they publish new ratings (usually Oct–Dec). Paste the URL directly from the school's GreatSchools profile page.</p>
   `;
 }
 
 function schoolCard(slug, idx, s) {
   return `<div class="school-editor-card" id="scard-${slug}-${idx}">
-    <button class="school-remove-btn" onclick="removeSchoolCard('${slug}',${idx})">Ã¢ÂÂ</button>
+    <button class="school-remove-btn" onclick="removeSchoolCard('${slug}',${idx})">✕</button>
     <div class="school-editor-row">
       <div>
         <span class="school-editor-label">School Name</span>
@@ -2722,19 +2722,19 @@ function saveCurrentAreaEdits() {
 function saveAndConfirm(slug) {
   saveCurrentAreaEdits();
   saveSchoolsData();
-  showToast('Schools saved for ' + schoolsData[slug].name + ' Ã¢ÂÂ');
+  showToast('Schools saved for ' + schoolsData[slug].name + ' ✓');
 }
 
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ GENERATE AREA PAGE HTML Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════ GENERATE AREA PAGE HTML ══════════════ */
 function buildSchoolsGrid(slug) {
   const area = schoolsData[slug] || AREAS_SCHOOLS_DEFAULT[slug];
   return area.schools.map(s => `
     <div class="school-card">
-      <div class="school-icon">Ã°ÂÂÂ</div>
+      <div class="school-icon">🎓</div>
       <div class="school-info">
         <strong>${s.name}</strong>
         <span>Grades ${s.grades}</span>
-        ${s.url ? `<a href="${s.url}" target="_blank" rel="noopener" class="gs-link">View on GreatSchools Ã¢ÂÂ</a>` : ''}
+        ${s.url ? `<a href="${s.url}" target="_blank" rel="noopener" class="gs-link">View on GreatSchools →</a>` : ''}
       </div>
     </div>`).join('');
 }
@@ -2752,7 +2752,7 @@ function downloadAreaPage(slug) {
 
   // Download the schools block as a snippet for now
   // (In a full deploy pipeline this would regenerate the whole page)
-  const snippet = `<!-- UPDATED SCHOOL CARDS for ${areaName} Ã¢ÂÂ paste inside .schools-grid div -->
+  const snippet = `<!-- UPDATED SCHOOL CARDS for ${areaName} — paste inside .schools-grid div -->
 ${schoolsGrid}`;
 
   const blob = new Blob([snippet], {type:'text/html'});
@@ -2765,7 +2765,7 @@ ${schoolsGrid}`;
 
 
 
-// Ã¢ÂÂÃ¢ÂÂ IMAGE UPLOAD TO GITHUB Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+// ── IMAGE UPLOAD TO GITHUB ──────────────────────────────────────────
 function handleImgDrop(e) {
   e.preventDefault();
   document.getElementById('img-drop-zone').style.borderColor = '#ccc';
@@ -2777,7 +2777,7 @@ async function handleImgFile(file) {
   if (!file) return;
   const status = document.getElementById('img-upload-status');
   status.style.color = '#888';
-  status.textContent = 'UploadingÃ¢ÂÂ¦';
+  status.textContent = 'Uploading…';
   
   const b64 = await new Promise((res, rej) => {
     const reader = new FileReader();
@@ -2797,16 +2797,16 @@ async function handleImgFile(file) {
     document.getElementById('post-image').value = newUrl;
     previewImage();
     status.style.color = '#0a0';
-    status.textContent = 'Ã¢ÂÂ Uploaded: ' + filename;
+    status.textContent = '✓ Uploaded: ' + filename;
   } else {
     status.style.color = '#c00';
     status.textContent = 'Upload failed';
   }
 }
-// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+// ───────────────────────────────────────────────────────────────────
 
 
-// Ã¢ÂÂÃ¢ÂÂ Import Posts Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+// ── Import Posts ──────────────────────────────────────────────────────────────
 function openImport() {
   const ov = document.getElementById('import-overlay');
   ov.style.display = 'flex';
@@ -2818,7 +2818,7 @@ function closeImport() {
   document.getElementById('import-overlay').style.display = 'none';
 }
 
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ MEDIA LIBRARY Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════ MEDIA LIBRARY ══════════════ */
 let _mediaFiles = [];      // all files from GitHub
 let _mediaFiltered = [];   // after search/folder filter
 let _selectedMedia = null; // currently selected file
@@ -2919,13 +2919,13 @@ function renderMediaGrid() {
   }
   empty.style.display = 'none';
   const totalKB = Math.round(_mediaFiles.reduce((s, f) => s + f.size, 0) / 1024);
-  stats.textContent = _mediaFiltered.length + ' of ' + _mediaFiles.length + ' images ÃÂ· ' + (totalKB > 1024 ? (totalKB/1024).toFixed(1) + ' MB' : totalKB + ' KB');
+  stats.textContent = _mediaFiltered.length + ' of ' + _mediaFiles.length + ' images · ' + (totalKB > 1024 ? (totalKB/1024).toFixed(1) + ' MB' : totalKB + ' KB');
 
   grid.innerHTML = _mediaFiltered.map((f, i) => `
     <div class="media-card${_selectedMedia?.path === f.path ? ' selected' : ''}" onclick="selectMedia(${i})">
       <img class="media-thumb" src="${f.download_url}" alt="${f.name}" loading="lazy"
            onerror="this.style.display='none';this.nextSibling.style.display='flex'" />
-      <div class="media-thumb-icon" style="display:none">Ã°ÂÂÂ¼</div>
+      <div class="media-thumb-icon" style="display:none">🖼</div>
       <div class="media-card-info">
         <div class="media-card-name" title="${f.name}">${f.name}</div>
         <div class="media-card-size">${(f.size/1024).toFixed(1)} KB</div>
@@ -2942,7 +2942,7 @@ function selectMedia(idx) {
   const img = document.getElementById('media-detail-img');
   img.src = _selectedMedia.download_url;
   img.onload = () => {
-    document.getElementById('media-detail-dims').textContent = img.naturalWidth + ' ÃÂ ' + img.naturalHeight + ' px';
+    document.getElementById('media-detail-dims').textContent = img.naturalWidth + ' × ' + img.naturalHeight + ' px';
   };
 
   const folder = _selectedMedia.path.split('/').slice(0,-1).join('/');
@@ -2962,14 +2962,14 @@ function mediaCopyUrl(type) {
   const text = type === 'tag'
     ? '<img src="' + _selectedMedia.url + '" alt="" />'
     : _selectedMedia.url;
-  navigator.clipboard.writeText(text).then(() => toast('Ã¢ÂÂ Copied to clipboard'));
+  navigator.clipboard.writeText(text).then(() => toast('✓ Copied to clipboard'));
 }
 
 function mediaUseAsFeatured() {
   if (!_selectedMedia) return;
   const field = document.getElementById('post-image');
-  if (field) { field.value = _selectedMedia.url; previewImage(); toast('Ã¢ÂÂ Set as featured image'); }
-  else toast('Ã¢ÂÂ  Open the post editor first');
+  if (field) { field.value = _selectedMedia.url; previewImage(); toast('✓ Set as featured image'); }
+  else toast('⚠ Open the post editor first');
 }
 
 async function mediaDeleteSelected() {
@@ -2977,13 +2977,13 @@ async function mediaDeleteSelected() {
   if (!confirm('Delete ' + _selectedMedia.name + ' from GitHub? This cannot be undone.')) return;
   const ok = await ghDelete(_selectedMedia.path, _selectedMedia.sha, 'Admin: delete image ' + _selectedMedia.name);
   if (ok) {
-    toast('Ã°ÂÂÂ Deleted: ' + _selectedMedia.name);
+    toast('🗑 Deleted: ' + _selectedMedia.name);
     _selectedMedia = null;
     document.getElementById('media-detail').style.display = 'none';
     window._mediaLoaded = false;
     loadMediaLibrary();
   } else {
-    toast('Ã¢ÂÂ Delete failed');
+    toast('❌ Delete failed');
   }
 }
 
@@ -3011,7 +3011,7 @@ async function mediaUploadFiles(files) {
   for (const file of files) {
     const filename = file.name.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9._-]/g, '-');
     const path = folder + '/' + filename;
-    prog.textContent = 'Uploading ' + (done+1) + '/' + files.length + ': ' + filename + 'Ã¢ÂÂ¦';
+    prog.textContent = 'Uploading ' + (done+1) + '/' + files.length + ': ' + filename + '…';
     try {
       const b64 = await new Promise((res, rej) => {
         const r = new FileReader();
@@ -3023,15 +3023,15 @@ async function mediaUploadFiles(files) {
       const sha = existing?.sha || null;
       const result = await ghWrite(path, b64, 'Admin: upload ' + filename, sha);
       if (result.ok) done++;
-      else prog.textContent = 'Ã¢ÂÂ Failed: ' + filename;
+      else prog.textContent = '❌ Failed: ' + filename;
     } catch(e) {
-      prog.textContent = 'Ã¢ÂÂ Error: ' + e.message;
+      prog.textContent = '❌ Error: ' + e.message;
     }
   }
 
   prog.style.color = done === files.length ? '#2e7d32' : '#f57c00';
   prog.style.background = done === files.length ? '#e8f5e9' : '#fff8e1';
-  prog.textContent = done + '/' + files.length + ' uploaded Ã¢ÂÂ live in ~60s';
+  prog.textContent = done + '/' + files.length + ' uploaded — live in ~60s';
   window._mediaLoaded = false;
   setTimeout(() => loadMediaLibrary(false), 1000);
   setTimeout(() => { prog.style.display = 'none'; }, 5000);
@@ -3048,18 +3048,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const file = e.target.files[0];
     if (!file) return;
     const status = document.getElementById('import-status');
-    status.textContent = 'Reading fileÃ¢ÂÂ¦';
+    status.textContent = 'Reading file…';
     const reader = new FileReader();
     reader.onload = function(ev) {
       try {
         const data = JSON.parse(ev.target.result);
         if (!Array.isArray(data)) throw new Error('Expected a JSON array');
-        status.textContent = 'Ã¢ÂÂ Found ' + data.length + ' posts ready to import.';
+        status.textContent = '✓ Found ' + data.length + ' posts ready to import.';
         status.style.color = '#2e7d32';
         document.getElementById('import-btn').disabled = false;
         document.getElementById('import-btn')._importData = data;
       } catch(err) {
-        status.textContent = 'Ã¢ÂÂ Invalid file: ' + err.message;
+        status.textContent = '✗ Invalid file: ' + err.message;
         status.style.color = '#c62828';
         document.getElementById('import-btn').disabled = true;
       }
@@ -3086,7 +3086,7 @@ function runImport() {
   });
   savePosts(posts);
   const status = document.getElementById('import-status');
-  status.textContent = 'Ã¢ÂÂ Imported ' + added + ' posts' + (skipped ? ' (' + skipped + ' skipped Ã¢ÂÂ already exist)' : '') + '.';
+  status.textContent = '✓ Imported ' + added + ' posts' + (skipped ? ' (' + skipped + ' skipped — already exist)' : '') + '.';
   status.style.color = '#2e7d32';
   btn.disabled = true;
   setTimeout(function() {
@@ -3094,7 +3094,7 @@ function runImport() {
     renderPostList();
   }, 1600);
 }
-// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+// ──────────────────────────────────────────────────────────────────────────────
 </script>
 </body>
 </html>
