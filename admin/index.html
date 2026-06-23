@@ -2794,6 +2794,8 @@ function closeImport() {
 document.addEventListener('DOMContentLoaded', function() {
   // Auto-login if session still valid (must run after DOM is ready)
   checkAuth();
+  // Always land on Analytics after init
+  setTimeout(() => { if(document.getElementById('app').style.display !== 'none') showView('analytics'); }, 50);
 
   const importInput = document.getElementById('import-file-input');
   if (importInput) importInput.addEventListener('change', function(e) {
