@@ -43,14 +43,14 @@ img { display: block; width: 100%; }
 .nav a.active { color: var(--orange); border-bottom-color: var(--orange); }
 
 /* HERO */
-.hero { background: var(--cream); display: grid; grid-template-columns: 1fr 1fr; min-height: 460px; overflow: hidden; position: relative; }
+.hero { background: var(--teal); display: grid; grid-template-columns: 1fr 1fr; min-height: 460px; overflow: hidden; position: relative; }
 .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: var(--teal); clip-path: polygon(0 0, 58% 0, 50% 100%, 0 100%); z-index: 0; }
 .hero-left { padding: 4rem 3rem 4rem 4rem; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; z-index: 2; }
 .hero-starburst { width: 64px; height: 64px; margin-bottom: 1.6rem; color: rgba(255,255,255,.85); overflow: visible; }
 .hero-left h1 { font-family: 'NewportLand', 'Josefin Sans', sans-serif; font-size: clamp(3.2rem, 6vw, 5.5rem); font-weight: 400; letter-spacing: .06em; text-transform: uppercase; color: #fff; line-height: 1.0; margin-bottom: 1.3rem; text-align: center; }
 .hero-left p { font-size: 13px; font-weight: 300; letter-spacing: .04em; color: rgba(255,255,255,.8); max-width: 360px; line-height: 1.85; text-align: center; }
 .hero-right { position: relative; overflow: hidden; z-index: 1; }
-.hero-illustration { position: absolute; bottom: -42px; left: 0; width: 100%; height: auto; display: block; }
+.hero-illustration { position: absolute; bottom: -42px; left: 0; width: 100%; height: auto; display: block; mix-blend-mode: multiply; }
 
 /* STRIPE */
 .stripe { height: 5px; background: linear-gradient(to right, var(--orange) 33.33%, #C9A030 33.33% 66.66%, var(--olive) 66.66%); }
