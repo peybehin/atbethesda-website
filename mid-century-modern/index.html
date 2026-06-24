@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mid-Century Modern Homes in DC Metro | @Bethesda Residential</title>
+<meta name="description" content="Explore DC Metro mid-century modern neighborhoods including Bannockburn, Hollin Hills, Carderock Springs and more. Pey Behin, MCM specialist at @Bethesda Residential.">
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;300;400;600;700&display=swap" rel="stylesheet">
+<style>
+@font-face {
+  font-family: 'NewportLand';
+  src: local('NewPortLandOpti-Regular'), local('NewPortLandOpti Regular');
+  font-weight: normal;
+  font-style: normal;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Josefin Sans', 'Futura', 'Century Gothic', sans-serif; }
+
+:root {
+  --cream:   #F2E8D6;
+  --card-bg: #EAE0C8;
+  --teal:    #5C9490;
+  --orange:  #C85D28;
+  --olive:   #6B7A34;
+  --dark:    #1C1C18;
+  --mid:     #5A5A4A;
+  --ground:  #C4B896;
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--cream); color: var(--dark); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+a { text-decoration: none; color: inherit; }
+img { display: block; width: 100%; }
+
+/* HEADER */
+.site-header { background: var(--cream); border-bottom: 1px solid rgba(0,0,0,.08); position: sticky; top: 0; z-index: 100; }
+.header-inner { max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 70px; }
+.logo-wrap { display: flex; align-items: center; }
+.logo-img { height: 70px; width: auto; display: block; }
+.nav { display: flex; align-items: center; }
+.nav a { font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--mid); padding: 0 1.1rem; height: 70px; display: flex; align-items: center; border-bottom: 3px solid transparent; margin-bottom: -1px; transition: color .15s, border-color .15s; }
+.nav a:hover { color: var(--dark); }
+.nav a.active { color: var(--orange); border-bottom-color: var(--orange); }
+
+/* HERO */
+.hero { background: var(--cream); display: grid; grid-template-columns: 1fr 1fr; min-height: 460px; overflow: hidden; position: relative; }
+.hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: var(--teal); clip-path: polygon(0 0, 58% 0, 50% 100%, 0 100%); z-index: 0; }
+.hero-left { padding: 4rem 3rem 4rem 4rem; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; z-index: 2; }
+.hero-starburst { width: 64px; height: 64px; margin-bottom: 1.6rem; color: rgba(255,255,255,.85); overflow: visible; }
+.hero-left h1 { font-family: 'NewportLand', 'Josefin Sans', sans-serif; font-size: clamp(3.2rem, 6vw, 5.5rem); font-weight: 400; letter-spacing: .06em; text-transform: uppercase; color: #fff; line-height: 1.0; margin-bottom: 1.3rem; text-align: center; }
+.hero-left p { font-size: 13px; font-weight: 300; letter-spacing: .04em; color: rgba(255,255,255,.8); max-width: 360px; line-height: 1.85; text-align: center; }
+.hero-right { position: relative; overflow: hidden; z-index: 1; }
+.hero-illustration { width: 100%; height: 100%; object-fit: cover; object-position: 65% center; display: block; }
+
+/* STRIPE */
+.stripe { height: 5px; background: linear-gradient(to right, var(--orange) 33.33%, #C9A030 33.33% 66.66%, var(--olive) 66.66%); }
+
+/* SECTION HEAD */
+.section-head { text-align: center; padding: 3.5rem 2rem 2.5rem; }
+.section-head-decor { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: .6rem; }
+.section-head h2 {
+  font-family: 'NewportLand', 'Josefin Sans', sans-serif;
+  font-size: 38px;
+  font-weight: 400;
+  font-synthesis: none;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--dark);
+  text-shadow:
+    0.5px 0 0 #1C1C18,
+   -0.5px 0 0 #1C1C18,
+    0 0.5px 0 #1C1C18,
+    0 -0.5px 0 #1C1C18,
+    0.35px  0.35px 0 #1C1C18,
+   -0.35px  0.35px 0 #1C1C18,
+    0.35px -0.35px 0 #1C1C18,
+   -0.35px -0.35px 0 #1C1C18;
+}
+.section-head p { font-size: 12.5px; font-weight: 300; letter-spacing: .06em; color: var(--mid); margin-bottom: 1.4rem; }
+.pill { display: inline-block; background: var(--orange); color: #fff; font-size: 9.5px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; padding: 10px 24px; border-radius: 50px; }
+
+/* GRID */
+.hood-grid { max-width: 1100px; margin: 0 auto; padding: 0 2rem 5rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem; }
+.hood-card { display: block; background: #fff; transition: transform .22s, box-shadow .22s; }
+.hood-card:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(0,0,0,.1); }
+.hood-card-img { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--card-bg); }
+.hood-card-img svg { width: 100%; height: 100%; display: block; }
+.hood-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Name overlaid top-left on image */
+.hood-card-img .hood-card-name {
+  position: absolute;
+  top: 0; left: 0;
+  padding: .75rem 1rem .6rem;
+  background: transparent;
+  color: #1C1C18;
+  margin: 0;
+  text-shadow:
+    0.5px 0 0 #1C1C18,
+   -0.5px 0 0 #1C1C18,
+    0 0.5px 0 #1C1C18,
+    0 -0.5px 0 #1C1C18,
+    0.35px  0.35px 0 #1C1C18,
+   -0.35px  0.35px 0 #1C1C18,
+    0.35px -0.35px 0 #1C1C18,
+   -0.35px -0.35px 0 #1C1C18;
+}
+.hood-card-body { padding: .9rem 1.3rem 1.2rem; }
+.hood-card-name {
+  font-family: 'NewportLand', 'Josefin Sans', sans-serif;
+  font-size: 38px;
+  font-weight: 400;
+  font-synthesis: none;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #1C1C18;
+  margin-bottom: .5rem;
+  text-shadow:
+    0.5px 0 0 #1C1C18,
+   -0.5px 0 0 #1C1C18,
+    0 0.5px 0 #1C1C18,
+    0 -0.5px 0 #1C1C18,
+    0.35px  0.35px 0 #1C1C18,
+   -0.35px  0.35px 0 #1C1C18,
+    0.35px -0.35px 0 #1C1C18,
+   -0.35px -0.35px 0 #1C1C18;
+}
+.hood-card-desc { font-size: 13.5px; font-weight: 300; letter-spacing: .02em; color: var(--mid); line-height: 1.75; }
+.hood-card-link { display: flex; align-items: center; gap: 5px; margin-top: .7rem; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--orange); }
+
+/* CTA BAND */
+.cta-band { background: var(--teal); display: grid; grid-template-columns: 1fr 1.6fr 1fr; align-items: center; gap: 2rem; padding: 3.5rem 4rem; }
+.cta-chair { width: 140px; justify-self: end; overflow: visible; }
+.cta-plant { width: 100px; justify-self: start; overflow: visible; }
+.cta-text { text-align: center; }
+.cta-star { width: 26px; height: 26px; color: rgba(255,255,255,.5); margin: 0 auto .8rem; overflow: visible; }
+.cta-band h2 { font-family: 'NewportLand', 'Josefin Sans', sans-serif; font-size: clamp(1.3rem, 2vw, 1.8rem); font-weight: 400; letter-spacing: .1em; text-transform: uppercase; color: #fff; margin-bottom: .7rem; }
+.cta-band p { font-size: 12.5px; font-weight: 300; letter-spacing: .04em; color: rgba(255,255,255,.8); margin-bottom: 1.8rem; line-height: 1.8; }
+.btn-dark { display: inline-block; background: var(--dark); color: #fff; font-size: 9.5px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; padding: 13px 28px; transition: background .2s; }
+.btn-dark:hover { background: #333; }
+
+/* FOOTER */
+.site-footer { background: var(--dark); padding: 2.8rem 2rem 0; }
+.footer-inner { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 2.5rem; padding-bottom: 2rem; }
+.footer-logo-row { display: flex; align-items: center; gap: 10px; margin-bottom: .6rem; }
+.footer-logo-icon { width: 34px; height: 34px; flex-shrink: 0; }
+.footer-logo-name { font-size: 16px; font-weight: 700; letter-spacing: .07em; color: #fff; }
+.footer-logo-name span { color: var(--orange); }
+.footer-logo-sub { font-size: 7.5px; font-weight: 400; letter-spacing: .28em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-top: 2px; }
+.footer-copy { font-size: 10px; font-weight: 300; letter-spacing: .04em; color: rgba(255,255,255,.28); line-height: 1.85; margin-top: .4rem; }
+.footer-col h4 { font-size: 9px; font-weight: 700; letter-spacing: .26em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: .9rem; }
+.footer-col a { display: block; font-size: 11px; font-weight: 300; letter-spacing: .06em; color: rgba(255,255,255,.55); margin-bottom: .4rem; transition: color .15s; }
+.footer-col a:hover { color: #fff; }
+.footer-social { display: flex; gap: .7rem; margin-top: .1rem; }
+.footer-social a { width: 30px; height: 30px; border: 1px solid rgba(255,255,255,.16); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; color: rgba(255,255,255,.45); transition: all .15s; }
+.footer-social a:hover { border-color: var(--orange); color: var(--orange); }
+.footer-bottom { max-width: 1240px; margin: 0 auto; border-top: 1px solid rgba(255,255,255,.07); padding: 1.1rem 0; display: flex; justify-content: space-between; }
+.footer-bottom span { font-size: 9.5px; font-weight: 300; letter-spacing: .07em; color: rgba(255,255,255,.22); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="https://atbethesda.com" class="logo-wrap">
+      <img src="/images/mcm/AtBethesda MidCentury.jpg" alt="@Bethesda Residential" class="logo-img">
+    </a>
+    <nav class="nav">
+      <a href="#">About</a>
+      <a href="#" class="active">Mid-Century Modern</a>
+      <a href="#">Listings</a>
+      <a href="#">Our Team</a>
+      <a href="#">Blog</a>
+      <a href="#">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <svg class="hero-starburst" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(36,36)" fill="currentColor">
+        <polygon points="0,-34 2.4,-5 0,0 -2.4,-5"/>
+        <polygon points="34,0 5,2.4 0,0 5,-2.4"/>
+        <polygon points="0,34 -2.4,5 0,0 2.4,5"/>
+        <polygon points="-34,0 -5,-2.4 0,0 -5,2.4"/>
+        <polygon points="0,-21 1.7,-4 0,0 -1.7,-4" transform="rotate(45)"/>
+        <polygon points="21,0 4,1.7 0,0 4,-1.7" transform="rotate(45)"/>
+        <polygon points="0,21 -1.7,4 0,0 1.7,4" transform="rotate(45)"/>
+        <polygon points="-21,0 -4,-1.7 0,0 -4,1.7" transform="rotate(45)"/>
+        <circle r="3.2" fill="#C85D28"/>
+      </g>
+    </svg>
+    <h1>Mid-Century<br>Modern<br>Homes</h1>
+    <p>The right home is about more than what's inside — it's about where you are. We know DC's MCM neighborhoods inside and out and can help you find the perfect fit.</p>
+  </div>
+  <div class="hero-right">
+    <img src="/images/mcm/Hero House.jpg" alt="Mid-Century Modern Home" class="hero-illustration">
+  </div>
+</section>
+
+<div class="stripe"></div>
+
+<!-- SECTION HEADING -->
+<div class="section-head">
+  <div class="section-head-decor">
+    <svg width="26" height="26" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg" style="overflow:visible">
+      <g transform="translate(26,26)" fill="#C85D28">
+        <polygon points="0,-24 1.7,-4 0,0 -1.7,-4"/>
+        <polygon points="24,0 4,1.7 0,0 4,-1.7"/>
+        <polygon points="0,24 -1.7,4 0,0 1.7,4"/>
+        <polygon points="-24,0 -4,-1.7 0,0 -4,1.7"/>
+        <polygon points="0,-15 1.2,-3 0,0 -1.2,-3" transform="rotate(45)"/>
+        <polygon points="15,0 3,1.2 0,0 3,-1.2" transform="rotate(45)"/>
+        <polygon points="0,15 -1.2,3 0,0 1.2,3" transform="rotate(45)"/>
+        <polygon points="-15,0 -3,-1.2 0,0 -3,1.2" transform="rotate(45)"/>
+        <circle r="2.2" fill="#1C1C18"/>
+      </g>
+    </svg>
+    <h2>Mid-Century Modern Neighborhoods</h2>
+    <svg width="26" height="26" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg" style="overflow:visible">
+      <g transform="translate(26,26)" fill="#C85D28">
+        <polygon points="0,-24 1.7,-4 0,0 -1.7,-4"/>
+        <polygon points="24,0 4,1.7 0,0 4,-1.7"/>
+        <polygon points="0,24 -1.7,4 0,0 1.7,4"/>
+        <polygon points="-24,0 -4,-1.7 0,0 -4,1.7"/>
+        <polygon points="0,-15 1.2,-3 0,0 -1.2,-3" transform="rotate(45)"/>
+        <polygon points="15,0 3,1.2 0,0 3,-1.2" transform="rotate(45)"/>
+        <polygon points="0,15 -1.2,3 0,0 1.2,3" transform="rotate(45)"/>
+        <polygon points="-15,0 -3,-1.2 0,0 -3,1.2" transform="rotate(45)"/>
+        <circle r="2.2" fill="#1C1C18"/>
+      </g>
+    </svg>
+  </div>
+  <p>We specialize in MCM homes across Maryland, Virginia, and Washington DC</p>
+  <a href="#" class="pill">Mid-Century Modern Architecture</a>
+</div>
+
+<!-- NEIGHBORHOOD GRID -->
+<div class="hood-grid">
+
+  <!-- 1. BANNOCKBURN -->
+  <a href="#" class="hood-card">
+    <div class="hood-card-img">
+      <img src="/images/mcm/Bannockburn.jpg" alt="Bannockburn">
+      <div class="hood-card-name">Bannockburn</div>
+    </div>
+    <div class="hood-card-body">
+      <div class="hood-card-desc">Spacious homes in a peaceful, prestigious Bethesda pocket.</div>
+      <div class="hood-card-link">Explore →</div>
+    </div>
+  </a>
+
+  <!-- 2. CARDEROCK SPRINGS -->
+  <a href="#" class="hood-card">
+    <div class="hood-card-img">
+      <img src="/images/mcm/Carderock Springs.jpg" alt="Carderock Springs">
+      <div class="hood-card-name">Carderock Springs</div>
+    </div>
+    <div class="hood-card-body">
+      <div class="hood-card-desc">Spacious lots and mid-century homes surrounded by nature.</div>
+      <div class="hood-card-link">Explore →</div>
+    </div>
+  </a>
+
+  <!-- 3. GARRETT PARK -->
+  <a href="#" class="hood-card">
+    <div class="hood-card-img">
+      <img src="/images/mcm/Garrett Park.jpg" alt="Garrett Park">
+      <div class="hood-card-name">Garrett Park</div>
+    </div>
+    <div class="hood-card-body">
+      <div class="hood-card-desc">A close-knit community with timeless charm and walkability.</div>
+      <div class="hood-card-link">Explore →</div>
+    </div>
+  </a>
+
+  <!-- 4. HAMMOND WOOD -->
+  <a href="#" class="hood-card">
+    <div class="hood-card-img">
+      <img src="/images/mcm/hammond wood.jpg" alt="Hammond Wood">
+      <div class="hood-card-name">Hammond Wood</div>
+    </div>
+    <div class="hood-card-body">
+      <div class="hood-card-desc">Wooded streets and a peaceful, residential retreat.</div>
+      <div class="hood-card-link">Explore →</div>
+    </div>
+  </a>
+
+  <!-- 5. HICKORY CLUSTER -->
+  <a href="#" class="hood-card">
+    <div class="hood-card-img">
+      <img src="/images/mcm/hickory cluster.jpg" alt="Hickory Cluster">
+      <div class="hood-card-name">Hickory Cluster</div>
+    </div>
+    <div class="hood-card-body">
+      <div class="hood-card-desc">Distinctive contemporary homes with a strong sense of community.</div>
+      <div class="hood-card-link">Explore →</div>
+    </div>
+  </a>
+
+  <!-- 6. HOLLIN HILLS -->
+  <a href="#" class="hood-card">
+    <div class="hood-card-img">
+      <img src="/images/mcm/Hollin Hills.jpg" alt="Hollin Hills">
+      <div class="hood-card-name">Hollin Hills</div>
+    </div>
+    <div class="hood-card-body">
+      <div class="hood-card-desc">Mid-century architecture with stunning natural settings in Alexandria.</div>
+      <div class="hood-card-link">Explore →</div>
+    </div>
+  </a>
+
+  <!-- 7. HOLMES RUN ACRES -->
+  <a href="#" class="hood-card">
+    <div class="hood-card-img">
+      <img src="/images/mcm/Holmes Run Acres.jpg" alt="Holmes Run Acres">
+      <div class="hood-card-name">Holmes Run Acres</div>
+    </div>
+    <div class="hood-card-body">
+      <div class="hood-card-desc">Quiet streets, spacious yards, and a welcoming feel.</div>
+      <div class="hood-card-link">Explore →</div>
+    </div>
+  </a>
+
+  <!-- 8. LAKE BARCROFT -->
+  <a href="#" class="hood-card">
+    <div class="hood-card-img">
+      <img src="/images/mcm/Lake Barcroft.jpg" alt="Lake Barcroft">
+      <div class="hood-card-name">Lake Barcroft</div>
+    </div>
+    <div class="hood-card-body">
+      <div class="hood-card-desc">Lakeside living with a vibrant community spirit.</div>
+      <div class="hood-card-link">Explore →</div>
+    </div>
+  </a>
+
+  <!-- 9. MOYAONE RESERVE -->
+  <a href="#" class="hood-card">
+    <div class="hood-card-img">
+      <img src="/images/mcm/moyaone reserve.jpg" alt="Moyaone Reserve">
+      <div class="hood-card-name">Moyaone Reserve</div>
+    </div>
+    <div class="hood-card-body">
+      <div class="hood-card-desc">Nature, privacy, and elegance in a serene setting.</div>
+      <div class="hood-card-link">Explore →</div>
+    </div>
+  </a>
+
+  <!-- 10. NEW MARK COMMONS -->
+  <a href="#" class="hood-card">
+    <div class="hood-card-img">
+      <img src="/images/mcm/New Mark Commons.jpg" alt="New Mark Commons">
+      <div class="hood-card-name">New Mark Commons</div>
+    </div>
+    <div class="hood-card-body">
+      <div class="hood-card-desc">Contemporary luxury in the heart of Rockville.</div>
+      <div class="hood-card-link">Explore →</div>
+    </div>
+  </a>
+
+  <!-- 11. PINE SPRING -->
+  <a href="#" class="hood-card">
+    <div class="hood-card-img">
+      <img src="/images/mcm/Pine Spring.jpg" alt="Pine Spring">
+      <div class="hood-card-name">Pine Spring</div>
+    </div>
+    <div class="hood-card-body">
+      <div class="hood-card-desc">A tranquil neighborhood with character and greenery.</div>
+      <div class="hood-card-link">Explore →</div>
+    </div>
+  </a>
+
+  <!-- 12. RIVER PARK -->
+  <a href="#" class="hood-card">
+    <div class="hood-card-img">
+      <img src="/images/mcm/River Park.jpg" alt="River Park">
+      <div class="hood-card-name">River Park</div>
+    </div>
+    <div class="hood-card-body">
+      <div class="hood-card-desc">Scenic views and convenient access to everything.</div>
+      <div class="hood-card-link">Explore →</div>
+    </div>
+  </a>
+
+  <!-- 13. ROCK CREEK WOODS -->
+  <a href="#" class="hood-card">
+    <div class="hood-card-img">
+      <img src="/images/mcm/Rock Creek Woods.jpg" alt="Rock Creek Woods">
+      <div class="hood-card-name">Rock Creek Woods</div>
+    </div>
+    <div class="hood-card-body">
+      <div class="hood-card-desc">Secluded, scenic, and rich in natural beauty.</div>
+      <div class="hood-card-link">Explore →</div>
+    </div>
+  </a>
+
+  <!-- 14. TRURO -->
+  <a href="#" class="hood-card">
+    <div class="hood-card-img">
+      <img src="/images/mcm/Truro.jpg" alt="Truro">
+      <div class="hood-card-name">Truro</div>
+    </div>
+    <div class="hood-card-body">
+      <div class="hood-card-desc">Elegant homes and lush surroundings in Fairfax.</div>
+      <div class="hood-card-link">Explore →</div>
+    </div>
+  </a>
+
+  <!-- 15. WESSYNTON -->
+  <a href="#" class="hood-card">
+    <div class="hood-card-img">
+      <img src="/images/mcm/Wessynton.jpg" alt="Wessynton">
+      <div class="hood-card-name">Wessynton</div>
+    </div>
+    <div class="hood-card-body">
+      <div class="hood-card-desc">Established, friendly, and full of MCM charm in Alexandria.</div>
+      <div class="hood-card-link">Explore →</div>
+    </div>
+  </a>
+
+</div>
+
+<div class="stripe"></div>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <svg class="cta-chair" viewBox="0 0 160 210" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="80" cy="200" rx="52" ry="8" fill="rgba(0,0,0,.2)"/>
+    <line x1="55" y1="148" x2="38" y2="200" stroke="#7A4A22" stroke-width="4.5" stroke-linecap="round"/>
+    <line x1="105" y1="148" x2="122" y2="200" stroke="#7A4A22" stroke-width="4.5" stroke-linecap="round"/>
+    <line x1="62" y1="148" x2="48" y2="198" stroke="#7A4A22" stroke-width="3.5" stroke-linecap="round"/>
+    <line x1="98" y1="148" x2="112" y2="198" stroke="#7A4A22" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M46 136 Q80 148 114 136 L114 152 Q80 164 46 152Z" fill="#C85D28"/>
+    <path d="M46 136 Q80 128 114 136 Q80 144 46 136Z" fill="#D4722A"/>
+    <path d="M47 150 Q42 118 55 82" stroke="#7A4A22" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M113 150 Q118 118 105 82" stroke="#7A4A22" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M55 82 Q80 70 105 82 Q118 118 113 150 Q80 160 47 150 Q42 118 55 82Z" fill="#C85D28"/>
+    <path d="M60 90 Q80 78 100 90 Q111 120 107 143 Q80 153 53 143 Q49 120 60 90Z" fill="#D4722A"/>
+    <path d="M47 148 Q43 135 45 122" stroke="#8A5222" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <path d="M113 148 Q117 135 115 122" stroke="#8A5222" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <line x1="22" y1="200" x2="22" y2="52" stroke="#C4B896" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="22" y1="200" x2="38" y2="200" stroke="#C4B896" stroke-width="3" stroke-linecap="round"/>
+    <line x1="22" y1="52" x2="52" y2="76" stroke="#C4B896" stroke-width="2.5" stroke-linecap="round"/>
+    <polygon points="34,76 66,76 62,102 38,102" fill="#C85D28"/>
+  </svg>
+
+  <div class="cta-text">
+    <svg class="cta-star" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(26,26)" fill="currentColor">
+        <polygon points="0,-22 1.5,-3.5 0,0 -1.5,-3.5"/>
+        <polygon points="22,0 3.5,1.5 0,0 3.5,-1.5"/>
+        <polygon points="0,22 -1.5,3.5 0,0 1.5,3.5"/>
+        <polygon points="-22,0 -3.5,-1.5 0,0 -3.5,1.5"/>
+        <polygon points="0,-14 1.1,-3 0,0 -1.1,-3" transform="rotate(45)"/>
+        <polygon points="14,0 3,1.1 0,0 3,-1.1" transform="rotate(45)"/>
+        <polygon points="0,14 -1.1,3 0,0 1.1,3" transform="rotate(45)"/>
+        <polygon points="-14,0 -3,-1.1 0,0 -3,1.1" transform="rotate(45)"/>
+        <circle r="2" fill="rgba(255,255,255,.6)"/>
+      </g>
+    </svg>
+    <h2>Find Your Place in DC</h2>
+    <p>Not sure which MCM neighborhood is right for you?<br>We're here to help.</p>
+    <a href="tel:+12026817454" class="btn-dark">Contact Us</a>
+  </div>
+
+  <svg class="cta-plant" viewBox="0 0 120 200" xmlns="http://www.w3.org/2000/svg">
+    <path d="M38 172 L32 200 L88 200 L82 172Z" fill="#C85D28"/>
+    <ellipse cx="60" cy="172" rx="22" ry="7" fill="#D4722A"/>
+    <ellipse cx="60" cy="169" rx="22" ry="5" fill="#BA5222"/>
+    <path d="M60 168 Q22 148 6 118 Q38 138 60 158Z" fill="#7A8A3E"/>
+    <path d="M60 168 Q98 148 114 118 Q82 138 60 158Z" fill="#6B7A34"/>
+    <path d="M60 165 Q18 150 4 130 Q36 144 60 156Z" fill="#5A6828"/>
+    <path d="M60 165 Q102 150 116 130 Q84 144 60 156Z" fill="#6B7A34"/>
+    <path d="M60 162 Q40 128 36 96 Q52 126 60 152Z" fill="#7A8A3E"/>
+    <path d="M60 162 Q80 128 84 96 Q68 126 60 152Z" fill="#5A6828"/>
+    <path d="M60 158 Q28 144 14 122 Q40 136 60 150Z" fill="#6B7A34"/>
+    <path d="M60 158 Q92 144 106 122 Q80 136 60 150Z" fill="#7A8A3E"/>
+    <path d="M60 170 Q60 130 60 88 Q61.5 130 60 170Z" fill="#6B7A34"/>
+    <circle cx="6" cy="118" r="1.5" fill="#3A4818"/>
+    <circle cx="114" cy="118" r="1.5" fill="#3A4818"/>
+    <circle cx="4" cy="130" r="1.5" fill="#3A4818"/>
+    <circle cx="116" cy="130" r="1.5" fill="#3A4818"/>
+    <circle cx="36" cy="96" r="1.5" fill="#3A4818"/>
+    <circle cx="84" cy="96" r="1.5" fill="#3A4818"/>
+    <circle cx="60" cy="88" r="1.5" fill="#3A4818"/>
+  </svg>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo-row">
+        <svg class="footer-logo-icon" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="17" cy="17" r="17" fill="#C41230"/>
+          <polygon points="17,4 18.4,14 17,17 15.6,14" fill="white"/>
+          <polygon points="30,17 20,18.4 17,17 20,15.6" fill="white"/>
+          <polygon points="17,30 15.6,20 17,17 18.4,20" fill="white"/>
+          <polygon points="4,17 14,15.6 17,17 14,18.4" fill="white"/>
+          <circle cx="17" cy="17" r="2" fill="white"/>
+        </svg>
+        <div>
+          <div class="footer-logo-name">@<span>BETHESDA</span></div>
+          <div class="footer-logo-sub">Residential</div>
+        </div>
+      </div>
+      <p class="footer-copy">RLAH @properties · 4600 North Park Ave Suite 100<br>Chevy Chase, MD 20815<br>Licensed in Maryland, Virginia &amp; Washington DC<br>© 2026 @Bethesda Real Estate. All rights reserved.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="tel:+12026817454">202-681-7454</a>
+      <a href="mailto:pey@peybehin.com">pey@peybehin.com</a>
+    </div>
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <div class="footer-social">
+        <a href="#">f</a>
+        <a href="#">in</a>
+        <a href="#">@</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Menu</h4>
+      <a href="#">About</a>
+      <a href="#">Mid-Century Modern</a>
+      <a href="#">Listings</a>
+      <a href="#">Our Team</a>
+      <a href="#">Blog</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 @Bethesda Real Estate. All Rights Reserved.</span>
+    <span>Equal Housing Opportunity</span>
+  </div>
+</footer>
+
+</body>
+</html>
