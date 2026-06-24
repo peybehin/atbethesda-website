@@ -485,37 +485,281 @@
   </div>
 </section>
 
+<style>
+.nbhd-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px;}
+.nbhd-tab{background:none;border:1px solid #ccc;padding:9px 18px;font:700 0.76rem/1 'Montserrat',sans-serif;cursor:pointer;border-radius:2px;color:var(--gray-text);transition:all 0.18s;letter-spacing:0.05em;text-transform:uppercase;}
+.nbhd-tab.active,.nbhd-tab:hover{background:var(--red);color:#fff;border-color:var(--red);}
+.nbhd-pane{display:none;}
+.nbhd-pane.active{display:block;}
+.nbhd-meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:12px;margin:22px 0 28px;}
+.nbhd-chip{background:#fff;padding:14px 16px;border-left:3px solid var(--red);}
+.nbhd-chip strong{display:block;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--red);margin-bottom:5px;font-family:'Montserrat',sans-serif;}
+.nbhd-chip span{font-size:0.86rem;color:#333;font-weight:600;font-family:'Montserrat',sans-serif;}
+.nbhd-pane>h3{font-size:1.45rem;font-weight:800;margin:0 0 4px;font-family:'Montserrat',sans-serif;color:#111;}
+.nbhd-pane>.nbhd-sub{font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--red);margin:0 0 2px;}
+.nbhd-body{font-size:0.9rem;color:var(--gray-text);line-height:1.8;}
+.nbhd-body h4{font-size:0.75rem;font-weight:800;text-transform:uppercase;letter-spacing:0.09em;color:#333;margin:20px 0 5px;font-family:'Montserrat',sans-serif;}
+.nbhd-body p{margin:0 0 12px;}
+</style>
 <section style="background:var(--gray-light);">
   <div class="inner">
-    <div class="section-header" style="text-align:center;margin-bottom:40px;">
+    <div class="section-header" style="text-align:center;margin-bottom:44px;">
       <span class="section-label">Know the ZIP</span>
-      <h2 class="section-title">Bethesda <span>Neighborhood</span> Guide</h2>
-      <p class="section-sub" style="max-width:600px;margin:12px auto 0;">Each of Bethesda&rsquo;s four ZIP codes has its own character, price point, and school feeder. Here&rsquo;s what to expect.</p>
+      <h2 class="section-title">Bethesda <span>Neighborhood Guide</span></h2>
+      <p class="section-sub">Click any neighborhood to explore housing styles, price ranges, schools, commute options, and what makes each pocket of Bethesda unique.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;">
-      <div class="area-intro-sidebar">
-        <p class="section-label" style="color:var(--red);margin-bottom:6px;">ZIP 20814</p>
-        <h3 style="font-size:1rem;font-weight:800;margin-bottom:10px;">Downtown Core</h3>
-        <p style="font-size:0.83rem;color:var(--gray-text);line-height:1.7;margin:0;">Walk to Bethesda Row, the Metro, and the best restaurants. Highest density: condos, townhomes, and urban SFH. BCC feeder zone.</p>
+    <div class="nbhd-tabs" role="tablist">
+      <button class="nbhd-tab active" onclick="nbhdShow('edgemoor',this)">Edgemoor</button>
+      <button class="nbhd-tab" onclick="nbhdShow('kenwood',this)">Kenwood</button>
+      <button class="nbhd-tab" onclick="nbhdShow('battery-park',this)">Battery Park</button>
+      <button class="nbhd-tab" onclick="nbhdShow('wood-acres',this)">Wood Acres</button>
+      <button class="nbhd-tab" onclick="nbhdShow('bannockburn',this)">Bannockburn</button>
+      <button class="nbhd-tab" onclick="nbhdShow('carderock',this)">Carderock Springs</button>
+      <button class="nbhd-tab" onclick="nbhdShow('westmoreland',this)">Westmoreland Hills</button>
+      <button class="nbhd-tab" onclick="nbhdShow('wyngate',this)">Wyngate</button>
+      <button class="nbhd-tab" onclick="nbhdShow('avenel',this)">Avenel</button>
+      <button class="nbhd-tab" onclick="nbhdShow('bradley',this)">Bradley Hills</button>
+      <button class="nbhd-tab" onclick="nbhdShow('glen-echo',this)">Glen Echo Heights</button>
+      <button class="nbhd-tab" onclick="nbhdShow('alta-vista',this)">Alta Vista</button>
+    </div>
+
+    <div id="nbhd-edgemoor" class="nbhd-pane active">
+      <p class="nbhd-sub">Bethesda, MD 20814</p>
+      <h3>Edgemoor</h3>
+      <div class="nbhd-meta">
+        <div class="nbhd-chip"><strong>Housing Style</strong><span>Colonials, Tudors, Georgians &amp; custom estates</span></div>
+        <div class="nbhd-chip"><strong>Price Range</strong><span>$2M &ndash; $8M+</span></div>
+        <div class="nbhd-chip"><strong>Schools</strong><span>BCC cluster &mdash; BCC High School</span></div>
+        <div class="nbhd-chip"><strong>Commute</strong><span>~1.5 mi to Bethesda Metro</span></div>
       </div>
-      <div class="area-intro-sidebar">
-        <p class="section-label" style="color:var(--red);margin-bottom:6px;">ZIP 20815</p>
-        <h3 style="font-size:1rem;font-weight:800;margin-bottom:10px;">Prestige Border</h3>
-        <p style="font-size:0.83rem;color:var(--gray-text);line-height:1.7;margin:0;">Chevy Chase border &mdash; the most coveted ZIP. Kenwood, Bradley Hills, Somerset. High-end SFH, tree-lined streets, cherry blossoms.</p>
-      </div>
-      <div class="area-intro-sidebar">
-        <p class="section-label" style="color:var(--red);margin-bottom:6px;">ZIP 20816</p>
-        <h3 style="font-size:1rem;font-weight:800;margin-bottom:10px;">MCM Country</h3>
-        <p style="font-size:0.83rem;color:var(--gray-text);line-height:1.7;margin:0;">Glen Echo border. Best mid-century modern inventory in the region. Larger lots, wooded terrain, Cabin John trail. Whitman feeder zone.</p>
-      </div>
-      <div class="area-intro-sidebar">
-        <p class="section-label" style="color:var(--red);margin-bottom:6px;">ZIP 20817</p>
-        <h3 style="font-size:1rem;font-weight:800;margin-bottom:10px;">North Bethesda</h3>
-        <p style="font-size:0.83rem;color:var(--gray-text);line-height:1.7;margin:0;">Potomac border. Larger suburban lots, newer construction, excellent WJ and Whitman school access. Great for families wanting more space.</p>
+      <div class="nbhd-body">
+        <h4>Overview</h4>
+        <p>Edgemoor is one of Bethesda's most exclusive residential enclaves &mdash; a neighborhood where generational wealth, mature tree canopies, and quarter-acre-plus lots coexist less than two miles from downtown. Bordered by Wisconsin Avenue to the east and Western Avenue to the south, Edgemoor's proximity to the Chevy Chase Club adds to its prestige. Homes rarely come to market. When they do, they sell quickly and with minimal negotiation.</p>
+        <h4>Housing &amp; Buyer Profile</h4>
+        <p>The housing stock is defined by grand colonials, brick Georgians, and original Tudors dating from the 1920s through the 1950s &mdash; many extensively renovated but few torn down. Buyers are senior attorneys, C-suite executives, diplomats, and families with Bethesda roots. The neighborhood attracts people who have already "made it" and want privacy, prestige, and easy access to the best of the city.</p>
+        <h4>Notable Features</h4>
+        <p>The Chevy Chase Club borders the south edge. Lot sizes run from 0.25 to 0.5+ acres &mdash; exceptional for inner Bethesda. The neighborhood has no commercial intrusion, no through-traffic, and very low turnover. If you are targeting Edgemoor, you need to be pre-approved, decisive, and working with an agent who knows the off-market inventory.</p>
       </div>
     </div>
+
+    <div id="nbhd-kenwood" class="nbhd-pane">
+      <p class="nbhd-sub">Bethesda, MD 20815</p>
+      <h3>Kenwood</h3>
+      <div class="nbhd-meta">
+        <div class="nbhd-chip"><strong>Housing Style</strong><span>Cape Cods, colonials &amp; postwar ranchers</span></div>
+        <div class="nbhd-chip"><strong>Price Range</strong><span>$1.5M &ndash; $4M+</span></div>
+        <div class="nbhd-chip"><strong>Schools</strong><span>BCC cluster &mdash; BCC High School</span></div>
+        <div class="nbhd-chip"><strong>Commute</strong><span>2 mi to Friendship Heights Metro</span></div>
+      </div>
+      <div class="nbhd-body">
+        <h4>Overview</h4>
+        <p>Kenwood may be the most recognizable neighborhood in Bethesda &mdash; not because of its home prices, but because of its 1,200+ Japanese cherry trees that bloom every April, drawing visitors from across the region. Behind the spectacle is a tightly knit residential community with private streets, a country club, and some of the most consistent appreciation in Montgomery County. Turnover here is extremely low.</p>
+        <h4>Housing &amp; Buyer Profile</h4>
+        <p>Homes are predominantly postwar Cape Cods, split-levels, and modest colonials built between 1948 and 1965 &mdash; often on lots that feel large by suburban standards. Many have been significantly expanded or completely rebuilt behind original facades. Buyers include federal officials, lobbyists, established professionals, and families who want a genuine community feel within walking distance of Friendship Heights retail.</p>
+        <h4>Notable Features</h4>
+        <p>The annual Cherry Blossom Festival draws thousands. Kenwood Country Club is the social anchor. Private streets mean minimal cut-through traffic. If you want to buy in Kenwood, be patient &mdash; inventory is chronically thin, and the few homes that list tend to attract multiple offers within days.</p>
+      </div>
+    </div>
+
+    <div id="nbhd-battery-park" class="nbhd-pane">
+      <p class="nbhd-sub">Bethesda, MD 20814</p>
+      <h3>Battery Park</h3>
+      <div class="nbhd-meta">
+        <div class="nbhd-chip"><strong>Housing Style</strong><span>Postwar ranchers, capes &amp; colonials</span></div>
+        <div class="nbhd-chip"><strong>Price Range</strong><span>$850K &ndash; $1.8M</span></div>
+        <div class="nbhd-chip"><strong>Schools</strong><span>BCC cluster &mdash; BCC High School</span></div>
+        <div class="nbhd-chip"><strong>Commute</strong><span>&lt;1 mi to Bethesda Metro &mdash; walkable</span></div>
+      </div>
+      <div class="nbhd-body">
+        <h4>Overview</h4>
+        <p>Battery Park sits just south of downtown Bethesda and offers something rare in this market: genuine walkability at a relatively accessible price point. Grocery stores, restaurants, the Metro, NIH, and Walter Reed are all within a mile. The neighborhood has become a hotspot for renovation and infill construction as buyers recognize the value gap relative to Kenwood and Edgemoor.</p>
+        <h4>Housing &amp; Buyer Profile</h4>
+        <p>The housing stock ranges from original postwar ranchers and Cape Cods to fully rebuilt contemporaries. Lot sizes are modest &mdash; typically 5,000 to 8,000 sq ft. Buyers skew young professional: couples who want urban access without urban density, and downsizers who are trading square footage for walkability. The BCC school assignment is a significant draw for families.</p>
+        <h4>Notable Features</h4>
+        <p>The Capital Crescent Trail is accessible within half a mile. Battery Lane Urban Park provides community green space. This neighborhood represents one of the better value propositions in the Bethesda market for buyers who prioritize transit and lifestyle over lot size.</p>
+      </div>
+    </div>
+
+    <div id="nbhd-wood-acres" class="nbhd-pane">
+      <p class="nbhd-sub">Bethesda, MD 20816</p>
+      <h3>Wood Acres</h3>
+      <div class="nbhd-meta">
+        <div class="nbhd-chip"><strong>Housing Style</strong><span>Mid-century ranchers &amp; split-levels</span></div>
+        <div class="nbhd-chip"><strong>Price Range</strong><span>$900K &ndash; $2.5M</span></div>
+        <div class="nbhd-chip"><strong>Schools</strong><span>Whitman cluster &mdash; Walt Whitman HS</span></div>
+        <div class="nbhd-chip"><strong>Commute</strong><span>3 mi to Friendship Heights Metro</span></div>
+      </div>
+      <div class="nbhd-body">
+        <h4>Overview</h4>
+        <p>Wood Acres is anchored by one of Montgomery County's most beloved elementary schools and a genuine sense of community that is hard to manufacture. Located in ZIP 20816 near the intersection of Massachusetts and River, it draws buyers who want mid-century character, wooded lots, and access to Whitman-cluster schools. Renovation and teardown activity has increased substantially as buyers recognize the value here.</p>
+        <h4>Housing &amp; Buyer Profile</h4>
+        <p>The housing stock is predominantly 1950s and 1960s ranchers, ramblers, and split-levels &mdash; many with original bones and significant renovation potential. Lot sizes are generous by Bethesda standards, often 10,000 to 18,000 sq ft. Buyers are young families targeting the elementary school, move-up buyers from closer-in DC, and architecture enthusiasts drawn to the MCM aesthetic in adjacent Carderock Springs.</p>
+        <h4>Notable Features</h4>
+        <p>Wood Acres ES is consistently ranked among the top elementaries in MCPS. The Capital Crescent Trail is minutes away by bike. The neighborhood has a strong civic association and active community calendar. Walt Whitman High School, the cluster's anchor, is one of the top public high schools in Maryland.</p>
+      </div>
+    </div>
+
+    <div id="nbhd-bannockburn" class="nbhd-pane">
+      <p class="nbhd-sub">Bethesda, MD 20016</p>
+      <h3>Bannockburn</h3>
+      <div class="nbhd-meta">
+        <div class="nbhd-chip"><strong>Housing Style</strong><span>Cape Cods, colonials &amp; 1940s &ndash;60s originals</span></div>
+        <div class="nbhd-chip"><strong>Price Range</strong><span>$800K &ndash; $2M</span></div>
+        <div class="nbhd-chip"><strong>Schools</strong><span>Whitman cluster &mdash; Walt Whitman HS</span></div>
+        <div class="nbhd-chip"><strong>Commute</strong><span>4 mi to Friendship Heights; CCT by bike</span></div>
+      </div>
+      <div class="nbhd-body">
+        <h4>Overview</h4>
+        <p>Bannockburn occupies a unique position on the DC-Maryland border near the Potomac River, giving it a character distinct from the more suburban feel of central Bethesda. The neighborhood has its own civic association, its own volunteer fire station, and a fiercely independent identity. It is quieter, more wooded, and less trafficked than most of its neighbors.</p>
+        <h4>Housing &amp; Buyer Profile</h4>
+        <p>Homes here are primarily Cape Cods, colonials, and ranchers from the 1940s through the 1960s, many sitting on deep wooded lots. Buyers tend to be nature lovers, buyers who want to live close to the C&amp;O Canal or the Capital Crescent Trail, and families seeking the Whitman school cluster at a lower price point than Carderock Springs or Kenwood.</p>
+        <h4>Notable Features</h4>
+        <p>The Capital Crescent Trail passes through the neighborhood, connecting to Georgetown by bike in under 30 minutes. The C&amp;O Canal and Great Falls are a short drive. Bannockburn is one of the few Bethesda neighborhoods where you can genuinely hear birds over traffic. Its relative affordability versus comparably-zoned areas makes it one of the better values in the Whitman cluster.</p>
+      </div>
+    </div>
+
+    <div id="nbhd-carderock" class="nbhd-pane">
+      <p class="nbhd-sub">Bethesda, MD 20816</p>
+      <h3>Carderock Springs</h3>
+      <div class="nbhd-meta">
+        <div class="nbhd-chip"><strong>Housing Style</strong><span>Charles Goodman MCM flat-roof originals</span></div>
+        <div class="nbhd-chip"><strong>Price Range</strong><span>$950K &ndash; $2.3M</span></div>
+        <div class="nbhd-chip"><strong>Schools</strong><span>Whitman cluster &mdash; Walt Whitman HS</span></div>
+        <div class="nbhd-chip"><strong>Commute</strong><span>Car-dependent; CCT to Georgetown by bike</span></div>
+      </div>
+      <div class="nbhd-body">
+        <h4>Overview</h4>
+        <p>Carderock Springs is the best-preserved mid-century modern community in the DC region and arguably one of the finest in the country. Designed by architect Charles Goodman beginning in the late 1950s, the neighborhood was conceived as a unified architectural statement: flat roofs, floor-to-ceiling glass, natural materials, and homes that literally grow out of the wooded hillside. It is unlike anything else in Montgomery County.</p>
+        <h4>Housing &amp; Buyer Profile</h4>
+        <p>Every home in Carderock Springs is a Goodman design. Typical homes run 2,000 to 3,500 sq ft with 3 to 4 bedrooms on heavily wooded lots. Originals in good condition are prized; sensitively renovated examples command significant premiums. Buyers are architects, designers, academics, federal employees, and anyone who wants to live in a home with genuine architectural DNA rather than generic suburban construction.</p>
+        <h4>Notable Features</h4>
+        <p>The community has an active civic association that works to protect the architectural integrity of the neighborhood. The Capital Crescent Trail is accessible via a short walk. Walt Whitman HS is the cluster anchor. If you are buying in Carderock Springs, get a home inspection from someone who understands flat-roof construction and mid-century systems. The homes are extraordinary, but they demand informed buyers.</p>
+      </div>
+    </div>
+    <div id="nbhd-westmoreland" class="nbhd-pane">
+      <p class="nbhd-sub">Bethesda, MD 20816</p>
+      <h3>Westmoreland Hills</h3>
+      <div class="nbhd-meta">
+        <div class="nbhd-chip"><strong>Housing Style</strong><span>Colonials, Cape Cods &amp; split-levels</span></div>
+        <div class="nbhd-chip"><strong>Price Range</strong><span>$950K &ndash; $2.5M</span></div>
+        <div class="nbhd-chip"><strong>Schools</strong><span>Whitman cluster &mdash; Walt Whitman HS</span></div>
+        <div class="nbhd-chip"><strong>Commute</strong><span>4 mi to Friendship Heights; River Rd to I-495</span></div>
+      </div>
+      <div class="nbhd-body">
+        <h4>Overview</h4>
+        <p>Westmoreland Hills occupies a leafy stretch between River Road and the Capital Crescent Trail, offering some of the most generous lot sizes in ZIP 20816 without the premium of Kenwood or Carderock Springs. It is a neighborhood defined by mature trees, quiet streets, and a community that values privacy and green space over proximity to shops and restaurants.</p>
+        <h4>Housing &amp; Buyer Profile</h4>
+        <p>The housing stock includes colonials, Cape Cods, and split-levels from the 1940s through the 1970s. Lot sizes often run 12,000 to 20,000+ sq ft &mdash; uncommon this close to DC. Buyers are families seeking larger lots, buyers in the Whitman school cluster who want more outdoor space, and move-up buyers relocating from smaller lots in Battery Park or Wood Acres.</p>
+        <h4>Notable Features</h4>
+        <p>Direct access to the Capital Crescent Trail makes cycling to Georgetown feasible. River Road connects quickly to I-495 for commuters heading north or west. The neighborhood has a civic association and participates in the broader 20816 community events. It represents a solid value compared to adjacent ZIP codes with similar school access.</p>
+      </div>
+    </div>
+
+    <div id="nbhd-wyngate" class="nbhd-pane">
+      <p class="nbhd-sub">Bethesda, MD 20817</p>
+      <h3>Wyngate</h3>
+      <div class="nbhd-meta">
+        <div class="nbhd-chip"><strong>Housing Style</strong><span>1950s &ndash;70s ranchers &amp; split-levels</span></div>
+        <div class="nbhd-chip"><strong>Price Range</strong><span>$800K &ndash; $2M</span></div>
+        <div class="nbhd-chip"><strong>Schools</strong><span>WJ cluster &mdash; Walter Johnson HS</span></div>
+        <div class="nbhd-chip"><strong>Commute</strong><span>3 mi to White Flint Metro; I-270 access</span></div>
+      </div>
+      <div class="nbhd-body">
+        <h4>Overview</h4>
+        <p>Wyngate is one of those neighborhoods that consistently punches above its price point. Located in ZIP 20817 near Suburban Hospital and NIH, it delivers excellent Walter Johnson cluster schools, wooded lots, and a tight community feel &mdash; at a lower entry price than most of its neighbors. The elementary school, Wyngate ES, is a genuine community anchor with one of the strongest parent associations in MCPS.</p>
+        <h4>Housing &amp; Buyer Profile</h4>
+        <p>Homes are predominantly ranchers, split-levels, and modest colonials from the 1950s through the 1970s. Renovation and teardown activity has accelerated as buyers recognize the school value. Typical lots run 8,000 to 14,000 sq ft. Buyers are young families targeting Walter Johnson HS, NIH researchers, and healthcare professionals from nearby Suburban and Walter Reed.</p>
+        <h4>Notable Features</h4>
+        <p>Wyngate ES is consistently rated one of the top elementary schools in Montgomery County. The neighborhood borders Old Georgetown Road, providing easy access to downtown Bethesda. The Bethesda Trolley Trail is bikeable from the neighborhood. For buyers who want WJ schools at a modest price, Wyngate is one of the first places to look.</p>
+      </div>
+    </div>
+
+    <div id="nbhd-avenel" class="nbhd-pane">
+      <p class="nbhd-sub">Potomac / North Bethesda, MD 20817</p>
+      <h3>Avenel</h3>
+      <div class="nbhd-meta">
+        <div class="nbhd-chip"><strong>Housing Style</strong><span>Large colonials &amp; estates (1990s &ndash; 2000s)</span></div>
+        <div class="nbhd-chip"><strong>Price Range</strong><span>$1.5M &ndash; $5M+</span></div>
+        <div class="nbhd-chip"><strong>Schools</strong><span>WJ cluster &mdash; Walter Johnson HS</span></div>
+        <div class="nbhd-chip"><strong>Commute</strong><span>Car-dependent; 6 mi to downtown Bethesda</span></div>
+      </div>
+      <div class="nbhd-body">
+        <h4>Overview</h4>
+        <p>Avenel is a planned community built around TPC Potomac &mdash; the PGA Tour golf course that hosts the Wells Fargo Championship. Gated entry, golf course views, and a strong HOA create a country-club lifestyle within Montgomery County school boundaries. The community was developed primarily in the 1990s and 2000s and includes some of the largest private homes in the Bethesda area.</p>
+        <h4>Housing &amp; Buyer Profile</h4>
+        <p>Homes range from large colonials and Tudors to full custom estates, most built between 1990 and 2010. Square footage typically starts at 4,000 sq ft; many exceed 8,000 sq ft. Buyers are corporate executives, professional athletes, diplomats, and buyers seeking privacy, prestige, and HOA-managed amenities within a top-ranked public school district.</p>
+        <h4>Notable Features</h4>
+        <p>TPC Potomac at Avenel Farm is the community's centerpiece &mdash; a genuine PGA Tour venue. HOA fees cover extensive landscaping and security. The community is car-dependent but connects to Great Falls Road for downtown Bethesda access in 15 to 20 minutes. For buyers who want a suburban estate experience with world-class school access, Avenel is the top address in ZIP 20817.</p>
+      </div>
+    </div>
+
+    <div id="nbhd-bradley" class="nbhd-pane">
+      <p class="nbhd-sub">Bethesda, MD 20817</p>
+      <h3>Bradley Hills</h3>
+      <div class="nbhd-meta">
+        <div class="nbhd-chip"><strong>Housing Style</strong><span>Colonials &amp; traditional homes (1960s &ndash; 80s)</span></div>
+        <div class="nbhd-chip"><strong>Price Range</strong><span>$900K &ndash; $2.5M</span></div>
+        <div class="nbhd-chip"><strong>Schools</strong><span>WJ cluster &mdash; Walter Johnson HS</span></div>
+        <div class="nbhd-chip"><strong>Commute</strong><span>3 mi to Bethesda Metro; Old Georgetown Rd</span></div>
+      </div>
+      <div class="nbhd-body">
+        <h4>Overview</h4>
+        <p>Bradley Hills is the kind of neighborhood that experienced Bethesda buyers keep coming back to. It delivers solid construction, generous lot sizes, Walter Johnson cluster schools, and reasonable access to downtown Bethesda &mdash; all without the six- or seven-figure premium you pay in Avenel or Edgemoor. It is a neighborhood for buyers who do the math and are not paying for the address alone.</p>
+        <h4>Housing &amp; Buyer Profile</h4>
+        <p>Homes are predominantly traditional colonials and brick Tudors built between the 1960s and the 1980s, many with significant additions or complete renovations. Lot sizes run 10,000 to 20,000 sq ft. Buyers are families prioritizing Walter Johnson HS who want more house and land than inner-Bethesda neighborhoods offer, and move-up buyers from Wyngate or Wood Acres.</p>
+        <h4>Notable Features</h4>
+        <p>Bradley Hills ES feeds the WJ cluster and is consistently well-regarded. The neighborhood sits between Old Georgetown Road and Democracy Boulevard &mdash; two of the primary arteries for Bethesda commuters. It is more car-dependent than Battery Park or Alta Vista but offers meaningfully larger homes and lots in exchange. A strong, steady appreciation history with minimal volatility.</p>
+      </div>
+    </div>
+
+    <div id="nbhd-glen-echo" class="nbhd-pane">
+      <p class="nbhd-sub">Glen Echo / Bethesda, MD 20812</p>
+      <h3>Glen Echo Heights</h3>
+      <div class="nbhd-meta">
+        <div class="nbhd-chip"><strong>Housing Style</strong><span>Eclectic mix &mdash; bungalows, contemporaries &amp; cottages</span></div>
+        <div class="nbhd-chip"><strong>Price Range</strong><span>$750K &ndash; $1.8M</span></div>
+        <div class="nbhd-chip"><strong>Schools</strong><span>Whitman cluster &mdash; Walt Whitman HS</span></div>
+        <div class="nbhd-chip"><strong>Commute</strong><span>CCT by bike; 5 mi to Friendship Heights Metro</span></div>
+      </div>
+      <div class="nbhd-body">
+        <h4>Overview</h4>
+        <p>Glen Echo Heights is Bethesda at its most eclectic &mdash; a neighborhood that borders the historic Glen Echo Park arts campus and the C&amp;O Canal National Historical Park, giving it a character you simply cannot find elsewhere in the region. It is wooded, quiet, and slightly removed from the commercial activity of central Bethesda. For buyers who want nature access and the Whitman cluster at a below-average Bethesda price point, it is an underrated option.</p>
+        <h4>Housing &amp; Buyer Profile</h4>
+        <p>The housing stock defies easy categorization: original bungalows, 1950s contemporaries, modest cottages, and occasional new infill builds coexist on hilly, wooded lots. Prices are lower than adjacent Carderock Springs or Bannockburn. Buyers include artists, academics, federal workers, and buyers who value natural surroundings and proximity to the Capital Crescent Trail over walkable retail.</p>
+        <h4>Notable Features</h4>
+        <p>Glen Echo Park &mdash; a National Park Service site &mdash; hosts classes in pottery, painting, dance, and music year-round. The CCT runs directly adjacent to the neighborhood, connecting to Georgetown by bike in under 30 minutes. The C&amp;O Canal towpath is steps away. Great Falls is a short drive. One of the most nature-connected neighborhoods in the Bethesda market.</p>
+      </div>
+    </div>
+
+    <div id="nbhd-alta-vista" class="nbhd-pane">
+      <p class="nbhd-sub">Bethesda, MD 20814</p>
+      <h3>Alta Vista</h3>
+      <div class="nbhd-meta">
+        <div class="nbhd-chip"><strong>Housing Style</strong><span>Condos, townhomes &amp; modest SFH</span></div>
+        <div class="nbhd-chip"><strong>Price Range</strong><span>$550K &ndash; $1.8M</span></div>
+        <div class="nbhd-chip"><strong>Schools</strong><span>BCC cluster &mdash; BCC High School</span></div>
+        <div class="nbhd-chip"><strong>Commute</strong><span>&lt;1 mi to Bethesda Metro &mdash; very walkable</span></div>
+      </div>
+      <div class="nbhd-body">
+        <h4>Overview</h4>
+        <p>Alta Vista is one of the most accessible entry points into the Bethesda real estate market for buyers who want BCC school access and genuine walkability without the $2M+ price tag of Edgemoor or Battery Park. Located immediately east of downtown Bethesda, it includes a mix of condominium buildings, townhomes, and modest single-family homes &mdash; the latter commanding a growing premium as inventory tightens.</p>
+        <h4>Housing &amp; Buyer Profile</h4>
+        <p>The neighborhood includes condos starting in the $500Ks, townhomes in the $700K to $1.2M range, and single-family homes from $1M upward. Buyers are first-time buyers in the Bethesda market, young professionals priced out of Kenwood or Edgemoor, and NIH/Walter Reed employees who want to eliminate their commute entirely. It is an area with strong rental demand as well, making it attractive to investors.</p>
+        <h4>Notable Features</h4>
+        <p>Bethesda Metro (Red Line) is under half a mile. Bethesda Row and Woodmont Triangle dining are walkable. NIH's main campus is a 10-minute walk. The neighborhood feeds directly into the BCC cluster, which is a significant draw for families who cannot afford Edgemoor or Battery Park but want the same school assignment. Alta Vista is where the Bethesda market starts to become accessible.</p>
+      </div>
+    </div>
+
   </div>
 </section>
+<script>
+function nbhdShow(id,btn){
+  document.querySelectorAll('.nbhd-pane').forEach(function(p){p.classList.remove('active');});
+  document.querySelectorAll('.nbhd-tab').forEach(function(b){b.classList.remove('active');});
+  document.getElementById('nbhd-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
 
 <section style="background:var(--white);">
   <div class="inner">
