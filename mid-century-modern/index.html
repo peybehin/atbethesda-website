@@ -139,23 +139,35 @@ img { display: block; width: 100%; }
 .btn-dark:hover { background: #333; }
 
 /* FOOTER */
-.site-footer { background: var(--dark); padding: 2.8rem 2rem 0; }
-.footer-inner { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 2.5rem; padding-bottom: 2rem; }
-.footer-logo-row { display: flex; align-items: center; gap: 10px; margin-bottom: .6rem; }
-.footer-logo-icon { width: 34px; height: 34px; flex-shrink: 0; }
-.footer-logo-name { font-size: 16px; font-weight: 700; letter-spacing: .07em; color: #fff; }
-.footer-logo-name span { color: var(--orange); }
-.footer-logo-sub { font-size: 7.5px; font-weight: 400; letter-spacing: .28em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-top: 2px; }
-.footer-copy { font-size: 10px; font-weight: 300; letter-spacing: .04em; color: rgba(255,255,255,.28); line-height: 1.85; margin-top: .4rem; }
-.footer-col h4 { font-size: 9px; font-weight: 700; letter-spacing: .26em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: .9rem; }
-.footer-col a { display: block; font-size: 11px; font-weight: 300; letter-spacing: .06em; color: rgba(255,255,255,.55); margin-bottom: .4rem; transition: color .15s; }
-.footer-col a:hover { color: #fff; }
-.footer-social { display: flex; gap: .7rem; margin-top: .1rem; }
-.footer-social a { width: 30px; height: 30px; border: 1px solid rgba(255,255,255,.16); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; color: rgba(255,255,255,.45); transition: all .15s; }
-.footer-social a:hover { border-color: var(--orange); color: var(--orange); }
-.footer-bottom { max-width: 1240px; margin: 0 auto; border-top: 1px solid rgba(255,255,255,.07); padding: 1.1rem 0; display: flex; justify-content: space-between; }
-.footer-bottom span { font-size: 9.5px; font-weight: 300; letter-spacing: .07em; color: rgba(255,255,255,.22); }
-</style>
+    footer { background: #F2E8D6; color: #2A2A2A; padding: 0; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; padding: 44px 40px; display: flex; align-items: flex-start; gap: 0; }
+    .footer-brand { flex: 0 0 auto; padding-right: 36px; }
+    .footer-brand .fv-main-logo { height: 72px; width: auto; display: block; }
+    .fv-divider { width: 1px; background: #C5B496; align-self: stretch; flex-shrink: 0; margin: 0 36px; }
+    .fv-col { flex: 0 0 auto; }
+    .fv-col h4 { font-size: .62rem; font-weight: 800; text-transform: uppercase; letter-spacing: .2em; color: #1A1A1A; margin-bottom: 14px; }
+    .fv-col address { font-style: normal; font-size: .78rem; line-height: 1.9; color: #5A4A3A; }
+    .fv-col address a { color: #5A4A3A; text-decoration: none; }
+    .fv-col address a:hover { color: #1A1A1A; }
+    .fv-socials { display: flex; gap: 10px; }
+    .fv-social { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; transition: opacity .2s; }
+    .fv-social:hover { opacity: .85; }
+    .fv-social-fb { background: #3B5998; }
+    .fv-social-ig { background: #4B8B8B; }
+    .fv-social-star { background: #8B6040; }
+    .fv-menu { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+    .fv-menu li a { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #5A4A3A; text-decoration: none; line-height: 2.2; transition: color .2s; }
+    .fv-menu li.fv-active a { color: #B85C3A; }
+    .fv-menu li a:hover { color: #1A1A1A; }
+    .fv-deco { margin-left: auto; flex: 0 0 180px; align-self: center; padding-left: 20px; }
+    .fv-deco svg { width: 100%; height: auto; display: block; }
+    .footer-rlah { background: #111; display: flex; align-items: center; justify-content: space-between; padding: 14px 40px; }
+    .footer-rlah img { height: 36px; width: auto; }
+    .footer-rlah-right { display: flex; align-items: center; gap: 24px; }
+    .footer-rlah p { font-size: .68rem; color: #666; margin: 0; }
+    .footer-rlah a { font-size: .68rem; color: #666; text-decoration: none; }
+    .footer-rlah a:hover { color: #aaa; }
+  </style>
 </head>
 <body>
 
@@ -489,51 +501,49 @@ img { display: block; width: 100%; }
 </div>
 
 <!-- FOOTER -->
-<footer class="site-footer">
+<footer>
   <div class="footer-inner">
-    <div>
-      <div class="footer-logo-row">
-        <svg class="footer-logo-icon" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="17" cy="17" r="17" fill="#C41230"/>
-          <polygon points="17,4 18.4,14 17,17 15.6,14" fill="white"/>
-          <polygon points="30,17 20,18.4 17,17 20,15.6" fill="white"/>
-          <polygon points="17,30 15.6,20 17,17 18.4,20" fill="white"/>
-          <polygon points="4,17 14,15.6 17,17 14,18.4" fill="white"/>
-          <circle cx="17" cy="17" r="2" fill="white"/>
-        </svg>
-        <div>
-          <div class="footer-logo-name">@<span>BETHESDA</span></div>
-          <div class="footer-logo-sub">Residential</div>
-        </div>
-      </div>
-      <p class="footer-copy">RLAH @properties · 4600 North Park Ave Suite 100<br>Chevy Chase, MD 20815<br>Licensed in Maryland, Virginia &amp; Washington DC<br>© 2026 @Bethesda Real Estate. All rights reserved.</p>
+    <div class="footer-brand">
+      <img src="/images/logo-bethesda-residential.png?v=2" alt="@Bethesda Residential" class="fv-main-logo" />
     </div>
-    <div class="footer-col">
+    <div class="fv-divider" aria-hidden="true"></div>
+    <div class="fv-col">
       <h4>Contact</h4>
-      <a href="tel:+12026817454">202-681-7454</a>
-      <a href="mailto:pey@peybehin.com">pey@peybehin.com</a>
+      <address>
+        <a href="tel:2028888860">202.888.8860</a><br>
+        <a href="mailto:info@bethesdaresidential.com">info@bethesdaresidential.com</a><br>
+        1331 H Street NE, Washington, DC 20002
+      </address>
     </div>
-    <div class="footer-col">
+    <div class="fv-divider" aria-hidden="true"></div>
+    <div class="fv-col">
       <h4>Follow Us</h4>
-      <div class="footer-social">
-        <a href="#">f</a>
-        <a href="#">in</a>
-        <a href="#">@</a>
+      <div class="fv-socials">
+        <a href="https://www.facebook.com/peybehinestates" class="fv-social fv-social-fb" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://www.instagram.com/peybehin/" class="fv-social fv-social-ig" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="https://www.zillow.com/profile/peybehin" class="fv-social fv-social-star" aria-label="Zillow"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.09 6.26L21 9.27l-5.45 5.19L16.18 21 12 17.77 7.82 21l1.63-6.54L4 9.27l6.91-1.01z"/></svg></a>
       </div>
     </div>
-    <div class="footer-col">
+    <div class="fv-divider" aria-hidden="true"></div>
+    <div class="fv-col">
       <h4>Menu</h4>
-      <a href="#">About</a>
-      <a href="#">Mid-Century Modern</a>
-      <a href="#">Listings</a>
-      <a href="#">Our Team</a>
-      <a href="#">Blog</a>
-      <a href="#">Contact</a>
+      <ul class="fv-menu">
+        <li><a href="/about/">About</a></li>
+        <li class="fv-active"><a href="/mid-century-modern/">Mid-Century Modern</a></li>
+        <li><a href="/properties/">Listings</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
     </div>
+    <div class="fv-deco"><svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="192" height="122" fill="none" stroke="#1A1A1A" stroke-width="1.2"/><line x1="68" y1="4" x2="68" y2="126" stroke="#1A1A1A" stroke-width="0.6" opacity="0.45"/><line x1="132" y1="4" x2="132" y2="126" stroke="#1A1A1A" stroke-width="0.6" opacity="0.45"/><line x1="4" y1="46" x2="196" y2="46" stroke="#1A1A1A" stroke-width="0.6" opacity="0.45"/><line x1="4" y1="86" x2="196" y2="86" stroke="#1A1A1A" stroke-width="0.6" opacity="0.45"/><ellipse cx="108" cy="53" rx="50" ry="26" fill="#C4633F" transform="rotate(-18 108 53)"/><ellipse cx="153" cy="50" rx="33" ry="20" fill="#1A1A1A" transform="rotate(16 153 50)"/><ellipse cx="116" cy="84" rx="43" ry="21" fill="#9B8A3A" transform="rotate(-8 116 84)"/><ellipse cx="159" cy="93" rx="44" ry="22" fill="#4B8B8B" transform="rotate(12 159 93)"/></svg></div>
   </div>
-  <div class="footer-bottom">
-    <span>© 2026 @Bethesda Real Estate. All Rights Reserved.</span>
-    <span>Equal Housing Opportunity</span>
+  <div class="footer-rlah">
+    <img src="/images/blog/logo-rlahatproperties-vertical-white.png" alt="RLAH @properties" />
+    <div class="footer-rlah-right">
+      <p>© 2025 @Bethesda Residential. All rights reserved.</p>
+      <a href="/privacy-policy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Use</a>
+    </div>
   </div>
 </footer>
 
