@@ -78,7 +78,7 @@
     "@context": "https://schema.org",
     "@type": "Place",
     "name": "Bethesda",
-    "description": "Bethesda, MD — an upscale suburb of Washington DC known for excellent MCPS schools, vibrant dining on Bethesda Row, and Red Line Metro access.",
+    "description": "Bethesda, MD &mdash; an upscale suburb of Washington DC known for excellent MCPS schools, vibrant dining on Bethesda Row, and Red Line Metro access.",
     "url": "https://atbethesda.com/our-areas/bethesda/",
     "address": { "@type": "PostalAddress", "addressLocality": "Bethesda", "addressRegion": "MD", "addressCountry": "US" },
     "containedInPlace": { "@type": "State", "name": "Maryland" }
@@ -146,9 +146,9 @@
       <div class="area-intro-text">
         <span class="section-label">About the Area</span>
         <h2>Why People Love <span style="color:var(--red);">Bethesda</span></h2>
-        <p>Bethesda has long been one of the most coveted zip codes in the DC Metro area — and for good reason. It strikes a rare balance: walkable streets lined with restaurants and boutiques, yet quiet residential blocks where kids play outside and neighbors actually know each other.</p>
+        <p>Bethesda has long been one of the most coveted zip codes in the DC Metro area &mdash; and for good reason. It strikes a rare balance: walkable streets lined with restaurants and boutiques, yet quiet residential blocks where kids play outside and neighbors actually know each other.</p>
         <p>The downtown area along Bethesda Row and Woodmont Triangle has evolved into a genuine urban destination, with dozens of acclaimed restaurants, a thriving arts scene, and some of the region's best shopping. And yet, minutes away, you'll find tree-canopied streets of stunning Colonials and Capes where the pace slows to something more suburban.</p>
-        <p>With easy Red Line Metro access, a short drive to DC, and schools that consistently rank among the best in Maryland, Bethesda appeals to a wide range of buyers — from first-time purchasers to move-up buyers to those looking to downsize without sacrificing quality of life.</p>
+        <p>With easy Red Line Metro access, a short drive to DC, and schools that consistently rank among the best in Maryland, Bethesda appeals to a wide range of buyers &mdash; from first-time purchasers to move-up buyers to those looking to downsize without sacrificing quality of life.</p>
         <div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;">
           <a href="https://search.atbethesda.com/idx/results/listings?pt=1&ccz=city&city%5B%5D=3885&srt=newest&per=30" class="btn-primary">Browse Bethesda Listings</a>
           <a href="/contact/" class="btn-outline">Ask Pey About Bethesda</a>
@@ -291,7 +291,7 @@
               widgets.forEach(function(w){var len=w.shadowRoot?w.shadowRoot.innerHTML.length:0;if(len>bestLen){bestLen=len;bestEl=w;}});
               if(bestEl&&bestEl.shadowRoot){
                 var sr=bestEl.shadowRoot;
-                /* widget 160819: card root is div.idx-listing-card, price loads async — wait for it */
+                /* widget 160819: card root is div.idx-listing-card, price loads async &mdash; wait for it */
                 var cards=sr.querySelectorAll('div.idx-listing-card');
                 var priceLoaded=cards.length&&sr.querySelector('span.idx-listing-card__listing-price');
                 if(priceLoaded){
@@ -376,7 +376,7 @@
   <div class="inner">
     <span class="section-label" style="color:var(--red);">Live Market Data</span>
     <h2 class="section-title" style="color:var(--black);">Bethesda <span>Market Trends</span></h2>
-    <div style="text-align:center;margin-top:4px;"><span style="display:inline-block;background:var(--red,#e02020);color:#fff;font-size:10px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;padding:5px 16px;margin-bottom:14px;">Updated Every Week</span><p style="color:#555;font-size:1.05rem;max-width:580px;line-height:1.75;margin:0 auto;">Current snapshot of the Bethesda real estate market — live data from <strong>Altos Research</strong>, refreshed <strong style="color:var(--red,#e02020);">every week</strong>.</p></div>
+    <div style="text-align:center;margin-top:4px;"><span style="display:inline-block;background:var(--red,#e02020);color:#fff;font-size:10px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;padding:5px 16px;margin-bottom:14px;">Updated Every Week</span><p style="color:#555;font-size:1.05rem;max-width:580px;line-height:1.75;margin:0 auto;">Current snapshot of the Bethesda real estate market &mdash; live data from <strong>Altos Research</strong>, refreshed <strong style="color:var(--red,#e02020);">every week</strong>.</p></div>
   </div>
 </section>
 
@@ -452,7 +452,7 @@
       }
       fetch('/altos-snapshot?hash='+hash+'&resTypeId='+rt+'&v=2').then(function(r){return r.json();}).then(function(d){
         if(!d||d.error||!d.stats){return fallback();}
-        var cells=d.stats.map(function(s){var t=s.dir==='up'?'▲':(s.dir==='down'?'▼':'');return '<div class="ams-stat"><div class="ams-label">'+esc(s.label)+'</div><div class="ams-value">'+esc(s.value)+'</div>'+spark(s.spark,s.sparkFmt,d.sparkDates)+'<div class="ams-chg '+s.dir+'"><span class="ams-tri">'+t+'</span>'+esc(s.change)+'</div></div>';}).join('');
+        var cells=d.stats.map(function(s){var t=s.dir==='up'?'&#9650;':(s.dir==='down'?'&#9660;':'');return '<div class="ams-stat"><div class="ams-label">'+esc(s.label)+'</div><div class="ams-value">'+esc(s.value)+'</div>'+spark(s.spark,s.sparkFmt,d.sparkDates)+'<div class="ams-chg '+s.dir+'"><span class="ams-tri">'+t+'</span>'+esc(s.change)+'</div></div>';}).join('');
         el.innerHTML='<div class="ams-card"><h2 class="ams-title">'+esc(title)+'</h2><div class="ams-date">Week of '+fdate(d.dataDate)+'</div><div class="ams-grid">'+cells+'</div><div class="ams-divider"></div><div class="ams-narr"><h3>Market Narrative</h3><p>'+esc(d.narrative)+'</p></div></div>';
         setupHover();
       }).catch(fallback);
@@ -517,216 +517,353 @@
     <p style="margin-top:24px;font-size:.78rem;color:var(--gray-text);">
       &#x1F4A1; <strong>Pro tip:</strong> School boundaries can change. Always verify your specific address&apos;s school assignment with <a href="https://www.montgomeryschoolsmd.org/" target="_blank" style="color:var(--red);">Montgomery County Public Schools</a>.
     </p>
+  </di
+<section style="background:var(--white);">
+  <div class="inner">
+    <div class="area-intro-grid">
+      <div class="area-intro-text">
+        <span class="section-label">Why Bethesda</span>
+        <h2 class="section-title">Why People <span>Choose</span> Bethesda</h2>
+        <p>Bethesda is where career ambition and suburban comfort converge. NIH, Walter Reed, and a dense cluster of biotech firms create an employer base unlike any other DC suburb. Three Red Line Metro stops mean a commute-free lifestyle for DC-bound professionals. And the schools &mdash; BCC, Walter Johnson, Walt Whitman &mdash; consistently rank among Maryland&rsquo;s best.</p>
+        <p>What surprises most buyers is the range. A 1950s brick colonial in Kenwood sits two miles from a $6M Edgemoor estate. Mid-century ranches dot the 20816 ZIP. Teardowns are reshaping older blocks. Whatever your budget or lifestyle, there&rsquo;s a Bethesda for you.</p>
+      </div>
+      <div class="area-intro-sidebar">
+        <h3>Bethesda At a Glance</h3>
+        <div class="area-detail-row"><span>County</span><strong>Montgomery County, MD</strong></div>
+        <div class="area-detail-row"><span>Metro Access</span><strong>Red Line &mdash; 3 Stations</strong></div>
+        <div class="area-detail-row"><span>Median Home Price</span><strong>$1.1M &ndash; $1.5M</strong></div>
+        <div class="area-detail-row"><span>School District</span><strong>MCPS (Top-Ranked)</strong></div>
+        <div class="area-detail-row"><span>ZIP Codes</span><strong>20814, 20815, 20816, 20817</strong></div>
+        <div class="area-detail-row" style="border-bottom:0;"><span>Walk Score</span><strong>74&ndash;89 (Very Walkable)</strong></div>
+      </div>
+    </div>
   </div>
+</section>
+
+<section style="background:var(--gray-light);">
+  <div class="inner">
+    <div class="section-header" style="text-align:center;margin-bottom:40px;">
+      <span class="section-label">Know the ZIP</span>
+      <h2 class="section-title">Bethesda <span>Neighborhood</span> Guide</h2>
+      <p class="section-sub" style="max-width:600px;margin:12px auto 0;">Each of Bethesda&rsquo;s four ZIP codes has its own character, price point, and school feeder. Here&rsquo;s what to expect.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;">
+      <div class="area-intro-sidebar">
+        <p class="section-label" style="color:var(--red);margin-bottom:6px;">ZIP 20814</p>
+        <h3 style="font-size:1rem;font-weight:800;margin-bottom:10px;">Downtown Core</h3>
+        <p style="font-size:0.83rem;color:var(--gray-text);line-height:1.7;margin:0;">Walk to Bethesda Row, the Metro, and the best restaurants. Highest density: condos, townhomes, and urban SFH. BCC feeder zone.</p>
+      </div>
+      <div class="area-intro-sidebar">
+        <p class="section-label" style="color:var(--red);margin-bottom:6px;">ZIP 20815</p>
+        <h3 style="font-size:1rem;font-weight:800;margin-bottom:10px;">Prestige Border</h3>
+        <p style="font-size:0.83rem;color:var(--gray-text);line-height:1.7;margin:0;">Chevy Chase border &mdash; the most coveted ZIP. Kenwood, Bradley Hills, Somerset. High-end SFH, tree-lined streets, cherry blossoms.</p>
+      </div>
+      <div class="area-intro-sidebar">
+        <p class="section-label" style="color:var(--red);margin-bottom:6px;">ZIP 20816</p>
+        <h3 style="font-size:1rem;font-weight:800;margin-bottom:10px;">MCM Country</h3>
+        <p style="font-size:0.83rem;color:var(--gray-text);line-height:1.7;margin:0;">Glen Echo border. Best mid-century modern inventory in the region. Larger lots, wooded terrain, Cabin John trail. Whitman feeder zone.</p>
+      </div>
+      <div class="area-intro-sidebar">
+        <p class="section-label" style="color:var(--red);margin-bottom:6px;">ZIP 20817</p>
+        <h3 style="font-size:1rem;font-weight:800;margin-bottom:10px;">North Bethesda</h3>
+        <p style="font-size:0.83rem;color:var(--gray-text);line-height:1.7;margin:0;">Potomac border. Larger suburban lots, newer construction, excellent WJ and Whitman school access. Great for families wanting more space.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--white);">
+  <div class="inner">
+    <div class="area-intro-grid">
+      <div class="area-intro-text">
+        <span class="section-label">The Numbers</span>
+        <h2 class="section-title">Bethesda <span>Real Estate</span> Market</h2>
+        <p>Bethesda is a persistent seller&rsquo;s market. Well-priced homes in good school zones receive multiple offers within the first weekend. Inventory stays low year-round; spring and fall peaks intensify competition further.</p>
+        <p>Entry-level SFH start around $900K for a 3BR needing updates. Move-in ready homes in core neighborhoods price from $1.2M&ndash;$1.8M. Luxury estates in Kenwood and Edgemoor run $3M&ndash;$8M+.</p>
+        <div class="stat-row" style="margin-top:20px;">
+          <div class="stat-chip"><span class="val">$1.1M</span><span class="lbl">Median SFH</span></div>
+          <div class="stat-chip"><span class="val">14</span><span class="lbl">Avg DOM</span></div>
+          <div class="stat-chip"><span class="val">102%</span><span class="lbl">List-to-Sale</span></div>
+          <div class="stat-chip"><span class="val">Low</span><span class="lbl">Inventory</span></div>
+        </div>
+      </div>
+      <div class="area-intro-sidebar">
+        <h3>Price Ranges by Type</h3>
+        <div class="area-detail-row"><span>Condo / Co-op</span><strong>$350K &ndash; $900K</strong></div>
+        <div class="area-detail-row"><span>Townhome</span><strong>$700K &ndash; $1.4M</strong></div>
+        <div class="area-detail-row"><span>SFH Entry</span><strong>$900K &ndash; $1.3M</strong></div>
+        <div class="area-detail-row"><span>SFH Move-In Ready</span><strong>$1.3M &ndash; $2M</strong></div>
+        <div class="area-detail-row"><span>Luxury</span><strong>$2M &ndash; $5M</strong></div>
+        <div class="area-detail-row" style="border-bottom:0;"><span>Estate</span><strong>$5M &ndash; $10M+</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--gray-light);">
+  <div class="inner">
+    <div class="area-intro-grid">
+      <div class="area-intro-text">
+        <span class="section-label">Getting Around</span>
+        <h2 class="section-title">Bethesda <span>Commute</span> Guide</h2>
+        <p>Bethesda&rsquo;s Red Line stations (Bethesda, Friendship Heights, Medical Center) put downtown DC 18&ndash;25 minutes away by Metro. NIH and Walter Reed are Metro-accessible without a car &mdash; a genuine transit-first lifestyle for the right buyer.</p>
+        <p>The Capital Crescent Trail connects Bethesda to Georgetown in under 30 minutes by bike, one of the most scenic urban cycling corridors in the country. For drivers, I-495 access is minutes away with direct routes into Virginia and toward BWI.</p>
+      </div>
+      <div class="area-intro-sidebar">
+        <h3>Commute Times</h3>
+        <div class="area-detail-row"><span>Bethesda &rarr; DuPont Circle</span><strong>~18 min (Metro)</strong></div>
+        <div class="area-detail-row"><span>Bethesda &rarr; Downtown DC</span><strong>~22 min (Metro)</strong></div>
+        <div class="area-detail-row"><span>Bethesda &rarr; NIH Campus</span><strong>~5 min (Metro)</strong></div>
+        <div class="area-detail-row"><span>Bethesda &rarr; Georgetown</span><strong>~30 min (Bike)</strong></div>
+        <div class="area-detail-row"><span>Bethesda &rarr; Tysons</span><strong>~15 min (Drive)</strong></div>
+        <div class="area-detail-row" style="border-bottom:0;"><span>Bethesda &rarr; BWI Airport</span><strong>~30 min (Drive)</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--white);">
+  <div class="inner">
+    <div class="section-header" style="text-align:center;margin-bottom:40px;">
+      <span class="section-label">Education</span>
+      <h2 class="section-title">Bethesda <span>Schools</span> Explained</h2>
+      <p class="section-sub" style="max-width:620px;margin:12px auto 0;">MCPS operates three of Maryland&rsquo;s top-ranked high schools in Bethesda. Your address determines your feeder school &mdash; and it matters to every buyer.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px;">
+      <div class="area-intro-sidebar">
+        <p class="section-label" style="color:var(--red);margin-bottom:4px;">BCC High School</p>
+        <h3 style="font-size:1rem;font-weight:800;margin-bottom:6px;">Bethesda&ndash;Chevy Chase</h3>
+        <p style="font-size:0.78rem;font-weight:700;color:var(--gray-text);margin-bottom:10px;">Serves: ZIP 20814 &amp; parts of 20815</p>
+        <p style="font-size:0.83rem;color:var(--gray-text);line-height:1.65;margin:0;">~1,900 students. IB programme, nationally ranked. Strong arts and international community. Walkable from downtown Bethesda and the Metro.</p>
+      </div>
+      <div class="area-intro-sidebar">
+        <p class="section-label" style="color:var(--red);margin-bottom:4px;">WJ High School</p>
+        <h3 style="font-size:1rem;font-weight:800;margin-bottom:6px;">Walter Johnson</h3>
+        <p style="font-size:0.78rem;font-weight:700;color:var(--gray-text);margin-bottom:10px;">Serves: ZIP 20814 &amp; 20817</p>
+        <p style="font-size:0.83rem;color:var(--gray-text);line-height:1.65;margin:0;">~2,000 students. Consistently top-ranked in MCPS. Strong STEM and AP offerings. Well-funded athletic and arts programs.</p>
+      </div>
+      <div class="area-intro-sidebar">
+        <p class="section-label" style="color:var(--red);margin-bottom:4px;">Whitman High School</p>
+        <h3 style="font-size:1rem;font-weight:800;margin-bottom:6px;">Walt Whitman</h3>
+        <p style="font-size:0.78rem;font-weight:700;color:var(--gray-text);margin-bottom:10px;">Serves: ZIP 20816 &amp; 20817</p>
+        <p style="font-size:0.83rem;color:var(--gray-text);line-height:1.65;margin:0;">~1,800 students. Academic excellence with championship-level athletics. Highly sought-after feeder zone, especially in the 20816 MCM corridor.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--gray-light);">
+  <div class="inner">
+    <div class="area-intro-grid">
+      <div class="area-intro-text">
+        <span class="section-label">High-End Real Estate</span>
+        <h2 class="section-title">Bethesda&rsquo;s <span>Luxury</span> Home Market</h2>
+        <p>Bethesda&rsquo;s luxury tier starts at roughly $2M and peaks at $10M+ for landmark estate properties. The top enclaves &mdash; Edgemoor, Kenwood, Bradley Hills &mdash; carry national recognition for architectural prestige and exclusivity.</p>
+        <p>Edgemoor is Bethesda&rsquo;s most exclusive neighborhood: private roads, mature landscaping, and homes that rarely trade more than once a decade. Kenwood is famous for its Japanese cherry trees, drawing thousands of visitors each spring and commands premium pricing year-round.</p>
+      </div>
+      <div class="area-intro-sidebar">
+        <h3>Luxury Neighborhoods</h3>
+        <div class="area-detail-row"><span>Edgemoor</span><strong>$3M &ndash; $10M+</strong></div>
+        <div class="area-detail-row"><span>Kenwood</span><strong>$2.5M &ndash; $6M</strong></div>
+        <div class="area-detail-row"><span>Bradley Hills</span><strong>$2M &ndash; $4.5M</strong></div>
+        <div class="area-detail-row"><span>Somerset</span><strong>$1.8M &ndash; $3.5M</strong></div>
+        <div class="area-detail-row" style="border-bottom:0;"><span>Woodacres</span><strong>$1.5M &ndash; $3M</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--white);">
+  <div class="inner">
+    <div class="area-intro-grid">
+      <div class="area-intro-text">
+        <span class="section-label">Architecture</span>
+        <h2 class="section-title">Bethesda <span>Mid-Century Modern</span> Homes</h2>
+        <p>Bethesda has one of the DC region&rsquo;s strongest mid-century modern inventories, built primarily between 1945 and 1970. Flat planes, clerestory windows, open-plan interiors, and integration with wooded lots &mdash; design principles that feel entirely contemporary today.</p>
+        <p>The 20816 ZIP has the highest concentration. Architects like Charles Goodman designed entire neighborhoods here. Original examples in good condition command strong premiums, and buyers who understand the category consistently outperform those who don&rsquo;t.</p>
+        <a href="/mid-century-modern/" class="btn-primary" style="margin-top:24px;display:inline-block;">Explore MCM Homes in Bethesda</a>
+      </div>
+      <div class="area-intro-sidebar">
+        <h3>Bethesda MCM Snapshot</h3>
+        <div class="area-detail-row"><span>Era Built</span><strong>1945 &ndash; 1970</strong></div>
+        <div class="area-detail-row"><span>Signature Style</span><strong>Flat roof, floor-to-ceiling glass</strong></div>
+        <div class="area-detail-row"><span>Lot Character</span><strong>Wooded, sloped terrain</strong></div>
+        <div class="area-detail-row"><span>Best ZIP</span><strong>20816 (Glen Echo border)</strong></div>
+        <div class="area-detail-row"><span>Key Architect</span><strong>Charles Goodman</strong></div>
+        <div class="area-detail-row" style="border-bottom:0;"><span>Price Range</span><strong>$900K &ndash; $2.5M+</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--gray-light);">
+  <div class="inner">
+    <div class="area-intro-grid">
+      <div class="area-intro-text">
+        <span class="section-label">New Builds</span>
+        <h2 class="section-title">New Construction <span>in Bethesda</span></h2>
+        <p>Bethesda&rsquo;s land is too valuable for traditional subdivision development, so new construction happens one teardown at a time. A builder acquires an older home ($800K&ndash;$1.2M), demolishes it, and constructs a new home that sells at $2M&ndash;$4M.</p>
+        <p>The result is a block-by-block modernization of established neighborhoods. Buyers who want brand-new construction inside a walkable Bethesda community can find it &mdash; but must move quickly and understand the teardown economics behind the pricing.</p>
+      </div>
+      <div class="area-intro-sidebar">
+        <h3>New Construction Facts</h3>
+        <div class="area-detail-row"><span>Build Model</span><strong>Teardown &amp; Rebuild</strong></div>
+        <div class="area-detail-row"><span>Land Acquisition</span><strong>$800K &ndash; $1.2M</strong></div>
+        <div class="area-detail-row"><span>Finished Price</span><strong>$2M &ndash; $4M+</strong></div>
+        <div class="area-detail-row"><span>Typical Build Time</span><strong>10 &ndash; 14 months</strong></div>
+        <div class="area-detail-row" style="border-bottom:0;"><span>Finished Square Footage</span><strong>4,000 &ndash; 7,000 sq ft</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--white);">
+  <div class="inner">
+    <div class="area-intro-grid">
+      <div class="area-intro-text">
+        <span class="section-label">Ownership Costs</span>
+        <h2 class="section-title">Bethesda <span>Property Taxes</span></h2>
+        <p>Montgomery County&rsquo;s property tax rate is approximately $1.0099 per $100 of assessed value. On a $1.2M home, that&rsquo;s roughly $12,119 annually &mdash; moderate relative to comparable Northern Virginia counties with similar home values.</p>
+        <p>The Homestead Tax Credit caps annual assessment increases at 10% for primary residences, providing meaningful protection for long-term owners. First-time buyers and seniors may qualify for additional credits. Maryland&rsquo;s overall tax burden is competitive across the mid-Atlantic region.</p>
+      </div>
+      <div class="area-intro-sidebar">
+        <h3>Tax Reference</h3>
+        <div class="area-detail-row"><span>County Rate</span><strong>$1.0099 per $100</strong></div>
+        <div class="area-detail-row"><span>$800K Home</span><strong>~$8,079 / year</strong></div>
+        <div class="area-detail-row"><span>$1.2M Home</span><strong>~$12,119 / year</strong></div>
+        <div class="area-detail-row"><span>$2M Home</span><strong>~$20,198 / year</strong></div>
+        <div class="area-detail-row"><span>Homestead Cap</span><strong>10% max / year</strong></div>
+        <div class="area-detail-row" style="border-bottom:0;"><span>Assessment Cycle</span><strong>Every 3 years</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--gray-light);">
+  <div class="inner">
+    <div class="section-header" style="text-align:center;margin-bottom:40px;">
+      <span class="section-label">Living Here</span>
+      <h2 class="section-title">Bethesda <span>Lifestyle</span> &amp; Amenities</h2>
+      <p class="section-sub" style="max-width:640px;margin:12px auto 0;">Bethesda Row and the Woodmont Triangle anchor one of the most walkable retail and dining corridors in the DC region. NIH&rsquo;s presence brings a uniquely international, highly educated professional community.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:20px;">
+      <div class="area-intro-sidebar">
+        <h3 style="margin-bottom:10px;">Shopping &amp; Retail</h3>
+        <p style="font-size:0.83rem;color:var(--gray-text);line-height:1.65;margin:0;">Bethesda Row hosts Apple, lululemon, Pottery Barn, and more &mdash; all walkable. Whole Foods and Trader Joe&rsquo;s are neighborhood staples. Westfield Montgomery mall is 10 minutes north.</p>
+      </div>
+      <div class="area-intro-sidebar">
+        <h3 style="margin-bottom:10px;">Arts &amp; Culture</h3>
+        <p style="font-size:0.83rem;color:var(--gray-text);line-height:1.65;margin:0;">Strathmore Music Center, Round House Theatre, the AFI Silver in nearby Silver Spring, and every Smithsonian museum a Metro ride away. A genuinely cultured suburb.</p>
+      </div>
+      <div class="area-intro-sidebar">
+        <h3 style="margin-bottom:10px;">World-Class Healthcare</h3>
+        <p style="font-size:0.83rem;color:var(--gray-text);line-height:1.65;margin:0;">NIH Clinical Center, Walter Reed National Military Medical Center, and Suburban Hospital (Johns Hopkins affiliate) &mdash; three of the world&rsquo;s leading medical institutions, minutes from your front door.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--white);">
+  <div class="inner">
+    <div class="section-header" style="text-align:center;margin-bottom:40px;">
+      <span class="section-label">Dining</span>
+      <h2 class="section-title">Bethesda <span>Restaurants</span></h2>
+      <p class="section-sub" style="max-width:620px;margin:12px auto 0;">Bethesda has more acclaimed restaurants per block than most DC neighborhoods. Woodmont Triangle and Bethesda Row are the two main dining corridors.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:20px;">
+      <div class="area-intro-sidebar">
+        <p class="section-label" style="color:var(--red);margin-bottom:4px;">French Brasserie</p>
+        <h3 style="font-size:1rem;font-weight:800;margin-bottom:8px;">Mon Ami Gabi</h3>
+        <p style="font-size:0.83rem;color:var(--gray-text);line-height:1.65;margin:0;">Bethesda&rsquo;s iconic anchor on Bethesda Row. Legendary steak frites, moules, and a weekend brunch that draws the entire neighborhood.</p>
+      </div>
+      <div class="area-intro-sidebar">
+        <p class="section-label" style="color:var(--red);margin-bottom:4px;">Spanish Tapas</p>
+        <h3 style="font-size:1rem;font-weight:800;margin-bottom:8px;">Jaleo</h3>
+        <p style="font-size:0.83rem;color:var(--gray-text);line-height:1.65;margin:0;">Jos&eacute; Andr&eacute;s&rsquo; flagship tapas bar. Creative Spanish small plates, exceptional paella, and one of the best sangria programs in the DMV.</p>
+      </div>
+      <div class="area-intro-sidebar">
+        <p class="section-label" style="color:var(--red);margin-bottom:4px;">American Classic</p>
+        <h3 style="font-size:1rem;font-weight:800;margin-bottom:8px;">Silver Diner</h3>
+        <p style="font-size:0.83rem;color:var(--gray-text);line-height:1.65;margin:0;">A Bethesda institution. Farm-to-table diner fare with classic comfort dishes. Beloved by families, weekend brunchers, and post-Metro crowds.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--gray-light);">
+  <div class="inner">
+    <div class="area-intro-grid">
+      <div class="area-intro-text">
+        <span class="section-label">Outdoors</span>
+        <h2 class="section-title">Bethesda <span>Parks</span> &amp; Trails</h2>
+        <p>The Capital Crescent Trail is Bethesda&rsquo;s most celebrated outdoor amenity &mdash; 11 miles of paved trail connecting Georgetown to Silver Spring through Bethesda, with a wooded extension toward Rockville. Cyclists, runners, and walkers use it year-round.</p>
+        <p>Cabin John Regional Park offers 40 acres of athletic fields, an ice rink, a miniature train, and Cabin John Stream Valley Trail access. Rock Creek Park&rsquo;s southern reach extends into Bethesda, adding miles of forested trail from your neighborhood.</p>
+      </div>
+      <div class="area-intro-sidebar">
+        <h3>Parks &amp; Trails</h3>
+        <div class="area-detail-row"><span>Capital Crescent Trail</span><strong>11 miles paved</strong></div>
+        <div class="area-detail-row"><span>Cabin John Regional Park</span><strong>40 acres</strong></div>
+        <div class="area-detail-row"><span>Rock Creek Park Access</span><strong>Southern boundary</strong></div>
+        <div class="area-detail-row"><span>Norwood Local Park</span><strong>Downtown Bethesda</strong></div>
+        <div class="area-detail-row" style="border-bottom:0;"><span>Bethesda Trolley Trail</span><strong>Connecting greenway</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--white);">
+  <div class="inner">
+    <div class="section-header" style="text-align:center;margin-bottom:40px;">
+      <span class="section-label">Quick Answers</span>
+      <h2 class="section-title">Bethesda Real Estate <span>FAQ</span></h2>
+    </div>
+    <div style="max-width:760px;margin:0 auto;">
+      <div style="border-bottom:1px solid var(--gray-mid);padding:22px 0;">
+        <h3 style="font-size:0.95rem;font-weight:800;margin-bottom:8px;">What is the average home price in Bethesda, MD?</h3>
+        <p style="font-size:0.88rem;color:var(--gray-text);line-height:1.7;margin:0;">The median single-family home in Bethesda ranges from $1.1M to $1.5M depending on ZIP code and condition. Condos start around $350K; luxury estates in Edgemoor and Kenwood exceed $8M.</p>
+      </div>
+      <div style="border-bottom:1px solid var(--gray-mid);padding:22px 0;">
+        <h3 style="font-size:0.95rem;font-weight:800;margin-bottom:8px;">Which high school does my Bethesda address feed into?</h3>
+        <p style="font-size:0.88rem;color:var(--gray-text);line-height:1.7;margin:0;">Bethesda feeds three high schools: Bethesda&ndash;Chevy Chase (BCC), Walter Johnson, and Walt Whitman. Your specific address determines the zone. I can verify your address against the current MCPS boundary map.</p>
+      </div>
+      <div style="border-bottom:1px solid var(--gray-mid);padding:22px 0;">
+        <h3 style="font-size:0.95rem;font-weight:800;margin-bottom:8px;">How far is Bethesda from Washington DC?</h3>
+        <p style="font-size:0.88rem;color:var(--gray-text);line-height:1.7;margin:0;">About 5 miles northwest. By Red Line Metro, downtown DC is 18&ndash;25 minutes. By car, 20&ndash;35 minutes depending on traffic. Many Bethesda residents commute car-free.</p>
+      </div>
+      <div style="border-bottom:1px solid var(--gray-mid);padding:22px 0;">
+        <h3 style="font-size:0.95rem;font-weight:800;margin-bottom:8px;">Is Bethesda a good place to buy a home?</h3>
+        <p style="font-size:0.88rem;color:var(--gray-text);line-height:1.7;margin:0;">Consistently yes. Low inventory, top-ranked schools, walkability, and proximity to NIH, federal agencies, and biotech employers underpin sustained demand. Bethesda is one of the most stable residential markets in the DMV.</p>
+      </div>
+      <div style="border-bottom:1px solid var(--gray-mid);padding:22px 0;">
+        <h3 style="font-size:0.95rem;font-weight:800;margin-bottom:8px;">What are property taxes like in Bethesda?</h3>
+        <p style="font-size:0.88rem;color:var(--gray-text);line-height:1.7;margin:0;">Montgomery County&rsquo;s rate is ~$1.01 per $100 assessed value. On a $1.2M home: ~$12,000&ndash;$13,000 per year. The Homestead Tax Credit limits annual assessment increases to 10% for primary residences.</p>
+      </div>
+      <div style="border-bottom:1px solid var(--gray-mid);padding:22px 0;">
+        <h3 style="font-size:0.95rem;font-weight:800;margin-bottom:8px;">Are there mid-century modern homes in Bethesda?</h3>
+        <p style="font-size:0.88rem;color:var(--gray-text);line-height:1.7;margin:0;">Yes &mdash; some of the best in the DC region, concentrated in ZIP 20816. Charles Goodman designed entire neighborhoods here. Well-preserved originals command strong premiums and sell fast.</p>
+      </div>
+      <div style="border-bottom:1px solid var(--gray-mid);padding:22px 0;">
+        <h3 style="font-size:0.95rem;font-weight:800;margin-bottom:8px;">What Metro line serves Bethesda?</h3>
+        <p style="font-size:0.88rem;color:var(--gray-text);line-height:1.7;margin:0;">The Red Line, with three stations: Bethesda (downtown), Friendship Heights (south), and Medical Center (NIH). Direct service to Union Station, Gallery Place, and Shady Grove.</p>
+      </div>
+      <div style="padding:22px 0;">
+        <h3 style="font-size:0.95rem;font-weight:800;margin-bottom:8px;">How competitive is the Bethesda market?</h3>
+        <p style="font-size:0.88rem;color:var(--gray-text);line-height:1.7;margin:0;">Very. Well-priced homes regularly see multiple offers the first weekend. Average days-on-market is 12&ndash;18. Come pre-approved, flexible on settlement, and ready to move. A local expert is not optional here.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the average home price in Bethesda, MD?","acceptedAnswer":{"@type":"Answer","text":"The median single-family home in Bethesda ranges from $1.1M to $1.5M. Condos start around $350K; luxury estates exceed $8M."}},{"@type":"Question","name":"Which high school does my Bethesda address feed into?","acceptedAnswer":{"@type":"Answer","text":"Bethesda feeds three high schools: BCC, Walter Johnson, and Walt Whitman. Your address determines the zone."}},{"@type":"Question","name":"How far is Bethesda from Washington DC?","acceptedAnswer":{"@type":"Answer","text":"About 5 miles northwest. By Metro 18-25 minutes; by car 20-35 minutes."}},{"@type":"Question","name":"Is Bethesda a good place to buy a home?","acceptedAnswer":{"@type":"Answer","text":"Yes. Low inventory, top schools, walkability, and NIH/biotech employer proximity underpin sustained demand."}},{"@type":"Question","name":"What are property taxes like in Bethesda?","acceptedAnswer":{"@type":"Answer","text":"Montgomery County's rate is ~$1.01 per $100 assessed value. On a $1.2M home: ~$12,000-$13,000 per year."}},{"@type":"Question","name":"Are there mid-century modern homes in Bethesda?","acceptedAnswer":{"@type":"Answer","text":"Yes - some of the best in the DC region, concentrated in ZIP 20816. Charles Goodman designed entire neighborhoods here."}},{"@type":"Question","name":"What Metro line serves Bethesda?","acceptedAnswer":{"@type":"Answer","text":"The Red Line, with three stations: Bethesda, Friendship Heights, and Medical Center."}},{"@type":"Question","name":"How competitive is the Bethesda market?","acceptedAnswer":{"@type":"Answer","text":"Very. Well-priced homes see multiple offers the first weekend. Average DOM is 12-18 days."}}]}
+</script>
+v>
 </section>
 
 <!-- CTA -->
 <section style="background:var(--black);text-align:center;">
   <div class="inner">
-    <span class="section-label" style="color:var(--red);">
-
-  <!-- SEO CONTENT EXPANSION: 13 new sections -->
-
-  <section class="section-prose" style="background:#faf6ef;padding:4rem 2rem;">
-    <div style="max-width:860px;margin:0 auto;">
-      <p class="section-label" style="color:#c0392b;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:.5rem;">Why Bethesda</p>
-      <h2 style="font-size:2rem;margin-bottom:1.5rem;color:#1a1a1a;">Why People Move to Bethesda</h2>
-      <p>People move to Bethesda for three reasons: <strong>schools, access, and quality of life</strong> &mdash; and they stay because no other suburb in the DC Metro delivers all three as consistently. Bethesda has been a top-10 American suburb in virtually every national ranking for three decades running, and the fundamentals that drive that recognition have not changed.</p>
-      <p>For families, the Montgomery County Public Schools system is the anchor. BCC, Walter Johnson, and Walt Whitman consistently rank among the top public high schools in Maryland. For professionals, Bethesda&rsquo;s Red Line Metro connection means a 20-minute commute to downtown DC &mdash; without the parking stress, the traffic, or the cost of living inside the Beltway. And for anyone who values walkability, the Bethesda Row and Woodmont Triangle corridors deliver the kind of urban walkability most suburbs only pretend to offer.</p>
-      <p>Major employers near Bethesda include the National Institutes of Health (NIH), Marriott International&rsquo;s new downtown headquarters, Lockheed Martin, and dozens of federal contractors and biotech firms anchored by the I-270 corridor. Remote workers choose Bethesda for its coffee shops, co-working spaces, and neighborhoods that feel genuinely community-oriented &mdash; not just commuter dormitories.</p>
-    </div>
-  </section>
-
-  <section class="section-prose" style="background:#fff;padding:4rem 2rem;">
-    <div style="max-width:860px;margin:0 auto;">
-      <p class="section-label" style="color:#c0392b;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:.5rem;">Neighborhoods</p>
-      <h2 style="font-size:2rem;margin-bottom:1.5rem;color:#1a1a1a;">Bethesda Neighborhood Guide</h2>
-      <p>Bethesda is not one neighborhood &mdash; it&rsquo;s a collection of distinct residential pockets, each with its own character, price point, and lifestyle. Understanding the difference is critical to finding the right home.</p>
-      <p><strong>Downtown Bethesda (20814):</strong> The most walkable ZIP code in Bethesda. Condos, townhomes, and low-rise apartment buildings dominate. Steps from Metro, Bethesda Row, and Woodmont Triangle. Ideal for professionals and empty-nesters who want urban convenience without the city price tag.</p>
-      <p><strong>Edgemoor and Kenwood (20815):</strong> Some of the most prestigious addresses in Montgomery County. Edgemoor is a historically significant neighborhood with large custom homes on generous lots, known for its active civic association. Kenwood is famous for its 1,200 Japanese cherry trees &mdash; a private neighborhood that bursts into bloom every spring and draws visitors from across the region.</p>
-      <p><strong>West Bethesda and Glen Echo Heights (20816):</strong> Quieter, more suburban feel. Strong elementary school assignments. Popular with growing families seeking more square footage without leaving Bethesda. The Capital Crescent Trail runs directly through this area.</p>
-      <p><strong>Burning Tree and Country Club Hills (20817):</strong> The most expansive lots in Bethesda. Bordering Potomac, this area is characterized by estate-sized properties, mature trees, and significant architectural variety &mdash; from postwar ramblers to new construction luxury builds exceeding $5M.</p>
-    </div>
-  </section>
-
-  <section class="section-prose" style="background:#faf6ef;padding:4rem 2rem;">
-    <div style="max-width:860px;margin:0 auto;">
-      <p class="section-label" style="color:#c0392b;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:.5rem;">Getting Around</p>
-      <h2 style="font-size:2rem;margin-bottom:1.5rem;color:#1a1a1a;">Bethesda Commute Guide</h2>
-      <p>One of Bethesda&rsquo;s most underrated selling points is how many ways you can get to work &mdash; and how few of them require a car.</p>
-      <p><strong>Metro:</strong> The Bethesda Metro Station (Red Line) places you at Dupont Circle in 12 minutes, Farragut North in 15, and Union Station in 25. A second Red Line station at Friendship Heights sits on the Bethesda/DC border. Metro service runs approximately 5am&ndash;midnight on weekdays, with reduced weekend hours.</p>
-      <p><strong>Capital Crescent Trail:</strong> A paved multi-use trail running 11 miles from Bethesda to Georgetown and Silver Spring. Thousands of Bethesda residents commute by bike along this route daily. It&rsquo;s one of the most heavily used recreational trails on the East Coast.</p>
-      <p><strong>Driving to DC:</strong> Via Wisconsin Avenue or River Road, downtown DC is typically 20&ndash;35 minutes depending on traffic. The I-495 Beltway and I-270 are both accessible within 10 minutes, connecting to Northern Virginia and the broader DMV.</p>
-      <p><strong>NIH and Walter Reed:</strong> Both federal campuses are within 5 minutes by car &mdash; a major driver of demand from medical professionals and researchers who want to minimize their commute.</p>
-      <p><strong>Ride-share and Bus:</strong> Bethesda is extremely well-served by Uber, Lyft, and the Ride On bus system. Many residents use a combination of Metro and ride-share for a fully car-optional lifestyle.</p>
-    </div>
-  </section>
-
-  <section class="section-prose" style="background:#fff;padding:4rem 2rem;">
-    <div style="max-width:860px;margin:0 auto;">
-      <p class="section-label" style="color:#c0392b;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:.5rem;">Education</p>
-      <h2 style="font-size:2rem;margin-bottom:1.5rem;color:#1a1a1a;">Bethesda Schools Explained</h2>
-      <p>Montgomery County Public Schools (MCPS) is the largest school district in Maryland and consistently ranks in the top 5% nationally. Bethesda sits within MCPS&rsquo;s most competitive cluster, where high school graduation rates exceed 97% and AP enrollment is among the highest in the state.</p>
-      <p><strong>High Schools:</strong> Bethesda is served by three top-rated high schools &mdash; Bethesda-Chevy Chase (BCC), Walter Johnson, and Walt Whitman &mdash; all rated 9/10 or above on GreatSchools. Your assigned school depends on your specific address. BCC draws from downtown and eastern Bethesda; Walter Johnson serves central Bethesda; Whitman covers western neighborhoods including parts of 20816 and 20817.</p>
-      <p><strong>Middle Schools:</strong> Westland Middle School (10/10) serves much of the Bethesda cluster. Pyle and North Bethesda Middle School serve other portions of the ZIP codes.</p>
-      <p><strong>Elementary Schools:</strong> Bethesda has more than a dozen elementary schools within MCPS boundaries, including Westbrook (9/10), Somerset, Bradley Hills, Burning Tree, and more. Elementary boundaries are the smallest and most neighborhood-specific &mdash; two houses on the same block can feed to different schools.</p>
-      <p><strong>Private options:</strong> Georgetown Preparatory School, Holton-Arms, Landon, and Stone Ridge School of the Sacred Heart are all within 15 minutes and represent some of the most competitive private schools in the Mid-Atlantic.</p>
-      <p style="font-size:.9rem;color:#555;background:#f5f0e8;padding:1rem 1.25rem;border-left:3px solid #c0392b;border-radius:4px;"><strong>Important:</strong> School boundaries change. Before purchasing a home based on school assignment, always verify the specific address at the MCPS Boundary Locator tool at montgomeryschoolsmd.org.</p>
-    </div>
-  </section>
-
-  <section class="section-prose" style="background:#faf6ef;padding:4rem 2rem;">
-    <div style="max-width:860px;margin:0 auto;">
-      <p class="section-label" style="color:#c0392b;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:.5rem;">Market Overview</p>
-      <h2 style="font-size:2rem;margin-bottom:1.5rem;color:#1a1a1a;">Bethesda Real Estate Market Overview</h2>
-      <p>Bethesda is one of the most resilient real estate markets in the United States. During every major national downturn since 2000 &mdash; the dot-com crash, the 2008 financial crisis, the COVID-19 disruption &mdash; Bethesda homes declined less and recovered faster than the national average. That stability is not luck; it&rsquo;s structural.</p>
-      <p>The market runs on constrained supply. Bethesda is almost entirely built out &mdash; there is very little raw land left to develop. New inventory comes almost exclusively from teardowns and infill construction, which keeps older homes competitive and prevents the kind of supply gluts that tank prices in newer suburban markets.</p>
-      <p><strong>Median sale price</strong> for single-family homes in Bethesda typically ranges from $900,000 to $1.5M depending on neighborhood and ZIP code, with luxury properties regularly trading above $2M&ndash;$5M in Edgemoor, Kenwood, and Burning Tree. Condos and townhomes in downtown Bethesda offer entry points from $400,000 to $900,000.</p>
-      <p><strong>Days on market:</strong> Well-priced Bethesda listings routinely receive multiple offers within the first week. Homes that sit longer than 30 days are typically overpriced or have material condition issues. The market rewards preparation &mdash; homes that are staged, priced correctly, and professionally marketed consistently outperform.</p>
-      <p><strong>Seasonal patterns:</strong> Spring (March&ndash;May) is the most competitive period, with the highest volume of buyers and the most multiple-offer situations. Fall (September&ndash;November) is the second peak. Winter is the best time to buy with less competition, though inventory is also lower.</p>
-    </div>
-  </section>
-
-  <section class="section-prose" style="background:#fff;padding:4rem 2rem;">
-    <div style="max-width:860px;margin:0 auto;">
-      <p class="section-label" style="color:#c0392b;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:.5rem;">Luxury Real Estate</p>
-      <h2 style="font-size:2rem;margin-bottom:1.5rem;color:#1a1a1a;">Bethesda Luxury Home Market</h2>
-      <p>Bethesda competes with the finest luxury real estate markets on the East Coast &mdash; and by many measures, it wins. The combination of close-in location, top schools, low crime, and the inherent prestige of the DC Metro professional community creates sustained demand for high-end properties that few markets can replicate.</p>
-      <p>The luxury tier in Bethesda begins around $2M and extends to $10M+. At the highest end, properties in Edgemoor and Kenwood sit on half-acre to two-acre lots with custom architecture, whole-house generators, smart home systems, and professional landscaping. These homes rarely last more than two to four weeks on the open market when priced correctly.</p>
-      <p><strong>Edgemoor:</strong> One of the most exclusive private neighborhoods in the Mid-Atlantic. Homes routinely sell for $3M&ndash;$8M. The neighborhood association is active and maintains strict architectural review for any exterior changes.</p>
-      <p><strong>Kenwood:</strong> Known globally for its cherry blossoms, Kenwood delivers estate-sized properties in a private, gate-managed enclave. The neighborhood has a waiting list culture among buyers who refuse to settle for anything else.</p>
-      <p><strong>New construction luxury:</strong> Builders like Classic Homes and Stanley Martin actively develop custom and semi-custom luxury homes throughout Bethesda, targeting the $1.8M&ndash;$4M buyer who wants modern systems in a traditional exterior.</p>
-    </div>
-  </section>
-
-  <section class="section-prose" style="background:#faf6ef;padding:4rem 2rem;">
-    <div style="max-width:860px;margin:0 auto;">
-      <p class="section-label" style="color:#c0392b;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:.5rem;">Architecture</p>
-      <h2 style="font-size:2rem;margin-bottom:1.5rem;color:#1a1a1a;">Bethesda Mid-Century Modern Homes</h2>
-      <p>Bethesda is one of the few DC suburbs with a genuine mid-century modern heritage &mdash; and for architecture enthusiasts, that heritage is one of the main attractions. Post-WWII development brought an extraordinary concentration of flat-roofed, glass-walled, open-plan homes to Bethesda&rsquo;s more wooded pockets, designed by architects who were heavily influenced by the Case Study House program and the International Style.</p>
-      <p>While Bethesda itself doesn&rsquo;t have a named MCM neighborhood the way nearby <a href="/mid-century-modern/" style="color:#c0392b;">Hollin Hills or Holmes Run Acres</a> do, significant concentrations of mid-century architecture exist throughout the western ZIP codes (20816 and 20817), particularly on the wooded ridgelines where flat roofs and floor-to-ceiling glass could capture both light and tree canopy views.</p>
-      <p>Buyers seeking true MCM homes should also look at the broader region&rsquo;s MCM communities, including Hollin Hills in Alexandria, Rock Creek Woods in Rockville, and Lake Barcroft in Falls Church &mdash; all within 30 minutes of downtown Bethesda and all represented by our team.</p>
-    </div>
-  </section>
-
-  <section class="section-prose" style="background:#fff;padding:4rem 2rem;">
-    <div style="max-width:860px;margin:0 auto;">
-      <p class="section-label" style="color:#c0392b;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:.5rem;">New Construction</p>
-      <h2 style="font-size:2rem;margin-bottom:1.5rem;color:#1a1a1a;">Bethesda New Construction Homes</h2>
-      <p>Bethesda has limited but active new construction activity. Because the community is largely built out, most new homes come from teardown/rebuild projects &mdash; an older ranch or colonial is demolished and replaced with a larger custom or spec home. This model has shaped Bethesda&rsquo;s housing stock for the past 20 years.</p>
-      <p><strong>Typical new construction profile:</strong> 3,500&ndash;6,000 square feet, four to six bedrooms, three to five bathrooms, two-car garage, open floor plan on main level, high-end finishes. Prices typically start at $1.8M and climb to $3.5M+ depending on location and finish level.</p>
-      <p><strong>Custom builders active in Bethesda:</strong> Classic Homes, Zantzinger Construction, and several boutique custom builders maintain active pipelines of Bethesda projects. Lead times for a fully custom home are typically 18&ndash;24 months from lot acquisition to completion.</p>
-      <p><strong>Buyer&rsquo;s tip:</strong> The best new construction deals in Bethesda are often found by identifying older homes that are approaching functional obsolescence &mdash; before they go to market as teardown lots. An experienced local agent can often help buyers get ahead of this pipeline. <a href="/contact/" style="color:#c0392b;">Reach out to Pey</a> to discuss current opportunities.</p>
-    </div>
-  </section>
-
-  <section class="section-prose" style="background:#faf6ef;padding:4rem 2rem;">
-    <div style="max-width:860px;margin:0 auto;">
-      <p class="section-label" style="color:#c0392b;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:.5rem;">Taxes</p>
-      <h2 style="font-size:2rem;margin-bottom:1.5rem;color:#1a1a1a;">Bethesda Property Taxes</h2>
-      <p>Bethesda is located in Montgomery County, Maryland. Property taxes are assessed by Montgomery County and typically represent approximately <strong>0.95% to 1.1% of assessed value</strong> annually, depending on the specific property and applicable credits.</p>
-      <p><strong>How Maryland property taxes work:</strong> Maryland assesses properties at full market value every three years through a triennial reassessment cycle. Between reassessments, assessed values are capped and phased in. This means a home bought at $1.2M may be assessed at a lower value if the previous assessment was significantly lower, resulting in effective tax rates that can be well below 1% in practice.</p>
-      <p><strong>Homestead Tax Credit:</strong> Maryland&rsquo;s Homestead Tax Credit caps annual increases in assessed value for your primary residence at 10% per year (Montgomery County&rsquo;s local cap is 10%). This protects homeowners from sudden large jumps in their tax bills due to rapid market appreciation. You must apply for this credit after purchasing &mdash; it is not automatic.</p>
-      <p><strong>Example:</strong> On a $1.2M home assessed at $1M (after applicable credits), annual property taxes at 1.0% would be approximately $10,000 per year, or $833/month. This is substantially lower than comparable homes in Fairfax County, Virginia, or in many New Jersey and New York suburbs.</p>
-      <p><strong>Transfer taxes:</strong> When purchasing in Montgomery County, buyers pay a total recordation and transfer tax of approximately 1.0%&ndash;1.5% of the purchase price. First-time homebuyers may qualify for exemptions on the state portion. Always confirm current rates with your title company at the time of contract.</p>
-    </div>
-  </section>
-
-  <section class="section-prose" style="background:#fff;padding:4rem 2rem;">
-    <div style="max-width:860px;margin:0 auto;">
-      <p class="section-label" style="color:#c0392b;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:.5rem;">Lifestyle</p>
-      <h2 style="font-size:2rem;margin-bottom:1.5rem;color:#1a1a1a;">Bethesda Lifestyle and Amenities</h2>
-      <p>Bethesda consistently ranks as one of the most livable communities in America &mdash; not because of one specific attribute, but because of how comprehensively it covers the basics. You don&rsquo;t have to choose between walkability and good schools. You don&rsquo;t have to choose between access to DC and suburban space. You get both.</p>
-      <p><strong>Bethesda Row</strong> anchors the retail and dining scene: Apple, Lululemon, Tesla, Crate &amp; Barrel, Barnes &amp; Noble, and dozens of local boutiques and restaurants occupy a beautifully landscaped 10-block district that consistently wins Best Main Street-style shopping in the DC area.</p>
-      <p><strong>The Woodmont Triangle</strong> immediately adjacent to Bethesda Row offers a denser, grittier counterpoint &mdash; craft cocktail bars, independent restaurants, live music, and the weekend farmers market that draws half of Bethesda&rsquo;s population every Saturday morning.</p>
-      <p><strong>Arts and culture:</strong> The Bethesda Blues &amp; Jazz Supper Club, Round House Theatre, and the Imagination Stage (one of the top children&rsquo;s theaters in America) all call Bethesda home. The Bethesda Arts &amp; Entertainment District hosts outdoor art installations and public programming year-round.</p>
-    </div>
-  </section>
-
-  <section class="section-prose" style="background:#faf6ef;padding:4rem 2rem;">
-    <div style="max-width:860px;margin:0 auto;">
-      <p class="section-label" style="color:#c0392b;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:.5rem;">Dining</p>
-      <h2 style="font-size:2rem;margin-bottom:1.5rem;color:#1a1a1a;">Bethesda Restaurants</h2>
-      <p>Bethesda has a dining scene that would be notable in any major American city &mdash; remarkable for a suburban community of its size. The combination of a high-income, internationally diverse resident base and proximity to DC&rsquo;s culinary talent pool has produced a restaurant row that locals often prefer to crossing the bridge downtown.</p>
-      <p><strong>Landmark dining:</strong> Mon Ami Gabi (classic French bistro at Bethesda Row) has been an institution for 25 years. Jaleo by Jos&eacute; Andr&eacute;s brought world-class Spanish tapas to Bethesda before it became a DC phenomenon. The Woodmont Grill is the go-to power lunch destination for the biotech and federal contracting crowd.</p>
-      <p><strong>New energy:</strong> Bethesda&rsquo;s restaurant scene has seen significant investment in recent years, with chef-driven independents opening in both Bethesda Row and Woodmont Triangle. Little Ricky&rsquo;s, the reimagined Bethesda Crab House, and a growing Korean and Japanese dining corridor along Wisconsin Avenue have expanded the options considerably.</p>
-      <p><strong>For families:</strong> Bethesda&rsquo;s kid-friendly dining options are exceptional. From the classic Silver Diner to Cava, Sweetgreen, and multiple pizza and burger spots at Bethesda Row, families have no shortage of options for casual weeknight dinners within walking distance.</p>
-    </div>
-  </section>
-
-  <section class="section-prose" style="background:#fff;padding:4rem 2rem;">
-    <div style="max-width:860px;margin:0 auto;">
-      <p class="section-label" style="color:#c0392b;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:.5rem;">Outdoors</p>
-      <h2 style="font-size:2rem;margin-bottom:1.5rem;color:#1a1a1a;">Bethesda Parks and Trails</h2>
-      <p>Bethesda is exceptionally well-served by parks and trails for a first-ring suburb. The combination of Montgomery County&rsquo;s aggressive open space preservation program and the proximity to Rock Creek Park and the Chesapeake &amp; Ohio Canal creates a green infrastructure that most suburbs cannot match.</p>
-      <p><strong>Capital Crescent Trail:</strong> The crown jewel of Bethesda&rsquo;s trail network. This 11-mile paved multi-use trail runs from Georgetown in Washington DC to Silver Spring, passing directly through downtown Bethesda. It follows the former Georgetown Branch railroad right-of-way and is one of the most heavily used trails on the East Coast. Runners, cyclists, and commuters use it daily.</p>
-      <p><strong>Cabin John Regional Park:</strong> A 535-acre Montgomery County park bordering Bethesda&rsquo;s western edge. Home to an outdoor ice skating rink, tennis courts, miniature train, nature trails, picnic facilities, and athletic fields. One of the most used regional parks in the county.</p>
-      <p><strong>Rock Creek Park:</strong> The 1,700-acre National Park Service property begins just south of Bethesda and runs south through DC to the Potomac. Its trails, horse center, and nature center are accessible within 10 minutes from most Bethesda neighborhoods.</p>
-      <p><strong>Norwood Local Park and Drummond Local Park</strong> are neighborhood-level parks within Bethesda&rsquo;s residential areas, providing playgrounds, ball fields, and green space within walking distance for most residents.</p>
-    </div>
-  </section>
-
-  <section class="section-prose section-faq" style="background:#faf6ef;padding:4rem 2rem;">
-    <div style="max-width:860px;margin:0 auto;">
-      <p class="section-label" style="color:#c0392b;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:.5rem;">FAQ</p>
-      <h2 style="font-size:2rem;margin-bottom:2rem;color:#1a1a1a;">Bethesda Real Estate &mdash; Frequently Asked Questions</h2>
-
-      <div style="border-top:1px solid #ddd;padding:1.25rem 0;">
-        <h3 style="font-size:1.1rem;color:#1a1a1a;margin-bottom:.5rem;">What is the average home price in Bethesda, MD?</h3>
-        <p style="color:#444;margin:0;">The median sale price for single-family homes in Bethesda typically ranges from $900,000 to $1.5M, depending on ZIP code and neighborhood. Condos and townhomes start around $400,000. Luxury properties in neighborhoods like Edgemoor and Kenwood regularly sell for $2M&ndash;$8M+.</p>
-      </div>
-
-      <div style="border-top:1px solid #ddd;padding:1.25rem 0;">
-        <h3 style="font-size:1.1rem;color:#1a1a1a;margin-bottom:.5rem;">Is Bethesda a good place to buy real estate?</h3>
-        <p style="color:#444;margin:0;">Yes. Bethesda is consistently one of the most stable and appreciating real estate markets in the United States. Supply is severely constrained by the built-out nature of the community, demand is driven by federal government employment and NIH, and school quality maintains continuous buyer interest. It is not a market where you time your entry &mdash; you buy when you&rsquo;re ready and hold.</p>
-      </div>
-
-      <div style="border-top:1px solid #ddd;padding:1.25rem 0;">
-        <h3 style="font-size:1.1rem;color:#1a1a1a;margin-bottom:.5rem;">What ZIP codes are in Bethesda?</h3>
-        <p style="color:#444;margin:0;">Bethesda spans four ZIP codes: 20814 (downtown and eastern Bethesda), 20815 (Chevy Chase border and Kenwood), 20816 (West Bethesda and Glen Echo Heights), and 20817 (Country Club Hills and the Potomac border). Each ZIP code has a distinct character and price range.</p>
-      </div>
-
-      <div style="border-top:1px solid #ddd;padding:1.25rem 0;">
-        <h3 style="font-size:1.1rem;color:#1a1a1a;margin-bottom:.5rem;">How long do homes stay on the market in Bethesda?</h3>
-        <p style="color:#444;margin:0;">Well-priced homes in Bethesda typically go under contract within 7&ndash;14 days, often with multiple offers. The spring market (March&ndash;May) is the most competitive. Homes that are overpriced or need significant work may sit 30&ndash;60+ days before receiving offers.</p>
-      </div>
-
-      <div style="border-top:1px solid #ddd;padding:1.25rem 0;">
-        <h3 style="font-size:1.1rem;color:#1a1a1a;margin-bottom:.5rem;">What are property taxes like in Bethesda?</h3>
-        <p style="color:#444;margin:0;">Bethesda is in Montgomery County, Maryland. Effective property tax rates are approximately 0.95%&ndash;1.1% of assessed value annually. Maryland&rsquo;s Homestead Tax Credit caps annual assessment increases at 10% per year for primary residences, protecting homeowners from sudden large tax increases.</p>
-      </div>
-
-      <div style="border-top:1px solid #ddd;padding:1.25rem 0;">
-        <h3 style="font-size:1.1rem;color:#1a1a1a;margin-bottom:.5rem;">What schools serve Bethesda?</h3>
-        <p style="color:#444;margin:0;">Bethesda is served by Montgomery County Public Schools (MCPS). High school assignments include Bethesda-Chevy Chase (BCC), Walter Johnson, and Walt Whitman &mdash; all rated 9/10 or above on GreatSchools. Your specific school assignment depends on your home address. Always verify using the MCPS boundary tool before purchasing.</p>
-      </div>
-
-      <div style="border-top:1px solid #ddd;padding:1.25rem 0;">
-        <h3 style="font-size:1.1rem;color:#1a1a1a;margin-bottom:.5rem;">How far is Bethesda from Washington DC?</h3>
-        <p style="color:#444;margin:0;">Bethesda borders Washington DC and is approximately 5&ndash;10 miles from downtown. By Metro (Red Line), most of downtown DC is 12&ndash;25 minutes away. By car, the drive is typically 20&ndash;35 minutes depending on traffic and destination. The Capital Crescent Trail allows a 45&ndash;60 minute bike commute to Georgetown.</p>
-      </div>
-
-      <div style="border-top:1px solid #ddd;padding:1.25rem 0;">
-        <h3 style="font-size:1.1rem;color:#1a1a1a;margin-bottom:.5rem;">Who is the best real estate agent in Bethesda?</h3>
-        <p style="color:#444;margin:0;">Pey Behin with RLAH @properties is a hyperlocal Bethesda and DC Metro specialist with deep knowledge of every neighborhood, price tier, and market condition in the area. Whether you&rsquo;re buying your first home in Bethesda or selling a multi-million dollar estate, Pey delivers the preparation, strategy, and results this market demands. <a href="/contact/" style="color:#c0392b;">Connect with Pey today.</a></p>
-      </div>
-      <div style="border-top:1px solid #ddd;"></div>
-    </div>
-  </section>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {"@type":"Question","name":"What is the average home price in Bethesda, MD?","acceptedAnswer":{"@type":"Answer","text":"The median sale price for single-family homes in Bethesda typically ranges from $900,000 to $1.5M, depending on ZIP code and neighborhood. Condos and townhomes start around $400,000. Luxury properties in neighborhoods like Edgemoor and Kenwood regularly sell for $2M-$8M+."}},
-      {"@type":"Question","name":"Is Bethesda a good place to buy real estate?","acceptedAnswer":{"@type":"Answer","text":"Yes. Bethesda is consistently one of the most stable and appreciating real estate markets in the United States. Supply is severely constrained, demand is driven by federal employment and NIH, and school quality maintains continuous buyer interest."}},
-      {"@type":"Question","name":"What ZIP codes are in Bethesda?","acceptedAnswer":{"@type":"Answer","text":"Bethesda spans four ZIP codes: 20814, 20815, 20816, and 20817. Each has a distinct character and price range."}},
-      {"@type":"Question","name":"How long do homes stay on the market in Bethesda?","acceptedAnswer":{"@type":"Answer","text":"Well-priced homes in Bethesda typically go under contract within 7-14 days, often with multiple offers. The spring market is the most competitive."}},
-      {"@type":"Question","name":"What are property taxes like in Bethesda?","acceptedAnswer":{"@type":"Answer","text":"Effective property tax rates are approximately 0.95%-1.1% of assessed value annually in Montgomery County, Maryland."}},
-      {"@type":"Question","name":"What schools serve Bethesda?","acceptedAnswer":{"@type":"Answer","text":"Bethesda is served by Montgomery County Public Schools. High schools include BCC, Walter Johnson, and Walt Whitman, all rated 9/10+ on GreatSchools."}},
-      {"@type":"Question","name":"How far is Bethesda from Washington DC?","acceptedAnswer":{"@type":"Answer","text":"Bethesda borders DC and is approximately 5-10 miles from downtown. By Metro the commute is 12-25 minutes; by car 20-35 minutes."}},
-      {"@type":"Question","name":"Who is the best real estate agent in Bethesda?","acceptedAnswer":{"@type":"Answer","text":"Pey Behin with RLAH @properties is a hyperlocal Bethesda and DC Metro specialist. Contact Pey at atbethesda.com/contact."}}
+    <span class="section-label."}}
     ]
   }
   </script>
