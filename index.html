@@ -575,38 +575,34 @@
     .form-submit:hover { background: var(--red-dark); }
 
     /* -- FOOTER -- */
-    footer { background: #0a0a0a; color: #888; padding: 60px 40px 30px; }
-    .footer-inner { max-width: 1100px; margin: 0 auto; }
-    .footer-top {
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 50px; margin-bottom: 50px;
-    }
-    .footer-brand .footer-logos { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
-    .footer-brand .footer-logos img { height: 60px; width: auto; display: block; }
-    .footer-brand p { font-size: .8rem; line-height: 1.7; max-width: 240px; }
-    .footer-col h4 {
-      font-size: .68rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: .15em; color: #ccc; margin-bottom: 18px;
-    }
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .footer-col ul a { color: #777; text-decoration: none; font-size: .8rem; transition: color .2s; }
-    .footer-col ul a:hover { color: var(--white); }
-    .footer-socials { display: flex; gap: 12px; margin-top: 20px; }
-    .footer-social {
-      width: 34px; height: 34px; border-radius: 50%;
-      border: 1px solid #333; display: flex; align-items: center; justify-content: center;
-      color: #666; text-decoration: none; transition: border-color .2s, color .2s;
-    }
-    .footer-social:hover { border-color: var(--red); color: var(--red); }
-    .footer-bottom {
-      border-top: 1px solid #1a1a1a; padding-top: 24px;
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 12px;
-    }
-    .footer-bottom p { font-size: .73rem; }
-    .footer-bottom-links { display: flex; gap: 20px; }
-    .footer-bottom-links a { color: #666; text-decoration: none; font-size: .73rem; transition: color .2s; }
-    .footer-bottom-links a:hover { color: var(--white); }
+    footer { background: #F2E8D6; color: #2A2A2A; padding: 0; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; padding: 44px 40px; display: flex; align-items: flex-start; gap: 0; }
+    .footer-brand { flex: 0 0 auto; padding-right: 36px; }
+    .footer-brand .fv-main-logo { height: 72px; width: auto; display: block; }
+    .fv-divider { width: 1px; background: #C5B496; align-self: stretch; flex-shrink: 0; margin: 0 36px; }
+    .fv-col { flex: 0 0 auto; }
+    .fv-col h4 { font-size: .62rem; font-weight: 800; text-transform: uppercase; letter-spacing: .2em; color: #1A1A1A; margin-bottom: 14px; }
+    .fv-col address { font-style: normal; font-size: .78rem; line-height: 1.9; color: #5A4A3A; }
+    .fv-col address a { color: #5A4A3A; text-decoration: none; }
+    .fv-col address a:hover { color: #1A1A1A; }
+    .fv-socials { display: flex; gap: 10px; }
+    .fv-social { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; transition: opacity .2s; }
+    .fv-social:hover { opacity: .85; }
+    .fv-social-fb { background: #3B5998; }
+    .fv-social-ig { background: #4B8B8B; }
+    .fv-social-star { background: #8B6040; }
+    .fv-menu { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+    .fv-menu li a { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #5A4A3A; text-decoration: none; line-height: 2.2; transition: color .2s; }
+    .fv-menu li.fv-active a { color: #B85C3A; }
+    .fv-menu li a:hover { color: #1A1A1A; }
+    .fv-deco { margin-left: auto; flex: 0 0 180px; align-self: center; padding-left: 20px; }
+    .fv-deco svg { width: 100%; height: auto; display: block; }
+    .footer-rlah { background: #111; display: flex; align-items: center; justify-content: space-between; padding: 14px 40px; }
+    .footer-rlah img { height: 36px; width: auto; }
+    .footer-rlah-right { display: flex; align-items: center; gap: 24px; }
+    .footer-rlah p { font-size: .68rem; color: #666; margin: 0; }
+    .footer-rlah a { font-size: .68rem; color: #666; text-decoration: none; }
+    .footer-rlah a:hover { color: #aaa; }
 
     /* -- MOBILE STICKY -- */
     .mobile-bar {
@@ -635,7 +631,11 @@
       .about-img-wrap { max-width: 380px; }
       .blog-grid { grid-template-columns: 1fr; }
       .contact-inner { grid-template-columns: 1fr; }
-      .footer-top { grid-template-columns: 1fr 1fr; }
+      .footer-inner { flex-direction: column; gap: 28px; padding: 32px 20px; }
+      .fv-divider { display: none; }
+      .fv-deco { margin-left: 0; flex: 0 0 auto; width: 150px; }
+      .footer-rlah { flex-direction: column; gap: 10px; text-align: center; padding: 16px 20px; }
+      .footer-rlah-right { flex-direction: column; gap: 8px; }
       .testi-grid { grid-template-columns: 1fr; }
       .mobile-bar { display: grid; }
       footer { padding-bottom: 80px; }
@@ -1378,71 +1378,49 @@
 <!-- -- FOOTER -- -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <div class="footer-logos">
-          <img src="/images/blog/logo-rlahatproperties-vertical-white.png" alt="RLAH @properties" />
-          <img src="/images/logo-bethesda-residential.png?v=2" alt="@Bethesda Residential" />
-        </div>
-        <p>Your hyperlocal Bethesda and DC Metro real estate expert. The only site where you can search homes by school district.</p>
-        <div class="footer-socials">
-          <a href="https://www.facebook.com/peybehinestates" class="footer-social" aria-label="Facebook">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          </a>
-          <a href="https://www.instagram.com/peybehin/" class="footer-social" aria-label="Instagram">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          </a>
-          <a href="https://youtube.com/peybehin" class="footer-social" aria-label="YouTube">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon fill="#0a0a0a" points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
-          </a>
-          <a href="https://www.linkedin.com/in/peybehin/" class="footer-social" aria-label="LinkedIn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          </a>
-          <a href="https://tiktok.com/@peybehin" class="footer-social" aria-label="TikTok">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/></svg>
-          </a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>Buy</h4>
-        <ul>
-          <li><a href="https://search.atbethesda.com/idx/results/listings?pt=&bd=&ba=&lp=&hp=&srt=newest&per=30&city[]=Bethesda&city[]=Chevy+Chase&city[]=Potomac&city[]=Kensington&city[]=North+Bethesda&city[]=North+Potomac&city[]=Cabin+John&city[]=Silver+Spring&city[]=Rockville&city[]=Gaithersburg&city[]=McLean&city[]=Vienna&city[]=Great+Falls&city[]=Falls+Church&city[]=Georgetown&city[]=Arlington&city[]=Alexandria&city[]=Fairfax&city[]=Friendship+Heights&city[]=Spring+Valley&city[]=Palisades">Properties</a></li>
-          <li><a href="/perfect-home-finder/">Perfect Home Finder</a></li>
-          <li><a href="/buyers-guide/">Buyer's Guide</a></li>
-          <li><a href="/mortgage-calculator/">Mortgage Calculator</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Sell</h4>
-        <ul>
-          <li><a href="/whats-my-home-worth/">Home Valuation</a></li>
-          <li><a href="/sellers-guide/">Seller's Guide</a></li>
-        </ul>
-        <h4 style="margin-top:24px;">Areas</h4>
-        <ul>
-          <li><a href="/our-areas/chevy-chase/">Chevy Chase</a></li>
-          <li><a href="/our-areas/potomac/">Potomac</a></li>
-          <li><a href="/our-areas/bethesda/">Bethesda</a></li>
-          <li><a href="/our-areas/north-bethesda/">North Bethesda</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>More</h4>
-        <ul>
-          <li><a href="/about/">About Pey</a></li>
-          <li><a href="/testimonials/">Testimonials</a></li>
-          <li><a href="/vlog/">Blog</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
+    <div class="footer-brand">
+      <img src="/images/logo-bethesda-residential.png?v=2" alt="@Bethesda Residential" class="fv-main-logo" />
+    </div>
+    <div class="fv-divider" aria-hidden="true"></div>
+    <div class="fv-col">
+      <h4>Contact</h4>
+      <address>
+        <a href="tel:2028888860">202.888.8860</a><br>
+        <a href="mailto:info@bethesdaresidential.com">info@bethesdaresidential.com</a><br>
+        1331 H Street NE, Washington, DC 20002
+      </address>
+    </div>
+    <div class="fv-divider" aria-hidden="true"></div>
+    <div class="fv-col">
+      <h4>Follow Us</h4>
+      <div class="fv-socials">
+        <a href="https://www.facebook.com/peybehinestates" class="fv-social fv-social-fb" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://www.instagram.com/peybehin/" class="fv-social fv-social-ig" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="https://www.zillow.com/profile/peybehin" class="fv-social fv-social-star" aria-label="Zillow"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.09 6.26L21 9.27l-5.45 5.19L16.18 21 12 17.77 7.82 21l1.63-6.54L4 9.27l6.91-1.01z"/></svg></a>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>RLAH Properties | 4600 North Park Ave Suite 100, Chevy Chase, MD 20815 | (301) 652-0643<br/>
-      All information deemed reliable but not guaranteed. &copy; 2026 @Bethesda Real Estate. All rights reserved.</p>
-      <div class="footer-bottom-links">
-        <a href="/about/">Privacy Policy</a>
-        <a href="/about/">Terms of Use</a>
-      </div>
+    <div class="fv-divider" aria-hidden="true"></div>
+    <div class="fv-col">
+      <h4>Menu</h4>
+      <ul class="fv-menu">
+        <li><a href="/about/">About</a></li>
+        <li class="fv-active"><a href="/our-areas/">Neighborhoods</a></li>
+        <li><a href="/properties/">Listings</a></li>
+        <li><a href="/about/#team">Our Team</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+    </div>
+    <div class="fv-deco">
+      <svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="192" height="122" fill="none" stroke="#1A1A1A" stroke-width="1.2"/><line x1="68" y1="4" x2="68" y2="126" stroke="#1A1A1A" stroke-width="0.6" opacity="0.45"/><line x1="132" y1="4" x2="132" y2="126" stroke="#1A1A1A" stroke-width="0.6" opacity="0.45"/><line x1="4" y1="46" x2="196" y2="46" stroke="#1A1A1A" stroke-width="0.6" opacity="0.45"/><line x1="4" y1="86" x2="196" y2="86" stroke="#1A1A1A" stroke-width="0.6" opacity="0.45"/><ellipse cx="108" cy="53" rx="50" ry="26" fill="#C4633F" transform="rotate(-18 108 53)"/><ellipse cx="153" cy="50" rx="33" ry="20" fill="#1A1A1A" transform="rotate(16 153 50)"/><ellipse cx="116" cy="84" rx="43" ry="21" fill="#9B8A3A" transform="rotate(-8 116 84)"/><ellipse cx="159" cy="93" rx="44" ry="22" fill="#4B8B8B" transform="rotate(12 159 93)"/></svg>
+    </div>
+  </div>
+  <div class="footer-rlah">
+    <img src="/images/blog/logo-rlahatproperties-vertical-white.png" alt="RLAH @properties" />
+    <div class="footer-rlah-right">
+      <p>© 2025 @Bethesda Residential. All rights reserved.</p>
+      <a href="/privacy-policy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Use</a>
     </div>
   </div>
 </footer>
@@ -1556,7 +1534,7 @@ function doHeroSearch() {
 </script>
 
 
-  <!-- Hidden IDX widget — data source for area page carousels, never shown to user -->
+  <!-- Hidden IDX widget â data source for area page carousels, never shown to user -->
   <style>
     #idx-hidden-feed { display: none !important; position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
     #idx-hidden-feed idx-listings-carousel { display: none !important; }
