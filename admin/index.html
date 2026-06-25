@@ -1919,7 +1919,11 @@ async function handleImageFile(file) {
   statusEl.style.color = '#888';
   statusEl.textContent = '⏳ Uploading…';
 
-  const filename = file.name.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9._-]/g, '-');
+  const rawName = file.name;
+  const lastDot = rawName.lastIndexOf('.');
+  const ext = lastDot > -1 ? rawName.slice(lastDot).toLowerCase() : '';
+  const base = lastDot > -1 ? rawName.slice(0, lastDot) : rawName;
+  const filename = base.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9_-]/g, '-').replace(/-+$/, '') + ext;
   const path = 'images/blog/' + filename;
 
   try {
@@ -1966,7 +1970,7 @@ async function updateVlogIndex(post) {
     if (vlog.includes('/' + post.slug + '/')) return;
 
     const cat = CAT_MAP[post.category] || post.category || 'Buyers Corner';
-    const tags = (post.tags || []).map(t => '<span class="blog-tag">' + t + '</span>').join('');
+    const tags = (post.tags || []).filter(t => t.split(' ').length <= 2).slice(0, 2).map(t => '<span class="blog-tag">' + t + '</span>').join('');
     const snippet = (post.snippet || post.meta || '').slice(0, 130);
     const card = '<article class="blog-card" data-cats=\'["' + cat + '"]\' onclick="location.href='/' + post.slug + '/'">' +
       '\n    <div class="blog-card-img">' +
